@@ -23,13 +23,13 @@ import "./nav.js";
 // })();
 
 // Media Queries
-const minMediaMD = window.matchMedia('(min-width: 768px)');
+const minMediaMD = window.matchMedia("(min-width: 768px)");
 
 function handleMediaQueryChange(e) {
   if (e.matches) {
-    console.log('The screen is big.');
+    console.log("The screen is big.");
   } else {
-    console.log('The screen is small.');
+    console.log("The screen is small.");
   }
 }
 

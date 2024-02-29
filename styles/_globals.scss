@@ -1,77 +1,77 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    background: $black;
-    color: $white;
+  background: $black;
+  color: $white;
 }
 
 // Utility
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 // Media query classes
 
 .lg-screen-and-up {
-    display: none;
+  display: none;
 
-    @include mq-min('lg') {
-        display: flex; // Flex for cta-wrapper
-    }
+  @include mq-min("lg") {
+    display: flex; // Flex for cta-wrapper
+  }
 }
 
 .lg-screen-and-below {
-    display: none;
+  display: none;
 
-    @include mq-max('lg') {
-        display: flex;
-    }
+  @include mq-max("lg") {
+    display: flex;
+  }
 }
 
 .md-screen-and-up {
-    display: none;
+  display: none;
 
-    @include mq-min('md') {
-        display: flex;
-    }
+  @include mq-min("md") {
+    display: flex;
+  }
 }
 
 .md-screen-and-below {
-    display: none;
+  display: none;
 
-    @include mq-max('md') {
-        display: flex;
-    }
+  @include mq-max("md") {
+    display: flex;
+  }
 }
 
 .sm-screen-and-up {
-    display: none;
+  display: none;
 
-    @include mq-min('sm') {
-        display: flex;
-    }
+  @include mq-min("sm") {
+    display: flex;
+  }
 }
 
 .sm-screen-and-below {
-    display: none;
+  display: none;
 
-    @include mq-max('sm') {
-        display: flex;
-    }
+  @include mq-max("sm") {
+    display: flex;
+  }
 }
