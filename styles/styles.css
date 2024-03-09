@@ -1,7 +1,16 @@
+:root {
+  --background-color: #ddd;
+  --primary-font-color: #222;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+*:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--primary-font-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
 }
 
 html {
@@ -9,6 +18,85 @@ html {
 }
 
 body {
-  background: #101010;
-  color: #f0f0f0;
+  background: var(--background-color);
+  color: var(--primary-font-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lg-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 1025px) {
+  .lg-screen-and-up {
+    display: flex;
+  }
+}
+
+.lg-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 1024px) {
+  .lg-screen-and-below {
+    display: flex;
+  }
+}
+
+.md-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 769px) {
+  .md-screen-and-up {
+    display: flex;
+  }
+}
+
+.md-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .md-screen-and-below {
+    display: flex;
+  }
+}
+
+.sm-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 481px) {
+  .sm-screen-and-up {
+    display: flex;
+  }
+}
+
+.sm-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  .sm-screen-and-below {
+    display: flex;
+  }
 }/*# sourceMappingURL=styles.css.map */

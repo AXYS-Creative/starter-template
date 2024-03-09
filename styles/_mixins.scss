@@ -63,6 +63,12 @@ $min-breakpoints: (
   }
 }
 
+@mixin mq-dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
 @mixin mq-touch {
   @media (hover: none) {
     @content;

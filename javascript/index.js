@@ -33,6 +33,6 @@ function handleMediaQueryChange(e) {
   }
 }
 
-minMediaMD.addEventListener(handleMediaQueryChange);
+minMediaMD.addEventListener("change", handleMediaQueryChange);
 
 handleMediaQueryChange(minMediaMD);

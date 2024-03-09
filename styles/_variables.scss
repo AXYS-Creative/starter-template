@@ -1,4 +1,39 @@
-$black: #101010;
-$white: #f0f0f0;
+$black: #222;
+$white: #ddd;
 
-$test: 2px dashed coral;
+:root {
+  --background-color: #{$white};
+  --primary-font-color: #{$black};
+}
+
+// If you add a dark/light theme
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --background-color: #{$black};
+//     --primary-font-color: #{$white};
+//   }
+// }
+
+// Site Scaffolding
+
+$content-width: 1920px;
+$body-padding: 64px;
+// $body-padding-xxl: 40px;
+// $body-padding-md: 24px;
+
+$vertical-section-padding: 196px;
+// $vertical-section-padding-xxl: 156px;
+// $vertical-section-padding-lg: 124px;
+// $vertical-section-padding-md: 148px;
+// $vertical-section-padding-sm: 96px;
+
+$horizontal-section-padding: 148px;
+// $horizontal-section-padding-xxl: 96px;
+// $horizontal-section-padding-xl: 124px;
+// $horizontal-section-padding-lg: 96px;
+// $horizontal-section-padding-md: 48px;
+
+// Debugging
+
+$test: 2px dashed rgba(crimson, 0.75);
+$test-bg: rgba(navy, 0.75);
