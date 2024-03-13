@@ -63,20 +63,37 @@ $min-breakpoints: (
   }
 }
 
+// Users that prefer dark theme
 @mixin mq-dark {
   @media (prefers-color-scheme: dark) {
     @content;
   }
 }
 
+// Users on tables and smart phones
 @mixin mq-touch {
-  @media (hover: none) {
+  @media (hover: none) and (pointer: coarse) {
     @content;
   }
 }
 
+// Users on computers and laptops
 @mixin mq-mouse {
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+// Users that don't mind animations (motion)
+@mixin mq-motion-allow {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Users that are sensitive to motion. Use this to remove animations.
+@mixin mq-motion-reduce {
+  @media (prefers-reduced-motion: reduce) {
     @content;
   }
 }
