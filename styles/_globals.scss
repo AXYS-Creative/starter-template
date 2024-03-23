@@ -21,6 +21,13 @@ body {
   color: var(--primary-font-color);
 }
 
+section {
+  @include column-center;
+  margin: auto;
+  max-width: $content-width;
+  height: 80vh;
+}
+
 a {
   text-decoration: none;
 }

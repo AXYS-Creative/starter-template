@@ -7,12 +7,12 @@ $white: #ddd;
 }
 
 // If you add a dark/light theme
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --background-color: #{$black};
-//     --primary-font-color: #{$white};
-//   }
-// }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #{$black};
+    --primary-font-color: #{$white};
+  }
+}
 
 // Site Scaffolding
 
