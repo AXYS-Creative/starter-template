@@ -1,0 +1,11 @@
+# The 'publish' key can be either '.' or 'site'. These are the directories that contain the site
+
+[build]
+  command = "build"
+  publish = "."
+
+[dev]
+  command = "your server start command"
+  port = 8000
+  publish = "."
+
