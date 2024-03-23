@@ -3,12 +3,13 @@ require("dotenv").config();
 const contentful = require("contentful");
 
 const contentfulSpace = process.env.CONTENTFUL_SPACE;
-const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+const contentfulAccessTokenDelivery =
+  process.env.CONTENTFUL_ACCESS_TOKEN_DELIVERY;
 
 const client = contentful.createClient({
   space: contentfulSpace,
   environment: "master", // defaults to 'master' if not set
-  accessToken: contentfulAccessToken,
+  accessToken: contentfulAccessTokenDelivery,
 });
 
 client
