@@ -1,9 +1,14 @@
+require("dotenv").config();
+
 const contentful = require("contentful");
 
+const contentfulSpace = process.env.CONTENTFUL_SPACE;
+const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+
 const client = contentful.createClient({
-  space: "gp2laug2nl23",
+  space: contentfulSpace,
   environment: "master", // defaults to 'master' if not set
-  accessToken: "x7E19g_TZe9KvoR-hyCjZ5qbi77Yw_BPK4U2YGpIxmg",
+  accessToken: contentfulAccessToken,
 });
 
 client
