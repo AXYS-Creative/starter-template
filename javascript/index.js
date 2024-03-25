@@ -1,6 +1,7 @@
 import "./nav.js";
 // import "./contentful.js";
 import "./auth.js";
+import "./editor.js";
 
 // Clear focus from any element on mousemove (remove button :focus styles)
 (function clearFocusOnMouseMove() {

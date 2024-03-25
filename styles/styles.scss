@@ -1,4 +1,4 @@
-@import "variables", "mixins", "globals", "utility";
+@import "variables", "mixins", "globals", "utility", "editor";
 
 #hero-section {
   @include row-center;

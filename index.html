@@ -64,6 +64,26 @@
     </main>
     <footer></footer>
 
+    <div
+      id="editorModal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="modalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-content" tabindex="-1">
+        <span class="close-button" tabindex="0" aria-label="Close edit modal"
+          >&times;</span
+        >
+        <h2 id="modalTitle">Edit Content</h2>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" />
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <button id="saveBtn">Save</button>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   </body>
 </html>
