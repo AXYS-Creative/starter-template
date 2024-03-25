@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 *:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--primary-font-color);
@@ -40,25 +41,41 @@ header .header-logo img {
 }
 
 section {
-  border: 2px dashed rgba(220, 20, 60, 0.75);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 12px;
   margin: auto;
   max-width: 1920px;
   height: 80vh;
 }
 
-h1 {
-  font-family: sans-serif;
+h1,
+h2 {
   font-size: 64px;
   font-weight: 300;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 48px;
 }
 
 a {
   font-family: sans-serif;
   text-decoration: none;
-  color: white;
+  color: var(--primary-font-color);
+  cursor: pointer;
+}
+a.cta-1 {
+  border: 1px solid var(--primary-font-color);
+  padding: 12px 20px;
+  color: var(--primary-font-color);
+  transition: 0.2s ease;
+}
+a.cta-1:hover {
+  background: var(--primary-font-color);
+  color: var(--background-color);
 }
 
 button {
@@ -162,6 +179,8 @@ div[data-netlify-identity-menu] ul.netlify-identity-menu span.netlify-identity-u
   }
 }
 
-#hero {
-  isolation: isolate;
+#hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=styles.css.map */
