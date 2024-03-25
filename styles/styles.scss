@@ -1,1 +1,5 @@
-@import "variables", "mixins", "globals";
+@import "variables", "mixins", "globals", "utility";
+
+#hero {
+  isolation: isolate;
+}

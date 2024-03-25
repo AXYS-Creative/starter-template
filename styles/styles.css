@@ -28,17 +28,37 @@ body {
   color: var(--primary-font-color);
 }
 
+header .header-logo {
+  position: fixed;
+  top: 64px;
+  left: 64px;
+  width: 24px;
+  height: 24px;
+}
+header .header-logo img {
+  width: 100%;
+}
+
 section {
+  border: 2px dashed rgba(220, 20, 60, 0.75);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin: auto;
   max-width: 1920px;
   height: 80vh;
 }
 
+h1 {
+  font-family: sans-serif;
+  font-size: 64px;
+  font-weight: 300;
+}
+
 a {
+  font-family: sans-serif;
   text-decoration: none;
+  color: white;
 }
 
 button {
@@ -49,6 +69,32 @@ button {
 
 ul {
   list-style: none;
+}
+
+div[data-netlify-identity-menu] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 64px;
+  right: 64px;
+}
+div[data-netlify-identity-menu] [data-netlify-identity-button] {
+  display: none;
+}
+div[data-netlify-identity-menu] ul.netlify-identity-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+div[data-netlify-identity-menu] ul.netlify-identity-menu span.netlify-identity-user {
+  font-family: sans-serif;
+}
+
+#netlify-identity-widget {
+  border: 2px dashed rgba(220, 20, 60, 0.75);
 }
 
 .sr-only {
@@ -114,4 +160,8 @@ ul {
   .sm-screen-and-below {
     display: flex;
   }
+}
+
+#hero {
+  isolation: isolate;
 }/*# sourceMappingURL=styles.css.map */

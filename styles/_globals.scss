@@ -21,15 +21,38 @@ body {
   color: var(--primary-font-color);
 }
 
+header {
+  .header-logo {
+    position: fixed;
+    top: $body-padding;
+    left: $body-padding;
+    width: 24px;
+    height: 24px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
 section {
-  @include column-center;
+  border: $test;
+  @include row-center;
   margin: auto;
   max-width: $content-width;
   height: 80vh;
 }
 
+h1 {
+  font-family: $primary-font;
+  font-size: 64px;
+  font-weight: 300;
+}
+
 a {
+  font-family: $primary-font;
   text-decoration: none;
+  color: white;
 }
 
 button {
@@ -40,67 +63,4 @@ button {
 
 ul {
   list-style: none;
-}
-
-// Utility
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-// Media query classes
-
-.lg-screen-and-up {
-  display: none;
-
-  @include mq-min("lg") {
-    display: flex; // Flex for cta-wrapper
-  }
-}
-
-.lg-screen-and-below {
-  display: none;
-
-  @include mq-max("lg") {
-    display: flex;
-  }
-}
-
-.md-screen-and-up {
-  display: none;
-
-  @include mq-min("md") {
-    display: flex;
-  }
-}
-
-.md-screen-and-below {
-  display: none;
-
-  @include mq-max("md") {
-    display: flex;
-  }
-}
-
-.sm-screen-and-up {
-  display: none;
-
-  @include mq-min("sm") {
-    display: flex;
-  }
-}
-
-.sm-screen-and-below {
-  display: none;
-
-  @include mq-max("sm") {
-    display: flex;
-  }
 }
