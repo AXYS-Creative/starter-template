@@ -28,6 +28,9 @@ body {
   background: var(--background-color);
   color: var(--primary-font-color);
 }
+body:has(.admin-edit) .admin-edit-btn {
+  display: block;
+}
 
 header .header-logo {
   position: fixed;
@@ -177,6 +180,59 @@ div[data-netlify-identity-menu] ul.netlify-identity-menu span.netlify-identity-u
   .sm-screen-and-below {
     display: flex;
   }
+}
+
+.admin-edit-btn {
+  position: fixed;
+  bottom: 2vw;
+  right: 2vw;
+  border: 2px solid lightcoral;
+  width: 2.8vw;
+  height: 2.8vw;
+  border-radius: 50%;
+  padding: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.admin-edit-btn:hover {
+  scale: 0.9;
+}
+.admin-edit-btn svg {
+  fill: lightcoral;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #hero-section {

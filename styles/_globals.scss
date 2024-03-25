@@ -20,6 +20,12 @@ html {
 body {
   background: var(--background-color);
   color: var(--primary-font-color);
+
+  &:has(.admin-edit) {
+    .admin-edit-btn {
+      display: block;
+    }
+  }
 }
 
 header {
