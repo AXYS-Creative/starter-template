@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $primary-font;
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
@@ -36,23 +37,40 @@ header {
 }
 
 section {
-  border: $test;
-  @include row-center;
+  @include column-center;
+  gap: 12px;
   margin: auto;
   max-width: $content-width;
   height: 80vh;
 }
 
-h1 {
-  font-family: $primary-font;
+h1,
+h2 {
   font-size: 64px;
   font-weight: 300;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: 48px;
 }
 
 a {
   font-family: $primary-font;
   text-decoration: none;
-  color: white;
+  color: var(--primary-font-color);
+  cursor: pointer;
+
+  &.cta-1 {
+    border: 1px solid var(--primary-font-color);
+    padding: 12px 20px;
+    color: var(--primary-font-color);
+    transition: 0.2s ease;
+
+    &:hover {
+      background: var(--primary-font-color);
+      color: var(--background-color);
+    }
+  }
 }
 
 button {

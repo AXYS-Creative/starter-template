@@ -1,5 +1,5 @@
 @import "variables", "mixins", "globals", "utility";
 
-#hero {
-  isolation: isolate;
+#hero-section {
+  @include row-center;
 }
