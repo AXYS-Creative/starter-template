@@ -1,5 +1,6 @@
 import "./nav.js";
-import "./contentful.js";
+// import "./contentful.js";
+import "./auth.js";
 
 // Clear focus from any element on mousemove (remove button :focus styles)
 (function clearFocusOnMouseMove() {
@@ -24,16 +25,16 @@ import "./contentful.js";
 // })();
 
 // Media Queries
-const minMediaMD = window.matchMedia("(min-width: 768px)");
+// const minMediaMD = window.matchMedia("(min-width: 768px)");
 
-function handleMediaQueryChange(e) {
-  if (e.matches) {
-    console.log("The screen is big.");
-  } else {
-    console.log("The screen is small.");
-  }
-}
+// function handleMediaQueryChange(e) {
+//   if (e.matches) {
+//     console.log("The screen is big.");
+//   } else {
+//     console.log("The screen is small.");
+//   }
+// }
 
-minMediaMD.addEventListener("change", handleMediaQueryChange);
+// minMediaMD.addEventListener("change", handleMediaQueryChange);
 
-handleMediaQueryChange(minMediaMD);
+// handleMediaQueryChange(minMediaMD);
