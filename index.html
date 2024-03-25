@@ -18,12 +18,36 @@
       media="(prefers-color-scheme: light)"
     />
     <script src="javascript/index.js" type="module" defer></script>
+
+    <!-- Authentication -->
+    <script
+      type="text/javascript"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <!-- Authentication -->
   </head>
   <body>
-    <header></header>
+    <header>
+      <picture class="header-logo">
+        <source
+          srcset="./public/starter-icon-black.svg"
+          media="(prefers-color-scheme: light)"
+        />
+        <source
+          srcset="./public/starter-icon-white.svg"
+          media="(prefers-color-scheme: dark)"
+        />
+
+        <img src="./public/starter-icon-white.svg" alt="Company logo" />
+      </picture>
+
+      <div data-netlify-identity-menu>
+        <div data-netlify-identity-button></div>
+      </div>
+    </header>
     <main>
       <section id="hero-section">
-        <h1>Starter Template</h1>
+        <h1>Sample Blog</h1>
       </section>
       <section id="blog-section">
         <h2>Blogs</h2>
