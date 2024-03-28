@@ -1,65 +1,23 @@
-const editBtn = document.querySelector(".edit");
-const modal = document.getElementById("editorModal");
-const closeBtn = document.querySelector(".close-button");
-const saveBtn = document.getElementById("saveBtn");
-const firstFocusableElement = closeBtn; // Assuming the close button is the first focusable element
-const focusableContent = modal.querySelectorAll(
-  'input, textarea, button, [tabindex="0"]'
-);
-const lastFocusableElement = focusableContent[focusableContent.length - 1];
+// editor.js
+import { isLoggedIn } from "./auth.js";
 
-let isModalOpen = false;
+const initEditor = async () => {
+  const userLoggedIn = await isLoggedIn();
 
-const toggleModal = () => {
-  console.log("clicked");
-  isModalOpen = !isModalOpen;
-  modal.style.display = isModalOpen ? "block" : "none";
-  modal.setAttribute("aria-hidden", String(!isModalOpen));
-
-  if (isModalOpen) {
-    document.addEventListener("keydown", trapTabKey);
-    firstFocusableElement.focus();
+  if (userLoggedIn) {
+    setupEditorButton();
   } else {
-    document.removeEventListener("keydown", trapTabKey);
-    editBtn.focus();
+    console.log("User is not logged in. Editor functionality disabled.");
   }
 };
 
-const trapTabKey = (e) => {
-  if (e.key === "Tab") {
-    if (e.shiftKey) {
-      /* shift + tab */ if (document.activeElement === firstFocusableElement) {
-        e.preventDefault();
-        lastFocusableElement.focus();
-      }
-    } /* tab */ else {
-      if (document.activeElement === lastFocusableElement) {
-        e.preventDefault();
-        firstFocusableElement.focus();
-      }
-    }
-  }
+const setupEditorButton = () => {
+  // Assuming createEditorButton creates the editor button element
+  const editorBtn = createEditorButton();
+  document.body.appendChild(editorBtn);
 
-  if (e.key === "Escape") {
-    toggleModal();
-  }
+  // Setup event listeners for the editor button
+  editorBtn.addEventListener("click", toggleModal);
 };
 
-if (editBtn) {
-  editBtn.addEventListener("click", toggleModal);
-}
-
-closeBtn.addEventListener("click", toggleModal);
-
-saveBtn.addEventListener("click", () => {
-  // Implement save logic here
-  toggleModal();
-  console.log("Changes saved");
-});
-
-// Clicking outside of the modal will close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    toggleModal();
-  }
-};
+initEditor();
