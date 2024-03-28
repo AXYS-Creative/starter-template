@@ -1,5 +1,5 @@
 // editor.js
-import { isLoggedIn } from "./auth.js";
+import { isLoggedIn, createEditorButton } from "./auth.js";
 
 const initEditor = async () => {
   const userLoggedIn = await isLoggedIn();
@@ -17,7 +17,9 @@ const setupEditorButton = () => {
   document.body.appendChild(editorBtn);
 
   // Setup event listeners for the editor button
-  editorBtn.addEventListener("click", toggleModal);
+  editorBtn.addEventListener("click", () => {
+    console.log("mock editing");
+  });
 };
 
 initEditor();
