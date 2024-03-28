@@ -1,4 +1,15 @@
-const adminUsers = ["aaronegg123@gmail.com"];
+fetch("/.netlify/functions/getAdminUser")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Admin user:", data.adminUser);
+    // You can now use the admin user info as needed
+  })
+  .catch((error) => console.error("Error fetching admin user:", error));
+
+// const adminUsers = ["aaronegg123@gmail.com"];
+// const adminUser = process.env.ADMIN_USER;
+
+console.log(adminUser);
 
 const documentBody = document.body;
 
@@ -36,14 +47,21 @@ const callback = (mutationsList, observer) => {
       if (activeUser) {
         console.log("Active user found. Observer disconnected.");
 
-        if (adminUsers.includes(activeUser.innerHTML)) {
+        if (activeUser.innerHTML === adminUser) {
           console.log("You are logged in as an admin");
           documentBody.classList.add("admin-edit");
-
-          documentBody.appendChild(editorBtn);
+          if (!documentBody.contains(editorBtn)) {
+            // Check if editorBtn is not already appended
+            documentBody.appendChild(editorBtn);
+          }
         } else {
           console.log("NOT an admin");
+          if (documentBody.contains(editorBtn)) {
+            // Check if editorBtn is appended
+            editorBtn.remove(); // Remove editorBtn from the DOM
+          }
         }
+
         // Once the element is found, disconnect the observer and clear the timeout
         observer.disconnect();
         clearTimeout(timeoutId);
