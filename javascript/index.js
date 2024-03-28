@@ -1,5 +1,4 @@
 import "./nav.js";
-// import "./contentful.js";
 import "./auth.js";
 import "./editor.js";
 

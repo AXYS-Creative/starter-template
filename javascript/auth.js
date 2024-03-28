@@ -1,18 +1,15 @@
-// Function to fetch the admin user from the server
 const fetchAdminUser = () => {
   return fetch("/.netlify/functions/getAdminUser")
     .then((response) => response.json())
     .then((data) => {
-      console.log("Admin user:", data.adminUser);
-      return data.adminUser; // Return the admin user email
+      return data.adminUser;
     })
     .catch((error) => {
       console.error("Error fetching admin user:", error);
-      return null; // Return null in case of error
+      return null;
     });
 };
 
-// Function to create and return the editor button element
 const createEditorButton = () => {
   const editorBtnHTML = `
     <button class="admin-edit-btn">
@@ -26,36 +23,39 @@ const createEditorButton = () => {
   return template.content.firstChild;
 };
 
-// Function to handle the addition or removal of the editor button based on admin status
 const handleEditorButton = (isAdmin) => {
   const documentBody = document.body;
   const editorBtn =
     document.querySelector(".admin-edit-btn") || createEditorButton();
 
   if (isAdmin) {
-    console.log("You are logged in as an admin");
     documentBody.classList.add("admin-edit");
     if (!documentBody.contains(editorBtn)) {
       documentBody.appendChild(editorBtn);
     }
   } else {
     if (documentBody.contains(editorBtn)) {
-      editorBtn.remove(); // Remove editorBtn from the DOM
+      editorBtn.remove();
     }
   }
 };
 
-// Main function to check if the current user is an admin and handle the UI accordingly
 const checkAdminStatus = async () => {
   const adminUser = await fetchAdminUser();
   let activeUser = document.querySelector(".netlify-identity-user");
 
-  // Proceed only if activeUser element is found and adminUser is not null
   if (activeUser && adminUser) {
     const isAdmin = activeUser.innerHTML === adminUser;
     handleEditorButton(isAdmin);
   }
 };
 
-// Call the main function to check admin status
 checkAdminStatus();
+
+// Function to be used throughout the app
+export const isLoggedIn = async () => {
+  const adminUser = await fetchAdminUser();
+  let activeUser = document.querySelector(".netlify-identity-user");
+
+  return activeUser && activeUser.innerHTML === adminUser;
+};
