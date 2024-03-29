@@ -3,3 +3,13 @@
 #hero-section {
   @include row-center;
 }
+
+#blog-section {
+  @include column-center;
+  gap: 48px;
+
+  .blogs-wrapper {
+    @include column-center;
+    gap: 24px;
+  }
+}
