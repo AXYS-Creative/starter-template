@@ -239,4 +239,17 @@ div[data-netlify-identity-menu] ul.netlify-identity-menu span.netlify-identity-u
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#blog-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+#blog-section .blogs-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }/*# sourceMappingURL=styles.css.map */
