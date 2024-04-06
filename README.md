@@ -17,7 +17,7 @@ git clone https://github.com/AXYS-Creative/blog.git
 ### 2\. Navigate to the directory
 
 ```
-cd neat-starter
+cd blog
 ```
 
 ### 3\. Install dependencies
