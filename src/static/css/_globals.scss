@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+
+  // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--primary-font-color);
+    -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--primary-font-color);
+
+  & > * {
+    max-width: $content-width;
+    margin: auto;
+  }
+}
+
+header {
+  & > * {
+    position: fixed;
+    top: $body-padding;
+  }
+
+  .header-logo {
+    @include row-center;
+    left: $body-padding;
+    width: 48px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  nav {
+    right: $body-padding;
+  }
+
+  .menu-btn {
+    display: none;
+
+    @include mq-max("md") {
+      display: block;
+    }
+  }
+
+  .nav-menu {
+    &__link-list {
+      @include row-center;
+      gap: 12px;
+    }
+  }
+}
+
+section {
+  padding: $vertical-section-padding $horizontal-section-padding;
+}
+
+a {
+  color: coral;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+//
+
+.social-media-links {
+  border: $test;
+  margin: 24px 0;
+  @include column-left;
+}
