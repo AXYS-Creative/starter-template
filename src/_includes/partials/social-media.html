@@ -1,0 +1,7 @@
+<div class="social-media-links">
+  {% if social_media.links %} {% for item in social_media.links %}
+  <a href="{{item.url}}" target="_blank" class="">
+    <img src="{{item.src}}" alt="{{item.title}}" />
+  </a>
+  {% endfor %} {% endif %}
+</div>

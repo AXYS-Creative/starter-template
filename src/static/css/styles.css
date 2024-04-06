@@ -1,0 +1,152 @@
+:root {
+  --background-color: #222;
+  --primary-font-color: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+*:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--primary-font-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--primary-font-color);
+}
+body > * {
+  max-width: 1920px;
+  margin: auto;
+}
+
+header > * {
+  position: fixed;
+  top: 64px;
+}
+header .header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 64px;
+  width: 48px;
+}
+header .header-logo img {
+  width: 100%;
+}
+header nav {
+  right: 64px;
+}
+header .menu-btn {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  header .menu-btn {
+    display: block;
+  }
+}
+header .nav-menu__link-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+section {
+  padding: 196px 148px;
+}
+
+a {
+  color: coral;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.social-media-links {
+  border: 2px dashed rgba(220, 20, 60, 0.75);
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lg-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 1025px) {
+  .lg-screen-and-up {
+    display: flex;
+  }
+}
+
+.lg-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 1024px) {
+  .lg-screen-and-below {
+    display: flex;
+  }
+}
+
+.md-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 769px) {
+  .md-screen-and-up {
+    display: flex;
+  }
+}
+
+.md-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .md-screen-and-below {
+    display: flex;
+  }
+}
+
+.sm-screen-and-up {
+  display: none;
+}
+@media screen and (min-width: 481px) {
+  .sm-screen-and-up {
+    display: flex;
+  }
+}
+
+.sm-screen-and-below {
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  .sm-screen-and-below {
+    display: flex;
+  }
+}/*# sourceMappingURL=styles.css.map */

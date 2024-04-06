@@ -1,0 +1,23 @@
+<header>
+  <a href="/" class="header-logo">
+    <img src="../../static/img/logo-light.svg" alt="" />
+  </a>
+
+  <button class="menu-btn" aria-label="Menu" type="button">X</button>
+
+  <nav>
+    <div class="nav-menu">
+      {% if navigation.items %}
+
+      <ul class="nav-menu__link-list">
+        {% for item in navigation.items %}
+        <li class="">
+          <a class="" href="{{ item.url }}">{{ item.text }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% endif %}
+    </div>
+  </nav>
+</header>
