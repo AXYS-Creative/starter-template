@@ -17,3 +17,6 @@ package-lock.json
 *.wmv
 *.flv
 *.mkv
+
+# css map
+*.css.map
