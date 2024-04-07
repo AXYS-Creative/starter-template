@@ -28,6 +28,9 @@ body {
 }
 
 header {
+  position: fixed;
+  z-index: 5;
+
   & > * {
     position: fixed;
     top: $body-padding;
@@ -47,13 +50,13 @@ header {
     right: $body-padding;
   }
 
-  .menu-btn {
-    display: none;
+  // .menu-btn {
+  //   display: none;
 
-    @include mq-max("md") {
-      display: block;
-    }
-  }
+  //   @include mq-max("md") {
+  //     display: block;
+  //   }
+  // }
 
   .nav-menu {
     &__link-list {
@@ -61,6 +64,17 @@ header {
       gap: 12px;
     }
   }
+}
+
+nav.nav-menu {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  // background: black;
+  z-index: 1;
 }
 
 section {
@@ -80,6 +94,21 @@ button {
 
 ul {
   list-style: none;
+}
+
+h1,
+h2 {
+  font-family: "Swera Demo", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 64px;
+
+  @include mq-max("md") {
+    font-size: 24px;
+  }
 }
 
 //

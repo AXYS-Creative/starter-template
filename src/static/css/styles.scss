@@ -1,1 +1,5 @@
-@import "variables", "mixins", "globals", "utility";
+// Base
+@import "variables", "mixins", "globals", "utility", "fonts", "buttons";
+
+// Pages
+@import "./pages/home";

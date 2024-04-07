@@ -1,6 +1,6 @@
 :root {
-  --background-color: #222;
-  --primary-font-color: #ddd;
+  --background-color: #111;
+  --primary-font-color: #fefefe;
 }
 
 * {
@@ -27,6 +27,10 @@ body > * {
   margin: auto;
 }
 
+header {
+  position: fixed;
+  z-index: 5;
+}
 header > * {
   position: fixed;
   top: 64px;
@@ -44,19 +48,21 @@ header .header-logo img {
 header nav {
   right: 64px;
 }
-header .menu-btn {
-  display: none;
-}
-@media screen and (max-width: 768px) {
-  header .menu-btn {
-    display: block;
-  }
-}
 header .nav-menu__link-list {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
+}
+
+nav.nav-menu {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 1;
 }
 
 section {
@@ -76,6 +82,22 @@ button {
 
 ul {
   list-style: none;
+}
+
+h1,
+h2 {
+  font-family: "Swera Demo", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 64px;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
 }
 
 .social-media-links {
@@ -148,4 +170,39 @@ ul {
   .sm-screen-and-below {
     display: flex;
   }
+}
+
+@font-face {
+  font-family: "Swera Demo";
+  src: url("../fonts/swera-regular-demo.otf") format("opentype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Swera Demo";
+  src: url("../fonts/swera-bold-demo.otf") format("opentype");
+  font-weight: bold;
+}
+.cta-wrapper {
+  display: flex;
+  gap: 12px;
+}
+.cta-wrapper a {
+  padding: 12px 16px;
+  border: 2px solid grey;
+  border-radius: 4px;
+}
+
+#hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 196px;
+}
+#hero-section h1,
+#hero-section p {
+  text-align: center;
+}
+#hero-section p {
+  opacity: 0.5;
 }/*# sourceMappingURL=styles.css.map */

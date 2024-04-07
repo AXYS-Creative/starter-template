@@ -21,11 +21,13 @@
       media="(prefers-color-scheme: light)"
     />
 
-    <script src="../javascript/index.js"></script>
+    <script src="../javascript/index.js" defer></script>
   </head>
   <body>
     <!-- prettier-ignore -->
     {% include "./partials/header.html" %}
+
+    {% include "./partials/nav.html" %}
 
     <main>{{ content | safe }}</main>
 
