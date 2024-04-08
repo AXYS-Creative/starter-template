@@ -1,23 +1,48 @@
-<header>
-  <a href="/" class="header-logo">
-    <img src="../../static/img/logo-light.svg" alt="" />
+<header class="site-header" aria-label="Site Header">
+  <a class="header-logo" href="#">
+    <img
+      class="header-logo__icon"
+      src="../../static/img/logo-light.svg"
+      alt="AXYS Decap Logo"
+    />
   </a>
 
-  <button class="menu-btn" aria-label="Menu" type="button">Toggle Nav</button>
+  {% if navigation.items %}
 
-  <nav>
-    <div class="nav-menu">
-      {% if navigation.items %}
+  <ul class="header-links">
+    {% for item in navigation.items %}
+    <li class="">
+      <a class="header-links__link" href="{{ item.url }}">{{ item.text }}</a>
+    </li>
+    {% endfor %}
+  </ul>
 
-      <ul class="nav-menu__link-list">
-        {% for item in navigation.items %}
-        <li class="">
-          <a class="" href="{{ item.url }}">{{ item.text }}</a>
-        </li>
-        {% endfor %}
-      </ul>
+  {% endif %}
 
-      {% endif %}
-    </div>
-  </nav>
+  <div class="menu-btn-wrapper">
+    <button
+      class="menu-btn"
+      aria-controls="site-navigation"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <div class="menu-btn-text-wrapper" aria-hidden="true" role="presentation">
+        <span class="menu-btn-text">Open</span>
+        <span class="menu-btn-text">Close</span>
+      </div>
+      <div class="menu-btn-dots-wrapper">
+        <span class="menu-btn-dot top-left"></span>
+        <span class="menu-btn-dot top-center"></span>
+        <span class="menu-btn-dot top-right"></span>
+
+        <span class="menu-btn-dot middle-left"></span>
+        <span class="menu-btn-dot middle-center"></span>
+        <span class="menu-btn-dot middle-right"></span>
+
+        <span class="menu-btn-dot bottom-left"></span>
+        <span class="menu-btn-dot bottom-center"></span>
+        <span class="menu-btn-dot bottom-right"></span>
+      </div>
+    </button>
+  </div>
 </header>

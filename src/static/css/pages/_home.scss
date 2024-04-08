@@ -13,6 +13,20 @@
   }
 }
 
-// #featured-section {
+#featured-section {
+  @include section-padding(thin);
 
-// }
+  .featured-blogs-wrapper {
+    border: $test;
+    padding: 24px;
+    min-height: 100vh;
+    @include row-center(space-between);
+  }
+
+  .blog-block {
+    background: #2d2d2d;
+    border-radius: 12px;
+    width: 264px;
+    height: 264px;
+  }
+}
