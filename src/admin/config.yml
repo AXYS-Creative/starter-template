@@ -30,7 +30,7 @@ collections:
   - label: "Settings"
     name: "settings"
     files:
-      - label: "Navigation"
+      - label: "Site Navigation"
         name: "items"
         file: "src/_data/navigation.yaml"
         fields:

@@ -1,9 +1,18 @@
+$brand-font-family-heading: "Swera Demo", sans-serif;
+$brand-font-family-body: "Satoshi", sans-serif;
+
 $black: #111;
+$grey-dark: #313131;
+$grey-light: #c0c0c0;
 $white: #fefefe;
 
 :root {
   --background-color: #{$black};
   --primary-font-color: #{$white};
+  --secondary-font-color: #{$grey-light};
+
+  --link-color: #{$grey-light};
+  --link-color-hover: #{$white};
 }
 
 // If you add a dark/light theme
@@ -18,8 +27,8 @@ $white: #fefefe;
 
 $content-width: 1920px;
 $body-padding: 64px;
-// $body-padding-xxl: 40px;
-// $body-padding-md: 24px;
+$body-padding-xxl: 40px;
+$body-padding-md: 24px;
 
 $vertical-section-padding: 196px;
 // $vertical-section-padding-xxl: 156px;

@@ -1,33 +1,6 @@
-@mixin row-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin row-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@mixin column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@mixin column-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-@mixin absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-}
+//
+// Media Queries
+//
 
 $max-breakpoints: (
   "xs": 390px,
@@ -96,4 +69,169 @@ $min-breakpoints: (
   @media (prefers-reduced-motion: reduce) {
     @content;
   }
+}
+
+//
+// Site Scaffolding
+//
+
+@mixin section-padding($thin: false) {
+  @if $thin {
+    padding: 256px 148px;
+  } @else {
+    padding: 196px 148px;
+  }
+
+  @include mq-max("xxl") {
+    @if $thin {
+      padding: 228px 148px;
+    } @else {
+      padding: 148px 96px;
+    }
+  }
+
+  @include mq-max("md") {
+    @if $thin {
+      padding: 128px 96px;
+    } @else {
+      padding: 96px 48px;
+    }
+  }
+}
+
+// header logo, nav items
+@mixin left-spacing {
+  left: $body-padding;
+
+  @include mq-max("xxl") {
+    left: $body-padding-xxl;
+  }
+
+  @include mq-max("md") {
+    left: $body-padding-md;
+  }
+}
+
+// header menu button, nav social items
+@mixin right-spacing {
+  right: $body-padding;
+
+  @include mq-max("xxl") {
+    right: $body-padding-xxl;
+  }
+
+  @include mq-max("md") {
+    right: $body-padding-md;
+  }
+}
+
+//
+// Heading Styles
+//
+
+@mixin heading($size, $size-lg, $size-md) {
+  font-family: $brand-font-family-heading;
+  font-size: $size;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+
+  @include mq-max("xxl") {
+    font-size: $size - 12px;
+  }
+
+  @include mq-max("xl") {
+    font-size: $size - 20px;
+  }
+
+  @include mq-max("lg") {
+    font-size: $size-lg;
+  }
+
+  @include mq-max("md") {
+    font-size: $size-md;
+  }
+}
+
+.h1 {
+  @include heading(80px, 72px, calc(20px + 6.4vw));
+}
+
+.h2 {
+  @include heading(64px, 56px, calc(12px + 5.6vw));
+}
+
+.h3 {
+  @include heading(56px, 48px, calc(12px + 4.8vw));
+}
+
+.h4 {
+  @include heading(48px, 40px, calc(8px + 4.8vw));
+}
+
+.h5 {
+  @include heading(40px, 32px, calc(8px + 4vw));
+}
+
+.h6 {
+  @include heading(32px, 20px, calc(8px + 3.6vw));
+  font-weight: 100;
+
+  @include mq-max("xl") {
+    font-size: 20px;
+  }
+
+  @include mq-max("md") {
+    font-size: calc(8px + 3.6vw);
+  }
+}
+
+//
+// Flex Layout
+//
+
+@mixin row-center($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+}
+
+@mixin row-start($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: flex-start;
+}
+
+@mixin row-end($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: flex-end;
+}
+
+@mixin column-center($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: center;
+}
+
+@mixin column-start($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: flex-start;
+}
+
+@mixin column-end($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: flex-end;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
 }

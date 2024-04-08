@@ -6,3 +6,7 @@ items:
     url: "/about"
   - text: Blog
     url: "/blog"
+  - text: Services
+    ulr: "/services"
+  - text: Contact
+    ulr: "/contact"

@@ -1,1 +1,3 @@
-console.log("hello from your javascript");
+import "./nav.js";
+import "./scroll.js";
+import "./utility.js";
