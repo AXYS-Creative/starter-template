@@ -181,20 +181,7 @@ header {
 
       &:hover,
       &:focus {
-        translate: 4px 0;
-
-        @include mq-max("sm") {
-          translate: unset;
-        }
-
-        .menu-btn-text-wrapper {
-          translate: -140% -50%;
-          opacity: 1;
-
-          @include mq-max("sm") {
-            display: none;
-          }
-        }
+        rotate: 90deg;
       }
 
       .menu-btn-dots-wrapper {
@@ -202,25 +189,6 @@ header {
         flex-wrap: wrap;
         gap: 4px;
         padding: 4px;
-        transition: 0.2s ease;
-      }
-
-      .menu-btn-text-wrapper {
-        @include column-start;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        translate: -100% -50%;
-        height: 24px;
-        // opacity: 0;
-        transition: 0.3s ease;
-        overflow: hidden;
-      }
-
-      .menu-btn-text {
-        text-transform: uppercase;
-        color: $white;
-        font-size: 14px;
         transition: 0.2s ease;
       }
 
@@ -234,10 +202,6 @@ header {
       &.menu-active {
         opacity: 1;
         pointer-events: all;
-
-        .menu-btn-text {
-          translate: 0 -100%;
-        }
 
         .menu-btn-dots-wrapper {
           rotate: 45deg;
