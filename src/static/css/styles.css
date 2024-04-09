@@ -374,46 +374,13 @@ header .menu-btn-wrapper .menu-btn {
   transition: 0.2s ease 0s;
 }
 header .menu-btn-wrapper .menu-btn:hover, header .menu-btn-wrapper .menu-btn:focus {
-  translate: 4px 0;
-}
-@media screen and (max-width: 480px) {
-  header .menu-btn-wrapper .menu-btn:hover, header .menu-btn-wrapper .menu-btn:focus {
-    translate: unset;
-  }
-}
-header .menu-btn-wrapper .menu-btn:hover .menu-btn-text-wrapper, header .menu-btn-wrapper .menu-btn:focus .menu-btn-text-wrapper {
-  translate: -140% -50%;
-  opacity: 1;
-}
-@media screen and (max-width: 480px) {
-  header .menu-btn-wrapper .menu-btn:hover .menu-btn-text-wrapper, header .menu-btn-wrapper .menu-btn:focus .menu-btn-text-wrapper {
-    display: none;
-  }
+  rotate: 90deg;
 }
 header .menu-btn-wrapper .menu-btn .menu-btn-dots-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   padding: 4px;
-  transition: 0.2s ease;
-}
-header .menu-btn-wrapper .menu-btn .menu-btn-text-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  translate: -100% -50%;
-  height: 24px;
-  transition: 0.3s ease;
-  overflow: hidden;
-}
-header .menu-btn-wrapper .menu-btn .menu-btn-text {
-  text-transform: uppercase;
-  color: #fefefe;
-  font-size: 14px;
   transition: 0.2s ease;
 }
 header .menu-btn-wrapper .menu-btn-dot {
@@ -425,9 +392,6 @@ header .menu-btn-wrapper .menu-btn-dot {
 header .menu-btn-wrapper .menu-btn.menu-active {
   opacity: 1;
   pointer-events: all;
-}
-header .menu-btn-wrapper .menu-btn.menu-active .menu-btn-text {
-  translate: 0 -100%;
 }
 header .menu-btn-wrapper .menu-btn.menu-active .menu-btn-dots-wrapper {
   rotate: 45deg;
