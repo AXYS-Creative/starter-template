@@ -63,6 +63,66 @@ $min-breakpoints: (
   }
 }
 
+//
+// Heading Styles
+//
+
+@mixin heading($size, $size-lg, $size-md) {
+  font-family: $brand-font-family-heading;
+  font-size: $size;
+  font-weight: 600;
+  line-height: 1.4;
+
+  @include mq-max("xxl") {
+    font-size: $size - 12px;
+  }
+
+  @include mq-max("xl") {
+    font-size: $size - 20px;
+  }
+
+  @include mq-max("lg") {
+    font-size: $size-lg;
+    line-height: 1.2;
+  }
+
+  @include mq-max("md") {
+    font-size: $size-md;
+  }
+}
+
+.h1 {
+  @include heading(96px, 80px, calc(20px + 6.4vw));
+}
+.h2 {
+  @include heading(64px, 56px, calc(12px + 5.6vw));
+}
+.h3 {
+  @include heading(56px, 48px, calc(12px + 4.8vw));
+}
+.h4 {
+  @include heading(48px, 40px, calc(8px + 4.8vw));
+}
+.h5 {
+  @include heading(40px, 32px, calc(8px + 4vw));
+}
+.h6 {
+  @include heading(32px, 20px, calc(8px + 3.6vw));
+  font-weight: 100;
+
+  @include mq-max("xl") {
+    font-size: 20px;
+  }
+
+  @include mq-max("md") {
+    font-size: calc(8px + 3.6vw);
+  }
+}
+
+//
+// Media Queries
+//
+
 // Users that prefer dark theme
 @mixin mq-dark {
   @media (prefers-color-scheme: dark) {
