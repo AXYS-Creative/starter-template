@@ -134,7 +134,7 @@ $min-breakpoints: (
   font-size: $size;
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 1;
+  // line-height: 1;
 
   @include mq-max("xxl") {
     font-size: $size - 12px;

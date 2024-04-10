@@ -3,7 +3,7 @@ const navMenu = document.querySelector(".nav-menu"),
   siteHeader = document.querySelector(".site-header"),
   headerLogo = document.querySelector(".header-logo"),
   navLinks = document.querySelectorAll(".nav-link"),
-  //   navFooterLinks = document.querySelectorAll(".nav-footer-link"),
+  navFooterLinks = document.querySelectorAll(".nav-footer-link"),
   tabElementsPage = document.querySelectorAll(".tab-element-page"),
   tabElementsNav = document.querySelectorAll(".tab-element-nav");
 
@@ -27,12 +27,12 @@ function toggleNav() {
   );
 
   // Pevent scroll when nav is open
-  // document.body.style = `overflow: ${!isNavOpen ? 'hidden' : 'auto'}`;
+  document.body.style = `overflow: ${!isNavOpen ? "hidden" : "auto"}`;
 }
 
 function closeNav() {
   // Pevent scroll when nav is open
-  // document.body.style = "overflow: auto;"
+  document.body.style = "overflow: auto;";
 
   navMenu.classList.remove("menu-active");
   menuBtn.classList.remove("menu-active");
