@@ -1,7 +1,20 @@
-<div class="social-media-links">
-  {% if social_media.links %} {% for item in social_media.links %}
-  <a href="{{item.url}}" target="_blank" class="">
-    <img src="{{item.src}}" alt="{{item.title}}" />
-  </a>
-  {% endfor %} {% endif %}
-</div>
+{% if social_media.links %}
+
+<ul class="nav-social-media social-media-links">
+  {% for item in social_media.links %}
+  <li class="magnet">
+    <a
+      href="{{item.url}}"
+      target="_blank"
+      class="social-media-link tab-element-nav"
+    >
+      <span class="social-media-icon-wrapper">
+        <img src="{{item.src}}" alt="{{item.title}}" />
+        <img src="{{item.src}}" alt="{{item.title}}" />
+      </span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}

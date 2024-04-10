@@ -1,3 +1,42 @@
-<nav class="nav-menu">
-  <p>this is the nav</p>
+<nav
+  class="nav-menu"
+  id="site-navigation"
+  aria-label="Main Navigation"
+  aria-hidden="true"
+>
+  <div class="width-constraint">
+    {% if navigation.items %}
+
+    <ul class="nav-links">
+      {% for item in navigation.items %}
+      <li>
+        <a class="nav-link tab-element-nav" href="{{ item.url }}">
+          {{ item.text }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <ul class="nav-footer-links">
+      <li>
+        <a class="nav-footer-link tab-element-nav" href="">Sign in</a>
+      </li>
+      <li>
+        <a class="nav-footer-link tab-element-nav" href="">Admin Login</a>
+      </li>
+      <li>
+        <a class="nav-footer-link tab-element-nav" href="">Privacy Policy</a>
+      </li>
+      <li>
+        <a class="nav-footer-link tab-element-nav" href=""
+          >Terms & Conditions</a
+        >
+      </li>
+    </ul>
+
+    {% include "./social-media.html" %}
+  </div>
+  <div class="nav-abstract"></div>
 </nav>
