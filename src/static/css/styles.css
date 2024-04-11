@@ -278,7 +278,7 @@ header .header-links {
     right: 24px;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   header .header-links {
     display: none;
   }
@@ -684,6 +684,40 @@ section {
   }
 }
 
+footer {
+  padding: 64px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 6px), 50%);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 1024px) {
+  footer .copyright {
+    width: 100%;
+    bottom: 64px;
+    transform: translate(calc(-50% - 6px), 0);
+  }
+}
+@media screen and (max-width: 768px) {
+  footer .copyright {
+    font-size: 10px;
+    transform: translate(calc(-50% - 5.5px), 0);
+  }
+}
+
 p {
   font-family: "Satoshi", sans-serif;
 }
@@ -691,7 +725,7 @@ p {
 a {
   font-family: "Satoshi", sans-serif;
   text-decoration: none;
-  color: lightblue;
+  color: lightcoral;
 }
 
 button {
@@ -704,14 +738,26 @@ ul {
   list-style: none;
 }
 
+#hero-section, .hero-section__home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 196px;
+}
+#hero-section h1, .hero-section__home h1,
+#hero-section p,
+.hero-section__home p {
+  text-align: center;
+}
+#hero-section p, .hero-section__home p {
+  opacity: 0.5;
+}
+
 .social-media-links {
   display: flex;
-  gap: 48px;
-}
-@media screen and (max-width: 1024px) {
-  .social-media-links {
-    gap: 32px;
-  }
+  gap: 24px;
 }
 @media screen and (max-width: 768px) {
   .social-media-links {
@@ -849,22 +895,6 @@ ul {
   padding: 8px 24px;
   border: 1px solid grey;
   border-radius: 8px 0;
-}
-
-#hero-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin-top: 196px;
-}
-#hero-section h1,
-#hero-section p {
-  text-align: center;
-}
-#hero-section p {
-  opacity: 0.5;
 }
 
 #featured-section {
