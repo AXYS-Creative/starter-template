@@ -18,5 +18,6 @@ package-lock.json
 *.flv
 *.mkv
 
-# css map
+# Prevent outputted css files from sass (doesn't appear to be working)
 *.css.map
+*.map
