@@ -1,33 +1,6 @@
-@mixin row-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin row-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@mixin column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@mixin column-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-@mixin absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-}
+//
+// Media Queries
+//
 
 $max-breakpoints: (
   "xs": 390px,
@@ -60,6 +33,69 @@ $min-breakpoints: (
   $value: map-get($min-breakpoints, $breakpoint);
   @media screen and (min-width: $value) {
     @content;
+  }
+}
+
+// Users that prefer dark theme
+@mixin mq-dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+// Users on tables and smart phones
+@mixin mq-touch {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
+// Users on computers and laptops
+@mixin mq-mouse {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+// Users that don't mind animations (motion)
+@mixin mq-motion-allow {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Users that are sensitive to motion. Use this to remove animations.
+@mixin mq-motion-reduce {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+//
+// Site Scaffolding
+//
+
+@mixin section-padding($thin: false) {
+  @if $thin {
+    padding: 256px 148px;
+  } @else {
+    padding: 196px 148px;
+  }
+
+  @include mq-max("xxl") {
+    @if $thin {
+      padding: 228px 148px;
+    } @else {
+      padding: 148px 96px;
+    }
+  }
+
+  @include mq-max("md") {
+    @if $thin {
+      padding: 128px 96px;
+    } @else {
+      padding: 96px 48px;
+    }
   }
 }
 
@@ -120,40 +156,51 @@ $min-breakpoints: (
 }
 
 //
-// Media Queries
+// Flex Layout
 //
 
-// Users that prefer dark theme
-@mixin mq-dark {
-  @media (prefers-color-scheme: dark) {
-    @content;
-  }
+@mixin row-center($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
 }
 
-// Users on tables and smart phones
-@mixin mq-touch {
-  @media (hover: none) and (pointer: coarse) {
-    @content;
-  }
+@mixin row-start($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: flex-start;
 }
 
-// Users on computers and laptops
-@mixin mq-mouse {
-  @media (hover: hover) and (pointer: fine) {
-    @content;
-  }
+@mixin row-end($justify-content: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: flex-end;
 }
 
-// Users that don't mind animations (motion)
-@mixin mq-motion-allow {
-  @media (prefers-reduced-motion: no-preference) {
-    @content;
-  }
+@mixin column-center($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: center;
 }
 
-// Users that are sensitive to motion. Use this to remove animations.
-@mixin mq-motion-reduce {
-  @media (prefers-reduced-motion: reduce) {
-    @content;
-  }
+@mixin column-start($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: flex-start;
+}
+
+@mixin column-end($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: flex-end;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
 }
