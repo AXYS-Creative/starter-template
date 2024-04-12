@@ -44,8 +44,25 @@ h6 {
   @extend .h6;
 }
 
+a,
+p {
+  font-family: $brand-font-family-body;
+}
+
 a {
   text-decoration: none;
+
+  &.cta-1 {
+    border: 1px solid black;
+    border-radius: 4px;
+    background: black;
+    color: white;
+    padding: 8px 16px;
+  }
+
+  &.cta-2 {
+    border-bottom: 1px solid black;
+  }
 }
 
 button {

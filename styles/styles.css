@@ -201,8 +201,23 @@ body {
   color: var(--primary-font-color);
 }
 
+a,
+p {
+  font-family: sans-serif;
+}
+
 a {
   text-decoration: none;
+}
+a.cta-1 {
+  border: 1px solid black;
+  border-radius: 4px;
+  background: black;
+  color: white;
+  padding: 8px 16px;
+}
+a.cta-2 {
+  border-bottom: 1px solid black;
 }
 
 button {
