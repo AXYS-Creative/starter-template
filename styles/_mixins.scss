@@ -104,7 +104,7 @@ $min-breakpoints: (
 //
 
 @mixin heading($size, $size-lg, $size-md) {
-  font-family: $brand-font-family-heading;
+  font-family: $font-family-heading;
   font-size: $size;
   font-weight: 600;
   line-height: 1.4;

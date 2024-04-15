@@ -1,2 +1,2 @@
-import "./defaults.js";
-import "./nav.js";
+import "./utility.js";
+import "./components/nav.js";
