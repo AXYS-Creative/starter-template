@@ -1,12 +1,37 @@
+@font-face {
+  font-family: "Atyp Display";
+  src: url("../assets/fonts/AtypDisplay-Light.otf") format("opentype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Atyp Display";
+  src: url("../assets/fonts/AtypDisplay-Regular.otf") format("opentype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Atyp Display";
+  src: url("../assets/fonts/AtypDisplay-Medium.otf") format("opentype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Atyp Display";
+  src: url("../assets/fonts/AtypDisplay-Semibold.otf") format("opentype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Atyp Display";
+  src: url("../assets/fonts/AtypDisplay-Bold.otf") format("opentype");
+  font-weight: 700;
+}
 :root {
   --background-color: #ddd;
   --primary-font-color: #222;
 }
 
 .h1, h1 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 96px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media screen and (max-width: 1512px) {
@@ -32,9 +57,9 @@
 }
 
 .h2, h2 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 64px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media screen and (max-width: 1512px) {
@@ -60,9 +85,9 @@
 }
 
 .h3, h3 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 56px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media screen and (max-width: 1512px) {
@@ -88,9 +113,9 @@
 }
 
 .h4, h4 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 48px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media screen and (max-width: 1512px) {
@@ -116,9 +141,9 @@
 }
 
 .h5, h5 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 40px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media screen and (max-width: 1512px) {
@@ -144,9 +169,9 @@
 }
 
 .h6, h6 {
-  font-family: sans-serif;
+  font-family: "Atyp Display";
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.4;
   font-weight: 100;
 }
