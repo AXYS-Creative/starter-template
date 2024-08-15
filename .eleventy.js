@@ -24,18 +24,24 @@ module.exports = function (eleventyConfig) {
   // You may remove this if you can use JSON
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
-  // Copy Static Files to /_Site
+  // Copy Static Files over to _site directory
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
   });
-
-  // Copy custom CSS and JavaScript to /_site
-  eleventyConfig.addPassthroughCopy("./src/static/css");
-  eleventyConfig.addPassthroughCopy("./src/javascript");
-
-  // Copy Image Folder to /_site
+  eleventyConfig.addPassthroughCopy("./src/static/styles");
+  eleventyConfig.addPassthroughCopy("./src/static/fonts");
   eleventyConfig.addPassthroughCopy("./src/static/img");
+  eleventyConfig.addPassthroughCopy("./src/static/javascript");
+
+  //
+  // Custom Functions
+  //
+
+  // Fetch data from collection for .md files (blog, podcasts, etc.)
+  eleventyConfig.addCollection("posts", (collectionApi) =>
+    collectionApi.getFilteredByGlob("./src/posts/**/*.md")
+  );
 
   // Minify HTML
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {

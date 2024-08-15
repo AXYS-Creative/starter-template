@@ -4,12 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#fdfaf5" />
+    <meta name="author" content="{{ author }}" />
+    <meta name="description" content="{{ description }}" />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ open_graph.item.image_src }}" />
+    <meta property="og:url" content="essentialism.netlify.app" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:site_name" content="{{ author }}" />
+
+    {% block head %}{% endblock %}
+
     <title>{{title}}</title>
 
-    {% if description %}
-    <meta name="description" content="{{description}}" />
-    {% endif %} {% block head %}{% endblock %}
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
     <link
       rel="icon"
       href="../static/img/logo-light.svg"
@@ -22,27 +34,44 @@
     />
 
     <script src="../javascript/index.js" type="module" defer></script>
+
+    <!-- Data Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AXYS Creative",
+        "url": "https://axyscreative.com",
+        "logo": "https://axyscreative.com/public/axys-logo-192.png",
+        "image": "https://axyscreative.com/public/axys-creative-og.png",
+        "sameAs": [
+          "https://www.instagram.com/axyscreative/",
+          "https://twitter.com/AXYSCreative",
+          "https://dribbble.com/axyscreative"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@axyscreative.com",
+          "contactType": "Support"
+        }
+      }
+    </script>
   </head>
   <body>
     <!-- prettier-ignore -->
     {% include "./partials/header.html" %}
-
     {% include "./partials/nav.html" %}
-
     <main>{{ content | safe }}</main>
-
     {%include "./partials/footer.html" %}
     <!-- prettier-ignore -->
 
-    <script src="/static/js/alpine.js"></script>
-
     {% if path == "home" %}
     <!-- Netlify Identity Widget -->
-    <!-- Needed only if you are using Netlify Identity feature -->
     <script
       type="text/javascript"
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
     ></script>
     {% endif %}
+    <script src="/static/js/alpine.js"></script>
   </body>
 </html>
