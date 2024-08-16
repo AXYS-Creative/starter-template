@@ -7,7 +7,7 @@
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
+  &:-webkit-autofill:focus-visible {
     -webkit-text-fill-color: var(--primary-font-color);
     -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
   }
@@ -87,7 +87,7 @@ header {
 
     &__link {
       &:hover,
-      &:focus {
+      &:focus-visible {
         &::after {
           background: var(--primary-font-color);
         }
@@ -118,7 +118,7 @@ header {
       transition: 0.2s ease 0s;
 
       &:hover,
-      &:focus {
+      &:focus-visible {
         scale: 1.1;
       }
 
@@ -267,7 +267,7 @@ nav {
       // transition: 0.2s ease, translate 0.3s ease 0.6s;
 
       &:hover,
-      &:focus {
+      &:focus-visible {
         padding-left: 24px;
         border-color: var(--primary-accent-color);
 
@@ -306,7 +306,7 @@ nav {
         transition: 0.2s ease;
 
         &:hover,
-        &:focus {
+        &:focus-visible {
           border-color: var(--primary-accent-color);
         }
       }
@@ -509,7 +509,7 @@ ul {
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       .social-media-icon-wrapper {
         translate: 0 -40%;
       }
