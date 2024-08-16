@@ -1,12 +1,30 @@
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+.classic-link {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-font-color);
+    animation: classic-link-default $cubic-ease-sudden forwards;
+
+    @include mq-motion-allow {
+      animation-duration: 0.64s;
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      animation: classic-link-hover $cubic-ease-sudden forwards;
+      @include mq-motion-allow {
+        animation-duration: 0.64s;
+      }
+    }
+  }
 }
 
 .lg-screen-and-up {

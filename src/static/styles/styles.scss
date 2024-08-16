@@ -1,5 +1,12 @@
 // Base
-@import "variables", "mixins", "globals", "utility", "fonts", "buttons";
+// prettier-ignore
+@import "variables",
+ "mixins",
+ "globals",
+ "utility",
+ "fonts",
+ "animations";
 
 // Pages
+// prettier-ignore
 @import "./pages/home";
