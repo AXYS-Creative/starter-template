@@ -561,23 +561,6 @@ ul {
   list-style: none;
 }
 
-// Sections
-
-#hero-section {
-  @include column-center;
-  gap: 24px;
-  margin-top: 196px;
-
-  h1,
-  p {
-    text-align: center;
-  }
-
-  p {
-    opacity: 0.5;
-  }
-}
-
 // Components
 
 .cta-wrapper {

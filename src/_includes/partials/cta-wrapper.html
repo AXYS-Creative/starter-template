@@ -1,7 +1,9 @@
 <div class="cta-wrapper">
-  {% if cta1 %}
-  <a class="tab-element-page" href="{{ cta1.url }}">{{ cta1.title }}</a>
-  {% endif %} {% if cta2 %}
-  <a class="" href="">Secondary Button</a>
+  {% if cta_1_text %}
+  <a class="cta-1 tab-element-page" href="{{ cta_1_url }}">{{ cta_1_text }}</a>
+  {% endif %}
+  <!-- prettier-ignore -->
+  {% if cta_2_text %}
+  <a class="tab-element-page" href="{{ cta_2_url }}">{{ cta_2_text }}</a>
   {% endif %}
 </div>

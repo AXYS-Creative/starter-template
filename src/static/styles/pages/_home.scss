@@ -1,21 +1,14 @@
-.hero-section__home {
-  @extend #hero-section;
-}
+.hero {
+  @include column-center;
+  gap: 24px;
+  margin-top: 196px;
 
-#featured-section {
-  @include section-padding(thin);
-
-  .featured-blogs-wrapper {
-    border: $test;
-    padding: 24px;
-    min-height: 100vh;
-    @include row-center(space-between);
+  h1,
+  p {
+    text-align: center;
   }
 
-  .blog-block {
-    background: #2d2d2d;
-    border-radius: 12px;
-    width: 264px;
-    height: 264px;
+  p {
+    opacity: 0.5;
   }
 }

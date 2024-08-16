@@ -5,17 +5,19 @@ author: CHANGE ME
 
 layout: app
 path: home
-cta1:
-  url: "#ABOUT"
-  title: "About"
 ---
 
-<section id="hero-section" class="hero-section__home">
+<section id="hero" class="hero">
   <h1 class="h1">H1 CHANGE ME</h1>
   <p>CHANGE ME</p>
 
-  {% include "./_includes/partials/cta-wrapper.html" %}
   <!-- prettier-ignore -->
+  {% set cta_1_text = 'CHANGE ME' %}
+  {% set cta_1_url = '#' %}
+  {% set cta_2_text = 'CHANGE ME TOO' %}
+  {% set cta_2_url = '#' %}
+  {% include "./_includes/partials/cta-wrapper.html" %}
+
   {% include "./_includes/partials/social-media.html" %}
   <!-- prettier-ignore -->
 </section>
