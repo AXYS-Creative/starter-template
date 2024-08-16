@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $brand-font-family-body;
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
@@ -111,6 +112,7 @@ header {
     }
 
     .menu-btn {
+      // border: 1px solid white;
       width: 28px;
       height: 28px;
       transition: 0.2s ease 0s;
@@ -125,6 +127,7 @@ header {
       }
 
       .menu-btn-line-wrapper {
+        // border: $test;
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
@@ -144,6 +147,15 @@ header {
 
         .menu-btn-line-wrapper {
           rotate: 45deg;
+          gap: 0;
+
+          .menu-btn-line:first-of-type {
+            translate: 0 1.5px;
+          }
+          .menu-btn-line:last-of-type {
+            translate: 0 -1.5px;
+            rotate: 90deg;
+          }
         }
       }
     }
