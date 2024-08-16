@@ -103,6 +103,10 @@ $min-breakpoints: (
 @mixin left-spacing {
   left: $body-padding;
 
+  @include mq-min("xxxl") {
+    left: calc(50% - calc($content-width / 2) + $body-padding);
+  }
+
   @include mq-max("xxl") {
     left: $body-padding-xxl;
   }
@@ -115,6 +119,10 @@ $min-breakpoints: (
 // header menu button, nav social items
 @mixin right-spacing {
   right: $body-padding;
+
+  @include mq-min("xxxl") {
+    right: calc(50% - calc($content-width / 2 - $body-padding));
+  }
 
   @include mq-max("xxl") {
     right: $body-padding-xxl;
