@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $brand-font-family-body;
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
@@ -85,93 +84,26 @@ header {
       display: none;
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: -24px;
-      width: calc(100vw - $body-padding * 2);
-      height: 1px;
-      background: rgba($grey-dark, 0.8);
-      transition: 0.8s ease 0.2s;
-    }
-
     &__link {
-      position: relative;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--link-color);
-
       &:hover,
       &:focus {
-        color: var(--link-color-hover);
-
         &::after {
           background: var(--primary-font-color);
-        }
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        translate: -50% 0;
-        bottom: -24px;
-        width: 160%;
-        height: 1px;
-        background: transparent;
-        transition: 0.3s ease;
-      }
-    }
-
-    li {
-      &:nth-of-type(1) {
-        a {
-          transition: color 0.3s ease, opacity 0.3s ease 0.5s;
-        }
-      }
-
-      &:nth-of-type(2) {
-        a {
-          transition: color 0.3s ease, opacity 0.3s ease 0.4s;
-        }
-      }
-
-      &:nth-of-type(3) {
-        a {
-          transition: color 0.3s ease, opacity 0.3s ease 0.3s;
-        }
-      }
-      &:nth-of-type(4) {
-        a {
-          transition: color 0.3s ease, opacity 0.3s ease 0.2s;
-        }
-      }
-      &:nth-of-type(5) {
-        a {
-          transition: color 0.3s ease, opacity 0.3s ease 0.1s;
         }
       }
     }
   }
 
   .menu-btn-wrapper {
-    @include right-spacing;
-    top: 74px;
-    translate: 0 -50%;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    mix-blend-mode: difference;
-
-    @include mq-min("xxxl") {
-      right: calc(50% - calc(1920px / 2) + $body-padding);
-    }
+    display: none;
 
     @include mq-max("lg") {
-      opacity: 1;
-      pointer-events: all;
+      @include right-spacing;
+      top: 74px;
+      translate: 0 -50%;
+      transition: opacity 0.3s ease;
+      mix-blend-mode: difference;
+      display: block;
     }
 
     @include mq-max("md") {
@@ -192,17 +124,16 @@ header {
         scale: 0.9;
       }
 
-      .menu-btn-dots-wrapper {
+      .menu-btn-line-wrapper {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px;
-        padding: 4px;
+        gap: 6px;
         transition: 0.2s ease;
       }
 
-      &-dot {
-        width: 4px;
-        height: 4px;
+      &-line {
+        width: 32px;
+        height: 3px;
         background: $white;
         transition: 0.3s ease;
       }
@@ -211,15 +142,8 @@ header {
         opacity: 1;
         pointer-events: all;
 
-        .menu-btn-dots-wrapper {
+        .menu-btn-line-wrapper {
           rotate: 45deg;
-        }
-
-        .menu-btn-dot:nth-of-type(odd) {
-          opacity: 0;
-        }
-        .menu-btn-dot:nth-of-type(5) {
-          opacity: 1;
         }
       }
     }
@@ -235,54 +159,6 @@ header {
         width: 0px;
       }
     }
-
-    .header-links {
-      pointer-events: none;
-      transition: 0.5s ease 0.5s;
-
-      &::after {
-        width: 0;
-        transition: 0.6s ease 0s;
-      }
-
-      &__link {
-        opacity: 0;
-      }
-
-      li {
-        &:nth-of-type(1) {
-          a {
-            transition: opacity 0.3s ease 0.06s;
-          }
-        }
-        &:nth-of-type(2) {
-          a {
-            transition: opacity 0.3s ease 0.12s;
-          }
-        }
-        &:nth-of-type(3) {
-          a {
-            transition: opacity 0.3s ease 0.18s;
-          }
-        }
-        &:nth-of-type(4) {
-          a {
-            transition: opacity 0.3s ease 0.24s;
-          }
-        }
-        &:nth-of-type(5) {
-          a {
-            transition: opacity 0.3s ease 0.3s;
-          }
-        }
-      }
-    }
-
-    .menu-btn-wrapper {
-      opacity: 1;
-      pointer-events: all;
-      transition: all 0.3s ease, opacity 0.2s ease 0.6s;
-    }
   }
 
   &.menu-active {
@@ -293,39 +169,31 @@ header {
       }
     }
 
-    .menu-btn-wrapper {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .header-links {
-      pointer-events: none;
-
-      &::after {
-        width: 0;
-      }
-
-      &__link {
-        opacity: 0;
-      }
-    }
+    // .menu-btn-wrapper {
+    //   opacity: 1;
+    //   pointer-events: all;
+    // }
   }
 }
 
 nav {
+  display: none;
   position: fixed;
   top: 0;
-  background: transparent;
-  // background: #313131;
+  // background: transparent;
+  background: navy;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
   overflow: auto;
   opacity: 0;
   pointer-events: none;
-  // user-select: none;
   z-index: 4;
-  transition: background 0s ease 0.4s, opacity 0s ease 0.75s;
+  // transition: background 0s ease 0.4s, opacity 0s ease 0.75s;
+
+  @include mq-max("lg") {
+    display: block;
+  }
 
   .width-constraint {
     position: relative;
@@ -351,7 +219,7 @@ nav {
     opacity: 0;
     pointer-events: none;
     // user-select: none;
-    transition: opacity 0s ease 0.3s;
+    // transition: opacity 0s ease 0.3s;
 
     li {
       a {
@@ -375,17 +243,6 @@ nav {
         border-radius: 4px;
         box-shadow: 0 0 0 3px rgba(#2353c1, 0.75), 0 0 0 5px rgba(#fff, 0.75);
       }
-
-      @for $i from 2 through 6 {
-        &:nth-of-type(#{$i}) {
-          $transition: 0.25s + ($i - 2) * 0.2s;
-          $delay: 0.65s + ($i - 2) * 0.05s;
-
-          .nav-link {
-            transition: 0.2s ease, translate $transition ease $delay;
-          }
-        }
-      }
     }
 
     .nav-link {
@@ -395,7 +252,7 @@ nav {
       height: 100%;
       translate: 0 100%;
       border-left: 4px solid transparent;
-      transition: 0.2s ease, translate 0.3s ease 0.6s;
+      // transition: 0.2s ease, translate 0.3s ease 0.6s;
 
       &:hover,
       &:focus {
@@ -467,7 +324,7 @@ nav {
     position: absolute;
     bottom: 0;
     width: 100vw;
-    height: 24px;
+    height: 0px;
     background: $black;
     animation: nav-abstract-default 0.75s ease 0s forwards;
   }
@@ -476,10 +333,23 @@ nav {
     opacity: 1;
     pointer-events: all;
     background: var(--background-color);
-    transition: background 0s ease 0.4s;
+    transition: background 0s ease;
 
     .nav-abstract {
       animation: nav-abstract-open 0.75s ease 0s forwards;
+    }
+
+    .nav-links {
+      @for $i from 2 through 10 {
+        &:nth-of-type(#{$i}) {
+          $transition: 0.25s + ($i - 2) * 0.2s;
+          $delay: 0.65s + ($i - 2) * 0.05s;
+
+          // .nav-link {
+          //   transition: 0.2s ease, translate $transition ease $delay;
+          // }
+        }
+      }
     }
 
     .nav-links,
@@ -487,6 +357,7 @@ nav {
     .nav-social-media {
       opacity: 1;
       pointer-events: all;
+      // transition: opacity 0s ease 0.3s;
 
       .nav-link {
         translate: 0 0;
@@ -540,15 +411,33 @@ h3 {
 h4 {
   @extend .h4;
 }
+h5 {
+  @extend .h5;
+}
+h6 {
+  @extend .h6;
+}
 
-p {
+p,
+a,
+ul {
+  color: var(--primary-font-color);
   font-family: $brand-font-family-body;
+  font-size: 16px;
+  font-weight: 500;
+
+  @include mq-max("xxl") {
+    font-size: 14px;
+  }
+
+  @include mq-max("xxl") {
+    font-size: 12px;
+  }
 }
 
 a {
-  font-family: $brand-font-family-body;
+  text-transform: uppercase;
   text-decoration: none;
-  color: lightcoral;
 }
 
 button {
@@ -564,13 +453,17 @@ ul {
 // Components
 
 .cta-wrapper {
-  display: flex;
-  gap: 12px;
+  @include row-center;
+  gap: 24px;
+  flex-shrink: 0;
 
-  a {
-    padding: 8px 24px;
-    border: 1px solid grey;
-    border-radius: 8px 0;
+  .cta-1 {
+    border: 2px solid var(--primary-font-color);
+    padding: 12px 24px;
+
+    @include mq-max("sm") {
+      padding: 10px 20px;
+    }
   }
 }
 

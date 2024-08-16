@@ -9,7 +9,7 @@ const navMenu = document.querySelector(".nav-menu"),
 
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
-function toggleNav() {
+const toggleNav = () => {
   const isNavOpen = navMenu.classList.contains("menu-active");
   navMenu.classList.toggle("menu-active");
   menuBtn.classList.toggle("menu-active");
@@ -28,9 +28,9 @@ function toggleNav() {
 
   // Pevent scroll when nav is open
   document.body.style = `overflow: ${!isNavOpen ? "hidden" : "auto"}`;
-}
+};
 
-function closeNav() {
+const closeNav = () => {
   // Pevent scroll when nav is open
   document.body.style = "overflow: auto;";
 
@@ -44,7 +44,7 @@ function closeNav() {
   // Reset tabindex for tabElementsPage and tabElementsNav
   tabElementsPage.forEach((el) => el.setAttribute("tabindex", "0"));
   tabElementsNav.forEach((el) => el.setAttribute("tabindex", "-1"));
-}
+};
 
 // [...navLinks, ...navFooterLinks].forEach((link) => {
 [...navLinks].forEach((link) => {

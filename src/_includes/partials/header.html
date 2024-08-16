@@ -12,7 +12,9 @@
   <ul class="header-links">
     {% for item in navigation.items %}
     <li class="">
-      <a class="header-links__link" href="{{ item.url }}">{{ item.text }}</a>
+      <a class="header-links__link classic-link" href="{{ item.url }}">
+        {{ item.text }}
+      </a>
     </li>
     {% endfor %}
   </ul>
@@ -26,18 +28,9 @@
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <div class="menu-btn-dots-wrapper">
-        <span class="menu-btn-dot top-left"></span>
-        <span class="menu-btn-dot top-center"></span>
-        <span class="menu-btn-dot top-right"></span>
-
-        <span class="menu-btn-dot middle-left"></span>
-        <span class="menu-btn-dot middle-center"></span>
-        <span class="menu-btn-dot middle-right"></span>
-
-        <span class="menu-btn-dot bottom-left"></span>
-        <span class="menu-btn-dot bottom-center"></span>
-        <span class="menu-btn-dot bottom-right"></span>
+      <div class="menu-btn-line-wrapper">
+        <span class="menu-btn-line"></span>
+        <span class="menu-btn-line"></span>
       </div>
     </button>
   </div>

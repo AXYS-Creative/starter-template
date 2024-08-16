@@ -26,9 +26,6 @@ const siteHeader = document.querySelector(".site-header"),
   menuBtnWrapper = document.querySelector(".menu-btn-wrapper"),
   menuBtn = document.querySelector(".menu-btn");
 
-// Header Defaults
-menuBtn.setAttribute("tabindex", "-1");
-
 //
 // All Scroll Animations that require SCRUBBING
 //
