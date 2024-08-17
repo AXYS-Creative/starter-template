@@ -383,9 +383,26 @@ section {
 }
 
 footer {
-  padding: $body-padding;
-  position: relative;
   @include row-center(space-between);
+  position: relative;
+  padding: $body-padding;
+
+  @media all {
+    @include mq-max("lg") {
+      justify-content: flex-start;
+      padding: $body-padding-md;
+    }
+
+    @include mq-max("md") {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    @include mq-max("sm") {
+      padding-block-end: 48px;
+    }
+  }
 
   .copyright {
     @include row-center;
@@ -393,20 +410,36 @@ footer {
     position: absolute;
     bottom: 50%;
     left: 50%;
-    transform: translate(calc(-50% - 6px), 50%);
+    translate: calc(-50% - 6px) 50%;
     font-size: 12px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 
     @include mq-max("lg") {
-      width: 100%;
-      bottom: $body-padding;
-      transform: translate(calc(-50% - 6px), 0);
+      left: auto;
+      right: $body-padding-md;
+      translate: 0 100%;
     }
 
+    @include mq-max("sm") {
+      position: static;
+      order: 1;
+      translate: 0 0;
+    }
+  }
+
+  .return-to-top,
+  .axys-link {
+    translate: -8px;
+
     @include mq-max("md") {
-      font-size: 10px;
-      transform: translate(calc(-50% - 5.5px), 0);
+      font-size: 12px;
+    }
+  }
+
+  .axys-link {
+    @include mq-max("md") {
+      margin-block-end: 24px;
     }
   }
 }
