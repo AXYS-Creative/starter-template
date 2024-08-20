@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $brand-font-family-body;
+  font-family: $font-family-body;
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
@@ -235,7 +235,7 @@ nav {
 
     li {
       a {
-        font-family: $brand-font-family-body;
+        font-family: $font-family-body;
       }
     }
   }
@@ -467,7 +467,7 @@ p,
 a,
 ul {
   color: var(--primary-font-color);
-  font-family: $brand-font-family-body;
+  font-family: $font-family-body;
   font-size: 16px;
   font-weight: 500;
 
