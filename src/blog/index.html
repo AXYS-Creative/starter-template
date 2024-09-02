@@ -2,8 +2,10 @@
 layout: blog
 ---
 
+{% set postslist = collections.post %}
+
 <section class="">
-  {% set postslist = collections.post %} {% for post in postslist | reverse %}
+  {% for post in postslist | reverse %}
   <article class="">
     <h2 class="">
       <a href="{{ post.url | url }}">

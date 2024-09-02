@@ -2,11 +2,5 @@
 items:
   - text: Home
     url: "/"
-  - text: About
-    url: "/about"
   - text: Blog
     url: "/blog"
-  - text: Services
-    ulr: "/services"
-  - text: Contact
-    ulr: "/contact"

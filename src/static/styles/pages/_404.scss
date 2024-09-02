@@ -1,0 +1,23 @@
+.error {
+  @include column-center;
+  height: 86vh;
+  height: 86dvh;
+
+  @include mq-max("xxl") {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  @include mq-max("md") {
+    height: 92vh;
+    height: 92dvh;
+  }
+
+  h1 {
+    margin-block-end: 24px;
+  }
+
+  p {
+    margin-block-end: 48px;
+  }
+}

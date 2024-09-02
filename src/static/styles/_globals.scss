@@ -188,6 +188,7 @@ header {
   }
 }
 
+// MAKE THE NAV STARTER TEMPLATE WORTHY
 nav {
   display: none;
   position: fixed;
@@ -475,7 +476,7 @@ ul {
     font-size: 14px;
   }
 
-  @include mq-max("xxl") {
+  @include mq-max("md") {
     font-size: 12px;
   }
 }

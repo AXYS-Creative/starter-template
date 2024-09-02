@@ -2,9 +2,13 @@
 layout: app
 ---
 
-<div>
+<section class="hero">
+  <h1>{{title}}</h1>
+  <p>Blog post</p>
+</section>
+
+<section class="blog-post">
   <div>
-    <h1>{{title}}</h1>
     <p>
       <time>
         {{ date | readableDate }} by
@@ -12,5 +16,7 @@ layout: app
       </time>
     </p>
   </div>
+
+  <!-- from src > posts ? .md files -->
   <article>{{ content | safe }}</article>
-</div>
+</section>

@@ -27,54 +27,60 @@
   }
 }
 
+.classic-list {
+  list-style: initial;
+}
+
 //
 // Media Query Utility // Be mindful these may not work well with screen readers
 //
 
-.lg-screen-and-up {
-  display: none;
+@media all {
+  .lg-screen-and-up {
+    display: none;
 
-  @include mq-min("lg") {
-    display: flex; // Flex for cta-wrapper
+    @include mq-min("lg") {
+      display: flex; // Flex for cta-wrapper
+    }
   }
-}
 
-.lg-screen-and-below {
-  display: none;
+  .lg-screen-and-below {
+    display: none;
 
-  @include mq-max("lg") {
-    display: flex;
+    @include mq-max("lg") {
+      display: flex;
+    }
   }
-}
 
-.md-screen-and-up {
-  display: none;
+  .md-screen-and-up {
+    display: none;
 
-  @include mq-min("md") {
-    display: flex;
+    @include mq-min("md") {
+      display: flex;
+    }
   }
-}
 
-.md-screen-and-below {
-  display: none;
+  .md-screen-and-below {
+    display: none;
 
-  @include mq-max("md") {
-    display: flex;
+    @include mq-max("md") {
+      display: flex;
+    }
   }
-}
 
-.sm-screen-and-up {
-  display: none;
+  .sm-screen-and-up {
+    display: none;
 
-  @include mq-min("sm") {
-    display: flex;
+    @include mq-min("sm") {
+      display: flex;
+    }
   }
-}
 
-.sm-screen-and-below {
-  display: none;
+  .sm-screen-and-below {
+    display: none;
 
-  @include mq-max("sm") {
-    display: flex;
+    @include mq-max("sm") {
+      display: flex;
+    }
   }
 }
