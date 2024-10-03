@@ -56,4 +56,9 @@ collections:
             hint: "Hide or show the discount marquee."
           - name: "marquee_text"
             label: "Marquee Text"
+            required: true
+          - name: "marquee_text_speech"
+            label: "Marquee Text Speech"
             widget: "string"
+            hint: "For accessibility, add your message here without any symbols, tokens or classes."
+            required: true

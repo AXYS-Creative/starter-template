@@ -59,6 +59,34 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
+  // Token Replacement at build time vs client (prevent tokens from showing up briefly)
+  eleventyConfig.addTransform("tokenReplace", function (content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      // Replace [%br%] and [%span%] tokens at build time
+      return content
+        .replace(/\[%br(\.[^\]]+)?%\]/g, (match, className) => {
+          // Handle [%br%] or [%br.class-name%] tokens
+          if (className) {
+            const cleanClass = className.substring(1); // Remove the leading '.'
+            return `<br class="${cleanClass}" aria-hidden="true">`;
+          }
+          return `<br aria-hidden="true">`;
+        })
+        .replace(
+          /\[%span(\.[^\]]+)?%\](.*?)\[%span%\]/g,
+          (match, className, innerContent) => {
+            // Handle [%span%] or [%span.class-name%] tokens
+            if (className) {
+              const cleanClass = className.substring(1); // Remove the leading '.'
+              return `<span class="${cleanClass}">${innerContent}</span>`;
+            }
+            return `<span>${innerContent}</span>`;
+          }
+        );
+    }
+    return content;
+  });
+
   // Let Eleventy transform HTML files as nunjucks
   // So that we can use .html instead of .njk
   return {
