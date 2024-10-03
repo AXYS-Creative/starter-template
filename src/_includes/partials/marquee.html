@@ -1,0 +1,18 @@
+{% if marquee.marquee_toggle %}
+
+<div class="marquee" aria-label="{{ marquee_text }}">
+  <div class="marquee-inner" aria-hidden="true">
+    <p class="marquee-text">
+      <span>{{marquee_text}}</span>
+      <span>{{marquee_text}}</span>
+    </p>
+  </div>
+  <div class="marquee-inner" aria-hidden="true">
+    <p class="marquee-text">
+      <span>{{marquee_text}}</span>
+      <span>{{marquee_text}}</span>
+    </p>
+  </div>
+</div>
+
+{% endif %}

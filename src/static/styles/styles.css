@@ -6,7 +6,7 @@
   --link-color-hover: #fefefe;
 }
 
-.h1, h1 {
+.h1, .marquee .marquee-text, h1 {
   font-family: "Satoshi", sans-serif;
   font-size: 96px;
   font-weight: 700;
@@ -14,22 +14,22 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h1, h1 {
+  .h1, .marquee .marquee-text, h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h1, h1 {
+  .h1, .marquee .marquee-text, h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h1, h1 {
+  .h1, .marquee .marquee-text, h1 {
     font-size: 8vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h1, h1 {
+  .h1, .marquee .marquee-text, h1 {
     font-size: 32px;
   }
 }
@@ -893,4 +893,59 @@ ul {
 }
 .error p {
   margin-block-end: 48px;
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100vw;
+  max-width: 1920px;
+}
+.marquee-inner {
+  padding-inline-end: 24px;
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+@media screen and (max-width: 480px) {
+  .marquee-inner {
+    padding-inline-end: 12px;
+  }
+}
+.marquee .marquee-text {
+  line-height: 100%;
+  display: inline-flex;
+  text-wrap: nowrap;
+  gap: 24px;
+}
+@media screen and (max-width: 1512px) {
+  .marquee .marquee-text {
+    gap: 18px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .marquee .marquee-text {
+    line-height: 86%;
+    gap: 12px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .marquee .marquee-text {
+    line-height: 80%;
+    gap: 6px;
+  }
+}
+.marquee .marquee-dot {
+  font-size: 36px;
+  color: #c0c0c0;
+  margin: 0 56px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+@media screen and (max-width: 768px) {
+  .marquee .marquee-dot {
+    font-size: 24px;
+    margin: 0 24px;
+  }
 }/*# sourceMappingURL=styles.css.map */

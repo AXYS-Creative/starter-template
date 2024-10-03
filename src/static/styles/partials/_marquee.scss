@@ -1,0 +1,50 @@
+.marquee {
+  overflow: hidden;
+  width: 100vw;
+  max-width: $content-width;
+
+  &-inner {
+    padding-inline-end: 24px; // Offsets to allow a smooth marquee at 50%, instead of 50.3%
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    @include mq-max("sm") {
+      padding-inline-end: 12px;
+    }
+  }
+
+  .marquee-text {
+    @extend .h1;
+    line-height: 100%;
+    display: inline-flex;
+    text-wrap: nowrap;
+    gap: 24px;
+
+    @include mq-max("xxl") {
+      gap: 18px;
+    }
+
+    @include mq-max("md") {
+      line-height: 86%;
+      gap: 12px;
+    }
+
+    @include mq-max("sm") {
+      line-height: 80%;
+      gap: 6px;
+    }
+  }
+
+  .marquee-dot {
+    font-size: 36px;
+    color: $grey-light;
+    margin: 0 56px;
+    user-select: none;
+
+    @include mq-max("md") {
+      font-size: 24px;
+      margin: 0 24px;
+    }
+  }
+}

@@ -2,12 +2,12 @@ backend:
   # Use netlify identity as backend
   name: "git-gateway"
   branch: "main"
-  repo: "https://github.com/AXYS-Creative/CHANGEME"
+  repo: "https://github.com/AXYS-Creative/starter-template-cms.git" # CHANGE ME
 media_folder: "src/static/img"
 public_folder: "/static/img"
-site_url: https://CHANGEME.netlify.app # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
-display_url: https://CHANGEME.netlify.app # In admin dashboard, this addes the URL in the corner. Used with 'preview_path' for collection viewing.
-logo_url: https://CHANGEME.netlify.app/static/img/admin-logo.svg # On admin login page, this adds a custom logo.
+site_url: https://starter-template-cms.netlify.app # CHANGE ME # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
+display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this addes the URL in the corner. Used with 'preview_path' for collection viewing.
+logo_url: https://starter-template-cms.netlify.app/static/img/admin-logo.svg # CHANGE ME # On admin login page, this adds a custom logo.
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
@@ -36,3 +36,24 @@ collections:
         name: "image"
         widget: "image"
         required: false
+  - name: "home_page"
+    label: "Page - Home"
+    description: >
+      Edit the site content here.
+      Have questions or need to add a new config? Visit your Trello board to add a new request.
+      Don't have a Trello board? Reach out to Aaron or Bailey → help@axyscreative.com
+    files:
+      - name: "marquee"
+        label: "Marquee"
+        file: "src/_data/marquee.yaml"
+        preview_path: "#"
+        editor:
+          preview: false
+        fields:
+          - name: "marquee_toggle"
+            label: "Marquee Toggle"
+            widget: "boolean"
+            hint: "Hide or show the discount marquee."
+          - name: "marquee_message"
+            label: "Marquee Message"
+            widget: "string"
