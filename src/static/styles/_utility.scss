@@ -83,3 +83,12 @@
     }
   }
 }
+
+//
+// CMS Tokens
+//
+
+.text-stroke {
+  -webkit-text-stroke: 1px var(--primary-font-color);
+  color: transparent;
+}

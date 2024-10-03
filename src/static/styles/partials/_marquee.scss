@@ -15,7 +15,7 @@
   }
 
   .marquee-text {
-    @extend .h1;
+    @extend .h2;
     line-height: 100%;
     display: inline-flex;
     text-wrap: nowrap;

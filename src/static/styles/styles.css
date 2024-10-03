@@ -6,7 +6,7 @@
   --link-color-hover: #fefefe;
 }
 
-.h1, .marquee .marquee-text, h1 {
+.h1, h1 {
   font-family: "Satoshi", sans-serif;
   font-size: 96px;
   font-weight: 700;
@@ -14,27 +14,27 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h1, .marquee .marquee-text, h1 {
+  .h1, h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h1, .marquee .marquee-text, h1 {
+  .h1, h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h1, .marquee .marquee-text, h1 {
+  .h1, h1 {
     font-size: 8vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h1, .marquee .marquee-text, h1 {
+  .h1, h1 {
     font-size: 32px;
   }
 }
 
-.h2, h2, nav .nav-links .nav-link {
+.h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
   font-family: "Satoshi", sans-serif;
   font-size: 64px;
   font-weight: 700;
@@ -42,22 +42,22 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h2, h2, nav .nav-links .nav-link {
+  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
     font-size: 4.4vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h2, h2, nav .nav-links .nav-link {
+  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
     font-size: 4.4vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h2, h2, nav .nav-links .nav-link {
+  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
     font-size: 6.4vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h2, h2, nav .nav-links .nav-link {
+  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
     font-size: 32px;
   }
 }
@@ -842,6 +842,11 @@ ul {
     display: flex;
   }
 }
+.text-stroke {
+  -webkit-text-stroke: 1px var(--primary-font-color);
+  color: transparent;
+}
+
 @font-face {
   font-family: "Satoshi";
   src: url("../fonts/Satoshi-Light.otf") format("truetype");

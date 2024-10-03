@@ -1,2 +1,2 @@
 marquee_toggle: true
-marquee_text: • This is the marquee • Sometimes known as a ticker
+marquee_text: • This is the [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%]
