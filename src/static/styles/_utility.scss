@@ -6,23 +6,22 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    right: auto;
+    width: 100%;
     height: 1px;
     background-color: var(--primary-font-color);
-    animation: classic-link-default $cubic-ease-sudden forwards;
 
     @include mq-motion-allow {
-      animation-duration: 0.64s;
+      transition: 0.32s ease;
     }
   }
 
   &:hover,
   &:focus-visible {
     &::before {
-      animation: classic-link-hover $cubic-ease-sudden forwards;
-      @include mq-motion-allow {
-        animation-duration: 0.64s;
-      }
+      width: 0;
+      left: auto;
+      right: 0;
     }
   }
 }
@@ -32,7 +31,7 @@
 }
 
 //
-// Media Query Utility // Be mindful these may not work well with screen readers
+// Media Query Utility // Be mindful to use aria-hidden to avoid a break in speech.
 //
 
 @media all {
@@ -40,7 +39,7 @@
     display: none;
 
     @include mq-min("lg") {
-      display: flex; // Flex for cta-wrapper
+      display: flex; // Flex for cta-group
     }
   }
 

@@ -140,24 +140,6 @@ header {
         background: $white;
         transition: 0.3s ease;
       }
-
-      &.menu-active {
-        opacity: 1;
-        pointer-events: all;
-
-        .menu-btn-line-wrapper {
-          rotate: 45deg;
-          gap: 0;
-
-          .menu-btn-line:first-of-type {
-            translate: 0 1.5px;
-          }
-          .menu-btn-line:last-of-type {
-            translate: 0 -1.5px;
-            rotate: 90deg;
-          }
-        }
-      }
     }
 
     &.menu-wrapper-page-top {
@@ -173,7 +155,7 @@ header {
     }
   }
 
-  &.menu-active {
+  &.nav-active {
     .header-logo {
       .logo-text {
         width: $logo-text-width;
@@ -190,7 +172,6 @@ header {
 
 // MAKE THE NAV STARTER TEMPLATE WORTHY
 nav {
-  display: none;
   position: fixed;
   top: 0;
   // background: transparent;
@@ -204,8 +185,8 @@ nav {
   z-index: 4;
   // transition: background 0s ease 0.4s, opacity 0s ease 0.75s;
 
-  @include mq-max("lg") {
-    display: block;
+  @include mq-min("lg") {
+    display: none;
   }
 
   .width-constraint {
@@ -333,24 +314,11 @@ nav {
     }
   }
 
-  .nav-abstract {
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-    height: 0px;
-    background: $black;
-    animation: nav-abstract-default 0.75s ease 0s forwards;
-  }
-
-  &.menu-active {
+  &[aria-hidden="false"] {
     opacity: 1;
     pointer-events: all;
     background: var(--background-color);
     transition: background 0s ease;
-
-    .nav-abstract {
-      animation: nav-abstract-open 0.75s ease 0s forwards;
-    }
 
     .nav-links {
       @for $i from 2 through 10 {
@@ -498,7 +466,7 @@ ul {
 
 // Components
 
-.cta-wrapper {
+.cta-group {
   @include row-center;
   gap: 24px;
   flex-shrink: 0;

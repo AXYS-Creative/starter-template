@@ -12,21 +12,21 @@ responsiveGsap.add(
   (context) => {
     let { maxSm, maxMd, maxXl, minMd } = context.conditions;
 
-    // TEMPLATE TWEEN - SCRUB
-    gsap.fromTo(
-      ".slider__inner",
-      { x: "-2%" },
-      {
-        x: maxSm ? "-32%" : maxXl ? "-32%" : "-32%",
-        scrollTrigger: {
-          trigger: ".slider",
-          start: "top bottom",
-          end: maxSm ? "bottom 75%" : "bottom top",
-          scrub: 0.8,
-          // markers: true,
-        },
-      }
-    );
+    // // TEMPLATE TWEEN - SCRUB
+    // gsap.fromTo(
+    //   ".slider__inner",
+    //   { x: "-2%" },
+    //   {
+    //     x: maxSm ? "-32%" : maxXl ? "-32%" : "-32%",
+    //     scrollTrigger: {
+    //       trigger: ".slider",
+    //       start: "top bottom",
+    //       end: maxSm ? "bottom 75%" : "bottom top",
+    //       scrub: 0.8,
+    //       // markers: true,
+    //     },
+    //   }
+    // );
 
     // GLOBAL - Easily toggle an 'animate' class on any element with '.gsap-animate' class
     const globalGenerateAnimate = (() => {
