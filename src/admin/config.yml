@@ -54,6 +54,6 @@ collections:
             label: "Marquee Toggle"
             widget: "boolean"
             hint: "Hide or show the discount marquee."
-          - name: "marquee_message"
-            label: "Marquee Message"
+          - name: "marquee_text"
+            label: "Marquee Text"
             widget: "string"
