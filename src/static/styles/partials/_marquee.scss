@@ -26,12 +26,10 @@
     }
 
     @include mq-max("md") {
-      line-height: 86%;
       gap: 12px;
     }
 
     @include mq-max("sm") {
-      line-height: 80%;
       gap: 6px;
     }
   }
