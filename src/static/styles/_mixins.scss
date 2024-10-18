@@ -205,11 +205,15 @@ $min-breakpoints: (
 
 @mixin body-font-styles {
   color: var(--primary-font-color);
-  font-family: $font-family-body;
-  font-size: 16px;
+  font-family: $font-family-secondary;
+  font-size: 18px;
   font-weight: 400;
 
   @include mq-max("xxl") {
+    font-size: 16px;
+  }
+
+  @include mq-max("md") {
     font-size: 14px;
   }
 }

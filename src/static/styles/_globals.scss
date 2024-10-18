@@ -435,18 +435,7 @@ h6 {
 p,
 a,
 ul {
-  color: var(--primary-font-color);
-  font-family: $font-family-body;
-  font-size: 16px;
-  font-weight: 500;
-
-  @include mq-max("xxl") {
-    font-size: 14px;
-  }
-
-  @include mq-max("md") {
-    font-size: 12px;
-  }
+  @include body-font-styles;
 }
 
 a {
@@ -462,6 +451,15 @@ button {
 
 ul {
   list-style: none;
+}
+
+figure {
+  font-size: 0; // Chrome's user agent stylesheet adds 1em padding-block-end
+}
+
+img,
+video {
+  width: 100%;
 }
 
 // Components
