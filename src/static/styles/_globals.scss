@@ -464,66 +464,68 @@ video {
 
 // Components
 
-.cta-group {
-  @include row-center;
-  gap: 24px;
-  flex-shrink: 0;
-
-  .cta-1 {
-    border: 2px solid var(--primary-font-color);
-    padding: 12px 24px;
-
-    @include mq-max("sm") {
-      padding: 10px 20px;
-    }
-  }
-}
-
-.social-media-links {
-  display: flex;
-  gap: 24px;
-
-  @include mq-max("md") {
-    gap: 12px;
-  }
-
-  @include mq-max("sm") {
-    gap: 24px;
-  }
-
-  li.magnet {
-    transition: 0.4s ease;
-  }
-
-  .social-media-link {
+:root {
+  .cta-group {
     @include row-center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    overflow: hidden;
-    transition: 0.25s ease;
+    gap: 24px;
+    flex-shrink: 0;
 
-    @include mq-max("sm") {
-      width: 24px;
-      height: 24px;
-    }
+    .cta-1 {
+      border: 2px solid var(--primary-font-color);
+      padding: 12px 24px;
 
-    &:hover,
-    &:focus-visible {
-      .social-media-icon-wrapper {
-        translate: 0 -40%;
+      @include mq-max("sm") {
+        padding: 10px 20px;
       }
     }
+  }
 
-    .social-media-icon-wrapper {
-      @include column-center;
+  .social-media-links {
+    display: flex;
+    gap: 24px;
+
+    @include mq-max("md") {
+      gap: 12px;
+    }
+
+    @include mq-max("sm") {
       gap: 24px;
-      translate: 0 36%;
+    }
+
+    li.magnet {
+      transition: 0.4s ease;
+    }
+
+    .social-media-link {
+      @include row-center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
       transition: 0.25s ease;
 
-      .social-media-icon {
-        path {
-          fill: var(--primary-font-color);
+      @include mq-max("sm") {
+        width: 24px;
+        height: 24px;
+      }
+
+      &:hover,
+      &:focus-visible {
+        .social-media-icon-wrapper {
+          translate: 0 -40%;
+        }
+      }
+
+      .social-media-icon-wrapper {
+        @include column-center;
+        gap: 24px;
+        translate: 0 36%;
+        transition: 0.25s ease;
+
+        .social-media-icon {
+          path {
+            fill: var(--primary-font-color);
+          }
         }
       }
     }

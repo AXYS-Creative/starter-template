@@ -1,26 +1,25 @@
 ---
-title: AXYS DECAP // CHANGE ME
-description: AXYS DECAP Starter template // CHANGE ME
-author: CHANGE ME
-
 layout: app
 path: home
+
+title: Sample title // CHANGE ME
+description: Sample description // CHANGE ME
+
+# master props for cta-group
+cta_1_text: CHANGE ME
+cta_1_url: "#"
+cta_2_text: CHANGE ME TOO
+cta_2_url: "#"
+cta_2_target: "_blank"
 ---
 
 <section class="hero">
   <h1 class="h1">H1 CHANGE ME</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
-  <!-- prettier-ignore -->
-  {% set cta_1_text = 'CHANGE ME' %}
-  {% set cta_1_url = '#' %}
-  {% set cta_2_text = 'CHANGE ME TOO' %}
-  {% set cta_2_url = '#' %}
   {% include "./_includes/partials/cta-group.html" %}
-  <!-- prettier-ignore -->
 </section>
 
-<!-- {% set marque_text = "Design with purpose // Development with precision //" %}  -->
 <!-- prettier-ignore -->
 {% set marquee_text = marquee.marquee_text %}
 {% set marquee_text_speech = marquee.marquee_text_speech %}

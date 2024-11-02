@@ -1,9 +1,9 @@
 links:
   - title: Instagram
-    url: https://www.instagram.com/axyscreative/
+    url: https://www.instagram.com
     src: ../static/img/icon-instagram.svg
   - title: Twitter
-    url: https://twitter.com/AXYSCreative
+    url: https://twitter.com
     src: /static/img/icon-twitter-x.svg
   - title: Facebook
     url: https://facebook.com

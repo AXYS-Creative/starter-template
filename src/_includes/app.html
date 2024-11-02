@@ -5,23 +5,27 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#fdfaf5" />
-    <meta name="author" content="{{ author }}" />
+    <meta name="theme-color" content="{{ meta_data.theme_color }}" />
+    <meta name="author" content="{{ meta_data.author }}" />
     <meta name="description" content="{{ description }}" />
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:title" content="{{ meta_data.og_title }}" />
+    <meta property="og:description" content="{{ meta_data.og_description }}" />
+    <meta property="og:image" content="{{ meta_data.og_image }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ open_graph.item.image_src }}" />
-    <meta property="og:url" content="essentialism.netlify.app" />
-    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:url" content="{{ meta_data.url }}" />
     <meta property="og:site_name" content="{{ author }}" />
 
     {% block head %}{% endblock %}
 
     <title>{{ title }}</title>
 
+    <link rel="canonical" href="{{ meta_data.url }}" />
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="icon"
       href="../static/img/logo-light.svg"
@@ -40,18 +44,18 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "AXYS Creative",
-        "url": "https://axyscreative.com",
-        "logo": "https://axyscreative.com/public/axys-logo-192.png",
-        "image": "https://axyscreative.com/public/axys-creative-og.png",
+        "name": "{{ meta_data.og_site_name }}",
+        "url": "{{ meta_data.url }}",
+        "logo": "{{ meta_data.url }}/favicon.ico",
+        "image": "{{ meta_data.og_image }}",
         "sameAs": [
-          "https://www.instagram.com/axyscreative/",
-          "https://twitter.com/AXYSCreative",
-          "https://dribbble.com/axyscreative"
+          "https://www.instagram.com/sample",
+          "https://twitter.com/sample",
+          "https://dribbble.com/sample"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "info@axyscreative.com",
+          "email": "{{ meta_data.contact_email }}",
           "contactType": "Support"
         }
       }

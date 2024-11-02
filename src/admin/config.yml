@@ -62,3 +62,54 @@ collections:
             widget: "string"
             hint: "For accessibility, add your message here without any symbols, tokens or classes."
             required: true
+  - name: "meta_data"
+    label: "Meta Data"
+    description: >
+      Edit the site's meta data here. Open Graph dimensions: 1200x630. Open graph file name: open-graph.png
+    files:
+      - name: "meta_data"
+        label: "Meta Data"
+        file: "src/_data/meta_data.yaml"
+        editor:
+          preview: false
+        fields:
+          - name: "author"
+            label: "Author"
+            widget: "string"
+            required: true
+            hint: "Person or company name"
+          - name: "contact_email"
+            label: "Contact Email"
+            widget: "string"
+            required: true
+            hint: "Email address for rich results schema"
+          - name: "theme_color"
+            label: "Theme Color"
+            widget: "color"
+            required: true
+            hint: "Hex color code for overflow color on some devices"
+          - name: "url"
+            label: "URL"
+            widget: "string"
+            required: true
+            hint: "Full URL to your site"
+          - name: "og_title"
+            label: "Open Graph Title"
+            widget: "string"
+            required: true
+            hint: "Sample Business | Motto here"
+          - name: "og_description"
+            label: "Open Graph Description"
+            widget: "string"
+            required: true
+            hint: "Keep at least 100 characters"
+          - name: "og_img"
+            label: "Open Graph Image"
+            widget: "string"
+            required: true
+            hint: "https://sample.com/static/img/open-graph.png"
+          - name: "site_name"
+            label: "Site Name"
+            widget: "string"
+            required: true
+            hint: "Sample Business Co"
