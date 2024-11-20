@@ -205,7 +205,7 @@ $min-breakpoints: (
 
 @mixin body-font-styles {
   color: var(--primary-font-color);
-  font-family: $font-family-secondary;
+  font-family: $font-family-body;
   font-size: 18px;
   font-weight: 400;
 

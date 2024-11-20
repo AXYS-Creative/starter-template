@@ -8,7 +8,7 @@
   </a>
 
   {% if navigation.items %}
-  <ul class="header-links">
+  <ul class="header-links" aria-label="Header navigation">
     {% for item in navigation.items %}
     <li class="">
       <a class="header-links__link classic-link" href="{{ item.url }}">
