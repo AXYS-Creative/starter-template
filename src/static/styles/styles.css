@@ -1,12 +1,13 @@
 :root {
   --background-color: #111;
-  --primary-font-color: #fefefe;
-  --secondary-font-color: #c0c0c0;
+  --font-color--primary: #fefefe;
+  --font-color--secondary: #c0c0c0;
   --link-color: #c0c0c0;
   --link-color-hover: #fefefe;
 }
 
-.h1, h1 {
+.h1,
+h1 {
   font-family: "Satoshi", sans-serif;
   font-size: 96px;
   font-weight: 700;
@@ -14,27 +15,34 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h1, h1 {
+  .h1,
+  h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h1, h1 {
+  .h1,
+  h1 {
     font-size: 6vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h1, h1 {
+  .h1,
+  h1 {
     font-size: 8vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h1, h1 {
+  .h1,
+  h1 {
     font-size: 32px;
   }
 }
 
-.h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
+.h2,
+.marquee .marquee-text,
+h2,
+nav .nav-links .nav-link {
   font-family: "Satoshi", sans-serif;
   font-size: 64px;
   font-weight: 700;
@@ -42,27 +50,40 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
+  .h2,
+  .marquee .marquee-text,
+  h2,
+  nav .nav-links .nav-link {
     font-size: 4.4vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
+  .h2,
+  .marquee .marquee-text,
+  h2,
+  nav .nav-links .nav-link {
     font-size: 4.4vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
+  .h2,
+  .marquee .marquee-text,
+  h2,
+  nav .nav-links .nav-link {
     font-size: 6.4vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h2, .marquee .marquee-text, h2, nav .nav-links .nav-link {
+  .h2,
+  .marquee .marquee-text,
+  h2,
+  nav .nav-links .nav-link {
     font-size: 32px;
   }
 }
 
-.h3, h3 {
+.h3,
+h3 {
   font-family: "Satoshi", sans-serif;
   font-size: 48px;
   font-weight: 700;
@@ -71,27 +92,32 @@
   font-weight: 700;
 }
 @media screen and (max-width: 1512px) {
-  .h3, h3 {
+  .h3,
+  h3 {
     font-size: 3vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h3, h3 {
+  .h3,
+  h3 {
     font-size: 3vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h3, h3 {
+  .h3,
+  h3 {
     font-size: 24px;
   }
 }
 @media screen and (max-width: 480px) {
-  .h3, h3 {
+  .h3,
+  h3 {
     font-size: 20px;
   }
 }
 
-.h4, h4 {
+.h4,
+h4 {
   font-family: "Satoshi", sans-serif;
   font-size: 36px;
   font-weight: 700;
@@ -100,27 +126,32 @@
   font-weight: 400;
 }
 @media screen and (max-width: 1512px) {
-  .h4, h4 {
+  .h4,
+  h4 {
     font-size: 2vw;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h4, h4 {
+  .h4,
+  h4 {
     font-size: 2.8vw;
   }
 }
 @media screen and (max-width: 768px) {
-  .h4, h4 {
+  .h4,
+  h4 {
     font-size: 3.8vw;
   }
 }
 @media screen and (max-width: 480px) {
-  .h4, h4 {
+  .h4,
+  h4 {
     font-size: 12px;
   }
 }
 
-.h5, h5 {
+.h5,
+h5 {
   font-family: "Satoshi", sans-serif;
   font-size: 40px;
   font-weight: 700;
@@ -128,27 +159,32 @@
   line-height: 1;
 }
 @media screen and (max-width: 1512px) {
-  .h5, h5 {
+  .h5,
+  h5 {
     font-size: 32px;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h5, h5 {
+  .h5,
+  h5 {
     font-size: 32px;
   }
 }
 @media screen and (max-width: 768px) {
-  .h5, h5 {
+  .h5,
+  h5 {
     font-size: 12px;
   }
 }
 @media screen and (max-width: 480px) {
-  .h5, h5 {
+  .h5,
+  h5 {
     font-size: 12px;
   }
 }
 
-.h6, h6 {
+.h6,
+h6 {
   font-family: "Satoshi", sans-serif;
   font-size: 32px;
   font-weight: 700;
@@ -157,22 +193,26 @@
   font-weight: 600;
 }
 @media screen and (max-width: 1512px) {
-  .h6, h6 {
+  .h6,
+  h6 {
     font-size: 20px;
   }
 }
 @media screen and (max-width: 1024px) {
-  .h6, h6 {
+  .h6,
+  h6 {
     font-size: 20px;
   }
 }
 @media screen and (max-width: 768px) {
-  .h6, h6 {
+  .h6,
+  h6 {
     font-size: 12px;
   }
 }
 @media screen and (max-width: 480px) {
-  .h6, h6 {
+  .h6,
+  h6 {
     font-size: 12px;
   }
 }
@@ -183,7 +223,9 @@
   box-sizing: border-box;
   font-family: "Satoshi", sans-serif;
 }
-*:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus-visible {
+*:-webkit-autofill,
+*:-webkit-autofill:hover,
+*:-webkit-autofill:focus-visible {
   -webkit-text-fill-color: var(--primary-font-color);
   -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
 }
@@ -251,9 +293,9 @@ header .header-logo .logo-text {
   width: 73px;
   height: 20px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: left;
-     object-position: left;
+  object-position: left;
   transition: 0.2s ease;
 }
 @media screen and (max-width: 1512px) {
@@ -291,7 +333,8 @@ header .header-links {
     display: none;
   }
 }
-header .header-links__link:hover::after, header .header-links__link:focus-visible::after {
+header .header-links__link:hover::after,
+header .header-links__link:focus-visible::after {
   background: var(--primary-font-color);
 }
 header .menu-btn-wrapper {
@@ -332,7 +375,8 @@ header .menu-btn-wrapper .menu-btn {
   height: 28px;
   transition: 0.2s ease 0s;
 }
-header .menu-btn-wrapper .menu-btn:hover, header .menu-btn-wrapper .menu-btn:focus-visible {
+header .menu-btn-wrapper .menu-btn:hover,
+header .menu-btn-wrapper .menu-btn:focus-visible {
   scale: 1.1;
 }
 header .menu-btn-wrapper .menu-btn:active {
@@ -439,7 +483,8 @@ nav .nav-links li {
 }
 nav .nav-links li:focus-within {
   border-radius: 4px;
-  box-shadow: 0 0 0 3px rgba(35, 83, 193, 0.75), 0 0 0 5px rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(35, 83, 193, 0.75),
+    0 0 0 5px rgba(255, 255, 255, 0.75);
 }
 nav .nav-links .nav-link {
   text-transform: uppercase;
@@ -448,12 +493,14 @@ nav .nav-links .nav-link {
   translate: 0 100%;
   border-left: 4px solid transparent;
 }
-nav .nav-links .nav-link:hover, nav .nav-links .nav-link:focus-visible {
+nav .nav-links .nav-link:hover,
+nav .nav-links .nav-link:focus-visible {
   padding-left: 24px;
   border-color: var(--primary-accent-color);
 }
 @media screen and (max-width: 1512px) {
-  nav .nav-links .nav-link:hover, nav .nav-links .nav-link:focus-visible {
+  nav .nav-links .nav-link:hover,
+  nav .nav-links .nav-link:focus-visible {
     padding-left: 16px;
   }
 }
@@ -506,7 +553,8 @@ nav .nav-footer-links li .nav-footer-link {
   border-bottom: 2px solid transparent;
   transition: 0.2s ease;
 }
-nav .nav-footer-links li .nav-footer-link:hover, nav .nav-footer-links li .nav-footer-link:focus-visible {
+nav .nav-footer-links li .nav-footer-link:hover,
+nav .nav-footer-links li .nav-footer-link:focus-visible {
   border-color: var(--primary-accent-color);
 }
 nav .nav-social-media {
@@ -545,21 +593,21 @@ nav .nav-social-media {
     translate: 0 0;
   }
 }
-nav[aria-hidden=false] {
+nav[aria-hidden="false"] {
   opacity: 1;
   pointer-events: all;
   background: var(--background-color);
   transition: background 0s ease;
 }
-nav[aria-hidden=false] .nav-links,
-nav[aria-hidden=false] .nav-footer-links,
-nav[aria-hidden=false] .nav-social-media {
+nav[aria-hidden="false"] .nav-links,
+nav[aria-hidden="false"] .nav-footer-links,
+nav[aria-hidden="false"] .nav-social-media {
   opacity: 1;
   pointer-events: all;
 }
-nav[aria-hidden=false] .nav-links .nav-link,
-nav[aria-hidden=false] .nav-footer-links .nav-link,
-nav[aria-hidden=false] .nav-social-media .nav-link {
+nav[aria-hidden="false"] .nav-links .nav-link,
+nav[aria-hidden="false"] .nav-footer-links .nav-link,
+nav[aria-hidden="false"] .nav-social-media .nav-link {
   translate: 0 0;
 }
 
@@ -738,7 +786,10 @@ ul {
     height: 24px;
   }
 }
-.social-media-links .social-media-link:hover .social-media-icon-wrapper, .social-media-links .social-media-link:focus-visible .social-media-icon-wrapper {
+.social-media-links .social-media-link:hover .social-media-icon-wrapper,
+.social-media-links
+  .social-media-link:focus-visible
+  .social-media-icon-wrapper {
   translate: 0 -40%;
 }
 .social-media-links .social-media-link .social-media-icon-wrapper {
@@ -750,7 +801,11 @@ ul {
   translate: 0 36%;
   transition: 0.25s ease;
 }
-.social-media-links .social-media-link .social-media-icon-wrapper .social-media-icon path {
+.social-media-links
+  .social-media-link
+  .social-media-icon-wrapper
+  .social-media-icon
+  path {
   fill: var(--primary-font-color);
 }
 
@@ -772,7 +827,8 @@ ul {
     transition: 0.32s ease;
   }
 }
-.classic-link:hover::before, .classic-link:focus-visible::before {
+.classic-link:hover::before,
+.classic-link:focus-visible::before {
   width: 0;
   left: auto;
   right: 0;
@@ -945,12 +1001,12 @@ ul {
   color: #c0c0c0;
   margin: 0 56px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 @media screen and (max-width: 768px) {
   .marquee .marquee-dot {
     font-size: 24px;
     margin: 0 24px;
   }
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */

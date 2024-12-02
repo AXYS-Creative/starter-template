@@ -4,7 +4,6 @@ if (mqMouse.matches) {
   const magnetEffect = () => {
     document.querySelectorAll(".magnet").forEach((el) =>
       el.addEventListener("mousemove", function (e) {
-        console.log("yee");
         const pos = this.getBoundingClientRect();
         const mx = e.clientX - pos.left - pos.width / 2;
         const my = e.clientY - pos.top - pos.height / 2;

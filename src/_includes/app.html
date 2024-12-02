@@ -4,36 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="{{ meta_data.theme_color }}" />
     <meta name="author" content="{{ meta_data.author }}" />
     <meta name="description" content="{{ description }}" />
+    {% if path == "404" %}
+    <meta name="robots" content="noindex, nofollow" />
+    {% else %}
+    <meta name="robots" content="index, follow" />
+    {% endif %}
 
     <!-- Open Graph Tags -->
     <meta property="og:title" content="{{ meta_data.og_title }}" />
     <meta property="og:description" content="{{ meta_data.og_description }}" />
-    <meta property="og:image" content="{{ meta_data.og_image }}" />
+    <meta
+      property="og:image"
+      content="{{ meta_data.url }}{{ meta_data.og_image }}"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ meta_data.url }}" />
-    <meta property="og:site_name" content="{{ author }}" />
+    <meta property="og:site_name" content="{{ meta_data.site_name }}" />
 
     {% block head %}{% endblock %}
 
     <title>{{ title }}</title>
 
-    <link rel="canonical" href="{{ meta_data.url }}" />
+    {% if path != '404' %}
+    <link
+      rel="canonical"
+      href="{{ meta_data.url }}{%if path != 'home'%}/{{ path }}{%endif%}"
+    />
+    {% endif %}
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="icon"
-      href="../static/img/logo-light.svg"
+      href="/static/img/logo-light.svg"
       media="(prefers-color-scheme: dark)"
     />
     <link
       rel="icon"
-      href="../static/img/logo-dark.svg"
+      href="/static/img/logo-dark.svg"
       media="(prefers-color-scheme: light)"
     />
 

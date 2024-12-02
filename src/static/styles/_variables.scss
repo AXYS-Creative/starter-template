@@ -8,8 +8,8 @@ $white: #fefefe;
 
 :root {
   --background-color: #{$black};
-  --primary-font-color: #{$white};
-  --secondary-font-color: #{$grey-light};
+  --font-color--primary: #{$white};
+  --font-color--secondary: #{$grey-light};
 
   --link-color: #{$grey-light};
   --link-color-hover: #{$white};
@@ -19,7 +19,7 @@ $white: #fefefe;
 // @media (prefers-color-scheme: dark) {
 //   :root {
 //     --background-color: #{$black};
-//     --primary-font-color: #{$white};
+//   --font-color--primary: #{$white};
 //   }
 // }
 

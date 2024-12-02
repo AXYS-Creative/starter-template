@@ -1,10 +1,10 @@
+site_name: "Sample Business"
+url: "https://starter-template-cms.netlify.app/"
 author: Sample Author
 contact_email: info@sample.com
 theme_color: "#000000"
-url: "https://sample.com"
 
 # Open Graph Protocol
 og_title: "Sample Business | Motto Here" #Separate from page title in index.html
 og_description: "Open Graph Description Here" #Separate from page description in index.html
-og_image: "https://sample.com/images/og-image.png"
-og_site_name: "Sample Business"
+og_image: "/static/img/og-image.png"

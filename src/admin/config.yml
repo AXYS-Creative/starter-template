@@ -73,6 +73,16 @@ collections:
         editor:
           preview: false
         fields:
+          - name: "site_name"
+            label: "Site Name"
+            widget: "string"
+            required: true
+            hint: "Sample Business Co"
+          - name: "url"
+            label: "URL"
+            widget: "string"
+            required: true
+            hint: "Full URL to your site"
           - name: "author"
             label: "Author"
             widget: "string"
@@ -88,11 +98,6 @@ collections:
             widget: "color"
             required: true
             hint: "Hex color code for overflow color on some devices"
-          - name: "url"
-            label: "URL"
-            widget: "string"
-            required: true
-            hint: "Full URL to your site"
           - name: "og_title"
             label: "Open Graph Title"
             widget: "string"
@@ -103,13 +108,9 @@ collections:
             widget: "string"
             required: true
             hint: "Keep at least 100 characters"
-          - name: "og_img"
+          - name: "og_image"
             label: "Open Graph Image"
-            widget: "string"
+            widget: "image"
+            default: "https://joinsunder-cms.netlify.app/static/img/og-image.png"
             required: true
-            hint: "https://sample.com/static/img/open-graph.png"
-          - name: "site_name"
-            label: "Site Name"
-            widget: "string"
-            required: true
-            hint: "Sample Business Co"
+            hint: "Recommended formats: PNG or JPG. Recommended image dimensions: 1200 x 630 pixels. File size should be under 8 MB."
