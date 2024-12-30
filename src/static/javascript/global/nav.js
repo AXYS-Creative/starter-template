@@ -1,5 +1,5 @@
 const siteHeader = document.querySelector(".site-header"),
-  navMenu = document.querySelector(".nav-menu"),
+  navMenu = document.querySelector(".site-nav"),
   menuBtn = document.querySelector(".menu-btn");
 
 const navLinks = document.querySelectorAll(".nav-link"),

@@ -27,7 +27,7 @@ body {
     margin: auto;
   }
 
-  // Loader Styles, controlled by having a loader partial
+  // Loader styles, controlled by having a loader partial present in the html
   &:has(.site-loader) {
     $duration: 1s;
     $delay: 0.25s;
@@ -142,7 +142,8 @@ body {
     }
 
     .menu-btn {
-      // border: 1px solid white;
+      $line-offset: 4px;
+
       width: 28px;
       height: 28px;
       transition: 0.2s ease 0s;
@@ -157,18 +158,36 @@ body {
       }
 
       .menu-btn-line-wrapper {
-        // border: $test;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
+        position: relative;
         transition: 0.2s ease;
       }
 
       &-line {
+        @include absolute-center;
         width: 32px;
         height: 3px;
-        background: $white;
+        background: var(--font-color--primary);
         transition: 0.3s ease;
+
+        &:first-of-type {
+          translate: -50% calc(-50% - $line-offset);
+        }
+        &:last-of-type {
+          translate: -50% calc(-50% + $line-offset);
+        }
+      }
+
+      &[aria-expanded="true"] {
+        .menu-btn-line-wrapper {
+          rotate: 45deg;
+        }
+        .menu-btn-line {
+          translate: -50% -50%;
+
+          &:last-of-type {
+            rotate: 90deg;
+          }
+        }
       }
     }
 
@@ -448,14 +467,27 @@ body {
   }
 }
 
-// section {
-//   @include section-padding;
-// }
+section {
+  @include section-padding;
+
+  &.hero {
+    padding-block: 380px;
+
+    @include mq-max("xxl") {
+      padding-block: 320px;
+    }
+
+    @include mq-max("md") {
+      padding-block: 248px;
+    }
+  }
+}
 
 h1,
 .h1 {
   @include h1;
-  text-transform: uppercase;
+  font-weight: 300;
+  // text-transform: uppercase;
 }
 h2,
 .h2 {

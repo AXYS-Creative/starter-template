@@ -2,12 +2,6 @@
   @include column-center;
   gap: 24px;
 
-  padding-block: 380px;
-
-  @include mq-max("xxl") {
-    padding-block: 320px;
-  }
-
   h1,
   p {
     text-align: center;

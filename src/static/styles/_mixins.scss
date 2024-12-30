@@ -85,7 +85,16 @@ $min-breakpoints: (
 // Site Scaffolding
 //
 
-// header logo, nav items
+@mixin section-padding($type: "regular") {
+  padding-inline: var(--body-padding);
+
+  @if $type == "thin" {
+    @include mq-min("lg") {
+      padding-inline: calc(var(--body-padding) * 4);
+    }
+  }
+}
+
 @mixin left-spacing {
   left: var(--body-padding);
 
@@ -94,7 +103,6 @@ $min-breakpoints: (
   }
 }
 
-// header menu button, nav social items
 @mixin right-spacing {
   right: var(--body-padding);
 
@@ -105,7 +113,7 @@ $min-breakpoints: (
 
 //
 // Typography, check ultra wide & small screens.
-// Dropping below 12px results in a11y pentalty.
+// FYI: Dropping below 12px results in a11y pentalty.
 //
 
 @mixin h1 {
