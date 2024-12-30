@@ -9,7 +9,7 @@
     right: auto;
     width: 100%;
     height: 1px;
-    background-color: var(--primary-font-color);
+    background-color: var(--font-color--primary);
 
     @include mq-motion-allow {
       transition: 0.32s ease;
@@ -92,7 +92,13 @@
 // CMS Tokens
 //
 
-.text-stroke {
-  -webkit-text-stroke: 1px var(--primary-font-color);
-  color: transparent;
+@media all {
+  .text-stroke {
+    -webkit-text-stroke: 1px var(--font-color--primary);
+    color: transparent;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
 }

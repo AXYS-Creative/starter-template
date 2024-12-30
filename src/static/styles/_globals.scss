@@ -2,32 +2,66 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: $font-family-body;
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus-visible {
-    -webkit-text-fill-color: var(--primary-font-color);
+    -webkit-text-fill-color: var(--font-color--primary);
     -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
   }
-}
 
-html {
-  scroll-behavior: smooth;
+  // This hides the default buttons on input type="number"
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+  }
 }
 
 body {
   background: var(--background-color);
-  color: var(--primary-font-color);
+  color: var(--font-color--primary);
 
   & > * {
     max-width: $content-width;
     margin: auto;
   }
+
+  // Loader Styles, controlled by having a loader partial
+  &:has(.site-loader) {
+    $duration: 1s;
+    $delay: 0.25s;
+
+    .hero {
+      h1,
+      p,
+      div {
+        opacity: 0;
+        transition: $duration ease $delay;
+      }
+
+      p {
+        transition-delay: $delay + 0.075s;
+      }
+      div {
+        transition-delay: $delay + 0.125s;
+      }
+    }
+  }
+
+  // Loader complete styles
+  &:has(.load-complete) {
+    .hero {
+      h1,
+      p,
+      div {
+        opacity: 1;
+      }
+    }
+  }
 }
 
-header.site-header {
+.site-header {
   $logo-text-width: 73px;
 
   & > * {
@@ -42,10 +76,6 @@ header.site-header {
     align-items: center;
     gap: 12px;
     mix-blend-mode: difference;
-
-    @include mq-min("xxxl") {
-      left: calc(50% - calc(1920px / 2) + $body-padding);
-    }
 
     @include mq-max("md") {
       top: 38px;
@@ -89,7 +119,7 @@ header.site-header {
       &:hover,
       &:focus-visible {
         &::after {
-          background: var(--primary-font-color);
+          background: var(--font-color--primary);
         }
       }
     }
@@ -170,8 +200,7 @@ header.site-header {
   }
 }
 
-// MAKE THE NAV STARTER TEMPLATE WORTHY
-nav {
+.site-nav {
   position: fixed;
   top: 0;
   // background: transparent;
@@ -217,7 +246,7 @@ nav {
 
     li {
       a {
-        font-family: $font-family-body;
+        font-family: $brand-font--body;
       }
     }
   }
@@ -240,7 +269,7 @@ nav {
     }
 
     .nav-link {
-      @extend .h2;
+      @include h2;
       text-transform: uppercase;
       line-height: 100%;
       height: 100%;
@@ -263,7 +292,7 @@ nav {
   .nav-footer-links {
     @include left-spacing;
     @include row-center;
-    bottom: $body-padding;
+    bottom: var(--body-padding);
     gap: 48px;
 
     @include mq-max("lg") {
@@ -273,12 +302,10 @@ nav {
     @include mq-max("md") {
       @include column-start;
       gap: 12px;
-      bottom: $body-padding-xxl;
     }
 
     @include mq-max("sm") {
       gap: 4px;
-      bottom: $body-padding-md;
     }
 
     li {
@@ -297,7 +324,7 @@ nav {
 
   .nav-social-media {
     @include right-spacing;
-    bottom: $body-padding;
+    bottom: var(--body-padding);
     left: unset;
 
     @include mq-max("lg") {
@@ -305,7 +332,6 @@ nav {
     }
 
     @include mq-max("md") {
-      bottom: $body-padding-md;
       translate: 0 -12px;
     }
 
@@ -347,19 +373,15 @@ nav {
   }
 }
 
-section {
-  @include section-padding;
-}
-
-footer {
+.site-footer {
   @include row-center(space-between);
+  gap: 12px;
   position: relative;
-  padding: $body-padding;
+  padding: var(--body-padding);
 
   @media all {
     @include mq-max("lg") {
       justify-content: flex-start;
-      padding: $body-padding-md;
     }
 
     @include mq-max("md") {
@@ -380,14 +402,12 @@ footer {
     bottom: 50%;
     left: 50%;
     translate: calc(-50% - 6px) 50%;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
 
     @include mq-max("lg") {
       left: auto;
-      right: $body-padding-md;
-      translate: 0 100%;
+      bottom: 0;
+      right: var(--body-padding);
+      translate: 0 calc(var(--body-padding) * -1);
     }
 
     @include mq-max("sm") {
@@ -405,48 +425,90 @@ footer {
       font-size: 12px;
     }
   }
+}
 
-  .axys-link {
-    @include mq-max("md") {
-      margin-block-end: 24px;
-    }
+.site-loader {
+  @include row-center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: var(--background-color);
+  z-index: $z-index--loader;
+
+  &__text {
+    @include h6;
+    color: var(--font-color--primary);
+  }
+
+  &.load-complete {
+    transition: 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
-h1 {
-  @extend .h1;
+// section {
+//   @include section-padding;
+// }
+
+h1,
+.h1 {
+  @include h1;
+  text-transform: uppercase;
 }
-h2 {
-  @extend .h2;
+h2,
+.h2 {
+  @include h2;
 }
-h3 {
-  @extend .h3;
+h3,
+.h3 {
+  @include h3;
 }
-h4 {
-  @extend .h4;
+h4,
+.h4 {
+  @include h4;
 }
-h5 {
-  @extend .h5;
+h5,
+.h5 {
+  @include h5;
 }
-h6 {
-  @extend .h6;
+h6,
+.h6 {
+  @include h6;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 p,
 a,
-ul {
+figcaption,
+blockquote,
+input,
+textarea {
   @include body-font-styles;
 }
 
+span {
+  font-family: inherit;
+}
+
+small {
+  font-family: $brand-font--body;
+  font-size: 12px;
+}
+
 a {
-  text-transform: uppercase;
   text-decoration: none;
 }
 
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+img {
+  width: 100%;
+  height: auto;
 }
 
 ul {
@@ -462,70 +524,66 @@ video {
   width: 100%;
 }
 
-// Components
+.cta-group {
+  @include row-center;
+  gap: 24px;
+  flex-shrink: 0;
 
-:root {
-  .cta-group {
-    @include row-center;
-    gap: 24px;
-    flex-shrink: 0;
-
-    .cta-1 {
-      border: 2px solid var(--primary-font-color);
-      padding: 12px 24px;
-
-      @include mq-max("sm") {
-        padding: 10px 20px;
-      }
-    }
-  }
-
-  .social-media-links {
-    display: flex;
-    gap: 24px;
-
-    @include mq-max("md") {
-      gap: 12px;
-    }
+  .cta-1 {
+    border: 2px solid var(--font-color--primary);
+    padding: 12px 24px;
 
     @include mq-max("sm") {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.social-media-links {
+  display: flex;
+  gap: 24px;
+
+  @include mq-max("md") {
+    gap: 12px;
+  }
+
+  @include mq-max("sm") {
+    gap: 24px;
+  }
+
+  li.magnet {
+    transition: 0.4s ease;
+  }
+
+  .social-media-link {
+    @include row-center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: 0.25s ease;
+
+    @include mq-max("sm") {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      .social-media-icon-wrapper {
+        translate: 0 -40%;
+      }
+    }
+
+    .social-media-icon-wrapper {
+      @include column-center;
       gap: 24px;
-    }
-
-    li.magnet {
-      transition: 0.4s ease;
-    }
-
-    .social-media-link {
-      @include row-center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      overflow: hidden;
+      translate: 0 36%;
       transition: 0.25s ease;
 
-      @include mq-max("sm") {
-        width: 24px;
-        height: 24px;
-      }
-
-      &:hover,
-      &:focus-visible {
-        .social-media-icon-wrapper {
-          translate: 0 -40%;
-        }
-      }
-
-      .social-media-icon-wrapper {
-        @include column-center;
-        gap: 24px;
-        translate: 0 36%;
-        transition: 0.25s ease;
-
-        .social-media-icon {
-          path {
-            fill: var(--primary-font-color);
-          }
+      .social-media-icon {
+        path {
+          fill: var(--font-color--primary);
         }
       }
     }

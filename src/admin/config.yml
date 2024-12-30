@@ -6,7 +6,7 @@ backend:
 media_folder: "src/static/img"
 public_folder: "/static/img"
 site_url: https://starter-template-cms.netlify.app # CHANGE ME # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
-display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this addes the URL in the corner. Used with 'preview_path' for collection viewing.
+display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this addes the URL in the corner 'View Live'. Used with 'preview_path' for collection viewing.
 logo_url: https://starter-template-cms.netlify.app/static/img/admin-logo.svg # CHANGE ME # On admin login page, this adds a custom logo.
 
 # Please run "npx netlify-cms-proxy-server" for local backend
@@ -56,11 +56,6 @@ collections:
             hint: "Hide or show the discount marquee."
           - name: "marquee_text"
             label: "Marquee Text"
-            required: true
-          - name: "marquee_text_speech"
-            label: "Marquee Text Speech"
-            widget: "string"
-            hint: "For accessibility, add your message here without any symbols, tokens or classes."
             required: true
   - name: "meta_data"
     label: "Meta Data"

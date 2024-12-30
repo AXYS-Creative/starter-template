@@ -77,7 +77,7 @@
     <!-- prettier-ignore -->
     {% include "./partials/header.html" %}
     {% include "./partials/nav.html" %}
-    <main>{{ content | safe }}</main>
+    <main class="main-content main-{{path}}">{{ content | safe }}</main>
     {%include "./partials/footer.html" %}
     <!-- prettier-ignore -->
 

@@ -1,37 +1,14 @@
-$font-family-heading: "Satoshi", sans-serif;
-$font-family-body: "Satoshi", sans-serif;
+$brand-font--heading: "Satoshi", source-sans-pro, sans-serif;
+$brand-font--body: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif; // If not using a 'Modern font stack' just have one fallback
 
-$black: #111;
+$black: #0a0a0a;
 $grey-dark: #313131;
 $grey-light: #c0c0c0;
 $white: #fefefe;
 
-:root {
-  --background-color: #{$black};
-  --font-color--primary: #{$white};
-  --font-color--secondary: #{$grey-light};
-
-  --link-color: #{$grey-light};
-  --link-color-hover: #{$white};
-}
-
-// If you add a dark/light theme
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --background-color: #{$black};
-//   --font-color--primary: #{$white};
-//   }
-// }
-
-// Site Scaffolding
-
 $content-width: 1920px;
-$body-padding: 64px;
-$body-padding-xxl: 40px;
-$body-padding-md: 24px;
 
-// $vertical-section-padding: 196px;
-// $horizontal-section-padding: 148px;
+$z-index--loader: 10;
 
 // Easing
 $cubic-ease: cubic-bezier(0.18, 0.97, 0.47, 1);
@@ -44,3 +21,38 @@ $cubic-ease-slow-finish: cubic-bezier(0.09, 0.9, 0.5, 1);
 
 $test: 2px dashed rgba(crimson, 0.75);
 $test-bg: rgba(navy, 0.75);
+
+:root {
+  --background-color: #{$black};
+  --font-color--primary: #{$white};
+  --font-color--secondary: #{$grey-light};
+
+  --font-family--heading: #{$brand-font--heading};
+  --font-family--body: #{$brand-font--body};
+
+  --link-color: #{$grey-light};
+  --link-color-hover: #{$white};
+
+  --content-width: #{$content-width};
+  --body-padding: 64px;
+
+  @media (max-width: 1512px) {
+    --body-padding: 48px;
+  }
+
+  @media (max-width: 1024px) {
+    --body-padding: 40px;
+  }
+
+  @media (max-width: 768px) {
+    --body-padding: 24px;
+  }
+}
+
+// If you add a dark/light theme
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --background-color: #{$black};
+//     --font-color--primary: #{$white};
+//   }
+// }

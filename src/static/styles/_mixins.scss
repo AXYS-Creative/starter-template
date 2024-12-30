@@ -85,137 +85,87 @@ $min-breakpoints: (
 // Site Scaffolding
 //
 
-@mixin section-padding($thin: false) {
-  @if $thin {
-    border: $test;
-    padding: 256px 148px;
-  } @else {
-    padding: 196px 128px;
-  }
-
-  @include mq-max("xxl") {
-    @if $thin {
-      padding: 228px 148px;
-    } @else {
-      padding: 148px 96px;
-    }
-  }
-
-  @include mq-max("md") {
-    @if $thin {
-      padding: 128px 96px;
-    } @else {
-      padding: 96px 48px;
-    }
-  }
-
-  @include mq-max("sm") {
-    @if $thin {
-      padding: 128px 96px;
-    } @else {
-      padding: 96px 12px;
-    }
-  }
-}
-
 // header logo, nav items
 @mixin left-spacing {
-  left: $body-padding;
+  left: var(--body-padding);
 
   @include mq-min("xxxl") {
-    left: calc(50% - calc($content-width / 2) + $body-padding);
-  }
-
-  @include mq-max("xxl") {
-    left: $body-padding-xxl;
-  }
-
-  @include mq-max("md") {
-    left: $body-padding-md;
+    left: calc(50% - calc($content-width / 2) + var(--body-padding));
   }
 }
 
 // header menu button, nav social items
 @mixin right-spacing {
-  right: $body-padding;
+  right: var(--body-padding);
 
   @include mq-min("xxxl") {
-    right: calc(50% - calc($content-width / 2 - $body-padding));
-  }
-
-  @include mq-max("xxl") {
-    right: $body-padding-xxl;
-  }
-
-  @include mq-max("md") {
-    right: $body-padding-md;
+    right: calc(50% - calc($content-width / 2 - var(--body-padding)));
   }
 }
 
 //
-// Heading Styles
+// Typography, check ultra wide & small screens.
+// Dropping below 12px results in a11y pentalty.
 //
 
-@mixin heading($size, $size-xxl, $size-lg, $size-md, $size-sm) {
-  font-family: $font-family-heading;
-  font-size: $size;
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1;
+@mixin h1 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 96px;
 
   @include mq-max("xxl") {
-    font-size: $size-xxl;
-  }
-
-  @include mq-max("lg") {
-    font-size: $size-lg;
-  }
-
-  @include mq-max("md") {
-    font-size: $size-md;
-  }
-
-  @include mq-max("sm") {
-    font-size: $size-sm;
+    font-size: max(61.5px, 6vw);
   }
 }
+@mixin h2 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 72px;
 
-// Hero & Prefooter
-.h1 {
-  @include heading(96px, 6vw, 6vw, 8vw, 32px);
+  @include mq-max("xxl") {
+    font-size: max(49.2px, 4.8vw);
+  }
 }
+@mixin h3 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 52px;
 
-// Section Title Only
-.h2 {
-  @include heading(64px, 4.4vw, 4.4vw, 6.4vw, 32px);
+  @include mq-max("xxl") {
+    font-size: max(39px, 3.8vw);
+  }
 }
+@mixin h4 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 36px;
 
-// Text Block Partial & Image Slider
-.h3 {
-  @include heading(48px, 3vw, 3vw, 24px, 20px);
-  font-weight: 700;
+  @include mq-max("xxl") {
+    font-size: max(28.7px, 2.8vw);
+  }
 }
+@mixin h5 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 32px;
 
-// Services & Prices
-.h4 {
-  @include heading(36px, 2vw, 2.8vw, 3.8vw, 12px);
-  font-weight: 400;
+  @include mq-max("xxl") {
+    font-size: max(24.5px, 2.4vw);
+  }
 }
+@mixin h6 {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 24px;
 
-// Price Card Title Only
-.h5 {
-  @include heading(40px, 32px, 32px, 12px, 12px);
-}
-
-// FAQ Accordion Question Only
-.h6 {
-  @include heading(32px, 20px, 20px, 12px, 12px);
-  font-weight: 600;
+  @include mq-max("xxl") {
+    font-size: max(18px, 2vw);
+  }
 }
 
 @mixin body-font-styles {
-  color: var(--primary-font-color);
-  font-family: $font-family-body;
+  color: var(--font-color--primary);
+  font-family: $brand-font--body;
   font-size: 18px;
   font-weight: 400;
 
