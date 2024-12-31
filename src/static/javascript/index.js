@@ -7,6 +7,5 @@ import "./global/nav.js";
 import "./global/scroll.js";
 
 import "./components/faq.js";
-import "./components/marquee.js";
 
 import "./content/tokens.js";

@@ -142,14 +142,14 @@ $min-breakpoints: (
   @include font-heading(52px);
 
   @include mq-max("xxl") {
-    font-size: max(39px, 3.8vw);
+    font-size: max(39px, 3.4vw);
   }
 }
 @mixin h4 {
   @include font-heading(36px);
 
   @include mq-max("xxl") {
-    font-size: max(28.7px, 2.8vw);
+    font-size: max(28.7px, 2.4vw);
   }
 }
 @mixin h5 {

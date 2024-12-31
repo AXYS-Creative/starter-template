@@ -8,6 +8,8 @@ $white: #fefefe;
 
 $content-width: 1920px;
 
+// Layering
+$z-index--nav: 3;
 $z-index--loader: 10;
 
 // Easing
@@ -18,8 +20,7 @@ $cubic-ease-sudden-back-strong: cubic-bezier(0.77, -0.43, 0.11, 1.11);
 $cubic-ease-slow-finish: cubic-bezier(0.09, 0.9, 0.5, 1);
 
 // Debugging
-
-$test: 2px dashed rgba(crimson, 0.75);
+$test: 2px dashed rgba(yellow, 0.75);
 $test-bg: rgba(navy, 0.75);
 
 :root {

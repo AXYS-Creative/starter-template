@@ -177,8 +177,9 @@ body:has(.load-complete) .hero div {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 32px;
+  width: 100%;
   height: 3px;
+  border-radius: 12px;
   background: var(--font-color--primary);
   transition: 0.3s ease;
 }
@@ -211,14 +212,13 @@ body:has(.load-complete) .hero div {
 .site-nav {
   position: fixed;
   top: 0;
-  background: navy;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
   overflow: auto;
   opacity: 0;
   pointer-events: none;
-  z-index: 4;
+  z-index: 3;
 }
 @media screen and (min-width: 1025px) {
   .site-nav {
@@ -373,6 +373,36 @@ body:has(.load-complete) .hero div {
   pointer-events: all;
   background: var(--background-color);
   transition: background 0s ease;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(1) .nav-link {
+  transition: 0.2s ease, translate 0.41s ease 0.24s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(2) .nav-link {
+  transition: 0.2s ease, translate 0.57s ease 0.28s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(3) .nav-link {
+  transition: 0.2s ease, translate 0.73s ease 0.32s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(4) .nav-link {
+  transition: 0.2s ease, translate 0.89s ease 0.36s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(5) .nav-link {
+  transition: 0.2s ease, translate 1.05s ease 0.4s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(6) .nav-link {
+  transition: 0.2s ease, translate 1.21s ease 0.44s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(7) .nav-link {
+  transition: 0.2s ease, translate 1.37s ease 0.48s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(8) .nav-link {
+  transition: 0.2s ease, translate 1.53s ease 0.52s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(9) .nav-link {
+  transition: 0.2s ease, translate 1.69s ease 0.56s;
+}
+.site-nav[aria-hidden=false] .nav-links li:nth-of-type(10) .nav-link {
+  transition: 0.2s ease, translate 1.85s ease 0.6s;
 }
 .site-nav[aria-hidden=false] .nav-links,
 .site-nav[aria-hidden=false] .nav-footer-links,
@@ -532,7 +562,7 @@ h3,
 @media screen and (max-width: 1512px) {
   h3,
   .h3 {
-    font-size: max(39px, 3.8vw);
+    font-size: max(39px, 3.4vw);
   }
 }
 
@@ -546,7 +576,7 @@ h4,
 @media screen and (max-width: 1512px) {
   h4,
   .h4 {
-    font-size: max(28.7px, 2.8vw);
+    font-size: max(28.7px, 2.4vw);
   }
 }
 
@@ -933,37 +963,40 @@ video {
 .faq {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
+}
+@media screen and (max-width: 1024px) {
+  .faq {
+    gap: 24px;
+  }
 }
 .faq-btn {
-  --label-font-size: 40px;
   position: relative;
   display: grid;
   grid-template-rows: 0fr;
+  overflow: hidden;
   border-bottom: 2px solid var(--font-color--primary);
   transition: 0.3s ease;
-  overflow: hidden;
-}
-@media screen and (max-width: 768px) {
-  .faq-btn {
-    --label-font-size: 16px;
-  }
 }
 .faq-btn__question {
   color: var(--font-color--primary);
-  font-size: var(--label-font-size);
-  font-weight: 100;
+  font-family: var(--font-family--heading);
+  font-size: 36px;
+  font-weight: 300;
   position: absolute;
   cursor: pointer;
-  text-align: left;
+}
+@media screen and (max-width: 1512px) {
+  .faq-btn__question {
+    font-size: max(28.7px, 2.4vw);
+  }
 }
 .faq-btn__answer {
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
   font-size: 18px;
   font-weight: 400;
-  text-align: left;
-  padding-top: calc(var(--label-font-size) * 1.4);
+  padding-top: 4em;
   overflow: hidden;
 }
 @media screen and (max-width: 1512px) {

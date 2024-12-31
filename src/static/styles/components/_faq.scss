@@ -1,37 +1,29 @@
 .faq {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
+
+  @include mq-max("lg") {
+    gap: 24px;
+  }
 
   &-btn {
-    --label-font-size: 40px;
-
     position: relative;
     display: grid;
     grid-template-rows: 0fr;
+    overflow: hidden;
     border-bottom: 2px solid var(--font-color--primary);
     transition: 0.3s ease;
-    overflow: hidden;
-
-    @include mq-max("md") {
-      --label-font-size: 16px;
-    }
 
     &__question {
-      color: var(--font-color--primary);
-      font-size: var(--label-font-size);
-      font-weight: 100;
+      @include h4;
       position: absolute;
       cursor: pointer;
-      text-align: left;
     }
 
     &__answer {
       @include body-font-styles;
-      text-align: left;
-      padding-top: calc(
-        var(--label-font-size) * 1.4
-      ); // Multiplier may need tweaked based on font family
+      padding-top: 4em;
       overflow: hidden;
     }
 
