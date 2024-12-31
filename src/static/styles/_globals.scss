@@ -508,6 +508,8 @@ h6,
 }
 
 p,
+strong,
+em,
 a,
 figcaption,
 blockquote,
@@ -516,6 +518,10 @@ textarea,
 label {
   @include body-font-styles;
   text-decoration: none;
+}
+
+strong {
+  font-weight: 900;
 }
 
 button {

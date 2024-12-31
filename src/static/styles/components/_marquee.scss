@@ -1,38 +1,25 @@
 .marquee {
+  $gap-offset: 0.5ch; // space between duplicate span
+
+  @include h2; // Setting font here to use ch units above
   @include section-padding;
   overflow: hidden;
   width: 100vw;
   max-width: $content-width;
 
   &-inner {
-    padding-inline-end: 24px; // Offsets to allow a smooth marquee at 50%, instead of 50.3%
     display: flex;
     align-items: center;
     width: fit-content;
-
-    @include mq-max("sm") {
-      padding-inline-end: 12px;
-    }
+    padding-inline-end: $gap-offset;
   }
 
   .marquee-text {
-    @include h2;
+    @include inherit-font;
     line-height: 100%;
     display: inline-flex;
     text-wrap: nowrap;
-    gap: 24px;
-
-    @include mq-max("xxl") {
-      gap: 18px;
-    }
-
-    @include mq-max("md") {
-      gap: 12px;
-    }
-
-    @include mq-max("sm") {
-      gap: 6px;
-    }
+    gap: $gap-offset;
   }
 
   .marquee-dot {

@@ -9,7 +9,12 @@
   >
     <div class="accordion-btn__title">
       <label for="accordion-item-{{loop.index}}">{{ accordion.title }}</label>
-      <span class="accordion-btn__title-icon magnet magnet-strong">►</span>
+      <span
+        class="accordion-btn__title-icon magnet magnet-strong"
+        aria-hidden="true"
+      >
+        ►
+      </span>
     </div>
     <div class="accordion-btn__content" id="accordion-item-{{loop.index}}">
       <p class="accordion-btn__content-inner">{{ accordion.content }}</p>

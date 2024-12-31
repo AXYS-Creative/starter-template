@@ -15,14 +15,20 @@ description:
 <section class="grid-image"></section>
 
 <!-- prettier-ignore -->
-{% set marquee_text = 'Sample Marquee. Pass in the marquee_text prop to control the content.' %}
+{% set marquee_text = marquee.marquee_text %}
 {% include './_includes/components/marquee.html' %}
 
 <section class="accordion-section">
-  <h2 class="h6" style="margin-bottom: 48px">Frequently Asked Questions</h2>
+  <h2 class="h6" style="margin-bottom: 48px">Accordion</h2>
   <!-- prettier-ignore -->
   {% set accordion_list = library_accordion.accordion_data %}
   {% include './_includes/components/accordion.html' %}
+</section>
+
+<section class="scrub-marquee-section">
+  <!-- prettier-ignore -->
+  {% set marquee_text = 'Sample Marquee. Pass in the marquee_text prop to control the content.' %}
+  {% include './_includes/components/marquee-scrub.html' %}
 </section>
 
 <!-- prettier-ignore -->

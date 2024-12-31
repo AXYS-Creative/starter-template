@@ -1,3 +1,2 @@
 marquee_toggle: true
-marquee_text: • This is the [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%]
-marquee_text_speech: This is the marquee, sometimes known as a ticker
+marquee_text: • Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee_text prop to control the content

@@ -609,6 +609,8 @@ h6,
 }
 
 p,
+strong,
+em,
 a,
 figcaption,
 blockquote,
@@ -623,6 +625,8 @@ label {
 }
 @media screen and (max-width: 1512px) {
   p,
+  strong,
+  em,
   a,
   figcaption,
   blockquote,
@@ -634,6 +638,8 @@ label {
 }
 @media screen and (max-width: 768px) {
   p,
+  strong,
+  em,
   a,
   figcaption,
   blockquote,
@@ -642,6 +648,10 @@ label {
   label {
     font-size: 14px;
   }
+}
+
+strong {
+  font-weight: 900;
 }
 
 button {
@@ -864,6 +874,12 @@ video {
 
 .main-style-guide .hero {
   align-items: flex-start;
+  padding-block: 216px;
+}
+@media screen and (max-width: 768px) {
+  .main-style-guide .hero {
+    padding-block: 164px;
+  }
 }
 
 .error {
@@ -894,53 +910,36 @@ video {
 }
 
 .marquee {
+  color: var(--font-color--primary);
+  font-family: var(--font-family--heading);
+  font-size: 72px;
+  font-weight: 300;
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding);
   overflow: hidden;
   width: 100vw;
   max-width: 1920px;
 }
+@media screen and (max-width: 1512px) {
+  .marquee {
+    font-size: max(49.2px, 4.8vw);
+  }
+}
 .marquee-inner {
-  padding-inline-end: 24px;
   display: flex;
   align-items: center;
   width: -moz-fit-content;
   width: fit-content;
-}
-@media screen and (max-width: 480px) {
-  .marquee-inner {
-    padding-inline-end: 12px;
-  }
+  padding-inline-end: 0.5ch;
 }
 .marquee .marquee-text {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 72px;
-  font-weight: 300;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
   line-height: 100%;
   display: inline-flex;
   text-wrap: nowrap;
-  gap: 24px;
-}
-@media screen and (max-width: 1512px) {
-  .marquee .marquee-text {
-    font-size: max(49.2px, 4.8vw);
-  }
-}
-@media screen and (max-width: 1512px) {
-  .marquee .marquee-text {
-    gap: 18px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .marquee .marquee-text {
-    gap: 12px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .marquee .marquee-text {
-    gap: 6px;
-  }
+  gap: 0.5ch;
 }
 .marquee .marquee-dot {
   font-size: 36px;
@@ -955,6 +954,10 @@ video {
     font-size: 24px;
     margin: 0 24px;
   }
+}
+
+.marquee-scrub {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
 }
 
 .accordion {
