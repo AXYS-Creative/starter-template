@@ -11,7 +11,7 @@ logo_url: https://starter-template-cms.netlify.app/static/img/admin-logo.svg # C
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
-# publish_mode: editorial_workflow
+publish_mode: editorial_workflow
 collections:
   - name: "blog"
     label: "Blog"
@@ -60,7 +60,7 @@ collections:
   - name: "page_library"
     label: "Page - Library"
     description: >
-      Component UI library
+      Library for all UI components
     files:
       - name: "faq"
         label: "FAQ - Accordion"
@@ -82,6 +82,11 @@ collections:
                 label: "Answer"
                 widget: "text"
                 required: true
+          - name: "faq_behavior_single"
+            label: "Single Open"
+            widget: "boolean"
+            required: false
+            hint: "Allow only one FAQ item to be open at a time."
   - name: "meta_data"
     label: "Meta Data"
     description: >

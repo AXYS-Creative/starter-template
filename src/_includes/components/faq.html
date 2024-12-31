@@ -1,4 +1,4 @@
-<div class="faq">
+<div class="faq {%if library_faq.faq_behavior_single%}single-faq{%endif%}">
   {% for faq in faq_list %}
   <button class="faq-btn" aria-expanded="false">
     <label class="faq-btn__question">{{ faq.question }}</label>
