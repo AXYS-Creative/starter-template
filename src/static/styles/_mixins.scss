@@ -87,6 +87,7 @@ $min-breakpoints: (
 
 @mixin section-padding($type: "regular") {
   padding-inline: var(--body-padding);
+  padding-block: var(--body-padding);
 
   @if $type == "thin" {
     @include mq-min("lg") {
@@ -116,55 +117,50 @@ $min-breakpoints: (
 // FYI: Dropping below 12px results in a11y pentalty.
 //
 
-@mixin h1 {
+@mixin font-heading($size) {
   color: var(--font-color--primary);
   font-family: var(--font-family--heading);
-  font-size: 96px;
+  font-size: $size;
+  font-weight: 300;
+}
+
+@mixin h1 {
+  @include font-heading(96px);
 
   @include mq-max("xxl") {
     font-size: max(61.5px, 6vw);
   }
 }
 @mixin h2 {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 72px;
+  @include font-heading(72px);
 
   @include mq-max("xxl") {
     font-size: max(49.2px, 4.8vw);
   }
 }
 @mixin h3 {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 52px;
+  @include font-heading(52px);
 
   @include mq-max("xxl") {
     font-size: max(39px, 3.8vw);
   }
 }
 @mixin h4 {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 36px;
+  @include font-heading(36px);
 
   @include mq-max("xxl") {
     font-size: max(28.7px, 2.8vw);
   }
 }
 @mixin h5 {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 32px;
+  @include font-heading(32px);
 
   @include mq-max("xxl") {
     font-size: max(24.5px, 2.4vw);
   }
 }
 @mixin h6 {
-  color: var(--font-color--primary);
-  font-family: var(--font-family--heading);
-  font-size: 24px;
+  @include font-heading(24px);
 
   @include mq-max("xxl") {
     font-size: max(18px, 2vw);

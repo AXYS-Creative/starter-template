@@ -486,7 +486,6 @@ section {
 h1,
 .h1 {
   @include h1;
-  font-weight: 300;
   // text-transform: uppercase;
 }
 h2,
@@ -521,7 +520,8 @@ a,
 figcaption,
 blockquote,
 input,
-textarea {
+textarea,
+label {
   @include body-font-styles;
 }
 
@@ -556,19 +556,22 @@ video {
   width: 100%;
 }
 
+// Components
+
+.cta-1 {
+  border: 2px solid var(--font-color--primary);
+  border-radius: var(--radius);
+  padding: 8px 24px;
+
+  @include mq-max("sm") {
+    padding: 10px 20px;
+  }
+}
+
 .cta-group {
   @include row-center;
   gap: 24px;
   flex-shrink: 0;
-
-  .cta-1 {
-    border: 2px solid var(--font-color--primary);
-    padding: 12px 24px;
-
-    @include mq-max("sm") {
-      padding: 10px 20px;
-    }
-  }
 }
 
 .social-media-links {

@@ -14,4 +14,16 @@ description:
 
 <section class="grid-image"></section>
 
+<!-- prettier-ignore -->
+{% set marquee_text = 'Sample Marquee. Pass in the marquee_text prop to control the content.' %}
+{% include './_includes/components/marquee.html' %}
+
+<section class="faq-section">
+  <h2 class="h6" style="margin-bottom: 48px">Frequently Asked Questions</h2>
+  <!-- prettier-ignore -->
+  {% set faq_list = library.faq_data %}
+  {% include './_includes/components/faq.html' %}
+</section>
+
+<!-- prettier-ignore -->
 {% include './_includes/partials/loader.html' %}

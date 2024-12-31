@@ -36,6 +36,8 @@ $test-bg: rgba(navy, 0.75);
   --content-width: #{$content-width};
   --body-padding: 64px;
 
+  --radius: 48px;
+
   @media (max-width: 1512px) {
     --body-padding: 48px;
   }

@@ -47,17 +47,49 @@ responsiveGsap.add(
       });
     })();
 
-    // GAME CHANGER!!!
-    // Refresh ScrollTrigger instances on page load and resize
-    window.addEventListener("load", () => {
-      ScrollTrigger.refresh();
-    });
+    // Marquee
+    {
+      let marqueeSpeed = maxSm ? 20 : maxMd ? 18 : 16;
+      const marqueeTweens = gsap.utils.toArray(".marquee-inner").map((elem) =>
+        gsap
+          .to(elem, {
+            xPercent: -50,
+            repeat: -1,
+            duration: marqueeSpeed,
+            ease: "linear",
+          })
+          .totalProgress(0.5)
+      );
 
-    // Greater than 520 so it doesn't refresh on  mobile(dvh)
-    if (window.innerWidth > 520) {
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
-      });
+      let currentScroll = 0;
+      const adjustTimeScale = () => {
+        const isScrollingDown = window.scrollY > currentScroll;
+        marqueeTweens.forEach((tween, index) =>
+          gsap.to(tween, {
+            timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+          })
+        );
+        currentScroll = window.scrollY;
+      };
+
+      window.addEventListener("scroll", adjustTimeScale);
+
+      return () => {
+        marqueeTweens.forEach((tween) => tween.kill());
+        window.removeEventListener("scroll", adjustTimeScale);
+      };
     }
   }
 );
+
+// Refresh ScrollTrigger instances on page load and resize
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});
+
+// Greater than 520 so it doesn't refresh on  mobile(dvh)
+if (window.innerWidth > 520) {
+  window.addEventListener("resize", () => {
+    ScrollTrigger.refresh();
+  });
+}

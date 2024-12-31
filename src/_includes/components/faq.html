@@ -1,0 +1,8 @@
+<div class="faq">
+  {% for faq in faq_list %}
+  <button class="faq-btn" aria-expanded="false">
+    <label class="faq-btn__question">{{ faq.question }}</label>
+    <p class="faq-btn__answer">{{ faq.answer }}</p>
+  </button>
+  {% endfor %}
+</div>

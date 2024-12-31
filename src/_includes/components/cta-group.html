@@ -1,9 +1,16 @@
 <div class="cta-group">
   {% if cta_1_text %}
-  <a class="cta-1 tab-element-page" href="{{ cta_1_url }}">{{ cta_1_text }}</a>
+  <a
+    class="cta-1 magnet magnet-wide-btn tab-element-page"
+    href="{{ cta_1_url }}"
+  >
+    {{ cta_1_text }}
+  </a>
   {% endif %}
   <!-- prettier-ignore -->
   {% if cta_2_text %}
-  <a class="tab-element-page" href="{{ cta_2_url }}">{{ cta_2_text }}</a>
+  <a class="classic-link tab-element-page" href="{{ cta_2_url }}">
+    {{ cta_2_text }}
+  </a>
   {% endif %}
 </div>
