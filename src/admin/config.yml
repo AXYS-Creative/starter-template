@@ -57,6 +57,31 @@ collections:
           - name: "marquee_text"
             label: "Marquee Text"
             required: true
+  - name: "page_library"
+    label: "Page - Library"
+    description: >
+      Component UI library
+    files:
+      - name: "faq"
+        label: "FAQ - Accordion"
+        file: "src/_data/library_faq.yaml"
+        preview_path: "#"
+        editor:
+          preview: false
+        fields:
+          - name: "faq_data"
+            label: "FAQ Items"
+            label_singular: "FAQ Item"
+            widget: "list"
+            fields:
+              - name: "question"
+                label: "Question"
+                widget: "string"
+                required: true
+              - name: "answer"
+                label: "Answer"
+                widget: "text"
+                required: true
   - name: "meta_data"
     label: "Meta Data"
     description: >

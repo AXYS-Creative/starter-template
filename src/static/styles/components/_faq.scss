@@ -8,27 +8,29 @@
   }
 
   &-btn {
-    position: relative;
-    display: grid;
-    grid-template-rows: 0fr;
-    overflow: hidden;
     border-bottom: 2px solid var(--font-color--primary);
-    transition: 0.3s ease;
+    text-align: left;
 
     &__question {
       @include h4;
-      position: absolute;
       cursor: pointer;
     }
 
     &__answer {
       @include body-font-styles;
-      padding-top: 4em;
-      overflow: hidden;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: 0.3s ease;
+
+      &-inner {
+        overflow: hidden;
+      }
     }
 
     &[aria-expanded="true"] {
-      grid-template-rows: 1fr;
+      .faq-btn__answer {
+        grid-template-rows: 1fr;
+      }
     }
   }
 }

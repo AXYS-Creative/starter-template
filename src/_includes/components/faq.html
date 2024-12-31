@@ -2,7 +2,9 @@
   {% for faq in faq_list %}
   <button class="faq-btn" aria-expanded="false">
     <label class="faq-btn__question">{{ faq.question }}</label>
-    <p class="faq-btn__answer">{{ faq.answer }}</p>
+    <div class="faq-btn__answer">
+      <p class="faq-btn__answer-inner">{{ faq.answer }}</p>
+    </div>
   </button>
   {% endfor %}
 </div>
