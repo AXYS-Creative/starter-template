@@ -507,12 +507,6 @@ h6,
   @include h6;
 }
 
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
 p,
 a,
 figcaption,
@@ -521,6 +515,13 @@ input,
 textarea,
 label {
   @include body-font-styles;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 span {
@@ -530,10 +531,6 @@ span {
 small {
   font-family: $brand-font--body;
   font-size: 12px;
-}
-
-a {
-  text-decoration: none;
 }
 
 img {

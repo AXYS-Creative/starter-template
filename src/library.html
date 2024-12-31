@@ -18,11 +18,11 @@ description:
 {% set marquee_text = 'Sample Marquee. Pass in the marquee_text prop to control the content.' %}
 {% include './_includes/components/marquee.html' %}
 
-<section class="faq-section">
+<section class="accordion-section">
   <h2 class="h6" style="margin-bottom: 48px">Frequently Asked Questions</h2>
   <!-- prettier-ignore -->
-  {% set faq_list = library_faq.faq_data %}
-  {% include './_includes/components/faq.html' %}
+  {% set accordion_list = library_accordion.accordion_data %}
+  {% include './_includes/components/accordion.html' %}
 </section>
 
 <!-- prettier-ignore -->

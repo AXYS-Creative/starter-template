@@ -608,12 +608,6 @@ h6,
   }
 }
 
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
 p,
 a,
 figcaption,
@@ -625,6 +619,7 @@ label {
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
   font-size: 18px;
   font-weight: 400;
+  text-decoration: none;
 }
 @media screen and (max-width: 1512px) {
   p,
@@ -649,6 +644,12 @@ label {
   }
 }
 
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 span {
   font-family: inherit;
 }
@@ -656,10 +657,6 @@ span {
 small {
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
   font-size: 12px;
-}
-
-a {
-  text-decoration: none;
 }
 
 img {
@@ -960,54 +957,70 @@ video {
   }
 }
 
-.faq {
+.accordion {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
 }
-@media screen and (max-width: 1024px) {
-  .faq {
-    gap: 24px;
-  }
-}
-.faq-btn {
+.accordion-btn {
   border-bottom: 2px solid var(--font-color--primary);
   text-align: left;
 }
-.faq-btn__question {
+.accordion-btn__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   color: var(--font-color--primary);
   font-family: var(--font-family--heading);
   font-size: 36px;
   font-weight: 300;
-  cursor: pointer;
+  gap: 24px;
 }
 @media screen and (max-width: 1512px) {
-  .faq-btn__question {
+  .accordion-btn__title {
     font-size: max(28.7px, 2.4vw);
   }
 }
-.faq-btn__answer {
+@media screen and (max-width: 480px) {
+  .accordion-btn__title {
+    gap: 12px;
+  }
+}
+.accordion-btn__title label {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+.accordion-btn__title-icon {
+  display: inline-flex;
+  transition: 0.4s cubic-bezier(0.18, 0.97, 0.47, 1), rotate 0.4s ease;
+}
+.accordion-btn__content {
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
   font-size: 18px;
   font-weight: 400;
   display: grid;
   grid-template-rows: 0fr;
-  transition: 0.3s ease;
+  transition: 0.4s ease;
 }
 @media screen and (max-width: 1512px) {
-  .faq-btn__answer {
+  .accordion-btn__content {
     font-size: 16px;
   }
 }
 @media screen and (max-width: 768px) {
-  .faq-btn__answer {
+  .accordion-btn__content {
     font-size: 14px;
   }
 }
-.faq-btn__answer-inner {
+.accordion-btn__content-inner {
   overflow: hidden;
 }
-.faq-btn[aria-expanded=true] .faq-btn__answer {
+.accordion-btn[aria-expanded=true] .accordion-btn__content {
   grid-template-rows: 1fr;
+}
+.accordion-btn[aria-expanded=true] .accordion-btn__title-icon {
+  rotate: 90deg;
 }/*# sourceMappingURL=styles.css.map */

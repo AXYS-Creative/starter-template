@@ -6,6 +6,6 @@ import "./global/magnet.js";
 import "./global/nav.js";
 import "./global/scroll.js";
 
-import "./components/faq.js";
+import "./components/accordion.js";
 
 import "./content/tokens.js";

@@ -62,31 +62,31 @@ collections:
     description: >
       Library for all UI components
     files:
-      - name: "faq"
-        label: "FAQ - Accordion"
-        file: "src/_data/library_faq.yaml"
+      - name: "accordion"
+        label: "Accordion"
+        file: "src/_data/library_accordion.yaml"
         preview_path: "#"
         editor:
           preview: false
         fields:
-          - name: "faq_data"
-            label: "FAQ Items"
-            label_singular: "FAQ Item"
-            widget: "list"
-            fields:
-              - name: "question"
-                label: "Question"
-                widget: "string"
-                required: true
-              - name: "answer"
-                label: "Answer"
-                widget: "text"
-                required: true
-          - name: "faq_behavior_single"
+          - name: "accordion_behavior_single"
             label: "Single Open"
             widget: "boolean"
             required: false
-            hint: "Allow only one FAQ item to be open at a time."
+            hint: "Allow only one item to be open at a time."
+          - name: "accordion_data"
+            label: "accordion Items"
+            label_singular: "Item"
+            widget: "list"
+            fields:
+              - name: "title"
+                label: "Title"
+                widget: "string"
+                required: true
+              - name: "content"
+                label: "Content"
+                widget: "text"
+                required: true
   - name: "meta_data"
     label: "Meta Data"
     description: >
