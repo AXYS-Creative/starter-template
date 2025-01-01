@@ -6,18 +6,18 @@ responsiveGsap.add(
   {
     maxSm: "(max-width: 480px)",
     maxMd: "(max-width: 768px)",
-    maxXl: "(max-width: 1200px)",
+    maxLg: "(max-width: 1024px)",
     minMd: "(min-width: 769px)",
   },
   (context) => {
-    let { maxSm, maxMd, maxXl, minMd } = context.conditions;
+    let { maxSm, maxMd, maxLg, minMd } = context.conditions;
 
     // // TEMPLATE TWEEN - SCRUB
     // gsap.fromTo(
     //   ".slider__inner",
     //   { x: "-2%" },
     //   {
-    //     x: maxSm ? "-32%" : maxXl ? "-32%" : "-32%",
+    //     x: maxSm ? "-32%" : maxLg ? "-32%" : "-32%",
     //     scrollTrigger: {
     //       trigger: ".slider",
     //       start: "top bottom",
@@ -47,37 +47,59 @@ responsiveGsap.add(
       });
     })();
 
-    // Marquee
+    // All marquee animations
     {
-      let marqueeSpeed = maxSm ? 20 : maxMd ? 18 : 16;
-      const marqueeTweens = gsap.utils.toArray(".marquee-inner").map((elem) =>
-        gsap
-          .to(elem, {
-            xPercent: -50,
-            repeat: -1,
-            duration: marqueeSpeed,
-            ease: "linear",
-          })
-          .totalProgress(0.5)
-      );
+      let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
 
-      let currentScroll = 0;
-      const adjustTimeScale = () => {
-        const isScrollingDown = window.scrollY > currentScroll;
-        marqueeTweens.forEach((tween, index) =>
-          gsap.to(tween, {
-            timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
-          })
+      // Standard
+      {
+        const autoMarquees = gsap.utils.toArray(".marquee-inner");
+
+        const marqueeTweens = autoMarquees.map((elem) =>
+          gsap
+            .to(elem, {
+              xPercent: -50,
+              repeat: -1,
+              duration: marqueeSpeed,
+              ease: "linear",
+            })
+            .totalProgress(0.5)
         );
-        currentScroll = window.scrollY;
-      };
 
-      window.addEventListener("scroll", adjustTimeScale);
+        let currentScroll = 0;
+        const adjustTimeScale = () => {
+          const isScrollingDown = window.scrollY > currentScroll;
+          marqueeTweens.forEach((tween, index) =>
+            gsap.to(tween, {
+              timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+            })
+          );
+          currentScroll = window.scrollY;
+        };
 
-      return () => {
-        marqueeTweens.forEach((tween) => tween.kill());
-        window.removeEventListener("scroll", adjustTimeScale);
-      };
+        window.addEventListener("scroll", adjustTimeScale);
+      }
+
+      // Scrub, use 'marquee_scrub' boolean prop
+      {
+        const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
+
+        scrubMarquees.forEach((scrubElem) => {
+          const marqueeInners = scrubElem.querySelectorAll(".marquee-inner");
+
+          marqueeInners.forEach((inner, index) => {
+            gsap.to(inner, {
+              x: index % 2 === 0 ? "-5%" : "5%",
+              scrollTrigger: {
+                trigger: scrubElem,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+              },
+            });
+          });
+        });
+      }
     }
   }
 );

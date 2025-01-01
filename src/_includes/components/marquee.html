@@ -1,7 +1,7 @@
 {% if marquee.marquee_toggle %}
 
 <div
-  class="marquee"
+  class="marquee {%if marquee_scrub%}marquee--scrub{%endif%}"
   role="region"
   aria-label="{{ marquee_text | removeTokens }}"
 >

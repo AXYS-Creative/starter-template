@@ -956,10 +956,6 @@ video {
   }
 }
 
-.marquee-scrub {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
-}
-
 .accordion {
   display: flex;
   flex-direction: column;
