@@ -83,20 +83,27 @@ responsiveGsap.add(
       // Scrub, use 'marquee_scrub' boolean prop
       {
         const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
+        let sensitivity = 5;
 
         scrubMarquees.forEach((scrubElem) => {
           const marqueeInners = scrubElem.querySelectorAll(".marquee-inner");
 
           marqueeInners.forEach((inner, index) => {
-            gsap.to(inner, {
-              x: index % 2 === 0 ? "-5%" : "5%",
-              scrollTrigger: {
-                trigger: scrubElem,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
+            gsap.fromTo(
+              inner,
+              {
+                x: index % 2 === 0 ? "0%" : `-${sensitivity}%`,
               },
-            });
+              {
+                x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                scrollTrigger: {
+                  trigger: scrubElem,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1,
+                },
+              }
+            );
           });
         });
       }

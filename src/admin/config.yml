@@ -36,12 +36,10 @@ collections:
         name: "image"
         widget: "image"
         required: false
-  - name: "home_page"
-    label: "Page - Home"
+  - name: "page_library"
+    label: "Page - Library"
     description: >
-      Edit the site content here.
-      Have questions or need to add a new config? Visit your Trello board to add a new request.
-      Don't have a Trello board? Reach out to Aaron or Bailey → help@axyscreative.com
+      Library for all UI components
     files:
       - name: "marquee"
         label: "Marquee"
@@ -57,11 +55,10 @@ collections:
           - name: "marquee_text"
             label: "Marquee Text"
             required: true
-  - name: "page_library"
-    label: "Page - Library"
-    description: >
-      Library for all UI components
-    files:
+          - name: "marquee_scrub"
+            label: "Marquee Scrub"
+            widget: "boolean"
+            hint: "Change velocity based on scroll speed."
       - name: "accordion"
         label: "Accordion"
         file: "src/_data/library_accordion.yaml"

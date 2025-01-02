@@ -1,0 +1,71 @@
+---
+layout: app
+path: advanced
+# Non public facing
+
+title: Advanced // Delete this file from production sites
+description:
+---
+
+<section class="hero">
+  <h1>Advanced</h1>
+  <p>A collection of advanced code for powerful use.</p>
+</section>
+
+<section class="dots-field">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="400"
+    height="400"
+    viewBox="0 0 400 400"
+    overflow="visible"
+  ></svg>
+</section>
+
+<section class="light">
+  <div class="container">
+    <h1 class="title">
+      UNLIMITED
+      <br />
+      DESIGN + DEVELOPMENT
+    </h1>
+    <div class="subtitle">AXYS CREATIVE</div>
+  </div>
+
+  <div class="cursor">
+    <div class="cursor__point"></div>
+    <div class="cursor__light"></div>
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <filter id="light">
+      <feSpecularLighting
+        result="specOut"
+        surfaceScale="1"
+        specularConstant="1.2"
+        specularExponent="10"
+        lighting-color="#999"
+      >
+        <fePointLight id="point-light" x="50" y="75" z="100" />
+      </feSpecularLighting>
+    </filter>
+
+    <filter id="noise">
+      <feTurbulence
+        id="turbulence"
+        type="fractalNoise"
+        baseFrequency="0.999 0.999"
+        seed="1"
+        numOctaves="10"
+      />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer result="noise">
+        <feFuncA type="linear" slope="1" />
+      </feComponentTransfer>
+      <feBlend in="noise" in2="SourceGraphic" mode="multiply" />
+    </filter>
+  </svg>
+</section>
+
+<!-- prettier-ignore -->
+{% include './_includes/partials/loader.html' %}

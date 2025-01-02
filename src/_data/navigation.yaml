@@ -7,5 +7,7 @@ items:
     url: "/style-guide"
   - text: Library
     url: "/library"
+  - text: Advanced
+    url: "/advanced"
   - text: Blog
     url: "/blog"

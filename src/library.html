@@ -12,11 +12,9 @@ description:
   <p>A playground to build out sections that can be stored as a template.</p>
 </section>
 
-<section class="grid-image"></section>
-
 <!-- prettier-ignore -->
 {% set marquee_text = marquee.marquee_text %}
-{% set marquee_scrub = true %}
+{% set marquee_scrub = marquee.marquee_scrub %}
 {% include './_includes/components/marquee.html' %}
 
 <section class="accordion-section">

@@ -1,0 +1,91 @@
+.main-advanced {
+  .dots-field {
+    @include row-center;
+    svg {
+      overflow: visible !important;
+
+      circle {
+        fill: var(--font-color--primary);
+        opacity: 0.5;
+      }
+    }
+  }
+
+  // hidden for now. See js for details
+  .light {
+    display: none;
+
+    .container {
+      // cursor: none;
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+
+      align-items: center;
+      flex-direction: column;
+      filter: url("#noise") url("#light");
+      justify-content: center;
+      z-index: 1;
+
+      color: #fff;
+      text-align: center;
+    }
+
+    .title {
+      @include h1;
+      font-size: 10vw;
+      font-weight: 600;
+      line-height: 90%;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      @include h2;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      z-index: 10;
+    }
+
+    .cursor {
+      display: none;
+      &__point {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        translate: -50% -50%;
+
+        background-color: white;
+        border-radius: 50%;
+        z-index: 2;
+        display: none;
+      }
+
+      &__light {
+        margin: -24px 0 0 -24px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 48px;
+        height: 48px;
+
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 2;
+        display: none;
+      }
+    }
+  }
+}
