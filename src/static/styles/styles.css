@@ -860,13 +860,43 @@ video {
   font-family: "satoshi";
   src: url(../fonts/Satoshi-Variable.woff2);
 }
+.main-advanced .grid-flow-img-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 800px;
+  height: 800px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  max-width: 100%;
+  filter: saturate(0);
+  transition: all ease 0.5s;
+}
+.main-advanced .grid-flow-img-section:hover {
+  filter: saturate(100%);
+}
+.main-advanced .grid-flow-img-section > * {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .main-advanced .dots-field {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .main-advanced .dots-field svg {
-  overflow: visible !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
 }
 .main-advanced .dots-field svg circle {
   fill: var(--font-color--primary);

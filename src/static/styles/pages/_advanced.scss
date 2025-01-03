@@ -1,8 +1,46 @@
 .main-advanced {
+  .grid-flow-img-section {
+    @include row-center;
+
+    // grid-flow-parent
+    position: relative;
+    width: 800px;
+    height: 800px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 100%;
+    filter: saturate(0);
+    transition: all ease 0.5s;
+
+    &:hover {
+      filter: saturate(100%);
+    }
+
+    & > * {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+
+    // .grid-flow-img {
+    //   width: 100%;
+    //   object-fit: cover;
+    //   object-position: bottom;
+    //   aspect-ratio: 2 / 1;
+    // }
+  }
+
   .dots-field {
     @include row-center;
+
     svg {
-      overflow: visible !important;
+      @include row-center;
+      overflow: visible;
 
       circle {
         fill: var(--font-color--primary);

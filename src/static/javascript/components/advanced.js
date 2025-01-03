@@ -1,4 +1,150 @@
 if (document.querySelector(".main-advanced")) {
+  // Grid-flow img mouse effect // Uses three.js, see index.html for script
+  {
+    // variables
+    const imageContainer = document.querySelector(".grid-flow-parent");
+    const imageElement = document.querySelector(".grid-flow-img");
+
+    let easeFactor = 0.005; // default 0.02
+    let scene, camera, renderer, planeMesh;
+    let mousePosition = { x: 0.5, y: 0.5 };
+    let targetMousePosition = { x: 0.5, y: 0.5 };
+    let mouseStopTimeout;
+    let aberrationIntensity = 0.0;
+    let lastPosition = { x: 0.5, y: 0.5 };
+    let prevPosition = { x: 0.5, y: 0.5 };
+
+    // shaders
+    const vertexShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+`;
+
+    const fragmentShader = `
+    varying vec2 vUv;
+    uniform sampler2D u_texture;    
+    uniform vec2 u_mouse;
+    uniform vec2 u_prevMouse;
+    uniform float u_aberrationIntensity;
+
+    void main() {
+        vec2 gridUV = floor(vUv * vec2(20.0, 20.0)) / vec2(20.0, 20.0);
+        vec2 centerOfPixel = gridUV + vec2(1.0/20.0, 1.0/20.0);
+        
+        vec2 mouseDirection = u_mouse - u_prevMouse;
+        
+        vec2 pixelToMouseDirection = centerOfPixel - u_mouse;
+        float pixelDistanceToMouse = length(pixelToMouseDirection);
+        float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
+ 
+        vec2 uvOffset = strength * - mouseDirection * 0.2;
+        vec2 uv = vUv - uvOffset;
+
+        vec4 colorR = texture2D(u_texture, uv + vec2(strength * u_aberrationIntensity * 0.01, 0.0));
+        vec4 colorG = texture2D(u_texture, uv);
+        vec4 colorB = texture2D(u_texture, uv - vec2(strength * u_aberrationIntensity * 0.01, 0.0));
+
+        gl_FragColor = vec4(colorR.r, colorG.g, colorB.b, 1.0);
+    }
+`;
+
+    function initializeScene(texture) {
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(
+        80,
+        imageElement.offsetWidth / imageElement.offsetHeight,
+        0.01,
+        10
+      );
+      camera.position.z = 1;
+
+      let shaderUniforms = {
+        u_mouse: { type: "v2", value: new THREE.Vector2() },
+        u_prevMouse: { type: "v2", value: new THREE.Vector2() },
+        u_aberrationIntensity: { type: "f", value: 0.0 },
+        u_texture: { type: "t", value: texture },
+      };
+
+      planeMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2),
+        new THREE.ShaderMaterial({
+          uniforms: shaderUniforms,
+          vertexShader,
+          fragmentShader,
+        })
+      );
+
+      scene.add(planeMesh);
+
+      renderer = new THREE.WebGLRenderer();
+      renderer.setSize(imageElement.offsetWidth, imageElement.offsetHeight);
+
+      imageContainer.appendChild(renderer.domElement);
+    }
+
+    initializeScene(new THREE.TextureLoader().load(imageElement.src));
+
+    animateScene();
+
+    function animateScene() {
+      requestAnimationFrame(animateScene);
+
+      mousePosition.x += (targetMousePosition.x - mousePosition.x) * easeFactor;
+      mousePosition.y += (targetMousePosition.y - mousePosition.y) * easeFactor;
+
+      planeMesh.material.uniforms.u_mouse.value.set(
+        mousePosition.x,
+        1.0 - mousePosition.y
+      );
+
+      planeMesh.material.uniforms.u_prevMouse.value.set(
+        prevPosition.x,
+        1.0 - prevPosition.y
+      );
+
+      aberrationIntensity = Math.max(0.0, aberrationIntensity - 0.05);
+
+      planeMesh.material.uniforms.u_aberrationIntensity.value =
+        aberrationIntensity;
+
+      renderer.render(scene, camera);
+    }
+
+    imageContainer.addEventListener("mousemove", handleMouseMove);
+    imageContainer.addEventListener("mouseenter", handleMouseEnter);
+    imageContainer.addEventListener("mouseleave", handleMouseLeave);
+
+    function handleMouseMove(event) {
+      easeFactor = 0.02;
+      let rect = imageContainer.getBoundingClientRect();
+      prevPosition = { ...targetMousePosition };
+
+      targetMousePosition.x = (event.clientX - rect.left) / rect.width;
+      targetMousePosition.y = (event.clientY - rect.top) / rect.height;
+
+      aberrationIntensity = 1;
+    }
+
+    function handleMouseEnter(event) {
+      easeFactor = 0.02;
+      let rect = imageContainer.getBoundingClientRect();
+
+      mousePosition.x = targetMousePosition.x =
+        (event.clientX - rect.left) / rect.width;
+      mousePosition.y = targetMousePosition.y =
+        (event.clientY - rect.top) / rect.height;
+    }
+
+    function handleMouseLeave() {
+      easeFactor = 0.05; // default 0.05
+      targetMousePosition = { ...prevPosition };
+    }
+  }
+
   // Dots Field
   {
     const svg = {
@@ -12,8 +158,8 @@ if (document.querySelector(".main-advanced")) {
     const dots = [];
 
     const circle = {
-      radius: 3,
-      margin: 20,
+      radius: 3, // Dot size // default 3
+      margin: 20, // Dot gap // default 20
     };
 
     const mouse = {
@@ -40,7 +186,8 @@ if (document.querySelector(".main-advanced")) {
     function createDots() {
       resizeHandler();
 
-      const dotSize = circle.radius + circle.margin;
+      let dotCount = 1; // default 1 (didn't exist before)
+      const dotSize = circle.radius + circle.margin / dotCount;
 
       const rows = Math.floor(svg.height / dotSize);
       const cols = Math.floor(svg.width / dotSize);
@@ -103,7 +250,9 @@ if (document.querySelector(".main-advanced")) {
       const distY = mouse.prevY - mouse.y;
       const dist = Math.hypot(distX, distY);
 
-      mouse.speed += (dist - mouse.speed) * 0.5;
+      let repositionDots = 0.5; // default 0.5 // 0.001 + magnetSensitivity 0.99 looks cool
+
+      mouse.speed += (dist - mouse.speed) * repositionDots;
       if (mouse.speed < 0.001) {
         mouse.speed = 0;
       }
@@ -120,7 +269,7 @@ if (document.querySelector(".main-advanced")) {
         const distX = mouse.x - svg.x - dot.position.x;
         const distY = mouse.y - svg.y - dot.position.y;
         const dist = Math.max(Math.hypot(distX, distY), 1);
-        let magnetOffset = 0.9; // default 0.9. 1 looks like spilled salt
+        let magnetSensitivity = 0.9; // default 0.9 // 1 looks like spilled salt
 
         const angle = Math.atan2(distY, distX);
 
@@ -131,8 +280,8 @@ if (document.querySelector(".main-advanced")) {
           dot.velocity.y += Math.sin(angle) * -move;
         }
 
-        dot.velocity.x *= magnetOffset;
-        dot.velocity.y *= magnetOffset;
+        dot.velocity.x *= magnetSensitivity;
+        dot.velocity.y *= magnetSensitivity;
 
         dot.position.x = dot.anchor.x + dot.velocity.x;
         dot.position.y = dot.anchor.y + dot.velocity.y;
@@ -147,7 +296,7 @@ if (document.querySelector(".main-advanced")) {
       requestAnimationFrame(tick);
     }
 
-    /* Ready */
+    // Ready
     (function () {
       // Resize
       window.addEventListener("resize", resizeHandler);

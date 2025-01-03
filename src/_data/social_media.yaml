@@ -1,10 +1,13 @@
 links:
   - title: Instagram
     url: https://www.instagram.com
-    src: ../static/img/icon-instagram.svg
+    src: ../static/img/icon-social-square-instagram.svg
   - title: Twitter
     url: https://twitter.com
-    src: /static/img/icon-twitter-x.svg
+    src: /static/img/icon-social-square-x.svg
+  - title: LinkedIn
+    url: https://linkedin.com
+    src: /static/img/icon-social-square-linkedin.svg
   - title: Facebook
     url: https://facebook.com
-    src: /static/img/icon-facebook.svg
+    src: /static/img/icon-social-square-facebook.svg
