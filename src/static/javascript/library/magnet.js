@@ -1,4 +1,4 @@
-let mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
+import { mqMouse } from "../utility.js";
 
 if (mqMouse.matches) {
   const magnetEffect = () => {

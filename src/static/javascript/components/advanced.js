@@ -1,147 +1,146 @@
 if (document.querySelector(".main-advanced")) {
-  // Grid-flow img mouse effect // Uses three.js, see index.html for script
-  {
-    // variables
-    const imageContainer = document.querySelector(".grid-flow-parent");
-    const imageElement = document.querySelector(".grid-flow-img");
+  // class GridFlowEffect {
+  //   constructor(container) {
+  //     this.container = container;
+  //     this.imageElement = container.querySelector(".grid-flow-img");
+  //     this.easeFactor = 0.05;
+  //     this.mousePosition = { x: 0.5, y: 0.5 };
+  //     this.targetMousePosition = { x: 0.5, y: 0.5 };
+  //     this.prevPosition = { x: 0.5, y: 0.5 };
+  //     this.aberrationIntensity = 0.0;
 
-    let easeFactor = 0.05; // default 0.02, individual eases below.
-    let scene, camera, renderer, planeMesh;
-    let mousePosition = { x: 0.5, y: 0.5 };
-    let targetMousePosition = { x: 0.5, y: 0.5 };
-    let mouseStopTimeout;
-    let aberrationIntensity = 0.0;
-    let lastPosition = { x: 0.5, y: 0.5 };
-    let prevPosition = { x: 0.5, y: 0.5 };
+  //     this.init();
+  //   }
 
-    // shaders
-    const vertexShader = `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-`;
+  //   init() {
+  //     const texture = new THREE.TextureLoader().load(this.imageElement.src);
+  //     this.initializeScene(texture);
+  //     this.animateScene();
+  //     this.addEventListeners();
+  //   }
 
-    let cubeSize = 20.0; // default 20.0 // Higher means more/smaller cubes
-    const fragmentShader = `
-    varying vec2 vUv;
-    uniform sampler2D u_texture;    
-    uniform vec2 u_mouse;
-    uniform vec2 u_prevMouse;
-    uniform float u_aberrationIntensity;
+  //   initializeScene(texture) {
+  //     const { offsetWidth: width, offsetHeight: height } = this.imageElement;
 
-    void main() {
-        vec2 gridUV = floor(vUv * vec2(${cubeSize}, ${cubeSize})) / vec2(${cubeSize}, ${cubeSize});
-        vec2 centerOfPixel = gridUV + vec2(1.0/40.0, 1.0/40.0); // Don't worry about updating here
-        
-        vec2 mouseDirection = u_mouse - u_prevMouse;
-        
-        vec2 pixelToMouseDirection = centerOfPixel - u_mouse;
-        float pixelDistanceToMouse = length(pixelToMouseDirection);
-        float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
- 
-        vec2 uvOffset = strength * - mouseDirection * 0.2;
-        vec2 uv = vUv - uvOffset;
+  //     this.scene = new THREE.Scene();
+  //     this.camera = new THREE.PerspectiveCamera(90, width / height, 0.01, 10);
+  //     this.camera.position.z = 1;
 
-        vec4 colorR = texture2D(u_texture, uv + vec2(strength * u_aberrationIntensity * 0.01, 0.0));
-        vec4 colorG = texture2D(u_texture, uv);
-        vec4 colorB = texture2D(u_texture, uv - vec2(strength * u_aberrationIntensity * 0.01, 0.0));
+  //     const shaderUniforms = {
+  //       u_mouse: { type: "v2", value: new THREE.Vector2() },
+  //       u_prevMouse: { type: "v2", value: new THREE.Vector2() },
+  //       u_aberrationIntensity: { type: "f", value: 0.0 },
+  //       u_texture: { type: "t", value: texture },
+  //     };
 
-        gl_FragColor = vec4(colorR.r, colorG.g, colorB.b, 1.0);
-    }
-`;
+  //     const vertexShader = `
+  //       varying vec2 vUv;
+  //       void main() {
+  //         vUv = uv;
+  //         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  //       }
+  //     `;
 
-    function initializeScene(texture) {
-      scene = new THREE.Scene();
+  //     const fragmentShader = `
+  //       varying vec2 vUv;
+  //       uniform sampler2D u_texture;
+  //       uniform vec2 u_mouse;
+  //       uniform vec2 u_prevMouse;
+  //       uniform float u_aberrationIntensity;
 
-      camera = new THREE.PerspectiveCamera(
-        90, // default 80
-        imageElement.offsetWidth / imageElement.offsetHeight, // width ÷ height per docs
-        0.01, // default 0.01
-        10
-      );
-      camera.position.z = 1;
+  //       void main() {
+  //         vec2 gridUV = floor(vUv * vec2(20.0, 20.0)) / vec2(20.0, 20.0);
+  //         vec2 centerOfPixel = gridUV + vec2(1.0 / 20.0, 1.0 / 20.0);
 
-      let shaderUniforms = {
-        u_mouse: { type: "v2", value: new THREE.Vector2() },
-        u_prevMouse: { type: "v2", value: new THREE.Vector2() },
-        u_aberrationIntensity: { type: "f", value: 0.0 },
-        u_texture: { type: "t", value: texture },
-      };
+  //         vec2 mouseDirection = u_mouse - u_prevMouse;
+  //         vec2 pixelToMouseDirection = centerOfPixel - u_mouse;
+  //         float pixelDistanceToMouse = length(pixelToMouseDirection);
+  //         float strength = smoothstep(0.3, 0.0, pixelDistanceToMouse);
 
-      planeMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(2, 2),
-        new THREE.ShaderMaterial({
-          uniforms: shaderUniforms,
-          vertexShader,
-          fragmentShader,
-        })
-      );
+  //         vec2 uvOffset = strength * -mouseDirection * 0.2;
+  //         vec2 uv = vUv - uvOffset;
 
-      scene.add(planeMesh);
+  //         vec4 colorR = texture2D(u_texture, uv + vec2(strength * u_aberrationIntensity * 0.01, 0.0));
+  //         vec4 colorG = texture2D(u_texture, uv);
+  //         vec4 colorB = texture2D(u_texture, uv - vec2(strength * u_aberrationIntensity * 0.01, 0.0));
 
-      renderer = new THREE.WebGLRenderer();
-      renderer.setSize(imageElement.offsetWidth, imageElement.offsetHeight);
+  //         gl_FragColor = vec4(colorR.r, colorG.g, colorB.b, 1.0);
+  //       }
+  //     `;
 
-      imageContainer.appendChild(renderer.domElement);
-    }
+  //     const planeMesh = new THREE.Mesh(
+  //       new THREE.PlaneGeometry(3.5, 2), // object-fit and object-position // default (2, 2)
+  //       new THREE.ShaderMaterial({
+  //         uniforms: shaderUniforms,
+  //         vertexShader,
+  //         fragmentShader,
+  //       })
+  //     );
 
-    initializeScene(new THREE.TextureLoader().load(imageElement.src));
+  //     this.scene.add(planeMesh);
+  //     this.planeMesh = planeMesh;
 
-    animateScene();
+  //     this.renderer = new THREE.WebGLRenderer();
+  //     this.renderer.setSize(width, height);
+  //     this.container.appendChild(this.renderer.domElement);
+  //   }
 
-    function animateScene() {
-      requestAnimationFrame(animateScene);
+  //   animateScene = () => {
+  //     requestAnimationFrame(this.animateScene);
 
-      mousePosition.x += (targetMousePosition.x - mousePosition.x) * easeFactor;
-      mousePosition.y += (targetMousePosition.y - mousePosition.y) * easeFactor;
+  //     this.mousePosition.x +=
+  //       (this.targetMousePosition.x - this.mousePosition.x) * this.easeFactor;
+  //     this.mousePosition.y +=
+  //       (this.targetMousePosition.y - this.mousePosition.y) * this.easeFactor;
 
-      planeMesh.material.uniforms.u_mouse.value.set(
-        mousePosition.x,
-        1.0 - mousePosition.y
-      );
+  //     this.planeMesh.material.uniforms.u_mouse.value.set(
+  //       this.mousePosition.x,
+  //       1.0 - this.mousePosition.y
+  //     );
 
-      planeMesh.material.uniforms.u_prevMouse.value.set(
-        prevPosition.x,
-        1.0 - prevPosition.y
-      );
+  //     this.planeMesh.material.uniforms.u_prevMouse.value.set(
+  //       this.prevPosition.x,
+  //       1.0 - this.prevPosition.y
+  //     );
 
-      aberrationIntensity = Math.max(0.0, aberrationIntensity - 0.05);
+  //     this.aberrationIntensity = Math.max(0.0, this.aberrationIntensity - 0.05);
+  //     this.planeMesh.material.uniforms.u_aberrationIntensity.value =
+  //       this.aberrationIntensity;
 
-      planeMesh.material.uniforms.u_aberrationIntensity.value =
-        aberrationIntensity;
+  //     this.renderer.render(this.scene, this.camera);
+  //   };
 
-      renderer.render(scene, camera);
-    }
+  //   handleMouseMove = (event) => {
+  //     const rect = this.container.getBoundingClientRect();
+  //     this.prevPosition = { ...this.targetMousePosition };
+  //     this.targetMousePosition.x = (event.clientX - rect.left) / rect.width;
+  //     this.targetMousePosition.y = (event.clientY - rect.top) / rect.height;
+  //     this.aberrationIntensity = 1;
+  //   };
 
-    imageContainer.addEventListener("mousemove", handleMouseMove);
-    imageContainer.addEventListener("mouseenter", handleMouseEnter);
-    imageContainer.addEventListener("mouseleave", handleMouseLeave);
+  //   handleMouseEnter = (event) => {
+  //     const rect = this.container.getBoundingClientRect();
+  //     this.targetMousePosition.x = this.mousePosition.x =
+  //       (event.clientX - rect.left) / rect.width;
+  //     this.targetMousePosition.y = this.mousePosition.y =
+  //       (event.clientY - rect.top) / rect.height;
+  //   };
 
-    function handleMouseMove(event) {
-      let rect = imageContainer.getBoundingClientRect();
-      prevPosition = { ...targetMousePosition };
+  //   handleMouseLeave = () => {
+  //     this.targetMousePosition = { ...this.prevPosition };
+  //   };
 
-      targetMousePosition.x = (event.clientX - rect.left) / rect.width;
-      targetMousePosition.y = (event.clientY - rect.top) / rect.height;
+  //   addEventListeners() {
+  //     this.container.addEventListener("mousemove", this.handleMouseMove);
+  //     this.container.addEventListener("mouseenter", this.handleMouseEnter);
+  //     this.container.addEventListener("mouseleave", this.handleMouseLeave);
+  //   }
+  // }
 
-      aberrationIntensity = 1;
-    }
-
-    function handleMouseEnter(event) {
-      let rect = imageContainer.getBoundingClientRect();
-
-      mousePosition.x = targetMousePosition.x =
-        (event.clientX - rect.left) / rect.width;
-      mousePosition.y = targetMousePosition.y =
-        (event.clientY - rect.top) / rect.height;
-    }
-
-    function handleMouseLeave() {
-      targetMousePosition = { ...prevPosition };
-    }
-  }
+  // // Initialize multiple instances
+  // document.querySelectorAll(".grid-flow-parent").forEach((container) => {
+  //   new GridFlowEffect(container);
+  // });
 
   // Dots Field
   {

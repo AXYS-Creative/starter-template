@@ -1,5 +1,7 @@
 // export const root = document.documentElement; See portfolio for examples
 
+export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
+
 // Get current year for copyright
 {
   const yearText = document.querySelector(".year-text");

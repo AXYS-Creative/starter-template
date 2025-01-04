@@ -862,28 +862,10 @@ video {
 }
 .main-advanced .grid-flow-img-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.main-advanced .grid-flow-img-section .grid-flow-parent {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
-  position: relative;
-  width: 800px;
-  height: 800px;
-  margin: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  max-width: 100%;
-  transition: all ease 0.5s;
-}
-.main-advanced .grid-flow-img-section .grid-flow-parent > * {
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
+  gap: 128px;
 }
 .main-advanced .dots-field {
   display: flex;
@@ -1143,4 +1125,29 @@ video {
 }
 .accordion-btn[aria-expanded=true] .accordion-btn__title-icon {
   rotate: 90deg;
+}
+
+.grid-flow-parent {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  height: auto;
+  aspect-ratio: 1.75/1;
+}
+.grid-flow-parent > * {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+.grid-flow-parent--lg {
+  width: 100%;
+}
+.grid-flow-parent--md {
+  width: 50%;
+}
+@media screen and (max-width: 768px) {
+  .grid-flow-parent--md {
+    width: 100%;
+  }
 }/*# sourceMappingURL=styles.css.map */

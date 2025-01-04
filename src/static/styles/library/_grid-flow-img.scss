@@ -1,0 +1,28 @@
+.grid-flow-parent {
+  // border: $test;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  height: auto;
+  aspect-ratio: 1.75 / 1;
+  // This can be added to modifier 'size' below, remember to update the js
+
+  // img & canvas
+  & > * {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &--lg {
+    width: 100%;
+  }
+  &--md {
+    width: 50%;
+
+    @include mq-max("md") {
+      width: 100%;
+    }
+  }
+}

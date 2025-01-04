@@ -13,9 +13,16 @@ description:
 </section>
 
 <section class="grid-flow-img-section">
-  <div class="grid-flow-parent">
-    <img class="grid-flow-img" src="/static/img/grid-flow-img.webp" alt="" />
-  </div>
+  <!-- prettier-ignore -->
+  {% set src = '/static/img/library-sample-2.webp' %}
+  {% set alt = '' %}
+  {% set size = 'lg' %}
+  {% include './_includes/library/grid-flow-img.html' %}
+  
+  {% set src = '/static/img/library-sample-1.webp' %}
+  {% set alt = '' %}
+  {% set size = 'md' %}
+  {% include './_includes/library/grid-flow-img.html' %}
 </section>
 
 <section class="dots-field">
