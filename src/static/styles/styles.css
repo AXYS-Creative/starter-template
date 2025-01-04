@@ -864,28 +864,26 @@ video {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.main-advanced .grid-flow-img-section .grid-flow-parent {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
   position: relative;
   width: 800px;
   height: 800px;
+  margin: auto;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   max-width: 100%;
-  filter: saturate(0);
   transition: all ease 0.5s;
 }
-.main-advanced .grid-flow-img-section:hover {
-  filter: saturate(100%);
-}
-.main-advanced .grid-flow-img-section > * {
+.main-advanced .grid-flow-img-section .grid-flow-parent > * {
   position: absolute;
   inset: 0;
   width: 100% !important;
   height: 100% !important;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .main-advanced .dots-field {
   display: flex;

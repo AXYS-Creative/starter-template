@@ -5,7 +5,7 @@ if (document.querySelector(".main-advanced")) {
     const imageContainer = document.querySelector(".grid-flow-parent");
     const imageElement = document.querySelector(".grid-flow-img");
 
-    let easeFactor = 0.005; // default 0.02
+    let easeFactor = 0.05; // default 0.02, individual eases below.
     let scene, camera, renderer, planeMesh;
     let mousePosition = { x: 0.5, y: 0.5 };
     let targetMousePosition = { x: 0.5, y: 0.5 };
@@ -23,6 +23,7 @@ if (document.querySelector(".main-advanced")) {
     }
 `;
 
+    let cubeSize = 20.0; // default 20.0 // Higher means more/smaller cubes
     const fragmentShader = `
     varying vec2 vUv;
     uniform sampler2D u_texture;    
@@ -31,8 +32,8 @@ if (document.querySelector(".main-advanced")) {
     uniform float u_aberrationIntensity;
 
     void main() {
-        vec2 gridUV = floor(vUv * vec2(20.0, 20.0)) / vec2(20.0, 20.0);
-        vec2 centerOfPixel = gridUV + vec2(1.0/20.0, 1.0/20.0);
+        vec2 gridUV = floor(vUv * vec2(${cubeSize}, ${cubeSize})) / vec2(${cubeSize}, ${cubeSize});
+        vec2 centerOfPixel = gridUV + vec2(1.0/40.0, 1.0/40.0); // Don't worry about updating here
         
         vec2 mouseDirection = u_mouse - u_prevMouse;
         
@@ -55,9 +56,9 @@ if (document.querySelector(".main-advanced")) {
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera(
-        80,
-        imageElement.offsetWidth / imageElement.offsetHeight,
-        0.01,
+        90, // default 80
+        imageElement.offsetWidth / imageElement.offsetHeight, // width ÷ height per docs
+        0.01, // default 0.01
         10
       );
       camera.position.z = 1;
@@ -119,7 +120,6 @@ if (document.querySelector(".main-advanced")) {
     imageContainer.addEventListener("mouseleave", handleMouseLeave);
 
     function handleMouseMove(event) {
-      easeFactor = 0.02;
       let rect = imageContainer.getBoundingClientRect();
       prevPosition = { ...targetMousePosition };
 
@@ -130,7 +130,6 @@ if (document.querySelector(".main-advanced")) {
     }
 
     function handleMouseEnter(event) {
-      easeFactor = 0.02;
       let rect = imageContainer.getBoundingClientRect();
 
       mousePosition.x = targetMousePosition.x =
@@ -140,7 +139,6 @@ if (document.querySelector(".main-advanced")) {
     }
 
     function handleMouseLeave() {
-      easeFactor = 0.05; // default 0.05
       targetMousePosition = { ...prevPosition };
     }
   }
