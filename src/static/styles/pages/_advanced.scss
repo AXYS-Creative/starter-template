@@ -1,6 +1,5 @@
 .main-advanced {
   .grid-flow-img-section {
-    // @include row-center;
     @include column-center;
     gap: 128px;
   }
