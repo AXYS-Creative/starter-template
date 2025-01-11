@@ -16,9 +16,10 @@
 
 // Partials
 // prettier-ignore
-@import "./components/marquee",
-  "./components/accordion";
+// @import "./components/marquee";
 
 // Library // Delete after pulling files
 // prettier-ignore
-@import "./library/grid-flow-img";
+@import "./library/marquee",
+  "./library/accordion",
+  "./library/grid-flow-img";
