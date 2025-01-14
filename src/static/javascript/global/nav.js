@@ -1,6 +1,6 @@
 const siteHeader = document.querySelector(".site-header"),
-  navMenu = document.querySelector(".site-nav"),
-  menuBtn = document.querySelector(".menu-btn");
+  siteNav = document.querySelector(".site-nav"),
+  siteNavBtn = document.querySelector(".site-nav-btn");
 
 const navLinks = document.querySelectorAll(".nav-link"),
   navFooterLinks = document.querySelectorAll(".nav-footer-link"),
@@ -10,13 +10,13 @@ const navLinks = document.querySelectorAll(".nav-link"),
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
 const toggleNav = () => {
-  const isNavOpen = navMenu.getAttribute("aria-hidden") === "true";
+  const isNavOpen = siteNav.getAttribute("aria-hidden") === "true";
 
   siteHeader.classList.toggle("nav-active");
 
-  navMenu.setAttribute("aria-hidden", !isNavOpen);
-  menuBtn.setAttribute("aria-expanded", isNavOpen);
-  menuBtn.setAttribute(
+  siteNav.setAttribute("aria-hidden", !isNavOpen);
+  siteNavBtn.setAttribute("aria-expanded", isNavOpen);
+  siteNavBtn.setAttribute(
     "aria-label",
     isNavOpen ? "Close navigation menu" : "Open navigation menu"
   );
@@ -31,8 +31,8 @@ const toggleNav = () => {
 };
 
 const closeNav = () => {
-  navMenu.setAttribute("aria-hidden", "true");
-  menuBtn.setAttribute("aria-expanded", "false");
+  siteNav.setAttribute("aria-hidden", "true");
+  siteNavBtn.setAttribute("aria-expanded", "false");
 
   siteHeader.classList.remove("nav-active");
 
@@ -47,4 +47,4 @@ const closeNav = () => {
   }
 });
 
-menuBtn.addEventListener("click", toggleNav);
+siteNavBtn.addEventListener("click", toggleNav);

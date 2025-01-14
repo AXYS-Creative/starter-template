@@ -5,6 +5,6 @@ contact_email: info@sample.com
 theme_color: "#000000"
 
 # Open Graph Protocol
-og_title: "Sample Business | Motto Here" #Separate from page title in index.html
-og_description: "Open Graph Description Here" #Separate from page description in index.html
+og_title: "Sample Business | Motto Here" #Separate from individual page title in index.html
+og_description: "Open Graph Description Here" #Separate from individual page description in index.html
 og_image: "/static/img/og-image.png"
