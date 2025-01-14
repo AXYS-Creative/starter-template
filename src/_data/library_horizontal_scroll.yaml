@@ -1,0 +1,19 @@
+images:
+  - caption: Title 1 here
+    description: Description 1 goes here
+    src: /static/img/library/library-sample-1.webp
+  - caption: Title 2 here
+    description: Description 2 goes here
+    src: /static/img/library/library-sample-2.webp
+  - caption: Title 3 here
+    description: Description 3 goes here
+    src: /static/img/library/library-sample-3.webp
+  - caption: Title 1 here
+    description: Description 1 goes here
+    src: /static/img/library/library-sample-1.webp
+  - caption: Title 2 here
+    description: Description 2 goes here
+    src: /static/img/library/library-sample-2.webp
+  - caption: Title 3 here
+    description: Description 3 goes here
+    src: /static/img/library/library-sample-3.webp

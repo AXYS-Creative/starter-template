@@ -1,0 +1,29 @@
+.horizontal-scroll {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+
+  .container {
+    display: flex;
+    align-items: center;
+    height: 80vh;
+
+    .slider {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  .figure {
+    width: min(24vw, 464px);
+    aspect-ratio: 586 / 880;
+    // width: 750px;
+    // aspect-ratio: 8 / 5;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+}

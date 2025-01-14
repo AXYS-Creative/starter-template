@@ -32,82 +32,92 @@
 
 // Library
 
-.magnet {
-  transition: translate 0.8s $cubic-ease-slow-finish;
+@media all {
+  .magnet {
+    transition: translate 0.8s $cubic-ease-slow-finish;
+  }
+
+  .fill-text,
+  .fill-text-hover {
+    display: inline; // for fill line-wrap
+    background-repeat: no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(#fff, #fff);
+    -webkit-text-fill-color: rgb(255 255 255 / 25%);
+    // filter: drop-shadow(0 0 1px grey); // optional for readability
+
+    &:is(.fill-text-hover) {
+      background-size: 0%;
+      -webkit-text-fill-color: rgb(255 255 255 / 50%);
+      transition: 0.5s ease;
+
+      @include desktop-hover {
+        background-size: 100%;
+      }
+    }
+  }
 }
 
-.fill-text {
-  display: inline; // for fill line-wrap
-  background-repeat: no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(#fff, #fff);
-  -webkit-text-fill-color: rgb(255 255 255 / 50%);
-  // filter: drop-shadow(0 0 1px grey); // optional for readability
-}
-
-//
-// Media Query Utility // Be mindful to use aria-hidden to avoid a break in speech.
-//
+// Media Query Utility, be mindful of flex vs block
 
 @media all {
-  .lg-screen-and-up {
+  .lg-up {
     display: none;
 
     @include mq-min("lg") {
-      display: flex; // Flex for cta-group
+      display: block;
     }
   }
 
-  .lg-screen-and-below {
+  .lg-down {
     display: none;
 
     @include mq-max("lg") {
-      display: flex;
+      display: block;
     }
   }
 
-  .md-screen-and-up {
+  .md-up {
     display: none;
 
     @include mq-min("md") {
-      display: flex;
+      display: block;
     }
   }
 
-  .md-screen-and-below {
+  .md-down {
     display: none;
 
     @include mq-max("md") {
-      display: flex;
+      display: block;
     }
   }
 
-  .sm-screen-and-up {
+  .sm-up {
     display: none;
 
     @include mq-min("sm") {
-      display: flex;
+      display: block;
     }
   }
 
-  .sm-screen-and-below {
+  .sm-down {
     display: none;
 
     @include mq-max("sm") {
-      display: flex;
+      display: block;
     }
   }
 }
 
-//
-// CMS Tokens
-//
+// Approved as CMS Tokens
 
 @media all {
   .text-stroke {
     -webkit-text-stroke: 1px var(--font-color--primary);
     color: transparent;
+    font-weight: 500; // slightly above regular
   }
 
   .underline {

@@ -20,3 +20,9 @@ export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
     logo.focus();
   });
 }
+
+// Detect Safari Browser
+export const isSafari = () => {
+  let ua = navigator.userAgent.toLowerCase();
+  return ua.indexOf("safari") !== -1 && ua.indexOf("chrome") === -1;
+};

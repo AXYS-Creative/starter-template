@@ -1,0 +1,14 @@
+<section class="horizontal-scroll pinned-section">
+  <h2 class="h6">{{ title }}</h2>
+
+  <div class="container">
+    <div class="slider">
+      {% for item in library_horizontal_scroll.images %}
+      <figure class="figure">
+        <img src="{{ item.src }}" alt="" />
+        <figcaption>{{ item.caption }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>

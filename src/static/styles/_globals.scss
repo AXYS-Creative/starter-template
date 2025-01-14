@@ -62,6 +62,8 @@ body {
 }
 
 .site-header {
+  transition: 0.5s ease; // for scroll
+
   & > * {
     z-index: 5;
     position: fixed;
@@ -181,9 +183,9 @@ body {
     }
   }
 
-  // &.away-from-top {
-
-  // }
+  &.away-from-top {
+    opacity: 0;
+  }
 
   // &.nav-active {
 
