@@ -58,8 +58,7 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  // Custom function to remove tokens from content (aria-labels, etc.)
-  // Example: aria-label="{{ page_home.heading | removeTokens }}"
+  // Custom function to remove tokens from content (aria-labels, etc.) // Example: aria-label="{{ page_home.heading | removeTokens }}"
   eleventyConfig.addFilter("removeTokens", function (value) {
     if (typeof value !== "string") return value;
     return value.replace(/\[%.*?%\]/g, "");

@@ -28,8 +28,8 @@ responsiveGsap.add(
     //   }
     // );
 
-    // GLOBAL - Easily toggle an 'animate' class on any element with '.gsap-animate' class
-    const globalGenerateAnimate = (() => {
+    // GLOBAL - Animate any element with the class 'gsap-animate' using the 'animate' companion class
+    {
       const targetElements = document.querySelectorAll(".gsap-animate");
 
       targetElements.forEach((targetElem) => {
@@ -45,67 +45,104 @@ responsiveGsap.add(
           },
         });
       });
-    })();
+    }
 
-    // All marquee animations
+    // Library - Lift any desired code blocks out, then delete from production
     {
-      let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
-
-      // Standard
+      // Marquee animations
       {
-        const autoMarquees = gsap.utils.toArray(".marquee-inner");
+        let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
 
-        const marqueeTweens = autoMarquees.map((elem) =>
-          gsap
-            .to(elem, {
-              xPercent: -50,
-              repeat: -1,
-              duration: marqueeSpeed,
-              ease: "linear",
-            })
-            .totalProgress(0.5)
-        );
+        // Standard
+        {
+          const autoMarquees = gsap.utils.toArray(".marquee-inner");
 
-        let currentScroll = 0;
-        const adjustTimeScale = () => {
-          const isScrollingDown = window.scrollY > currentScroll;
-          marqueeTweens.forEach((tween, index) =>
-            gsap.to(tween, {
-              timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
-            })
+          const marqueeTweens = autoMarquees.map((elem) =>
+            gsap
+              .to(elem, {
+                xPercent: -50,
+                repeat: -1,
+                duration: marqueeSpeed,
+                ease: "linear",
+              })
+              .totalProgress(0.5)
           );
-          currentScroll = window.scrollY;
-        };
 
-        window.addEventListener("scroll", adjustTimeScale);
+          let currentScroll = 0;
+          const adjustTimeScale = () => {
+            const isScrollingDown = window.scrollY > currentScroll;
+            marqueeTweens.forEach((tween, index) =>
+              gsap.to(tween, {
+                timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+              })
+            );
+            currentScroll = window.scrollY;
+          };
+
+          window.addEventListener("scroll", adjustTimeScale);
+        }
+
+        // Scrub, use 'marquee_scrub' boolean prop
+        {
+          const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
+          let sensitivity = 5;
+
+          scrubMarquees.forEach((scrubElem) => {
+            const marqueeInners = scrubElem.querySelectorAll(".marquee-inner");
+
+            marqueeInners.forEach((inner, index) => {
+              gsap.fromTo(
+                inner,
+                {
+                  x: index % 2 === 0 ? "0%" : `-${sensitivity}%`,
+                },
+                {
+                  x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                  scrollTrigger: {
+                    trigger: scrubElem,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1,
+                  },
+                }
+              );
+            });
+          });
+        }
       }
 
-      // Scrub, use 'marquee_scrub' boolean prop
+      // Fill Text - Use 'fill-text' for default, then 'quick-fill' or 'slow-fill' to modify animation end
       {
-        const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
-        let sensitivity = 5;
+        const fillText = document.querySelectorAll(".fill-text");
 
-        scrubMarquees.forEach((scrubElem) => {
-          const marqueeInners = scrubElem.querySelectorAll(".marquee-inner");
+        if (fillText) {
+          fillText.forEach((el) => {
+            let end = "bottom 60%";
 
-          marqueeInners.forEach((inner, index) => {
+            // Modifier classes // Higher percentage ends the animation faster
+            if (el.classList.contains("quick-fill")) {
+              end = "bottom 80%";
+            } else if (el.classList.contains("slow-fill")) {
+              end = "bottom 40%";
+            }
+
             gsap.fromTo(
-              inner,
+              el,
               {
-                x: index % 2 === 0 ? "0%" : `-${sensitivity}%`,
+                backgroundSize: "0%",
               },
               {
-                x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                backgroundSize: "100%",
                 scrollTrigger: {
-                  trigger: scrubElem,
-                  start: "top bottom",
-                  end: "bottom top",
+                  trigger: el,
+                  start: "top 90%",
+                  end: end,
                   scrub: 1,
                 },
               }
             );
           });
-        });
+        }
       }
     }
   }

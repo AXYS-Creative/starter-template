@@ -1,9 +1,13 @@
 # CMS Starter Template
 
-## AXYS Creative
+Move desired content from 'Library' directories into 'Component' directories for quick setup. Be sure to delete the library sorces when moving to production.
 
-### Technologies used:
+## Components
 
-- [Decap CMS](https://www.netlifycms.org/)
-- [Eleventy](https://www.11ty.dev/)
-- [Nunjucks](https://mozilla.github.io/nunjucks/)
+- Accordion
+- Marquee
+
+## Utilities
+
+- Magnet
+- Fill Text

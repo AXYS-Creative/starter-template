@@ -30,8 +30,20 @@
   list-style: initial;
 }
 
+// Library
+
 .magnet {
   transition: translate 0.8s $cubic-ease-slow-finish;
+}
+
+.fill-text {
+  display: inline; // for fill line-wrap
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(#fff, #fff);
+  -webkit-text-fill-color: rgb(255 255 255 / 50%);
+  // filter: drop-shadow(0 0 1px grey); // optional for readability
 }
 
 //

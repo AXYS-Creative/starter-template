@@ -18,13 +18,39 @@ description:
 <!-- prettier-ignore -->
 {% set marquee_text = marquee.marquee_text %}
 {% set marquee_scrub = marquee.marquee_scrub %}
-{% include './_includes/components/marquee.html' %}
+{% include './_includes/library/marquee.html' %}
 
 <section class="accordion-section">
-  <h2 class="h6" style="margin-bottom: 48px">Accordion</h2>
+  <h2 class="h6" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <!-- prettier-ignore -->
   {% set accordion_list = library_accordion.accordion_data %}
-  {% include './_includes/components/accordion.html' %}
+  {% include './_includes/library/accordion.html' %}
+</section>
+
+<section class="fill-text-section">
+  <h2 class="h6 fill-text slow-fill">[ Fill Text - Utility]</h2>
+
+  <h3 style="margin-block: 48px">
+    <span class="fill-text quick-fill">This is a large title</span>
+  </h3>
+
+  <p class="fill-text">
+    This is some sample fill text. Note: this relies on a simple utlity class.
+    Modify the speed with 'slow-fill' or 'quick-fill'. Lorem ipsum dolor sit
+    amet consectetur adipisicing elit. Perferendis earum maxime ab, accusantium
+    rem ex assumenda doloribus officia corrupti deserunt repellendus, rerum nisi
+    beatae debitis dolore eligendi accusamus dolor voluptate facilis quos odit
+    deleniti pariatur a. Consequuntur qui laudantium esse rem commodi odio
+    assumenda, architecto officiis consectetur quas, earum vel. Harum incidunt
+    eligendi alias commodi expedita enim perspiciatis sequi nemo, numquam
+    architecto ipsam? Perspiciatis eaque delectus fugit tempora iste iusto
+    aspernatur asperiores, atque esse corporis, id mollitia labore eos
+    doloremque consequatur! Qui officia natus voluptates cumque eum fugit aut
+    iure amet quam, earum libero, rerum obcaecati beatae totam, quaerat facere
+    harum! Fugiat neque laborum aspernatur ut. Minima soluta, harum quisquam
+    repellat vitae eveniet doloribus omnis excepturi? A officia eius
+    perferendis.
+  </p>
 </section>
 
 <!-- prettier-ignore -->
