@@ -1,11 +1,11 @@
-import { mqMouse } from "../utility.js";
+import { mqMouse, mqMotionAllow } from "../utility.js";
 const flowImgs = document.querySelectorAll(".grid-flow-parent");
 
-if (mqMouse.matches) {
+if (mqMouse.matches && mqMotionAllow.matches) {
   const gridFlowEffect = (container) => {
     const img = container.querySelector(".grid-flow-img");
 
-    let easeFactor = 0.04;
+    let easeFactor = 0.075; // smaller = slower // There are four other easeFactors to update too
     let scene, camera, renderer, planeMesh;
     let mousePosition = { x: 0.5, y: 0.5 };
     let targetMousePosition = { x: 0.5, y: 0.5 };
@@ -22,6 +22,7 @@ if (mqMouse.matches) {
     }
 `;
 
+    // default gridUV (20.0, 20.0) (for square, adjust based on aspect ratio)
     const fragmentShader = `
     varying vec2 vUv;
     uniform sampler2D u_texture;    
@@ -118,7 +119,7 @@ if (mqMouse.matches) {
     container.addEventListener("mouseleave", handleMouseLeave);
 
     function handleMouseMove(event) {
-      easeFactor = 0.04;
+      easeFactor = 0.075;
       let rect = container.getBoundingClientRect();
       prevPosition = { ...targetMousePosition };
 
@@ -129,7 +130,7 @@ if (mqMouse.matches) {
     }
 
     function handleMouseEnter(event) {
-      easeFactor = 0.04;
+      easeFactor = 0.075;
       let rect = container.getBoundingClientRect();
 
       mousePosition.x = targetMousePosition.x =
@@ -139,7 +140,7 @@ if (mqMouse.matches) {
     }
 
     function handleMouseLeave() {
-      easeFactor = 0.04;
+      easeFactor = 0.075;
       targetMousePosition = { ...prevPosition };
     }
   };

@@ -1,6 +1,7 @@
 .main-style-guide {
   .hero {
     align-items: flex-start;
+    gap: var(--section-gap);
     padding-block: 216px;
 
     @include mq-max("md") {

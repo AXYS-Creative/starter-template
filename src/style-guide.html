@@ -22,6 +22,9 @@ author: CHANGE ME
     <strong>This is a strong text.</strong>
     <em>This is an italic text.</em>
   </p>
-  <a href="#" class="classic-link">This is a classic link.</a>
-  <a href="#" class="cta-1">Primary CTA</a>
+  <!-- prettier-ignore -->
+  {% set cta_1_text = 'Primary CTA' %}
+  {% set cta_2_text = 'Secondary CTA' %}
+  {% include "./_includes/components/cta-group.html" %}
+  <a href="" class="classic-link">Classic link</a>
 </section>

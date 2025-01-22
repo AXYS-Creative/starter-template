@@ -10,7 +10,8 @@ $content-width: 1920px;
 
 // Layering
 $z-index--nav: 3;
-$z-index--loader: 10;
+$z-index--header: 4;
+$z-index--loader: 5;
 
 // Easing
 $cubic-ease: cubic-bezier(0.18, 0.97, 0.47, 1);
@@ -18,6 +19,12 @@ $cubic-ease-sudden: cubic-bezier(1, 0.07, 0.2, 1);
 $cubic-ease-sudden-back: cubic-bezier(0.8, -0.11, 0.11, 1.11);
 $cubic-ease-sudden-back-strong: cubic-bezier(0.77, -0.43, 0.11, 1.11);
 $cubic-ease-slow-finish: cubic-bezier(0.09, 0.9, 0.5, 1);
+
+$ease: 0.24s ease;
+$ease-c: 0.48s $cubic-ease;
+
+// Library
+$magnet: translate 0.5s $cubic-ease-slow-finish;
 
 // Debugging
 $test: 2px dashed rgba(yellow, 0.75);
@@ -36,19 +43,21 @@ $test-bg: rgba(navy, 0.75);
 
   --content-width: #{$content-width};
   --body-padding: 64px;
+  --body-padding-double: calc(var(--body-padding) * 2);
+
+  --section-gap: 24px;
+  --section-gap--lg: 64px;
 
   --radius: 48px;
+  --radius-btn: 12px;
 
   @media (max-width: 1512px) {
     --body-padding: 48px;
   }
 
   @media (max-width: 1024px) {
-    --body-padding: 40px;
-  }
-
-  @media (max-width: 768px) {
     --body-padding: 24px;
+    --section-gap--lg: 24px;
   }
 }
 

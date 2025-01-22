@@ -1,3 +1,10 @@
-<div class="grid-flow-parent {%if size%}grid-flow-parent--{{size}}{%endif%}">
-  <img class="grid-flow-img" src="{{src}}" alt="{{alt}}" />
+<div
+  class="grid-flow-parent {% if grid_flow_img_size %}grid-flow-parent--{{ grid_flow_img_size }}{% endif %}"
+>
+  <img
+    class="grid-flow-img"
+    src="{{ grid_flow_img_src }}"
+    alt="{{ grid_flow_img_alt }}"
+    loading="{{ grid_flow_img_loading or 'lazy' }}"
+  />
 </div>

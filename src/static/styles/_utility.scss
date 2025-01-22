@@ -1,6 +1,10 @@
 .classic-link {
   position: relative;
 
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -9,15 +13,16 @@
     right: auto;
     width: 100%;
     height: 1px;
-    background-color: var(--font-color--primary);
+    background-color: currentColor;
 
     @include mq-motion-allow {
-      transition: 0.32s ease;
+      transition: $ease;
     }
   }
 
-  &:hover,
-  &:focus-visible {
+  @include desktop-hover {
+    color: var(--hero-color--primary);
+
     &::before {
       width: 0;
       left: auto;
@@ -31,10 +36,9 @@
 }
 
 // Library
-
 @media all {
   .magnet {
-    transition: translate 0.8s $cubic-ease-slow-finish;
+    transition: $magnet;
   }
 
   .fill-text,
@@ -60,7 +64,6 @@
 }
 
 // Media Query Utility, be mindful of flex vs block
-
 @media all {
   .lg-up {
     display: none;
@@ -111,8 +114,7 @@
   }
 }
 
-// Approved as CMS Tokens
-
+// CMS Tokens
 @media all {
   .text-stroke {
     -webkit-text-stroke: 1px var(--font-color--primary);
@@ -122,5 +124,12 @@
 
   .underline {
     text-decoration: underline;
+  }
+
+  .color-primary {
+    color: var(--hero-color--primary);
+  }
+  .color-secondary {
+    color: var(--hero-color--secondary);
   }
 }
