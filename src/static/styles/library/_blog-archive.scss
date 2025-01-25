@@ -1,0 +1,29 @@
+.blog-article-list {
+  @include row-start;
+  gap: var(--section-gap--lg);
+  flex-wrap: wrap;
+}
+
+.blog-article {
+  @include column-start;
+  gap: var(--section-gap);
+  flex-grow: 1;
+  flex-basis: 420px;
+
+  &:first-of-type {
+    flex-basis: $content-width;
+  }
+
+  &__img {
+    @include row-end;
+    width: 100%;
+    aspect-ratio: 2.5 / 1;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: var(--radius);
+
+    img {
+      object-position: bottom;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 ---
-title: Post One
+title: Post Three
 description: Description Here
-author: AXYS Creative
-date: 2020-09-01
+poster: /static/img/library/library-sample-3.webp
+author: Author Here
+date: 2020-09-03
 tags:
   - left
   - center

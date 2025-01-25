@@ -49,6 +49,24 @@ responsiveGsap.add(
 
     // Library - Lift any desired code blocks out, then delete from production
     {
+      // Parallax
+      {
+        const parallax = document.querySelectorAll(".parallax");
+
+        parallax.forEach((el) => {
+          gsap.to(el, {
+            y: "15%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+        });
+      }
+
       // Fill Text - Scrub only
       {
         // Use 'fill-text' for default, then 'quick-fill' or 'slow-fill' to modify animation end

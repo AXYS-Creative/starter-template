@@ -188,6 +188,20 @@ $min-breakpoints: (
 // Site Scaffolding
 //
 
+@mixin full-viewport-section {
+  @include mq-min("xxl") {
+    height: clamp(750px, 100vh, 1250px);
+  }
+
+  @include mq-max("xxl") {
+    height: clamp(625px, 100vh, 1100px);
+  }
+
+  @include mq-max("md") {
+    height: clamp(500px, 100vh, 950px);
+  }
+}
+
 @mixin section-padding($type: regular) {
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding);

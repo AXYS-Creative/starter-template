@@ -1,7 +1,8 @@
 ---
-title: Post Two
-description: Description Here
-author: AXYS Creative
+title: Post One
+description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus enim soluta aliquid.
+poster: /static/img/library/library-sample-3.webp
+author: Author Here
 date: 2020-09-01
 tags:
   - left

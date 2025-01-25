@@ -1,36 +1,33 @@
 ---
-layout: blog
+layout: archive-blog
 ---
 
 {% set postslist = collections.post %}
 
-<section class="">
-  {% for post in postslist | reverse %}
-  <article class="">
-    <h2 class="">
-      <a href="{{ post.url | url }}">
-        <!-- prettier-ignore -->
-        {% if post.data.title %} 
-            {{ post.data.title }} 
-        {% else %} 
-            Untitled 
-        {%endif %}
-        <!-- prettier-ignore -->
-      </a>
-    </h2>
-    <p class="">
-      <time>
-        {{ post.date | readableDate }} by
-        <a>{{ post.data.author }}</a>
-      </time>
-    </p>
-    {% if post.data.description %}
-    <p class="">{{ post.data.description }}</p>
-    {% endif %}
+<!-- prettier-ignore -->
+{% for post in postslist | reverse %}
+<article class="blog-article">
+  <figure class="blog-article__img">
+    <img class="parallax" src="{{ post.data.poster }}" alt="" />
+  </figure>
+  <h2 class="h3 blog-article__title">
+    <a class="h3 classic-link" href="{{ post.url | url }}">
+      <!-- prettier-ignore -->
+      {{ post.data.title or 'Untitled' }}
+    </a>
+  </h2>
+  <p class="blog-article__date">
+    <time>
+      {{ post.date | readableDate }} by
+      <a>{{ post.data.author }}</a>
+    </time>
+  </p>
+  {% if post.data.description %}
+  <p class="blog-article__details">{{ post.data.description }}</p>
+  {% endif %}
 
-    <p>
-      <a href="{{ post.url | url }}" class=""> Read more → </a>
-    </p>
-  </article>
-  {% endfor %}
-</section>
+  <p>
+    <a href="{{ post.url | url }}" class=""> Read more → </a>
+  </p>
+</article>
+{% endfor %}

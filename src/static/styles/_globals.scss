@@ -415,18 +415,6 @@ body {
 
 section {
   @include section-padding;
-
-  &.hero {
-    padding-block: 380px;
-
-    @include mq-max("xxl") {
-      padding-block: 320px;
-    }
-
-    @include mq-max("md") {
-      padding-block: 248px;
-    }
-  }
 }
 
 h1,
@@ -505,4 +493,8 @@ figure {
   font-size: 0; // Chrome's user agent stylesheet adds 1em padding-block-end
 }
 
-// Components
+// Partials
+
+.hero {
+  @include full-viewport-section;
+}
