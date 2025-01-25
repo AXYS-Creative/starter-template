@@ -1,0 +1,11 @@
+.cta-1 {
+  border: 1px solid var(--font-color--primary);
+  border-radius: var(--radius-btn);
+  padding: 8px 24px;
+}
+
+.cta-group {
+  @include row-center;
+  gap: 24px;
+  flex-shrink: 0;
+}

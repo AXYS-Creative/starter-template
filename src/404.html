@@ -5,12 +5,14 @@ path: 404
 title: 404 | Page not found
 description: The page you are looking for cannot be found. Please check the URL or return to the home page.
 author: CHANGE ME
+
+cta_1_text: Return home
+cta_1_url: /
 ---
 
 <section class="error">
-  <h1>404 error</h1>
+  <h1><span>404</span> error</h1>
   <p>The page you’re looking for doesn’t exist</p>
-  <div class="cta-group">
-    <a href="/" class="cta-1">Return home</a>
-  </div>
+
+  {% include "./_includes/components/cta-group.html" %}
 </section>

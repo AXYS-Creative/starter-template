@@ -1,4 +1,4 @@
-{% if marquee.marquee_toggle %}
+{% if marquee_toggle %}
 
 <div
   class="marquee {%if marquee_scrub%}marquee--scrub{%endif%}"
@@ -7,14 +7,14 @@
 >
   <div class="marquee-inner" aria-hidden="true">
     <p class="marquee-text">
-      <span>{{marquee_text}}</span>
-      <span>{{marquee_text}}</span>
+      <span>{{ marquee_text }}</span>
+      <span>{{ marquee_text }}</span>
     </p>
   </div>
   <div class="marquee-inner" aria-hidden="true">
     <p class="marquee-text">
-      <span>{{marquee_text}}</span>
-      <span>{{marquee_text}}</span>
+      <span>{{ marquee_text }}</span>
+      <span>{{ marquee_text }}</span>
     </p>
   </div>
 </div>

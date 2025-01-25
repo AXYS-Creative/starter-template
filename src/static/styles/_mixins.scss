@@ -188,11 +188,11 @@ $min-breakpoints: (
 // Site Scaffolding
 //
 
-@mixin section-padding($type: "regular") {
+@mixin section-padding($type: regular) {
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding);
 
-  @if $type == "thin" {
+  @if $type == thin {
     @include mq-min("lg") {
       padding-inline: calc(var(--body-padding) * 4);
     }

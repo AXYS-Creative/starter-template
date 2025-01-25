@@ -1,0 +1,31 @@
+.social-media-links {
+  display: flex;
+  gap: 24px;
+
+  @include mq-max("md") {
+    gap: 12px;
+  }
+
+  .social-media-link {
+    --link-size: 24px;
+
+    @include row-center;
+    width: var(--link-size);
+    height: var(--link-size);
+    overflow: hidden;
+    transition: 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      scale: 1.1;
+    }
+
+    &__img {
+      background: currentColor;
+      mask-size: cover;
+      mask-position: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

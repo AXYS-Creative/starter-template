@@ -14,9 +14,10 @@
  "./pages/style-guide",
  "./pages/404";
 
-// Partials
+// Components
 // prettier-ignore
-// @import "./components/marquee";
+@import "./components/cta-group",
+"./components/social-media";
 
 // Library // Delete after pulling files
 // prettier-ignore
