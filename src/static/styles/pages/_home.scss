@@ -1,4 +1,5 @@
 .hero {
+  @include full-viewport-section;
   @include column-center;
   gap: 24px;
 

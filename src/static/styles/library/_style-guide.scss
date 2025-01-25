@@ -2,7 +2,7 @@
   .hero {
     align-items: flex-start;
     gap: var(--section-gap);
-    padding-block: 216px;
+    padding-block: 650px;
 
     @include mq-max("md") {
       padding-block: 164px;

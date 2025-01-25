@@ -9,9 +9,7 @@
 
 // Pages
 // prettier-ignore
-@import "./pages/advanced",
- "./pages/home",
- "./pages/style-guide",
+@import "./pages/home",
  "./pages/404";
 
 // Components
@@ -22,8 +20,10 @@
 // Library // Delete after pulling files
 // prettier-ignore
 @import "./library/accordion",
+  "./library/advanced",
   "./library/blog-archive",
   "./library/blog-post",
   "./library/grid-flow-img",
   "./library/horizontal-scroll",
+  "./library/style-guide",
   "./library/marquee";
