@@ -1134,7 +1134,7 @@ figure {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  aspect-ratio: 2.5/1;
+  aspect-ratio: 2/1;
   -o-object-fit: cover;
      object-fit: cover;
   overflow: hidden;
