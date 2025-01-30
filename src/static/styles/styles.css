@@ -54,7 +54,7 @@ body:has(.site-loader) .hero h1,
 body:has(.site-loader) .hero p,
 body:has(.site-loader) .hero div {
   opacity: 0;
-  transition: 1s ease 0.25s;
+  transition: opacity 1s ease 0.25s;
 }
 body:has(.site-loader) .hero p {
   transition-delay: 0.325s;
@@ -415,10 +415,6 @@ body:has(.load-complete) .hero div {
     order: 1;
     translate: 0 0;
   }
-}
-.site-footer .return-to-top,
-.site-footer .axys-link {
-  translate: -8px;
 }
 @media screen and (max-width: 768px) {
   .site-footer .return-to-top,

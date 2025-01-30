@@ -37,7 +37,7 @@ body {
       p,
       div {
         opacity: 0;
-        transition: $duration ease $delay;
+        transition: opacity $duration ease $delay;
       }
 
       p {
@@ -384,8 +384,6 @@ body {
 
   .return-to-top,
   .axys-link {
-    translate: -8px;
-
     @include mq-max("md") {
       font-size: 12px;
     }
