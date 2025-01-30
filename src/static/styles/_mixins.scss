@@ -185,8 +185,31 @@ $min-breakpoints: (
 }
 
 //
-// Site Scaffolding
+// Site Layout and Theme
 //
+
+@mixin dark-theme {
+  --background-color: #{$black};
+  --font-color--primary: #{$white};
+
+  background-color: var(--background-color);
+  color: var(--font-color--primary);
+}
+
+@mixin ultra-wide($bg-color: $test-bg, $z-index: -1) {
+  &::before {
+    content: "";
+    isolation: isolate;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+    width: 100vw;
+    height: 100%;
+    background-color: $bg-color;
+    z-index: $z-index;
+  }
+}
 
 @mixin full-viewport-section {
   @include mq-min("xxl") {
@@ -204,7 +227,7 @@ $min-breakpoints: (
 
 @mixin section-padding($type: regular) {
   padding-inline: var(--body-padding);
-  padding-block: var(--body-padding);
+  padding-block: var(--body-padding-double);
 
   @if $type == thin {
     @include mq-min("lg") {
@@ -230,7 +253,7 @@ $min-breakpoints: (
 }
 
 //
-// Flex Layout
+// Flex Layout & Positioning
 //
 
 @mixin row-center($justify-content: center) {
@@ -277,4 +300,24 @@ $min-breakpoints: (
   top: 50%;
   left: 50%;
   translate: -50% -50%;
+}
+
+@mixin mask-image($url) {
+  mask-image: url($url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+// Library
+
+@mixin fill-text($color: rgba(255, 255, 255, 0.25)) {
+  display: inline; // for fill line-wrap
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(currentColor, currentColor);
+  -webkit-text-fill-color: $color;
+
+  // filter: drop-shadow(0 0 1px grey); // optional for readability
+  // background-size: 100%; // Alter this for the effect
 }

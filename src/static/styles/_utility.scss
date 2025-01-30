@@ -55,18 +55,12 @@
 
   .fill-text,
   .fill-text-hover {
-    display: inline; // for fill line-wrap
-    background-repeat: no-repeat;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-image: linear-gradient(#fff, #fff);
-    -webkit-text-fill-color: rgb(255 255 255 / 25%);
-    // filter: drop-shadow(0 0 1px grey); // optional for readability
+    @include fill-text;
 
     &:is(.fill-text-hover) {
       background-size: 0%;
-      -webkit-text-fill-color: rgb(255 255 255 / 50%);
-      transition: 0.5s ease;
+      // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+      transition: $ease;
 
       @include desktop-hover {
         background-size: 100%;

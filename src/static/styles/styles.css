@@ -458,7 +458,7 @@ body:has(.load-complete) .hero div {
 
 section {
   padding-inline: var(--body-padding);
-  padding-block: var(--body-padding);
+  padding-block: var(--body-padding-double);
 }
 
 h1,
@@ -750,14 +750,13 @@ figure {
     background-repeat: no-repeat;
     background-clip: text;
     -webkit-background-clip: text;
-    background-image: linear-gradient(#fff, #fff);
+    background-image: linear-gradient(currentColor, currentColor);
     -webkit-text-fill-color: rgba(255, 255, 255, 0.25);
   }
   .fill-text:is(.fill-text-hover),
   .fill-text-hover:is(.fill-text-hover) {
     background-size: 0%;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
-    transition: 0.5s ease;
+    transition: 0.24s ease;
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -940,13 +939,23 @@ figure {
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 48px;
 }
 .accordion-btn {
-  border-bottom: 2px solid var(--font-color--primary);
+  border-bottom: var(--border-bold-girth) solid var(--border-bold-color);
   text-align: left;
+  padding-block: 24px;
 }
-.accordion-btn__title {
+.accordion-btn:first-of-type {
+  border-top: var(--border-bold-girth) solid var(--border-bold-color);
+}
+.accordion-btn[aria-expanded=true] .accordion-label__icon {
+  rotate: 90deg;
+}
+.accordion-btn[aria-expanded=true] .accordion-content {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+.accordion-label {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -957,26 +966,26 @@ figure {
   gap: 24px;
 }
 @media screen and (max-width: 1512px) {
-  .accordion-btn__title {
+  .accordion-label {
     font-size: max(28.7px, 2.4vw);
   }
 }
 @media screen and (max-width: 480px) {
-  .accordion-btn__title {
+  .accordion-label {
     gap: 12px;
   }
 }
-.accordion-btn__title label {
+.accordion-label__title {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   cursor: pointer;
 }
-.accordion-btn__title-icon {
+.accordion-label__icon {
   display: inline-flex;
-  transition: 0.4s cubic-bezier(0.18, 0.97, 0.47, 1), rotate 0.4s ease;
+  transition: 0.24s ease, translate 0.5s cubic-bezier(0.09, 0.9, 0.5, 1);
 }
-.accordion-btn__content {
+.accordion-content {
   --font-size: 18px;
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
@@ -984,26 +993,21 @@ figure {
   font-weight: 400;
   display: grid;
   grid-template-rows: 0fr;
-  transition: 0.4s ease;
+  visibility: hidden;
+  transition: 0.24s ease;
 }
 @media screen and (max-width: 1512px) {
-  .accordion-btn__content {
+  .accordion-content {
     --font-size: 16px;
   }
 }
 @media screen and (max-width: 768px) {
-  .accordion-btn__content {
+  .accordion-content {
     --font-size: 14px;
   }
 }
-.accordion-btn__content-inner {
+.accordion-content__inner {
   overflow: hidden;
-}
-.accordion-btn[aria-expanded=true] .accordion-btn__content {
-  grid-template-rows: 1fr;
-}
-.accordion-btn[aria-expanded=true] .accordion-btn__title-icon {
-  rotate: 90deg;
 }
 
 .main-advanced .grid-flow-img-section {
@@ -1225,7 +1229,7 @@ figure {
   font-size: 72px;
   font-weight: 300;
   padding-inline: var(--body-padding);
-  padding-block: var(--body-padding);
+  padding-block: var(--body-padding-double);
   overflow: hidden;
   width: 100vw;
   max-width: 1920px;

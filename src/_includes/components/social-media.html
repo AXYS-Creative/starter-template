@@ -1,7 +1,5 @@
-{% if social_media.links %}
-
 <ul class="social-media-links">
-  {% for link in social_media.links %}
+  {% for link in social_data %}
   <li>
     <a
       href="{{ link.url }}"
@@ -17,5 +15,3 @@
   </li>
   {% endfor %}
 </ul>
-
-{% endif %}

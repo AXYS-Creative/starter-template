@@ -7,18 +7,18 @@
     aria-expanded="false"
     aria-controls="accordion-item-{{ loop.index }}"
   >
-    <div class="accordion-btn__title">
-      <span>{{ accordion.title }}</span>
+    <div class="accordion-label">
+      <span class="accordion-label__title">{{ accordion.title }}</span>
       <span
-        class="accordion-btn__title-icon magnet magnet-strong"
+        class="accordion-label__icon magnet magnet-strong"
         aria-hidden="true"
       >
         ►
       </span>
     </div>
-    <div class="accordion-btn__content" id="accordion-item-{{ loop.index }}">
-      <div class="accordion-btn__content-inner">
-        <p>{{ accordion.content }}</p>
+    <div class="accordion-content" id="accordion-item-{{ loop.index }}">
+      <div class="accordion-content__inner">
+        <p class="accordion-content__message">{{ accordion.content }}</p>
       </div>
     </div>
   </button>

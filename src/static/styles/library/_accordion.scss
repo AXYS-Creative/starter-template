@@ -1,53 +1,60 @@
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 48px;
 
   &-btn {
-    $transition: 0.4s ease;
+    $border: var(--border-bold-girth) solid var(--border-bold-color);
 
-    border-bottom: 2px solid var(--font-color--primary);
+    // color: var(--font-color--primary);
+    border-bottom: $border;
     text-align: left;
+    padding-block: 24px;
 
-    &__title {
-      @include row-start(space-between);
-      @include h4;
-      gap: 24px;
-
-      @include mq-max("sm") {
-        gap: 12px;
-      }
-
-      label {
-        @include inherit-font;
-        cursor: pointer;
-      }
-
-      &-icon {
-        display: inline-flex;
-        transition: 0.4s $cubic-ease, rotate $transition;
-      }
-    }
-
-    &__content {
-      @include body-font-styles;
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: $transition;
-
-      &-inner {
-        overflow: hidden;
-      }
+    &:first-of-type {
+      border-top: $border;
     }
 
     &[aria-expanded="true"] {
-      .accordion-btn__content {
-        grid-template-rows: 1fr;
-      }
-
-      .accordion-btn__title-icon {
+      .accordion-label__icon {
         rotate: 90deg;
       }
+
+      .accordion-content {
+        grid-template-rows: 1fr;
+        visibility: visible;
+      }
+    }
+  }
+
+  &-label {
+    @include row-start(space-between);
+    @include h4;
+    gap: 24px;
+
+    @include mq-max("sm") {
+      gap: 12px;
+    }
+
+    &__title {
+      @include inherit-font;
+      cursor: pointer;
+    }
+
+    &__icon {
+      display: inline-flex;
+      transition: $ease, $magnet;
+    }
+  }
+
+  &-content {
+    @include body-font-styles;
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: $ease;
+
+    &__inner {
+      overflow: hidden;
     }
   }
 }
