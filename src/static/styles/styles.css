@@ -865,7 +865,7 @@ figure {
 }
 @media screen and (max-width: 768px) {
   .hero {
-    height: clamp(500px, 100vh, 950px);
+    height: clamp(500px, 100svh, 950px);
   }
 }
 .hero h1,
