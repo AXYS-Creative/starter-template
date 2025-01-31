@@ -1,35 +1,47 @@
 import { mqMouse, mqMotionAllow } from "../utility.js";
 
 if (mqMouse.matches && mqMotionAllow.matches) {
-  const magnetEffect = () => {
-    document.querySelectorAll(".magnet").forEach((el) =>
-      el.addEventListener("mousemove", function (e) {
-        const pos = this.getBoundingClientRect();
-        const mx = e.clientX - pos.left - pos.width / 2;
-        const my = e.clientY - pos.top - pos.height / 2;
+  document.querySelectorAll(".magnet").forEach((el) => {
+    let targetX = 0,
+      targetY = 0;
+    let currentX = 0,
+      currentY = 0;
+    const ease = 0.2;
 
-        this.style.translate = `${mx * 0.48}px ${my * 0.48}px`;
+    const animateMagnet = () => {
+      currentX += (targetX - currentX) * ease;
+      currentY += (targetY - currentY) * ease;
 
-        if (this.classList.contains("magnet-weak")) {
-          this.style.translate = `${mx * 0.12}px ${my * 0.12}px`;
-        }
+      el.style.translate = `${currentX}px ${currentY}px`;
 
-        if (this.classList.contains("magnet-strong")) {
-          this.style.translate = `${mx * 0.96}px ${my * 0.96}px`;
-        }
+      requestAnimationFrame(animateMagnet);
+    };
 
-        if (this.classList.contains("magnet-wide-btn")) {
-          this.style.translate = `${mx * 0.48}px ${my * 0.96}px`;
-        }
-      })
-    );
+    animateMagnet();
 
-    document.querySelectorAll(".magnet").forEach((el) =>
-      el.addEventListener("mouseleave", function () {
-        this.style.translate = "0 0";
-      })
-    );
-  };
+    el.addEventListener("mousemove", (e) => {
+      const pos = el.getBoundingClientRect();
+      const mx = e.clientX - pos.left - pos.width / 2;
+      const my = e.clientY - pos.top - pos.height / 2;
 
-  magnetEffect();
+      if (el.classList.contains("magnet-weak")) {
+        targetX = mx * 0.12;
+        targetY = my * 0.12;
+      } else if (el.classList.contains("magnet-strong")) {
+        targetX = mx * 0.96;
+        targetY = my * 0.96;
+      } else if (el.classList.contains("magnet-wide-btn")) {
+        targetX = mx * 0.48;
+        targetY = my * 0.96;
+      } else {
+        targetX = mx * 0.48;
+        targetY = my * 0.48;
+      }
+    });
+
+    el.addEventListener("mouseleave", () => {
+      targetX = 0;
+      targetY = 0;
+    });
+  });
 }

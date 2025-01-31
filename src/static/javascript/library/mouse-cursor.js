@@ -1,43 +1,51 @@
 import { mqMouse, isSafari } from "../utility.js";
+import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor");
 const hideMouse = document.querySelectorAll(".hide-mouse");
 
 if (mqMouse.matches) {
-  // Mouse movement
-  {
-    let mouseX = 0,
-      mouseY = 0;
-    let cursorX = 0,
-      cursorY = 0;
-    let ease = 0.1;
-    if (isSafari()) {
-      ease = 0.2;
-    }
+  let mouseX = 0,
+    mouseY = 0,
+    cursorX = 0,
+    cursorY = 0,
+    startX = 0,
+    startY = 0,
+    progress = 0;
 
-    const animateCursor = () => {
-      const dx = mouseX - cursorX;
-      const dy = mouseY - cursorY;
+  // const easeFunction = cubicBezier(0, 1.2, 0.56, 1.39); // Dramtic
+  const easeFunction = cubicBezier(0.18, 0.97, 0.47, 1); // Standard 'cubic-ease'
 
-      cursorX += dx * ease;
-      cursorY += dy * ease;
+  const duration = isSafari() ? 0.05 : 0.025; // Edit duration here
+
+  const animateCursor = () => {
+    if (progress < 1) {
+      progress = Math.min(progress + duration, 1);
+
+      const easeFactor = easeFunction(progress);
+
+      cursorX = startX + (mouseX - startX) * easeFactor;
+      cursorY = startY + (mouseY - startY) * easeFactor;
 
       cursor.style.translate = `calc(${cursorX}px - 50%) calc(${cursorY}px - 50%)`;
+    }
 
-      requestAnimationFrame(animateCursor);
-    };
+    requestAnimationFrame(animateCursor);
+  };
 
-    animateCursor();
+  animateCursor();
 
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.opacity = 1; // opacity: 0 via inline style
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.opacity = 1;
 
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-  }
+    startX = cursorX;
+    startY = cursorY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    progress = 0;
+  });
 
-  // Mouse hover
+  // Mouse hover effects
   hideMouse.forEach((el) => {
     el.addEventListener("mouseenter", () => {
       cursor.classList.add("hidden");

@@ -737,9 +737,6 @@ figure {
 }
 
 @media all {
-  .magnet {
-    transition: translate 0.5s cubic-bezier(0.09, 0.9, 0.5, 1);
-  }
   .fill-text,
   .fill-text-hover {
     display: inline;
