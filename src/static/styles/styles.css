@@ -1250,4 +1250,36 @@ figure {
   display: inline-flex;
   text-wrap: nowrap;
   gap: 0.5ch;
+}
+
+.mouse-cursor {
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  translate: -50% -50%;
+  z-index: 6;
+  transition: opacity 0.3s ease 0.2s;
+}
+@media (hover: none) and (pointer: coarse) {
+  .mouse-cursor {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mouse-cursor {
+    display: none;
+  }
+}
+.mouse-cursor__shape {
+  border: 2px solid var(--font-color--primary);
+  opacity: 0.25;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
+}
+.mouse-cursor.hidden .mouse-cursor__shape {
+  opacity: 0;
+  width: 148px;
+  height: 148px;
 }/*# sourceMappingURL=styles.css.map */

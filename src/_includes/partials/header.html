@@ -1,5 +1,5 @@
 <header class="site-header" aria-label="Site Header">
-  <a class="header-logo" href="{{ settings.url }}">
+  <a class="header-logo hide-mouse" href="{{ settings.url }}">
     <img
       class="header-logo__icon"
       src="/static/img/logo-light.svg"
@@ -13,7 +13,10 @@
   <ul class="header-links" aria-label="Header navigation">
     {% for item in navigation.items %}
     <li class="">
-      <a class="header-links__link classic-link" href="{{ item.url }}">
+      <a
+        class="header-links__link classic-link tab-element-page"
+        href="{{ item.url }}"
+      >
         {{ item.text }}
       </a>
     </li>

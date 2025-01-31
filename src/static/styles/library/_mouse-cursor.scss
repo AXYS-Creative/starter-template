@@ -1,0 +1,36 @@
+.mouse-cursor {
+  $opacity: opacity $ease 0s;
+  $size: width 0.5s ease, height 0.5s ease;
+
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  translate: -50% -50%;
+  z-index: $z-index--mouse-cursor;
+  transition: opacity 0.3s ease 0.2s; // Initial display
+  // Transition for movement controlled by js for browser compatibility (old safari issues)
+
+  @include mq-touch {
+    display: none;
+  }
+  @include mq-motion-reduce {
+    display: none;
+  }
+
+  &__shape {
+    border: 2px solid var(--font-color--primary);
+    opacity: 0.25;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: $opacity, $size;
+  }
+
+  &.hidden {
+    .mouse-cursor__shape {
+      opacity: 0;
+      width: 148px; // scale makes the border thick
+      height: 148px;
+    }
+  }
+}
