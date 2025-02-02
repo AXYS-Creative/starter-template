@@ -737,6 +737,9 @@ figure {
 }
 
 @media all {
+  .magnet {
+    transition: translate 0.24s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
   .fill-text,
   .fill-text-hover {
     display: inline;
@@ -886,7 +889,7 @@ figure {
 .cta-1 {
   border: 1px solid var(--font-color--primary);
   border-radius: var(--radius-btn);
-  padding: 8px 24px;
+  padding: 12px 24px;
 }
 
 .cta-group {
@@ -976,7 +979,7 @@ figure {
 }
 .accordion-label__icon {
   display: inline-flex;
-  transition: 0.24s ease, translate 0.5s cubic-bezier(0.09, 0.9, 0.5, 1);
+  transition: 0.24s ease, translate 0.24s cubic-bezier(0.18, 0.97, 0.47, 1);
 }
 .accordion-content {
   --font-size: 18px;

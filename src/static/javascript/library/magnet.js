@@ -3,10 +3,10 @@ import { mqMouse, mqMotionAllow } from "../utility.js";
 if (mqMouse.matches && mqMotionAllow.matches) {
   document.querySelectorAll(".magnet").forEach((el) => {
     let targetX = 0,
-      targetY = 0;
-    let currentX = 0,
-      currentY = 0;
-    const ease = 0.2;
+      targetY = 0,
+      currentX = 0,
+      currentY = 0,
+      ease = 0.2;
 
     const animateMagnet = () => {
       currentX += (targetX - currentX) * ease;
