@@ -738,7 +738,7 @@ figure {
 
 @media all {
   .magnet {
-    transition: translate 0.24s cubic-bezier(0.18, 0.97, 0.47, 1);
+    transition: translate 0.025s ease-in;
   }
   .fill-text,
   .fill-text-hover {
@@ -979,7 +979,7 @@ figure {
 }
 .accordion-label__icon {
   display: inline-flex;
-  transition: 0.24s ease, translate 0.24s cubic-bezier(0.18, 0.97, 0.47, 1);
+  transition: 0.24s ease, translate 0.025s ease-in;
 }
 .accordion-content {
   --font-size: 18px;

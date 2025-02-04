@@ -8,16 +8,37 @@ if (mqMouse.matches && mqMotionAllow.matches) {
       currentY = 0,
       ease = 0.2;
 
+    let isAnimating = false;
+
+    const stopThreshold = 0.01;
+
     const animateMagnet = () => {
+      if (!isAnimating) return;
+
       currentX += (targetX - currentX) * ease;
       currentY += (targetY - currentY) * ease;
 
       el.style.translate = `${currentX}px ${currentY}px`;
 
+      if (
+        Math.abs(targetX - currentX) < stopThreshold &&
+        Math.abs(targetY - currentY) < stopThreshold
+      ) {
+        isAnimating = false;
+        currentX = targetX;
+        currentY = targetY;
+        return;
+      }
+
       requestAnimationFrame(animateMagnet);
     };
 
-    animateMagnet();
+    const startAnimation = () => {
+      if (!isAnimating) {
+        isAnimating = true;
+        animateMagnet();
+      }
+    };
 
     el.addEventListener("mousemove", (e) => {
       const pos = el.getBoundingClientRect();
@@ -37,11 +58,14 @@ if (mqMouse.matches && mqMotionAllow.matches) {
         targetX = mx * 0.48;
         targetY = my * 0.48;
       }
+
+      startAnimation();
     });
 
     el.addEventListener("mouseleave", () => {
       targetX = 0;
       targetY = 0;
+      startAnimation();
     });
   });
 }

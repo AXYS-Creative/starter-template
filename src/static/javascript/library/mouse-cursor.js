@@ -13,10 +13,9 @@ if (mqMouse.matches) {
     startY = 0,
     progress = 0;
 
-  // const easeFunction = cubicBezier(0, 1.2, 0.56, 1.39); // Dramtic
-  const easeFunction = cubicBezier(0.18, 0.97, 0.47, 1); // Standard 'cubic-ease'
+  const easeFunction = cubicBezier(0.29, 1.01, 0.16, 1.09);
 
-  const duration = isSafari() ? 0.05 : 0.025; // Edit duration here
+  const duration = isSafari() ? 0.05 : 0.065; // Edit duration here
 
   const animateCursor = () => {
     if (progress < 1) {
