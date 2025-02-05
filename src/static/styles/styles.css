@@ -549,7 +549,8 @@ figcaption,
 blockquote,
 input,
 textarea,
-label {
+label,
+li {
   --font-size: 18px;
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
@@ -566,7 +567,8 @@ label {
   blockquote,
   input,
   textarea,
-  label {
+  label,
+  li {
     --font-size: 16px;
   }
 }
@@ -579,7 +581,8 @@ label {
   blockquote,
   input,
   textarea,
-  label {
+  label,
+  li {
     --font-size: 14px;
   }
 }
@@ -591,7 +594,8 @@ figcaption.body-lg,
 blockquote.body-lg,
 input.body-lg,
 textarea.body-lg,
-label.body-lg {
+label.body-lg,
+li.body-lg {
   --font-size: 18px;
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
@@ -609,7 +613,8 @@ label.body-lg {
   blockquote.body-lg,
   input.body-lg,
   textarea.body-lg,
-  label.body-lg {
+  label.body-lg,
+  li.body-lg {
     --font-size: 16px;
   }
 }
@@ -622,7 +627,8 @@ label.body-lg {
   blockquote.body-lg,
   input.body-lg,
   textarea.body-lg,
-  label.body-lg {
+  label.body-lg,
+  li.body-lg {
     --font-size: 14px;
   }
 }
@@ -635,7 +641,8 @@ label.body-lg {
   blockquote.body-lg,
   input.body-lg,
   textarea.body-lg,
-  label.body-lg {
+  label.body-lg,
+  li.body-lg {
     --font-size: 20px;
   }
 }
@@ -648,7 +655,8 @@ label.body-lg {
   blockquote.body-lg,
   input.body-lg,
   textarea.body-lg,
-  label.body-lg {
+  label.body-lg,
+  li.body-lg {
     --font-size: 16px;
   }
 }
@@ -979,7 +987,7 @@ figure {
 }
 .accordion-label__icon {
   display: inline-flex;
-  transition: 0.24s ease, translate 0.025s ease-in;
+  transition: 0.24s ease;
 }
 .accordion-content {
   --font-size: 18px;

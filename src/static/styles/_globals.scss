@@ -449,7 +449,8 @@ figcaption,
 blockquote,
 input,
 textarea,
-label {
+label,
+li {
   @include body-font-styles;
   text-decoration: none;
 

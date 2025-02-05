@@ -1,6 +1,6 @@
 .mouse-cursor {
-  $opacity: opacity $ease 0s;
-  $size: width 0.5s ease, height 0.5s ease;
+  $ease-opacity: opacity $ease 0s;
+  $ease-size: width 0.5s ease, height 0.5s ease;
 
   position: fixed;
   top: 0;
@@ -18,12 +18,14 @@
   }
 
   &__shape {
+    $size: 48px;
+
     border: 2px solid var(--font-color--primary);
     opacity: 0.25;
-    width: 48px;
-    height: 48px;
+    width: $size;
+    height: $size;
     border-radius: 50%;
-    transition: $opacity, $size;
+    transition: $ease-opacity, $ease-size;
   }
 
   &.hidden {
