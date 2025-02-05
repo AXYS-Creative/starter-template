@@ -1153,6 +1153,21 @@ figure {
      object-position: bottom;
 }
 
+.clip-shape {
+  -webkit-clip-path: path("M 20,0 L 320,0 A 20, 20 0, 0, 1 340,20 L 340,60 A 20, 20 0, 0, 0 360,80 L 480,80 A 20, 20 0, 0, 1 500,100 L 500,480 A 20, 20 0, 0, 1 480,500 L 180,500 A 20, 20 0, 0, 1 160,480 L 160,420 A 20, 20 0, 0, 0 140,400 L 20,400 A 20, 20 0, 0, 1 0,380 L 0,20 A 20, 20 0, 0, 1 20,0 Z");
+          clip-path: path("M 20,0 L 320,0 A 20, 20 0, 0, 1 340,20 L 340,60 A 20, 20 0, 0, 0 360,80 L 480,80 A 20, 20 0, 0, 1 500,100 L 500,480 A 20, 20 0, 0, 1 480,500 L 180,500 A 20, 20 0, 0, 1 160,480 L 160,420 A 20, 20 0, 0, 0 140,400 L 20,400 A 20, 20 0, 0, 1 0,380 L 0,20 A 20, 20 0, 0, 1 20,0 Z");
+  width: 500px;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (max-width: 1024px) {
+  .clip-shape {
+    scale: 0.75;
+    transform-origin: 0 0;
+  }
+}
+
 .grid-flow-parent {
   position: relative;
   overflow: hidden;

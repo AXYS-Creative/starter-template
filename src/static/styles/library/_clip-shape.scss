@@ -1,0 +1,25 @@
+// Use for containers and images
+
+.clip-shape {
+  $A: A 20, 20 0, 0, 1;
+  $AA: A 20, 20 0, 0, 0;
+
+  // M: starts path, L: draws line, Z closes path
+  // A: draws arc, radius 20,20, rotation 0,0,0 (swap last between 0/1)
+  // Generally just copy the arch and swap the concave/convex value (A 50,50 0,0,0)
+
+  clip-path: path(
+    "M 20,0 L 320,0 #{$A} 340,20 L 340,60 #{$AA} 360,80 L 480,80 #{$A} 500,100 L 500,480 #{$A} 480,500 L 180,500 #{$A} 160,480 L 160,420 #{$AA} 140,400 L 20,400 #{$A} 0,380 L 0,20 #{$A} 20,0 Z"
+  );
+
+  // Simple styles
+  width: 500px;
+  height: 500px;
+  // background-color: lightcoral; // for div
+  object-fit: cover;
+
+  @include mq-max("lg") {
+    scale: 0.75;
+    transform-origin: 0 0;
+  }
+}
