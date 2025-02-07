@@ -1,0 +1,18 @@
+<div class="snap-carousel">
+  <div class="snap-carousel__controls">
+    <button id="snap-carousel-btn-prev">Prev</button>
+    <button id="snap-carousel-btn-next">Next</button>
+  </div>
+
+  <div class="snap-carousel__track">
+    <div class="snap-carousel__track-inner">
+      {% for item in list %}
+      <div class="snap-carousel__track-item">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" />
+        <h3 class="h6">{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

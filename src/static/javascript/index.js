@@ -10,5 +10,6 @@ import "./library/accordion.js";
 import "./library/grid-flow-img.js";
 import "./library/magnet.js";
 import "./library/mouse-cursor.js";
+import "./library/snap-carousel.js";
 
 import "./content/tokens.js";

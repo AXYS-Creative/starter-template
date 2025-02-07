@@ -28,6 +28,10 @@
   }
 }
 
+:root {
+  --snap-carousel-gap: 24px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1153,6 +1157,10 @@ figure {
      object-position: bottom;
 }
 
+.clip-shape-section {
+  overflow: hidden;
+}
+
 .clip-shape {
   -webkit-clip-path: path("M 20,0 L 320,0 A 20, 20 0, 0, 1 340,20 L 340,60 A 20, 20 0, 0, 0 360,80 L 480,80 A 20, 20 0, 0, 1 500,100 L 500,480 A 20, 20 0, 0, 1 480,500 L 180,500 A 20, 20 0, 0, 1 160,480 L 160,420 A 20, 20 0, 0, 0 140,400 L 20,400 A 20, 20 0, 0, 1 0,380 L 0,20 A 20, 20 0, 0, 1 20,0 Z");
           clip-path: path("M 20,0 L 320,0 A 20, 20 0, 0, 1 340,20 L 340,60 A 20, 20 0, 0, 0 360,80 L 480,80 A 20, 20 0, 0, 1 500,100 L 500,480 A 20, 20 0, 0, 1 480,500 L 180,500 A 20, 20 0, 0, 1 160,480 L 160,420 A 20, 20 0, 0, 0 140,400 L 20,400 A 20, 20 0, 0, 1 0,380 L 0,20 A 20, 20 0, 0, 1 20,0 Z");
@@ -1161,10 +1169,15 @@ figure {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .clip-shape {
     scale: 0.75;
     transform-origin: 0 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .clip-shape {
+    scale: 0.5;
   }
 }
 
@@ -1229,6 +1242,48 @@ figure {
 .horizontal-scroll .figure img {
   height: 100%;
   width: auto;
+}
+
+.snap-carousel-section {
+  overflow: hidden;
+}
+
+.snap-carousel__controls {
+  padding-block: 24px;
+}
+.snap-carousel__controls button {
+  color: var(--font-color--primary);
+}
+.snap-carousel__controls button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.snap-carousel__track {
+  overflow: hidden;
+  position: relative;
+}
+.snap-carousel__track-inner {
+  display: flex;
+  gap: var(--snap-carousel-gap);
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
+.snap-carousel__track-item {
+  flex: 1;
+  min-width: calc(33% - var(--snap-carousel-gap) / 3);
+}
+@media screen and (max-width: 1024px) {
+  .snap-carousel__track-item {
+    min-width: 500px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .snap-carousel__track-item {
+    min-width: 250px;
+  }
+}
+.snap-carousel__track-item img {
+  pointer-events: none;
 }
 
 .main-style-guide .hero {

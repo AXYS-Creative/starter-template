@@ -1,0 +1,58 @@
+.snap-carousel-section {
+  overflow: hidden;
+}
+
+.snap-carousel {
+  &__controls {
+    padding-block: 24px;
+
+    button {
+      color: var(--font-color--primary);
+
+      &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__track {
+    overflow: hidden; // Prevents scrollbars
+    position: relative;
+
+    &-inner {
+      display: flex;
+      gap: var(--snap-carousel-gap);
+      transition: transform 0.3s ease-in-out;
+      will-change: transform;
+
+      // // Conditional wrapping, also see javascript media query
+      // flex-wrap: wrap;
+      // @include mq-max("lg") {
+      //   flex-wrap: nowrap;
+      // }
+      // // Conditioanl wrapping end
+    }
+  }
+
+  &__track-item {
+    flex: 1;
+    min-width: calc(33% - var(--snap-carousel-gap) / 3);
+
+    // // Conditional wrapping
+    // min-width: calc(30% - var(--snap-carousel-gap) / 3);
+    // // Conditioanl wrapping end
+
+    @include mq-max("lg") {
+      min-width: 500px;
+    }
+
+    @include mq-max("md") {
+      min-width: 250px;
+    }
+
+    img {
+      pointer-events: none;
+    }
+  }
+}

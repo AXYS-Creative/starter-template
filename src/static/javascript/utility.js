@@ -1,9 +1,11 @@
-// export const root = document.documentElement; See portfolio for examples
+export const root = document.documentElement; // See portfolio for examples
 
 export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
 export const mqMotionAllow = window.matchMedia(
   "(prefers-reduced-motion: no-preference)"
 );
+export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
+export const mqMinLg = window.matchMedia("(min-width: 1024px)").matches;
 
 // Get current year for copyright
 {
