@@ -61,7 +61,7 @@ collections:
             hint: "Change velocity based on scroll speed."
       - name: "accordion"
         label: "Accordion"
-        file: "src/_data/library_accordion.yaml"
+        file: "src/_data/library.accordion.yaml"
         preview_path: "#"
         editor:
           preview: false
