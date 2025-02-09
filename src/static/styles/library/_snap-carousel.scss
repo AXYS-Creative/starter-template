@@ -6,6 +6,14 @@
   &__controls {
     padding-block: 24px;
 
+    // // Conditioanl Hiding based on wrapping, ALSO SEE JS MEDIA QUERY
+    // display: none;
+
+    // @include mq-max("lg") {
+    //   display: block;
+    // }
+    // // Conditioanl Hiding based on wrapping
+
     button {
       color: var(--font-color--primary);
 
@@ -17,13 +25,16 @@
   }
 
   &__track {
-    overflow: hidden; // Prevents scrollbars
+    overflow: hidden;
     position: relative;
-    cursor: grab;
+
+    // @include mq-max("lg") {
+    cursor: grab; // Conditional media query based on wrapping
 
     &:active {
       cursor: grabbing;
     }
+    // }
 
     &-inner {
       display: flex;
@@ -31,7 +42,7 @@
       transition: transform 0.3s ease-in-out;
       will-change: transform;
 
-      // // Conditional wrapping, also see javascript media query
+      // // Conditional wrapping, ALSO SEE JS MEDIA QUERY
       // flex-wrap: wrap;
       // @include mq-max("lg") {
       //   flex-wrap: nowrap;
@@ -57,7 +68,9 @@
     }
 
     img {
-      pointer-events: none;
+      // @include mq-max("lg") {
+      pointer-events: none; // Conditional media query based on wrapping
+      // }
     }
   }
 }
