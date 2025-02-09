@@ -19,7 +19,7 @@ const updateCarousel = () => {
       getComputedStyle(root).getPropertyValue("--snap-carousel-gap")
     ) || 0;
   const itemWidth = items[0].offsetWidth + trackGap;
-  const containerWidth = trackInner.parentElement.offsetWidth + trackGap;
+  const containerWidth = trackInner.parentElement.offsetWidth + trackGap * 1.5;
   const trackWidth = items.length * itemWidth;
 
   // Ensure last slide aligns with the right edge

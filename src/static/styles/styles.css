@@ -1261,6 +1261,10 @@ figure {
 .snap-carousel__track {
   overflow: hidden;
   position: relative;
+  cursor: grab;
+}
+.snap-carousel__track:active {
+  cursor: grabbing;
 }
 .snap-carousel__track-inner {
   display: flex;

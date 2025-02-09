@@ -19,6 +19,11 @@
   &__track {
     overflow: hidden; // Prevents scrollbars
     position: relative;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
 
     &-inner {
       display: flex;
