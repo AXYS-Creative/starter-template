@@ -1,0 +1,117 @@
+<mjml>
+  <mj-body>
+    <mj-section padding-top="48px" padding-bottom="24px">
+      <mj-column>
+        <mj-image
+          href="https://example.com"
+          src="https://axyscreative.com/public/email-logo.png"
+          alt="Example Image"
+          width="200px"
+        >
+        </mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="24px">
+      <mj-column
+        background-color="#F0F0F0"
+        border-radius="8px"
+        padding="16px 4px"
+      >
+        <mj-text font-size="20px" color="#E48C66">
+          You have been invited!
+        </mj-text>
+        <mj-spacer height="24px" />
+        <mj-text color="#101010" line-height="24px" font-size="15px">
+          Great news! You've been invited to access the admin dashboard for {{
+          .SiteURL }}. This allows you to edit your site's content at your
+          convenience. Click below to get started.
+        </mj-text>
+        <mj-button
+          href="{{ .ConfirmationURL }}"
+          align="left"
+          background-color="#E48C66"
+          font-size="15px"
+          padding="12px 24px"
+        >
+          Create Your Account
+        </mj-button>
+        <mj-text color="#101010" line-height="24px" font-size="15px">
+          Once you’re in, you can start making updates right away. Please allow
+          2-3 minutes for the build to complete in order to see live changes!
+        </mj-text>
+        <mj-text color="#101010" line-height="24px" font-size="15px">
+          If you have any questions, we’re here to help! Feel free to reach us
+          at
+          <a href="mailto:help@axyscreative.com" style="color: #e48c66">
+            help@axyscreative.com
+          </a>
+        </mj-text>
+        <mj-spacer height="24px" />
+        <mj-text font-size="15px" color="#E48C66">
+          Aaron,
+          <br /><br />
+          AXYS Creative
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="0">
+      <mj-column>
+        <mj-text
+          color="#101010"
+          line-height="24px"
+          font-size="13px"
+          align="center"
+        >
+          This message was sent in response to signing up with
+          <a href="https://axyscreative.com" style="color: #e48c66">
+            axyscreative.com
+          </a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="12px 0">
+      <mj-column>
+        <mj-text
+          align="center"
+          font-size="13px"
+          color="#101010"
+          font-family="helvetica"
+        >
+          Connect with us:
+        </mj-text>
+        <mj-text align="center">
+          <a
+            href="https://www.instagram.com/axyscreative/"
+            style="margin-right: 12px; color: transparent"
+          >
+            <img
+              src="https://axyscreative.com/public/email-link-instagram.png"
+              alt="Instagram"
+              width="36px"
+              style="display: inline"
+            />
+          </a>
+          <a
+            href="https://dribbble.com/axyscreative"
+            style="margin-right: 12px; color: transparent"
+          >
+            <img
+              src="https://axyscreative.com/public/email-link-dribbble.png"
+              alt="Dribbble"
+              width="36px"
+              style="display: inline"
+            />
+          </a>
+          <a href="https://x.com/AXYSCreative">
+            <img
+              src="https://axyscreative.com/public/email-link-twitter-x.png"
+              alt="Twitter/X"
+              width="36px"
+              style="display: inline"
+            />
+          </a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
