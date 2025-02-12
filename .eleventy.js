@@ -92,8 +92,6 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  // Let Eleventy transform HTML files as nunjucks
-  // So that we can use .html instead of .njk
   return {
     dir: {
       input: "src",

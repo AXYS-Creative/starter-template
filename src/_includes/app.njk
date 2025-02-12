@@ -103,12 +103,12 @@
   </head>
   <body>
     <!-- prettier-ignore -->
-    {% include "./partials/header.html" %}
-    {% include "./partials/nav.html" %}
+    {% include "./partials/header.njk" %}
+    {% include "./partials/nav.njk" %}
     <main class="main-content main-{{path}}">{{ content | safe }}</main>
-    {%include "./partials/footer.html" %}
+    {%include "./partials/footer.njk" %}
 
     <!-- prettier-ignore -->
-    {% include "./library/mouse-cursor.html" %}
+    {% include "./library/mouse-cursor.njk" %}
   </body>
 </html>

@@ -30,7 +30,7 @@ description:
 
   <!-- prettier-ignore -->
   {% set list = library.snap_carousel.list %}
-  {% include './_includes/library/snap-carousel.html' %}
+  {% include './_includes/library/snap-carousel.njk' %}
 </section>
 
 <section class="clip-shape-section">
@@ -44,13 +44,13 @@ description:
 {% set marquee_toggle = true %}
 {% set marquee_text = marquee.marquee_text %}
 {% set marquee_scrub = marquee.marquee_scrub %}
-{% include './_includes/library/marquee.html' %}
+{% include './_includes/library/marquee.njk' %}
 
 <section class="accordion-section">
   <h2 class="h6" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <!-- prettier-ignore -->
   {% set accordion_list = library.accordion.accordion_data %}
-  {% include './_includes/library/accordion.html' %}
+  {% include './_includes/library/accordion.njk' %}
 </section>
 
 <section class="fill-text-section">
@@ -81,7 +81,7 @@ description:
 
 <!-- prettier-ignore -->
 {% set title = '[ Horizontal scroll - Component ]' %} 
-{% include './_includes/library/horizontal-scroll.html' %}
+{% include './_includes/library/horizontal-scroll.njk' %}
 
 <section class="fade-text-section">
   <h2 class="h6">[ Fade Text - Utility]</h2>
@@ -114,4 +114,4 @@ description:
 <section class="form-section"></section>
 
 <!-- prettier-ignore -->
-{% include './_includes/partials/loader.html' %}
+{% include './_includes/partials/loader.njk' %}
