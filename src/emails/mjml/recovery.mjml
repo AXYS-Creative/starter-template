@@ -61,12 +61,7 @@
           font-size="13px"
           align="center"
         >
-          <em>
-            This message was sent in response to signing up with
-            <a href="https://axyscreative.com" style="color: #e48c66">
-              axyscreative.com
-            </a>
-          </em>
+          <em>This email was sent automatically — no reply is needed.</em>
         </mj-text>
       </mj-column>
     </mj-section>
