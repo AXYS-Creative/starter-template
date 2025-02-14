@@ -18,13 +18,13 @@
         padding="16px 4px"
       >
         <mj-text font-size="20px" color="#E48C66">
-          You have been invited!
+          Reset your password
         </mj-text>
         <mj-spacer height="24px" />
         <mj-text color="#101010" line-height="24px" font-size="15px">
-          Great news! You've been invited to access the admin dashboard for {{
-          .SiteURL }}. This allows you to edit the website's content at your
-          convenience. Click below to sign up.
+          We received a request to reset your password for {{ .SiteURL }}. If
+          you made this request, click the button below to choose your new
+          password:
         </mj-text>
         <mj-button
           href="{{ .ConfirmationURL }}"
@@ -33,20 +33,14 @@
           font-size="15px"
           padding="12px 24px"
         >
-          Create Your Account
+          Reset Your Password
         </mj-button>
         <mj-text color="#101010" line-height="24px" font-size="15px">
-          Once your account is set up, uou can access the dashboard anytime by
-          visiting:
-          <a href="{{ .SiteURL }}/admin">{{ .SiteURL }}/admin</a>.
-          <strong>
-            After submitting changes, please allow 2-3 minutes for the build to
-            complete before seeing live updates!
-          </strong>
+          If you didn’t request a password reset, you can safely ignore this
+          email.
         </mj-text>
         <mj-text color="#101010" line-height="24px" font-size="15px">
-          If you have any questions, we’re here to help! Feel free to reach us
-          at
+          Need help? Feel free to reach us at
           <a href="mailto:help@axyscreative.com" style="color: #e48c66">
             help@axyscreative.com
           </a>
