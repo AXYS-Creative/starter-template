@@ -14,6 +14,45 @@
       href="../static/img/logo-dark.svg"
       media="(prefers-color-scheme: light)"
     />
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        function removeNetlifyBadge() {
+          let netlifyBadge = document.querySelector(
+            `[class*="NetlifyCreditIcon"]`
+          );
+
+          if (netlifyBadge) {
+            setTimeout(() => {
+              if (netlifyBadge) {
+                netlifyBadge.remove();
+              }
+            }, 500);
+          } else {
+            console.log("Netlify badge not found.");
+          }
+        }
+
+        setTimeout(removeNetlifyBadge, 500);
+
+        const observer = new MutationObserver(() => {
+          removeNetlifyBadge();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Modal updates
+        const netlifyLogin = document.getElementById("netlify-identity-widget");
+
+        if (netlifyLogin) {
+          netlifyLogin.addEventListener("mouseover", () => {
+            console.log("mousing over");
+          });
+        } else {
+          console.log("not found");
+        }
+      });
+    </script> -->
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
