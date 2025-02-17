@@ -43,7 +43,7 @@ collections:
     files:
       - name: "marquee"
         label: "Marquee"
-        file: "src/_data/marquee.yaml"
+        file: "src/_data/library/marquee.yaml"
         preview_path: "#"
         editor:
           preview: false
