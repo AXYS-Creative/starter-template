@@ -14,7 +14,7 @@
   --border-bold-girth: 2px;
   --border-bold-color: #c0c0c0;
   --radius: 16px;
-  --radius-btn: 12px;
+  --radius-btn: 4px;
 }
 @media (max-width: 1512px) {
   :root {
@@ -901,7 +901,9 @@ figure {
 .cta-1 {
   border: 1px solid var(--font-color--primary);
   border-radius: var(--radius-btn);
+  color: var(--font-color--primary);
   padding: 12px 24px;
+  flex-shrink: 0;
 }
 
 .cta-group {
@@ -1364,4 +1366,18 @@ figure {
   opacity: 0;
   width: 148px;
   height: 148px;
+}
+
+.tabs__controls {
+  margin-block-end: var(--section-gap);
+}
+.tabs__btn--active {
+  background: var(--font-color--primary);
+  color: var(--background-color);
+}
+.tabs__panel img {
+  max-width: 480px;
+}
+.tabs__panel--hidden {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */

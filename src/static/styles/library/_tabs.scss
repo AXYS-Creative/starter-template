@@ -1,0 +1,26 @@
+// .tabs-section {
+
+// }
+
+.tabs {
+  &__controls {
+    margin-block-end: var(--section-gap);
+  }
+
+  &__btn {
+    &--active {
+      background: var(--font-color--primary);
+      color: var(--background-color);
+    }
+  }
+
+  &__panel {
+    img {
+      max-width: 480px;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}

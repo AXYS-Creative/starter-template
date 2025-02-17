@@ -1,1 +1,24 @@
-<div class="tabs"></div>
+<div class="tabs">
+  <div class="tabs__controls">
+    {% for item in tab_list %}
+    <button class="tabs__btn cta-1" id="tabs__btn-{{ loop.index }}">
+      Tab {{ loop.index }}
+    </button>
+    {% endfor %}
+  </div>
+
+  <div class="tabs__content">
+    {% for item in tab_list %}
+    <div
+      class="tabs__panel tabs__panel--hidden"
+      id="tabs__panel-{{ loop.index }}"
+    >
+      <h3>{{ item.title }}</h3>
+
+      <p>{{ item.description }}</p>
+
+      <img src="{{ item.img }}" alt="" />
+    </div>
+    {% endfor %}
+  </div>
+</div>
