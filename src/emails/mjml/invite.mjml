@@ -36,7 +36,7 @@
           Create Your Account
         </mj-button>
         <mj-text color="#101010" line-height="24px" font-size="15px">
-          Once your account is set up, uou can access the dashboard anytime by
+          Once your account is set up, you can access the dashboard anytime by
           visiting:
           <a href="{{ .SiteURL }}/admin">{{ .SiteURL }}/admin</a>.
           <strong>
