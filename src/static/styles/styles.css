@@ -1369,7 +1369,7 @@ figure {
 }
 
 .tabs__controls {
-  margin-block-end: var(--section-gap);
+  padding-block: var(--section-gap);
 }
 .tabs__btn--active {
   background: var(--font-color--primary);
