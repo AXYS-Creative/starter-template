@@ -1,11 +1,11 @@
-const accordion = document.querySelector(".accordion");
+const accordions = document.querySelectorAll(".accordion");
 
-if (accordion) {
-  const accordionBtns = document.querySelectorAll(".accordion-btn");
+accordions.forEach((accordion) => {
+  const accordionBtns = accordion.querySelectorAll(".accordion-btn");
 
   accordionBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // accordion behavior single - toggle this block to remove feature
+      // Check if this specific accordion has 'single-accordion'
       if (accordion.classList.contains("single-accordion")) {
         accordionBtns.forEach((otherBtn) => {
           if (otherBtn !== btn) {
@@ -20,4 +20,4 @@ if (accordion) {
       );
     });
   });
-}
+});
