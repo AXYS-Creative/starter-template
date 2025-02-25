@@ -1,0 +1,105 @@
+.form-section {
+  @include column-center;
+  h2 {
+    margin-block-end: 64px;
+  }
+}
+
+.contact-form {
+  @include body-font-styles;
+  @include column-center;
+  gap: 2em;
+  width: min(100%, 768px);
+
+  @include mq-max("md") {
+    width: calc(100% - var(--body-padding) * 2);
+  }
+
+  .form-block {
+    position: relative;
+    width: 100%;
+    height: 2em;
+
+    &:hover,
+    &:focus-within {
+      .label {
+        opacity: 1;
+      }
+    }
+
+    &:has(textarea) {
+      height: 6em;
+    }
+
+    .label,
+    .input {
+      @include row-end(flex-start);
+      font-size: inherit;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 0; // Device compatibility
+    }
+    .label {
+      pointer-events: none;
+      transition: 0.25s ease;
+      opacity: 0.75;
+      white-space: nowrap;
+
+      .nested-label {
+        font-size: max(0.9em, 13px);
+        font-style: oblique;
+        translate: 12px -6px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.6s $cubic-ease, opacity 0s;
+
+        // &.text-error {
+        //   color: var(--accent-color--tertiary);
+        // }
+      }
+    }
+    .input {
+      border: none;
+      border-bottom: 1px solid var(--font-color--primary);
+      background-color: transparent;
+      resize: none;
+    }
+  }
+
+  .form-block-group {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .input:focus ~ .label,
+  .input:not(:placeholder-shown).input:not(focus) ~ .label,
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    translate: 0 -100%;
+    font-size: 0.8em;
+
+    .nested-label {
+      translate: 8px -1px;
+      opacity: 1;
+      visibility: visible;
+
+      transition: 0.6s $cubic-ease, opacity 0.6s $cubic-ease 0.4s;
+    }
+  }
+
+  .recaptcha {
+    width: 304px;
+    height: 78px;
+
+    @include mq-max("sm") {
+      scale: 0.8;
+    }
+  }
+
+  .cta {
+    width: max(25%, 128px);
+  }
+}

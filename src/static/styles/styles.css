@@ -1183,6 +1183,117 @@ figure {
   }
 }
 
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-section h2 {
+  margin-block-end: 64px;
+}
+
+.contact-form {
+  --font-size: 18px;
+  color: var(--font-color--primary);
+  font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
+  font-size: var(--font-size);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  width: min(100%, 768px);
+}
+@media screen and (max-width: 1512px) {
+  .contact-form {
+    --font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contact-form {
+    --font-size: 14px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contact-form {
+    width: calc(100% - var(--body-padding) * 2);
+  }
+}
+.contact-form .form-block {
+  position: relative;
+  width: 100%;
+  height: 2em;
+}
+.contact-form .form-block:hover .label, .contact-form .form-block:focus-within .label {
+  opacity: 1;
+}
+.contact-form .form-block:has(textarea) {
+  height: 6em;
+}
+.contact-form .form-block .label,
+.contact-form .form-block .input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  font-size: inherit;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.contact-form .form-block .label {
+  pointer-events: none;
+  transition: 0.25s ease;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.contact-form .form-block .label .nested-label {
+  font-size: max(0.9em, 13px);
+  font-style: oblique;
+  translate: 12px -6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0s;
+}
+.contact-form .form-block .input {
+  border: none;
+  border-bottom: 1px solid var(--font-color--primary);
+  background-color: transparent;
+  resize: none;
+}
+.contact-form .form-block-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+.contact-form .input:focus ~ .label,
+.contact-form .input:not(:placeholder-shown).input:not(focus) ~ .label, .contact-form:-webkit-autofill, .contact-form:-webkit-autofill:hover, .contact-form:-webkit-autofill:focus {
+  translate: 0 -100%;
+  font-size: 0.8em;
+}
+.contact-form .input:focus ~ .label .nested-label,
+.contact-form .input:not(:placeholder-shown).input:not(focus) ~ .label .nested-label, .contact-form:-webkit-autofill .nested-label, .contact-form:-webkit-autofill:hover .nested-label, .contact-form:-webkit-autofill:focus .nested-label {
+  translate: 8px -1px;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
+  transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
+}
+.contact-form .recaptcha {
+  width: 304px;
+  height: 78px;
+}
+@media screen and (max-width: 480px) {
+  .contact-form .recaptcha {
+    scale: 0.8;
+  }
+}
+.contact-form .cta {
+  width: max(25%, 128px);
+}
+
 .grid-flow-parent {
   position: relative;
   overflow: hidden;

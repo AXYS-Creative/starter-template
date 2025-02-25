@@ -119,7 +119,13 @@ description:
 
 <section class="carousel-section"></section>
 
-<section class="form-section"></section>
+<section class="form-section">
+  <h2 class="h6">[ Contact Form - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set form_data = library.contact_form.form_data %}
+  {% include "./_includes/library/contact-form.njk" %}
+</section>
 
 <!-- prettier-ignore -->
 {% include './_includes/partials/loader.njk' %}
