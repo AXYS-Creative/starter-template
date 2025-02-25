@@ -133,6 +133,6 @@ collections:
           - name: "og_image"
             label: "Open Graph Image"
             widget: "image"
-            default: "https://joinsunder-cms.netlify.app/static/img/og-image.png"
+            default: "https://CHANGE-ME.com/static/img/og-image.png"
             required: true
             hint: "Recommended formats: PNG or JPG. Recommended image dimensions: 1200 x 630 pixels. File size should be under 8 MB."

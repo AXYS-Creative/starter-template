@@ -1352,6 +1352,12 @@ figure {
   aspect-ratio: 586/880;
   overflow: hidden;
 }
+@media screen and (max-width: 1024px) {
+  .horizontal-scroll .figure {
+    width: 50vw;
+    aspect-ratio: 1/1.5;
+  }
+}
 .horizontal-scroll .figure img {
   height: 100%;
   width: auto;
