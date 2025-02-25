@@ -6,7 +6,7 @@
   name="contact-form"
   netlify
   netlify-honeybot="bot-field"
-  {% if form_data.show_recaptcha == 'true' %}
+  {% if form_data.show_recaptcha == true %}
     data-netlify-recaptcha="true"
     hidden
   {% endif %}
@@ -130,7 +130,7 @@
   {% endif %}
 
   <!-- prettier-ignore -->
-  {% if form_data.show_recaptcha == 'true' %}
+  {% if form_data.show_recaptcha == true %}
   <div data-netlify-recaptcha="true" class="recaptcha" style="width: 304px; height: 78px;"></div>
   {% endif %}
 
