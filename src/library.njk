@@ -12,7 +12,8 @@ description:
   <p>
     A playground to build out components and utilites that can be stored as a
     template. <br />
-    Be sure to delete the following:
+    Pick what you need from the library and then be sure to delete the
+    following:
   </p>
   <ol>
     <li>JS library directory</li>
@@ -120,11 +121,19 @@ description:
 <section class="carousel-section"></section>
 
 <section class="form-section">
-  <h2 class="h6">[ Contact Form - Component ]</h2>
+  <h2 class="h6">[ Feedback Form - Component ]</h2>
 
   <!-- prettier-ignore -->
-  {% set form_data = library.contact_form.form_data %}
-  {% include "./_includes/library/contact-form.njk" %}
+  {% set form_data = library.form_contact.form_data %}
+  {% include "./_includes/library/form-feedback.njk" %}
+</section>
+
+<section class="form-section">
+  <h2 class="h6">[ Redirect Form - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_redirect.form_data %}
+  {% include "./_includes/library/form-redirect.njk" %}
 </section>
 
 <!-- prettier-ignore -->

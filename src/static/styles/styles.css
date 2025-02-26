@@ -1193,7 +1193,8 @@ figure {
   margin-block-end: 64px;
 }
 
-.contact-form {
+.form-feedback,
+.form-redirect {
   --font-size: 18px;
   color: var(--font-color--primary);
   font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
@@ -1207,33 +1208,42 @@ figure {
   width: min(100%, 768px);
 }
 @media screen and (max-width: 1512px) {
-  .contact-form {
+  .form-feedback,
+  .form-redirect {
     --font-size: 16px;
   }
 }
 @media screen and (max-width: 768px) {
-  .contact-form {
+  .form-feedback,
+  .form-redirect {
     --font-size: 14px;
   }
 }
 @media screen and (max-width: 768px) {
-  .contact-form {
+  .form-feedback,
+  .form-redirect {
     width: calc(100% - var(--body-padding) * 2);
   }
 }
-.contact-form .form-block {
+.form-feedback .form-block,
+.form-redirect .form-block {
   position: relative;
   width: 100%;
   height: 2em;
 }
-.contact-form .form-block:hover .label, .contact-form .form-block:focus-within .label {
+.form-feedback .form-block:hover .label, .form-feedback .form-block:focus-within .label,
+.form-redirect .form-block:hover .label,
+.form-redirect .form-block:focus-within .label {
   opacity: 1;
 }
-.contact-form .form-block:has(textarea) {
+.form-feedback .form-block:has(textarea),
+.form-redirect .form-block:has(textarea) {
   height: 6em;
 }
-.contact-form .form-block .label,
-.contact-form .form-block .input {
+.form-feedback .form-block .label,
+.form-feedback .form-block .input,
+.form-redirect .form-block .label,
+.form-redirect .form-block .input {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -1243,13 +1253,15 @@ figure {
   height: 100%;
   border-radius: 0;
 }
-.contact-form .form-block .label {
+.form-feedback .form-block .label,
+.form-redirect .form-block .label {
   pointer-events: none;
   transition: 0.25s ease;
   opacity: 0.75;
   white-space: nowrap;
 }
-.contact-form .form-block .label .nested-label {
+.form-feedback .form-block .label .nested-label,
+.form-redirect .form-block .label .nested-label {
   font-size: max(0.9em, 13px);
   font-style: oblique;
   translate: 12px -6px;
@@ -1257,40 +1269,55 @@ figure {
   visibility: hidden;
   transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0s;
 }
-.contact-form .form-block .input {
+.form-feedback .form-block .input,
+.form-redirect .form-block .input {
   border: none;
   border-bottom: 1px solid var(--font-color--primary);
   background-color: transparent;
   resize: none;
 }
-.contact-form .form-block-group {
+.form-feedback .form-block-group,
+.form-redirect .form-block-group {
   display: flex;
   gap: 12px;
   width: 100%;
 }
-.contact-form .input:focus ~ .label,
-.contact-form .input:not(:placeholder-shown).input:not(focus) ~ .label, .contact-form:-webkit-autofill, .contact-form:-webkit-autofill:hover, .contact-form:-webkit-autofill:focus {
+.form-feedback .input:focus ~ .label,
+.form-feedback .input:not(:placeholder-shown).input:not(focus) ~ .label, .form-feedback:-webkit-autofill, .form-feedback:-webkit-autofill:hover, .form-feedback:-webkit-autofill:focus,
+.form-redirect .input:focus ~ .label,
+.form-redirect .input:not(:placeholder-shown).input:not(focus) ~ .label,
+.form-redirect:-webkit-autofill,
+.form-redirect:-webkit-autofill:hover,
+.form-redirect:-webkit-autofill:focus {
   translate: 0 -100%;
   font-size: 0.8em;
 }
-.contact-form .input:focus ~ .label .nested-label,
-.contact-form .input:not(:placeholder-shown).input:not(focus) ~ .label .nested-label, .contact-form:-webkit-autofill .nested-label, .contact-form:-webkit-autofill:hover .nested-label, .contact-form:-webkit-autofill:focus .nested-label {
+.form-feedback .input:focus ~ .label .nested-label,
+.form-feedback .input:not(:placeholder-shown).input:not(focus) ~ .label .nested-label, .form-feedback:-webkit-autofill .nested-label, .form-feedback:-webkit-autofill:hover .nested-label, .form-feedback:-webkit-autofill:focus .nested-label,
+.form-redirect .input:focus ~ .label .nested-label,
+.form-redirect .input:not(:placeholder-shown).input:not(focus) ~ .label .nested-label,
+.form-redirect:-webkit-autofill .nested-label,
+.form-redirect:-webkit-autofill:hover .nested-label,
+.form-redirect:-webkit-autofill:focus .nested-label {
   translate: 8px -1px;
   opacity: 1;
   visibility: visible;
   -webkit-transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
   transition: 0.6s cubic-bezier(0.18, 0.97, 0.47, 1), opacity 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
 }
-.contact-form .recaptcha {
+.form-feedback .recaptcha,
+.form-redirect .recaptcha {
   width: 304px;
   height: 78px;
 }
 @media screen and (max-width: 480px) {
-  .contact-form .recaptcha {
+  .form-feedback .recaptcha,
+  .form-redirect .recaptcha {
     scale: 0.8;
   }
 }
-.contact-form .cta {
+.form-feedback .cta,
+.form-redirect .cta {
   width: max(25%, 128px);
 }
 

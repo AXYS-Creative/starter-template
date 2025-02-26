@@ -5,7 +5,8 @@
   }
 }
 
-.contact-form {
+.form-feedback,
+.form-redirect {
   @include body-font-styles;
   @include column-center;
   gap: 2em;

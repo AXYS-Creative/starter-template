@@ -1,0 +1,82 @@
+<form
+  class="form-feedback"
+  action="/"
+  method="post"
+  name="form-feedback"
+  netlify
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="bot-field" />
+
+  <div class="form-block">
+    <input
+      class="input main-content content-start"
+      id="name"
+      name="name"
+      type="text"
+      title="Please enter your first and last name"
+      aria-label="Please enter your first and last name"
+      placeholder=" "
+      required
+    />
+    <label class="label" for="name">Name</label>
+  </div>
+
+  <div class="form-block">
+    <input
+      class="input email-input"
+      id="email"
+      name="email"
+      type="text"
+      title="Please enter your email address"
+      aria-label="Please enter your email address"
+      placeholder=" "
+      required
+    />
+    <label class="label" for="email">Email</label>
+  </div>
+
+  <div class="form-block">
+    <textarea
+      class="input textarea"
+      id="message"
+      name="message"
+      maxlength="250"
+      spellcheck="true"
+      title="Please enter your message here."
+      aria-label="Please enter your message here."
+      aria-describedby="message-label"
+      placeholder=" "
+      required
+    ></textarea>
+    <label
+      class="label form-message-label"
+      id="message-label"
+      for="message"
+      aria-live="assertive"
+    >
+      Message
+      <span class="nested-label"></span>
+    </label>
+  </div>
+
+  <div class="form-footer">
+    <button
+      class="cta-1 magnet magnet-wide-btn"
+      type="submit"
+      aria-label="Send your message"
+    >
+      Send message
+    </button>
+
+    <div class="form-message-container">
+      <p
+        class="status-message"
+        id="status-message"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+    </div>
+  </div>
+</form>

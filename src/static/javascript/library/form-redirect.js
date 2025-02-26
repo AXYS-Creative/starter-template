@@ -1,13 +1,13 @@
-if (document.querySelector(".contact-form")) {
+if (document.querySelector(".form-redirect")) {
   // Telephone Regex
   const phoneInput = document.getElementById("phone");
   phoneInput.addEventListener("input", () => {
     phoneInput.value = phoneInput.value.replace(/\D/g, ""); // Remove all non-digits
   });
 
-  // Textarea max character count
-  const textarea = document.querySelector(".input--textarea");
-  const nestedLabel = document.querySelector(".nested-label");
+  // Textarea max character count (feel free to drop the .form-redirect class if there's only one form/textarea)
+  const textarea = document.querySelector(".form-redirect .input--textarea");
+  const nestedLabel = document.querySelector(".form-redirect .nested-label");
   const maxLength = textarea?.maxLength;
 
   const updateCharCount = () => {

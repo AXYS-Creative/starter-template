@@ -1,0 +1,21 @@
+---
+# used from Netlify after form submission
+layout: app
+path: contact
+
+title: Contact | Thank you!
+description: The page you are looking for cannot be found. Please check the URL or return to the home page.
+# author: CHANGE ME
+
+cta_1_text: Return home
+cta_1_url: /
+---
+
+<section class="error">
+  <h1>Form Submitted</h1>
+  <p>
+    Thank you! We'll be notified of your form submission and reach out shortly.
+  </p>
+
+  {% include "./_includes/components/cta-group.njk" %}
+</section>

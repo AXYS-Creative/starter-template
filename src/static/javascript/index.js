@@ -7,7 +7,8 @@ import "./global/scroll.js";
 
 import "./library/advanced.js";
 import "./library/accordion.js";
-import "./library/contact-form.js";
+import "./library/form-feedback.js";
+import "./library/form-redirect.js";
 import "./library/grid-flow-img.js";
 import "./library/magnet.js";
 import "./library/mouse-cursor.js";
