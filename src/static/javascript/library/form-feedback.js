@@ -1,6 +1,6 @@
 const contactForm = document.querySelector(".form-feedback"),
   statusMessage = document.querySelector(".form-feedback .status-message"),
-  emailInput = document.querySelector(".form-feedback .email-input");
+  emailInput = document.querySelector(".form-feedback .input-email");
 
 const errorClasses = ["error-message", "active"];
 const successClasses = ["success-message", "active"];
@@ -44,7 +44,7 @@ if (contactForm) {
     })
       .then(() => {
         statusMessage.innerHTML = `
-          ✅ Message recieved! I’ll get back to you shortly.
+          ✅ Message recieved! We’ll get back to you shortly.
         `;
         statusMessage.classList.add(...successClasses);
 
@@ -71,8 +71,8 @@ if (contactForm) {
 //
 
 const textareaCount = (() => {
-  const textarea = document.getElementById("message");
-  const charCountLabel = document.querySelector(".nested-label");
+  const textarea = document.querySelector(".form-feedback .input-message");
+  const charCountLabel = document.querySelector(".form-feedback .nested-label");
   const maxLength = textarea?.maxLength;
 
   const updateCharCount = () => {

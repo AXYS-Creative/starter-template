@@ -55,9 +55,9 @@
         visibility: hidden;
         transition: 0.6s $cubic-ease, opacity 0s;
 
-        // &.text-error {
-        //   color: var(--accent-color--tertiary);
-        // }
+        &.text-error {
+          color: yellow;
+        }
       }
     }
     .input {
@@ -83,7 +83,7 @@
     font-size: 0.8em;
 
     .nested-label {
-      translate: 8px -1px;
+      translate: 8px 0;
       opacity: 1;
       visibility: visible;
 
@@ -102,5 +102,24 @@
 
   .cta {
     width: max(25%, 128px);
+  }
+}
+
+.form-feedback {
+  .form-footer {
+    @include column-center;
+    gap: 12px;
+    width: 100%;
+
+    .status-message {
+      opacity: 0;
+      visibility: hidden;
+      transition: $ease;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   }
 }
