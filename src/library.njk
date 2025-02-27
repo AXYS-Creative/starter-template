@@ -34,12 +34,13 @@ description:
   {% include "./_includes/library/tabs.njk" %}
 </section>
 
-<section class="snap-carousel-section">
-  <h2 class="h6">[ Snap Carousel - Component ]</h2>
+<section class="carousel-snap-section">
+  <h2 class="h6">[ Carousel 'Snap' - Component ]</h2>
 
   <!-- prettier-ignore -->
-  {% set list = library.snap_carousel.list %}
-  {% include './_includes/library/snap-carousel.njk' %}
+  {% set carousel_snap_autoplay = library.carousel_snap.autoplay %}
+  {% set list = library.carousel_snap.list %}
+  {% include './_includes/library/carousel-snap.njk' %}
 </section>
 
 <section class="clip-shape-section">

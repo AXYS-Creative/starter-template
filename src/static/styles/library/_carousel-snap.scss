@@ -1,8 +1,8 @@
-.snap-carousel-section {
+.carousel-snap-section {
   overflow: hidden;
 }
 
-.snap-carousel {
+.carousel-snap {
   &__controls {
     padding-block: 24px;
 
@@ -38,7 +38,7 @@
 
     &-inner {
       display: flex;
-      gap: var(--snap-carousel-gap);
+      gap: var(--carousel-snap-gap);
       transition: transform 0.3s ease-in-out;
       will-change: transform;
 
@@ -53,10 +53,10 @@
 
   &__track-item {
     flex: 1;
-    min-width: calc(33% - var(--snap-carousel-gap) / 3);
+    min-width: calc(33% - var(--carousel-snap-gap) / 3);
 
     // // Conditional wrapping
-    // min-width: calc(30% - var(--snap-carousel-gap) / 3);
+    // min-width: calc(30% - var(--carousel-snap-gap) / 3);
     // // Conditioanl wrapping end
 
     @include mq-max("lg") {

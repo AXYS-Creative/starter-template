@@ -1,3 +1,7 @@
+autoplay:
+  enabled: true
+  interval: 5000
+
 list:
   - title: "Title 1"
     description: "Description 1"

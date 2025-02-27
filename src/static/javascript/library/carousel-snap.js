@@ -1,11 +1,11 @@
 import { root, mqMaxLg } from "../utility.js";
 
-const snapCarousel = document.querySelector(".snap-carousel"),
-  trackInner = document.querySelector(".snap-carousel__track-inner"),
-  prevBtn = document.querySelector(".snap-carousel-btn-prev"),
-  nextBtn = document.querySelector(".snap-carousel-btn-next");
+const carouselSnap = document.querySelector(".carousel-snap"),
+  trackInner = document.querySelector(".carousel-snap__track-inner"),
+  prevBtn = document.querySelector(".carousel-snap-btn-prev"),
+  nextBtn = document.querySelector(".carousel-snap-btn-next");
 
-const items = document.querySelectorAll(".snap-carousel__track-item");
+const items = document.querySelectorAll(".carousel-snap__track-item");
 
 let currentIndex = 0;
 let startX = 0;
@@ -15,18 +15,23 @@ let translateX = 0;
 
 // Media query for conditional flex wrapping. Remove import if not used
 // if (mqMaxLg) {
-if (snapCarousel) {
+if (carouselSnap) {
+  const autoplayClass = "autoplay";
+  const autoplayEnabled = carouselSnap.classList.contains(autoplayClass);
+  const autoplayIntervalTime =
+    parseInt(carouselSnap.dataset.autoplayInterval, 10) || 5000;
+  let autoplayInterval;
+
   const updateCarousel = () => {
     const trackGap =
       parseFloat(
-        getComputedStyle(root).getPropertyValue("--snap-carousel-gap")
+        getComputedStyle(root).getPropertyValue("--carousel-snap-gap")
       ) || 0;
     const itemWidth = items[0].offsetWidth + trackGap;
     const containerWidth =
       trackInner.parentElement.offsetWidth + trackGap * 1.5;
     const trackWidth = items.length * itemWidth;
 
-    // Ensure last slide aligns with the right edge
     const maxTranslateX = Math.min(0, containerWidth - trackWidth);
 
     translateX = Math.max(-(currentIndex * itemWidth), maxTranslateX);
@@ -34,27 +39,34 @@ if (snapCarousel) {
     trackInner.style.transform = `translateX(${translateX}px)`;
 
     prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = translateX === maxTranslateX; // Disable if at the end
+    nextBtn.disabled = translateX === maxTranslateX;
   };
 
   nextBtn.addEventListener("click", () => {
     if (currentIndex < items.length - 1) {
       currentIndex++;
-      updateCarousel();
+    } else {
+      currentIndex = 0;
     }
+    updateCarousel();
+    resetAutoplay();
   });
 
   prevBtn.addEventListener("click", () => {
     if (currentIndex > 0) {
       currentIndex--;
-      updateCarousel();
+    } else {
+      currentIndex = items.length - 1;
     }
+    updateCarousel();
+    resetAutoplay();
   });
 
   const startDrag = (event) => {
     isDragging = true;
     trackInner.style.transition = "none";
     startX = event.touches ? event.touches[0].clientX : event.clientX;
+    stopAutoplay();
   };
 
   const onDrag = (event) => {
@@ -78,6 +90,7 @@ if (snapCarousel) {
     }
 
     updateCarousel();
+    resetAutoplay();
   };
 
   trackInner.addEventListener("mousedown", startDrag);
@@ -89,6 +102,37 @@ if (snapCarousel) {
   trackInner.addEventListener("touchmove", onDrag);
   trackInner.addEventListener("touchend", endDrag);
 
+  // ✅ Autoplay Logic (Uses Interval from CMS)
+  const startAutoplay = () => {
+    if (!autoplayEnabled) return;
+    stopAutoplay();
+    autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    }, autoplayIntervalTime);
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+  };
+
+  const resetAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
+
+  // ✅ Watch for Class Changes (In Case CMS Updates Autoplay Setting)
+  const observer = new MutationObserver(() => {
+    autoplayEnabled = carouselSnap.classList.contains(autoplayClass);
+    resetAutoplay();
+  });
+
+  observer.observe(carouselSnap, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
   updateCarousel();
+  startAutoplay();
 }
 // }

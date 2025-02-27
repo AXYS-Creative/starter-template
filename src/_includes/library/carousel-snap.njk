@@ -1,0 +1,21 @@
+<div
+  class="carousel-snap {% if carousel_snap_autoplay.enabled %}autoplay{% endif %}"
+  data-autoplay-interval="{{ carousel_snap_autoplay.interval }}"
+>
+  <div class="carousel-snap__controls">
+    <button class="carousel-snap-btn-prev cta-1 tab-element-page">Prev</button>
+    <button class="carousel-snap-btn-next cta-1 tab-element-page">Next</button>
+  </div>
+
+  <div class="carousel-snap__track">
+    <div class="carousel-snap__track-inner">
+      {% for item in list %}
+      <div class="carousel-snap__track-item">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" />
+        <h3 class="h6">{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

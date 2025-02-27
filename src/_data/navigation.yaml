@@ -1,6 +1,6 @@
 # Dev use only
 
-show_skip_to_content: false
+show_skip_to_content: true
 
 items:
   - text: Home
