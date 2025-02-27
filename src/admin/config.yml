@@ -84,6 +84,45 @@ collections:
                 label: "Content"
                 widget: "text"
                 required: true
+      - name: "carousel_snap"
+        label: "Snap Carousel"
+        file: "src/_data/library/carousel_snap.yaml"
+        preview_path: "/library#carousel-snap"
+        editor:
+          preview: false
+        fields:
+          - name: "autoplay"
+            label: "Autoplay"
+            widget: "object"
+            summary: "{{autoplay.enabled}}, {{autoplay.interval}}"
+            fields:
+              - name: "enabled"
+                label: "Enabled"
+                widget: "boolean"
+              - name: "interval"
+                label: "Interval"
+                widget: "number"
+                hint: "Interval in milliseconds"
+              - name: "allow_user_toggle"
+                label: "Allow User Toggle"
+                widget: "boolean"
+                hint: "Allow users to toggle autoplay"
+          - name: "list"
+            label: "Carousel Items"
+            label_singular: "Item"
+            widget: "list"
+            fields:
+              - name: "title"
+                label: "Title"
+                widget: "string"
+                required: true
+              - name: "description"
+                label: "Description"
+                widget: "text"
+                required: true
+              - name: "image"
+                label: "Image"
+                widget: "image"
   - name: "meta_data"
     label: "Meta Data"
     description: >
