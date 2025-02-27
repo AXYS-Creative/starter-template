@@ -1,6 +1,8 @@
 const siteHeader = document.querySelector(".site-header"),
   siteNav = document.querySelector(".site-nav"),
-  siteNavBtn = document.querySelector(".site-nav-btn");
+  siteNavBtn = document.querySelector(".site-nav-btn"),
+  skipToContent = document.querySelector(".skip-to-content"),
+  contentStart = document.querySelector(".content-start");
 
 const navLinks = document.querySelectorAll(".nav-link"),
   navFooterLinks = document.querySelectorAll(".nav-footer-link"),
@@ -41,6 +43,7 @@ const closeNav = () => {
   tabElementsNav.forEach((el) => el.setAttribute("tabindex", "-1"));
 };
 
+// Close nav when clicking on any nav link (except those with prevent-nav-close class)
 [...navLinks, ...navFooterLinks].forEach((link) => {
   if (!link.classList.contains("prevent-nav-close")) {
     link.addEventListener("click", closeNav);
@@ -48,3 +51,10 @@ const closeNav = () => {
 });
 
 siteNavBtn.addEventListener("click", toggleNav);
+
+// Skip to main content option
+if (skipToContent) {
+  skipToContent.addEventListener("click", () => {
+    contentStart?.focus();
+  });
+}

@@ -11,7 +11,10 @@ layout: archive-blog
     <img class="parallax" src="{{ post.data.poster }}" alt="" />
   </figure>
   <h2 class="h3 blog-article__title">
-    <a class="h3 classic-link" href="{{ post.url | url }}">
+    <a
+      class="h3 classic-link {% if loop.first %}content-start{% endif %}"
+      href="{{ post.url | url }}"
+    >
       <!-- prettier-ignore -->
       {{ post.data.title or 'Untitled' }}
     </a>
@@ -26,8 +29,6 @@ layout: archive-blog
   <p class="blog-article__details">{{ post.data.description }}</p>
   {% endif %}
 
-  <p>
-    <a class="classic-link" href="{{ post.url | url }}"> Read more → </a>
-  </p>
+  <a class="classic-link" href="{{ post.url | url }}"> Read more → </a>
 </article>
 {% endfor %}

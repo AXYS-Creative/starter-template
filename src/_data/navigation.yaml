@@ -1,5 +1,7 @@
 # Dev use only
 
+show_skip_to_content: false
+
 items:
   - text: Home
     url: "/"

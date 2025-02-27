@@ -1,4 +1,8 @@
 <header class="site-header" aria-label="Site Header">
+  {% if navigation.show_skip_to_content %}
+  <button class="skip-to-content">Skip to main content</button>
+  {% endif %}
+
   <a class="header-logo hide-mouse" href="{{ settings.url }}">
     <img
       class="header-logo__icon"

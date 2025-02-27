@@ -183,6 +183,23 @@ body:has(.load-complete) .hero div {
 .site-header.away-from-top > * {
   opacity: 0;
 }
+.site-header .skip-to-content {
+  position: fixed;
+  top: -40px;
+  left: 0;
+  color: #fff;
+  padding: 8px;
+  z-index: 10;
+  transition: top 0.3s ease;
+}
+.site-header .skip-to-content:focus {
+  top: 0;
+}
+@media screen and (max-width: 1200px) {
+  .site-header .skip-to-content {
+    display: none;
+  }
+}
 
 .site-nav {
   position: fixed;

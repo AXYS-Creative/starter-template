@@ -1,7 +1,10 @@
 <div class="tabs">
   <div class="tabs__controls">
     {% for item in tab_list %}
-    <button class="tabs__btn cta-1" id="tabs__btn-{{ loop.index }}">
+    <button
+      class="tabs__btn cta-1 tab-element-page"
+      id="tabs__btn-{{ loop.index }}"
+    >
       Tab {{ loop.index }}
     </button>
     {% endfor %}

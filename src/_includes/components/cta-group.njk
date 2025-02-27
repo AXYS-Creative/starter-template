@@ -1,7 +1,7 @@
 <div class="cta-group">
   {% if cta_1_text %}
   <a
-    class="cta-1 magnet magnet-wide-btn tab-element-page"
+    class="cta-1 magnet magnet-wide-btn tab-element-page {%if content_start%}content-start{%endif%}"
     href="{{ cta_1_url }}"
   >
     {{ cta_1_text }}
