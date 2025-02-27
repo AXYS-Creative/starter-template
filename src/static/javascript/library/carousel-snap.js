@@ -17,10 +17,17 @@ let translateX = 0;
 // if (mqMaxLg) {
 if (carouselSnap) {
   const autoplayClass = "autoplay";
-  const autoplayEnabled = carouselSnap.classList.contains(autoplayClass);
+  const autoplayEnabledByAdmin = carouselSnap.classList.contains(autoplayClass);
   const autoplayIntervalTime =
     parseInt(carouselSnap.dataset.autoplayInterval, 10) || 5000;
+  let autoplayEnabled = autoplayEnabledByAdmin;
   let autoplayInterval;
+
+  // ✅ Check if visitor preference exists
+  const savedAutoplaySetting = localStorage.getItem("carouselAutoplay");
+  if (savedAutoplaySetting !== null) {
+    autoplayEnabled = savedAutoplaySetting === "true";
+  }
 
   const updateCarousel = () => {
     const trackGap =
@@ -102,7 +109,7 @@ if (carouselSnap) {
   trackInner.addEventListener("touchmove", onDrag);
   trackInner.addEventListener("touchend", endDrag);
 
-  // ✅ Autoplay Logic (Uses Interval from CMS)
+  // ✅ Autoplay Logic
   const startAutoplay = () => {
     if (!autoplayEnabled) return;
     stopAutoplay();
@@ -121,16 +128,24 @@ if (carouselSnap) {
     startAutoplay();
   };
 
-  // ✅ Watch for Class Changes (In Case CMS Updates Autoplay Setting)
-  const observer = new MutationObserver(() => {
-    autoplayEnabled = carouselSnap.classList.contains(autoplayClass);
-    resetAutoplay();
-  });
+  // ✅ Accessible Toggle Button Logic
+  const autoplayToggle = document.querySelector(
+    ".carousel-snap-autoplay-toggle"
+  );
+  if (autoplayToggle) {
+    autoplayToggle.setAttribute("aria-pressed", autoplayEnabled.toString());
 
-  observer.observe(carouselSnap, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
+    autoplayToggle.addEventListener("click", () => {
+      autoplayEnabled = !autoplayEnabled;
+      localStorage.setItem("carouselAutoplay", autoplayEnabled); // Save preference
+      autoplayToggle.setAttribute("aria-pressed", autoplayEnabled.toString());
+      autoplayToggle.setAttribute(
+        "aria-label",
+        `Autoplay is ${autoplayEnabled ? "on" : "off"}`
+      );
+      resetAutoplay();
+    });
+  }
 
   updateCarousel();
   startAutoplay();
