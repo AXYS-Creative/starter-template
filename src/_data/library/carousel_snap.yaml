@@ -1,4 +1,5 @@
 autoplay:
+  enabled: true
   interval: 5000
   allow_user_toggle: true
 
