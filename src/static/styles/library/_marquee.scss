@@ -12,6 +12,7 @@
     align-items: center;
     width: fit-content;
     padding-inline-end: $gap-offset;
+    // will-change: transform; // use sparingly.
   }
 
   .marquee-text {

@@ -165,66 +165,92 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Marquee animations
+        // Marquee Animations
         {
           let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
 
-          // Standard
+          // Standard Marquee
           {
             const autoMarquees = gsap.utils.toArray(".marquee-inner");
+            let marqueeTweens = [];
 
-            const marqueeTweens = autoMarquees.map((elem) =>
-              gsap
-                .to(elem, {
-                  xPercent: -50,
-                  repeat: -1,
-                  duration: marqueeSpeed,
-                  ease: "linear",
-                })
-                .totalProgress(0.5)
-            );
+            const createMarqueeTweens = () => {
+              marqueeTweens.forEach((tween) => tween.kill()); // Kill previous tweens to prevent stacking memory
+              marqueeTweens = [];
 
-            let currentScroll = 0;
+              autoMarquees.forEach((elem) => {
+                const tween = gsap
+                  .to(elem, {
+                    xPercent: -50,
+                    repeat: -1,
+                    duration: marqueeSpeed,
+                    ease: "linear",
+                  })
+                  .totalProgress(0.5);
+
+                marqueeTweens.push(tween);
+              });
+            };
+
+            createMarqueeTweens();
+
+            let currentScroll = window.scrollY;
+
             const adjustTimeScale = () => {
               const isScrollingDown = window.scrollY > currentScroll;
+
               marqueeTweens.forEach((tween, index) =>
                 gsap.to(tween, {
                   timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+                  duration: 0.3,
+                  ease: "power2.out",
                 })
               );
+
               currentScroll = window.scrollY;
             };
 
-            window.addEventListener("scroll", adjustTimeScale);
+            window.addEventListener("scroll", adjustTimeScale, {
+              passive: true,
+            });
           }
 
-          // Scrub, use 'marquee_scrub' boolean prop
+          // Scrub Effect for Specific Marquees
           {
             const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
-            let sensitivity = 5;
+            const sensitivity = 5;
+            let scrubTriggers = [];
 
-            scrubMarquees.forEach((scrubElem) => {
-              const marqueeInners =
-                scrubElem.querySelectorAll(".marquee-inner");
+            const createScrubMarquees = () => {
+              scrubTriggers.forEach((trigger) => trigger.kill());
+              scrubTriggers = [];
 
-              marqueeInners.forEach((inner, index) => {
-                gsap.fromTo(
-                  inner,
-                  {
-                    x: index % 2 === 0 ? "0%" : `-${sensitivity}%`,
-                  },
-                  {
-                    x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
-                    scrollTrigger: {
-                      trigger: scrubElem,
-                      start: "top bottom",
-                      end: "bottom top",
-                      scrub: 1,
-                    },
-                  }
-                );
+              scrubMarquees.forEach((scrubElem) => {
+                const marqueeInners =
+                  scrubElem.querySelectorAll(".marquee-inner");
+
+                marqueeInners.forEach((inner, index) => {
+                  const scrubTween = gsap.fromTo(
+                    inner,
+                    { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
+                    {
+                      x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                      scrollTrigger: {
+                        trigger: scrubElem,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                      },
+                    }
+                  );
+
+                  scrubTriggers.push(scrubTween.scrollTrigger);
+                });
               });
-            });
+            };
+
+            createScrubMarquees();
           }
         }
       }

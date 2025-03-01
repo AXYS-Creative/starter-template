@@ -1,3 +1,3 @@
 marquee_toggle: true
-marquee_text: • Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee_text prop to control the content
+marquee_text: • Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee_text prop to control the content # Keep at least 64 characters
 marquee_scrub: true
