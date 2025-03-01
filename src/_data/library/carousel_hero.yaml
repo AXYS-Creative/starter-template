@@ -2,12 +2,12 @@ autoplay:
   interval: 7500 # Not recommended below 3000. Do not drop below 500
 
 slides:
-  - title: "Title 1"
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut voluptatem quis minima, et eum praesentium recusandae sequi molestias! Aspernatur alias, repellendus natus, incidunt vitae ipsam fuga beatae quas animi ut doloribus eos amet provident. Dignissimos sit voluptatem at maiores quisquam? Et repudiandae id perferendis praesentium cumque nesciunt adipisci?"
+  - title: "Carousel Hero"
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo similique, vel quo voluptates voluptatum quidem porro sapiente amet accusamus repellendus. Saepe, officia eos. Est?"
     img: "/static/img/library/landscape-1.webp"
-  - title: "Title 2"
-    desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum, illum! Nobis saepe fugiat sapiente quo quasi ipsam, consequatur sint. Aperiam tempore est mollitia tenetur perspiciatis officia officiis velit vero, corrupti, consequuntur veritatis? Voluptas ipsa eos perferendis cupiditate itaque earum aspernatur, nulla ab quod. Asperiores distinctio exercitationem suscipit deserunt."
+  - title: "Dyanmic Content"
+    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse dolores similique quis ex aspernatur vel quia, eos minima dolorum iure quae officiis obcaecati. Quas!"
     img: "/static/img/library/landscape-2.webp"
-  - title: "Title 3"
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolores voluptatem consequatur perferendis ipsam odit possimus nam in eos maiores reiciendis, voluptas dignissimos voluptatibus sit omnis, id distinctio recusandae fugit tenetur facilis. Itaque fuga eos animi praesentium ducimus. Minima tempora deleniti repellendus facilis nisi incidunt laborum id tempore."
+  - title: "Hero Section"
+    desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos voluptatem, illum ex quae excepturi tempora eius. Reiciendis, animi nemo totam fugit sequi labore recusandae?"
     img: "/static/img/library/landscape-3.webp"
