@@ -140,8 +140,10 @@
     }
 
     img {
+      // Conditional media query based on wrapping
       // @include mq-max("lg") {
-      pointer-events: none; // Conditional media query based on wrapping
+      pointer-events: none;
+      user-select: none;
       // }
     }
   }

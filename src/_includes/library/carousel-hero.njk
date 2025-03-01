@@ -1,0 +1,14 @@
+<section
+  class="carousel-hero"
+  data-carousel-interval="{{ carousel_hero_autoplay.interval }}"
+>
+  {% for slide in carousel_hero_slides %}
+  <div class="carousel-hero__slide">
+    <div class="carousel-hero__text">
+      <h2 class="carousel-hero__title">{{ slide.title }}</h2>
+      <p class="carousel-hero__desc">{{ slide.desc }}</p>
+    </div>
+    <img class="carousel-hero__img" src="{{ slide.img }}" alt="" />
+  </div>
+  {% endfor %}
+</section>

@@ -34,6 +34,11 @@ description:
   {% include "./_includes/library/tabs.njk" %}
 </section>
 
+<!-- prettier-ignore -->
+{% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
+{% set carousel_hero_slides = library.carousel_hero.slides %}
+{% include "./_includes/library/carousel-hero.njk" %}
+
 <section class="carousel-snap-section">
   <h2 class="h6">[ Carousel 'Snap' - Component ]</h2>
 
@@ -47,7 +52,7 @@ description:
   <h2 class="h6">[ Clip Image ]</h2>
 
   <!-- <div class="clip-shape"></div> -->
-  <img class="clip-shape" src="/static/img/library/library-sample-1.webp" />
+  <img class="clip-shape" src="/static/img/library/landscape-1.webp" />
 </section>
 
 <!-- prettier-ignore -->
