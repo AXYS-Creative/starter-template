@@ -72,18 +72,24 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
       {
         // Parallax
         {
-          const parallax = document.querySelectorAll(".parallax");
+          const parallaxConfigs = [
+            { selector: ".parallax", y: "15%", scrub: 1 },
+            { selector: ".parallax--strong", y: "25%", scrub: 1 },
+            { selector: ".parallax--reverse", y: "-25%", scrub: 0.25 },
+          ];
 
-          parallax.forEach((el) => {
-            gsap.to(el, {
-              y: "15%",
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
-              },
+          parallaxConfigs.forEach(({ selector, y, scrub }) => {
+            document.querySelectorAll(selector).forEach((el) => {
+              gsap.to(el, {
+                y,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub,
+                },
+              });
             });
           });
         }
