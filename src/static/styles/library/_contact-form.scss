@@ -56,7 +56,7 @@
         transition: 0.6s $cubic-ease, opacity 0s;
 
         &.text-error {
-          color: yellow;
+          color: var(--font-color--error);
         }
       }
     }

@@ -1,13 +1,40 @@
 .carousel-hero {
   @include full-viewport-section;
   position: relative;
-  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      35deg,
+      var(--background-color) 0%,
+      transparent 45%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
 
   &__text {
     position: absolute;
     bottom: var(--body-padding);
     left: var(--body-padding);
     z-index: 1;
+    width: 50%;
+
+    .carousel-hero__title {
+      display: flex;
+      margin-block-end: 24px;
+      overflow: hidden;
+      line-height: 1;
+
+      span {
+        animation: carousel-title-default $ease-c;
+      }
+    }
   }
 
   &__img {
@@ -24,15 +51,44 @@
   &__slide {
     .carousel-hero__text,
     .carousel-hero__img {
-      opacity: 0;
-      transition: 0.75s $ease;
+      @include hide-content;
+      transition: $ease-c;
     }
 
     &.active {
       .carousel-hero__text,
       .carousel-hero__img {
-        opacity: 1;
+        @include show-content;
       }
+
+      .carousel-hero__img {
+        pointer-events: none;
+      }
+
+      .carousel-hero__title {
+        span {
+          animation: carousel-title-reveal $ease-c;
+          transition: $ease-c;
+        }
+      }
+    }
+  }
+
+  // animations, they should be good to stay here
+  @keyframes carousel-title-reveal {
+    0% {
+      translate: 0 100%;
+    }
+    100% {
+      translate: 0 0;
+    }
+  }
+  @keyframes carousel-title-default {
+    0% {
+      translate: 0 0;
+    }
+    100% {
+      translate: 0 -100%;
     }
   }
 }
