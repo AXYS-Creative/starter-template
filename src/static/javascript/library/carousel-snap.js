@@ -129,9 +129,21 @@ if (carouselSnap) {
   };
 
   // ✅ Accessible Toggle Button Logic
+  // This logic could be thrown in a buttons.js file? Reuse across different button--toggle components
   const autoplayToggle = document.querySelector(
-    ".carousel-snap-autoplay-toggle"
-  );
+      ".carousel-snap-autoplay-toggle"
+    ),
+    autoplayToggleLabel = document.querySelector(
+      ".carousel-snap-autoplay-toggle__label"
+    ).innerHTML,
+    autoplayToggleLabelTrue = document
+      .querySelector(".carousel-snap-autoplay-toggle__switch")
+      .getAttribute("data-label-true"),
+    autoplayToggleLabelFalse = document
+      .querySelector(".carousel-snap-autoplay-toggle__switch")
+      .getAttribute("data-label-false");
+
+  // This logic could be thrown in a buttons.js file? Reuse across different button--toggle components
   if (autoplayToggle) {
     autoplayToggle.setAttribute("aria-pressed", autoplayEnabled.toString());
 
@@ -141,7 +153,9 @@ if (carouselSnap) {
       autoplayToggle.setAttribute("aria-pressed", autoplayEnabled.toString());
       autoplayToggle.setAttribute(
         "aria-label",
-        `Autoplay is ${autoplayEnabled ? "on" : "off"}`
+        `${autoplayToggleLabel}${
+          autoplayEnabled ? autoplayToggleLabelTrue : autoplayToggleLabelFalse
+        }`
       );
       resetAutoplay();
     });

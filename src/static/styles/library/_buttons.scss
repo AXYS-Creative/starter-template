@@ -1,0 +1,70 @@
+.btn--toggle {
+  $switch-width: 64px;
+  $switch-padding: 4px;
+
+  @include row-center;
+  gap: 12px;
+
+  &__label {
+    @include body-font-styles;
+  }
+
+  &__switch {
+    @include row-center(space-around);
+    position: relative;
+    padding-inline: $switch-padding;
+    width: $switch-width;
+    height: 32px;
+    border-radius: var(--radius);
+    background: $grey-light;
+
+    &::before,
+    &::after {
+      color: $white;
+      font-weight: 700;
+      font-size: 12px;
+
+      @include mq-motion-allow {
+        transition: $ease;
+      }
+    }
+
+    &::before {
+      content: attr(data-label-true);
+      opacity: 0;
+    }
+
+    &::after {
+      content: attr(data-label-false);
+      opacity: 1;
+    }
+
+    &-nob {
+      position: absolute;
+      left: $switch-padding;
+      width: 24px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: $white;
+
+      @include mq-motion-allow {
+        transition: $ease;
+      }
+    }
+  }
+
+  &[aria-pressed="true"] {
+    .btn--toggle__switch {
+      background: var(--hero-color--primary);
+    }
+    .btn--toggle__switch::before {
+      opacity: 1;
+    }
+    .btn--toggle__switch::after {
+      opacity: 0;
+    }
+    .btn--toggle__switch-nob {
+      translate: calc($switch-width - $switch-padding * 8) 0;
+    }
+  }
+}

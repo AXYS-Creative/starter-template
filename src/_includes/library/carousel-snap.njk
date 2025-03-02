@@ -23,15 +23,10 @@
 
     {% if carousel_snap_autoplay.allow_user_toggle %}
     <div class="carousel-snap__controls-autoplay">
-      <button
-        class="carousel-snap-autoplay-toggle tab-element-page"
-        aria-pressed="false"
-      >
-        <span class="carousel-snap-autoplay-toggle__label">autoplay:</span>
-        <span class="carousel-snap-autoplay-toggle__switch" aria-hidden="true">
-          <span class="carousel-snap-autoplay-toggle__switch-ball"></span>
-        </span>
-      </button>
+      <!-- prettier-ignore -->
+      {% set btn_toggle_class = "carousel-snap-autoplay-toggle" %}
+      {% set btn_toggle_label = "autoplay:" %}
+      {% include "./button-toggle.njk" %}
     </div>
     {% endif %}
   </div>

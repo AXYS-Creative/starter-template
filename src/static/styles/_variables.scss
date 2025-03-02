@@ -6,6 +6,9 @@ $grey-dark: #313131;
 $grey-light: #c0c0c0;
 $white: #fefefe;
 
+$blue: #007bff;
+$red: #dc143c;
+
 $content-width: 1920px;
 
 // Layering
@@ -38,7 +41,9 @@ $test-bg: rgba(navy, 0.75);
   --background-color: #{$black};
   --font-color--primary: #{$white};
   --font-color--secondary: #{$grey-light};
-  --font-color--error: lightcoral;
+  --font-color--error: #{$red};
+
+  --hero-color--primary: #{$blue};
 
   --font-family--heading: #{$brand-font--heading};
   --font-family--body: #{$brand-font--body};
