@@ -6,6 +6,7 @@ $grey-dark: #313131;
 $grey-light: #c0c0c0;
 $white: #fefefe;
 
+$coral: #e48c66;
 $blue: #007bff;
 $red: #dc143c;
 
@@ -43,10 +44,18 @@ $test-bg: rgba(navy, 0.75);
   --font-color--secondary: #{$grey-light};
   --font-color--error: #{$red};
 
-  --hero-color--primary: #{$blue};
+  --hero-color--primary: #{$coral};
 
   --font-family--heading: #{$brand-font--heading};
   --font-family--body: #{$brand-font--body};
+
+  --btn-color-bg: var(--hero-color--primary);
+  --btn-color-text: #{$white};
+  --btn-color-border: var(--btn-color-bg);
+  --btn-color-bg--hover: transparent;
+  --btn-color-text--hover: var(--hero-color--primary);
+  --btn-color-border--hover: var(--hero-color--primary);
+  --btn-padding: 8px 16px;
 
   --link-color: #{$grey-light};
   --link-color-hover: #{$white};
@@ -58,6 +67,7 @@ $test-bg: rgba(navy, 0.75);
   --section-gap: 24px;
   --section-gap--lg: 64px;
 
+  --border-btn-girth: 1px;
   --border-bold-girth: 2px;
   --border-bold-color: #{$grey-light};
 

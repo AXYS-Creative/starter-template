@@ -1,0 +1,28 @@
+{% if list %}
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {% for item in list %}
+    <div class="swiper-slide">
+      <!-- WARNING — Unable to optimize images in partials -->
+      <img src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="swiper-controls">
+    <div class="swiper-button-prev tab-element-page">
+      Prev
+      <img src="{{ global.carousel.arrow_img }}" alt="" eleventy:ignore />
+    </div>
+    <div class="swiper-button-next tab-element-page">
+      Next
+      <img src="{{ global.carousel.arrow_img }}" alt="" eleventy:ignore />
+    </div>
+
+    <!-- prettier-ignore -->
+    {% if carousel_progress %}
+    <div class="swiper-pagination"></div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

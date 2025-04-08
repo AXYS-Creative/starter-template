@@ -6,12 +6,12 @@ backend:
 media_folder: "src/static/img"
 public_folder: "/static/img"
 site_url: https://starter-template-cms.netlify.app # CHANGE ME # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
-display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this addes the URL in the corner 'View Live'. Used with 'preview_path' for collection viewing.
+display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this adds the URL in the corner 'View Live'. Used with 'preview_path' for collection viewing.
 logo_url: https://starter-template-cms.netlify.app/static/img/icons/admin-logo.svg # CHANGE ME # On admin login page, this adds a custom logo.
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 collections:
   - name: "blog"
     label: "Blog"
@@ -124,10 +124,83 @@ collections:
               - name: "image"
                 label: "Image"
                 widget: "image"
+  - name: global
+    label: Global
+    description: >
+      Global components used throughout the site. These elements are shared across multiple pages and help maintain consistency in layout and branding.
+    files:
+      - name: footer
+        label: Site Footer
+        file: src/_data/global/footer.yaml
+        editor:
+          preview: false
+        fields:
+          - name: logo_src
+            label: Logo Image Source
+            widget: image
+            required: false
+            hint: An empty value removes the logo
+          - name: links
+            label: Footer Links
+            label_singular: Link
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Title
+                widget: string
+                required: true
+              - name: url
+                label: URL
+                widget: string
+                required: true
+          - name: cta
+            label: Call To Action
+            widget: object
+            summary: "{{ fields.text }} → {{ fields.url }}"
+            required: false
+            fields:
+              - name: text
+                label: Button Text
+                widget: string
+                required: false
+                hint: An empty value removes the button
+              - name: url
+                label: Button URL
+                widget: string
+                required: false
+                hint: i.e. /join
+      - name: social_media
+        label: Social Media
+        file: src/_data/global/social_media.yaml
+        editor:
+          preview: false
+        fields:
+          - name: links
+            label: Social Media Links
+            label_singular: Link
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Title
+                widget: string
+                required: true
+              - name: url
+                label: URL
+                widget: string
+                required: true
+              - name: src
+                label: Icon Source
+                widget: image
+                required: true
   - name: "meta_data"
     label: "Meta Data"
     description: >
-      Edit the site's meta data here. Open Graph dimensions: 1200x630. Open graph file name: open-graph.png
+      Meta data includes important information used by search engines and
+      social platforms, such as your site title, description, keywords, and
+      preview images. Updating these settings can improve SEO and control
+      how your content appears when shared online.
     files:
       - name: "meta_data"
         label: "Meta Data"
@@ -144,7 +217,7 @@ collections:
             label: "URL"
             widget: "string"
             required: true
-            hint: "Full URL to your site"
+            hint: Full URL to your site. Don't include end slash /
           - name: "author"
             label: "Author"
             widget: "string"
@@ -159,7 +232,24 @@ collections:
             label: "Theme Color"
             widget: "color"
             required: true
-            hint: "Hex color code for overflow color on some devices"
+            hint: "Hex code for overflow color on some devices"
+          - name: page_descriptions
+            label: Page Descriptions
+            allow_add: false
+            widget: list
+            required: true
+            hint: Used for SEO and social sharing
+            fields:
+              - name: page
+                label: Page
+                widget: string
+                required: true
+                hint: Do not edit this field (label only)
+              - name: description
+                label: Description
+                widget: text
+                required: true
+                hint: Short page summary for SEO and social media. Keep it around 140–160 characters.
           - name: "og_title"
             label: "Open Graph Title"
             widget: "string"
@@ -176,3 +266,6 @@ collections:
             default: "https://CHANGE-ME.com/static/img/og-image.png"
             required: true
             hint: "Recommended formats: PNG or JPG. Recommended image dimensions: 1200 x 630 pixels. File size should be under 8 MB."
+            media_library:
+              config:
+                max_file_size: 8000000 # 1MB = 1,000,000 bytes

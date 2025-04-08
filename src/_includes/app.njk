@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="{{ meta_data.theme_color }}" />
     <meta name="author" content="{{ meta_data.author }}" />
-    <meta name="description" content="{{ description }}" />
+
+    <!-- prettier-ignore -->
+    {% set pageMeta = null %}
+    {% for meta in meta_data.page_descriptions %}
+    {% if meta.page == page.fileSlug %}
+    {% set pageMeta = meta %}
+    {% endif %}
+    {% endfor %}
+
+    <!-- prettier-ignore -->
+    <meta name="description" content="{% if pageMeta %}{{ pageMeta.description }}{% else %}Page description goes here{% endif %}"/>
+
     {% if path == "404" %}
     <meta name="robots" content="noindex, nofollow" />
     {% else %}
@@ -33,7 +44,6 @@
       href="{{ meta_data.url }}{%if path != 'home'%}/{{ path }}{%endif%}"
     />
     {% endif %}
-    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -47,6 +57,13 @@
       href="/static/img/logo-dark.svg"
       media="(prefers-color-scheme: light)"
     />
+
+    <!-- Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
 
     <!-- Script Tags -->
     {% if path == "home" %}

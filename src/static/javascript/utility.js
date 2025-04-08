@@ -5,7 +5,7 @@ export const mqMotionAllow = window.matchMedia(
   "(prefers-reduced-motion: no-preference)"
 );
 export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
-export const mqMinLg = window.matchMedia("(min-width: 1024px)").matches;
+export const mqMinLg = window.matchMedia("(min-width: 1025px)").matches;
 
 // Get current year for copyright
 {

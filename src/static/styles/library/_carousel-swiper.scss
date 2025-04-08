@@ -1,0 +1,63 @@
+.swiper {
+  --swiper-navigation-color: var(--font-color--primary);
+
+  margin-block: var(--section-gap);
+
+  // .swiper-wrapper {
+
+  //   .swiper-slide {
+
+  //   }
+  // }
+
+  div.swiper-pagination-progressbar {
+    background: var(--font-color--primary);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    width: 32.5%;
+    height: 3px;
+
+    .swiper-pagination-progressbar-fill {
+      background: var(--hero-color--primary);
+    }
+  }
+
+  .swiper-controls {
+    @include row-center(flex-end);
+    position: relative;
+    gap: 12px;
+    height: 2lh;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    // pulling styles from external stylesheet
+    position: static;
+    width: auto;
+    margin: 0;
+    padding: 0 8px;
+
+    // Hides default arrows
+    &::after {
+      display: none;
+    }
+
+    @include mq-max(md) {
+      display: none;
+    }
+  }
+  // .swiper-button-prev {
+  //   right: 48px;
+  //   bottom: 0;
+  //   // rotate: 180deg;
+  // }
+
+  // .swiper-button-next {
+  //   top: auto;
+  //   left: auto;
+  //   right: 0;
+  //   bottom: 0;
+  // }
+}

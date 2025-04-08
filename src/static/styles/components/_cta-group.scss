@@ -1,9 +1,20 @@
 .cta-1 {
-  border: 1px solid var(--font-color--primary);
+  border: var(--border-btn-girth) solid var(--btn-color-border);
   border-radius: var(--radius-btn);
-  color: var(--font-color--primary);
-  padding: 12px 24px;
+  background: var(--btn-color-bg);
+  color: var(--btn-color-text);
+  padding: var(--btn-padding);
   flex-shrink: 0;
+
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
+  @include desktop-hover {
+    border-color: var(--btn-color-border--hover);
+    background: var(--btn-color-bg--hover);
+    color: var(--btn-color-text--hover);
+  }
 }
 
 .cta-group {

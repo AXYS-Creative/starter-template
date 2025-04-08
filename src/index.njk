@@ -2,23 +2,17 @@
 layout: app
 path: home
 
-title: Sample title // CHANGE ME
-description: Sample description // CHANGE ME
-
-# master props for cta-group
-cta_1_text: CHANGE ME
-cta_1_url: "#"
-cta_2_text: CHANGE ME
-cta_2_url: "#"
-cta_2_target: "_blank"
+title: Home • AXYS Starter Template // CHANGE ME
 ---
 
 <section class="hero">
-  <h1>H1 CHANGE ME</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  <h1>{{ page_home.hero.section_title }}</h1>
+  <p>{{ page_home.hero.section_desc }}</p>
 
   <!-- prettier-ignore -->
   {% set content_start = true %}
+  {% set cta_1 = page_home.hero.cta_1 %}
+  {% set cta_2 = page_home.hero.cta_2 %}
   {% include "./_includes/components/cta-group.njk" %}
 </section>
 

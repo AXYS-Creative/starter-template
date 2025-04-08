@@ -4,7 +4,6 @@ path: library
 # Non public facing
 
 title: Library // Delete this file from production sites
-description:
 ---
 
 <section class="hero">
@@ -42,20 +41,14 @@ description:
 {% set carousel_hero_slides = library.carousel_hero.slides %}
 {% include "./_includes/library/carousel-hero.njk" %}
 
-<section class="carousel-snap-section">
-  <h2 class="h6">[ Carousel 'Snap' - Component ]</h2>
+<section class="carousel-swiper-section">
+  <h2 class="h6">[ Carousel 'Swiper' - Component ]</h2>
 
   <!-- prettier-ignore -->
-  {% set carousel_snap_autoplay = library.carousel_snap.autoplay %}
-  {% set list = library.carousel_snap.list %}
-  {% include './_includes/library/carousel-snap.njk' %}
-</section>
-
-<section class="clip-shape-section">
-  <h2 class="h6">[ Clip Image ]</h2>
-
-  <!-- <div class="clip-shape"></div> -->
-  <img class="clip-shape" src="/static/img/library/landscape-1.webp" />
+  {% set carousel_swiper_autoplay = library.carousel_swiper.autoplay %}
+  {% set list = library.carousel_swiper.list %}
+  {% set carousel_progress = true %}
+  {% include './_includes/library/carousel-swiper.njk' %}
 </section>
 
 <!-- prettier-ignore -->

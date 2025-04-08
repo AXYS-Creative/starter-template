@@ -149,7 +149,7 @@ $min-breakpoints: (
   --font-size: 18px;
 
   color: var(--font-color--primary);
-  font-family: $brand-font--body;
+  font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
 

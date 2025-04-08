@@ -15,7 +15,7 @@ if (mqMouse.matches) {
 
   const easeFunction = cubicBezier(0.29, 1.01, 0.16, 1.09);
 
-  const duration = isSafari() ? 0.05 : 0.03; // Edit duration here
+  const duration = isSafari() ? 0.07 : 0.04; // Edit duration here
 
   const animateCursor = () => {
     if (progress < 1) {

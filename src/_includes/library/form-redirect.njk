@@ -5,13 +5,13 @@
   method="post"
   name="form-redirect"
   netlify
-  netlify-honeybot="bot-field"
+  netlify-honeypot="bot-field"
   {% if form_data.show_recaptcha == true %}
     data-netlify-recaptcha="true"
     hidden
   {% endif %}
 >
-  <input type="hidden" name="contact-form" value="contact" />
+  <input type="hidden" name="bot-field" />
 
   <div class="form-block form-block--name">
     <input
@@ -136,6 +136,6 @@
 
   <button class="cta-1 tab-element-page" type="submit">
     Submit
-    <div class="hover-fill"></div>
+    <!-- <div class="hover-fill"></div> -->
   </button>
 </form>

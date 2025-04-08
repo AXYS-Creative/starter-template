@@ -1,10 +1,10 @@
 autoplay:
-  interval: 7500 # Not recommended below 3000. Do not drop below 500
+  interval: 5000 # Not recommended below 3000. Do not drop below 500
 
 slides:
   - title: "Carousel Hero"
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo similique, vel quo voluptates voluptatum quidem porro sapiente amet accusamus repellendus. Saepe, officia eos. Est?"
-    img: "/static/img/library/landscape-3.webp"
+    img: "/static/img/library/landscape-1.webp"
   - title: "Dyanmic Content"
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse dolores similique quis ex aspernatur vel quia, eos minima dolorum iure quae officiis obcaecati. Quas!"
     img: "/static/img/library/landscape-2.webp"

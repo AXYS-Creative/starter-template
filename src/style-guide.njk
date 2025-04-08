@@ -4,8 +4,6 @@ path: style-guide
 # Public facing
 
 title: Style Guide
-description: CHANGE ME
-author: CHANGE ME
 ---
 
 <section class="hero">
@@ -23,8 +21,28 @@ author: CHANGE ME
     <em>This is an italic text.</em>
   </p>
   <!-- prettier-ignore -->
-  {% set cta_1_text = 'Primary CTA' %}
-  {% set cta_2_text = 'Secondary CTA' %}
+  {% set cta_1 = ({
+    text: 'Primary CTA',
+    text_desc: 'sup broseph',
+    url: '/',
+    new_tab: false
+  }) %}
+  {% set cta_2 = ({
+    text: 'Secondary CTA',
+    url: 'https://axyscreative.com',
+    new_tab: true
+  }) %}
   {% include "./_includes/components/cta-group.njk" %}
-  <a href="" class="classic-link">Classic link</a>
+
+  <a href="" class="classic-link tab-element-page">Classic link</a>
+
+  <!-- prettier-ignore -->
+  {% set btn_toggle_label = 'Autoplay:' %}
+  {% set btn_toggle = ({
+    class: 'btn-toggle-carousel',
+    label: 'autoplay —',
+    label_true: 'on',
+    label_false: 'off'
+  }) %}
+  {% include "./_includes/library/button-toggle.njk" %}
 </section>

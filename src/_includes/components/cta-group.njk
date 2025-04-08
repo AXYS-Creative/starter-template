@@ -1,16 +1,36 @@
 <div class="cta-group">
-  {% if cta_1_text %}
+  {% if cta_1.text and cta_1.url %}
+  <!-- prettier-ignore -->
   <a
-    class="cta-1 magnet magnet-wide-btn tab-element-page {%if content_start%}content-start{%endif%}"
-    href="{{ cta_1_url }}"
+    class="cta-1 tab-element-page {%if content_start%}content-start{%endif%}"
+    href="{{ cta_1.url }}"
+    {%if cta_1.new_tab%}
+      target="_blank" rel="noopener noreferrer"
+    {%endif%}
+    aria-label="{{ cta_1.text_desc or cta_1.text }}"
   >
-    {{ cta_1_text }}
+    {{ cta_1.text }}
+    {% if cta_1.text_desc %}
+      <span class="sr-only">{{ cta_1.text_desc }}</span>
+    {% endif %}
   </a>
   {% endif %}
+
   <!-- prettier-ignore -->
-  {% if cta_2_text %}
-  <a class="classic-link tab-element-page" href="{{ cta_2_url }}">
-    {{ cta_2_text }}
+  {% if cta_2.text and cta_2.url %}
+  <!-- prettier-ignore -->
+  <a
+    class="cta-2 {%if cta_2_outline%}outline{%endif%} tab-element-page"
+    href="{{ cta_2.url }}"
+    {%if cta_2.new_tab%}
+      target="_blank" rel="noopener noreferrer"
+    {%endif%}
+    aria-label="{{ cta_2.text_desc or cta_2.text }}"
+  >
+    {{ cta_2.text }}
+    {% if cta_2.text_desc %}
+      <span class="sr-only">{{ cta_2.text_desc }}</span>
+    {% endif %}
   </a>
   {% endif %}
 </div>

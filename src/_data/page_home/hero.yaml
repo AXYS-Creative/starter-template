@@ -1,0 +1,12 @@
+section_title: Title goes here
+section_desc: Section description goes here.
+cta_1:
+  text: Visit Library
+  text_desc: Visit our component library
+  url: /library
+  new_tab: false
+cta_2:
+  text: Get Started
+  text_desc: Get started with AXYS Creative
+  url: https://axyscreative.com/
+  new_tab: true

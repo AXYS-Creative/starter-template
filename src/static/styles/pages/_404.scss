@@ -1,7 +1,7 @@
 // 404 page
 .error {
+  @include full-viewport-section;
   @include column-center;
-  height: 100lvh;
 
   h1 {
     margin-block-end: 24px;

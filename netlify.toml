@@ -6,3 +6,9 @@
 from = "/*"
 to = "404/index.html"
 status = 404
+
+[[plugins]]
+package = "netlify-plugin-cache"
+
+  [plugins.inputs]
+  paths = [".cache/eleventy-img"]

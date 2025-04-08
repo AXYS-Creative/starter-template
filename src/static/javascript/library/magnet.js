@@ -6,7 +6,7 @@ if (mqMouse.matches && mqMotionAllow.matches) {
       targetY = 0,
       currentX = 0,
       currentY = 0,
-      ease = 0.2;
+      ease = 1;
 
     let isAnimating = false;
 

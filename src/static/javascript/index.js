@@ -8,8 +8,9 @@ import "./global/scroll.js";
 
 import "./library/advanced.js";
 import "./library/accordion.js";
+import "./library/buttons.js";
 import "./library/carousel-hero.js";
-import "./library/carousel-snap.js";
+import "./library/carousel-swiper.js";
 import "./library/form-feedback.js";
 import "./library/form-redirect.js";
 import "./library/grid-flow-img.js";

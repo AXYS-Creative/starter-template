@@ -49,7 +49,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
       //   }
       // );
 
-      // GLOBAL - Animate any element with the class 'gsap-animate' using the 'animate' companion class
+      // GLOBAL (place under other tweens i.e. pinned sections) - Animate any element with the class 'gsap-animate' using the 'animate' companion class
       {
         const targetElements = document.querySelectorAll(".gsap-animate");
 
@@ -273,5 +273,30 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
     window.addEventListener("resize", () => {
       ScrollTrigger.refresh();
     });
+  }
+
+  // Fix scrollTrigger issue with loading="lazy" (alternate approach loading="eager")
+  {
+    function handleLazyLoad(config = {}) {
+      let lazyImages = gsap.utils.toArray("img[loading='lazy']"),
+        timeout = gsap
+          .delayedCall(config.timeout || 1, ScrollTrigger.refresh)
+          .pause(),
+        lazyMode = config.lazy !== false,
+        imgLoaded = lazyImages.length,
+        onImgLoad = () =>
+          lazyMode
+            ? timeout.restart(true)
+            : --imgLoaded || ScrollTrigger.refresh();
+      lazyImages.forEach((img, i) => {
+        lazyMode || (img.loading = "eager");
+        img.naturalWidth
+          ? onImgLoad()
+          : img.addEventListener("load", onImgLoad);
+      });
+    }
+
+    // Timeout is how many seconds it throttles the loading events that call ScrollTrigger.refresh()
+    handleLazyLoad({ lazy: false, timeout: 1 });
   }
 }

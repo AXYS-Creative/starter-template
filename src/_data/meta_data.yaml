@@ -1,8 +1,16 @@
 site_name: "Sample Business"
-url: "https://starter-template-cms.netlify.app/"
+url: "https://starter-template-cms.netlify.app" #ensure no end slash for og-img
 author: Sample Author
 contact_email: info@sample.com
 theme_color: "#000000"
+
+page_descriptions:
+  - page: ""
+    description: Home page description
+  - page: about
+    description: About description
+  - page: "404"
+    description: The page you are looking for cannot be found. Please check the URL or return to the home page.
 
 # Open Graph Protocol
 og_title: "Sample Business | Motto Here" #Separate from individual page title in index.html

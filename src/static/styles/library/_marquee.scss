@@ -4,7 +4,8 @@
   @include h2; // Setting font here to use ch units above
   @include section-padding;
   overflow: hidden;
-  width: 100vw;
+  // width: 100vw; // causing x overflow scroll?
+  width: 100%;
   max-width: $content-width;
 
   &-inner {
