@@ -1,27 +1,32 @@
 const yaml = require("js-yaml");
-const { DateTime } = require("luxon");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const htmlmin = require("html-minifier");
+const { DateTime } = require("luxon");
+const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 
-module.exports = function (eleventyConfig) {
-  // Disable automatic use of your .gitignore
-  eleventyConfig.setUseGitIgnore(false);
+module.exports = async function (eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false); // Disable automatic use of your .gitignore
+  eleventyConfig.setDataDeepMerge(true); // Merge data instead of overriding
 
-  // Merge data instead of overriding
-  eleventyConfig.setDataDeepMerge(true);
+  eleventyConfig.addFilter("readableDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
+  );
 
-  // human readable date
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "dd LLL yyyy"
-    );
+  // CMS-friendly, build-optimized image transform. Is the cached images folder needed still?
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    formats: ["webp", "jpeg"],
+    widths: [320, 768, 1280, 1920],
+    htmlOptions: {
+      imgAttributes: {
+        loading: "lazy",
+        decoding: "async",
+        sizes:
+          "(max-width: 600px) 320px, (max-width: 1200px) 768px, (max-width: 1800px) 1280px, 1920px",
+      },
+      pictureAttributes: {},
+    },
   });
 
-  // Syntax Highlighting for Code blocks
-  eleventyConfig.addPlugin(syntaxHighlight);
-
-  // To Support .yaml Extension in _data
-  // You may remove this if you can use JSON
+  // To support .yaml extension in _data. You may remove this if using JSON
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   // Copy Static Files over to _site directory

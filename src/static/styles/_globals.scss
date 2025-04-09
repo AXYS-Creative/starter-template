@@ -500,6 +500,11 @@ small {
   font-size: 12px;
 }
 
+picture {
+  @include row-center;
+  width: 100%;
+}
+
 img,
 video {
   width: 100%;

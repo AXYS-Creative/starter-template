@@ -1,5 +1,7 @@
 <div
-  class="grid-flow-parent {% if grid_flow_img_size %}grid-flow-parent--{{ grid_flow_img_size }}{% endif %}"
+  class="grid-flow-parent {% if grid_flow_img_size %}grid-flow-parent--{{
+    grid_flow_img_size
+  }}{% endif %}"
 >
   <img
     class="grid-flow-img"
@@ -8,5 +10,6 @@
     loading="{{ grid_flow_img_loading or 'lazy' }}"
     width="{{ grid_flow_img_width }}"
     height="{{ grid_flow_img_height }}"
+    eleventy:ignore
   />
 </div>

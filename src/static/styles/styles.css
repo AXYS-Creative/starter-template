@@ -722,6 +722,13 @@ small {
   font-size: 12px;
 }
 
+picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 img,
 video {
   width: 100%;
