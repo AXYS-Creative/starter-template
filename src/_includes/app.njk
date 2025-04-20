@@ -85,12 +85,12 @@
         "name": "{{ meta_data.og_site_name }}",
         "url": "{{ meta_data.url }}",
         "logo": "{{ meta_data.url }}/favicon.svg",
-        "image": "{{ meta_data.og_image }}",
+        "image": "{{ meta_data.url }}{{ meta_data.og_image }}",
         "sameAs": [
           {% for social_link in social_media.links %}
           {% if social_link.url %}"{{ social_link.url }}"{% if not loop.last %},{% endif %}{% endif %}
           {% endfor %}
-        ]
+        ],
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "{{ meta_data.contact_email }}",
