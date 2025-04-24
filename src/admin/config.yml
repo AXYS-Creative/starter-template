@@ -12,6 +12,35 @@ logo_url: https://starter-template-cms.netlify.app/static/img/icons/admin-logo.s
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
 # publish_mode: editorial_workflow
+partials:
+  shared_cta: &cta_field
+    name: cta
+    label: Call To Action
+    widget: object
+    summary: "{{ fields.text }} → {{ fields.url }}"
+    required: false
+    fields:
+      - name: text
+        label: Button Text
+        widget: string
+        required: false
+        hint: An empty value removes the button
+      - name: text_desc
+        label: Button Text Description
+        widget: string
+        required: false
+        hint: >
+          Some phrases like 'Learn More' or 'Register' are too vague & hurt site metrics. 
+          Add more details to enhance SEO & a11y. This won't show on the button.
+      - name: url
+        label: Button URL
+        widget: string
+        required: false
+        hint: "e.g. '/join' or 'sunderenergy.com'. To return home use '/'."
+      - name: new_tab
+        label: Open in a new tab
+        widget: boolean
+        default: true
 collections:
   - name: "blog"
     label: "Blog"
@@ -154,22 +183,7 @@ collections:
                 label: URL
                 widget: string
                 required: true
-          - name: cta
-            label: Call To Action
-            widget: object
-            summary: "{{ fields.text }} → {{ fields.url }}"
-            required: false
-            fields:
-              - name: text
-                label: Button Text
-                widget: string
-                required: false
-                hint: An empty value removes the button
-              - name: url
-                label: Button URL
-                widget: string
-                required: false
-                hint: i.e. /join
+              - *cta_field
       - name: social_media
         label: Social Media
         file: src/_data/global/social_media.yaml

@@ -31,8 +31,7 @@ $ease: 0.24s ease;
 $ease-c: 0.64s $cubic-ease;
 
 // Library
-// $magnet: translate 2.5s $cubic-ease-back-strong;
-$magnet: translate 0.025s ease-in;
+$magnet: transform 0.75s $cubic-ease;
 
 // Debugging
 $test: 2px dashed rgba(yellow, 0.75);

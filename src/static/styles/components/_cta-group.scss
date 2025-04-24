@@ -7,7 +7,8 @@
   flex-shrink: 0;
 
   @include mq-motion-allow {
-    transition: $ease;
+    // transition: $ease;
+    transition: all $ease, $magnet;
   }
 
   @include desktop-hover {
