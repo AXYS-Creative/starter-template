@@ -26,6 +26,24 @@ module.exports = async function (eleventyConfig) {
     },
   });
 
+  // Generate xml sitemap // CHANGE ME URL
+  eleventyConfig.addCollection("sitemap", function (collectionApi) {
+    return collectionApi.getAll().filter((item) => {
+      const url = item.url || "";
+      const inputPath = item.inputPath || "";
+
+      const isAdmin =
+        url.startsWith("/admin/") || inputPath.includes("/admin/");
+      const isEmails =
+        url.startsWith("/emails/") || inputPath.includes("/emails/");
+      const is404 = url.includes("404");
+      const isFormSubmit = url.includes("form-submit");
+      const isStyleGuide = url.includes("style-guide");
+
+      return !isAdmin && !isEmails && !is404 && !isFormSubmit && !isStyleGuide;
+    });
+  });
+
   // To support .yaml extension in _data. You may remove this if using JSON
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 

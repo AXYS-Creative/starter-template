@@ -1,2 +1,6 @@
 User-agent: *
+Disallow: /admin
 Disallow: /404.html
+
+# CHANGE ME
+Sitemap: https://starter-template-cms.netlify.app/sitemap.xml

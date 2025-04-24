@@ -257,7 +257,7 @@ collections:
             hint: "Sample Business | Motto here"
           - name: "og_description"
             label: "Open Graph Description"
-            widget: "string"
+            widget: "text"
             required: true
             hint: "Keep at least 100 characters"
           - name: "og_image"

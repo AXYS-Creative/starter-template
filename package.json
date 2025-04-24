@@ -20,6 +20,7 @@
     "prismjs": "^1.26.0"
   },
   "dependencies": {
-    "@11ty/eleventy-img": "^6.0.1"
+    "@11ty/eleventy-img": "^6.0.1",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0"
   }
 }
