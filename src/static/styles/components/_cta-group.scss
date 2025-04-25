@@ -18,6 +18,38 @@
   }
 }
 
+.cta-2 {
+  @include row-center(space-between);
+  color: var(--btn-color-text);
+  gap: 8px;
+  flex-shrink: 0;
+
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
+  @include desktop-hover {
+    color: var(--btn-color-text--hover);
+
+    .cta-2__icon {
+      translate: 0.5ch 0;
+    }
+  }
+
+  &__icon {
+    --icon-size: 12px;
+
+    @include mask-image("../img/icons/icon-cta-2.svg");
+    background-color: var(--hero-color--primary);
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    @include mq-motion-allow {
+      transition: $ease;
+    }
+  }
+}
+
 .cta-group {
   @include row-center;
   gap: 24px;

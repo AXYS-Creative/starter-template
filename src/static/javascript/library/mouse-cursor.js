@@ -5,6 +5,8 @@ const cursor = document.querySelector(".mouse-cursor");
 const hideMouse = document.querySelectorAll(".hide-mouse");
 
 if (mqMouse.matches) {
+  let followMouse = true;
+
   let mouseX = 0,
     mouseY = 0,
     cursorX = 0,
@@ -35,6 +37,8 @@ if (mqMouse.matches) {
   animateCursor();
 
   document.addEventListener("mousemove", (e) => {
+    if (!followMouse) return;
+
     cursor.style.opacity = 1;
 
     startX = cursorX;
@@ -53,4 +57,45 @@ if (mqMouse.matches) {
       cursor.classList.remove("hidden");
     });
   });
+
+  // Mouse to selector sibling
+  const siblingHover = (
+    triggerSelector, // selector string for hover trigger
+    siblingSelector, // selector string for inner target (relative to trigger)
+    activeClass = "", // class to apply to cursor
+    eventType = "mousemove" // default to mousemove, can be mouseenter
+  ) => {
+    const triggers = document.querySelectorAll(triggerSelector);
+
+    triggers.forEach((el) => {
+      el.addEventListener(eventType, () => {
+        followMouse = false;
+
+        const sibling = el.querySelector(siblingSelector);
+        if (!sibling || !cursor) return;
+
+        const rect = sibling.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        cursor.style.translate = `${centerX - cursor.offsetWidth / 2}px ${
+          centerY - cursor.offsetHeight / 2
+        }px`;
+
+        if (activeClass) {
+          cursor.classList.add(activeClass);
+        }
+      });
+
+      el.addEventListener("mouseleave", () => {
+        followMouse = true;
+        if (activeClass) {
+          cursor.classList.remove(activeClass);
+        }
+      });
+    });
+  };
+
+  // prettier-ignore
+  siblingHover(".sibling-hover", ".sibling-hover__target", "test-class");
 }

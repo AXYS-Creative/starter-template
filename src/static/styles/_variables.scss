@@ -31,7 +31,8 @@ $ease: 0.24s ease;
 $ease-c: 0.64s $cubic-ease;
 
 // Library
-$magnet: transform 0.75s $cubic-ease;
+$magnet: transform 0.5s $cubic-ease;
+// $magnet: transform 0.64s $cubic-ease-back-strong;
 
 // Debugging
 $test: 2px dashed rgba(yellow, 0.75);
@@ -54,6 +55,14 @@ $test-bg: rgba(navy, 0.75);
   --btn-color-bg--hover: transparent;
   --btn-color-text--hover: var(--hero-color--primary);
   --btn-color-border--hover: var(--hero-color--primary);
+
+  // --btn-color-2-bg: var(--hero-color--primary);
+  --btn-color-2-text: #{$white};
+  // --btn-color-2-border: transparent;
+  // --btn-color-2-bg--hover: transparent;
+  --btn-color-2-text--hover: var(--hero-color--primary);
+  // --btn-color-2-border--hover: transparent;
+
   --btn-padding: 8px 16px;
 
   --link-color: #{$grey-light};

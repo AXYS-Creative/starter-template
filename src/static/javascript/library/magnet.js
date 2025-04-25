@@ -11,7 +11,7 @@ if (mqMouse.matches && mqMotionAllow.matches) {
     // Default values
     let xStrength = 0.5;
     let yStrength = 0.5;
-    const easing = 1;
+    const easing = 1; // Leave at 1. Control ease with CSS.
 
     // Optional modifiers via utility classes
     if (el.classList.contains("magnet-weak")) {
@@ -21,7 +21,7 @@ if (mqMouse.matches && mqMotionAllow.matches) {
       xStrength = 0.75;
       yStrength = 0.75;
     } else if (el.classList.contains("magnet-wide-btn")) {
-      xStrength = 0.5;
+      // xStrength = 0.5;
       yStrength = 1;
     }
 

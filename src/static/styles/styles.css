@@ -12,6 +12,8 @@
   --btn-color-bg--hover: transparent;
   --btn-color-text--hover: var(--hero-color--primary);
   --btn-color-border--hover: var(--hero-color--primary);
+  --btn-color-2-text: #fefefe;
+  --btn-color-2-text--hover: var(--hero-color--primary);
   --btn-padding: 8px 16px;
   --link-color: #c0c0c0;
   --link-color-hover: #fefefe;
@@ -795,7 +797,7 @@ figure {
 
 @media all {
   .magnet {
-    transition: transform 0.75s cubic-bezier(0.18, 0.97, 0.47, 1);
+    transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
   .fill-text,
   .fill-text-hover {
@@ -976,7 +978,7 @@ figure {
 }
 @media (prefers-reduced-motion: no-preference) {
   .cta-1 {
-    transition: all 0.24s ease, transform 0.75s cubic-bezier(0.18, 0.97, 0.47, 1);
+    transition: all 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -984,6 +986,45 @@ figure {
     border-color: var(--btn-color-border--hover);
     background: var(--btn-color-bg--hover);
     color: var(--btn-color-text--hover);
+  }
+}
+
+.cta-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--btn-color-text);
+  gap: 8px;
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-2 {
+    transition: 0.24s ease;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .cta-2:hover, .cta-2:focus-visible {
+    color: var(--btn-color-text--hover);
+  }
+  .cta-2:hover .cta-2__icon, .cta-2:focus-visible .cta-2__icon {
+    translate: 0.5ch 0;
+  }
+}
+.cta-2__icon {
+  --icon-size: 12px;
+  -webkit-mask-image: url("../img/icons/icon-cta-2.svg");
+          mask-image: url("../img/icons/icon-cta-2.svg");
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  background-color: var(--hero-color--primary);
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-2__icon {
+    transition: 0.24s ease;
   }
 }
 
@@ -1835,10 +1876,11 @@ figure {
   }
 }
 .mouse-cursor__shape {
+  --size: 48px;
   border: 2px solid var(--font-color--primary);
   opacity: 0.25;
-  width: 48px;
-  height: 48px;
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
   transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
 }
@@ -1846,6 +1888,10 @@ figure {
   opacity: 0;
   width: 148px;
   height: 148px;
+}
+.mouse-cursor.test-class .mouse-cursor__shape {
+  --size: 32px;
+  opacity: 1;
 }
 
 .tabs__controls {

@@ -18,12 +18,12 @@
   }
 
   &__shape {
-    $size: 48px;
+    --size: 48px;
 
     border: 2px solid var(--font-color--primary);
     opacity: 0.25;
-    width: $size;
-    height: $size;
+    width: var(--size);
+    height: var(--size);
     border-radius: 50%;
     transition: $ease-opacity, $ease-size;
   }
@@ -33,6 +33,14 @@
       opacity: 0;
       width: 148px; // scale makes the border thick
       height: 148px;
+    }
+  }
+
+  &.test-class {
+    .mouse-cursor__shape {
+      --size: 32px;
+
+      opacity: 1;
     }
   }
 }
