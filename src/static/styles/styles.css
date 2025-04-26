@@ -1012,8 +1012,8 @@ figure {
 }
 .cta-2__icon {
   --icon-size: 12px;
-  -webkit-mask-image: url("../img/icons/icon-cta-2.svg");
-          mask-image: url("../img/icons/icon-cta-2.svg");
+  -webkit-mask-image: url("../img/library/icon-angle-arrow-right.svg");
+          mask-image: url("../img/library/icon-angle-arrow-right.svg");
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-repeat: no-repeat;

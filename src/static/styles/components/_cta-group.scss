@@ -39,7 +39,9 @@
   &__icon {
     --icon-size: 12px;
 
-    @include mask-image("../img/icons/icon-cta-2.svg");
+    @include mask-image(
+      "../img/library/icon-angle-arrow-right.svg"
+    ); // Use inline style for cms config
     background-color: var(--hero-color--primary);
     width: var(--icon-size);
     height: var(--icon-size);
