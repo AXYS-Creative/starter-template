@@ -4,7 +4,7 @@ import { cubicBezier } from "../global/animations.js";
 const cursor = document.querySelector(".mouse-cursor");
 const hideMouse = document.querySelectorAll(".hide-mouse");
 
-if (mqMouse.matches) {
+if (cursor && mqMouse.matches) {
   let followMouse = true;
 
   let mouseX = 0,
