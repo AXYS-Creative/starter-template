@@ -1,6 +1,14 @@
+{% if tooltip_content %}
 <div class="tooltip">
-  <button class="tooltip__btn" id="tooltip__btn">Tooltip</button>
+  <button class="tooltip__btn" id="tooltip__btn">
+    {% if tooltip_text %}
+    {{ tooltip_text }}
+    {% elif tooltip_img %}
+    {{ tooltip_img }}
+    {% endif %}
+  </button>
   <div class="tooltip__content" id="tooltip__content">
-    <p>Tooltip content</p>
+    <p>{{ tooltip_content }}</p>
   </div>
 </div>
+{% endif %}

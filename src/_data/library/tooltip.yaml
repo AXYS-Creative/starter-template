@@ -1,0 +1,3 @@
+# Any element can have a tooltip/message bubble via js.
+# But, as a component we have an info icon
+tooltip:
