@@ -1,7 +1,7 @@
 tabs:
-  - title: Title 1 — City lights
-    desc: So dope
-    img: /static/img/portrait-1.jpg
+  - title: "Title 1"
+    desc: "Description 1"
+    img: "/static/img/library/portrait-1.webp"
   - title: Title 2
     desc: Description 2
     img: /static/img/library/portrait-2.webp
