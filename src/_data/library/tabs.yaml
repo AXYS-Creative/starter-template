@@ -1,19 +1,19 @@
 tabs:
-  - title: "Title 1"
-    desc: "Description 1"
-    img: "/static/img/library/portrait-1.webp"
-  - title: "Title 2"
-    desc: "Description 2"
-    img: "/static/img/library/portrait-2.webp"
-  - title: "Title 3"
-    desc: "Description 3"
-    img: "/static/img/library/portrait-3.webp"
-  - title: "Title 4"
-    desc: "Description 4"
-    img: "/static/img/library/portrait-4.webp"
-  - title: "Title 5"
-    desc: "Description 5"
-    img: "/static/img/library/portrait-5.webp"
-  - title: "Title 6"
-    desc: "Description 6"
-    img: "/static/img/library/portrait-6.webp"
+  - title: Title 1 — City lights
+    desc: So dope
+    img: /static/img/portrait-1.jpg
+  - title: Title 2
+    desc: Description 2
+    img: /static/img/library/portrait-2.webp
+  - title: Title 3
+    desc: Description 3
+    img: /static/img/library/portrait-3.webp
+  - title: Title 4
+    desc: Description 4
+    img: /static/img/library/portrait-4.webp
+  - title: Title 5
+    desc: Description 5
+    img: /static/img/library/portrait-5.webp
+  - title: Title 6
+    desc: Description 6
+    img: /static/img/library/portrait-6.webp
