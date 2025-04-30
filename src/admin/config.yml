@@ -153,6 +153,29 @@ collections:
               - name: "image"
                 label: "Image"
                 widget: "image"
+      - name: "tabs"
+        label: "Tabs"
+        file: "src/_data/library/tabs.yaml"
+        preview_path: "/library#tabs"
+        editor:
+          preview: false
+        fields:
+          - name: "tabs"
+            label: "Tabs"
+            label_singular: "Tab"
+            widget: "list"
+            fields:
+              - name: "title"
+                label: "Title"
+                widget: "string"
+                required: true
+              - name: "desc"
+                label: "Description"
+                widget: "text"
+                required: true
+              - name: "img"
+                label: "Image"
+                widget: "image"
   - name: global
     label: Global
     description: >
