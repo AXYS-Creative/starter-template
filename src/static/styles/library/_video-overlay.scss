@@ -1,0 +1,61 @@
+.video-overlay {
+  // Consider using dialog element
+  @include column-center;
+  gap: var(--section-gap);
+  position: fixed;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  background-color: rgba($grey-dark, 0.9);
+  z-index: $z-index--video-overlay;
+
+  @include mq-motion-allow {
+    transition: opacity 0.3s ease;
+  }
+
+  .video-player {
+    height: 70%;
+    max-width: var(--full-width-snip-sm);
+    width: auto;
+    background: black;
+  }
+
+  &__close {
+    border: 1px solid var(--hero-color--primary);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: $ease;
+
+    @include desktop-hover {
+      scale: 1.1;
+    }
+
+    &:active {
+      scale: 0.9;
+    }
+
+    &-line {
+      @include absolute-center;
+      width: 72%;
+      height: 3px;
+      background: var(--hero-color--primary);
+
+      &:first-of-type {
+        rotate: -45deg;
+      }
+
+      &:last-of-type {
+        rotate: 45deg;
+      }
+    }
+  }
+
+  &--inactive {
+    @include hide-content;
+  }
+}

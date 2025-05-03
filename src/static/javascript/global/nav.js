@@ -4,7 +4,7 @@ const siteHeader = document.querySelector(".site-header"),
   skipToContent = document.querySelector(".skip-to-content"),
   contentStart = document.querySelector(".content-start");
 
-const navLinks = document.querySelectorAll(".nav-link"),
+export const navLinks = document.querySelectorAll(".nav-link"),
   navFooterLinks = document.querySelectorAll(".nav-footer-link"),
   tabElementsPage = document.querySelectorAll(".tab-element-page"),
   tabElementsNav = document.querySelectorAll(".tab-element-nav");

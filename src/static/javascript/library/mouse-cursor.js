@@ -1,4 +1,4 @@
-import { mqMouse, isSafari } from "../utility.js";
+import { mqMouse, isSafari } from "../util.js";
 import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor");

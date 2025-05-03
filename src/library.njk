@@ -77,7 +77,7 @@ title: Library // Delete this file from production sites
 </section>
 
 <section class="fill-text-section">
-  <h2 class="h6 fill-text slow-fill">[ Fill Text - Utility]</h2>
+  <h2 class="h6 fill-text slow-fill">[ Fill Text - Utility ]</h2>
 
   <h3 style="margin-block: 48px">
     <span class="fill-text quick-fill">This is a large title</span>
@@ -107,7 +107,7 @@ title: Library // Delete this file from production sites
 {% include './_includes/library/horizontal-scroll.njk' %}
 
 <section class="fade-text-section">
-  <h2 class="h6">[ Fade Text - Utility]</h2>
+  <h2 class="h6">[ Fade Text - Utility ]</h2>
 
   <h3 style="margin-block: 48px">
     <span>This is a large title</span>
@@ -133,6 +133,24 @@ title: Library // Delete this file from production sites
 </section>
 
 <section class="carousel-section"></section>
+
+<section class="video-section">
+  <h2 class="h6">[ Video Overlay - Utility ]</h2>
+  <p>
+    This can be a traditional cta or can simply wrap an element i.e. an image
+    (see joinsunder)
+  </p>
+
+  <!-- prettier-ignore -->
+  <button
+    class="cta-1 video-toggle tab-element-page"
+    data-src="{{ library.video_overlay.video_src }}"
+    aria-label="Open video overlay for {{ item.title }}"
+    aria-controls="video-overlay"
+  >
+    Toggle video overlay
+  </button>
+</section>
 
 <section class="form-section">
   <h2 class="h6">[ Feedback Form - Component ]</h2>
