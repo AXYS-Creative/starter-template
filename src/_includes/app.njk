@@ -9,14 +9,23 @@
 
     <!-- prettier-ignore -->
     {% set pageMeta = null %}
-    {% for meta in meta_data.page_descriptions %}
-    {% if meta.page == page.fileSlug %}
-    {% set pageMeta = meta %}
-    {% endif %}
+    {% for meta in meta_data.page_details %}
+      {% if meta.path == page.fileSlug %}
+        {% set pageMeta = meta %}
+      {% endif %}
     {% endfor %}
 
     <!-- prettier-ignore -->
     <meta name="description" content="{% if pageMeta %}{{ pageMeta.description }}{% else %}Page description goes here{% endif %}"/>
+
+    <!-- prettier-ignore -->
+    <title>
+      {% if pageMeta %}
+        {{ pageMeta.title }}
+      {% else %}
+        {{ meta_data.site_name }}
+      {% endif%}
+    </title>
 
     {% if path == "404" %}
     <meta name="robots" content="noindex, nofollow" />
@@ -36,7 +45,10 @@
 
     {% block head %}{% endblock %}
 
-    <title>{{ title }}</title>
+    <!-- prettier-ignore -->
+    <title>
+      {% if pageTitle %}{{ pageTitle }}{% else %}Page title here{% endif %}
+    </title>
 
     {% if path != '404' %}
     <link

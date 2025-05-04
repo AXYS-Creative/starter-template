@@ -270,20 +270,25 @@ collections:
             widget: "color"
             required: true
             hint: "Hex code for overflow color on some devices"
-          - name: page_descriptions
-            label: Page Descriptions
+          - name: page_details
+            label: Page Details
             allow_add: false
             widget: list
             required: true
             hint: Used for SEO and social sharing
             fields:
-              - name: page
-                label: Page
+              - name: label
+                label: Label (Admin Dashboard)
                 widget: string
                 required: false
-                hint: Dashboard label only — DO NOT edit this field. Home page should be left blank.
+                hint: Dashboard label only — Do not edit this field
+              - name: title
+                label: Page Title
+                widget: string
+                required: true
+                hint: Shown in browser tab and search results. Keep it under 60 characters.
               - name: description
-                label: Description
+                label: Page Description
                 widget: text
                 required: true
                 hint: Short page summary for SEO and social media. Keep it around 140–160 characters.
