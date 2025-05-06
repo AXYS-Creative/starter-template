@@ -181,6 +181,35 @@ collections:
     description: >
       Global components used throughout the site. These elements are shared across multiple pages and help maintain consistency in layout and branding.
     files:
+      - name: header
+        label: Site Header
+        file: src/_data/global/header.yaml
+        editor:
+          preview: false
+        fields:
+          - name: logo_src
+            label: Logo Image Source
+            widget: image
+            required: false
+            hint: An empty value removes the logo
+          - name: links
+            label: Header Links
+            label_singular: Link
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Title
+                widget: string
+                required: true
+              - name: url
+                label: URL
+                widget: string
+                required: true
+              - name: new_tab
+                label: Open in a new tab
+                widget: boolean
+                default: true
       - name: footer
         label: Site Footer
         file: src/_data/global/footer.yaml
@@ -206,7 +235,10 @@ collections:
                 label: URL
                 widget: string
                 required: true
-              - *cta_field
+              - name: new_tab
+                label: Open in a new tab
+                widget: boolean
+                default: true
       - name: social_media
         label: Social Media
         file: src/_data/global/social_media.yaml

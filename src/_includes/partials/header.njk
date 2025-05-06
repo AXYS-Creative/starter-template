@@ -1,5 +1,5 @@
 <header class="site-header" aria-label="Site Header">
-  {% if navigation.show_skip_to_content %}
+  {% if global.header.show_skip_to_content %}
   <button class="skip-to-content tab-element-page">Skip to main content</button>
   {% endif %}
 
@@ -12,15 +12,20 @@
     />
   </a>
 
-  {% if navigation.items %}
+  {% if global.header.links %}
   <ul class="header-links" aria-label="Header navigation">
-    {% for item in navigation.items %}
-    <li class="">
+    {% for link in global.header.links %}
+    <li>
+      <!-- prettier-ignore -->
       <a
         class="header-links__link classic-link tab-element-page"
-        href="{{ item.url }}"
+        href="{{ link.url }}"
+        {% if link.new_tab %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}
       >
-        {{ item.text }}
+        {{ link.text }}
       </a>
     </li>
     {% endfor %}

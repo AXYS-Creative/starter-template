@@ -1,8 +1,4 @@
-# Dev use only
-
-show_skip_to_content: true
-
-items:
+links:
   - text: Home
     url: "/"
   - text: Style Guide
