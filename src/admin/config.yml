@@ -1,10 +1,10 @@
 backend:
   # Use netlify identity as backend
-  name: "git-gateway"
-  branch: "main"
+  name: git-gateway
+  branch: main
   repo: "https://github.com/AXYS-Creative/starter-template-cms.git" # CHANGE ME
-media_folder: "src/static/img"
-public_folder: "/static/img"
+media_folder: src/static/img
+public_folder: /static/img
 site_url: https://starter-template-cms.netlify.app # CHANGE ME # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
 display_url: https://starter-template-cms.netlify.app # CHANGE ME # In admin dashboard, this adds the URL in the corner 'View Live'. Used with 'preview_path' for collection viewing.
 logo_url: https://starter-template-cms.netlify.app/static/img/icons/admin-logo.svg # CHANGE ME # On admin login page, this adds a custom logo.
@@ -231,45 +231,63 @@ collections:
                 label: Icon Source
                 widget: image
                 required: true
-  - name: "meta_data"
-    label: "Meta Data"
+  - name: meta_data
+    label: Meta Data
     description: >
       Meta data includes important information used by search engines and
       social platforms, such as your site title, description, keywords, and
       preview images. Updating these settings can improve SEO and control
       how your content appears when shared online.
     files:
-      - name: "meta_data"
-        label: "Meta Data"
-        file: "src/_data/meta_data.yaml"
+      - name: meta_data
+        label: Meta Data
+        file: src/_data/meta_data.yaml
         editor:
           preview: false
         fields:
-          - name: "site_name"
-            label: "Site Name"
-            widget: "string"
+          - name: site_name
+            label: Site Name
+            widget: string
             required: true
-            hint: "Sample Business Co"
-          - name: "url"
-            label: "URL"
-            widget: "string"
+            hint: Sample Business Co
+          - name: url
+            label: URL
+            widget: string
             required: true
             hint: Full URL to your site. Don't include end slash /
-          - name: "author"
-            label: "Author"
-            widget: "string"
+          - name: author
+            label: Author
+            widget: string
             required: true
-            hint: "Person or company name"
-          - name: "contact_email"
-            label: "Contact Email"
-            widget: "string"
+            hint: Person or company name
+          - name: contact_email
+            label: Contact Email
+            widget: string
             required: true
-            hint: "Email address for rich results schema"
-          - name: "theme_color"
-            label: "Theme Color"
-            widget: "color"
+            hint: Email address for rich results schema
+          - name: theme_color
+            label: Theme Color
+            widget: color
             required: true
-            hint: "Hex code for overflow color on some devices"
+            hint: Hex code for overflow color on some devices
+          - name: favicon_light_theme
+            label: Favicon (Light Theme)
+            widget: image
+            default: "https://CHANGE-ME.com/static/img/favicon-dark.svg"
+            required: true
+            hint: Shown in browser tab and search engine results.
+            media_library:
+              config:
+                max_file_size: 500000 # 1MB = 1,000,000 bytes
+          - name: favicon_dark_theme
+            label: Favicon (Dark Theme)
+            widget: image
+            default: "https://CHANGE-ME.com/static/img/favicon-light.svg"
+            required: true
+            hint: Shown in browser tab and search engine results.
+            media_library:
+              config:
+                max_file_size: 500000 # 1MB = 1,000,000 bytes
           - name: page_details
             label: Page Details
             allow_add: false
@@ -286,25 +304,25 @@ collections:
                 label: Page Title
                 widget: string
                 required: true
-                hint: Shown in browser tab and search results. Keep it under 60 characters.
+                hint: Shown in browser tab and search engine results. Keep it under 60 characters.
               - name: description
                 label: Page Description
                 widget: text
                 required: true
                 hint: Short page summary for SEO and social media. Keep it around 140–160 characters.
-          - name: "og_title"
-            label: "Open Graph Title"
-            widget: "string"
+          - name: og_title
+            label: Open Graph Title
+            widget: string
             required: true
-            hint: "Sample Business | Motto here"
-          - name: "og_description"
-            label: "Open Graph Description"
-            widget: "text"
+            hint: Sample Business | Motto here
+          - name: og_description
+            label: Open Graph Description
+            widget: text
             required: true
-            hint: "Keep at least 100 characters"
-          - name: "og_image"
-            label: "Open Graph Image"
-            widget: "image"
+            hint: Keep at least 100 characters
+          - name: og_image
+            label: Open Graph Image
+            widget: image
             default: "https://CHANGE-ME.com/static/img/og-image.png"
             required: true
             hint: "Recommended formats: PNG or JPG. Recommended image dimensions: 1200 x 630 pixels. File size should be under 8 MB."
