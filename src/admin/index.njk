@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Admin | {{ meta_data.site_name }}</title>
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="icon"
-      href="../static/img/logo-light.svg"
-      media="(prefers-color-scheme: dark)"
+      href="{{ meta_data.favicon_light_theme }}"
+      media="(prefers-color-scheme: light)"
     />
     <link
       rel="icon"
-      href="../static/img/logo-dark.svg"
-      media="(prefers-color-scheme: light)"
+      href="{{ meta_data.favicon_dark_theme }}"
+      media="(prefers-color-scheme: dark)"
     />
 
     <!-- <script>

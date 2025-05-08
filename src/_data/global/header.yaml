@@ -1,6 +1,6 @@
 show_skip_to_content: true # Dev use only
 
-logo_src: /static/img/logo-light.svg
+logo_src: /static/img/favicon-light.svg
 
 links:
   - text: Home
