@@ -183,6 +183,12 @@ body {
     > * {
       @include hide-content;
     }
+
+    &:focus-within {
+      > * {
+        @include show-content;
+      }
+    }
   }
 
   // &.near-bottom {

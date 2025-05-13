@@ -35,6 +35,10 @@
   list-style: initial;
 }
 
+.mask-icon {
+  @include mask-image();
+}
+
 .sr-only {
   @include sr-only;
 }

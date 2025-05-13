@@ -327,10 +327,15 @@ $min-breakpoints: (
   user-select: auto;
 }
 
-@mixin mask-image($url) {
-  mask-image: url($url);
+@mixin mask-image($url: null) {
   mask-size: contain;
   mask-repeat: no-repeat;
+  mask-position: center;
+  aspect-ratio: 1/1;
+
+  @if $url {
+    mask-image: url($url);
+  }
 }
 
 // Library

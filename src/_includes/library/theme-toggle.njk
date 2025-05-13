@@ -1,0 +1,53 @@
+<fieldset
+  class="theme-toggle"
+  role="radiogroup"
+  aria-label="Select a display theme"
+>
+  <legend class="sr-only">Select a display theme:</legend>
+
+  <label for="theme-system" class="theme-toggle__option">
+    <input
+      type="radio"
+      id="theme-system"
+      name="theme"
+      value="system"
+      aria-label="System theme"
+    />
+    <span class="sr-only">System</span>
+    <span
+      class="theme-toggle__icon"
+      style="mask-image: url('/static/img/library/icon-google-desktop.svg')"
+    ></span>
+  </label>
+
+  <label for="theme-light" class="theme-toggle__option">
+    <input
+      type="radio"
+      id="theme-light"
+      name="theme"
+      value="light"
+      aria-label="Light theme"
+    />
+    <span class="sr-only">Light</span>
+    <span
+      class="theme-toggle__icon"
+      style="mask-image: url('/static/img/library/icon-google-sun.svg')"
+    ></span>
+  </label>
+
+  <label for="theme-dark" class="theme-toggle__option">
+    <input
+      type="radio"
+      id="theme-dark"
+      name="theme"
+      value="dark"
+      aria-label="Dark theme"
+      checked
+    />
+    <span class="sr-only">Dark</span>
+    <span
+      class="theme-toggle__icon"
+      style="mask-image: url('/static/img/library/icon-google-moon.svg')"
+    ></span>
+  </label>
+</fieldset>

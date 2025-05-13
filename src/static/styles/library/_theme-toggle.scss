@@ -1,0 +1,44 @@
+.theme-toggle {
+  @include row-center;
+  gap: 12px;
+  border: none;
+
+  &__option {
+    position: relative;
+    @include row-center;
+    cursor: pointer;
+    padding: 6px;
+
+    &:hover {
+      background: darkslategrey;
+    }
+
+    input {
+      @include hide-content;
+      position: absolute;
+    }
+  }
+
+  &__icon {
+    @include mask-image();
+    background-color: var(--font-color--primary);
+    width: 16px;
+
+    // Change appearance when selected
+    input:checked + & {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    // Optional: hover effect
+    .theme-toggle__option:hover & {
+      opacity: 0.8;
+    }
+
+    // Optional: keyboard focus ring
+    input:focus-visible + & {
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+    }
+  }
+}
