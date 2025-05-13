@@ -70,6 +70,21 @@
       media="(prefers-color-scheme: dark)"
     />
 
+    <!-- Theme -->
+    <script>
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme-preference") || "system";
+          const systemPrefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          const theme =
+            saved === "system" ? (systemPrefersDark ? "dark" : "light") : saved;
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Stylesheets -->
     <link
       rel="stylesheet"

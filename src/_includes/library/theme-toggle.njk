@@ -5,7 +5,7 @@
 >
   <legend class="sr-only">Select a display theme:</legend>
 
-  <label for="theme-system" class="theme-toggle__option">
+  <label for="theme-system" class="theme-toggle__option" title="System theme">
     <input
       class="tab-element-page"
       type="radio"
@@ -13,15 +13,20 @@
       name="theme"
       value="system"
       aria-label="System theme"
+      checked
     />
     <span class="sr-only">System</span>
     <span
-      class="theme-toggle__icon"
+      class="theme-toggle__icon theme-toggle__icon--desktop"
       style="mask-image: url('/static/img/library/icon-google-desktop.svg')"
+    ></span>
+    <span
+      class="theme-toggle__icon theme-toggle__icon--mobile"
+      style="mask-image: url('/static/img/library/icon-google-mobile.svg')"
     ></span>
   </label>
 
-  <label for="theme-light" class="theme-toggle__option">
+  <label for="theme-light" class="theme-toggle__option" title="Light theme">
     <input
       class="tab-element-page"
       type="radio"
@@ -37,7 +42,7 @@
     ></span>
   </label>
 
-  <label for="theme-dark" class="theme-toggle__option">
+  <label for="theme-dark" class="theme-toggle__option" title="Dark theme">
     <input
       class="tab-element-page"
       type="radio"
@@ -45,7 +50,6 @@
       name="theme"
       value="dark"
       aria-label="Dark theme"
-      checked
     />
     <span class="sr-only">Dark</span>
     <span

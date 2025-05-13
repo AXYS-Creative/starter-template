@@ -1952,9 +1952,14 @@ figure {
   align-items: center;
   cursor: pointer;
   padding: 6px;
+  opacity: 0.5;
+  border-radius: 50%;
 }
-.theme-toggle__option:hover {
-  background: darkslategrey;
+.theme-toggle__option:hover, .theme-toggle__option:has(input:focus-visible) {
+  background: rgba(47, 79, 79, 0.25);
+}
+.theme-toggle__option:has(input:checked) {
+  opacity: 1;
 }
 .theme-toggle__option input {
   position: absolute;
@@ -1971,16 +1976,18 @@ figure {
   background-color: var(--color-font--primary);
   width: 16px;
 }
-input:checked + .theme-toggle__icon {
-  opacity: 1;
-  transform: scale(1.15);
+@media screen and (max-width: 1024px) {
+  .theme-toggle__icon--desktop {
+    display: none;
+  }
 }
-.theme-toggle__option:hover .theme-toggle__icon {
-  opacity: 0.8;
+.theme-toggle__icon--mobile {
+  display: none;
 }
-input:focus-visible + .theme-toggle__icon {
-  outline: 2px solid currentColor;
-  outline-offset: 4px;
+@media screen and (max-width: 1024px) {
+  .theme-toggle__icon--mobile {
+    display: block;
+  }
 }
 
 .video-overlay {
