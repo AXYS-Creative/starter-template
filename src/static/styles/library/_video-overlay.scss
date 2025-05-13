@@ -24,7 +24,7 @@
   }
 
   &__close {
-    border: 1px solid var(--hero-color--primary);
+    border: 1px solid var(--color-brand--primary);
     position: relative;
     width: 40px;
     height: 40px;
@@ -43,7 +43,7 @@
       @include absolute-center;
       width: 72%;
       height: 3px;
-      background: var(--hero-color--primary);
+      background: var(--color-brand--primary);
 
       &:first-of-type {
         rotate: -45deg;

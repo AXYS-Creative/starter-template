@@ -21,7 +21,7 @@
   }
 
   @include desktop-hover {
-    color: var(--hero-color--primary);
+    color: var(--color-brand--primary);
 
     &::before {
       width: 0;
@@ -119,7 +119,7 @@
 // CMS Tokens
 @media all {
   .text-stroke {
-    -webkit-text-stroke: 1px var(--font-color--primary);
+    -webkit-text-stroke: 1px var(--color-font--primary);
     color: transparent;
     font-weight: 500; // slightly above regular
   }
@@ -129,7 +129,7 @@
   }
 
   .color-primary {
-    color: var(--hero-color--primary);
+    color: var(--color-brand--primary);
   }
   .color-secondary {
     color: var(--hero-color--secondary);

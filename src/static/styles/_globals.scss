@@ -10,8 +10,8 @@
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus-visible {
-    -webkit-text-fill-color: var(--font-color--primary);
-    -webkit-box-shadow: 0 0 0px 1000px var(--background-color) inset;
+    -webkit-text-fill-color: var(--color-font--primary);
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset;
   }
 
   // This hides the default buttons on input type="number"
@@ -22,8 +22,8 @@
 }
 
 body {
-  background: var(--background-color);
-  color: var(--font-color--primary);
+  background: var(--color-background);
+  color: var(--color-font--primary);
 
   & > * {
     max-width: $content-width;
@@ -102,7 +102,7 @@ body {
       &:hover,
       &:focus-visible {
         &::after {
-          background: var(--font-color--primary);
+          background: var(--color-font--primary);
         }
       }
     }
@@ -147,7 +147,7 @@ body {
         @include absolute-center;
         width: $line-width;
         height: $line-height;
-        background: var(--font-color--primary);
+        background: var(--color-font--primary);
         transition: $ease;
 
         &:first-of-type {
@@ -337,7 +337,7 @@ body {
 
   &[aria-hidden="false"] {
     @include show-content;
-    background: var(--background-color);
+    background: var(--color-background);
     transition: background 0s ease;
 
     .nav-links li {
@@ -425,12 +425,12 @@ body {
   top: 0;
   width: 100vw;
   height: 100dvh;
-  background: var(--background-color);
+  background: var(--color-background);
   z-index: $z-index--loader;
 
   &__text {
     @include h6;
-    color: var(--font-color--primary);
+    color: var(--color-font--primary);
   }
 
   &.load-complete {

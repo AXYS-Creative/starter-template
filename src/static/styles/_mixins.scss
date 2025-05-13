@@ -96,7 +96,7 @@ $min-breakpoints: (
 //
 
 @mixin heading-text($size) {
-  color: var(--font-color--primary);
+  color: var(--color-font--primary);
   font-family: var(--font-family--heading);
   font-size: $size;
   font-weight: 300;
@@ -148,7 +148,7 @@ $min-breakpoints: (
 @mixin body-font-styles($size: md) {
   --font-size: 18px;
 
-  color: var(--font-color--primary);
+  color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
@@ -201,11 +201,11 @@ $min-breakpoints: (
 //
 
 @mixin dark-theme {
-  --background-color: #{$black};
-  --font-color--primary: #{$white};
+  --color-background: #{$black};
+  --color-font--primary: #{$white};
 
-  background-color: var(--background-color);
-  color: var(--font-color--primary);
+  background-color: var(--color-background);
+  color: var(--color-font--primary);
 }
 
 @mixin ultra-wide($bg-color: $test-bg, $z-index: -1) {

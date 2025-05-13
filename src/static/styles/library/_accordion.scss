@@ -3,9 +3,9 @@
   flex-direction: column;
 
   &-btn {
-    $border: var(--border-bold-girth) solid var(--border-bold-color);
+    $border: var(--border-width--bold) solid var(--border-color--bold);
 
-    // color: var(--font-color--primary);
+    // color: var(--color-font--primary);
     border-bottom: $border;
     text-align: left;
     padding-block: 24px;

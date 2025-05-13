@@ -14,14 +14,14 @@
     }
 
     input {
-      @include hide-content;
       position: absolute;
+      opacity: 0;
     }
   }
 
   &__icon {
     @include mask-image();
-    background-color: var(--font-color--primary);
+    background-color: var(--color-font--primary);
     width: 16px;
 
     // Change appearance when selected

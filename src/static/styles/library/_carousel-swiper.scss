@@ -1,5 +1,5 @@
 .swiper {
-  --swiper-navigation-color: var(--font-color--primary);
+  --swiper-navigation-color: var(--color-font--primary);
 
   margin-block: var(--section-gap);
 
@@ -11,7 +11,7 @@
   // }
 
   div.swiper-pagination-progressbar {
-    background: var(--font-color--primary);
+    background: var(--color-font--primary);
     position: absolute;
     top: 50%;
     left: 0;
@@ -20,7 +20,7 @@
     height: 3px;
 
     .swiper-pagination-progressbar-fill {
-      background: var(--hero-color--primary);
+      background: var(--color-brand--primary);
     }
   }
 

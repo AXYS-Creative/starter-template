@@ -56,13 +56,13 @@
         transition: 0.6s $cubic-ease, opacity 0s;
 
         &.text-error {
-          color: var(--font-color--error);
+          color: var(--color-font--error);
         }
       }
     }
     .input {
       border: none;
-      border-bottom: 1px solid var(--font-color--primary);
+      border-bottom: 1px solid var(--color-font--primary);
       background-color: transparent;
       resize: none;
     }

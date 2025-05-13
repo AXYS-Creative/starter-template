@@ -39,46 +39,60 @@ $magnet: transform 0.5s $cubic-ease;
 $test: 2px dashed rgba(yellow, 0.75);
 $test-bg: rgba(navy, 0.75);
 
-:root {
-  --background-color: #{$white};
-  --font-color--primary: #{$black};
-  --font-color--secondary: #{$grey-light};
-  --font-color--error: #{$red};
+@mixin light-theme {
+  // TODO: Fix flash when navigating between pages
+  --color-background: #{$white};
+  --color-font--primary: #{$black};
+  --color-font--secondary: #{$grey-light};
+  --color-font--error: #{$red};
 
-  --hero-color--primary: #{$coral};
+  --color-brand--primary: #{$coral};
+
+  // --color-btn-2-bg: var(--color-brand--primary);
+  --color-btn-2-text: #{$black};
+  // --color-btn-2-border: transparent;
+  // --color-btn-2-bg--hover: transparent;
+  --color-btn-2-text--hover: var(--color-brand--primary);
+  // --color-btn-2-border--hover: transparent;
+
+  --link-color: #{$grey-light};
+  --link-color--hover: #{$white};
+
+  --border-color--bold: #{$grey-light};
+}
+
+@mixin dark-theme {
+  --color-background: #{$black};
+  --color-font--primary: #{$white};
+
+  --color-btn-2-text: #{$white};
+}
+
+:root {
+  --color-brand--primary: #{$coral}; // Consistent across themes
 
   --font-family--heading: #{$brand-font--heading};
   --font-family--body: #{$brand-font--body};
 
-  --btn-color-bg: var(--hero-color--primary);
-  --btn-color-text: #{$white};
-  --btn-color-border: var(--btn-color-bg);
-  --btn-color-bg--hover: transparent;
-  --btn-color-text--hover: var(--hero-color--primary);
-  --btn-color-border--hover: var(--hero-color--primary);
-
-  // --btn-color-2-bg: var(--hero-color--primary);
-  --btn-color-2-text: #{$white};
-  // --btn-color-2-border: transparent;
-  // --btn-color-2-bg--hover: transparent;
-  --btn-color-2-text--hover: var(--hero-color--primary);
-  // --btn-color-2-border--hover: transparent;
-
-  --btn-padding: 8px 16px;
-
-  --link-color: #{$grey-light};
-  --link-color-hover: #{$white};
-
   --content-width: #{$content-width};
+
   --body-padding: 64px;
   --body-padding-double: calc(var(--body-padding) * 2);
+
+  --color-btn-bg: var(--color-brand--primary);
+  --color-btn-text: #{$white};
+  --color-btn-border: var(--color-btn-bg);
+  --color-btn-bg--hover: transparent;
+  --color-btn-text--hover: var(--color-brand--primary);
+  --color-btn-border--hover: var(--color-brand--primary);
+
+  --btn-padding: 8px 16px;
 
   --section-gap: 24px;
   --section-gap--lg: 64px;
 
-  --border-btn-girth: 1px;
-  --border-bold-girth: 2px;
-  --border-bold-color: #{$grey-light};
+  --border-width--btn: 1px;
+  --border-width--bold: 2px;
 
   --radius: 24px;
   --radius-btn: 4px;
@@ -93,19 +107,15 @@ $test-bg: rgba(navy, 0.75);
   }
 }
 
-// Library
-// @media (prefers-color-scheme: dark) {
+// Library (themes and component vars)
 html[data-theme="dark"] {
-  --background-color: #{$black};
-  --font-color--primary: #{$white};
+  @include dark-theme;
 }
 
 html[data-theme="light"] {
-  --background-color: #{$white};
-  --font-color--primary: #{$black};
+  @include light-theme;
 }
 
-// Library
 :root {
   --carousel-snap-gap: 24px;
 }

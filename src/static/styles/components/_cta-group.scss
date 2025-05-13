@@ -1,8 +1,8 @@
 .cta-1 {
-  border: var(--border-btn-girth) solid var(--btn-color-border);
+  border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius-btn);
-  background: var(--btn-color-bg);
-  color: var(--btn-color-text);
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
   padding: var(--btn-padding);
   flex-shrink: 0;
 
@@ -12,15 +12,15 @@
   }
 
   @include desktop-hover {
-    border-color: var(--btn-color-border--hover);
-    background: var(--btn-color-bg--hover);
-    color: var(--btn-color-text--hover);
+    border-color: var(--color-btn-border--hover);
+    background: var(--color-btn-bg--hover);
+    color: var(--color-btn-text--hover);
   }
 }
 
 .cta-2 {
   @include row-center(space-between);
-  color: var(--btn-color-text);
+  color: var(--color-btn-2-text);
   gap: 8px;
   flex-shrink: 0;
 
@@ -29,7 +29,7 @@
   }
 
   @include desktop-hover {
-    color: var(--btn-color-text--hover);
+    color: var(--color-btn-text--hover);
 
     .cta-2__icon {
       translate: 0.5ch 0;
@@ -42,7 +42,7 @@
     @include mask-image(
       "../img/library/icon-angle-arrow-right.svg"
     ); // Use inline style for cms config
-    background-color: var(--hero-color--primary);
+    background-color: var(--color-brand--primary);
     width: var(--icon-size);
     height: var(--icon-size);
 
