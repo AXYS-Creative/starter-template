@@ -1,7 +1,7 @@
 tabs:
-  - title: "Title 1"
-    desc: "Description 1"
-    img: /static/img/library/img-sample-1.jpg
+  - title: Title 1
+    desc: Description 1
+    img: /static/img/icon-social-square-facebook.svg
   - title: Title 2
     desc: Description 2
     img: /static/img/library/img-sample-2.jpg
