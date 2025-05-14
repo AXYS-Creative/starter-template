@@ -41,7 +41,7 @@
       }
     });
 
-  // Handle image swap. Requires 'theme-img' utility class
+  // Handle image swap. Requires 'theme-img' utility class and the 'data-light' & 'data-dark' attributes
   const swapThemeImages = () => {
     const theme = document.documentElement.getAttribute("data-theme");
     const images = document.querySelectorAll("img.theme-img");

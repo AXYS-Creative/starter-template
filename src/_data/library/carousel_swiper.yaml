@@ -4,21 +4,39 @@ autoplay:
   allow_user_toggle: true
 
 list:
-  - title: "Title 1"
-    description: "Description 1"
-    image: "/static/img/library/portrait-1.webp"
-  - title: "Title 2"
-    description: "Description 2"
-    image: "/static/img/library/portrait-2.webp"
-  - title: "Title 3"
-    description: "Description 3"
-    image: "/static/img/library/portrait-3.webp"
-  - title: "Title 4"
-    description: "Description 4"
-    image: "/static/img/library/portrait-4.webp"
-  - title: "Title 5"
-    description: "Description 5"
-    image: "/static/img/library/portrait-5.webp"
-  - title: "Title 6"
-    description: "Description 6"
-    image: "/static/img/library/portrait-6.webp"
+  - title: Title 1
+    desc: Description 1
+    img: /static/img/library/img-sample-1.jpg
+  - title: Title 2
+    desc: Description 2
+    img: /static/img/library/img-sample-2.jpg
+  - title: Title 3
+    desc: Description 3
+    img: /static/img/library/img-sample-3.jpg
+  - title: Title 4
+    desc: Description 4
+    img: /static/img/library/img-sample-4.jpg
+  - title: Title 5
+    desc: Description 5
+    img: /static/img/library/img-sample-5.jpg
+  - title: Title 6
+    desc: Description 6
+    img: /static/img/library/img-sample-6.jpg
+  - title: Title 7
+    desc: Description 7
+    img: /static/img/library/img-sample-7.jpg
+  - title: Title 8
+    desc: Description 8
+    img: /static/img/library/img-sample-8.jpg
+  - title: Title 9
+    desc: Description 9
+    img: /static/img/library/img-sample-9.jpg
+  - title: Title 10
+    desc: Description 10
+    img: /static/img/library/img-sample-10.jpg
+  - title: Title 11
+    desc: Description 11
+    img: /static/img/library/img-sample-11.jpg
+  - title: Title 12
+    desc: Description 12
+    img: /static/img/library/img-sample-12.jpg

@@ -1,19 +1,19 @@
 tabs:
   - title: "Title 1"
     desc: "Description 1"
-    img: "/static/img/library/portrait-1.webp"
+    img: /static/img/library/img-sample-1.jpg
   - title: Title 2
     desc: Description 2
-    img: /static/img/library/portrait-2.webp
+    img: /static/img/library/img-sample-2.jpg
   - title: Title 3
     desc: Description 3
-    img: /static/img/library/portrait-3.webp
+    img: /static/img/library/img-sample-3.jpg
   - title: Title 4
     desc: Description 4
-    img: /static/img/library/portrait-4.webp
+    img: /static/img/library/img-sample-4.jpg
   - title: Title 5
     desc: Description 5
-    img: /static/img/library/portrait-5.webp
+    img: /static/img/library/img-sample-5.jpg
   - title: Title 6
     desc: Description 6
-    img: /static/img/library/portrait-6.webp
+    img: /static/img/library/img-sample-6.jpg
