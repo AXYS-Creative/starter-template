@@ -77,9 +77,8 @@ body {
   .header-logo {
     @include left-spacing;
     top: var(--body-padding);
-    display: flex;
-    align-items: center;
     height: var(--children-height);
+    aspect-ratio: 1;
 
     &__img {
       height: 100%;
@@ -87,7 +86,7 @@ body {
   }
 
   .header-links {
-    --links-gap: 48px;
+    --links-gap: 36px;
 
     @include row-center;
     @include right-spacing;
@@ -121,9 +120,9 @@ body {
     }
 
     .site-nav-btn {
-      $line-offset: 4px;
-      $line-height: 3px;
-      $line-width: 80%;
+      $line-offset: 3px;
+      $line-height: 2px;
+      $line-width: 64%;
 
       width: 100%;
       aspect-ratio: 1;
@@ -278,7 +277,7 @@ body {
     }
 
     .nav-link {
-      @include h2;
+      @include h3;
       height: 100%;
       translate: 0 100%;
       border-left: 4px solid transparent;
@@ -413,9 +412,7 @@ body {
 
   .return-to-top,
   .axys-link {
-    @include mq-max("md") {
-      font-size: 12px;
-    }
+    font-size: 12px;
   }
 }
 

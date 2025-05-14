@@ -17,7 +17,7 @@ window.addEventListener("scroll", () => {
     siteHeader.classList.remove("away-from-top");
   }
 
-  if (scrollingDown) {
+  if (scrollingDown && awayFromTop) {
     siteHeader.classList.add("scrolling-down");
   } else {
     siteHeader.classList.remove("scrolling-down");

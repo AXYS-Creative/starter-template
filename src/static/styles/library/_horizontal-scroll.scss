@@ -19,11 +19,15 @@
     aspect-ratio: 586 / 880;
     // width: 750px;
     // aspect-ratio: 8 / 5;
-    overflow: hidden;
 
     @include mq-max("lg") {
       width: 50vw;
       aspect-ratio: 1 / 1.5;
+    }
+
+    picture {
+      overflow: hidden;
+      height: 100%;
     }
 
     img {

@@ -1,6 +1,6 @@
 .theme-toggle {
   @include row-center;
-  gap: 12px;
+  gap: 8px;
   border: none;
 
   &__option {
@@ -11,9 +11,12 @@
     opacity: 0.5;
     border-radius: 50%;
 
-    &:hover,
-    &:has(input:focus-visible) {
+    &:hover {
       background: rgba(darkslategrey, 0.25);
+    }
+
+    &:has(input:focus-visible) {
+      @include a11y-focus;
     }
 
     &:has(input:checked) {
@@ -32,14 +35,18 @@
     width: 16px;
 
     &--desktop {
-      @include mq-max(lg) {
-        display: none;
+      display: none;
+
+      // @include mq-mouse {
+      @include mq-min(lg) {
+        display: block;
       }
     }
 
     &--mobile {
       display: none;
 
+      // @include mq-touch {
       @include mq-max(lg) {
         display: block;
       }

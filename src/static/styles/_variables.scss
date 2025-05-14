@@ -40,7 +40,6 @@ $test: 2px dashed rgba(yellow, 0.75);
 $test-bg: rgba(navy, 0.75);
 
 @mixin light-theme {
-  // TODO: Fix flash when navigating between pages
   --color-background: #{$white};
   --color-font--primary: #{$black};
   --color-font--secondary: #{$grey-light};
@@ -66,6 +65,8 @@ $test-bg: rgba(navy, 0.75);
   --color-font--primary: #{$white};
 
   --color-btn-2-text: #{$white};
+
+  --border-color--bold: #{$grey-light};
 }
 
 :root {

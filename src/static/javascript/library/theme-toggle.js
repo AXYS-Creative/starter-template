@@ -22,7 +22,6 @@
   const saved = localStorage.getItem(storageKey) || "system";
   applyTheme(saved);
 
-  // Ensure the correct radio button is checked on load
   document.querySelector(`#theme-${saved}`)?.setAttribute("checked", "");
 
   radios.forEach((radio) => {
@@ -33,7 +32,7 @@
     });
   });
 
-  // Optional: listen for system changes if system is selected
+  // Listen for system changes if system is selected
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => {
@@ -41,4 +40,25 @@
         applyTheme(e.matches ? "dark" : "light");
       }
     });
+
+  // Handle image swap. Requires 'theme-img' utility class
+  const swapThemeImages = () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    const images = document.querySelectorAll("img.theme-img");
+
+    images.forEach((img) => {
+      const newSrc = img.dataset[theme];
+      if (newSrc && img.src !== newSrc) {
+        img.src = newSrc;
+      }
+    });
+  };
+
+  swapThemeImages();
+
+  const observer = new MutationObserver(swapThemeImages);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
 })();

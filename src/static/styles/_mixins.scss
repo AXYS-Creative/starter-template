@@ -327,6 +327,10 @@ $min-breakpoints: (
   user-select: auto;
 }
 
+@mixin a11y-focus {
+  box-shadow: 0 0 0 1.5px #275dc5, 0 0 0 3px #fff;
+}
+
 @mixin mask-image($url: null) {
   mask-size: contain;
   mask-repeat: no-repeat;
