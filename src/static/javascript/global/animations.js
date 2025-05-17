@@ -259,6 +259,34 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             createScrubMarquees();
           }
         }
+
+        // Video Scrub
+        {
+          const video = document.querySelector(".video-scrub");
+
+          if (video) {
+            // Wait for metadata to get duration
+            video.addEventListener("loadedmetadata", () => {
+              const duration = video.duration;
+
+              gsap.registerPlugin(ScrollTrigger);
+
+              gsap.to(video, {
+                currentTime: duration,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: ".video-scrub-section",
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: true,
+                  pin: true,
+                  anticipatePin: 1,
+                  // markers: true,
+                },
+              });
+            });
+          }
+        }
       }
     }
   );

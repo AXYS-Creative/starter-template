@@ -12,6 +12,20 @@ description:
   <p>More complex components, advanced js, webGL, svg shaders, etc.</p>
 </section>
 
+<!-- Mouse position seems affected by content placement -->
+<section class="dots-field">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="400"
+    height="400"
+    viewBox="0 0 400 400"
+  ></svg>
+</section>
+
+<section class="video-scrub-section">
+  <video class="video-scrub" src="/static/img/library/vid-sample.mp4"></video>
+</section>
+
 <section class="grid-flow-img-section">
   <!-- prettier-ignore -->
   {% set grid_flow_img_src = '/static/img/library/landscape-1.webp' %}
@@ -23,15 +37,6 @@ description:
   {% set grid_flow_img_alt = '' %}
   {% set grid_flow_img_size = 'md' %}
   {% include './_includes/library/grid-flow-img.njk' %}
-</section>
-
-<section class="dots-field">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="400"
-    height="400"
-    viewBox="0 0 400 400"
-  ></svg>
 </section>
 
 <section class="light">
