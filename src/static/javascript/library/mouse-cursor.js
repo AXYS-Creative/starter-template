@@ -17,7 +17,7 @@ if (cursor && mqMouse.matches) {
 
   const easeFunction = cubicBezier(0.29, 1.01, 0.16, 1.09);
 
-  const duration = isSafari() ? 0.048 : 0.032; // Edit duration here
+  const duration = isSafari() ? 0.032 : 0.036; // Edit duration here
 
   const animateCursor = () => {
     if (progress < 1) {
@@ -60,9 +60,9 @@ if (cursor && mqMouse.matches) {
 
   // Mouse to selector sibling
   const siblingHover = (
-    triggerSelector, // selector string for hover trigger
-    siblingSelector, // selector string for inner target (relative to trigger)
-    activeClass = "", // class to apply to cursor
+    triggerSelector, // hover trigger
+    siblingSelector, // sibling target (relative to trigger)
+    activeClass = "", // custom class to style cursor
     eventType = "mousemove" // default to mousemove, can be mouseenter
   ) => {
     const triggers = document.querySelectorAll(triggerSelector);
@@ -120,13 +120,12 @@ if (document.querySelector(".mouse-cursor--elastic")) {
 
   window.addEventListener("mousemove", (e) => {
     elasticCursor.style.opacity = 1;
-
     mouse.x = e.x;
     mouse.y = e.y;
   });
 
   // Smoothing factor for cursor movement speed (0 = smoother, 1 = instant)
-  const speed = 0.17;
+  const speed = isSafari() ? 0.125 : 0.075; // Default 0.17
 
   // Start animation
   const tick = () => {
