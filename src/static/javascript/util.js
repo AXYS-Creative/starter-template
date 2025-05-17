@@ -44,3 +44,6 @@ export const isSafari = () => {
   let ua = navigator.userAgent.toLowerCase();
   return ua.indexOf("safari") !== -1 && ua.indexOf("chrome") === -1;
 };
+
+// console.clear();
+console.log("visit axyscreative.com for more info");

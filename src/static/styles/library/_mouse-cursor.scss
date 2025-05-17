@@ -1,4 +1,5 @@
-.mouse-cursor {
+.mouse-cursor,
+.mouse-cursor--elastic {
   $ease-opacity: opacity $ease 0s;
   $ease-size: width 0.5s ease, height 0.5s ease;
 

@@ -1888,7 +1888,8 @@ figure {
   gap: 0.5ch;
 }
 
-.mouse-cursor {
+.mouse-cursor,
+.mouse-cursor--elastic {
   position: fixed;
   top: 0;
   pointer-events: none;
@@ -1897,16 +1898,19 @@ figure {
   transition: opacity 0.3s ease 0.2s;
 }
 @media (hover: none) and (pointer: coarse) {
-  .mouse-cursor {
+  .mouse-cursor,
+  .mouse-cursor--elastic {
     display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mouse-cursor {
+  .mouse-cursor,
+  .mouse-cursor--elastic {
     display: none;
   }
 }
-.mouse-cursor__shape {
+.mouse-cursor__shape,
+.mouse-cursor--elastic__shape {
   --size: 48px;
   border: 2px solid var(--color-font--primary);
   opacity: 0.25;
@@ -1915,12 +1919,14 @@ figure {
   border-radius: 50%;
   transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
 }
-.mouse-cursor.hidden .mouse-cursor__shape {
+.mouse-cursor.hidden .mouse-cursor__shape,
+.mouse-cursor--elastic.hidden .mouse-cursor__shape {
   opacity: 0;
   width: 148px;
   height: 148px;
 }
-.mouse-cursor.test-class .mouse-cursor__shape {
+.mouse-cursor.test-class .mouse-cursor__shape,
+.mouse-cursor--elastic.test-class .mouse-cursor__shape {
   --size: 32px;
   opacity: 1;
 }
