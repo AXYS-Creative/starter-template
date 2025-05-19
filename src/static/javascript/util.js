@@ -11,8 +11,6 @@ export const lenis = new Lenis({
   autoRaf: true,
 });
 
-const swup = new Swup(); // Initializes Swup with default options
-
 // Get current year for copyright
 {
   const yearText = document.querySelector(".year-text");
