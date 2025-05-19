@@ -128,9 +128,9 @@
     <!-- prettier-ignore -->
     {% include "./partials/header.njk" %}
     {% include "./partials/nav.njk" %}
-    <div id="swup" class="transition-fade">
-      <main class="main-content main-{{ path }}">{{ content | safe }}</main>
-    </div>
+    <main id="swup" class="main-content main-{{ path }}">
+      {{ content | safe }}
+    </main>
     {%include "./partials/footer-simple.njk" %}
 
     <!-- prettier-ignore -->
