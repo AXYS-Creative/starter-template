@@ -30,38 +30,38 @@ body {
     margin: auto;
   }
 
-  // Loader styles, controlled by having a loader partial present in the html
-  &:has(.site-loader) {
-    $duration: 1s;
-    $delay: 0.25s;
+  // // Loader styles, controlled by having a loader partial present in the html
+  // &:has(.site-loader) {
+  //   $duration: 1s;
+  //   $delay: 0.25s;
 
-    .hero {
-      h1,
-      p,
-      div {
-        opacity: 0;
-        transition: opacity $duration ease $delay;
-      }
+  //   .hero {
+  //     h1,
+  //     p,
+  //     div {
+  //       opacity: 0;
+  //       transition: opacity $duration ease $delay;
+  //     }
 
-      p {
-        transition-delay: $delay + 0.075s;
-      }
-      div {
-        transition-delay: $delay + 0.125s;
-      }
-    }
-  }
+  //     p {
+  //       transition-delay: $delay + 0.075s;
+  //     }
+  //     div {
+  //       transition-delay: $delay + 0.125s;
+  //     }
+  //   }
+  // }
 
-  // Loader complete styles
-  &:has(.load-complete) {
-    .hero {
-      h1,
-      p,
-      div {
-        opacity: 1;
-      }
-    }
-  }
+  // // Loader complete styles
+  // &:has(.load-complete) {
+  //   .hero {
+  //     h1,
+  //     p,
+  //     div {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 }
 
 .site-header {
@@ -416,25 +416,25 @@ body {
   }
 }
 
-.site-loader {
-  @include row-center;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100dvh;
-  background: var(--color-background);
-  z-index: $z-index--loader;
+// .site-loader {
+//   @include row-center;
+//   position: fixed;
+//   top: 0;
+//   width: 100vw;
+//   height: 100dvh;
+//   background: var(--color-background);
+//   z-index: $z-index--loader;
 
-  &__text {
-    @include h6;
-    color: var(--color-font--primary);
-  }
+//   &__text {
+//     @include h6;
+//     color: var(--color-font--primary);
+//   }
 
-  &.load-complete {
-    @include hide-content;
-    transition: 0.5s ease;
-  }
-}
+//   &.load-complete {
+//     @include hide-content;
+//     transition: 0.5s ease;
+//   }
+// }
 
 section {
   @include section-padding;

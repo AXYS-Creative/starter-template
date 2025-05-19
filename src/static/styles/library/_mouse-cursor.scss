@@ -37,11 +37,13 @@
     }
   }
 
+  // Arbitrary custom class added to test reshaping the cursor
   &.test-class {
     .mouse-cursor__shape {
       --size: 32px;
 
       opacity: 1;
+      transition: $ease-size, opacity $ease 0.12s;
     }
   }
 }

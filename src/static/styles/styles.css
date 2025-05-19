@@ -80,23 +80,6 @@ body > * {
   max-width: 1920px;
   margin: auto;
 }
-body:has(.site-loader) .hero h1,
-body:has(.site-loader) .hero p,
-body:has(.site-loader) .hero div {
-  opacity: 0;
-  transition: opacity 1s ease 0.25s;
-}
-body:has(.site-loader) .hero p {
-  transition-delay: 0.325s;
-}
-body:has(.site-loader) .hero div {
-  transition-delay: 0.375s;
-}
-body:has(.load-complete) .hero h1,
-body:has(.load-complete) .hero p,
-body:has(.load-complete) .hero div {
-  opacity: 1;
-}
 
 .site-header {
   --children-height: 36px;
@@ -477,38 +460,6 @@ body:has(.load-complete) .hero div {
 .site-footer .return-to-top,
 .site-footer .axys-link {
   font-size: 12px;
-}
-
-.site-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100dvh;
-  background: var(--color-background);
-  z-index: 5;
-}
-.site-loader__text {
-  color: var(--color-font--primary);
-  font-family: var(--font-family--heading);
-  font-size: 24px;
-  font-weight: 300;
-  color: var(--color-font--primary);
-}
-@media screen and (max-width: 1512px) {
-  .site-loader__text {
-    font-size: max(18px, 2vw);
-  }
-}
-.site-loader.load-complete {
-  opacity: 0;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  transition: 0.5s ease;
 }
 
 section {
@@ -1929,6 +1880,7 @@ figure {
 .mouse-cursor--elastic.test-class .mouse-cursor__shape {
   --size: 32px;
   opacity: 1;
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.24s ease 0.12s;
 }
 
 .tabs__controls {
