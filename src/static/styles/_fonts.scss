@@ -1,4 +1,11 @@
 @font-face {
+  font-family: "Funnel Display";
+  src: url("../fonts/FunnelDisplay-variable.ttf") format("trueType");
+  font-weight: 100 900;
+  font-display: block; // pre-load font in app head
+}
+
+@font-face {
   font-family: "Satoshi";
   src: url("../fonts/Satoshi-Variable.woff2") format("woff2");
   font-weight: 100 900;

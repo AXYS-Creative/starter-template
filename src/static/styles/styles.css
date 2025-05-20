@@ -1,7 +1,7 @@
 :root {
   --color-brand--primary: #e48c66;
-  --font-family--heading: Satoshi, source-sans-pro, sans-serif;
-  --font-family--body: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
+  --font-family--heading: Funnel Display, source-sans-pro, sans-serif;
+  --font-family--body: Funnel Display, source-sans-pro, sans-serif;
   --content-width: 1920px;
   --body-padding: 64px;
   --body-padding-double: calc(var(--body-padding) * 2);
@@ -58,7 +58,7 @@ html[data-theme=light] {
 * {
   margin: 0;
   padding: 0;
-  font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
+  font-family: "Funnel Display", source-sans-pro, sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -275,7 +275,7 @@ body:has(.load-complete) .hero div {
 }
 .site-nav .nav-links li a,
 .site-nav .nav-footer-links li a {
-  font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
+  font-family: "Funnel Display", source-sans-pro, sans-serif;
 }
 .site-nav .nav-links {
   left: var(--body-padding);
@@ -735,7 +735,7 @@ span {
 }
 
 small {
-  font-family: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif;
+  font-family: "Funnel Display", source-sans-pro, sans-serif;
   font-size: 12px;
 }
 
@@ -921,6 +921,12 @@ figure {
   .color-secondary {
     color: var(--hero-color--secondary);
   }
+}
+@font-face {
+  font-family: "Funnel Display";
+  src: url("../fonts/FunnelDisplay-variable.ttf") format("trueType");
+  font-weight: 100 900;
+  font-display: block;
 }
 @font-face {
   font-family: "Satoshi";
