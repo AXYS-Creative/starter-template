@@ -176,6 +176,78 @@ collections:
               - name: "img"
                 label: "Image"
                 widget: "image"
+  - name: page_404
+    label: Page - 404 (Error)
+    description: >-
+      A 404 page is shown to visitors when they try to access a page that doesn’t exist
+      on your site—either because the URL was mistyped, the page was removed, or it was
+      never created. You can customize this page to help guide users back to working content.
+    files:
+      - name: hero_error
+        label: Section - Hero
+        file: src/_data/page_404/hero_error.yaml
+        preview_path: /blog
+        editor:
+          preview: true
+        fields:
+          - name: section_title
+            label: Section Title
+            widget: string
+            required: true
+          - name: section_desc
+            label: Section Description
+            widget: text
+            required: true
+          - name: cta_1
+            label: Call To Action 1
+            widget: object
+            summary: "{{ fields.text }} → {{ fields.url }}"
+            required: false
+            fields:
+              - name: text
+                label: Button Text
+                widget: string
+                required: false
+                hint: An empty value removes the button
+              - name: text_desc
+                label: Button Text Description
+                widget: string
+                required: false
+                hint: "'Learn More' is too vague and hurts SEO. Add more details to enhance the site."
+              - name: url
+                label: Button URL
+                widget: string
+                required: false
+                hint: "To return home use: /"
+              - name: new_tab
+                label: Open in a new tab
+                widget: boolean
+                default: true
+          - name: cta_2
+            label: Call To Action 2
+            widget: object
+            summary: "{{ fields.text }} → {{ fields.url }}"
+            required: false
+            fields:
+              - name: text
+                label: Button Text
+                widget: string
+                required: false
+                hint: An empty value removes the button
+              - name: text_desc
+                label: Button Text Description
+                widget: string
+                required: false
+                hint: "'Learn More' is too vague and hurts SEO. Add more details to enhance the site."
+              - name: url
+                label: Button URL
+                widget: string
+                required: false
+              - name: new_tab
+                label: Open in a new tab
+                widget: boolean
+                default: true
+
   - name: global
     label: Global
     description: >

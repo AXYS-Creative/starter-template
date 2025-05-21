@@ -115,7 +115,7 @@ body {
       top: var(--body-padding);
       height: var(--children-height);
       aspect-ratio: 1;
-      transition: opacity $ease;
+      transition: opacity $ease, $magnet;
       display: block;
     }
 
@@ -126,7 +126,7 @@ body {
 
       width: 100%;
       aspect-ratio: 1;
-      transition: $ease;
+      transition: $ease, $magnet;
 
       &:hover,
       &:focus-visible {

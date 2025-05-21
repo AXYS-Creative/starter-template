@@ -43,6 +43,24 @@
   @include sr-only;
 }
 
+// Form Submit & 404 pages
+.hero-alert {
+  @include full-viewport-section;
+  @include column-center;
+
+  &__title {
+    margin-block-end: 24px;
+    text-align: center;
+  }
+
+  &__desc {
+    margin-block-end: 48px;
+    max-width: 750px;
+    text-align: center;
+    text-wrap: balance;
+  }
+}
+
 // Library
 @media all {
   .glitch-text {
@@ -125,20 +143,40 @@
 
 // CMS Tokens
 @media all {
+  .color-primary {
+    color: var(--color-brand--primary);
+  }
+  .color-secondary {
+    color: var(--hero-color--secondary);
+  }
+
   .text-stroke {
     -webkit-text-stroke: 1px var(--color-font--primary);
     color: transparent;
     font-weight: 500; // slightly above regular
   }
 
-  .underline {
+  .text-underline {
     text-decoration: underline;
   }
 
-  .color-primary {
-    color: var(--color-brand--primary);
+  .text-italic {
+    font-style: italic;
   }
-  .color-secondary {
-    color: var(--hero-color--secondary);
+
+  .text-thin {
+    font-weight: 100;
+  }
+
+  .text-bold {
+    font-weight: 700;
+  }
+
+  $font-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+  @each $weight in $font-weights {
+    .fw-#{$weight} {
+      font-weight: $weight;
+    }
   }
 }

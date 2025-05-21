@@ -17,45 +17,6 @@
       href="{{ meta_data.favicon_dark_theme }}"
       media="(prefers-color-scheme: dark)"
     />
-
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        function removeNetlifyBadge() {
-          let netlifyBadge = document.querySelector(
-            `[class*="NetlifyCreditIcon"]`
-          );
-
-          if (netlifyBadge) {
-            setTimeout(() => {
-              if (netlifyBadge) {
-                netlifyBadge.remove();
-              }
-            }, 500);
-          } else {
-            console.log("Netlify badge not found.");
-          }
-        }
-
-        setTimeout(removeNetlifyBadge, 500);
-
-        const observer = new MutationObserver(() => {
-          removeNetlifyBadge();
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // Modal updates
-        const netlifyLogin = document.getElementById("netlify-identity-widget");
-
-        if (netlifyLogin) {
-          netlifyLogin.addEventListener("mouseover", () => {
-            console.log("mousing over");
-          });
-        } else {
-          console.log("not found");
-        }
-      });
-    </script> -->
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
@@ -66,5 +27,130 @@
       type="text/javascript"
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
     ></script>
+
+    <!-- Remove tokens in preview -->
+    <script>
+      // Handles the replacement logic for [%br%] tokens
+      const brTokenHandler = (() => {
+        const processBrToken = (inputString) => {
+          return inputString.replace(
+            /\[%br(\.[^\]]+)?%\]/g,
+            (match, className) => {
+              if (className) {
+                const cleanClass = className.substring(1);
+                return `<br class="${cleanClass}" aria-hidden="true">`;
+              }
+              return `<br aria-hidden="true">`;
+            }
+          );
+        };
+
+        return {
+          process: processBrToken,
+        };
+      })();
+
+      // Handles the replacement logic for [%span%] tokens
+      const spanTokenHandler = (() => {
+        const processSpanToken = (inputString) => {
+          return inputString.replace(
+            /\[%span(\.[^\]]+)?%\](.*?)\[%span%\]/g,
+            (match, className, content) => {
+              if (className) {
+                const cleanClass = className.substring(1);
+                return `<span class="${cleanClass}">${content}</span>`;
+              }
+              return `<span>${content}</span>`;
+            }
+          );
+        };
+
+        return {
+          process: processSpanToken,
+        };
+      })();
+
+      // Central token processor that applies all token handlers
+      const tokenProcessor = (() => {
+        const processTokens = (inputString) => {
+          let outputString = inputString;
+
+          // Process each token handler separately
+          outputString = brTokenHandler.process(outputString);
+          outputString = spanTokenHandler.process(outputString);
+
+          return outputString;
+        };
+
+        const elements = document.querySelectorAll(`
+    p,
+    span,
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6,
+    small
+  `);
+
+        elements.forEach((element) => {
+          const content = element.innerHTML;
+
+          if (
+            content.includes("[%br%]") ||
+            content.includes("[%br.") ||
+            content.includes("[%span%]") ||
+            content.includes("[%span.")
+          ) {
+            const wrappedContent = processTokens(content);
+            element.innerHTML = wrappedContent;
+          }
+        });
+      })();
+    </script>
+
+    <!-- Admin Preview Styles -->
+    <script>
+      const { h, createClass } = window;
+
+      // Partials
+      let HeroAlertPreview = createClass({
+        render: function () {
+          const entry = this.props.entry;
+          const data = entry.getIn(["data"]).toJS();
+
+          return h(
+            "section",
+            {
+              className: "hero-alert",
+            },
+            h("h1", { className: "hero-alert__title" }, data.section_title),
+            h("p", { className: "hero-alert__desc" }, data.section_desc),
+            h(
+              "div",
+              { className: "cta-group" },
+              data.cta_1?.text &&
+                h(
+                  "a",
+                  { className: "cta-1 outline", href: data.cta_1.url || "#" },
+                  data.cta_1.text
+                ),
+              data.cta_2?.text &&
+                h(
+                  "a",
+                  { className: "cta-2", href: data.cta_2.url || "#" },
+                  data.cta_2.text
+                )
+            )
+          );
+        },
+      });
+
+      // Use the same name as your file definition in config.yml
+      CMS.registerPreviewTemplate("hero_error", HeroAlertPreview);
+      CMS.registerPreviewTemplate("form_submit", HeroAlertPreview);
+      CMS.registerPreviewStyle("/static/styles/styles.css");
+    </script>
   </body>
 </html>

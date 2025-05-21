@@ -1,21 +1,15 @@
 ---
-# used from Netlify after form submission
+# Netlify form submission redirect
 layout: app
 path: contact
-
-title: Contact | Thank you!
-description: The page you are looking for cannot be found. Please check the URL or return to the home page.
-# author: CHANGE ME
-
-cta_1_text: Return home
-cta_1_url: /
 ---
 
-<section class="error">
-  <h1>Form Submitted</h1>
-  <p>
-    Thank you! We'll be notified of your form submission and reach out shortly.
-  </p>
+<section class="hero-alert">
+  <h1 class="hero-alert__title">{{ library.form_submit.section_title }}</h1>
+  <p class="hero-alert__desc">{{ library.form_submit.section_desc }}</p>
 
+  <!-- prettier-ignore -->
+  {% set content_start = true %}
+  {% set cta_1 = library.form_submit.cta_1 %}
   {% include "./_includes/components/cta-group.njk" %}
 </section>

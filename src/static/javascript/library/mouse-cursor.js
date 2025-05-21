@@ -124,4 +124,9 @@ if (cursor && mqMouse.matches) {
   };
 
   siblingHover(".sibling-hover", ".sibling-hover__target", "test-class");
+  siblingHover(
+    ".sibling-hover-burger",
+    ".sibling-hover-burger__target",
+    "mouse-cursor--burger"
+  );
 }

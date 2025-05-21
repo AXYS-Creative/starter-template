@@ -1,4 +1,4 @@
-section_title: Title goes here
+section_title: Title goes [%span.text-italic%]here[%span%]
 section_desc: Section description goes here.
 cta_1:
   text: Visit Library

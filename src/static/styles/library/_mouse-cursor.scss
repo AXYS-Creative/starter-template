@@ -46,4 +46,10 @@
       transition: $ease-size, opacity $ease 0.12s;
     }
   }
+
+  &--burger {
+    .mouse-cursor__shape {
+      --size: 64px;
+    }
+  }
 }

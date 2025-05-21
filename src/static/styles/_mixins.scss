@@ -251,7 +251,8 @@ $min-breakpoints: (
 @mixin left-spacing {
   left: var(--body-padding);
 
-  @include mq-min("xxxl") {
+  // This media query should be tied with the $content-width variable, using xxxl would stay at 1920px despite changing to 1512px or whatever
+  @media (min-width: #{$content-width + 1}) {
     left: calc(50% - calc($content-width / 2) + var(--body-padding));
   }
 }
@@ -259,7 +260,7 @@ $min-breakpoints: (
 @mixin right-spacing {
   right: var(--body-padding);
 
-  @include mq-min("xxxl") {
+  @media (min-width: #{$content-width + 1}) {
     right: calc(50% - calc($content-width / 2 - var(--body-padding)));
   }
 }
