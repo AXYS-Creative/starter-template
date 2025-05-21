@@ -20,8 +20,17 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 // GSAP
 {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrambleTextPlugin);
 
   let responsiveGsap = gsap.matchMedia();
+
+  let whiteMarkers = {
+    startColor: "white",
+    endColor: "white",
+    fontSize: "0.75rem",
+    indent: 128,
+    fontWeight: 400,
+  };
 
   responsiveGsap.add(
     {
@@ -258,6 +267,121 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             createScrubMarquees();
           }
+        }
+
+        // Glitch Text (Uses gsap scrambleText)
+        {
+          // Scroll-based glitch
+          document
+            .querySelectorAll(".glitch-text.glitch-scroll")
+            .forEach((el) => {
+              const originalText = el.textContent;
+              const chars = el.dataset.glitchChars || "upperAndLowerCase";
+              const revealDelay =
+                parseFloat(el.dataset.glitchRevealDelay) || 0.05; // Ensure revealDelay is less than the duration
+              const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
+              const playOnceAttr = el.dataset.glitchOnce;
+              const playOnce = playOnceAttr !== "false"; // Default to true unless explicitly set to "false"
+
+              if (playOnce) {
+                // 🔁 Play once using scrollTrigger animation timeline
+                gsap
+                  .timeline({
+                    scrollTrigger: {
+                      trigger: el,
+                      start: "top 98%",
+                      once: true,
+                    },
+                  })
+                  .to(el, {
+                    scrambleText: {
+                      text: originalText,
+                      chars,
+                      revealDelay,
+                    },
+                    duration,
+                  });
+              } else {
+                // 🔁 Play every time
+                gsap.to(el, {
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top 98%",
+                    toggleActions: "play reset play reset",
+                    onEnter: () => animateScramble(),
+                    onEnterBack: () => animateScramble(),
+                  },
+                });
+
+                function animateScramble() {
+                  el.textContent = originalText;
+
+                  gsap.to(el, {
+                    scrambleText: {
+                      text: originalText,
+                      chars,
+                      revealDelay,
+                    },
+                    duration,
+                  });
+                }
+              }
+            });
+
+          // Hover-based glitch
+          document
+            .querySelectorAll(".glitch-text.glitch-hover")
+            .forEach((el) => {
+              // Lock width to prevent layout shift
+              const width = el.offsetWidth;
+              el.style.width = `${width + 2}px`;
+              el.style.display = "inline-block";
+
+              // Save the original text once
+              const originalText = el.textContent;
+
+              el.addEventListener("mouseenter", () => {
+                // Reset text to the original first (in case it was mid-scramble)
+                el.textContent = originalText;
+
+                gsap.to(el, {
+                  scrambleText: {
+                    text: originalText,
+                    chars: "upperAndLowerCase",
+                  },
+                  duration: 1,
+                  revealDelay: 0.125,
+                });
+              });
+            });
+
+          // Cycle-based glitch
+          document
+            .querySelectorAll(".glitch-text.glitch-cycle")
+            .forEach((el) => {
+              const words =
+                el.dataset.glitchCycle?.split(",").map((w) => w.trim()) || [];
+              let index = 0;
+              let glitchCycleInterval = el.dataset.glitchCycleInterval || 2000;
+
+              if (words.length === 0) return;
+
+              const cycle = () => {
+                gsap.to(el, {
+                  scrambleText: {
+                    text: words[index],
+                    chars: "lowercase",
+                  },
+                  duration: 0.5,
+                  onComplete: () => {
+                    index = (index + 1) % words.length;
+                    setTimeout(cycle, glitchCycleInterval);
+                  },
+                });
+              };
+
+              cycle();
+            });
         }
 
         // Video Scrub

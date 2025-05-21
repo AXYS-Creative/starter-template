@@ -821,6 +821,11 @@ figure {
 }
 
 @media all {
+  .glitch-text {
+    max-width: var(--content-width);
+    overflow: hidden;
+    white-space: nowrap;
+  }
   .magnet {
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
@@ -1006,6 +1011,7 @@ figure {
   color: var(--color-btn-text);
   padding: var(--btn-padding);
   flex-shrink: 0;
+  display: inline-block;
 }
 @media (prefers-reduced-motion: no-preference) {
   .cta-1 {

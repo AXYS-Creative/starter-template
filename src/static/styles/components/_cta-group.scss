@@ -5,6 +5,7 @@
   color: var(--color-btn-text);
   padding: var(--btn-padding);
   flex-shrink: 0;
+  display: inline-block;
 
   @include mq-motion-allow {
     // transition: $ease;
