@@ -76,7 +76,7 @@ partials:
 collections:
   - name: "blog"
     label: "Blog"
-    folder: "src/posts"
+    folder: "src/posts/blog"
     preview_path: "posts/blog/{{filename}}/"
     create: true
     editor:
@@ -94,7 +94,7 @@ collections:
         create: true
         options: ["Tags", "created", "from", "config.yml"]
       - label: "Cover Image" # Only seems to work with .md collections
-        name: "image"
+        name: "cover_image"
         widget: "image"
         required: false
   - name: "page_library"
@@ -279,7 +279,6 @@ collections:
                 label: Open in a new tab
                 widget: boolean
                 default: true
-
   - name: global
     label: Global
     description: >
@@ -291,16 +290,7 @@ collections:
         editor:
           preview: false
         fields:
-          - name: logo_src_light
-            label: Logo Image Source (Light Theme)
-            widget: image
-            required: false
-            hint: An empty value removes the logo
-          - name: logo_src_dark
-            label: Logo Image Source (Dark Theme)
-            widget: image
-            required: false
-            hint: An empty value removes the logo
+          - *logo_field
           - name: links
             label: Header Links
             label_singular: Link

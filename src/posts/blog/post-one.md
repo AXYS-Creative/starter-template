@@ -8,6 +8,7 @@ tags:
   - left
   - center
   - right
+cover_image: /static/img/library/landscape-1.webp
 ---
 
 # This is a Heading h1
