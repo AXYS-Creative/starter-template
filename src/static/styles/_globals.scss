@@ -79,10 +79,6 @@ body {
     top: var(--body-padding);
     height: var(--children-height);
     aspect-ratio: 1;
-
-    &__img {
-      height: 100%;
-    }
   }
 
   .header-links {
@@ -415,6 +411,10 @@ body {
     font-size: 12px;
   }
 }
+
+// .site-logo {
+//   border: $test;
+// }
 
 .site-loader {
   @include row-center;

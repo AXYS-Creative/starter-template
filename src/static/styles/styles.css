@@ -117,9 +117,6 @@ body:has(.load-complete) .hero div {
     left: calc(50% - 960px + var(--body-padding));
   }
 }
-.site-header .header-logo__img {
-  height: 100%;
-}
 .site-header .header-links {
   --links-gap: 36px;
   display: flex;

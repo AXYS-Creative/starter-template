@@ -1,0 +1,32 @@
+<!-- prettier-ignore -->
+{% set logo_classes = "site-logo theme-img" %}
+
+{% if logo.url %}
+<!-- prettier-ignore -->
+<a 
+  class="{{ logo.class }} hide-mouse" 
+  href="{{ logo.url }}" 
+  {% if logo.new_tab %}
+    target="_blank" 
+    rel="noopener noreferrer"
+  {% endif %}
+>
+  <img
+    class="{{ logo_classes }}"
+    src="{{ logo.src_dark }}"
+    data-light="{{ logo.src_light }}"
+    data-dark="{{ logo.src_dark }}"
+    alt="Example image"
+    eleventy:ignore
+  />
+</a>
+{% else %}
+<img
+  class="{{ logo_classes }}"
+  src="{{ logo.src_dark }}"
+  data-light="{{ logo.src_light }}"
+  data-dark="{{ logo.src_dark }}"
+  alt="Example image"
+  eleventy:ignore
+/>
+{% endif %}

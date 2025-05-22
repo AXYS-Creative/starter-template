@@ -36,11 +36,43 @@ partials:
         label: Button URL
         widget: string
         required: false
-        hint: "e.g. '/join' or 'sunderenergy.com'. To return home use '/'."
+        hint: "e.g. '/join' or 'axyscreative.com'. To return home use '/'."
       - name: new_tab
         label: Open in a new tab
         widget: boolean
         default: true
+  shared_logo: &logo_field
+    name: logo
+    label: Logo
+    widget: object
+    summary: "Site Logo"
+    required: false
+    fields:
+      - name: src_light
+        label: Image Source (Light Theme)
+        widget: image
+        required: false
+        hint: An empty value removes the logo
+      - name: src_dark
+        label: Image Source (Dark Theme)
+        widget: image
+        required: false
+        hint: An empty value removes the logo
+      - name: text
+        label: Text
+        widget: string
+        required: false
+        hint: Optional image description for SEO and accessibility.
+      - name: url
+        label: Button URL
+        widget: string
+        required: false
+        hint: "Include a url to make the logo a link. To return home use '/'."
+      - name: new_tab
+        label: Open in a new tab
+        widget: boolean
+        default: true
+        hint: "If the logo is a link, this toggles opening in a new tab."
 collections:
   - name: "blog"
     label: "Blog"
@@ -259,8 +291,13 @@ collections:
         editor:
           preview: false
         fields:
-          - name: logo_src
-            label: Logo Image Source
+          - name: logo_src_light
+            label: Logo Image Source (Light Theme)
+            widget: image
+            required: false
+            hint: An empty value removes the logo
+          - name: logo_src_dark
+            label: Logo Image Source (Dark Theme)
             widget: image
             required: false
             hint: An empty value removes the logo

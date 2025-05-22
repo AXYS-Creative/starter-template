@@ -3,16 +3,9 @@
   <button class="skip-to-content tab-element-page">Skip to main content</button>
   {% endif %}
 
-  <a class="header-logo hide-mouse" href="{{ settings.url }}">
-    <img
-      class="header-logo__img theme-img"
-      src="{{ global.header.logo_src_dark }}"
-      data-light="{{ global.header.logo_src_light }}"
-      data-dark="{{ global.header.logo_src_dark }}"
-      alt="Example image"
-      eleventy:ignore
-    />
-  </a>
+  <!-- prettier-ignore -->
+  {% set logo = global.header.logo %}
+  {% include "../components/site-logo.njk" %}
 
   {% if global.header.links %}
   <ul class="header-links" aria-label="Header navigation">
