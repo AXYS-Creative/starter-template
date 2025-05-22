@@ -24,3 +24,9 @@ links:
   - text: Blog
     url: "/blog"
     new_tab: false
+
+# Dev use only — experimental
+nav_btn:
+  text: menu
+  design_type: two-lines
+  breakpoint_display: md

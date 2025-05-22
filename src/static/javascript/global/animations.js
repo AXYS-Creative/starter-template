@@ -271,88 +271,151 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Glitch Text (Uses gsap scrambleText)
         {
+          // Glitch utils
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
 
-          // Scroll-based glitch
-          document
-            .querySelectorAll(".glitch-text.glitch-scroll")
-            .forEach((el) => {
-              const originalText = el.textContent;
-              const chars = el.dataset.glitchChars || "upperAndLowerCase";
-              const revealDelay =
-                parseFloat(el.dataset.glitchRevealDelay) || 0.05; // Ensure revealDelay is less than the duration
-              const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
-              const playOnceAttr = el.dataset.glitchOnce;
-              const playOnce = playOnceAttr !== "false"; // Default to true unless explicitly set to "false"
+          const lockHoverGlitchWidth = (el) => {
+            const width = el.scrollWidth; // use scrollWidth to ensure full content is accounted for
+            el.style.width = `${width}px`;
+            el.style.display = "inline-block";
+          };
 
-              if (playOnce) {
-                // 🔁 Play once using scrollTrigger animation timeline
-                gsap
-                  .timeline({
-                    scrollTrigger: {
-                      trigger: el,
-                      start: "top 98%",
-                      once: true,
-                    },
-                  })
-                  .to(el, {
-                    scrambleText: {
-                      text: originalText,
-                      chars,
-                      revealDelay,
-                    },
-                    duration,
-                  });
-              } else {
-                // 🔁 Play every time
-                gsap.to(el, {
+          const glitchHoverEls = document.querySelectorAll(".glitch-hover");
+
+          glitchHoverEls.forEach((el) => {
+            const originalText = el.textContent;
+            el.dataset.originalText = originalText; // Store it safely for later
+            lockHoverGlitchWidth(el);
+
+            el.addEventListener("mouseenter", () => {
+              el.textContent = el.dataset.originalText;
+
+              gsap.to(el, {
+                scrambleText: {
+                  text: el.dataset.originalText,
+                  chars: "upperAndLowerCase",
+                },
+                duration: 1,
+                revealDelay: 0.125,
+              });
+            });
+          });
+
+          let resizeTimer;
+          window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+              glitchHoverEls.forEach(lockHoverGlitchWidth);
+            }, 200); // adjust debounce delay as needed
+          });
+
+          // Scroll-based glitch
+          document.querySelectorAll(".glitch-scroll").forEach((el) => {
+            const originalText = el.textContent;
+            const chars = el.dataset.glitchChars || "upperAndLowerCase";
+            const revealDelay =
+              parseFloat(el.dataset.glitchRevealDelay) || 0.05; // Ensure revealDelay is less than the duration
+            const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
+            const playOnceAttr = el.dataset.glitchOnce;
+            const playOnce = playOnceAttr !== "false"; // Default to true unless explicitly set to "false"
+
+            if (playOnce) {
+              // 🔁 Play once using scrollTrigger animation timeline
+              gsap
+                .timeline({
                   scrollTrigger: {
                     trigger: el,
                     start: "top 98%",
-                    toggleActions: "play reset play reset",
-                    onEnter: () => animateScramble(),
-                    onEnterBack: () => animateScramble(),
+                    once: true,
                   },
+                })
+                .to(el, {
+                  scrambleText: {
+                    text: originalText,
+                    chars,
+                    revealDelay,
+                  },
+                  duration,
                 });
+            } else {
+              // 🔁 Play every time
+              gsap.to(el, {
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top 98%",
+                  toggleActions: "play reset play reset",
+                  onEnter: () => animateScramble(),
+                  onEnterBack: () => animateScramble(),
+                },
+              });
 
-                function animateScramble() {
-                  el.textContent = originalText;
-
-                  gsap.to(el, {
-                    scrambleText: {
-                      text: originalText,
-                      chars,
-                      revealDelay,
-                    },
-                    duration,
-                  });
-                }
-              }
-            });
-
-          // Hover-based glitch
-          document
-            .querySelectorAll(".glitch-text.glitch-hover")
-            .forEach((el) => {
-              const originalText = el.textContent;
-              // Lock width to prevent layout shift
-              const width = el.offsetWidth;
-              el.style.width = `${width + 2}px`;
-              el.style.display = "inline-block";
-
-              el.addEventListener("mouseenter", () => {
+              function animateScramble() {
                 el.textContent = originalText;
 
                 gsap.to(el, {
                   scrambleText: {
                     text: originalText,
-                    chars: "upperAndLowerCase",
+                    chars,
+                    revealDelay,
                   },
-                  duration: 1,
-                  revealDelay: 0.125,
+                  duration,
                 });
+              }
+            }
+          });
+
+          // Hover-based glitch
+          document.querySelectorAll(".glitch-hover").forEach((el) => {
+            const originalText = el.textContent;
+            // Lock width to prevent layout shift
+            const width = el.offsetWidth;
+            el.style.width = `${width + 2}px`;
+            el.style.display = "inline-block";
+
+            el.addEventListener("mouseenter", () => {
+              el.textContent = originalText;
+
+              gsap.to(el, {
+                scrambleText: {
+                  text: originalText,
+                  chars: "upperAndLowerCase",
+                },
+                duration: 1,
+                revealDelay: 0.125,
               });
             });
+          });
+
+          // Sibling glitch, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class
+          document.querySelectorAll(".glitch-trigger").forEach((trigger) => {
+            const targetClass = trigger.dataset.glitchTarget;
+            if (!targetClass) return;
+
+            // 🔥 Global query for target
+            const target = document.querySelector(`.${targetClass}`);
+            if (!target) return;
+
+            const originalText = target.textContent;
+            target.dataset.originalText = originalText;
+
+            // Lock width once
+            const width = target.scrollWidth;
+            target.style.width = `${width}px`;
+            target.style.display = "inline-block";
+
+            trigger.addEventListener("mouseenter", () => {
+              target.textContent = originalText;
+
+              gsap.to(target, {
+                scrambleText: {
+                  text: originalText,
+                  chars: "upperAndLowerCase",
+                },
+                duration: 1,
+                revealDelay: 0.125,
+              });
+            });
+          });
 
           // Cycle-based glitch
           document.querySelectorAll(".glitch-cycle").forEach((el) => {

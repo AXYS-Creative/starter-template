@@ -27,16 +27,26 @@
   </ul>
   {% endif %}
 
-  <div class="site-nav-btn-wrapper sibling-hover-burger">
+  <div class="site-nav-btn-wrapper">
     <button
-      class="site-nav-btn magnet magnet-strong sibling-hover-burger__target"
+      class="site-nav-btn sibling-hover-burger"
       aria-controls="site-navigation"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <div class="site-nav-btn-line-wrapper">
-        <span class="site-nav-btn-line"></span>
-        <span class="site-nav-btn-line"></span>
+      {% if global.header.nav_btn.text %}
+      <small
+        class="site-nav-btn__text glitch-text glitch-hover glitch-target__menu-btn"
+      >
+        {{ global.header.nav_btn.text }}
+      </small>
+      {% endif %}
+      <div
+        class="site-nav-btn__line-wrapper magnet magnet-strong sibling-hover-burger__target glitch-trigger"
+        data-glitch-target="glitch-target__menu-btn"
+      >
+        <span class="site-nav-btn__line"></span>
+        <span class="site-nav-btn__line"></span>
       </div>
     </button>
   </div>
