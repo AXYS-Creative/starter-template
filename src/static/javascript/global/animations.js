@@ -271,6 +271,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Glitch Text (Uses gsap scrambleText)
         {
+          let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
+
           // Scroll-based glitch
           document
             .querySelectorAll(".glitch-text.glitch-scroll")
@@ -332,16 +334,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           document
             .querySelectorAll(".glitch-text.glitch-hover")
             .forEach((el) => {
+              const originalText = el.textContent;
               // Lock width to prevent layout shift
               const width = el.offsetWidth;
               el.style.width = `${width + 2}px`;
               el.style.display = "inline-block";
 
-              // Save the original text once
-              const originalText = el.textContent;
-
               el.addEventListener("mouseenter", () => {
-                // Reset text to the original first (in case it was mid-scramble)
                 el.textContent = originalText;
 
                 gsap.to(el, {
@@ -356,32 +355,45 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
 
           // Cycle-based glitch
-          document
-            .querySelectorAll(".glitch-text.glitch-cycle")
-            .forEach((el) => {
-              const words =
-                el.dataset.glitchCycle?.split(",").map((w) => w.trim()) || [];
-              let index = 0;
-              let glitchCycleInterval = el.dataset.glitchCycleInterval || 2000;
+          document.querySelectorAll(".glitch-cycle").forEach((el) => {
+            const words =
+              el.dataset.glitchCycleWords?.split(",").map((w) => w.trim()) ||
+              [];
+            const colorValues = el.dataset.glitchCycleColors
+              ?.split(",")
+              .map((c) => c.trim());
+            const hasColors =
+              Array.isArray(colorValues) && colorValues.length > 0;
 
-              if (words.length === 0) return;
+            let index = 0;
+            const glitchCycleInterval =
+              parseInt(el.dataset.glitchCycleInterval) || 2000;
 
-              const cycle = () => {
-                gsap.to(el, {
-                  scrambleText: {
-                    text: words[index],
-                    chars: "lowercase",
-                  },
-                  duration: 0.5,
-                  onComplete: () => {
-                    index = (index + 1) % words.length;
-                    setTimeout(cycle, glitchCycleInterval);
-                  },
-                });
-              };
+            if (words.length === 0) return;
 
-              cycle();
-            });
+            const cycle = () => {
+              const color = hasColors
+                ? colorValues[index % colorValues.length]
+                : null;
+
+              gsap.to(el, {
+                scrambleText: {
+                  text: words[index],
+                  chars: alphaNumberic,
+                  duration: 1.25,
+                  revealDelay: 0.125,
+                },
+                color: color,
+                duration: 0.5,
+                onComplete: () => {
+                  index = (index + 1) % words.length;
+                  setTimeout(cycle, glitchCycleInterval);
+                },
+              });
+            };
+
+            cycle();
+          });
         }
 
         // Video Scrub

@@ -1,4 +1,4 @@
-// Base
+// // // // // Base
 // prettier-ignore
 @import "variables",
  "mixins",
@@ -7,12 +7,12 @@
  "fonts",
  "animations";
 
-// Pages
+// // // // // Pages
 // prettier-ignore
 @import "./pages/home",
  "./pages/404";
 
-// Components
+// // // // // Components
 // prettier-ignore
 @import "./components/cta-group",
 "./components/social-media";

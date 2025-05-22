@@ -6,11 +6,15 @@ Collection of UI components and library of utility classes. To get started, move
 
 - Accordion
 - Carousel Variants
+- Form Variants
+- Horizontal Scroll
 - Marquee
 - Tabs
+- Video Overlay
 
 ## Utilities
 
-- Magnet
 - Fill Text
+- Glitch Text
+- Magnet
 - Parallax

@@ -52,6 +52,7 @@ const closeNav = () => {
 
 siteNavBtn.addEventListener("click", toggleNav);
 
+// Library
 // Skip to main content option
 if (skipToContent) {
   skipToContent.addEventListener("click", () => {
