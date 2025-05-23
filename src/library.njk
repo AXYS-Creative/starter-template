@@ -6,9 +6,10 @@ path: library
 
 <section class="hero">
   <h1>Library</h1>
-  <p>
+  <p class="text-balance">
     A playground to build out components and utilites that can be stored as a
-    template. <br />
+    template.
+    <br class="xl-up" />
     Pick what you need from the library and then be sure to delete the
     following:
   </p>
@@ -23,20 +24,20 @@ path: library
   </ol>
 </section>
 
-<section class="tooltip-section">
-  <h2 class="h6">[ Tooltip - Component ]</h2>
+<section class="tooltip-section library-section">
+  <h2 class="h4">[ Tooltip - Component ]</h2>
 
   <p>
     This includes a tooltip. {% include "./_includes/library/tooltip.njk" %}
   </p>
 </section>
 
-<section class="image-slice-section">
-  <h2 class="h6">[ Image Slice (Two image reveal) - Component ]</h2>
+<section class="image-slice-section library-section">
+  <h2 class="h4">[ Image Slice (Two image reveal) - Component ]</h2>
 </section>
 
-<section class="glitch-text-section">
-  <h2 class="h6">
+<section class="glitch-text-section library-section">
+  <h2 class="h4">
     [
     <span class="glitch-text glitch-scroll" data-glitch-once="false"
       >Scramble Text</span
@@ -52,7 +53,7 @@ path: library
   </h2>
 
   <!-- 'glitch-cycle' scrambles between the words passed in the 'data-glitch-cycle' attribute. Also has cycle-interval -->
-  <h3 class="h6">
+  <h3 class="h4">
     Glitch cycle:
     <span
       class="glitch-text glitch-cycle"
@@ -64,26 +65,36 @@ path: library
     </span>
   </h3>
 
-  <!-- 'glitch-scroll' should scramble the text on scroll -->
+  <!-- 'glitch-scroll' should scramble the text on scroll, comes with 'data-glitch-once' for trigger on reenter -->
   <p class="glitch-text glitch-scroll" data-glitch-once="true">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut optio
-    doloremque quo fuga error, in tenetur. Corporis esse commodi iste
-    exercitationem fuga ullam quis!
+    Scroll based glitch via 'scroll-glitch' class. This text should scramble
+    when scrolled into view. Use the 'data-glitch-once' attribute to toggle
+    repition.
+  </p>
+  <p class="glitch-text glitch-scroll" data-glitch-once="false">
+    This will only glitch out as many times as you scroll into view.
   </p>
 
   <!-- 'glitch-hover' should scramble the text on hover -->
   <a href="/" class="cta-1 glitch-text glitch-hover">Hover over me</a>
+  <a href="/" class="classic-link glitch-text glitch-hover">Hover over me</a>
+
+  <!-- Sibling glitch effect 'glitch-trigger' with data-glitch-target="arbitrary" & 'glitch-target__arbitrary' -->
+  <h4 class="h6 glitch-trigger" data-glitch-target="glitch-target__paragraph">
+    Sibling glitch hover effect - Hover me
+  </h4>
+  <p class="glitch-target__paragraph">This text should now glitch out</p>
 </section>
 
 <section class="tabs-section">
-  <h2 class="h6">[ Tabs - Component ]</h2>
+  <h2 class="h4">[ Tabs - Component ]</h2>
 
   <!-- prettier-ignore -->
   {% set tab_list = library.tabs.tabs %}
   {% include "./_includes/library/tabs.njk" %}
 </section>
 
-<h2 class="h6" style="margin: 0 0 48px var(--body-padding)">
+<h2 class="h4" style="margin: 0 0 48px var(--body-padding)">
   [ Carousel 'Hero' - Component ]
 </h2>
 <!-- prettier-ignore -->
@@ -92,7 +103,7 @@ path: library
 {% include "./_includes/library/carousel-hero.njk" %}
 
 <section class="carousel-swiper-section">
-  <h2 class="h6">[ Carousel 'Swiper' - Component ]</h2>
+  <h2 class="h4">[ Carousel 'Swiper' - Component ]</h2>
 
   <!-- prettier-ignore -->
   {% set carousel_swiper_autoplay = library.carousel_swiper.autoplay %}
@@ -108,16 +119,16 @@ path: library
 {% include './_includes/library/marquee.njk' %}
 
 <section class="accordion-section">
-  <h2 class="h6" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
+  <h2 class="h4" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <!-- prettier-ignore -->
   {% set accordion_list = library.accordion.accordion_data %}
   {% include './_includes/library/accordion.njk' %}
 </section>
 
-<section class="fill-text-section">
+<section class="fill-text-section library-section">
   <h2 class="h6 fill-text slow-fill">[ Fill Text - Utility ]</h2>
 
-  <h3 style="margin-block: 48px">
+  <h3>
     <span class="fill-text quick-fill">This is a large title</span>
   </h3>
 
@@ -144,10 +155,10 @@ path: library
 {% set title = '[ Horizontal scroll - Component ]' %} 
 {% include './_includes/library/horizontal-scroll.njk' %}
 
-<section class="fade-text-section">
-  <h2 class="h6">[ Fade Text - Utility ]</h2>
+<section class="fade-text-section library-section">
+  <h2 class="h4">[ Fade Text - Utility ]</h2>
 
-  <h3 style="margin-block: 48px">
+  <h3>
     <span>This is a large title</span>
   </h3>
 
@@ -172,8 +183,8 @@ path: library
 
 <section class="carousel-section"></section>
 
-<section class="video-section">
-  <h2 class="h6">[ Video Overlay - Utility ]</h2>
+<section class="video-section library-section">
+  <h2 class="h4">[ Video Overlay - Utility ]</h2>
   <p>
     This can be a traditional cta or can simply wrap an element i.e. an image
     (see joinsunder)
@@ -191,7 +202,7 @@ path: library
 </section>
 
 <section class="form-section">
-  <h2 class="h6">[ Form Feedback - Component ]</h2>
+  <h2 class="h4">[ Form Feedback - Component ]</h2>
 
   <!-- prettier-ignore -->
   {% set form_data = library.form_contact.form_data %}
@@ -199,7 +210,7 @@ path: library
 </section>
 
 <section class="form-section">
-  <h2 class="h6">[ Form Redirect - Component ]</h2>
+  <h2 class="h4">[ Form Redirect - Component ]</h2>
 
   <!-- prettier-ignore -->
   {% set form_data = library.form_redirect.form_data %}

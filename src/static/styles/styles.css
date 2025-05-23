@@ -860,9 +860,18 @@ figure {
 }
 
 @media all {
+  .library-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+  }
   .glitch-text {
     max-width: var(--content-width);
-    overflow: hidden;
+  }
+  .glitch-hover,
+  [class*=glitch-target__] {
     white-space: nowrap;
   }
   .magnet {
@@ -888,6 +897,46 @@ figure {
   .fill-text-hover:is(.fill-text-hover):hover,
   .fill-text-hover:is(.fill-text-hover):focus-visible {
     background-size: 100%;
+  }
+}
+@media all {
+  .xxl-up {
+    display: none;
+  }
+}
+@media screen and (min-width: 1513px) {
+  .xxl-up {
+    display: block;
+  }
+}
+@media all {
+  .xxl-down {
+    display: none;
+  }
+}
+@media screen and (max-width: 1512px) {
+  .xxl-down {
+    display: block;
+  }
+}
+@media all {
+  .xl-up {
+    display: none;
+  }
+}
+@media screen and (min-width: 1201px) {
+  .xl-up {
+    display: block;
+  }
+}
+@media all {
+  .xl-down {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .xl-down {
+    display: block;
   }
 }
 @media all {
@@ -956,6 +1005,9 @@ figure {
   }
   .color-secondary {
     color: var(--hero-color--secondary);
+  }
+  .text-balance {
+    text-wrap: balance;
   }
   .text-stroke {
     -webkit-text-stroke: 1px var(--color-font--primary);

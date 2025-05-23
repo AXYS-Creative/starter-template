@@ -1,13 +1,13 @@
 .swiper {
+  // Ensure parent doesn't have flex, caused strange image width
   --swiper-navigation-color: var(--color-font--primary);
 
   margin-block: var(--section-gap);
 
   // .swiper-wrapper {
+  // .swiper-slide {
 
-  //   .swiper-slide {
-
-  //   }
+  // }
   // }
 
   div.swiper-pagination-progressbar {

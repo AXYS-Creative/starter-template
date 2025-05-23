@@ -271,43 +271,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Glitch Text (Uses gsap scrambleText)
         {
-          // Glitch utils
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
-
-          const lockHoverGlitchWidth = (el) => {
-            const width = el.scrollWidth; // use scrollWidth to ensure full content is accounted for
-            el.style.width = `${width}px`;
-            el.style.display = "inline-block";
-          };
-
-          const glitchHoverEls = document.querySelectorAll(".glitch-hover");
-
-          glitchHoverEls.forEach((el) => {
-            const originalText = el.textContent;
-            el.dataset.originalText = originalText; // Store it safely for later
-            lockHoverGlitchWidth(el);
-
-            el.addEventListener("mouseenter", () => {
-              el.textContent = el.dataset.originalText;
-
-              gsap.to(el, {
-                scrambleText: {
-                  text: el.dataset.originalText,
-                  chars: "upperAndLowerCase",
-                },
-                duration: 1,
-                revealDelay: 0.125,
-              });
-            });
-          });
-
-          let resizeTimer;
-          window.addEventListener("resize", () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-              glitchHoverEls.forEach(lockHoverGlitchWidth);
-            }, 200); // adjust debounce delay as needed
-          });
 
           // Scroll-based glitch
           document.querySelectorAll(".glitch-scroll").forEach((el) => {
@@ -391,7 +355,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const targetClass = trigger.dataset.glitchTarget;
             if (!targetClass) return;
 
-            // 🔥 Global query for target
             const target = document.querySelector(`.${targetClass}`);
             if (!target) return;
 

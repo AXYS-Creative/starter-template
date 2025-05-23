@@ -63,9 +63,17 @@
 
 // Library
 @media all {
+  .library-section {
+    @include column-start;
+    gap: 24px;
+  }
+
   .glitch-text {
-    max-width: var(--content-width);
-    overflow: hidden;
+    max-width: var(--content-width); // Prevent overflow
+  }
+
+  .glitch-hover,
+  [class*="glitch-target__"] {
     white-space: nowrap;
   }
 
@@ -91,6 +99,38 @@
 
 // Media Query Utility, be mindful of flex vs block
 @media all {
+  .xxl-up {
+    display: none;
+
+    @include mq-min("xxl") {
+      display: block;
+    }
+  }
+
+  .xxl-down {
+    display: none;
+
+    @include mq-max("xxl") {
+      display: block;
+    }
+  }
+
+  .xl-up {
+    display: none;
+
+    @include mq-min("xl") {
+      display: block;
+    }
+  }
+
+  .xl-down {
+    display: none;
+
+    @include mq-max("xl") {
+      display: block;
+    }
+  }
+
   .lg-up {
     display: none;
 
@@ -147,6 +187,10 @@
   }
   .color-secondary {
     color: var(--hero-color--secondary);
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 
   .text-stroke {
