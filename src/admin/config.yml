@@ -36,7 +36,7 @@ partials:
         label: Button URL
         widget: string
         required: false
-        hint: "e.g. '/join' or 'axyscreative.com'. To return home use '/'."
+        hint: e.g. '/join' or 'axyscreative.com'. To return home use '/'.
       - name: new_tab
         label: Open in a new tab
         widget: boolean
@@ -67,63 +67,83 @@ partials:
         label: Button URL
         widget: string
         required: false
-        hint: "Include a url to make the logo a link. To return home use '/'."
+        hint: Include a url to make the logo a link. To return home use '/'.
       - name: new_tab
         label: Open in a new tab
         widget: boolean
         default: true
-        hint: "If the logo is a link, this toggles opening in a new tab."
+        hint: If the logo is a link, this toggles opening in a new tab.
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/posts/blog"
-    preview_path: "posts/blog/{{filename}}/"
+  - name: blog
+    label: Blog
+    folder: src/posts/blog
+    preview_path: posts/blog/{{filename}}/
     create: true
     editor:
       preview: false
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: string }
+      - { label: Author, name: author, widget: string }
+      - { label: Publish Date, name: date, widget: datetime }
+      - { label: Body, name: body, widget: markdown }
       - widget: select
-        label: "tags"
-        name: "tags"
+        label: tags
+        name: tags
         multiple: true
         create: true
-        options: ["Tags", "created", "from", "config.yml"]
-      - label: "Cover Image" # Only seems to work with .md collections
-        name: "cover_image"
+        options: [Tags, created, from, config.yml]
+      - label: Cover Image # Only seems to work with .md collections
+        name: cover_image
         widget: "image"
         required: false
-  - name: "page_library"
-    label: "Page - Library"
+  - name: page_library
+    label: Page - Library
     description: >
       Library for all UI components
     files:
-      - name: "marquee"
-        label: "Marquee"
-        file: "src/_data/library/marquee.yaml"
-        preview_path: "#"
+      - name: marquee
+        label: Marquee
+        file: src/_data/library/marquee.yaml
+        preview_path: /
         editor:
           preview: false
         fields:
-          - name: "marquee_toggle"
-            label: "Marquee Toggle"
-            widget: "boolean"
-            hint: "Hide or show the discount marquee."
-          - name: "marquee_text"
-            label: "Marquee Text"
-            required: true
-          - name: "marquee_scrub"
-            label: "Marquee Scrub"
-            widget: "boolean"
-            hint: "Change velocity based on scroll speed."
-      - name: "accordion"
-        label: "Accordion"
-        file: "src/_data/library.accordion.yaml"
-        preview_path: "#"
+          - name: marquee
+            label: Marquee Data
+            widget: object
+            required: false
+            fields:
+              - name: text
+                label: Marquee Text
+                widget: string
+                required: true
+                hint: Keep your message at least 64 characters long.
+              - name: imgs
+                label: Marquee Images
+                label_singular: Image
+                widget: list
+                min: 5
+                max: 999 # max value is required to use 'min'
+                hint: Include a minimum of 5 images.
+                required: false
+                fields:
+                  - name: src
+                    label: Image Source
+                    widget: image
+                    required: true
+                  - name: alt
+                    label: Image Alt Text
+                    widget: string
+                    required: true
+              - name: scrub
+                label: Marquee Scrub
+                widget: boolean
+                hint: Change velocity based on user scroll.
+      - name: accordion
+        label: Accordion
+        file: src/_data/library.accordion.yaml
+        preview_path: /
         editor:
           preview: false
         fields:
@@ -324,16 +344,16 @@ collections:
                 label: Icon Type
                 widget: select
                 multiple: false
-                required: false
-                default: "burger"
-                options: ["burger", "chocolate", "kebab"]
+                required: true
+                default: burger
+                options: [burger, chocolate, kebab]
               - name: shape
                 label: Icon Shape
                 widget: select
                 multiple: false
-                required: false
-                default: "burger"
-                options: ["square", "round"]
+                required: true
+                default: burger
+                options: [square, round]
       - name: footer
         label: Site Footer
         file: src/_data/global/footer.yaml

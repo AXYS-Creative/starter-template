@@ -45,9 +45,9 @@ path: library
     -
     <span
       class="glitch-text glitch-cycle"
-      data-glitch-cycle-words="Utility, Class, Component, Block"
+      data-glitch-cycle-words="Util, Class, Block"
     >
-      Utility</span
+      Util</span
     >
     ]
   </h2>
@@ -113,9 +113,7 @@ path: library
 </section>
 
 <!-- prettier-ignore -->
-{% set marquee_toggle = true %}
-{% set marquee_text = library.marquee.marquee_text %}
-{% set marquee_scrub = library.marquee.marquee_scrub %}
+{% set marquee = library.marquee.marquee %}
 {% include './_includes/library/marquee.njk' %}
 
 <section class="accordion-section">

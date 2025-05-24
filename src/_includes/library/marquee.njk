@@ -1,20 +1,35 @@
-{% if marquee_toggle %}
+<!-- prettier-ignore -->
+{% if marquee.text or marquee.imgs %}
+{% set count = marquee.count %}
 <div
-  class="marquee {%if marquee_scrub%}marquee--scrub{%endif%}"
+  class="marquee {%if marquee.text%}marquee--text{%endif%} {%if marquee.imgs%}marquee--imgs{%endif%} {%if marquee.scrub%}marquee--scrub{%endif%}"
   role="region"
-  aria-label="{{ marquee_text | removeTokens }}"
+  aria-label="{{ marquee.text | removeTokens }}"
 >
+  {% if marquee.text %} {% for i in range(0, count) %}
   <div class="marquee-inner" aria-hidden="true">
-    <p class="marquee-text">
-      <span>{{ marquee_text }}</span>
-      <span>{{ marquee_text }}</span>
+    <p class="marquee-inner__split">
+      <span>{{ marquee.text }}</span>
+      <span>{{ marquee.text }}</span>
     </p>
   </div>
+  {% endfor %} {% endif %}
+
+  <!-- prettier-ignore -->
+  {% if marquee.imgs %} 
+  {% for i in range(0, count) %}
   <div class="marquee-inner" aria-hidden="true">
-    <p class="marquee-text">
-      <span>{{ marquee_text }}</span>
-      <span>{{ marquee_text }}</span>
-    </p>
+    <div class="marquee-inner__split">
+      {% for img in marquee.imgs %}
+      <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
+      {% endfor %}
+    </div>
+    <div class="marquee-inner__split">
+      {% for img in marquee.imgs %}
+      <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
+      {% endfor %}
+    </div>
   </div>
+  {% endfor %} {% endif %}
 </div>
 {% endif %}

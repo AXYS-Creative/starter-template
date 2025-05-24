@@ -1,5 +1,5 @@
 .marquee {
-  $gap-offset: 0.5ch; // space between duplicate span
+  $gap-offset: 0.5ch; // inline padding start and in-between duplicate span
 
   @include h2; // Setting font here to use ch units above
   @include section-padding;
@@ -8,19 +8,42 @@
   width: 100%;
   max-width: $content-width;
 
+  // The slider
   &-inner {
     display: flex;
     align-items: center;
     width: fit-content;
     padding-inline-end: $gap-offset;
     // will-change: transform; // use sparingly.
+
+    // nested siblings (should have two divs/spans)
+    &__split {
+      @include inherit-font;
+      line-height: 100%;
+      text-wrap: nowrap;
+      display: inline-flex;
+      gap: $gap-offset;
+      flex-wrap: nowrap;
+      width: 100%;
+      padding-inline-end: $gap-offset;
+    }
   }
 
-  .marquee-text {
-    @include inherit-font;
-    line-height: 100%;
-    display: inline-flex;
-    text-wrap: nowrap;
-    gap: $gap-offset;
+  &--imgs {
+    @include column-start;
+    gap: $gap-offset; // gap between each marquee, if more than one
+
+    picture {
+      display: block;
+      width: 320px;
+
+      @include mq-max("md") {
+        width: 180px;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
   }
 }

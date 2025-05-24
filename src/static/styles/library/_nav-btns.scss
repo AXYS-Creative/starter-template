@@ -40,7 +40,6 @@
       .site-nav-btn__stroke {
         @include absolute-center;
 
-        background: var(--color-font--primary);
         width: $stroke-width;
         height: $stroke-height;
         transition: $ease;
@@ -64,7 +63,6 @@
       gap: 5px;
 
       .site-nav-btn__stroke {
-        background: white;
         width: $stroke-size;
         height: $stroke-size;
 
@@ -82,10 +80,8 @@
       .site-nav-btn__stroke {
         @include absolute-center;
 
-        background: var(--color-font--primary);
         width: $stroke-size;
         height: $stroke-size;
-        transition: $ease;
 
         &.stroke-1 {
           translate: -50% calc(-50% - $stroke-offset);
@@ -104,6 +100,11 @@
         border-radius: 24px;
       }
     }
+  }
+
+  &__stroke {
+    background: var(--color-font--primary);
+    transition: $ease;
   }
 
   &[aria-expanded="true"] {

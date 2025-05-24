@@ -1,3 +1,17 @@
-marquee_toggle: true
-marquee_text: • Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee_text prop to control the content # Keep at least 64 characters
-marquee_scrub: true
+marquee:
+  text: "• Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee.text prop to control the content" # Keep at least 64 characters
+  # imgs:
+  #   - src: /static/img/library/img-sample-1.jpg
+  #     alt: "Sample Image 1"
+  #   - src: /static/img/library/img-sample-2.jpg
+  #     alt: "Sample Image 2"
+  #   - src: /static/img/library/img-sample-3.jpg
+  #     alt: "Sample Image 3"
+  #   - src: /static/img/library/img-sample-4.jpg
+  #     alt: "Sample Image 4"
+  #   - src: /static/img/library/img-sample-5.jpg
+  #     alt: "Sample Image 5"
+  #   - src: /static/img/library/img-sample-6.jpg
+  #     alt: "Sample Image 6"
+  scrub: true
+  count: 2

@@ -16,17 +16,17 @@
     src="{{ logo.src_dark }}"
     data-light="{{ logo.src_light }}"
     data-dark="{{ logo.src_dark }}"
-    alt="Example image"
+    alt="{{ logo.text }}"
     eleventy:ignore
   />
 </a>
 {% else %}
 <img
-  class="{{ logo_classes }}"
+  class="{{ logo_classes }} {{ logo.class }}"
   src="{{ logo.src_dark }}"
   data-light="{{ logo.src_light }}"
   data-dark="{{ logo.src_dark }}"
-  alt="Example image"
+  alt="{{ logo.text }}"
   eleventy:ignore
 />
 {% endif %}

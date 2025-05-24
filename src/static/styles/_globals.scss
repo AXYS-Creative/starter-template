@@ -363,9 +363,10 @@ body {
   }
 }
 
-// .site-logo {
-//   border: $test;
-// }
+.site-logo {
+  height: 36px;
+  width: auto;
+}
 
 .site-loader {
   @include row-center;
