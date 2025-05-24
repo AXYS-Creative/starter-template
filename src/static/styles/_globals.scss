@@ -114,73 +114,7 @@ body {
       transition: opacity $ease;
     }
 
-    .site-nav-btn {
-      $burger-width: 24px;
-      $line-offset: 3px;
-      $line-height: 2px;
-      $line-width: 100%;
-
-      @include row-center;
-      gap: 12px;
-      transition: $ease, $magnet;
-
-      &:hover,
-      &:focus-visible {
-        .site-nav-btn__text {
-          margin-inline-end: 12px;
-        }
-
-        .site-nav-btn__line-wrapper {
-          scale: 1.1;
-        }
-      }
-
-      &:active {
-        .site-nav-btn__line-wrapper {
-          scale: 0.9;
-        }
-      }
-
-      &__text {
-        color: var(--color-font--primary);
-        transition: $ease;
-      }
-
-      &__line-wrapper {
-        position: relative;
-        width: $burger-width;
-        aspect-ratio: 1;
-        transition: $ease, $magnet;
-      }
-
-      &__line {
-        @include absolute-center;
-        width: $line-width;
-        height: $line-height;
-        background: var(--color-font--primary);
-        transition: $ease;
-
-        &:first-of-type {
-          translate: -50% calc(-50% - $line-offset);
-        }
-        &:last-of-type {
-          translate: -50% calc(-50% + $line-offset);
-        }
-      }
-
-      &[aria-expanded="true"] {
-        .site-nav-btn__line {
-          translate: -50% -50%;
-
-          &:first-of-type {
-            rotate: 45deg;
-          }
-          &:last-of-type {
-            rotate: -45deg;
-          }
-        }
-      }
-    }
+    // See _nav-btns.scss for variants
   }
 
   // &.away-from-top {
@@ -205,9 +139,11 @@ body {
 
   // }
 
-  // &.nav-active {
-
-  // }
+  &.nav-active {
+    > * {
+      @include show-content;
+    }
+  }
 
   .skip-to-content {
     position: fixed;

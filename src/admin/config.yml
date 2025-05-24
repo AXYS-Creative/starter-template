@@ -288,7 +288,7 @@ collections:
         label: Site Header
         file: src/_data/global/header.yaml
         editor:
-          preview: false
+          preview: true
         fields:
           - *logo_field
           - name: links
@@ -309,6 +309,31 @@ collections:
                 label: Open in a new tab
                 widget: boolean
                 default: true
+          - name: nav_btn
+            label: Navigation Menu Button
+            widget: object
+            summary: "{{ fields.text }} → {{ fields.url }}"
+            required: false
+            fields:
+              - name: text
+                label: Button Text
+                widget: string
+                required: false
+                hint: Text next to the icon. An empty value removes the text.
+              - name: type
+                label: Icon Type
+                widget: select
+                multiple: false
+                required: false
+                default: "burger"
+                options: ["burger", "chocolate", "kebab"]
+              - name: shape
+                label: Icon Shape
+                widget: select
+                multiple: false
+                required: false
+                default: "burger"
+                options: ["square", "round"]
       - name: footer
         label: Site Footer
         file: src/_data/global/footer.yaml

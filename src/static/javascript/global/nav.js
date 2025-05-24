@@ -50,7 +50,7 @@ const closeNav = () => {
   }
 });
 
-siteNavBtn.addEventListener("click", toggleNav);
+siteNavBtn?.addEventListener("click", toggleNav);
 
 // Library
 // Skip to main content option

@@ -334,7 +334,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             // Lock width to prevent layout shift
             const width = el.offsetWidth;
             el.style.width = `${width + 2}px`;
-            el.style.display = "inline-block";
+            // el.style.display = "inline-block";
 
             el.addEventListener("mouseenter", () => {
               el.textContent = originalText;

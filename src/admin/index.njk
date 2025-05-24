@@ -17,6 +17,33 @@
       href="{{ meta_data.favicon_dark_theme }}"
       media="(prefers-color-scheme: dark)"
     />
+
+    <!-- <style>
+      :root {
+        --bg-1: #202224;
+        --bg-2: #181a1b;
+        --bg-3: #2c2f33;
+        --font-1: #c4c0b9;
+      }
+
+      body:has(#nc-root) {
+        background: var(--bg-1);
+      }
+
+      header.css-8zenuf-AppHeader-css,
+      aside.css-102us41-SidebarContainer-card-card,
+      div.css-1b9y7ug-CollectionTopContainer-card-card-cardTop-cardTop,
+      a.css-6x6ze7-ListCardLink {
+        background: var(--bg-2);
+        color: var(--font-1);
+      }
+
+      .css-mt2v94-SidebarNavLink-sidebarNavLinkActive-sidebarNavLinkActive-SidebarNavLink-SidebarNavLink:hover,
+      .css-mt2v94-SidebarNavLink-sidebarNavLinkActive-sidebarNavLinkActive-SidebarNavLink-SidebarNavLink:active,
+      .css-mt2v94-SidebarNavLink-sidebarNavLinkActive-sidebarNavLinkActive-SidebarNavLink-SidebarNavLink.sidebar-active {
+        background: var(--bg-3);
+      }
+    </style> -->
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
@@ -28,14 +55,116 @@
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
     ></script>
 
-    <!-- Remove tokens in preview -->
-    <script></script>
+    <!-- Custom Admin Dashboard Styles -->
+    <script>
+      console.log("sup diddy");
+    </script>
 
     <!-- Admin Preview Styles -->
     <script>
       const { h, createClass } = window;
 
+      // Blocks
+      let renderNavIcon = (type, shape, extraClass = "") => {
+        const counts = {
+          burger: 2,
+          chocolate: 9,
+          kebab: 3,
+        };
+
+        const count = counts[type] || 2;
+        const iconClass = `site-nav-btn__icon site-nav-btn__icon--${type} ${extraClass} ${shape}`;
+
+        return h(
+          "div",
+          {
+            className: iconClass,
+            "data-glitch-target": "glitch-target__menu-btn",
+          },
+          Array.from({ length: count }, (_, i) =>
+            h("span", {
+              className: `site-nav-btn__stroke stroke-${i + 1}`,
+            })
+          )
+        );
+      };
+
       // Partials
+      let HeaderPreview = createClass({
+        render() {
+          const data = this.props.entry.getIn(["data"]).toJS();
+          const logo = data.logo || {};
+          const links = data.links || [];
+          const navBtn = data.nav_btn || {};
+
+          return h(
+            "header",
+            { className: "site-header", "aria-label": "Site Header" },
+
+            // Logo
+            logo.src_dark || logo.src_light
+              ? h(
+                  "a",
+                  {
+                    className: "logo-link tab-element-page",
+                    href: logo.url || "/",
+                    target: logo.new_tab ? "_blank" : null,
+                    rel: logo.new_tab ? "noopener noreferrer" : null,
+                  },
+                  h("img", {
+                    className: "logo-link__img",
+                    src: logo.src_dark || logo.src_light,
+                    alt: logo.text || "Site logo",
+                  })
+                )
+              : null,
+
+            // Header Links
+            links.length > 0 &&
+              h(
+                "ul",
+                {
+                  className: "header-links",
+                  "aria-label": "Header navigation",
+                },
+                links.map((link, i) =>
+                  h(
+                    "li",
+                    { key: i },
+                    h(
+                      "a",
+                      {
+                        className:
+                          "header-links__link classic-link tab-element-page",
+                        href: link.url,
+                        target: link.new_tab ? "_blank" : null,
+                        rel: link.new_tab ? "noopener noreferrer" : null,
+                      },
+                      link.title
+                    )
+                  )
+                )
+              ),
+
+            // Navigation Button (just a text fallback)
+            h(
+              "div",
+              { className: "site-nav-btn-wrapper" },
+              h(
+                "button",
+                {
+                  className: "site-nav-btn",
+                  "aria-label": "Toggle navigation menu",
+                  "aria-expanded": "false",
+                },
+                navBtn.text &&
+                  h("small", { className: "site-nav-btn__text" }, navBtn.text)
+              )
+            )
+          );
+        },
+      });
+
       let HeroAlertPreview = createClass({
         render: function () {
           const entry = this.props.entry;
@@ -69,6 +198,7 @@
       });
 
       // Use the same name as your file definition in config.yml
+      CMS.registerPreviewTemplate("header", HeaderPreview);
       CMS.registerPreviewTemplate("hero_error", HeroAlertPreview);
       CMS.registerPreviewTemplate("form_submit", HeroAlertPreview);
       CMS.registerPreviewStyle("/static/styles/styles.css");

@@ -64,6 +64,7 @@
 // Library
 @media all {
   .library-section {
+    // Doesn't work with Swiper or Fill-text
     @include column-start;
     gap: 24px;
   }
@@ -75,6 +76,10 @@
   .glitch-hover,
   [class*="glitch-target__"] {
     white-space: nowrap;
+  }
+
+  .glitch-hover {
+    overflow: hidden;
   }
 
   .magnet {

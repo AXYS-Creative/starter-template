@@ -41,13 +41,15 @@
         {{ global.header.nav_btn.text }}
       </small>
       {% endif %}
-      <div
-        class="site-nav-btn__line-wrapper magnet magnet-strong sibling-hover-burger__target glitch-trigger"
-        data-glitch-target="glitch-target__menu-btn"
-      >
-        <span class="site-nav-btn__line"></span>
-        <span class="site-nav-btn__line"></span>
-      </div>
+      <!-- prettier-ignore -->
+      {% set nav_btn = global.header.nav_btn %}
+      {% if nav_btn.type == 'burger' %}
+      {% include "../library/nav-btn-burger.njk" %}
+      {% elseif nav_btn.type == 'chocolate' %}
+      {% include "../library/nav-btn-chocolate.njk" %}
+      {% else %}
+      {% include "../library/nav-btn-kebab.njk" %}
+      {% endif %}
     </button>
   </div>
 </header>
