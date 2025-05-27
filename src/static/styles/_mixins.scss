@@ -3,35 +3,35 @@
 //
 
 $max-breakpoints: (
-  "xs": 390px,
-  "sm": 480px,
-  "md": 768px,
-  "lg": 1024px,
-  "xl": 1200px,
-  "xxl": 1512px,
-  "xxxl": 1920px,
+  xs: 390px,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1512px,
+  xxxl: 1920px,
 );
 
 @mixin mq-max($breakpoint) {
   $value: map-get($max-breakpoints, $breakpoint);
-  @media screen and (max-width: $value) {
+  @media (max-width: $value) {
     @content;
   }
 }
 
 $min-breakpoints: (
-  "xs": 391px,
-  "sm": 481px,
-  "md": 769px,
-  "lg": 1025px,
-  "xl": 1201px,
-  "xxl": 1513px,
-  "xxxl": 1921px,
+  xs: 391px,
+  sm: 481px,
+  md: 769px,
+  lg: 1025px,
+  xl: 1201px,
+  xxl: 1513px,
+  xxxl: 1921px,
 );
 
 @mixin mq-min($breakpoint) {
   $value: map-get($min-breakpoints, $breakpoint);
-  @media screen and (min-width: $value) {
+  @media (min-width: $value) {
     @content;
   }
 }
@@ -105,42 +105,42 @@ $min-breakpoints: (
 @mixin h1 {
   @include heading-text(96px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(61.5px, 6vw);
   }
 }
 @mixin h2 {
   @include heading-text(72px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(49.2px, 4.8vw);
   }
 }
 @mixin h3 {
   @include heading-text(52px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(39px, 3.4vw);
   }
 }
 @mixin h4 {
   @include heading-text(36px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(28.7px, 2.4vw);
   }
 }
 @mixin h5 {
   @include heading-text(32px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(24.5px, 2.4vw);
   }
 }
 @mixin h6 {
   @include heading-text(24px);
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     font-size: max(18px, 2vw);
   }
 }
@@ -154,11 +154,11 @@ $min-breakpoints: (
   font-weight: 400;
 
   @media all {
-    @include mq-max("xxl") {
+    @include mq-max(xxl) {
       --font-size: 16px;
     }
 
-    @include mq-max("md") {
+    @include mq-max(md) {
       --font-size: 14px;
     }
   }
@@ -168,11 +168,11 @@ $min-breakpoints: (
 
     line-height: 1.5;
 
-    @include mq-max("xxl") {
+    @include mq-max(xxl) {
       --font-size: 20px;
     }
 
-    @include mq-max("md") {
+    @include mq-max(md) {
       --font-size: 16px;
     }
   }
@@ -224,15 +224,15 @@ $min-breakpoints: (
 }
 
 @mixin full-viewport-section {
-  @include mq-min("xxl") {
+  @include mq-min(xxl) {
     height: clamp(750px, 100vh, 1250px);
   }
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     height: clamp(625px, 100vh, 1100px);
   }
 
-  @include mq-max("md") {
+  @include mq-max(md) {
     height: clamp(500px, 100svh, 950px);
   }
 }
@@ -242,7 +242,7 @@ $min-breakpoints: (
   padding-block: var(--body-padding-double);
 
   @if $type == thin {
-    @include mq-min("lg") {
+    @include mq-min(lg) {
       padding-inline: calc(var(--body-padding) * 4);
     }
   }

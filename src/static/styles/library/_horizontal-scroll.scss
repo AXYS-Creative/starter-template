@@ -20,7 +20,7 @@
     // width: 750px;
     // aspect-ratio: 8 / 5;
 
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       width: 50vw;
       aspect-ratio: 1 / 1.5;
     }

@@ -2,7 +2,7 @@
   display: flex;
   gap: 24px;
 
-  @include mq-max("md") {
+  @include mq-max(md) {
     gap: 12px;
   }
 

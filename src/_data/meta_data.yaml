@@ -24,7 +24,7 @@ page_details:
     title: Library | Business Name
     description: The UI component library and utility collection.
   - path: "404"
-    label: 404
+    label: "404"
     title: Page Not Found
     description: The page you are looking for cannot be found. Please check the URL or return to the home page.
 

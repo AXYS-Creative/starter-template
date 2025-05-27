@@ -331,12 +331,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           // Hover-based glitch
           document.querySelectorAll(".glitch-hover").forEach((el) => {
             const originalText = el.textContent;
-            // Lock width to prevent layout shift
-            const width = el.offsetWidth;
-            el.style.width = `${width + 2}px`;
-            // el.style.display = "inline-block";
+            const width = el.scrollWidth;
+            el.style.width = `${width}px`;
+            el.style.display = "inline-block";
 
-            el.addEventListener("mouseenter", () => {
+            const runGlitch = () => {
               el.textContent = originalText;
 
               gsap.to(el, {
@@ -347,7 +346,10 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 duration: 1,
                 revealDelay: 0.125,
               });
-            });
+            };
+
+            el.addEventListener("mouseenter", runGlitch);
+            el.addEventListener("focus", runGlitch);
           });
 
           // Sibling glitch, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class
@@ -360,13 +362,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             const originalText = target.textContent;
             target.dataset.originalText = originalText;
-
-            // Lock width once
             const width = target.scrollWidth;
             target.style.width = `${width}px`;
             target.style.display = "inline-block";
 
-            trigger.addEventListener("mouseenter", () => {
+            const runGlitch = () => {
               target.textContent = originalText;
 
               gsap.to(target, {
@@ -377,7 +377,10 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 duration: 1,
                 revealDelay: 0.125,
               });
-            });
+            };
+
+            trigger.addEventListener("mouseenter", runGlitch);
+            trigger.addEventListener("focus", runGlitch);
           });
 
           // Cycle-based glitch

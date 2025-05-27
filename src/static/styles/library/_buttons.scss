@@ -13,16 +13,16 @@
   padding: 12px;
   scroll-margin-top: 520px;
 
-  @include mq-max("xxl") {
+  @include mq-max(xxl) {
     scroll-margin-top: 360px;
   }
 
-  @include mq-max("lg") {
+  @include mq-max(lg) {
     --btn-size: 40px;
     padding: 10px;
   }
 
-  @include mq-max("sm") {
+  @include mq-max(sm) {
     --btn-size: 36px;
     padding: 10px;
   }

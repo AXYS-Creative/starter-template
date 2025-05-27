@@ -89,7 +89,7 @@ body {
     top: var(--body-padding);
     gap: var(--links-gap);
 
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       display: none;
     }
 
@@ -106,7 +106,7 @@ body {
   .site-nav-btn-wrapper {
     display: none;
 
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       @include right-spacing;
       top: var(--body-padding);
       height: var(--children-height);
@@ -158,7 +158,7 @@ body {
       top: 0;
     }
 
-    @include mq-max("xl") {
+    @include mq-max(xl) {
       display: none;
     }
   }
@@ -174,7 +174,7 @@ body {
   overflow: auto;
   z-index: $z-index--nav;
 
-  @include mq-min("lg") {
+  @include mq-min(lg) {
     display: none;
   }
 
@@ -186,11 +186,11 @@ body {
     min-height: 768px;
     margin: auto;
 
-    @include mq-max("xxl") {
+    @include mq-max(xxl) {
       min-height: 640px;
     }
 
-    @include mq-max("sm") {
+    @include mq-max(sm) {
       min-height: 520px;
     }
   }
@@ -235,7 +235,7 @@ body {
         padding-left: 24px;
         border-color: var(--primary-accent-color);
 
-        @include mq-max("xxl") {
+        @include mq-max(xxl) {
           padding-left: 16px;
         }
       }
@@ -248,16 +248,16 @@ body {
     bottom: var(--body-padding);
     gap: 48px;
 
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       gap: 24px;
     }
 
-    @include mq-max("md") {
+    @include mq-max(md) {
       @include column-start;
       gap: 12px;
     }
 
-    @include mq-max("sm") {
+    @include mq-max(sm) {
       gap: 4px;
     }
 
@@ -320,17 +320,17 @@ body {
   padding: var(--body-padding);
 
   @media all {
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       justify-content: flex-start;
     }
 
-    @include mq-max("md") {
+    @include mq-max(md) {
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
     }
 
-    @include mq-max("sm") {
+    @include mq-max(sm) {
       padding-block-end: 48px;
     }
   }
@@ -343,14 +343,14 @@ body {
     left: 50%;
     translate: calc(-50% - 6px) 50%;
 
-    @include mq-max("lg") {
+    @include mq-max(lg) {
       left: auto;
       bottom: 0;
       right: var(--body-padding);
       translate: 0 calc(var(--body-padding) * -1);
     }
 
-    @include mq-max("sm") {
+    @include mq-max(sm) {
       position: static;
       order: 1;
       translate: 0 0;

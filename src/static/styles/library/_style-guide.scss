@@ -4,7 +4,7 @@
     gap: var(--section-gap);
     padding-block: 650px;
 
-    @include mq-max("md") {
+    @include mq-max(md) {
       padding-block: 164px;
     }
   }
