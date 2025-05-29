@@ -131,13 +131,17 @@
     <main class="main-content main-{{ path }} ">{{ content | safe }}</main>
     {%include "./partials/footer-simple.njk" %}
 
+    <!-- Library // CHANGE ME -->
+
     <!-- prettier-ignore -->
-    {% include "./library/mouse-cursor.njk" %}
+    <!-- {% include "./library/mouse-cursor.njk" %} -->
 
     <!-- prettier-ignore -->
     {% if path == "library" %}
       {% include "./library/video-overlay.njk" %}
     {% endif %}
     {% include "./partials/scripts.njk" %}
+
+    <canvas id="grid-bg"></canvas>
   </body>
 </html>
