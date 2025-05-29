@@ -3,6 +3,7 @@
 
   @include h2; // Setting font here to use ch units above
   @include section-padding;
+  padding-inline: 0;
   overflow: hidden;
   // width: 100vw; // causing x overflow scroll?
   width: 100%;
@@ -13,7 +14,6 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    padding-inline-end: $gap-offset;
     // will-change: transform; // use sparingly.
 
     // nested siblings (should have two divs/spans)

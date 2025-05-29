@@ -1934,6 +1934,7 @@ figure {
   font-weight: 300;
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding-double);
+  padding-inline: 0;
   overflow: hidden;
   width: 100%;
   max-width: 1920px;
@@ -1948,7 +1949,6 @@ figure {
   align-items: center;
   width: -moz-fit-content;
   width: fit-content;
-  padding-inline-end: 0.5ch;
 }
 .marquee-inner__split {
   font-family: inherit;
