@@ -1,14 +1,32 @@
-<section class="horizontal-scroll pinned-section">
-  <h2 class="h6">{{ title }}</h2>
+{% set img_parallax_class = '' %} {% if hs_img_parallax %} {% set
+img_parallax_class = 'horizontal-scroll__figure--parallax' %} {% endif %}
+
+<section class="horizontal-scroll">
+  {% if hs_title %}
+  <h2 class="horizontal-scroll__title h6">{{ hs_title }}</h2>
+  {% endif %}
+
+  <!-- prettier-ignore -->
+  {% if hs_desc %}
+  <p class="horizontal-scroll__desc">{{ hs_desc }}</p>
+  {% endif %}
 
   <div class="container">
     <div class="slider">
-      {% for item in library.horizontal_scroll.images %}
-      <figure class="figure">
+      <!-- prettier-ignore -->
+      {% if hs_imgs %} 
+        {% for item in hs_imgs %}
+      <figure class="figure horizontal-scroll__figure {{ img_parallax_class }}">
         <img src="{{ item.src }}" alt="" />
         <figcaption>{{ item.caption }}</figcaption>
       </figure>
-      {% endfor %}
+      <!-- prettier-ignore -->
+      {% endfor %} 
+      {% endif %}
+
+      {% if hs_message %}
+      <h3 class="horizontal-scroll__message">{{ hs_message }}</h3>
+      {% endif %}
     </div>
   </div>
 </section>

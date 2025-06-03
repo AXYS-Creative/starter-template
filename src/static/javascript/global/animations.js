@@ -79,6 +79,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
       // Library - Lift any desired code blocks out, then delete from production
       {
+        // Page specific scrollTrigger fix
+        if (document.querySelector(".main-library")) {
+          window.addEventListener("load", () => {
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 500); // try 200–500ms if needed
+          });
+        }
+
         // Parallax
         {
           const parallaxConfigs = [
@@ -146,6 +155,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           horizontalScroll.forEach((el) => {
             let container = el.querySelector(".container");
             let slider = el.querySelector(".slider");
+            let imgs = el.querySelectorAll(
+              ".horizontal-scroll__figure--parallax img"
+            ); // selecting picture with 11ty-img
             const sliderWidth = slider.scrollWidth;
             const containerWidth = container.offsetWidth;
             const distanceToTranslate = sliderWidth - containerWidth;
@@ -177,6 +189,24 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 },
               }
             );
+
+            // Optional parallax effect on images (use landscape images in portrait view)
+            imgs.forEach((img) => {
+              gsap.fromTo(
+                img,
+                { x: 0 },
+                {
+                  x: "50%", // Adjust this value for more or less parallax effect
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top top",
+                    end: duration,
+                    scrub: maxSm ? 1 : 0.5,
+                  },
+                }
+              );
+            });
           });
         }
 

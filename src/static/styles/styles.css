@@ -99,7 +99,7 @@ body:has(.load-complete) .hero div {
 }
 
 .site-header {
-  --children-height: 36px;
+  --children-height: 32px;
 }
 .site-header > * {
   z-index: 4;
@@ -125,6 +125,7 @@ body:has(.load-complete) .hero div {
   right: var(--body-padding);
   top: var(--body-padding);
   gap: var(--links-gap);
+  height: var(--children-height);
 }
 @media (min-width: 1921px) {
   .site-header .header-links {
@@ -732,6 +733,7 @@ figure {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
+  display: none;
 }
 
 .classic-link {
@@ -1903,23 +1905,35 @@ figure {
   display: flex;
   gap: 12px;
 }
-.horizontal-scroll .figure {
+.horizontal-scroll__figure {
   width: min(24vw, 464px);
   aspect-ratio: 586/880;
 }
 @media (max-width: 1024px) {
-  .horizontal-scroll .figure {
-    width: 50vw;
+  .horizontal-scroll__figure {
+    width: 38vw;
     aspect-ratio: 1/1.5;
   }
 }
-.horizontal-scroll .figure picture {
+@media (max-width: 768px) {
+  .horizontal-scroll__figure {
+    width: 56vw;
+  }
+}
+.horizontal-scroll__figure picture {
   overflow: hidden;
   height: 100%;
 }
-.horizontal-scroll .figure img {
+.horizontal-scroll__figure img {
   height: 100%;
   width: auto;
+}
+.horizontal-scroll__figure--parallax picture {
+  justify-content: flex-end;
+}
+.horizontal-scroll__message {
+  white-space: nowrap;
+  font-size: 12vw;
 }
 
 .main-style-guide .hero {

@@ -66,18 +66,17 @@ path: library
   </h3>
 
   <!-- 'glitch-scroll' should scramble the text on scroll, comes with 'data-glitch-once' for trigger on reenter -->
-  <p class="glitch-text glitch-scroll" data-glitch-once="true">
-    Scroll based glitch via 'scroll-glitch' class. This text should scramble
-    when scrolled into view. Use the 'data-glitch-once' attribute to toggle
-    repition.
+  <p>Glitch effect via utility classes and data- tags.</p>
+  <p class="glitch-scroll" data-glitch-once="false">
+    This will glitch out as many times as you scroll into view.
   </p>
-  <p class="glitch-text glitch-scroll" data-glitch-once="false">
-    This will only glitch out as many times as you scroll into view.
+  <p class="glitch-scroll" data-glitch-once="true">
+    This will only glitch out the first time you scroll into view.
   </p>
 
   <!-- 'glitch-hover' should scramble the text on hover -->
-  <a href="/" class="cta-1 glitch-text glitch-hover">Hover over me</a>
-  <a href="/" class="classic-link glitch-text glitch-hover">Hover over me</a>
+  <a href="/" class="cta-1 glitch-hover">Hover over me</a>
+  <a href="/" class="classic-link glitch-hover">Hover over me</a>
 
   <!-- Sibling glitch effect 'glitch-trigger' with data-glitch-target="arbitrary" & 'glitch-target__arbitrary' -->
   <h4 class="h6 glitch-trigger" data-glitch-target="glitch-target__paragraph">
@@ -150,8 +149,15 @@ path: library
 </section>
 
 <!-- prettier-ignore -->
-{% set title = '[ Horizontal scroll - Component ]' %} 
+{% set hs_title = library.horizontal_scroll.title %} 
+{% set hs_desc = library.horizontal_scroll.desc %}
+{% set hs_message = library.horizontal_scroll.message %}
+{% set hs_imgs = library.horizontal_scroll.imgs %}
+{% set hs_img_parallax = library.horizontal_scroll.img_parallax %}
+
 {% include './_includes/library/horizontal-scroll.njk' %}
+
+<!-- Upcoming Pin stacked section-component, this will scrub. See https://neverhack.com/en -->
 
 <section class="fade-text-section library-section">
   <h2 class="h4">[ Fade Text - Utility ]</h2>

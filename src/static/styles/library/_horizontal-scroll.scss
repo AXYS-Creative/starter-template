@@ -14,15 +14,19 @@
     }
   }
 
-  .figure {
+  &__figure {
     width: min(24vw, 464px);
     aspect-ratio: 586 / 880;
     // width: 750px;
     // aspect-ratio: 8 / 5;
 
     @include mq-max(lg) {
-      width: 50vw;
+      width: 38vw;
       aspect-ratio: 1 / 1.5;
+    }
+
+    @include mq-max(md) {
+      width: 56vw;
     }
 
     picture {
@@ -34,5 +38,16 @@
       height: 100%;
       width: auto;
     }
+
+    &--parallax {
+      picture {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__message {
+    white-space: nowrap;
+    font-size: 12vw;
   }
 }

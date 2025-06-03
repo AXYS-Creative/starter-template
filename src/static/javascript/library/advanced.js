@@ -310,47 +310,47 @@ if (document.querySelector(".main-advanced")) {
     })();
   }
 
-  // Light — Original https://codepen.io/wodniack/pen/qBrgMpm
-  // ❗️ Very choppy on Safari. Also... turns on Mac M2 fan. Haven't heard my fan since upgrading laptops.
-  {
-    const mouse = { x: 0, y: 0, smoothX: 0, smoothY: 0 };
-    const cursorPoint = document.querySelector(".cursor__point");
-    const cursorLight = document.querySelector(".cursor__light");
-    const light = document.querySelector("#point-light");
-    const turbulence = document.querySelector("#turbulence");
-    let noise = 0;
+  // // Light — Original https://codepen.io/wodniack/pen/qBrgMpm
+  // // ❗️ Very choppy on Safari. Also... turns on Mac M2 fan. Haven't heard my fan since upgrading laptops.
+  // {
+  //   const mouse = { x: 0, y: 0, smoothX: 0, smoothY: 0 };
+  //   const cursorPoint = document.querySelector(".cursor__point");
+  //   const cursorLight = document.querySelector(".cursor__light");
+  //   const light = document.querySelector("#point-light");
+  //   const turbulence = document.querySelector("#turbulence");
+  //   let noise = 0;
 
-    const updateMousePosition = (e) => {
-      mouse.x = e.clientX + window.scrollX / window.innerWidth;
-      mouse.y = e.clientY + window.scrollY / window.innerHeight;
-    };
+  //   const updateMousePosition = (e) => {
+  //     mouse.x = e.clientX + window.scrollX / window.innerWidth;
+  //     mouse.y = e.clientY + window.scrollY / window.innerHeight;
+  //   };
 
-    // Smoothly animate cursor and light
-    const animateCursor = () => {
-      light.setAttribute("x", mouse.smoothX);
-      light.setAttribute("y", mouse.smoothY);
+  //   // Smoothly animate cursor and light
+  //   const animateCursor = () => {
+  //     light.setAttribute("x", mouse.smoothX);
+  //     light.setAttribute("y", mouse.smoothY);
 
-      // Update turbulence noise. 0 to hold still. Default 0.5
-      noise += 0;
-      turbulence.setAttribute("seed", Math.round(noise));
+  //     // Update turbulence noise. 0 to hold still. Default 0.5
+  //     noise += 0;
+  //     turbulence.setAttribute("seed", Math.round(noise));
 
-      // Update cursor positions
-      cursorPoint.style.translate = `${mouse.x}px ${mouse.y}px`;
-      cursorLight.style.translate = `${mouse.smoothX}px ${mouse.smoothY}px`;
+  //     // Update cursor positions
+  //     cursorPoint.style.translate = `${mouse.x}px ${mouse.y}px`;
+  //     cursorLight.style.translate = `${mouse.smoothX}px ${mouse.smoothY}px`;
 
-      // Smooth transition
-      mouse.smoothX += (mouse.x - mouse.smoothX) * 0.1;
-      mouse.smoothY += (mouse.y - mouse.smoothY) * 0.1;
+  //     // Smooth transition
+  //     mouse.smoothX += (mouse.x - mouse.smoothX) * 0.1;
+  //     mouse.smoothY += (mouse.y - mouse.smoothY) * 0.1;
 
-      requestAnimationFrame(animateCursor);
-    };
+  //     requestAnimationFrame(animateCursor);
+  //   };
 
-    // Initialize event listeners and animation
-    const initCursor = () => {
-      window.addEventListener("mousemove", updateMousePosition);
-      animateCursor();
-    };
+  //   // Initialize event listeners and animation
+  //   const initCursor = () => {
+  //     window.addEventListener("mousemove", updateMousePosition);
+  //     animateCursor();
+  //   };
 
-    initCursor();
-  }
+  //   initCursor();
+  // }
 }

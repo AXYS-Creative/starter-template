@@ -1,19 +1,25 @@
-images:
+title: "[ Horizontal scroll - Section-component ]"
+# desc: "This is a horizontal scroll component that can be used to display images in a horizontal layout. It is useful for showcasing multiple items in a compact space, allowing users to scroll through the items horizontally."
+
+# message: "Horizontal [%span.text-stroke%]scroll[%span%] message goes here!"
+imgs:
   - caption: Title 1 here
     description: Description 1 goes here
-    src: /static/img/library/landscape-1.webp
+    src: /static/img/library/img-sample-1.jpg
   - caption: Title 2 here
     description: Description 2 goes here
-    src: /static/img/library/landscape-2.webp
+    src: /static/img/library/img-sample-2.jpg
   - caption: Title 3 here
     description: Description 3 goes here
-    src: /static/img/library/landscape-3.webp
+    src: /static/img/library/img-sample-3.jpg
   - caption: Title 1 here
-    description: Description 1 goes here
-    src: /static/img/library/landscape-1.webp
+    description: Description 4 goes here
+    src: /static/img/library/img-sample-4.jpg
   - caption: Title 2 here
-    description: Description 2 goes here
-    src: /static/img/library/landscape-2.webp
+    description: Description 5 goes here
+    src: /static/img/library/img-sample-5.jpg
   - caption: Title 3 here
-    description: Description 3 goes here
-    src: /static/img/library/landscape-3.webp
+    description: Description 6 goes here
+    src: /static/img/library/img-sample-6.jpg
+
+img_parallax: true
