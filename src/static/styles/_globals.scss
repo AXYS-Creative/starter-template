@@ -66,7 +66,7 @@ body {
 
 .site-header {
   // No static content here to allow clickthrough
-  --children-height: 36px;
+  --children-height: 32px;
 
   & > * {
     z-index: $z-index--header;
@@ -88,6 +88,7 @@ body {
     @include right-spacing;
     top: var(--body-padding);
     gap: var(--links-gap);
+    height: var(--children-height);
 
     @include mq-max(lg) {
       display: none;
