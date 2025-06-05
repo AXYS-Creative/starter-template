@@ -343,6 +343,14 @@ $min-breakpoints: (
   }
 }
 
+// @mixin gradient-border {
+//   $col-1: linear-gradient(150deg, #fff 50%, #c0c0c0 96%);
+//   $col-border: linear-gradient(150deg, #fafafa 2%, #ccc 96%);
+
+//   background: $col-1 padding-box, $col-border border-box;
+//   border: 1px solid transparent;
+// }
+
 // Library
 
 @mixin fill-text($color: rgba(255, 255, 255, 0.25)) {

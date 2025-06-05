@@ -19,7 +19,7 @@ if (cursor && mqMouse.matches) {
     progress = 0;
 
   const easeFunction = cubicBezier(0.29, 1.01, 0.16, 1.09);
-  const duration = isSafari() ? 0.032 : 0.036;
+  const duration = isSafari() ? 0.042 : 0.05;
 
   const previousMouse = { x: 0, y: 0 };
   let currentScale = 0;

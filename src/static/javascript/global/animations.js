@@ -450,12 +450,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Stack Scroll (Overlapping Panels)
+        // Stack Scroll (Overlapping Panels) — Duration and Delays can be controls via pin-steps in _stack-scroll.scss
         {
           const stackScrollSections =
             document.querySelectorAll(".stack-scroll");
 
-          let panelToTop = "128px"; // Match with $panel-to-top scss var
+          let panelToTop = "128px"; // Match with $panel-to-top in _stack-scroll.scss
           let panelScrub = 0.5;
 
           stackScrollSections.forEach((section) => {
@@ -525,7 +525,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
 
             // Stack Link highlight
-            {
+            if (document.querySelector(".stack-scroll__nav-link")) {
               const stackLinks = document.querySelectorAll(
                 ".stack-scroll__nav-link"
               );
@@ -535,8 +535,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
                 ScrollTrigger.create({
                   trigger: marker,
-                  start: "top top",
-                  end: "bottom top",
+                  start: "-15% top",
+                  end: "85% top",
                   onEnter: () => link.classList.add("active"),
                   onEnterBack: () => link.classList.add("active"),
                   onLeave: () => link.classList.remove("active"),

@@ -1,4 +1,6 @@
-<section class="stack-scroll">
+<section
+  class="stack-scroll {{ panel_configs.size }} {{ panel_configs.placement }}"
+>
   <div class="stack-pin">
     {% if panel_nav %}
     <nav class="stack-scroll__nav">
@@ -12,11 +14,31 @@
       {% endfor %}
     </nav>
     {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if panel_section_title or panel_section_desc %}
+    <div class="stack-scroll__copy">
+      <h2 class="stack-scroll__copy-title h6">{{ panel_section_title }}</h2>
+    </div>
+    {% endif %}
+
     <!-- prettier-ignore -->
     {% for panel in panel_data %}
     <div class="stack-panel stack-panel-{{ loop.index }}">
-      <h3 class="stack-panel__title">{{ panel.title }}</h3>
+      <h3 class="stack-panel__title h5">{{ panel.title }}</h3>
       <p class="stack-panel__desc">{{ panel.desc }}</p>
+      {% if panel.cta.text %}
+      <!-- prettier-ignore -->
+      <a 
+        class="cta-1" 
+        href="{{ panel.cta.url }}"
+        {% if panel.cta.new_tab %}
+          target="_blank" rel="noopener noreferrer"
+        {% endif %}
+      >
+        {{ panel.cta.text }}
+      </a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

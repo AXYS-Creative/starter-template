@@ -1,7 +1,7 @@
 // Grid effect, requires canvas in html
-(() => {
+if (document.querySelector(".main-advanced")) {
   const CELL_SIZE = 64;
-  const STROKE_COLOR_HEX = "#1e1e1e";
+  const STROKE_COLOR_HEX = "#e48c66";
   const STARTING_ALPHA = 255;
   const BACKGROUND_COLOR = "#101010";
   const PROB_OF_NEIGHBOR = 0.5;
@@ -139,4 +139,4 @@
   }
 
   draw();
-})();
+}

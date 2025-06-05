@@ -132,16 +132,21 @@
     {%include "./partials/footer-simple.njk" %}
 
     <!-- Library // CHANGE ME -->
-
     <!-- prettier-ignore -->
-    <!-- {% include "./library/mouse-cursor.njk" %} -->
+    {% if path == "home" or path == "library" %}
+      {% include "./library/mouse-cursor.njk" %}
+    {% endif %}
 
     <!-- prettier-ignore -->
     {% if path == "library" %}
       {% include "./library/video-overlay.njk" %}
     {% endif %}
-    {% include "./partials/scripts.njk" %}
-
+    
+    {% if path == "advanced" %}
     <canvas id="grid-bg"></canvas>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% include "./partials/scripts.njk" %}
   </body>
 </html>

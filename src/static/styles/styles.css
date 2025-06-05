@@ -733,7 +733,7 @@ figure {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
-  opacity: 0.5;
+  opacity: 0.125;
 }
 
 .classic-link {
@@ -1972,7 +1972,7 @@ figure {
   justify-content: center;
   align-items: flex-end;
   gap: 24px;
-  height: 96px;
+  height: 80px;
 }
 .stack-scroll__nav-link {
   opacity: 0.5;
@@ -1983,10 +1983,18 @@ figure {
 .stack-scroll__nav-link.active {
   opacity: 1;
 }
-.stack-scroll .stack-panel {
+.stack-scroll__copy {
   position: absolute;
-  left: 50%;
-  translate: -50% 0;
+  top: 128px;
+  left: var(--body-padding);
+}
+.stack-scroll .stack-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--section-gap);
+  position: absolute;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   height: max(100lvh - 256px, 400px);
@@ -1994,13 +2002,15 @@ figure {
   padding: var(--body-padding);
   transform-origin: top center;
   background: var(--color-background);
-  scroll-margin-top: 128px;
 }
-.stack-scroll .stack-panel:nth-of-type(1) {
-  top: 128px;
+.stack-scroll .stack-panel-1 {
+  top: 128px !important;
 }
 .stack-scroll .stack-panel:nth-of-type(n + 2) {
   top: 120%;
+}
+.stack-scroll .stack-panel__desc {
+  flex: 1;
 }
 .stack-scroll .stack-pin {
   height: calc(100lvh - var(--body-padding-double));
@@ -2008,6 +2018,21 @@ figure {
 .stack-scroll .pin-steps {
   top: var(--body-padding);
   height: calc(100% - var(--body-padding));
+}
+.stack-scroll .pin-steps .pin-step {
+  scroll-margin-top: -24px;
+}
+@media (min-width: 1025px) {
+  .stack-scroll.half .stack-panel {
+    width: max(500px, 50%);
+  }
+}
+.stack-scroll.center .stack-panel {
+  left: 50%;
+  translate: -50% 0;
+}
+.stack-scroll.right .stack-panel {
+  right: var(--body-padding);
 }
 
 .main-style-guide .hero {

@@ -1,18 +1,36 @@
-panel_nav: true
-
+panel_nav: true # based on each panel in 'panels' below
+title: "[ Stack Scroll - Section-component ]"
+panel_configs:
+  size: half # full | half _ default: full
+  placement: right # left | center | right _ default: center
 panels:
-  - title: Panel 1
-    desc: Description 1 goes here
-    src: /static/img/library/img-sample-1.jpg
-  - title: Panel 2
-    desc: Description 2 goes here
-    src: /static/img/library/img-sample-2.jpg
-  - title: Panel 3
-    desc: Description 3 goes here
-    src: /static/img/library/img-sample-3.jpg
-  - title: Panel 4
-    desc: Description 4 goes here
-    src: /static/img/library/img-sample-4.jpg
-  - title: Panel 5
-    desc: Description 5 goes here
-    src: /static/img/library/img-sample-5.jpg
+  - title: Unlimited Services
+    desc: Gain access to endless design and development services. Simply put in a ticket in Trello to get started. Please be aware that each request is worked on and delivered one by one.
+    cta:
+      text: View Plans
+      url: /
+      new_tab: false
+  - title: Swift Delivery
+    desc: Get designs or sections of your website generally within 1-2 business days (M-F) . Please be aware that some websites can take weeks or even months to complete depending on their size and complexity.
+    cta:
+      text: Click Me
+      url: /advanced
+      new_tab: true
+  - title: Easy Management
+    desc: Keeping track of progress is made easy with Trello. Simply sign in from your computer or phone to create and manage tasks, then watch as your requests are completed and delivered.
+    cta:
+      text: View Plans
+      url: /
+      new_tab: false
+  - title: Fixed Pricing
+    desc: Don’t worry about inconsistent pricing that fluctuates throughout the year. Once signed up, your prices are locked in, ensuring you always know what to expect month to month.
+    cta:
+      text: View Plans
+      url: /
+      new_tab: false
+  - title: Pause Anytime
+    desc: No contracts, ever. We understand that your workload may change, so feel free to pause or cancel anytime. "Pausing" stops all charges and allows for quick start up again while keeping your rate locked in
+    cta:
+      text: View Plans
+      url: /
+      new_tab: false

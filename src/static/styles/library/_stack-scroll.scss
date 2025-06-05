@@ -1,14 +1,15 @@
 .stack-scroll {
   // $panel-height: calc(100lvh - var(--body-padding-double));
-  $panel-to-top: 128px; // Match this in animation.js
+  $panel-to-top: 128px; // Match with panelToTop in animation.js
   $panel-height: calc(100lvh - $panel-to-top * 2);
 
   position: relative;
 
+  // Optional nav
   &__nav {
     @include row-end;
     gap: 24px;
-    height: 96px;
+    height: 80px; // magic number
 
     &-link {
       opacity: 0.5;
@@ -23,10 +24,23 @@
     }
   }
 
-  .stack-panel {
+  // Optional section copy
+  &__copy {
     position: absolute;
-    left: 50%;
-    translate: -50% 0;
+    top: $panel-to-top;
+    left: var(--body-padding);
+
+    // &-title {
+
+    // }
+  }
+
+  .stack-panel {
+    // @include gradient-border;
+    @include column-start;
+    gap: var(--section-gap);
+    position: absolute;
+    // See component modifiers for placement
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     height: max($panel-height, 400px);
@@ -34,28 +48,64 @@
     padding: var(--body-padding);
     transform-origin: top center;
     background: var(--color-background);
-    scroll-margin-top: 128px;
     // background: rgba($black, 0.75);
     // backdrop-filter: blur(4px);
     // transform-origin: bottom center;
 
-    &:nth-of-type(1) {
-      top: $panel-to-top;
+    &-1 {
+      top: $panel-to-top !important; // Strange specificity issue when I introduced the stack-scroll__copy?
     }
 
     &:nth-of-type(n + 2) {
       top: 120%;
     }
+
+    // &__title {
+
+    // }
+
+    &__desc {
+      flex: 1;
+    }
   }
 
   .stack-pin {
-    // background: rgba(navy, 0.5);
-    // Can't use percentage since it's children are position absolute
+    // Need vh, can't use percentage since it's children are position absolute
     height: calc(100lvh - var(--body-padding-double));
   }
 
   .pin-steps {
     top: var(--body-padding);
     height: calc(100% - var(--body-padding));
+
+    // Panel linger options — May need to adjust the Stack Link highlight
+    // gap: 320px; // all but last panel linger
+    // padding-bottom: 320px; // Last panel linger
+
+    .pin-step {
+      scroll-margin-top: -24px;
+    }
+  }
+
+  // Modifiers
+  &.half {
+    .stack-panel {
+      @include mq-min(lg) {
+        width: max(500px, 50%);
+      }
+    }
+  }
+
+  &.center {
+    .stack-panel {
+      left: 50%;
+      translate: -50% 0;
+    }
+  }
+
+  &.right {
+    .stack-panel {
+      right: var(--body-padding);
+    }
   }
 }
