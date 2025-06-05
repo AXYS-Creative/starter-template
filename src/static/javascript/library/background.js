@@ -1,11 +1,9 @@
 // Grid effect, requires canvas in html
-// Note doesn't currently work with light/dark mode toggle
-// Use 'disable-bg' class on html elements to turn off the effect
 (() => {
-  const CELL_SIZE = 40;
-  const STROKE_COLOR_HEX = "#007bff";
+  const CELL_SIZE = 64;
+  const STROKE_COLOR_HEX = "#1e1e1e";
   const STARTING_ALPHA = 255;
-  const BACKGROUND_COLOR = "#0a0a0a";
+  const BACKGROUND_COLOR = "#101010";
   const PROB_OF_NEIGHBOR = 0.5;
   const AMT_FADE_PER_FRAME = 5;
   const STROKE_WIDTH = 1;
@@ -31,6 +29,8 @@
 
   let mouseX = -1;
   let mouseY = -1;
+  let isMouseMoving = false;
+  let lastMouseMoveTime = 0;
 
   window.addEventListener("mousemove", (e) => {
     if (disableBgEffect(e)) {

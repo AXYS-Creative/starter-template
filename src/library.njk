@@ -158,6 +158,10 @@ path: library
 {% include './_includes/library/horizontal-scroll.njk' %}
 
 <!-- Upcoming Pin stacked section-component, this will scrub. See https://neverhack.com/en -->
+<!-- prettier-ignore  -->
+{% set panel_nav = library.stack_scroll.panel_nav %}
+{% set panel_data = library.stack_scroll.panels %}
+{% include './_includes/library/stack-scroll.njk' %}
 
 <section class="fade-text-section library-section">
   <h2 class="h4">[ Fade Text - Utility ]</h2>

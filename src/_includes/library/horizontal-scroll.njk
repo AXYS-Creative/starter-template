@@ -1,5 +1,8 @@
-{% set img_parallax_class = '' %} {% if hs_img_parallax %} {% set
-img_parallax_class = 'horizontal-scroll__figure--parallax' %} {% endif %}
+<!-- prettier-ignore -->
+{% set img_parallax_class = '' %} 
+{% if hs_img_parallax %} 
+  {% set img_parallax_class = 'horizontal-scroll__figure--parallax' %} 
+{% endif %}
 
 <section class="horizontal-scroll">
   {% if hs_title %}
@@ -18,7 +21,14 @@ img_parallax_class = 'horizontal-scroll__figure--parallax' %} {% endif %}
         {% for item in hs_imgs %}
       <figure class="figure horizontal-scroll__figure {{ img_parallax_class }}">
         <img src="{{ item.src }}" alt="" />
-        <figcaption>{{ item.caption }}</figcaption>
+        <figcaption>
+          <h3 class="h5">
+            {{ item.title }}
+          </h3>
+          <p>
+            {{ item.desc }}
+          </p>
+        </figcaption>
       </figure>
       <!-- prettier-ignore -->
       {% endfor %} 

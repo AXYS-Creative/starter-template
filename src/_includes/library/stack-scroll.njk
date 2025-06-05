@@ -1,0 +1,35 @@
+<section class="stack-scroll">
+  <div class="stack-pin">
+    {% if panel_nav %}
+    <nav class="stack-scroll__nav">
+      {% for panel in panel_data %}
+      <a
+        href="#stack-pin-step-{{ loop.index }}"
+        class="stack-scroll__nav-link classic-link tab-element-page"
+      >
+        {{ panel.title }}
+      </a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+    <!-- prettier-ignore -->
+    {% for panel in panel_data %}
+    <div class="stack-panel stack-panel-{{ loop.index }}">
+      <h3 class="stack-panel__title">{{ panel.title }}</h3>
+      <p class="stack-panel__desc">{{ panel.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- prettier-ignore -->
+  <div class="stack-pin-steps pin-steps" aria-hidden="true">
+    {% for step in panel_data %}
+    <div 
+      class="stack-pin-step stack-pin-step-{{ loop.index }} pin-step"
+      id="stack-pin-step-{{ loop.index }}"
+    >
+    </div>
+    {% endfor %}
+    
+   </div>
+</section>

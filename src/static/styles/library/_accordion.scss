@@ -3,7 +3,7 @@
   flex-direction: column;
 
   &-btn {
-    $border: var(--border-width--bold) solid var(--border-color--bold);
+    $border: var(--border-width--bold) solid var(--color-border);
 
     // color: var(--color-font--primary);
     border-bottom: $border;

@@ -56,10 +56,10 @@ $test-bg: rgba(navy, 0.75);
   --color-btn-2-text--hover: var(--color-brand--primary);
   // --color-btn-2-border--hover: transparent;
 
-  --link-color: #{$grey-light};
-  --link-color--hover: #{$white};
+  --color-link: #{$grey-light};
+  --color-link--hover: #{$white};
 
-  --border-color--bold: #{$grey-light};
+  --color-border: #{$grey-light};
 }
 
 @mixin dark-theme {
@@ -68,7 +68,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-btn-2-text: #{$white};
 
-  --border-color--bold: #{$grey-light};
+  --color-border: #{$grey-light};
 }
 
 :root {

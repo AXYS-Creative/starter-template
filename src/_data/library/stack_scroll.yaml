@@ -1,0 +1,18 @@
+panel_nav: true
+
+panels:
+  - title: Panel 1
+    desc: Description 1 goes here
+    src: /static/img/library/img-sample-1.jpg
+  - title: Panel 2
+    desc: Description 2 goes here
+    src: /static/img/library/img-sample-2.jpg
+  - title: Panel 3
+    desc: Description 3 goes here
+    src: /static/img/library/img-sample-3.jpg
+  - title: Panel 4
+    desc: Description 4 goes here
+    src: /static/img/library/img-sample-4.jpg
+  - title: Panel 5
+    desc: Description 5 goes here
+    src: /static/img/library/img-sample-5.jpg

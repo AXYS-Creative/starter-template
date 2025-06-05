@@ -1,0 +1,61 @@
+.stack-scroll {
+  // $panel-height: calc(100lvh - var(--body-padding-double));
+  $panel-to-top: 128px; // Match this in animation.js
+  $panel-height: calc(100lvh - $panel-to-top * 2);
+
+  position: relative;
+
+  &__nav {
+    @include row-end;
+    gap: 24px;
+    height: 96px;
+
+    &-link {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .stack-panel {
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    height: max($panel-height, 400px);
+    width: calc(100% - var(--body-padding-double));
+    padding: var(--body-padding);
+    transform-origin: top center;
+    background: var(--color-background);
+    scroll-margin-top: 128px;
+    // background: rgba($black, 0.75);
+    // backdrop-filter: blur(4px);
+    // transform-origin: bottom center;
+
+    &:nth-of-type(1) {
+      top: $panel-to-top;
+    }
+
+    &:nth-of-type(n + 2) {
+      top: 120%;
+    }
+  }
+
+  .stack-pin {
+    // background: rgba(navy, 0.5);
+    // Can't use percentage since it's children are position absolute
+    height: calc(100lvh - var(--body-padding-double));
+  }
+
+  .pin-steps {
+    top: var(--body-padding);
+    height: calc(100% - var(--body-padding));
+  }
+}

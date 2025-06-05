@@ -24,13 +24,18 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
   let responsiveGsap = gsap.matchMedia();
 
-  let whiteMarkers = {
-    startColor: "white",
-    endColor: "white",
-    fontSize: "0.75rem",
-    indent: 128,
-    fontWeight: 400,
-  };
+  const createMarkers = (color, indent) => ({
+    startColor: color,
+    endColor: color,
+    fontSize: "12px",
+    indent: indent,
+    fontWeight: 500,
+  });
+
+  let whiteMarkers = createMarkers("white", 20);
+  let blackMarkers = createMarkers("black", 20);
+  let coralMarkers = createMarkers("coral", 120);
+  let navyMarkers = createMarkers("navy", 220);
 
   responsiveGsap.add(
     {
@@ -42,21 +47,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
     (context) => {
       let { maxSm, maxMd, maxLg, minMd } = context.conditions;
 
-      // // TEMPLATE TWEEN - SCRUB
-      // gsap.fromTo(
-      //   ".slider__inner",
-      //   { x: "-2%" },
-      //   {
-      //     x: maxSm ? "-32%" : maxLg ? "-32%" : "-32%",
-      //     scrollTrigger: {
-      //       trigger: ".slider",
-      //       start: "top bottom",
-      //       end: maxSm ? "bottom 75%" : "bottom top",
-      //       scrub: 0.8,
-      //       // markers: true,
-      //     },
-      //   }
-      // );
+      let bodyPadding = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue("--body-padding");
 
       // GLOBAL (place under other tweens i.e. pinned sections) - Animate any element with the class 'gsap-animate' using the 'animate' companion class
       {
@@ -85,30 +78,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             setTimeout(() => {
               ScrollTrigger.refresh();
             }, 500); // try 200–500ms if needed
-          });
-        }
-
-        // Parallax
-        {
-          const parallaxConfigs = [
-            { selector: ".parallax", y: "15%", scrub: 1 },
-            { selector: ".parallax--strong", y: "25%", scrub: 1 },
-            { selector: ".parallax--reverse", y: "-25%", scrub: 0.25 },
-          ];
-
-          parallaxConfigs.forEach(({ selector, y, scrub }) => {
-            document.querySelectorAll(selector).forEach((el) => {
-              gsap.to(el, {
-                y,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub,
-                },
-              });
-            });
           });
         }
 
@@ -144,158 +113,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 }
               );
             });
-          }
-        }
-
-        // Horizontal Scroll (pinned section)
-        {
-          const horizontalScroll =
-            document.querySelectorAll(".horizontal-scroll");
-
-          horizontalScroll.forEach((el) => {
-            let container = el.querySelector(".container");
-            let slider = el.querySelector(".slider");
-            let imgs = el.querySelectorAll(
-              ".horizontal-scroll__figure--parallax img"
-            ); // selecting picture with 11ty-img
-            const sliderWidth = slider.scrollWidth;
-            const containerWidth = container.offsetWidth;
-            const distanceToTranslate = sliderWidth - containerWidth;
-
-            let duration = maxSm ? "+=150%" : "+=200%";
-
-            // Actual Pinning
-            gsap.to(el, {
-              scrollTrigger: {
-                trigger: el,
-                start: "top top",
-                end: duration,
-                pin: true,
-              },
-            });
-
-            // Slider Along X-Axis
-            gsap.fromTo(
-              slider,
-              { x: 0 },
-              {
-                x: () => -distanceToTranslate,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top top",
-                  end: duration,
-                  scrub: maxSm ? 1 : 0.5,
-                },
-              }
-            );
-
-            // Optional parallax effect on images (use landscape images in portrait view)
-            imgs.forEach((img) => {
-              gsap.fromTo(
-                img,
-                { x: 0 },
-                {
-                  x: "50%", // Adjust this value for more or less parallax effect
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: el,
-                    start: "top top",
-                    end: duration,
-                    scrub: maxSm ? 1 : 0.5,
-                  },
-                }
-              );
-            });
-          });
-        }
-
-        // Marquee Animations
-        {
-          let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
-
-          // Standard Marquee
-          {
-            const autoMarquees = gsap.utils.toArray(".marquee-inner");
-            let marqueeTweens = [];
-
-            const createMarqueeTweens = () => {
-              marqueeTweens.forEach((tween) => tween.kill()); // Kill previous tweens to prevent stacking memory
-              marqueeTweens = [];
-
-              autoMarquees.forEach((elem) => {
-                const tween = gsap
-                  .to(elem, {
-                    xPercent: -50,
-                    repeat: -1,
-                    duration: marqueeSpeed,
-                    ease: "linear",
-                  })
-                  .totalProgress(0.5);
-
-                marqueeTweens.push(tween);
-              });
-            };
-
-            createMarqueeTweens();
-
-            let currentScroll = window.scrollY;
-
-            const adjustTimeScale = () => {
-              const isScrollingDown = window.scrollY > currentScroll;
-
-              marqueeTweens.forEach((tween, index) =>
-                gsap.to(tween, {
-                  timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
-                  duration: 0.3,
-                  ease: "power2.out",
-                })
-              );
-
-              currentScroll = window.scrollY;
-            };
-
-            window.addEventListener("scroll", adjustTimeScale, {
-              passive: true,
-            });
-          }
-
-          // Scrub Effect for Specific Marquees
-          {
-            const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
-            const sensitivity = 5;
-            let scrubTriggers = [];
-
-            const createScrubMarquees = () => {
-              scrubTriggers.forEach((trigger) => trigger.kill());
-              scrubTriggers = [];
-
-              scrubMarquees.forEach((scrubElem) => {
-                const marqueeInners =
-                  scrubElem.querySelectorAll(".marquee-inner");
-
-                marqueeInners.forEach((inner, index) => {
-                  const scrubTween = gsap.fromTo(
-                    inner,
-                    { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
-                    {
-                      x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
-                      scrollTrigger: {
-                        trigger: scrubElem,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1,
-                        invalidateOnRefresh: true,
-                      },
-                    }
-                  );
-
-                  scrubTriggers.push(scrubTween.scrollTrigger);
-                });
-              });
-            };
-
-            createScrubMarquees();
           }
         }
 
@@ -452,6 +269,281 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             };
 
             cycle();
+          });
+        }
+
+        // Horizontal Scroll (pinned section)
+        {
+          const horizontalScroll =
+            document.querySelectorAll(".horizontal-scroll");
+
+          let horizontalScrub = maxSm ? 1 : 0.5;
+
+          horizontalScroll.forEach((el) => {
+            let container = el.querySelector(".container");
+            let slider = el.querySelector(".slider");
+            let imgs = el.querySelectorAll(
+              ".horizontal-scroll__figure--parallax img"
+            ); // selecting picture with 11ty-img
+            const sliderWidth = slider.scrollWidth;
+            const containerWidth = container.offsetWidth;
+            const distanceToTranslate = sliderWidth - containerWidth;
+
+            let duration = maxSm ? "+=150%" : "+=200%";
+
+            // Actual Pinning
+            gsap.to(el, {
+              scrollTrigger: {
+                trigger: el,
+                start: "top top",
+                end: duration,
+                pin: true,
+              },
+            });
+
+            // Slider Along X-Axis
+            gsap.fromTo(
+              slider,
+              { x: 0 },
+              {
+                x: () => -distanceToTranslate,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top top",
+                  end: duration,
+                  scrub: horizontalScrub,
+                },
+              }
+            );
+
+            // Optional parallax effect on images (use landscape images in portrait view)
+            imgs.forEach((img) => {
+              gsap.fromTo(
+                img,
+                { x: 0 },
+                {
+                  x: "50%", // Adjust this value for more or less parallax effect
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top top",
+                    end: duration,
+                    scrub: horizontalScrub,
+                  },
+                }
+              );
+            });
+          });
+        }
+
+        // Marquee Animations
+        {
+          let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
+
+          // Standard Marquee
+          {
+            const autoMarquees = gsap.utils.toArray(".marquee-inner");
+            let marqueeTweens = [];
+
+            const createMarqueeTweens = () => {
+              marqueeTweens.forEach((tween) => tween.kill()); // Kill previous tweens to prevent stacking memory
+              marqueeTweens = [];
+
+              autoMarquees.forEach((elem) => {
+                const tween = gsap
+                  .to(elem, {
+                    xPercent: -50,
+                    repeat: -1,
+                    duration: marqueeSpeed,
+                    ease: "linear",
+                  })
+                  .totalProgress(0.5);
+
+                marqueeTweens.push(tween);
+              });
+            };
+
+            createMarqueeTweens();
+
+            let currentScroll = window.scrollY;
+
+            const adjustTimeScale = () => {
+              const isScrollingDown = window.scrollY > currentScroll;
+
+              marqueeTweens.forEach((tween, index) =>
+                gsap.to(tween, {
+                  timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                })
+              );
+
+              currentScroll = window.scrollY;
+            };
+
+            window.addEventListener("scroll", adjustTimeScale, {
+              passive: true,
+            });
+          }
+
+          // Scrub Effect for Specific Marquees
+          {
+            const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
+            const sensitivity = 5;
+            let scrubTriggers = [];
+
+            const createScrubMarquees = () => {
+              scrubTriggers.forEach((trigger) => trigger.kill());
+              scrubTriggers = [];
+
+              scrubMarquees.forEach((scrubElem) => {
+                const marqueeInners =
+                  scrubElem.querySelectorAll(".marquee-inner");
+
+                marqueeInners.forEach((inner, index) => {
+                  const scrubTween = gsap.fromTo(
+                    inner,
+                    { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
+                    {
+                      x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                      scrollTrigger: {
+                        trigger: scrubElem,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                      },
+                    }
+                  );
+
+                  scrubTriggers.push(scrubTween.scrollTrigger);
+                });
+              });
+            };
+
+            createScrubMarquees();
+          }
+        }
+
+        // Parallax
+        {
+          const parallaxConfigs = [
+            { selector: ".parallax", y: "15%", scrub: 1 },
+            { selector: ".parallax--strong", y: "25%", scrub: 1 },
+            { selector: ".parallax--reverse", y: "-25%", scrub: 0.25 },
+          ];
+
+          parallaxConfigs.forEach(({ selector, y, scrub }) => {
+            document.querySelectorAll(selector).forEach((el) => {
+              gsap.to(el, {
+                y,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub,
+                },
+              });
+            });
+          });
+        }
+
+        // Stack Scroll (Overlapping Panels)
+        {
+          const stackScrollSections =
+            document.querySelectorAll(".stack-scroll");
+
+          let panelToTop = "128px"; // Match with $panel-to-top scss var
+          let panelScrub = 0.5;
+
+          stackScrollSections.forEach((section) => {
+            const panels = section.querySelectorAll(".stack-panel");
+            const pinContainer = section.querySelector(".stack-pin");
+            const pinSteps = section.querySelectorAll(".stack-pin-step");
+
+            const duration = `${panels.length * 100}%`;
+
+            // Pin the entire panel container
+            gsap.to(pinContainer, {
+              scrollTrigger: {
+                trigger: pinContainer,
+                start: `top ${bodyPadding}`,
+                end: duration,
+                pin: true,
+              },
+            });
+
+            // Slide and scale panels
+            panels.forEach((panel, i) => {
+              const panelIndex = i + 1;
+              const nextPanel = panels[i + 1];
+              const triggerStep = section.querySelector(
+                `.stack-pin-step-${panelIndex + 1}`
+              );
+
+              if (!triggerStep || !nextPanel) return;
+
+              // Scale panels
+              gsap.fromTo(
+                `.stack-panel-${panelIndex}`,
+                { scale: 1 },
+                {
+                  scale: 0.95,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: triggerStep,
+                    start: "top 112%",
+                    end: "bottom 112%",
+                    scrub: panelScrub,
+                  },
+                }
+              );
+
+              // Slide in next panel
+              gsap.fromTo(
+                `.stack-panel-${panelIndex + 1}`,
+                {
+                  top: "120%",
+                  // transform:
+                  //   "perspective(1200px) rotateX(-50deg) translate(-50%, 0%)",
+                },
+                {
+                  top: panelToTop,
+                  // transform:
+                  //   "perspective(1200px) rotateX(0deg) translate(-50%, 0%)",
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: triggerStep,
+                    start: "top 112%",
+                    end: "bottom 112%",
+                    scrub: panelScrub,
+                  },
+                }
+              );
+            });
+
+            // Stack Link highlight
+            {
+              const stackLinks = document.querySelectorAll(
+                ".stack-scroll__nav-link"
+              );
+
+              pinSteps.forEach((marker, index) => {
+                const link = stackLinks[index];
+
+                ScrollTrigger.create({
+                  trigger: marker,
+                  start: "top top",
+                  end: "bottom top",
+                  onEnter: () => link.classList.add("active"),
+                  onEnterBack: () => link.classList.add("active"),
+                  onLeave: () => link.classList.remove("active"),
+                  onLeaveBack: () => link.classList.remove("active"),
+                });
+              });
+            }
           });
         }
 

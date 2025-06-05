@@ -8,6 +8,10 @@
     align-items: center;
     height: 80vh;
 
+    @include mq-min(lg) {
+      height: max(80vh, 650px);
+    }
+
     .slider {
       display: flex;
       gap: 12px;

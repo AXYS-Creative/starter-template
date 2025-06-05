@@ -63,10 +63,20 @@
 
 // Library
 @media all {
-  .library-section {
-    // Doesn't work with Swiper or Fill-text
+  .pin-steps {
+    @include hide-content;
     @include column-start;
-    gap: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+
+    .pin-step {
+      background: linear-gradient(180deg, $coral, $black);
+      flex: 1;
+      width: 100%;
+    }
   }
 
   .glitch-text {
@@ -99,6 +109,12 @@
         background-size: 100%;
       }
     }
+  }
+
+  .library-section {
+    // library section styles - Doesn't work with Swiper or Fill-text sections
+    @include column-start;
+    gap: 24px;
   }
 }
 
