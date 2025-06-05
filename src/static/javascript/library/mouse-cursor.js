@@ -82,17 +82,18 @@ if (cursor && mqMouse.matches) {
     el.addEventListener("mouseleave", () => cursor.classList.remove("hidden"));
   });
 
-  const siblingHover = (
-    triggerSelector,
-    siblingSelector,
-    activeClass = "",
-    eventType = "mousemove"
-  ) => {
-    const triggers = document.querySelectorAll(triggerSelector);
+  const siblingHover = () => {
+    const triggers = document.querySelectorAll("[data-cursor-target]");
+
     triggers.forEach((el) => {
+      const siblingSelector = el.dataset.cursorTarget;
+      const activeClass = el.dataset.cursorClass || "";
+      const eventType = el.dataset.cursorEvent || "mousemove";
+
       el.addEventListener(eventType, () => {
         followMouse = false;
-        const sibling = el.querySelector(siblingSelector);
+
+        const sibling = document.querySelector(`.${siblingSelector}`);
         if (!sibling || !cursor) return;
 
         const rect = sibling.getBoundingClientRect();
@@ -123,10 +124,5 @@ if (cursor && mqMouse.matches) {
     });
   };
 
-  siblingHover(".sibling-hover", ".sibling-hover__target", "test-class");
-  siblingHover(
-    ".sibling-hover-burger",
-    ".sibling-hover-burger__target",
-    "mouse-cursor--burger"
-  );
+  siblingHover();
 }

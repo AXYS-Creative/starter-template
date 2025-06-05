@@ -483,6 +483,16 @@ figure {
 
 // Libary
 
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-font--primary);
+  background: var(--color-surface--1);
+  padding: 4px;
+  border-radius: var(--radius--sm);
+}
+
 #grid-bg {
   width: 100vw;
   height: 100vh;

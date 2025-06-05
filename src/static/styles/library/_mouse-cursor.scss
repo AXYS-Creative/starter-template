@@ -1,5 +1,4 @@
-.mouse-cursor,
-.mouse-cursor--elastic {
+.mouse-cursor {
   $ease-opacity: opacity $ease 0s;
   $ease-size: width 0.5s ease, height 0.5s ease;
 
@@ -37,8 +36,8 @@
     }
   }
 
-  // Arbitrary custom class added to test reshaping the cursor
-  &.test-class {
+  // modifier class added via 'data-cursor-class' attribute (with trigger)
+  &.cta-2 {
     .mouse-cursor__shape {
       --size: 32px;
 
@@ -47,9 +46,29 @@
     }
   }
 
-  &--burger {
+  &.menu-btn {
     .mouse-cursor__shape {
       --size: 64px;
     }
   }
+
+  &.star-icon {
+    .mouse-cursor__shape {
+      --size: 32px;
+
+      border: 1px dashed $blue;
+      rotate: 0deg;
+      scale: 1 1 !important;
+      opacity: 1;
+      transition: 1s ease, opacity 1s 0.12s, scale 0s;
+    }
+  }
+}
+
+// Library
+.sibling-hover__target--dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: lightblue;
 }

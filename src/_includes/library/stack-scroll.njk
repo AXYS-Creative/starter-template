@@ -16,28 +16,40 @@
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if panel_section_title or panel_section_desc %}
+    {% if panel_copy %}
     <div class="stack-scroll__copy">
-      <h2 class="stack-scroll__copy-title h6">{{ panel_section_title }}</h2>
+      {% if panel_copy.title %}
+      <h2 class="stack-scroll__copy-title h6">{{ panel_copy.title }}</h2>
+      {% endif %} {% if panel_copy.desc %}
+      <p class="stack-scroll__copy-desc">{{ panel_copy.desc }}</p>
+      {% endif %} {% if panel_copy.cta_1 %}
+      <!-- prettier-ignore -->
+      {% set cta_1 = panel_copy.cta_1 %}
+      {% set cta_2 = panel_copy.cta_2 %}
+      {% include "../components/cta-group.njk" %}
+      {% endif %}
     </div>
     {% endif %}
 
     <!-- prettier-ignore -->
     {% for panel in panel_data %}
     <div class="stack-panel stack-panel-{{ loop.index }}">
-      <h3 class="stack-panel__title h5">{{ panel.title }}</h3>
+      {% if panel.icon %}
+      <span
+        class="stack-panel__icon mask-icon"
+        style="mask-image:url({{ panel.icon }})"
+      ></span>
+      {% endif %} {% if panel.title %}
+      <h3 class="stack-panel__title h5">
+        {{ panel.title }}
+      </h3>
+      {% endif %} {% if panel.desc %}
       <p class="stack-panel__desc">{{ panel.desc }}</p>
-      {% if panel.cta.text %}
+      {% endif %} {% if panel.cta_1 %}
       <!-- prettier-ignore -->
-      <a 
-        class="cta-1" 
-        href="{{ panel.cta.url }}"
-        {% if panel.cta.new_tab %}
-          target="_blank" rel="noopener noreferrer"
-        {% endif %}
-      >
-        {{ panel.cta.text }}
-      </a>
+      {% set cta_1 = panel.cta_1 %}
+      {% set cta_2 = null %}
+      {% include "../components/cta-group.njk" %}
       {% endif %}
     </div>
     {% endfor %}

@@ -10,6 +10,7 @@ $white: #fefefe;
 
 $coral: #e48c66;
 $blue: #007bff;
+$green: #a4d1a2;
 $red: #dc143c;
 
 $content-width: 1920px; // Be mindful of media query breakpoints with left/right spacing
@@ -45,9 +46,6 @@ $test-bg: rgba(navy, 0.75);
   --color-background: #{$white};
   --color-font--primary: #{$black};
   --color-font--secondary: #{$grey-light};
-  --color-font--error: #{$red};
-
-  --color-brand--primary: #{$coral};
 
   // --color-btn-2-bg: var(--color-brand--primary);
   --color-btn-2-text: #{$black};
@@ -59,7 +57,7 @@ $test-bg: rgba(navy, 0.75);
   --color-link: #{$grey-light};
   --color-link--hover: #{$white};
 
-  --color-border: #{$grey-light};
+  --color-surface--1: #{$grey-light};
 }
 
 @mixin dark-theme {
@@ -67,8 +65,7 @@ $test-bg: rgba(navy, 0.75);
   --color-font--primary: #{$white};
 
   --color-btn-2-text: #{$white};
-
-  --color-border: #{$grey-light};
+  --color-surface--1: #{$grey-dark};
 }
 
 :root {
@@ -82,12 +79,19 @@ $test-bg: rgba(navy, 0.75);
   --body-padding: 64px;
   --body-padding-double: calc(var(--body-padding) * 2);
 
+  --color-brand--primary: #{$coral};
+  --color-brand--secondary: #{$green};
+
+  --color-font--error: #{$red};
+
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-text: #{$white};
   --color-btn-border: var(--color-btn-bg);
   --color-btn-bg--hover: transparent;
   --color-btn-text--hover: var(--color-brand--primary);
   --color-btn-border--hover: var(--color-brand--primary);
+
+  --color-border: #{$grey-light};
 
   --btn-padding: 8px 16px;
 
@@ -98,7 +102,8 @@ $test-bg: rgba(navy, 0.75);
   --border-width--bold: 2px;
 
   --radius: 24px;
-  --radius-btn: 4px;
+  --radius--sm: 4px;
+  --radius-btn: var(--radius--sm);
 
   @media (max-width: 1512px) {
     --body-padding: 48px;

@@ -30,4 +30,4 @@ nav_btn:
   type: chocolate
   shape: square
   display: md # Dev use only
-  class: "magnet magnet-strong sibling-hover-burger__target glitch-trigger" # Dev use only
+  class: "magnet magnet-strong glitch-trigger cursor-target__menu-btn" # Dev use only

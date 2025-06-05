@@ -40,7 +40,7 @@ path: library
   <h2 class="h4">
     [
     <span class="glitch-text glitch-scroll" data-glitch-once="false"
-      >Scramble Text</span
+      >Glitch Text</span
     >
     -
     <span
@@ -83,6 +83,38 @@ path: library
     Sibling glitch hover effect - Hover me
   </h4>
   <p class="glitch-target__paragraph">This text should now glitch out</p>
+</section>
+
+<section class="library-section">
+  <h2 class="h4">[ Mouse sibling - util ]</h2>
+  <p>
+    If using a mouse cursor, you can set up a trigger and target to spice things
+    up! The class <code>cursor-trigger</code> goes on the trigger element. It also comes
+    with a few data attributes such as:
+    <ul class="classic-list">
+      <li><code>data-cursor-target</code> — which takes the class of the target element</li>
+      <li><code>data-cursor-class</code> — which lets use set up a modifier class to the mouse cursor</li>
+    </ul>
+  </p>
+
+  <p
+    class="cursor-trigger"
+    data-cursor-target="cursor-target__dot"
+    data-cursor-class="dot-hover-active"
+  >
+    Hover dot
+  </p>
+  <div class="cursor-target__dot">•</div>
+
+  <p
+    class="cursor-trigger"
+    data-cursor-target="cursor-target__icon"
+    data-cursor-class="star-icon"
+    data-cursor-event="mousemove"
+  >
+    Hover star &nbsp; &nbsp;
+    <span class="cursor-target__icon">★</span>
+  </p>
 </section>
 
 <section class="tabs-section">
@@ -130,7 +162,7 @@ path: library
   </h3>
 
   <p class="fill-text">
-    This is some sample fill text. Note: this relies on a simple utlity class.
+    Use the 'fill-text' utility class to get this effect. Note: this relies on a simple utlity class.
     Modify the speed with 'slow-fill' or 'quick-fill'. Lorem ipsum dolor sit
     amet consectetur adipisicing elit. Perferendis earum maxime ab, accusantium
     rem ex assumenda doloribus officia corrupti deserunt repellendus, rerum nisi
@@ -160,7 +192,7 @@ path: library
 <!-- Upcoming Pin stacked section-component, this will scrub. See https://neverhack.com/en -->
 <!-- prettier-ignore  -->
 {% set panel_nav = library.stack_scroll.panel_nav %}
-{% set panel_section_title = library.stack_scroll.title %} 
+{% set panel_copy = library.stack_scroll.panel_copy %} 
 {% set panel_data = library.stack_scroll.panels %}
 {% set panel_configs = library.stack_scroll.panel_configs %}
 {% include './_includes/library/stack-scroll.njk' %}

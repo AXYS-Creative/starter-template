@@ -32,7 +32,13 @@
 }
 
 .classic-list {
+  @include column-start;
+  gap: 8px;
   list-style: initial;
+
+  li {
+    translate: 1.5ch 0;
+  }
 }
 
 .mask-icon {

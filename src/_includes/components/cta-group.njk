@@ -20,15 +20,17 @@
   {% if cta_2.text and cta_2.url %}
   <!-- prettier-ignore -->
   <a
-    class="cta-2 tab-element-page sibling-hover"
+    class="cta-2 tab-element-page cursor-trigger"
     href="{{ cta_2.url }}"
     {%if cta_2.new_tab%}
       target="_blank" rel="noopener noreferrer"
     {%endif%}
     aria-label="{{ cta_2.text_desc or cta_2.text }}"
+    data-cursor-target="cursor-target__cta-2"
+    data-cursor-class="cta-2"
   >
     {{ cta_2.text }}
-    <span class="cta-2__icon sibling-hover__target"></span>
+    <span class="cta-2__icon cursor-target__cta-2"></span>
     {% if cta_2.text_desc %}
       <span class="sr-only">{{ cta_2.text_desc }}</span>
     {% endif %}

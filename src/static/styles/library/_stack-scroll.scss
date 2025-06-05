@@ -14,7 +14,8 @@
     &-link {
       opacity: 0.5;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         opacity: 1;
       }
 
@@ -26,18 +27,26 @@
 
   // Optional section copy
   &__copy {
+    @include column-start;
+    gap: var(--section-gap);
     position: absolute;
-    top: $panel-to-top;
+    top: calc($panel-to-top + var(--body-padding));
     left: var(--body-padding);
 
     // &-title {
 
     // }
+
+    &-desc {
+      @include mq-min(lg) {
+        width: 40%;
+      }
+    }
   }
 
   .stack-panel {
     // @include gradient-border;
-    @include column-start;
+    @include column-start(flex-start);
     gap: var(--section-gap);
     position: absolute;
     // See component modifiers for placement
@@ -60,12 +69,22 @@
       top: 120%;
     }
 
+    &__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-font--primary);
+    }
+
     // &__title {
 
     // }
 
-    &__desc {
-      flex: 1;
+    // &__desc {
+
+    // }
+
+    .cta-group {
+      margin-top: auto;
     }
   }
 
@@ -80,7 +99,7 @@
 
     // Panel linger options — May need to adjust the Stack Link highlight
     // gap: 320px; // all but last panel linger
-    // padding-bottom: 320px; // Last panel linger
+    padding-bottom: 320px; // Last panel linger
 
     .pin-step {
       scroll-margin-top: -24px;

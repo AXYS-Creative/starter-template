@@ -337,6 +337,7 @@ $min-breakpoints: (
   mask-repeat: no-repeat;
   mask-position: center;
   aspect-ratio: 1/1;
+  background: var(--color-font--primary);
 
   @if $url {
     mask-image: url($url);
