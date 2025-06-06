@@ -1,36 +1,51 @@
 .horizontal-scroll {
-  position: relative;
   overflow: hidden;
   height: 100vh;
+  min-height: 850px;
+
+  @include mq-max(xxl) {
+    min-height: 650px;
+  }
+
+  &:has(&__title),
+  &:has(&__desc) {
+    .container {
+      height: 80%;
+    }
+  }
+
+  // &__title {
+
+  // }
+
+  &__desc {
+    margin-block-end: var(--section-gap--lg);
+
+    @include mq-max(xxl) {
+      margin-block-end: var(--section-gap);
+    }
+  }
 
   .container {
+    // border: $test;
     display: flex;
     align-items: center;
-    height: 80vh;
-
-    @include mq-min(lg) {
-      height: max(80vh, 650px);
-    }
+    height: 100%; // Conditionally changes from 85% if there's a title or description.
 
     .slider {
+      height: 100%;
       display: flex;
       gap: 12px;
     }
   }
 
   &__figure {
-    width: min(24vw, 464px);
-    aspect-ratio: 586 / 880;
-    // width: 750px;
-    // aspect-ratio: 8 / 5;
+    // Couldn't get aspect ratio to work
+    @include column-start;
+    width: min(25vw, 450px);
 
-    @include mq-max(lg) {
-      width: 38vw;
-      aspect-ratio: 1 / 1.5;
-    }
-
-    @include mq-max(md) {
-      width: 56vw;
+    @include mq-max(xl) {
+      width: 350px;
     }
 
     picture {

@@ -323,7 +323,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 img,
                 { x: 0 },
                 {
-                  x: "50%", // Adjust this value for more or less parallax effect
+                  x: "25%", // Adjust this value for more or less parallax effect
                   ease: "none",
                   scrollTrigger: {
                     trigger: el,

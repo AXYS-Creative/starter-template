@@ -7,19 +7,41 @@ title: Style Guide
 ---
 
 <section class="hero">
-  <h1>Heading 1</h1>
-  <h2>Heading 2</h2>
-  <h3>Heading 3</h3>
-  <h4>Heading 4</h4>
-  <h5>Heading 5</h5>
-  <h6>Heading 6</h6>
+  <h1>Heading I</h1>
+  <h2>Heading II</h2>
+  <h3>Heading III</h3>
+  <h4>Heading IV</h4>
+  <h5>Heading V</h5>
+  <h6>Heading VI</h6>
   <br />
   <p>
-    This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Quasi, quod.
-    <strong>This is strong text.</strong>
-    <em>This is italic text.</em>
+    This is a paragraph. It uses the <code>body-font-styles</code> mixin.
+    Responsive range from 18px (lg), 16px (md), to 14px (sm). Lorem ipsum dolor
+    sit amet, consectetur adipisicing elit. Quasi, quod.
   </p>
+  <div>
+    <strong>This is strong text</strong>
+    <p class="text-bold">
+      This is bold text via global util (CMS Friendly, use '.text-bold')
+    </p>
+  </div>
+  <div>
+    <em>This is emphasized text</em>
+    <p class="text-italic">
+      This is italic text (CMS Friendly, use '.text-italic')
+    </p>
+  </div>
+  <small
+    >This is small text. Lorem ipsum dolor sit amet consectetur adipisicing
+    elit. Asperiores sequi repudiandae corporis.</small
+  >
+  <code>This is a code block</code>
+
+  <ul class="classic-list">
+    <li>Classic List, Child I</li>
+    <li>Classic List, Child II</li>
+    <li>Classic List, Child III</li>
+  </ul>
   <!-- prettier-ignore -->
   {% set cta_1 = ({
     text: 'Primary CTA',
@@ -40,9 +62,9 @@ title: Style Guide
   {% set btn_toggle_label = 'Autoplay:' %}
   {% set btn_toggle = ({
     class: 'btn-toggle-carousel',
-    label: 'autoplay —',
-    label_true: 'on',
-    label_false: 'off'
+    label: 'Toggle —',
+    label_true: 'On',
+    label_false: 'Off'
   }) %}
   {% include "./_includes/library/button-toggle.njk" %}
 </section>

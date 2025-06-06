@@ -106,42 +106,42 @@ $min-breakpoints: (
   @include heading-text(96px);
 
   @include mq-max(xxl) {
-    font-size: max(61.5px, 6vw);
+    font-size: max(62px, 6.2vw);
   }
 }
 @mixin h2 {
-  @include heading-text(72px);
+  @include heading-text(78px);
 
   @include mq-max(xxl) {
-    font-size: max(49.2px, 4.8vw);
+    font-size: max(50px, 5vw);
   }
 }
 @mixin h3 {
-  @include heading-text(52px);
+  @include heading-text(64px);
 
   @include mq-max(xxl) {
-    font-size: max(39px, 3.4vw);
+    font-size: max(42px, 4.2vw);
   }
 }
 @mixin h4 {
-  @include heading-text(36px);
+  @include heading-text(48px);
 
   @include mq-max(xxl) {
-    font-size: max(28.7px, 2.4vw);
+    font-size: max(32px, 3.2vw);
   }
 }
 @mixin h5 {
-  @include heading-text(32px);
+  @include heading-text(36px);
 
   @include mq-max(xxl) {
-    font-size: max(24.5px, 2.4vw);
+    font-size: max(24px, 2.4vw);
   }
 }
 @mixin h6 {
-  @include heading-text(24px);
+  @include heading-text(28px);
 
   @include mq-max(xxl) {
-    font-size: max(18px, 2vw);
+    font-size: max(20px, 2vw);
   }
 }
 

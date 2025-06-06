@@ -8,6 +8,8 @@
   }
 
   &__btn {
+    @extend .cta-1;
+
     &--active {
       background: var(--color-font--primary);
       color: var(--color-background);

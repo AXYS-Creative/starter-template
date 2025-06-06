@@ -36,15 +36,15 @@ path: library
   <h2 class="h4">[ Image Slice (Two image reveal) - Component ]</h2>
 </section>
 
-<section class="glitch-text-section library-section">
+<section class="section library-section">
   <h2 class="h4">
     [
-    <span class="glitch-text glitch-scroll" data-glitch-once="false"
+    <span class="glitch-scroll" data-glitch-once="false"
       >Glitch Text</span
     >
     -
     <span
-      class="glitch-text glitch-cycle"
+      class="glitch-cycle"
       data-glitch-cycle-words="Util, Class, Block"
     >
       Util</span
@@ -52,36 +52,45 @@ path: library
     ]
   </h2>
 
-  <!-- 'glitch-cycle' scrambles between the words passed in the 'data-glitch-cycle' attribute. Also has cycle-interval -->
-  <h3 class="h4">
-    Glitch cycle:
+  <h3 class="h5">Glitch Cycle</h3>
+  <p>The glitch cycle uses the <code>glitch-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
+  <ul class="classic-list">
+    <li><code>data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"</code></li>
+    <li><code>data-glitch-cycle-colors="#e48c66, #007bff, #fefefe, #c0c0c0, #007bff"</code></li>
+    <li><code>data-glitch-cycle-interval="2000"</code></li>
+  </ul>
+  <h6>Here’s an example:
     <span
-      class="glitch-text glitch-cycle"
+      class="glitch-cycle"
       data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"
       data-glitch-cycle-colors="#e48c66, #007bff, #fefefe, #c0c0c0, #007bff"
       data-glitch-cycle-interval="2000"
     >
       Creative
     </span>
-  </h3>
+  </h6>
 
-  <!-- 'glitch-scroll' should scramble the text on scroll, comes with 'data-glitch-once' for trigger on reenter -->
-  <p>Glitch effect via utility classes and data- tags.</p>
-  <p class="glitch-scroll" data-glitch-once="false">
-    This will glitch out as many times as you scroll into view.
-  </p>
-  <p class="glitch-scroll" data-glitch-once="true">
-    This will only glitch out the first time you scroll into view.
-  </p>
+  <br>
 
-  <!-- 'glitch-hover' should scramble the text on hover -->
+  <h3 class="h5">Glitch Scroll</h3>
+  <p>The class <code>glitch-scroll</code> will scramble the text when the element comes into view. Using with the attribute: <code>data-glitch-once="false"</code> will toggle the effect to occur more than once per scroll into view.</p>
+  <p class="glitch-scroll">This will only glitch out once. Default behavior.</p>
+  <p class="glitch-scroll" data-glitch-once="false">This will glitch out as many times as you scroll into view.</p>
+  
+  <br>
+
+  <h3 class="h5">Glitch Hover</h3>
+  <p>The class <code>glitch-hover</code> causes the innerText (works with nested elements) to scramble on hover or focus.</p>
   <a href="/" class="cta-1 glitch-hover">Hover over me</a>
   <a href="/" class="classic-link glitch-hover">Hover over me</a>
 
-  <!-- Sibling glitch effect 'glitch-trigger' with data-glitch-target="arbitrary" & 'glitch-target__arbitrary' -->
-  <h4 class="h6 glitch-trigger" data-glitch-target="glitch-target__paragraph">
-    Sibling glitch hover effect - Hover me
-  </h4>
+  <br>
+
+  <h3 class="h5">Glitch Sibling</h3>
+  <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The sibling will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
+  <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
+    Hover or focus me
+  </button>
   <p class="glitch-target__paragraph">This text should now glitch out</p>
 </section>
 
@@ -112,8 +121,20 @@ path: library
     data-cursor-class="star-icon"
     data-cursor-event="mousemove"
   >
-    Hover star &nbsp; &nbsp;
-    <span class="cursor-target__icon">★</span>
+    Hover star (inline with magnet effect)
+    <span 
+      class="cursor-target__icon magnet magnet-strong" 
+      style="
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+      "
+    >
+      ★
+    </span>
   </p>
 </section>
 

@@ -7,5 +7,9 @@
     @include mq-max(md) {
       padding-block: 164px;
     }
+
+    p {
+      text-align: left;
+    }
   }
 }
