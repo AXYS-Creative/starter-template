@@ -457,6 +457,8 @@ body:has(.load-complete) .hero div {
   align-items: center;
   position: fixed;
   top: 0;
+  left: 50%;
+  translate: -50% 0;
   width: 100vw;
   height: 100dvh;
   background: var(--color-background);
@@ -1252,13 +1254,13 @@ code {
   align-items: flex-start;
   color: var(--color-font--primary);
   font-family: var(--font-family--heading);
-  font-size: 48px;
+  font-size: 28px;
   font-weight: 300;
   gap: 24px;
 }
 @media (max-width: 1512px) {
   .accordion-label {
-    font-size: max(32px, 3.2vw);
+    font-size: max(20px, 2vw);
   }
 }
 @media (max-width: 480px) {
@@ -2029,10 +2031,11 @@ code {
   position: absolute;
   top: calc(128px + var(--body-padding));
   left: var(--body-padding);
+  width: 40%;
 }
-@media (min-width: 1025px) {
-  .stack-scroll__copy-desc {
-    width: 40%;
+@media (max-width: 1024px) {
+  .stack-scroll__copy {
+    display: none;
   }
 }
 .stack-scroll .stack-panel {

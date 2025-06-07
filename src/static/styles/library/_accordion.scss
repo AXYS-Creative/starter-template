@@ -28,7 +28,7 @@
 
   &-label {
     @include row-start(space-between);
-    @include h4;
+    @include h6;
     gap: 24px;
 
     @include mq-max(sm) {

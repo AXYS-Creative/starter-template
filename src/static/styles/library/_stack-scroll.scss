@@ -32,16 +32,19 @@
     position: absolute;
     top: calc($panel-to-top + var(--body-padding));
     left: var(--body-padding);
+    width: 40%;
+
+    @include mq-max(lg) {
+      display: none;
+    }
 
     // &-title {
 
     // }
 
-    &-desc {
-      @include mq-min(lg) {
-        width: 40%;
-      }
-    }
+    // &-desc {
+
+    // }
   }
 
   .stack-panel {
