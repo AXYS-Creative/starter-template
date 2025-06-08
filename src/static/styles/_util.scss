@@ -98,6 +98,29 @@
     overflow: hidden;
   }
 
+  .grid-fade {
+    position: relative;
+
+    .grid-fade__overlay {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      z-index: 1;
+
+      &--tile {
+        // min-width controlled via javascript/config
+        // border: $test;
+        // opacity: 1 !important;
+        flex: 1;
+        background: var(--color-background);
+        transition: $ease;
+      }
+    }
+  }
+
   .magnet {
     transition: $magnet;
   }

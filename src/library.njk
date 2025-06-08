@@ -36,7 +36,7 @@ path: library
   <h2 class="h5">[ Image Slice (Two image reveal) - Component ]</h2>
 </section>
 
-<section class="section library-section">
+<section class="glitch-text-section library-section">
   <h2 class="h5">
     [
     <span class="glitch-scroll" data-glitch-once="false"
@@ -94,7 +94,7 @@ path: library
   <p class="glitch-target__paragraph">This text should now glitch out</p>
 </section>
 
-<section class="library-section">
+<section class="mouse-sibling-section library-section">
   <h2 class="h5">[ Mouse sibling - util ]</h2>
   <p>
     If using a mouse cursor, you can set up a trigger and target to spice things
@@ -146,13 +146,28 @@ path: library
   {% include "./_includes/library/tabs.njk" %}
 </section>
 
-<h2 class="h5" style="margin: 0 0 48px var(--body-padding)">
-  [ Carousel 'Hero' - Component ]
-</h2>
-<!-- prettier-ignore -->
-{% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
-{% set carousel_hero_slides = library.carousel_hero.slides %}
-{% include "./_includes/library/carousel-hero.njk" %}
+<div style="margin: 0 0 48px var(--body-padding);">
+  <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
+  <br>
+  <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>
+  <br>
+  <ul class="classic-list">
+    <li><code>data-grid-fade</code> which takes <code>in-out</code> or <code>in</code> (default) depending on scroll preference.</li>
+    <li><code>data-grid-tile-size</code> which takes either: <code>small</code>, <code>medium</code> (default), or <code>large</code>.</li>
+    <li><code>data-grid-fade-random</code> which takes either: <code>true</code> (default) or <code>false</code>.</li>
+  </ul>
+</div>
+<div 
+  class="grid-fade" 
+  data-grid-fade="in-out"
+  data-grid-tile-size="small"
+  data-grid-fade-random="true"
+>
+  <!-- prettier-ignore -->
+  {% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
+  {% set carousel_hero_slides = library.carousel_hero.slides %}
+  {% include "./_includes/library/carousel-hero.njk" %}
+</div>
 
 <section class="carousel-swiper-section">
   <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
@@ -214,10 +229,8 @@ path: library
 {% set hs_message = library.horizontal_scroll.message %}
 {% set hs_imgs = library.horizontal_scroll.imgs %}
 {% set hs_img_parallax = library.horizontal_scroll.img_parallax %}
-
 {% include './_includes/library/horizontal-scroll.njk' %}
 
-<!-- Upcoming Pin stacked section-component, this will scrub. See https://neverhack.com/en -->
 <!-- prettier-ignore  -->
 {% set panel_nav = library.stack_scroll.panel_nav %}
 {% set panel_copy = library.stack_scroll.panel_copy %} 
@@ -225,13 +238,10 @@ path: library
 {% set panel_configs = library.stack_scroll.panel_configs %}
 {% include './_includes/library/stack-scroll.njk' %}
 
-<section class="carousel-section"></section>
-
 <section class="video-section library-section">
   <h2 class="h5">[ Video Overlay - Utility ]</h2>
   <p>
-    This can be a traditional cta or can simply wrap an element i.e. an image
-    (see joinsunder)
+    This can be a traditional cta or can simply wrap an element i.e. an image.
   </p>
 
   <!-- prettier-ignore -->

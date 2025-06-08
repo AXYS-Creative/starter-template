@@ -51,6 +51,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         document.documentElement
       ).getPropertyValue("--body-padding");
 
+      // Utility
+      // Shuffle an array in place (used for grid-fade)
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
       // GLOBAL (place under other tweens i.e. pinned sections) - Animate any element with the class 'gsap-animate' using the 'animate' companion class
       {
         const targetElements = document.querySelectorAll(".gsap-animate");
@@ -270,6 +279,93 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             cycle();
           });
+        }
+
+        // Grid Fade (Utility)
+        {
+          const gridFades = document.querySelectorAll(".grid-fade");
+
+          if (gridFades.length) {
+            gridFades.forEach((section) => {
+              const scrubVal = 0.5;
+              const fadeType = section.dataset.gridFade || "in";
+              const tileSize = section.dataset.gridTileSize || "medium";
+              const tileFadeRandom = section.dataset.gridFadeRandom || "true";
+
+              // Determine config based on tileSize (default medium)
+              let tileCount = 40;
+              let minWidth = "12%";
+
+              if (tileSize === "large") {
+                tileCount = 20;
+                minWidth = "18%";
+              } else if (tileSize === "small") {
+                tileCount = 192;
+                minWidth = "6%";
+              }
+
+              const overlay = document.createElement("div");
+              overlay.classList.add("grid-fade__overlay");
+
+              const tiles = [];
+              for (let i = 0; i < tileCount; i++) {
+                const tile = document.createElement("div");
+                tile.classList.add("grid-fade__overlay--tile");
+                tile.style.minWidth = minWidth;
+                overlay.appendChild(tile);
+                tiles.push(tile);
+              }
+
+              section.appendChild(overlay);
+
+              if (tileFadeRandom === "true") {
+                shuffleArray(tiles);
+              }
+
+              if (fadeType === "in") {
+                gsap.fromTo(
+                  tiles,
+                  { opacity: 1 },
+                  {
+                    opacity: 0,
+                    ease: "none",
+                    stagger: 1,
+                    scrollTrigger: {
+                      trigger: section,
+                      start: "top 64%",
+                      end: "top 5%",
+                      scrub: scrubVal,
+                    },
+                  }
+                );
+              } else if (fadeType === "in-out") {
+                const tl = gsap.timeline({
+                  scrollTrigger: {
+                    trigger: section,
+                    start: "top 60%",
+                    end: "bottom 20%",
+                    scrub: scrubVal,
+                  },
+                });
+
+                tl.to(tiles, {
+                  opacity: 0,
+                  ease: "none",
+                  stagger: 1,
+                })
+                  .to(tiles, {
+                    opacity: 0,
+                    ease: "none",
+                    stagger: 1,
+                  })
+                  .to(tiles, {
+                    opacity: 1,
+                    ease: "none",
+                    stagger: 1,
+                  });
+              }
+            });
+          }
         }
 
         // Horizontal Scroll (pinned section)
