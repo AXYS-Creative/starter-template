@@ -109,6 +109,7 @@
       display: flex;
       flex-wrap: wrap;
       z-index: 1;
+      pointer-events: none;
 
       &--tile {
         // min-width controlled via javascript/config
