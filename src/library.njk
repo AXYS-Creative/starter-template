@@ -51,6 +51,7 @@ path: library
     >
     ]
   </h2>
+  <p>While not required, there is a class: <code>glitch-text</code>, that clips the max width to the content width to prevent overshooting. This could be used for other variable/util needs.</p>
 
   <h3 class="h6">Glitch Cycle</h3>
   <p>The glitch cycle uses the <code>glitch-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
@@ -173,12 +174,23 @@ path: library
   <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
 
   <!-- prettier-ignore -->
-  {% set carousel_swiper_autoplay = library.carousel_swiper.autoplay %}
-  {% set list = library.carousel_swiper.list %}
+  {% set carousel_autoplay = library.carousel_swiper.autoplay %}
+  {% set carousel_controls = library.carousel_swiper.controls %}
+  {% set carousel_slides = library.carousel_swiper.slides %}
   {% set carousel_progress = true %}
   {% include './_includes/library/carousel-swiper.njk' %}
 </section>
 
+<div class="library-section" style="margin: var(--body-padding-double) 0 48px var(--body-padding);">
+  <h2 class="h5">[ Marquee - Component ]</h2>
+  <p>Comes with a handful of configs:</p>
+  <ul class="classic-list">
+    <li><code>text</code> Accepts a string value and will display the message passed in. (Not recommneded to use with imgs)</li>
+    <li><code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to use with text)</li>
+    <li><code>scrub</code> A boolean that toggles whether the velocity should be controlled by the scroll position.</li>
+    <li><code>count</code> The number of marquee elements stacked on top of one another.</li>
+  </ul>
+</div>
 <!-- prettier-ignore -->
 {% set marquee = library.marquee.marquee %}
 {% include './_includes/library/marquee.njk' %}

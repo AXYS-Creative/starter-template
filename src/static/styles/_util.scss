@@ -117,7 +117,15 @@
         // opacity: 1 !important;
         flex: 1;
         background: var(--color-background);
-        transition: $ease;
+        // transition: $ease;
+        transition: 0.5s ease;
+      }
+
+      &.full-viewport {
+        left: 50%;
+        translate: -50% 0;
+        width: 100vw;
+        height: 100vh;
       }
     }
   }

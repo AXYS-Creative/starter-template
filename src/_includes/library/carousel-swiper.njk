@@ -1,22 +1,44 @@
-{% if list %}
+{% if carousel_slides %}
 <div class="swiper mySwiper">
   <div class="swiper-wrapper tab-element-page">
-    {% for item in list %}
+    {% for slide in carousel_slides %}
     <div class="swiper-slide">
-      <img src="{{ item.img }}" alt="{{ item.title }}" loading="lazy" />
+      <img src="{{ slide.img }}" alt="{{ slide.title }}" />
     </div>
     {% endfor %}
   </div>
 
   <div class="swiper-controls">
-    <div class="swiper-button-prev tab-element-page">
-      Prev
-      <img src="{{ global.carousel.arrow_img }}" alt="" eleventy:ignore />
-    </div>
-    <div class="swiper-button-next tab-element-page">
-      Next
-      <img src="{{ global.carousel.arrow_img }}" alt="" eleventy:ignore />
-    </div>
+    <button class="swiper-button-prev tab-element-page">
+      {% if carousel_controls.btn_img %}
+      <img
+        class="swiper-button-prev__img"
+        src="{{ carousel_controls.btn_img }}"
+        alt=""
+        eleventy:ignore
+      />
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if carousel_controls.prev_text %}
+      {{ carousel_controls.prev_text }}
+      {% endif %}
+    </button>
+    <button class="swiper-button-next tab-element-page">
+      {% if carousel_controls.next_text %}
+      {{ carousel_controls.next_text }}
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if carousel_controls.btn_img %}
+      <img
+        class="swiper-button-next__img"
+        src="{{ carousel_controls.btn_img }}"
+        alt=""
+        eleventy:ignore
+      />
+      {% endif %}
+    </button>
 
     <!-- prettier-ignore -->
     {% if carousel_progress %}

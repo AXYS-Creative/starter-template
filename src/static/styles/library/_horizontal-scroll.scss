@@ -9,7 +9,7 @@
 
   &:has(&__title),
   &:has(&__desc) {
-    .container {
+    .horizontal-scroll__container {
       height: 80%;
     }
   }
@@ -26,17 +26,17 @@
     }
   }
 
-  .container {
+  &__container {
     // border: $test;
     display: flex;
     align-items: center;
     height: 100%; // Conditionally changes from 85% if there's a title or description.
+  }
 
-    .slider {
-      height: 100%;
-      display: flex;
-      gap: 12px;
-    }
+  &__slider {
+    height: 100%;
+    display: flex;
+    gap: 12px;
   }
 
   &__figure {

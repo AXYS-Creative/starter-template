@@ -47,12 +47,17 @@
     @include mq-max(md) {
       display: none;
     }
+
+    &__img {
+      width: 20px;
+      aspect-ratio: 1;
+    }
   }
-  // .swiper-button-prev {
-  //   right: 48px;
-  //   bottom: 0;
-  //   // rotate: 180deg;
-  // }
+  .swiper-button-prev__img {
+    right: 48px;
+    bottom: 0;
+    rotate: 180deg;
+  }
 
   // .swiper-button-next {
   //   top: auto;

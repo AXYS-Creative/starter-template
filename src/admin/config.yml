@@ -165,10 +165,10 @@ collections:
                 label: "Content"
                 widget: "text"
                 required: true
-      - name: "carousel_snap"
-        label: "Snap Carousel"
-        file: "src/_data/library/carousel_snap.yaml"
-        preview_path: "/library#carousel-snap"
+      - name: "carousel_swiper"
+        label: "Swiper Carousel"
+        file: "src/_data/library/carousel_swiper.yaml"
+        preview_path: "/library#carousel-swiper"
         editor:
           preview: false
         fields:
@@ -189,9 +189,9 @@ collections:
                 label: "Allow User Toggle"
                 widget: "boolean"
                 hint: "Allow users to toggle autoplay"
-          - name: "list"
-            label: "Carousel Items"
-            label_singular: "Item"
+          - name: "slides"
+            label: "Carousel Slides"
+            label_singular: "Slide"
             widget: "list"
             fields:
               - name: "title"

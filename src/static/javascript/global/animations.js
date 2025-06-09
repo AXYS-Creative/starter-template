@@ -332,8 +332,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                     stagger: 1,
                     scrollTrigger: {
                       trigger: section,
-                      start: "top 64%",
-                      end: "top 5%",
+                      start: "top 70%",
+                      end: "top 15%",
                       scrub: scrubVal,
                     },
                   }
@@ -376,8 +376,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           let horizontalScrub = maxSm ? 1 : 0.5;
 
           horizontalScroll.forEach((el) => {
-            let container = el.querySelector(".container");
-            let slider = el.querySelector(".slider");
+            let container = el.querySelector(".horizontal-scroll__container");
+            let slider = el.querySelector(".horizontal-scroll__slider");
             let imgs = el.querySelectorAll(
               ".horizontal-scroll__figure--parallax img"
             ); // selecting picture with 11ty-img

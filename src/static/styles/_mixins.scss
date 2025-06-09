@@ -354,7 +354,7 @@ $min-breakpoints: (
 
 // Library
 
-@mixin fill-text($color: rgba(255, 255, 255, 0.25)) {
+@mixin fill-text($color: rgba(125, 125, 125, 0.25)) {
   display: inline; // for fill line-wrap
   background-repeat: no-repeat;
   background-clip: text;

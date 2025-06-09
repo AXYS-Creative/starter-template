@@ -3,7 +3,15 @@ autoplay:
   interval: 5000
   allow_user_toggle: true
 
-list:
+controls:
+  prev_text: Prev
+  next_text: Next
+  btn_img: /static/img/library/icon-google-right-chevron.svg
+
+pagination:
+  progress_bar: true
+
+slides:
   - title: Title 1
     desc: Description 1
     img: /static/img/library/img-sample-1.jpg
@@ -22,21 +30,21 @@ list:
   - title: Title 6
     desc: Description 6
     img: /static/img/library/img-sample-6.jpg
-  - title: Title 7
-    desc: Description 7
-    img: /static/img/library/img-sample-7.jpg
-  - title: Title 8
-    desc: Description 8
-    img: /static/img/library/img-sample-8.jpg
-  - title: Title 9
-    desc: Description 9
-    img: /static/img/library/img-sample-9.jpg
-  - title: Title 10
-    desc: Description 10
-    img: /static/img/library/img-sample-10.jpg
-  - title: Title 11
-    desc: Description 11
-    img: /static/img/library/img-sample-11.jpg
-  - title: Title 12
-    desc: Description 12
-    img: /static/img/library/img-sample-12.jpg
+  # - title: Title 7
+  #   desc: Description 7
+  #   img: /static/img/library/img-sample-7.jpg
+  # - title: Title 8
+  #   desc: Description 8
+  #   img: /static/img/library/img-sample-8.jpg
+  # - title: Title 9
+  #   desc: Description 9
+  #   img: /static/img/library/img-sample-9.jpg
+  # - title: Title 10
+  #   desc: Description 10
+  #   img: /static/img/library/img-sample-10.jpg
+  # - title: Title 11
+  #   desc: Description 11
+  #   img: /static/img/library/img-sample-11.jpg
+  # - title: Title 12
+  #   desc: Description 12
+  #   img: /static/img/library/img-sample-12.jpg
