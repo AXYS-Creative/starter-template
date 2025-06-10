@@ -1,5 +1,10 @@
 {% if carousel_slides %}
-<div class="swiper mySwiper">
+<div
+  class="swiper mySwiper carousel-swiper"
+  data-autoplay-enabled="{{ carousel_autoplay.enabled }}"
+  data-autoplay-interval="{{ carousel_autoplay.interval }}"
+  data-pagination="{{ carousel_pagination }}"
+>
   <div class="swiper-wrapper tab-element-page">
     {% for slide in carousel_slides %}
     <div class="swiper-slide">
@@ -9,7 +14,7 @@
   </div>
 
   <div class="swiper-controls">
-    <button class="swiper-button-prev tab-element-page">
+    <button class="cta-1 swiper-button-prev tab-element-page">
       {% if carousel_controls.btn_img %}
       <img
         class="swiper-button-prev__img"
@@ -24,7 +29,7 @@
       {{ carousel_controls.prev_text }}
       {% endif %}
     </button>
-    <button class="swiper-button-next tab-element-page">
+    <button class="cta-1 swiper-button-next tab-element-page">
       {% if carousel_controls.next_text %}
       {{ carousel_controls.next_text }}
       {% endif %}
@@ -41,7 +46,7 @@
     </button>
 
     <!-- prettier-ignore -->
-    {% if carousel_progress %}
+    {% if carousel_pagination %}
     <div class="swiper-pagination"></div>
     {% endif %}
   </div>

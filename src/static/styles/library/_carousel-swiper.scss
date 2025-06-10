@@ -1,14 +1,23 @@
+// Ensure parent doesn't have flex, caused strange image width
 .swiper {
-  // Ensure parent doesn't have flex, caused strange image width
   --swiper-navigation-color: var(--color-font--primary);
+  --swiper-pagination-color: var(--color-brand--primary);
+  --swiper-pagination-bullet-inactive-color: var(--color-brand--primary);
 
   margin-block: var(--section-gap);
+  padding-block: var(--body-padding);
 
-  // .swiper-wrapper {
-  // .swiper-slide {
+  .swiper-wrapper {
+    cursor: grab;
 
-  // }
-  // }
+    &:active {
+      cursor: grabbing;
+    }
+
+    // .swiper-slide {
+
+    // }
+  }
 
   div.swiper-pagination-progressbar {
     background: var(--color-font--primary);
@@ -18,17 +27,13 @@
     translate: 0 -50%;
     width: 32.5%;
     height: 3px;
-
-    .swiper-pagination-progressbar-fill {
-      background: var(--color-brand--primary);
-    }
   }
 
   .swiper-controls {
     @include row-center(flex-end);
     position: relative;
     gap: 12px;
-    height: 2lh;
+    height: 4lh;
   }
 
   .swiper-button-prev,
@@ -38,6 +43,7 @@
     width: auto;
     margin: 0;
     padding: 0 8px;
+    display: flex;
 
     // Hides default arrows
     &::after {
@@ -54,8 +60,8 @@
     }
   }
   .swiper-button-prev__img {
-    right: 48px;
-    bottom: 0;
+    // right: 64px;
+    // bottom: 0;
     rotate: 180deg;
   }
 

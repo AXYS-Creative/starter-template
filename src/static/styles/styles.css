@@ -1729,7 +1729,16 @@ code {
 
 .swiper {
   --swiper-navigation-color: var(--color-font--primary);
+  --swiper-pagination-color: var(--color-brand--primary);
+  --swiper-pagination-bullet-inactive-color: var(--color-brand--primary);
   margin-block: var(--section-gap);
+  padding-block: var(--body-padding);
+}
+.swiper .swiper-wrapper {
+  cursor: grab;
+}
+.swiper .swiper-wrapper:active {
+  cursor: grabbing;
 }
 .swiper div.swiper-pagination-progressbar {
   background: var(--color-font--primary);
@@ -1740,16 +1749,13 @@ code {
   width: 32.5%;
   height: 3px;
 }
-.swiper div.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: var(--color-brand--primary);
-}
 .swiper .swiper-controls {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: relative;
   gap: 12px;
-  height: 2lh;
+  height: 4lh;
 }
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
@@ -1757,6 +1763,7 @@ code {
   width: auto;
   margin: 0;
   padding: 0 8px;
+  display: flex;
 }
 .swiper .swiper-button-prev::after,
 .swiper .swiper-button-next::after {
@@ -1774,8 +1781,6 @@ code {
   aspect-ratio: 1;
 }
 .swiper .swiper-button-prev__img {
-  right: 48px;
-  bottom: 0;
   rotate: 180deg;
 }
 
