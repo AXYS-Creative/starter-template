@@ -98,6 +98,12 @@
     overflow: hidden;
   }
 
+  .gradient-border {
+    @include border-radient;
+    padding: 24px;
+    border-radius: 16px;
+  }
+
   .grid-fade {
     position: relative;
 

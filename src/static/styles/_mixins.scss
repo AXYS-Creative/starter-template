@@ -344,13 +344,26 @@ $min-breakpoints: (
   }
 }
 
-// @mixin gradient-border {
-//   $col-1: linear-gradient(150deg, #fff 50%, #c0c0c0 96%);
-//   $col-border: linear-gradient(150deg, #fafafa 2%, #ccc 96%);
+@mixin border-radient(
+  $deg: 10deg,
+  $col-1: rgba(255, 255, 255, 0.5),
+  $col-2: transparent
+) {
+  position: relative;
 
-//   background: $col-1 padding-box, $col-border border-box;
-//   border: 1px solid transparent;
-// }
+  &::before {
+    content: "";
+    border: 1px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient($deg, $col-1 5%, $col-2 75%) border-box;
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
+    -webkit-mask-composite: destination-out;
+  }
+}
 
 // Library
 

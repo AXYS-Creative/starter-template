@@ -889,6 +889,24 @@ code {
   .glitch-hover {
     overflow: hidden;
   }
+  .gradient-border {
+    position: relative;
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .gradient-border::before {
+    content: "";
+    border: 1px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(10deg, rgba(255, 255, 255, 0.5) 5%, transparent 75%) border-box;
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
+    -webkit-mask-composite: destination-out;
+  }
   .grid-fade {
     position: relative;
   }
