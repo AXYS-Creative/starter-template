@@ -359,9 +359,10 @@ $min-breakpoints: (
     position: absolute;
     inset: 0;
     background: linear-gradient($deg, $col-1 5%, $col-2 75%) border-box;
-    mask-composite: exclude;
+    mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
   }
 }
 

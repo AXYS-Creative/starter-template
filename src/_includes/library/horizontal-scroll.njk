@@ -5,38 +5,42 @@
 {% endif %}
 
 <section class="horizontal-scroll">
-  {% if hs_title %}
-  <h2 class="horizontal-scroll__title h5">{{ hs_title }}</h2>
-  {% endif %}
+  <div class="horizontal-scroll__pin">
+    {% if hs_title %}
+    <h2 class="horizontal-scroll__title h5">{{ hs_title }}</h2>
+    {% endif %}
 
-  <!-- prettier-ignore -->
-  {% if hs_desc %}
-  <p class="horizontal-scroll__desc">{{ hs_desc }}</p>
-  {% endif %}
+    <!-- prettier-ignore -->
+    {% if hs_desc %}
+    <p class="horizontal-scroll__desc">{{ hs_desc }}</p>
+    {% endif %}
 
-  <div class="horizontal-scroll__container">
-    <div class="horizontal-scroll__slider">
-      <!-- prettier-ignore -->
-      {% if hs_imgs %} 
-        {% for item in hs_imgs %}
-      <figure class="figure horizontal-scroll__figure {{ img_parallax_class }}">
-        <img src="{{ item.src }}" alt="" />
-        <figcaption>
-          <h3 class="h6">
-            {{ item.title }}
-          </h3>
-          <p>
-            {{ item.desc }}
-          </p>
-        </figcaption>
-      </figure>
-      <!-- prettier-ignore -->
-      {% endfor %} 
-      {% endif %}
-
-      {% if hs_message %}
-      <h3 class="horizontal-scroll__message">{{ hs_message }}</h3>
-      {% endif %}
+    <div class="horizontal-scroll__container">
+      <div class="horizontal-scroll__slider">
+        <!-- prettier-ignore -->
+        {% if hs_imgs %} 
+          {% for item in hs_imgs %}
+        <figure
+          class="figure horizontal-scroll__figure {{ img_parallax_class }}"
+        >
+          <img src="{{ item.src }}" alt="" />
+          <figcaption>
+            <h3 class="h6">
+              {{ item.title }}
+            </h3>
+            <p>
+              {{ item.desc }}
+            </p>
+          </figcaption>
+        </figure>
+        <!-- prettier-ignore -->
+        {% endfor %} 
+        {% endif %}
+  
+        {% if hs_message %}
+        <h3 class="horizontal-scroll__message">{{ hs_message }}</h3>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>

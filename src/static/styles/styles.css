@@ -17,6 +17,7 @@
   --color-border: #c0c0c0;
   --btn-padding: 8px 16px;
   --section-gap: 24px;
+  --section-gap--sm: 8px;
   --section-gap--lg: 64px;
   --border-width--btn: 1px;
   --border-width--bold: 2px;
@@ -79,7 +80,9 @@ body {
   background: var(--color-background);
   color: var(--color-font--primary);
 }
-body > * {
+body .site-header,
+body .site-footer,
+body section {
   max-width: 1512px;
   margin: auto;
 }
@@ -902,10 +905,10 @@ code {
     position: absolute;
     inset: 0;
     background: linear-gradient(10deg, rgba(255, 255, 255, 0.5) 5%, transparent 75%) border-box;
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
   }
   .grid-fade {
     position: relative;
@@ -2003,29 +2006,33 @@ code {
 
 .horizontal-scroll {
   overflow: hidden;
+  max-width: 100%;
+}
+.horizontal-scroll:has(.horizontal-scroll__title) .horizontal-scroll__container, .horizontal-scroll:has(.horizontal-scroll__desc) .horizontal-scroll__container {
+  height: 65%;
+}
+.horizontal-scroll__pin {
   height: 100vh;
   min-height: 850px;
 }
 @media (max-width: 1512px) {
-  .horizontal-scroll {
+  .horizontal-scroll__pin {
     min-height: 650px;
   }
 }
-.horizontal-scroll:has(.horizontal-scroll__title) .horizontal-scroll__container, .horizontal-scroll:has(.horizontal-scroll__desc) .horizontal-scroll__container {
-  height: 80%;
+.horizontal-scroll__title {
+  margin-block-end: var(--section-gap);
+}
+.horizontal-scroll__title:has(+ .horizontal-scroll__desc) {
+  margin-block-end: var(--section-gap--sm);
 }
 .horizontal-scroll__desc {
-  margin-block-end: var(--section-gap--lg);
-}
-@media (max-width: 1512px) {
-  .horizontal-scroll__desc {
-    margin-block-end: var(--section-gap);
-  }
+  margin-block-end: var(--section-gap);
 }
 .horizontal-scroll__container {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 80%;
 }
 .horizontal-scroll__slider {
   height: 100%;
@@ -2057,7 +2064,7 @@ code {
 }
 .horizontal-scroll__message {
   white-space: nowrap;
-  font-size: 12vw;
+  font-size: min(10vw, 128px);
 }
 
 .stack-scroll {
@@ -2172,7 +2179,7 @@ code {
   padding-inline: 0;
   overflow: hidden;
   width: 100%;
-  max-width: 1512px;
+  margin: auto;
 }
 @media (max-width: 1512px) {
   .marquee {

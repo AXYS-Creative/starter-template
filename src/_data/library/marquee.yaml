@@ -1,5 +1,5 @@
 marquee:
-  text: "• Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee.text prop to control the content" # Keep at least 64 characters
+  text: "• Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee.text prop to control the content" # Keep at least 64 characters or add more spans
   # imgs:
   #   - src: /static/img/library/img-sample-1.jpg
   #     alt: "Sample Image 1"

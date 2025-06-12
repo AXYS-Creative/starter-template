@@ -1,36 +1,40 @@
 .horizontal-scroll {
   overflow: hidden;
-  height: 100vh;
-  min-height: 850px;
-
-  @include mq-max(xxl) {
-    min-height: 650px;
-  }
+  max-width: 100%; // allow full width. Comment to clip width
 
   &:has(&__title),
   &:has(&__desc) {
     .horizontal-scroll__container {
-      height: 80%;
+      height: 65%;
     }
   }
 
-  // &__title {
-
-  // }
-
-  &__desc {
-    margin-block-end: var(--section-gap--lg);
+  &__pin {
+    height: 100vh;
+    min-height: 850px;
 
     @include mq-max(xxl) {
-      margin-block-end: var(--section-gap);
+      min-height: 650px;
     }
+  }
+
+  &__title {
+    margin-block-end: var(--section-gap);
+
+    &:has(+ .horizontal-scroll__desc) {
+      margin-block-end: var(--section-gap--sm);
+    }
+  }
+
+  &__desc {
+    margin-block-end: var(--section-gap);
   }
 
   &__container {
     // border: $test;
     display: flex;
     align-items: center;
-    height: 100%; // Conditionally changes from 85% if there's a title or description.
+    height: 80%; // Conditionally changes from 85% if there's a title or description.
   }
 
   &__slider {
@@ -67,6 +71,6 @@
 
   &__message {
     white-space: nowrap;
-    font-size: 12vw;
+    font-size: min(10vw, 128px);
   }
 }

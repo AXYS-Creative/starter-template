@@ -380,7 +380,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             let slider = el.querySelector(".horizontal-scroll__slider");
             let imgs = el.querySelectorAll(
               ".horizontal-scroll__figure--parallax img"
-            ); // selecting picture with 11ty-img
+            );
             const sliderWidth = slider.scrollWidth;
             const containerWidth = container.offsetWidth;
             const distanceToTranslate = sliderWidth - containerWidth;

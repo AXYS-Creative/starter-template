@@ -7,7 +7,7 @@
   overflow: hidden;
   // width: 100vw; // causing x overflow scroll?
   width: 100%;
-  max-width: $content-width;
+  margin: auto;
 
   // The slider
   &-inner {

@@ -25,7 +25,9 @@ body {
   background: var(--color-background);
   color: var(--color-font--primary);
 
-  & > * {
+  .site-header,
+  .site-footer,
+  section {
     max-width: $content-width;
     margin: auto;
   }
