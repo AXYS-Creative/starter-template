@@ -23,11 +23,11 @@ imgs:
   - title: Title 6 here
     desc: Description 6 goes here
     src: /static/img/library/img-sample-6.jpg
-  # - title: Title 7 here
-  #   desc: Description 7 goes here
-  #   src: /static/img/library/img-sample-7.jpg
-  # - title: Title 8 here
-  #   desc: Description 8 goes here
-  #   src: /static/img/library/img-sample-8.jpg
+  - title: Title 7 here
+    desc: Description 7 goes here
+    src: /static/img/library/img-sample-7.jpg
+  - title: Title 8 here
+    desc: Description 8 goes here
+    src: /static/img/library/img-sample-8.jpg
 
 img_parallax: true

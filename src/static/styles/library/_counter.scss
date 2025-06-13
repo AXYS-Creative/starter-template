@@ -1,3 +1,29 @@
+// Libary display
+.counter-section {
+  @include column-start;
+  gap: var(--section-gap);
+
+  &__group {
+    @include row-center(flex-start);
+    gap: var(--section-gap--lg);
+  }
+}
+
 .counter {
-  border: $test;
+  @include column-center;
+
+  &__value {
+    // border: $test;
+    @include h4;
+    display: inline-flex;
+    justify-content: space-between; // optional for prefix/suffix
+
+    &-digit {
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  &__label {
+    @include body-font-styles;
+  }
 }

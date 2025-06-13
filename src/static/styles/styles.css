@@ -581,6 +581,7 @@ p,
 strong,
 em,
 a,
+button,
 figcaption,
 blockquote,
 input,
@@ -599,6 +600,7 @@ li {
   strong,
   em,
   a,
+  button,
   figcaption,
   blockquote,
   input,
@@ -613,6 +615,7 @@ li {
   strong,
   em,
   a,
+  button,
   figcaption,
   blockquote,
   input,
@@ -626,6 +629,7 @@ p.body-lg,
 strong.body-lg,
 em.body-lg,
 a.body-lg,
+button.body-lg,
 figcaption.body-lg,
 blockquote.body-lg,
 input.body-lg,
@@ -645,6 +649,7 @@ li.body-lg {
   strong.body-lg,
   em.body-lg,
   a.body-lg,
+  button.body-lg,
   figcaption.body-lg,
   blockquote.body-lg,
   input.body-lg,
@@ -659,6 +664,7 @@ li.body-lg {
   strong.body-lg,
   em.body-lg,
   a.body-lg,
+  button.body-lg,
   figcaption.body-lg,
   blockquote.body-lg,
   input.body-lg,
@@ -673,6 +679,7 @@ li.body-lg {
   strong.body-lg,
   em.body-lg,
   a.body-lg,
+  button.body-lg,
   figcaption.body-lg,
   blockquote.body-lg,
   input.body-lg,
@@ -687,6 +694,7 @@ li.body-lg {
   strong.body-lg,
   em.body-lg,
   a.body-lg,
+  button.body-lg,
   figcaption.body-lg,
   blockquote.body-lg,
   input.body-lg,
@@ -750,6 +758,7 @@ code {
   background: var(--color-surface--1);
   padding: 4px;
   border-radius: var(--radius--sm);
+  white-space: nowrap;
 }
 
 #grid-bg {
@@ -813,6 +822,7 @@ code {
 }
 .classic-list li {
   translate: 1.5ch 0;
+  list-style-type: circle;
 }
 
 .mask-icon {
@@ -1975,8 +1985,58 @@ code {
   visibility: visible;
 }
 
+.counter-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--section-gap);
+}
+.counter-section__group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--section-gap--lg);
+}
+
 .counter {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.counter__value {
+  color: var(--color-font--primary);
+  font-family: var(--font-family--heading);
+  font-size: 48px;
+  font-weight: 300;
+  display: inline-flex;
+  justify-content: space-between;
+}
+@media (max-width: 1512px) {
+  .counter__value {
+    font-size: max(32px, 3.2vw);
+  }
+}
+.counter__value-digit {
+  font-variant-numeric: tabular-nums;
+}
+.counter__label {
+  --font-size: 18px;
+  color: var(--color-font--primary);
+  font-family: var(--font-family--body);
+  font-size: var(--font-size);
+  font-weight: 400;
+}
+@media (max-width: 1512px) {
+  .counter__label {
+    --font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .counter__label {
+    --font-size: 14px;
+  }
 }
 
 .grid-flow-parent {

@@ -34,7 +34,7 @@ path: library
   </div>
 </section>
 
-<section class="tooltip-section library-section">
+<section class="library-section">
   <h2 class="h5">[ Tooltip - Component ]</h2>
 
   <p>
@@ -42,11 +42,35 @@ path: library
   </p>
 </section>
 
-<section class="image-slice-section library-section">
-  <h2 class="h5">[ Image Slice (Two image reveal) - Component ]</h2>
+<section class="image-comparison-section library-section">
+  <h2 class="h5">[ Image Comparison - Component ]</h2>
 </section>
 
+<section class="counter-section">
+  <h2 class="h5">[ Counter - Component ]</h2>
 
+  <p>The counter can be used to reflect stats and showcase data. It comes with a wide range of configs.</p>
+  <ul class="classic-list">
+    <li><code>digit</code> takes a numeric value</li>
+    <li><code>prefix</code> an optional string at the start of the digit e.g. $</li>
+    <li><code>suffix</code> an optional string at the end of the digit e.g. M</li>
+    <li><code>label</code> a string describing what the stat measures</li>
+    <li><code>duration</code> a number (in ms) for the count to complete the animation</li>
+    <li><code>once</code> a boolean for whether or not this should animate each time it comes into view</li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+
+  <div class="counter-section__group">
+    {% set counter_data = library.counter.counter_1 %}
+    {% include "./_includes/library/counter.njk" %}
+    
+    {% set counter_data = library.counter.counter_2 %}
+    {% include "./_includes/library/counter.njk" %}
+    
+    {% set counter_data = library.counter.counter_3 %}
+    {% include "./_includes/library/counter.njk" %}
+  </div>
+</section>
 
 <section class="glitch-text-section library-section">
   <h2 class="h5">
@@ -103,11 +127,13 @@ path: library
   <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The sibling will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
   
   <div class="glitch-pair">
-    <p>This one can get tricky with scaling. Essentailly using siling glitch on a components would require using the closest target. This would mean using a wrapper <code>glitch-pair</code> class IF the elements are siblings (rather than nested such as cta-2).</p>
+    <p>This one can get tricky with scaling e.g. using sibling glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are siblings in the markup (rather than nested, such as .cta-2).</p>
     <br>
     <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
       Hover or focus me
     </button>
+    <br>
+    <br>
     <p class="glitch-target__paragraph">This text should now glitch out</p>
   </div>
 </section>

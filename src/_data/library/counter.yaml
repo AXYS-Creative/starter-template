@@ -1,0 +1,29 @@
+counter_1:
+  prefix: $
+  digit: 12500
+  suffix: "+"
+  label: Donated to the poor
+  duration: 5000
+  once: false
+  # separator: true
+  class: counter-1
+
+counter_2:
+  prefix: null
+  digit: 3.2
+  suffix: M
+  label: Books donated
+  duration: 3200
+  once: false
+  # separator: true
+  class: counter-2
+
+counter_3:
+  prefix: "~"
+  digit: 3200
+  suffix:
+  label: Hours served
+  duration: 8400
+  once: true
+  # separator: true
+  class: counter-3

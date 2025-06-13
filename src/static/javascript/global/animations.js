@@ -90,6 +90,72 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
+        // Counter
+        {
+          const counters = document.querySelectorAll(".counter");
+
+          counters.forEach((el) => {
+            const valueWrapper = el.querySelector(".counter__value");
+            const digitEl = el.querySelector(".counter__value-digit");
+
+            const prefix =
+              el.querySelector(".counter__value-prefix")?.textContent || "";
+            const suffix =
+              el.querySelector(".counter__value-suffix")?.textContent || "";
+
+            const endValue = parseFloat(el.dataset.counterNumber);
+            const duration =
+              parseInt(el.dataset.counterDuration, 10) / 1000 || 2;
+            const once = el.dataset.counterOnce === "true";
+
+            if (isNaN(endValue)) return;
+
+            // Fix flickering decimals
+            const isWholeNumber = Number.isInteger(endValue);
+            const snapValue = isWholeNumber ? 1 : 0.1;
+
+            const estimatedText = `${prefix}${endValue}${suffix}`;
+            const estimatedLength = estimatedText.length;
+            valueWrapper.style.width = `${estimatedLength}ch`;
+
+            const tween = gsap.fromTo(
+              digitEl,
+              { innerText: 0 },
+              {
+                innerText: endValue,
+                duration,
+                ease: "power4.out", // ease: "power3.inOut",
+                snap: { innerText: snapValue },
+                paused: true,
+              }
+            );
+
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top bottom",
+              once,
+              onEnter: () => tween.play(),
+              onLeave: () => {
+                if (!once) {
+                  tween.pause(0);
+                  digitEl.innerText = "0";
+                }
+              },
+              onEnterBack: () => {
+                if (!once) {
+                  tween.restart(0);
+                }
+              },
+              onLeaveBack: () => {
+                if (!once) {
+                  tween.pause(0);
+                  digitEl.innerText = "0";
+                }
+              },
+            });
+          });
+        }
+
         // Fill Text - Scrub only
         {
           // Use 'fill-text' for default, then 'quick-fill' or 'slow-fill' to modify animation end
