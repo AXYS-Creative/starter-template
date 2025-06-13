@@ -759,6 +759,16 @@ code {
   opacity: 0.125;
 }
 
+.section-thin {
+  padding-inline: var(--body-padding);
+  padding-block: var(--body-padding-double);
+}
+@media (min-width: 1025px) {
+  .section-thin {
+    padding-inline: calc(var(--body-padding) * 4);
+  }
+}
+
 .classic-link {
   position: relative;
 }

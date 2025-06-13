@@ -1,3 +1,7 @@
+.section-thin {
+  @include section-padding(thin);
+}
+
 .classic-link {
   position: relative;
 

@@ -137,7 +137,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               parseFloat(el.dataset.glitchRevealDelay) || 0.05; // Ensure revealDelay is less than the duration
             const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
             const playOnceAttr = el.dataset.glitchOnce;
-            const playOnce = playOnceAttr !== "false"; // Default to true unless explicitly set to "false"
+            const playOnce = playOnceAttr === "true"; // Default behavior — Change to playOnceAttr !== "false" to swap the behavior
 
             if (playOnce) {
               // 🔁 Play once using scrollTrigger animation timeline
@@ -213,16 +213,26 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const targetClass = trigger.dataset.glitchTarget;
             if (!targetClass) return;
 
-            const target = document.querySelector(`.${targetClass}`);
+            // Scope to the nearest ancestor that contains both trigger and target
+            const scope =
+              trigger.closest(`[class*="glitch"]`) || trigger.parentElement;
+
+            // Search *within that scope* for the target class
+            const target = scope.querySelector(`.${targetClass}`);
             if (!target) return;
 
-            const originalText = target.textContent;
-            target.dataset.originalText = originalText;
-            const width = target.scrollWidth;
-            target.style.width = `${width}px`;
-            target.style.display = "inline-block";
+            // Store original text only once
+            if (!target.dataset.originalText) {
+              const originalText = target.textContent;
+              target.dataset.originalText = originalText;
+              const width = target.scrollWidth;
+              target.style.width = `${width}px`;
+              target.style.display = "inline-block";
+            }
 
             const runGlitch = () => {
+              const originalText = target.dataset.originalText;
+
               target.textContent = originalText;
 
               gsap.to(target, {
