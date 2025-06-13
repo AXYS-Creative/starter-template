@@ -213,20 +213,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const targetClass = trigger.dataset.glitchTarget;
             if (!targetClass) return;
 
-            // Scope to the nearest ancestor that contains both trigger and target
-            const scope =
-              trigger.closest(`[class*="glitch"]`) || trigger.parentElement;
-
-            // Search *within that scope* for the target class
-            const target = scope.querySelector(`.${targetClass}`);
+            const wrapper = trigger.closest(".glitch-pair");
+            const target = wrapper?.querySelector(`.${targetClass}`);
             if (!target) return;
 
-            // Store original text only once
             if (!target.dataset.originalText) {
-              const originalText = target.textContent;
-              target.dataset.originalText = originalText;
-              const width = target.scrollWidth;
-              target.style.width = `${width}px`;
+              target.dataset.originalText = target.textContent;
+              target.style.width = `${target.scrollWidth}px`;
               target.style.display = "inline-block";
             }
 

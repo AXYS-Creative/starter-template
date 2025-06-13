@@ -30,8 +30,10 @@
     @include column-start;
     gap: var(--section-gap);
     position: absolute;
-    top: calc($panel-to-top + var(--body-padding));
-    left: var(--body-padding);
+    top: 50%;
+    translate: 0 -50%; // Consider config for alignment?
+    // top: calc($panel-to-top + var(--body-padding));
+    // left: var(--body-padding);
     width: 40%;
 
     @include mq-max(lg) {

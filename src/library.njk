@@ -89,20 +89,25 @@ path: library
   <p class="glitch-scroll" data-glitch-once="true">This will only glitch out once.</p>
   
   <br>
-
+  
   <h3 class="h6">Glitch Hover</h3>
   <p>The class <code>glitch-hover</code> causes the innerText (works with nested elements) to scramble on hover or focus.</p>
   <a href="/" class="cta-1 glitch-hover">Hover over me</a>
   <a href="/" class="classic-link glitch-hover">Hover over me</a>
-
+  
   <br>
-
+  
   <h3 class="h6">Glitch Sibling</h3>
   <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The sibling will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
-  <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
-    Hover or focus me
-  </button>
-  <p class="glitch-target__paragraph">This text should now glitch out</p>
+  
+  <div class="glitch-pair">
+    <p>This one can get tricky with scaling. Essentailly using siling glitch on a components would require using the closest target. This would mean using a wrapper <code>glitch-pair</code> class IF the elements are siblings (rather than nested such as cta-2).</p>
+    <br>
+    <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
+      Hover or focus me
+    </button>
+    <p class="glitch-target__paragraph">This text should now glitch out</p>
+  </div>
 </section>
 
 <section class="mouse-sibling-section library-section">
