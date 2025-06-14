@@ -344,9 +344,9 @@ $min-breakpoints: (
   }
 }
 
-@mixin border-radient(
+@mixin gradient-border(
   $deg: 10deg,
-  $col-1: rgba(255, 255, 255, 0.5),
+  $col-1: var(--color-border-gradient),
   $col-2: transparent
 ) {
   position: relative;

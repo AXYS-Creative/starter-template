@@ -93,14 +93,14 @@ path: library
   <p>The glitch cycle uses the <code>glitch-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
   <ul class="classic-list">
     <li><code>data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"</code></li>
-    <li><code>data-glitch-cycle-colors="#e48c66, #007bff, #fefefe, #c0c0c0, #007bff"</code></li>
+    <li><code>data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"</code></li>
     <li><code>data-glitch-cycle-interval="2000"</code></li>
   </ul>
   <h6>Here’s an example:
     <span
       class="glitch-cycle"
       data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"
-      data-glitch-cycle-colors="#e48c66, #007bff, #fefefe, #c0c0c0, #007bff"
+      data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
       data-glitch-cycle-interval="2000"
     >
       Creative
@@ -228,8 +228,8 @@ path: library
   <h2 class="h5">[ Marquee - Component ]</h2>
   <p>Comes with a handful of configs:</p>
   <ul class="classic-list">
-    <li><code>text</code> Accepts a string value and will display the message passed in. (Not recommneded to use with imgs)</li>
-    <li><code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to use with text)</li>
+    <li><code>text</code> Accepts a string value and will display the message passed in. (Not recommneded to use with <code>imgs</code>)</li>
+    <li><code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to use with <code>text</code>)</li>
     <li><code>scrub</code> A boolean that toggles whether the velocity should be controlled by the scroll position.</li>
     <li><code>count</code> The number of marquee elements stacked on top of one another.</li>
   </ul>

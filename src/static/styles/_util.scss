@@ -104,7 +104,7 @@
   }
 
   .gradient-border {
-    @include border-radient;
+    @include gradient-border;
     padding: 24px;
     border-radius: 16px;
   }

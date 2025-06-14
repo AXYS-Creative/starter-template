@@ -42,6 +42,7 @@ html[data-theme=dark] {
   --color-font--primary: #fefefe;
   --color-btn-2-text: #fefefe;
   --color-surface--1: #313131;
+  --color-border-gradient: rgba(255, 255, 255, 0.5);
 }
 
 html[data-theme=light] {
@@ -53,6 +54,7 @@ html[data-theme=light] {
   --color-link: #c0c0c0;
   --color-link--hover: #fefefe;
   --color-surface--1: #c0c0c0;
+  --color-border-gradient: rgba(0, 0, 0, 0.5);
 }
 
 :root {
@@ -924,7 +926,7 @@ code {
     pointer-events: none;
     position: absolute;
     inset: 0;
-    background: linear-gradient(10deg, rgba(255, 255, 255, 0.5) 5%, transparent 75%) border-box;
+    background: linear-gradient(10deg, var(--color-border-gradient) 5%, transparent 75%) border-box;
     mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
