@@ -2434,12 +2434,19 @@ code {
 .stack-scroll__nav {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 24px;
-  height: 80px;
+  padding-top: 100px;
+  padding-inline: var(--body-padding);
 }
 .stack-scroll__nav-link {
   opacity: 0.5;
+}
+@media (max-width: 768px) {
+  .stack-scroll__nav-link {
+    font-size: 14px;
+  }
 }
 .stack-scroll__nav-link:hover, .stack-scroll__nav-link:focus-visible {
   opacity: 1;
@@ -2453,14 +2460,28 @@ code {
   justify-content: center;
   align-items: flex-start;
   gap: var(--section-gap);
+}
+.stack-scroll__copy--pinned {
   position: absolute;
   top: 50%;
   translate: 0 -50%;
-  width: 40%;
+}
+@media (min-width: 1025px) {
+  .stack-scroll__copy--pinned {
+    max-width: 40%;
+  }
 }
 @media (max-width: 1024px) {
-  .stack-scroll__copy {
+  .stack-scroll__copy--pinned {
     display: none;
+  }
+}
+.stack-scroll__copy--unpinned {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .stack-scroll__copy--unpinned {
+    display: flex;
   }
 }
 .stack-scroll .stack-panel {
@@ -2472,14 +2493,14 @@ code {
   position: absolute;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  height: max(100lvh - 256px, 400px);
+  height: max(100lvh - 400px, 400px);
   width: calc(100% - var(--body-padding-double));
   padding: var(--body-padding);
   transform-origin: top center;
   background: var(--color-background);
 }
 .stack-scroll .stack-panel-1 {
-  top: 128px !important;
+  top: 200px !important;
 }
 .stack-scroll .stack-panel:nth-of-type(n + 2) {
   top: 120%;
@@ -2503,6 +2524,12 @@ code {
 .stack-scroll .pin-steps .pin-step {
   scroll-margin-top: -24px;
 }
+.stack-scroll.full .stack-scroll__copy--unpinned {
+  display: flex;
+}
+.stack-scroll.full .stack-scroll__copy--pinned {
+  display: none;
+}
 @media (min-width: 1025px) {
   .stack-scroll.half .stack-panel {
     width: max(500px, 50%);
@@ -2512,7 +2539,16 @@ code {
   left: 50%;
   translate: -50% 0;
 }
+.stack-scroll.center .stack-scroll__copy--pinned {
+  display: none;
+}
+.stack-scroll.center .stack-scroll__copy--unpinned {
+  display: flex;
+}
 .stack-scroll.right .stack-panel {
+  right: var(--body-padding);
+}
+.stack-scroll.left .stack-scroll__copy--pinned {
   right: var(--body-padding);
 }
 

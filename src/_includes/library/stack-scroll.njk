@@ -1,6 +1,25 @@
 <section
-  class="stack-scroll {{ panel_configs.size }} {{ panel_configs.placement }}"
+  class="stack-scroll 
+  {{ panel_configs.size or 'full' }} 
+  {{ panel_configs.placement or 'center' }}
+  "
 >
+  <!-- prettier-ignore -->
+  {% if panel_copy %}
+  <div class="stack-scroll__copy stack-scroll__copy--unpinned">
+    {% if panel_copy.title %}
+    <h2 class="stack-scroll__copy-title h5">{{ panel_copy.title }}</h2>
+    {% endif %} {% if panel_copy.desc %}
+    <p class="stack-scroll__copy-desc">{{ panel_copy.desc }}</p>
+    {% endif %} {% if panel_copy.cta_1 %}
+    <!-- prettier-ignore -->
+    {% set cta_1 = panel_copy.cta_1 %}
+      {% set cta_2 = panel_copy.cta_2 %}
+      {% include "../components/cta-group.njk" %}
+      {% endif %}
+  </div>
+  {% endif %}
+
   <div class="stack-pin">
     {% if panel_nav %}
     <nav class="stack-scroll__nav">
@@ -17,7 +36,7 @@
 
     <!-- prettier-ignore -->
     {% if panel_copy %}
-    <div class="stack-scroll__copy stack-scroll__copy--desktop">
+    <div class="stack-scroll__copy stack-scroll__copy--pinned">
       {% if panel_copy.title %}
       <h2 class="stack-scroll__copy-title h5">{{ panel_copy.title }}</h2>
       {% endif %} {% if panel_copy.desc %}

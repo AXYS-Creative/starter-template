@@ -180,6 +180,33 @@ path: library
       ★
     </span>
   </p>
+
+    <p
+    class="cursor-trigger"
+    data-cursor-target="cursor-target__dot"
+    data-cursor-class="dot-hover-active"
+  >
+    Hover the first dot... woah. See note below for fix.
+  </p>
+  <div class="cursor-target__dot">• &nbsp;&nbsp;(won't target)</div>
+
+  <p>Note: If you have multiple elements (or components) with shared trigger/target names, but want each instance to be unique from one another you'll need to wrap each instance in a container with the class <code>glitch-pair</code>. Otherwise only the first instance will work properly.</p>
+  <p
+    class="cursor-pair"
+    data-cursor-target="cursor-target__square"
+  >
+  <span class="cursor-trigger">Hover square</span>
+  &nbsp;&nbsp;
+  <span class="cursor-target__square">◼︎</span>
+  </p>
+  <p
+    class="cursor-pair"
+    data-cursor-target="cursor-target__square"
+  >
+  <span class="cursor-trigger">Hover square</span>
+  &nbsp;&nbsp;
+  <span class="cursor-target__square">◼︎</span>
+  </p>
 </section>
 
 <section class="tabs-section">

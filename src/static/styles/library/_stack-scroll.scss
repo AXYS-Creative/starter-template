@@ -1,18 +1,24 @@
 .stack-scroll {
   // $panel-height: calc(100lvh - var(--body-padding-double));
-  $panel-to-top: 128px; // Match with panelToTop in animation.js
+  $panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(100lvh - $panel-to-top * 2);
 
   position: relative;
 
   // Optional nav
   &__nav {
-    @include row-end;
+    @include row-center;
+    flex-wrap: wrap;
     gap: 24px;
-    height: 80px; // magic number
+    padding-top: $panel-to-top / 2; // margin is choppy with scrolltrigger
+    padding-inline: var(--body-padding);
 
     &-link {
       opacity: 0.5;
+
+      @include mq-max(md) {
+        font-size: 14px;
+      }
 
       &:hover,
       &:focus-visible {
@@ -29,16 +35,6 @@
   &__copy {
     @include column-start;
     gap: var(--section-gap);
-    position: absolute;
-    top: 50%;
-    translate: 0 -50%; // Consider config for alignment?
-    // top: calc($panel-to-top + var(--body-padding));
-    // left: var(--body-padding);
-    width: 40%;
-
-    @include mq-max(lg) {
-      display: none;
-    }
 
     // &-title {
 
@@ -47,6 +43,30 @@
     // &-desc {
 
     // }
+
+    &--pinned {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%; // Consider config for alignment?
+      // top: calc($panel-to-top + var(--body-padding));
+      // left: var(--body-padding);
+
+      @include mq-min(lg) {
+        max-width: 40%;
+      }
+
+      @include mq-max(lg) {
+        display: none;
+      }
+    }
+
+    &--unpinned {
+      display: none;
+
+      @include mq-max(lg) {
+        display: flex;
+      }
+    }
   }
 
   .stack-panel {
@@ -112,6 +132,16 @@
   }
 
   // Modifiers
+  &.full {
+    .stack-scroll__copy--unpinned {
+      display: flex;
+    }
+
+    .stack-scroll__copy--pinned {
+      display: none;
+    }
+  }
+
   &.half {
     .stack-panel {
       @include mq-min(lg) {
@@ -125,10 +155,24 @@
       left: 50%;
       translate: -50% 0;
     }
+
+    .stack-scroll__copy--pinned {
+      display: none;
+    }
+
+    .stack-scroll__copy--unpinned {
+      display: flex;
+    }
   }
 
   &.right {
     .stack-panel {
+      right: var(--body-padding);
+    }
+  }
+
+  &.left {
+    .stack-scroll__copy--pinned {
       right: var(--body-padding);
     }
   }

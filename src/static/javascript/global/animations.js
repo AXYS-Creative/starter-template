@@ -620,7 +620,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           const stackScrollSections =
             document.querySelectorAll(".stack-scroll");
 
-          let panelToTop = "128px"; // Match with $panel-to-top in _stack-scroll.scss
+          let panelToTop = "200px"; // Match with $panel-to-top in _stack-scroll.scss
           let panelScrub = 0.5;
 
           stackScrollSections.forEach((section) => {

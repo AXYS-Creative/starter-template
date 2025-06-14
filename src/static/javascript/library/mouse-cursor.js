@@ -90,11 +90,19 @@ if (cursor && mqMouse.matches) {
       const activeClass = el.dataset.cursorClass || "";
       const eventType = el.dataset.cursorEvent || "mousemove";
 
+      // Try to find sibling in a scoped wrapper
+      const wrapper = el.closest(".cursor-pair");
+      let sibling = wrapper?.querySelector(`.${siblingSelector}`);
+
+      // Fallback to global lookup if no local match
+      if (!sibling) {
+        sibling = document.querySelector(`.${siblingSelector}`);
+      }
+
+      if (!sibling) return;
+
       el.addEventListener(eventType, () => {
         followMouse = false;
-
-        const sibling = document.querySelector(`.${siblingSelector}`);
-        if (!sibling || !cursor) return;
 
         const rect = sibling.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
