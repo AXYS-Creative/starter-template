@@ -25,7 +25,7 @@ path: library
 </section>
 
 <section class="library-section">
-  <h2 class="h5">[ Gradient border - Utility ]</h2>
+  <h2 class="h5">[ Gradient border - Util ]</h2>
   <p>Gradient borders</p>
 
   <div class="gradient-border">
@@ -35,11 +35,18 @@ path: library
 </section>
 
 <section class="library-section">
-  <h2 class="h5">[ Tooltip - Component ]</h2>
+  <h2 class="h5">[ Tooltip Static - Util ]</h2>
+  <p>The tooltip static component can be used as a component or a utility class.</p>
 
-  <p>
-    This includes a tooltip. {% include "./_includes/library/tooltip.njk" %}
-  </p>
+  <br>
+  <br>
+  {% set tooltip_data = library.tooltip.tooltip_1 %}
+  {% include "./_includes/library/tooltip.njk" %}
+  
+  <br>
+  <br>
+  {% set tooltip_data = library.tooltip.tooltip_2 %}
+  {% include "./_includes/library/tooltip.njk" %}
 </section>
 
 <section class="image-comparison-section library-section">
@@ -139,7 +146,7 @@ path: library
 </section>
 
 <section class="mouse-sibling-section library-section">
-  <h2 class="h5">[ Mouse sibling - Utility ]</h2>
+  <h2 class="h5">[ Mouse sibling - Util ]</h2>
   <p>
     If using a mouse cursor, you can set up a trigger and target to spice things
     up! The class <code>cursor-trigger</code> goes on the trigger element. It also comes
@@ -273,7 +280,7 @@ path: library
 </section>
 
 <section class="fill-text-section">
-  <h2 class="h5 fill-text">[ Fill Text - Utility ]</h2>
+  <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br>
   <br>
   <h3 class="h6 fill-text slow-fill">This is a random slow title.....</h3>  
@@ -321,7 +328,7 @@ path: library
 {% include './_includes/library/stack-scroll.njk' %}
 
 <section class="video-section library-section">
-  <h2 class="h5">[ Video Overlay - Utility ]</h2>
+  <h2 class="h5">[ Video Overlay - Util ]</h2>
   <p>
     This can be a traditional cta or can simply wrap an element i.e. an image.
   </p>

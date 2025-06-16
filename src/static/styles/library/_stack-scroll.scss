@@ -10,7 +10,7 @@
     @include row-center;
     flex-wrap: wrap;
     gap: 24px;
-    padding-top: $panel-to-top / 2; // margin is choppy with scrolltrigger
+    padding-top: calc($panel-to-top / 2); // margin is choppy with scrolltrigger
     padding-inline: var(--body-padding);
 
     &-link {

@@ -1,14 +1,19 @@
-{% if tooltip_content %}
-<div class="tooltip">
-  <button class="tooltip__btn" id="tooltip__btn">
-    {% if tooltip_text %}
-    {{ tooltip_text }}
-    {% elif tooltip_img %}
-    {{ tooltip_img }}
+<!-- prettier-ignore -->
+{% set message = tooltip_data.message or '' %}
+{% set text = tooltip_data.text or '' %}
+{% set icon = tooltip_data.icon or null %}
+{% set fixed = tooltip_data.fixed or '' %}
+
+<div class="tooltip {% if fixed %} tooltip--fixed {% endif %}">
+  <button class="tooltip__btn">
+    <!-- prettier-ignore -->
+    {% if text %}
+    <span class="tooltip__text">{{ text }}</span>
+    {% elif icon %}
+    <img class="tooltip__icon mask-icon" style="mask-image: url({{ icon }});" />
     {% endif %}
   </button>
-  <div class="tooltip__content" id="tooltip__content">
-    <p>{{ tooltip_content }}</p>
+  <div class="tooltip__message {{ fixed }}">
+    <p>{{ message }}</p>
   </div>
 </div>
-{% endif %}

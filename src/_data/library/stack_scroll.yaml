@@ -12,8 +12,8 @@ panel_copy:
     new_tab: false
 
 panel_configs:
-  size: half # full | half _ default: full
-  placement: right # left | center | right _ default: center
+  size: half # full | half — default: full
+  placement: right # left | center | right — default: center
 panels:
   - title: Unlimited Services
     desc: Gain access to endless design and development services. Simply put in a ticket in Trello to get started. Please be aware that each request is worked on and delivered one by one.
