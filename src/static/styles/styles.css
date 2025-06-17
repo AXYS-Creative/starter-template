@@ -999,6 +999,10 @@ code {
     align-items: flex-start;
     gap: 24px;
   }
+  .small-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 @media all {
   .xxl-up {
@@ -2244,6 +2248,7 @@ code {
   height: var(--size);
   border-radius: 50%;
   transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
+  display: none !important;
 }
 .mouse-cursor.hidden .mouse-cursor__shape {
   opacity: 0;
@@ -2265,13 +2270,6 @@ code {
   scale: 1 1 !important;
   opacity: 1;
   transition: 1s ease, opacity 1s 0.12s, scale 0s;
-}
-
-.sibling-hover__target--dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: lightblue;
 }
 
 .site-nav-btn {
@@ -2602,6 +2600,7 @@ code {
   padding-inline: 0.5ch;
 }
 .tooltip__btn-icon {
+  display: inline-block;
   width: 20px;
   height: 20px;
   aspect-ratio: 1;
@@ -2666,6 +2665,47 @@ code {
 }
 .tooltip__message.left:hover {
   translate: 0 -50%;
+}
+
+.tooltip-util-message {
+  background: var(--color-surface--1);
+  border-radius: var(--radius-btn);
+  padding: var(--btn-padding);
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.24s ease;
+}
+.tooltip-util-message.active {
+  opacity: 1;
+}
+.tooltip-util-message.top-left {
+  translate: 20px 20px;
+}
+.tooltip-util-message.top {
+  translate: -50% 20px;
+}
+.tooltip-util-message.top-right {
+  translate: calc(-100% - 20px) 20px;
+}
+.tooltip-util-message.left {
+  translate: 20px 20px;
+}
+.tooltip-util-message.center {
+  translate: -50% 20px;
+}
+.tooltip-util-message.right {
+  translate: calc(-100% - 20px) 20px;
+}
+.tooltip-util-message.bottom-left {
+  translate: 20px calc(-100% - 20px);
+}
+.tooltip-util-message.bottom {
+  translate: -50% calc(-100% - 20px);
+}
+.tooltip-util-message.bottom-right {
+  translate: calc(-100% - 20px) calc(-100% - 20px);
 }
 
 .video-overlay {

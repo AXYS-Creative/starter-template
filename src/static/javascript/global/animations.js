@@ -274,7 +274,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             el.addEventListener("focus", runGlitch);
           });
 
-          // Sibling glitch, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class
+          // Glitch Target, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class
           document.querySelectorAll(".glitch-trigger").forEach((trigger) => {
             const targetClass = trigger.dataset.glitchTarget;
             if (!targetClass) return;

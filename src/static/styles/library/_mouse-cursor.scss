@@ -26,6 +26,7 @@
     height: var(--size);
     border-radius: 50%;
     transition: $ease-opacity, $ease-size;
+    display: none !important; // Testing Tooltip
   }
 
   &.hidden {
@@ -63,12 +64,4 @@
       transition: 1s ease, opacity 1s 0.12s, scale 0s;
     }
   }
-}
-
-// Library
-.sibling-hover__target--dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: lightblue;
 }

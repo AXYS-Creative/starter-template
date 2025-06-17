@@ -11,10 +11,10 @@
     {% if text %}
     <span class="tooltip__btn-text">{{ text }}</span>
     {% elif icon %}
-    <img
+    <span
       class="tooltip__btn-icon mask-icon"
       style="mask-image: url({{ icon }});"
-    />
+    ></span>
     {% endif %}
   </button>
   <div class="tooltip__message {{ fixed }} {{ size }}">

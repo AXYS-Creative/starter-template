@@ -16,7 +16,7 @@
     width: fit-content;
     // will-change: transform; // use sparingly.
 
-    // nested siblings (should have two divs/spans)
+    // nested targets (should have two divs/spans)
     &__split {
       @include inherit-font;
       line-height: 100%;

@@ -82,29 +82,29 @@ if (cursor && mqMouse.matches) {
     el.addEventListener("mouseleave", () => cursor.classList.remove("hidden"));
   });
 
-  const siblingHover = () => {
+  const targetHover = () => {
     const triggers = document.querySelectorAll("[data-cursor-target]");
 
     triggers.forEach((el) => {
-      const siblingSelector = el.dataset.cursorTarget;
+      const targetSelector = el.dataset.cursorTarget;
       const activeClass = el.dataset.cursorClass || "";
       const eventType = el.dataset.cursorEvent || "mousemove";
 
-      // Try to find sibling in a scoped wrapper
+      // Try to find target in a scoped wrapper
       const wrapper = el.closest(".cursor-pair");
-      let sibling = wrapper?.querySelector(`.${siblingSelector}`);
+      let target = wrapper?.querySelector(`.${targetSelector}`);
 
       // Fallback to global lookup if no local match
-      if (!sibling) {
-        sibling = document.querySelector(`.${siblingSelector}`);
+      if (!target) {
+        target = document.querySelector(`.${targetSelector}`);
       }
 
-      if (!sibling) return;
+      if (!target) return;
 
       el.addEventListener(eventType, () => {
         followMouse = false;
 
-        const rect = sibling.getBoundingClientRect();
+        const rect = target.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
@@ -132,5 +132,73 @@ if (cursor && mqMouse.matches) {
     });
   };
 
-  siblingHover();
+  targetHover();
+
+  // Tooltip
+  {
+    const tooltipTriggers = document.querySelectorAll(".tooltip-util");
+    const tooltipMessage = document.querySelector(".tooltip-util-message");
+
+    const edgeMargin = 180;
+
+    document.addEventListener("mousemove", (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      const isTop = y < edgeMargin;
+      const isBottom = y > vh - edgeMargin;
+      const isLeft = x < edgeMargin;
+      const isRight = x > vw - edgeMargin;
+
+      // Reset all zone classes
+      tooltipMessage.classList.remove(
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right",
+        "center"
+      );
+
+      if (isTop && isLeft) {
+        tooltipMessage.classList.add("top-left");
+      } else if (isTop && isRight) {
+        tooltipMessage.classList.add("top-right");
+      } else if (isBottom && isLeft) {
+        tooltipMessage.classList.add("bottom-left");
+      } else if (isBottom && isRight) {
+        tooltipMessage.classList.add("bottom-right");
+      } else if (isTop) {
+        tooltipMessage.classList.add("top");
+      } else if (isBottom) {
+        tooltipMessage.classList.add("bottom");
+      } else if (isLeft) {
+        tooltipMessage.classList.add("left");
+      } else if (isRight) {
+        tooltipMessage.classList.add("right");
+      } else {
+        tooltipMessage.classList.add("center");
+      }
+    });
+
+    tooltipTriggers.forEach((el) => {
+      const message = el.dataset.tooltipMessage || "";
+      const minWidth = el.dataset.tooltipMinWidth || 280;
+
+      el.addEventListener("mouseenter", () => {
+        tooltipMessage.textContent = message;
+        tooltipMessage.classList.add("active");
+        tooltipMessage.style.minWidth = `${minWidth}px`;
+      });
+
+      el.addEventListener("mouseleave", () => {
+        tooltipMessage.classList.remove("active");
+      });
+    });
+  }
 }

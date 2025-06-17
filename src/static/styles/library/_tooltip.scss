@@ -36,6 +36,7 @@
     }
 
     &-icon {
+      display: inline-block;
       width: $icon-size;
       height: $icon-size;
       aspect-ratio: 1;
@@ -107,5 +108,65 @@
         translate: 0 -50%;
       }
     }
+  }
+}
+
+// mouse-cursor
+// .tooltip-util {
+
+// }
+
+.tooltip-util-message {
+  background: var(--color-surface--1);
+  border-radius: var(--radius-btn);
+  padding: var(--btn-padding);
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: $ease;
+
+  &.active {
+    opacity: 1;
+  }
+
+  // Viewport zones/quadrants
+  $offset: 20px;
+  $default-position: $offset $offset;
+
+  &.top-left {
+    translate: $default-position;
+  }
+
+  &.top {
+    translate: -50% $offset;
+  }
+
+  &.top-right {
+    translate: calc(-100% - $offset) $offset;
+  }
+
+  &.left {
+    translate: $default-position;
+  }
+
+  &.center {
+    translate: -50% $offset;
+  }
+
+  &.right {
+    translate: calc(-100% - $offset) $offset;
+  }
+
+  &.bottom-left {
+    translate: $offset calc(-100% - $offset);
+  }
+
+  &.bottom {
+    translate: -50% calc(-100% - $offset);
+  }
+
+  &.bottom-right {
+    translate: calc(-100% - $offset) calc(-100% - $offset);
   }
 }

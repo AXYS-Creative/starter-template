@@ -34,10 +34,12 @@ path: library
   </div>
 </section>
 
-<section class="library-section hide-cursor">
-  <h2 class="h5">[ Tooltip - Util ]</h2>
-  <p>The tooltip component can be used as a component or a utility class.</p>
+<section class="library-section">
+  <h2 class="h5">[ Tooltip - Usage ]</h2>
 
+  <h3 class="h6">Tooltip Component (static)</h3>
+  <p>The tooltip component can be used as a component or a utility class.</p>
+  
   {% set tooltip_data = library.tooltip.tooltip_1 %}
   {% include "./_includes/library/tooltip.njk" %}
   
@@ -52,6 +54,25 @@ path: library
       then some text afterward.
     </p>
   </div>
+  
+  <br aria-hidden="true">
+  <br aria-hidden="true">
+  <h3 class="h6">Tooltip Util (follow mouse)</h3>
+  <p 
+    class="tooltip-util" 
+    data-tooltip-message="This is the tooltip message"
+    data-tooltip-min-width="236"
+    >
+    Tooltip util
+  </p>
+  <img 
+    class="tooltip-util small-icon" 
+    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
+    data-tooltip-min-width="264"
+    src="/static/img/library/icon-google-info.svg" 
+    alt="" 
+    eleventy:ignore
+  />
 </section>
 
 <section class="image-comparison-section library-section">
@@ -135,11 +156,11 @@ path: library
   
   <br>
   
-  <h3 class="h6">Glitch Sibling</h3>
-  <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The sibling will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
+  <h3 class="h6">Glitch Target</h3>
+  <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The target will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
   
   <div class="glitch-pair">
-    <p>This one can get tricky with scaling e.g. using sibling glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are siblings in the markup (rather than nested, such as .cta-2).</p>
+    <p>This one can get tricky with scaling e.g. using target glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are targets in the markup (rather than nested, such as .cta-2).</p>
     <br>
     <br>
     <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
@@ -151,8 +172,8 @@ path: library
   </div>
 </section>
 
-<section class="mouse-sibling-section library-section">
-  <h2 class="h5">[ Mouse sibling - Util ]</h2>
+<section class="cursor-target-section library-section">
+  <h2 class="h5">[ Cursor Target - Util ]</h2>
   <p>
     If using a mouse cursor, you can set up a trigger and target to spice things
     up! The class <code>cursor-trigger</code> goes on the trigger element. It also comes

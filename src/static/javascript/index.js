@@ -19,4 +19,5 @@ import "./library/magnet.js";
 import "./library/mouse-cursor.js";
 import "./library/tabs.js";
 import "./library/theme-toggle.js";
+import "./library/tooltip.js";
 import "./library/video-overlay.js";

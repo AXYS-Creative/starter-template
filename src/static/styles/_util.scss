@@ -165,6 +165,11 @@
     @include column-start;
     gap: 24px;
   }
+
+  .small-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 // Media Query Utility, be mindful of flex vs block
