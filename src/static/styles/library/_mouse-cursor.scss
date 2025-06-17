@@ -26,14 +26,14 @@
     height: var(--size);
     border-radius: 50%;
     transition: $ease-opacity, $ease-size;
-    display: none !important; // Testing Tooltip
   }
 
+  // Hidden with '.hide-cursor'
   &.hidden {
     .mouse-cursor__shape {
       opacity: 0;
-      width: 148px; // scale makes the border thick
-      height: 148px;
+      width: 0px; // scale makes the border thick
+      height: 0px;
     }
   }
 

@@ -78,7 +78,7 @@ if (cursor && mqMouse.matches) {
   });
 
   hideCursor.forEach((el) => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("hidden"));
+    el.addEventListener("mousemove", () => cursor.classList.add("hidden"));
     el.addEventListener("mouseleave", () => cursor.classList.remove("hidden"));
   });
 

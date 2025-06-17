@@ -1,6 +1,7 @@
 // .tooltip-section {
 
 // }
+$tooltip-font-size: 14px;
 
 .tooltip {
   $icon-size: 20px;
@@ -48,7 +49,6 @@
 
     @include hide-content;
     position: absolute;
-    // opacity: 0.5;
     width: 40vw;
     min-width: 180px;
     background: var(--color-surface--1);
@@ -108,6 +108,10 @@
         translate: 0 -50%;
       }
     }
+
+    p {
+      font-size: $tooltip-font-size;
+    }
   }
 }
 
@@ -117,13 +121,13 @@
 // }
 
 .tooltip-util-message {
+  @include hide-content;
+  position: fixed;
+  top: 0;
   background: var(--color-surface--1);
   border-radius: var(--radius-btn);
   padding: var(--btn-padding);
-  position: fixed;
-  top: 0;
-  pointer-events: none;
-  opacity: 0;
+  font-size: $tooltip-font-size;
   transition: $ease;
 
   &.active {

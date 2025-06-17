@@ -2248,12 +2248,11 @@ code {
   height: var(--size);
   border-radius: 50%;
   transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
-  display: none !important;
 }
 .mouse-cursor.hidden .mouse-cursor__shape {
   opacity: 0;
-  width: 148px;
-  height: 148px;
+  width: 0px;
+  height: 0px;
 }
 .mouse-cursor.cta-2 .mouse-cursor__shape {
   --size: 32px;
@@ -2666,15 +2665,22 @@ code {
 .tooltip__message.left:hover {
   translate: 0 -50%;
 }
+.tooltip__message p {
+  font-size: 14px;
+}
 
 .tooltip-util-message {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: fixed;
+  top: 0;
   background: var(--color-surface--1);
   border-radius: var(--radius-btn);
   padding: var(--btn-padding);
-  position: fixed;
-  top: 0;
-  pointer-events: none;
-  opacity: 0;
+  font-size: 14px;
   transition: 0.24s ease;
 }
 .tooltip-util-message.active {
