@@ -2,7 +2,7 @@ import { mqMouse, isSafari } from "../util.js";
 import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
-const hideMouse = document.querySelectorAll(".hide-mouse");
+const hideCursor = document.querySelectorAll(".hide-cursor");
 
 if (cursor && mqMouse.matches) {
   const isElastic = cursor.dataset.elastic === "true";
@@ -77,7 +77,7 @@ if (cursor && mqMouse.matches) {
     progress = 0;
   });
 
-  hideMouse.forEach((el) => {
+  hideCursor.forEach((el) => {
     el.addEventListener("mouseenter", () => cursor.classList.add("hidden"));
     el.addEventListener("mouseleave", () => cursor.classList.remove("hidden"));
   });

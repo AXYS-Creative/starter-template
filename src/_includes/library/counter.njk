@@ -3,6 +3,7 @@
 {% set digit = counter_data.digit or 0 %}
 {% set suffix = counter_data.suffix or '' %}
 {% set label = counter_data.label or '' %}
+{% set spoken_label = counter_data.spoken_label or '' %}
 {% set duration = counter_data.duration or 2500 %}
 {% set once = counter_data.once or false %}
 {% set separator = counter_data.separator or false %}
@@ -15,13 +16,14 @@
   data-counter-duration="{{ duration }}"
   data-counter-separator="{{ separator }}"
   data-counter-once="{{ once }}"
+  aria-label="{{ spoken_label }}"
 >
-  <span class="counter__value">
+  <span class="counter__value" aria-hidden="true">
     <span class="counter__value-prefix">{{ prefix }}</span>
     <span class="counter__value-digit">0</span>
     <span class="counter__value-suffix">{{ suffix }}</span>
   </span>
   {% if label %}
-    <span class="counter__label">{{ label }}</span>
+    <span class="counter__label" aria-hidden="true">{{ label }}</span>
   {% endif %}
 </h2>

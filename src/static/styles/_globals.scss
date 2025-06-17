@@ -6,6 +6,10 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
+  &::selection {
+    background-color: rgba($coral, 0.5);
+  }
+
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
@@ -421,6 +425,10 @@ h5,
 h6,
 .h6 {
   @include h6;
+}
+
+p {
+  display: inline;
 }
 
 p,

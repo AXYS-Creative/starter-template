@@ -34,19 +34,24 @@ path: library
   </div>
 </section>
 
-<section class="library-section">
-  <h2 class="h5">[ Tooltip Static - Util ]</h2>
-  <p>The tooltip static component can be used as a component or a utility class.</p>
+<section class="library-section hide-cursor">
+  <h2 class="h5">[ Tooltip - Util ]</h2>
+  <p>The tooltip component can be used as a component or a utility class.</p>
 
-  <br>
-  <br>
   {% set tooltip_data = library.tooltip.tooltip_1 %}
   {% include "./_includes/library/tooltip.njk" %}
   
-  <br>
-  <br>
   {% set tooltip_data = library.tooltip.tooltip_2 %}
   {% include "./_includes/library/tooltip.njk" %}
+  
+  <div>
+    <p>
+      Does this work inline?  
+      {% set tooltip_data = library.tooltip.tooltip_3 %}
+      {% include "./_includes/library/tooltip.njk" %}
+      then some text afterward.
+    </p>
+  </div>
 </section>
 
 <section class="image-comparison-section library-section">
@@ -135,6 +140,7 @@ path: library
   
   <div class="glitch-pair">
     <p>This one can get tricky with scaling e.g. using sibling glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are siblings in the markup (rather than nested, such as .cta-2).</p>
+    <br>
     <br>
     <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
       Hover or focus me

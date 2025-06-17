@@ -1,13 +1,20 @@
 tooltip_1:
-  message: Sample message for tooltip 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit iusto quos vitae?
+  message: Sample message for tooltip 1. This is using the default props
   # text:  # Optional message that triggers the tooltip
-  icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
-  size: md # sm | md | lg — default: md
-  fixed: top # top | right | bottom | left — default: top. Tooltip follows mouse if left empty
+  # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
+  # size: md # sm | md | lg — default: md
+  # fixed: top # top | right | bottom | left — default: null. Tooltip follows mouse if left empty
 
 tooltip_2:
-  message: Sample message for tooltip 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit iusto quos vitae?
-  text: Trigger the tooltip here # Optional message that triggers the tooltip
+  message: Tooltip 2 message. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit iusto quos vitae?
+  text: Use 'text' to trigger
   # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
-  size: md # sm | md | lg — default: md
-  fixed: top # top | right | bottom | left — default: top. Tooltip follows mouse if left empty
+  size: sm
+  fixed: right
+
+tooltip_3:
+  message: Sample message for tooltip 3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit iusto quos vitae?
+  text: Trigger the tooltip here
+  # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
+  size: lg
+  fixed: bottom

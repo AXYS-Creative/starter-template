@@ -1,19 +1,23 @@
 <!-- prettier-ignore -->
 {% set message = tooltip_data.message or '' %}
 {% set text = tooltip_data.text or '' %}
-{% set icon = tooltip_data.icon or null %}
-{% set fixed = tooltip_data.fixed or '' %}
+{% set icon = tooltip_data.icon or '/static/img/library/icon-google-info.svg' %}
+{% set fixed = tooltip_data.fixed or 'top' %}
+{% set size = tooltip_data.size or 'md' %}
 
 <div class="tooltip {% if fixed %} tooltip--fixed {% endif %}">
   <button class="tooltip__btn">
     <!-- prettier-ignore -->
     {% if text %}
-    <span class="tooltip__text">{{ text }}</span>
+    <span class="tooltip__btn-text">{{ text }}</span>
     {% elif icon %}
-    <img class="tooltip__icon mask-icon" style="mask-image: url({{ icon }});" />
+    <img
+      class="tooltip__btn-icon mask-icon"
+      style="mask-image: url({{ icon }});"
+    />
     {% endif %}
   </button>
-  <div class="tooltip__message {{ fixed }}">
+  <div class="tooltip__message {{ fixed }} {{ size }}">
     <p>{{ message }}</p>
   </div>
 </div>
