@@ -2632,13 +2632,13 @@ code {
           user-select: auto;
 }
 .tooltip__message.lg {
-  width: 40vw;
+  width: 48vw;
 }
 .tooltip__message.md {
   width: 32vw;
 }
 .tooltip__message.sm {
-  width: 24vw;
+  width: 16vw;
 }
 .tooltip__message.top {
   bottom: calc(100% + 0.5ch);

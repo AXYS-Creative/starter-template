@@ -2,7 +2,7 @@
 {% set message = tooltip_data.message or '' %}
 {% set text = tooltip_data.text or '' %}
 {% set icon = tooltip_data.icon or '/static/img/library/icon-google-info.svg' %}
-{% set fixed = tooltip_data.fixed or 'top' %}
+{% set place = tooltip_data.place or 'top' %}
 {% set size = tooltip_data.size or 'md' %}
 
 <div class="tooltip">
@@ -17,7 +17,7 @@
     ></span>
     {% endif %}
   </button>
-  <div class="tooltip__message {{ fixed }} {{ size }}">
+  <div class="tooltip__message {{ place }} {{ size }}">
     <p>{{ message }}</p>
   </div>
 </div>

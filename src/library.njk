@@ -38,7 +38,14 @@ path: library
   <h2 class="h5">[ Tooltip - Usage ]</h2>
 
   <h3 class="h6">Tooltip Component (static)</h3>
-  <p>The tooltip component can be used as a component or a utility class.</p>
+  <p>The tooltip component can be used as a component or a utility class. The component variation comes with the following config options:</p>
+  <ul class="classic-list">
+    <li><code>message</code> a string, this is the text within the message bubble.</li>
+    <li><code>text</code> an optional string that can be used as the tooltip trigger vs an icon.</li>
+    <li><code>icon</code> an optional string used to override the default icon image. This is the path to the image source.</li>
+    <li><code>size</code> a string of either <code>sm | md | lg</code> to adjust the tooltip message size. Defaults to 'md'</li>
+    <li><code>place</code> a string of either <code>top | right | bottom | left</code> to position the tooltip bubble. Defaults to 'top'</li>
+  </ul>
   
   {% set tooltip_data = library.tooltip.tooltip_1 %}
   {% include "./_includes/library/tooltip.njk" %}
