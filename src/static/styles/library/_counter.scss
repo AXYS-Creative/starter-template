@@ -6,6 +6,11 @@
   &__group {
     @include row-center(flex-start);
     gap: var(--section-gap--lg);
+
+    @include mq-max(md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }
 

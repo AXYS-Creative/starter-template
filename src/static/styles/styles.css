@@ -770,7 +770,6 @@ code {
   background: var(--color-surface--1);
   padding: 4px;
   border-radius: var(--radius--sm);
-  white-space: nowrap;
 }
 
 #grid-bg {
@@ -2024,6 +2023,12 @@ code {
   align-items: center;
   gap: var(--section-gap--lg);
 }
+@media (max-width: 768px) {
+  .counter-section__group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
 .counter {
   display: flex;
@@ -2595,7 +2600,7 @@ code {
 .tooltip__btn-text {
   -webkit-text-decoration: underline dotted var(--color-brand--secondary);
           text-decoration: underline dotted var(--color-brand--secondary);
-  text-underline-position: below;
+  text-underline-offset: 4px;
   padding-inline: 0.5ch;
 }
 .tooltip__btn-icon {
@@ -2667,6 +2672,13 @@ code {
 }
 .tooltip__message p {
   font-size: 14px;
+}
+
+.tooltip-util {
+  cursor: help;
+  -webkit-text-decoration: underline dotted var(--color-brand--secondary);
+          text-decoration: underline dotted var(--color-brand--secondary);
+  text-underline-offset: 4px;
 }
 
 .tooltip-util-message {

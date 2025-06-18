@@ -2,6 +2,7 @@
 
 // }
 $tooltip-font-size: 14px;
+$tooltip-undeline-offset: 4px;
 
 .tooltip {
   $icon-size: 20px;
@@ -31,8 +32,8 @@ $tooltip-font-size: 14px;
 
     &-text {
       text-decoration: underline dotted var(--color-brand--secondary);
-      // text-underline-offset: 12px;
-      text-underline-position: below;
+      text-underline-offset: $tooltip-undeline-offset;
+      // text-underline-position: below;
       padding-inline: 0.5ch;
     }
 
@@ -116,9 +117,12 @@ $tooltip-font-size: 14px;
 }
 
 // mouse-cursor
-// .tooltip-util {
-
-// }
+.tooltip-util {
+  cursor: help;
+  text-decoration: underline dotted var(--color-brand--secondary);
+  text-underline-offset: $tooltip-undeline-offset;
+  // text-underline-position: below;
+}
 
 .tooltip-util-message {
   @include hide-content;

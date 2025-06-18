@@ -59,12 +59,30 @@ path: library
   <br aria-hidden="true">
   <h3 class="h6">Tooltip Util (follow mouse)</h3>
   <p>Need to find a way to make this keyboard & mobile accessible 🤔</p>
-  <p 
-    class="tooltip-util" 
-    data-tooltip-message="This is the tooltip message"
-    data-tooltip-min-width="212"
+  <p>The tooltip can also be tagged on any element using the class <code>tooltip-util</code>. The configs are as follows:</p>
+  <ul class="classic-list">
+    <li><code>data-tooltip-message</code> A string, this is the value of the message for the tooltip (perhaps see if this can take html).</li>
+    <li><code>data-tooltip-min-width</code> A number, this applies a minimum width to the message bubble.</li>
+  </ul>
+
+  <p>
+    Tooltip util 
+    <span
+      class="tooltip-util" 
+      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
+      data-tooltip-min-width="212"
     >
-    Tooltip util
+      used with inline text
+  </span>
+  . You’ll notice that the text bubble is 
+  <span
+    class="tooltip-util" 
+    data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
+    data-tooltip-min-width="250"
+  >
+    directionally aware
+</span>
+  and will reposition based on the mouse position in the viewport.
   </p>
   <img 
     class="tooltip-util small-icon" 
