@@ -1,0 +1,15 @@
+<!-- prettier-ignore -->
+{% set orbits = orbit_data or null %}
+
+<div class="solar-system">
+  {% for orbit in orbits %}
+  <div
+    class="orbit orbit-size-{{ orbit.items.length }}"
+    style="width: {{ orbit.size }};"
+  >
+    {% for item in orbit.items %}
+    <div class="orbit-badge orbit-badge-{{ loop.index }}">{{ item.text }}</div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>

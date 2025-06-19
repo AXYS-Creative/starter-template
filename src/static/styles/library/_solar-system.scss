@@ -1,0 +1,75 @@
+.solar-system {
+  // border: $test;
+
+  @include full-viewport-section;
+  position: relative;
+  padding: 24px;
+  margin: auto;
+
+  .orbit {
+    @include absolute-center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    border: 1px solid var(--color-border);
+    width: 50vw;
+    aspect-ratio: 1;
+    border-radius: 48px;
+    // border-radius: 50%;
+    // animation: spin 24s linear infinite;
+
+    &-badge {
+      @include row-center;
+      background: darkgrey;
+      width: auto;
+      border-radius: 24px;
+      // animation: spin-reverse 24s linear infinite;
+    }
+
+    // &-badge-1 {
+    // translate: -50% 0;
+    // animation: spin-reverse 24s linear infinite;
+    // }
+
+    &-size-3 {
+      border: $test;
+
+      .orbit-badge-1 {
+        grid-column-start: 3;
+        grid-row-start: 0;
+      }
+
+      .orbit-badge-2 {
+        grid-column-start: 0;
+        grid-row-end: -1;
+      }
+
+      .orbit-badge-3 {
+        grid-column-start: -1;
+        grid-row-end: -1;
+      }
+    }
+
+    &-size-4 {
+      border: $test;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      rotate: 0deg;
+    }
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  @keyframes spin-reverse {
+    from {
+      rotate: 0deg;
+    }
+    to {
+      rotate: -360deg;
+    }
+  }
+}

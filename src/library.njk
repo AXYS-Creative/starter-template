@@ -1,7 +1,7 @@
 ---
 layout: app
 path: library
-# Non public facing DELETE ME
+# Non public facing DELETE ME CHANGE ME
 ---
 
 <section class="hero">
@@ -24,7 +24,16 @@ path: library
   </ol>
 </section>
 
-<section class="library-section">
+<section class="library-section testimonials-section">
+  <h2 class="h5">[ Solar system - Component ]</h2>
+
+  <p>A way to display badges and an image. Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
+
+  {% set orbit_data = library.solar_system.orbits %}
+  {% include "./_includes/library/solar-system.njk" %}
+</section>
+
+<section class="library-section gradient-border-section">
   <h2 class="h5">[ Gradient border - Util ]</h2>
   <p>Gradient borders</p>
 
@@ -35,7 +44,7 @@ path: library
 </section>
 
 <section class="library-section hide-cursor">
-  <h2 class="h5">[ Tooltip - Usage ]</h2>
+  <h2 class="h5">[ Tooltip - Component or Util ]</h2>
 
   <h3 class="h6">Tooltip Component (static)</h3>
   <p>The tooltip component can be used as a component or a utility class. The component variation comes with the following config options:</p>
@@ -64,7 +73,7 @@ path: library
   
   <br aria-hidden="true">
   <br aria-hidden="true">
-  <h3 class="h6">Tooltip Util (follow mouse)</h3>
+  <h3 class="h6">Tooltip Util (follows mouse)</h3>
   <p>Need to find a way to make this keyboard & mobile accessible 🤔</p>
   <p>The tooltip can also be tagged on any element using the class <code>tooltip-util</code>. The configs are as follows:</p>
   <ul class="classic-list">
@@ -275,6 +284,13 @@ path: library
   <!-- prettier-ignore -->
   {% set tab_list = library.tabs.tabs %}
   {% include "./_includes/library/tabs.njk" %}
+</section>
+
+<section class="library-section testimonials-section">
+  <h2 class="h5">[ Testimonials ]</h2>
+
+  <h3 class="h6">Auto carousel</h3>
+  <p>Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
 </section>
 
 <div class="carousel-hero-library">

@@ -8,6 +8,7 @@ logo:
   url: /
   new_tab: false
 
+# Discover a way to config 'drop down' links as an option.
 links:
   - text: Home
     url: "/"

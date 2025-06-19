@@ -2367,6 +2367,82 @@ code {
   scale: 0;
 }
 
+.solar-system {
+  position: relative;
+  padding: 24px;
+  margin: auto;
+}
+@media (min-width: 1513px) {
+  .solar-system {
+    height: clamp(750px, 100vh, 1250px);
+  }
+}
+@media (max-width: 1512px) {
+  .solar-system {
+    height: clamp(625px, 100vh, 1100px);
+  }
+}
+@media (max-width: 768px) {
+  .solar-system {
+    height: clamp(500px, 100svh, 950px);
+  }
+}
+.solar-system .orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border: 1px solid var(--color-border);
+  width: 50vw;
+  aspect-ratio: 1;
+  border-radius: 48px;
+}
+.solar-system .orbit-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darkgrey;
+  width: auto;
+  border-radius: 24px;
+}
+.solar-system .orbit-size-3 {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
+}
+.solar-system .orbit-size-3 .orbit-badge-1 {
+  grid-column-start: 3;
+  grid-row-start: 0;
+}
+.solar-system .orbit-size-3 .orbit-badge-2 {
+  grid-column-start: 0;
+  grid-row-end: -1;
+}
+.solar-system .orbit-size-3 .orbit-badge-3 {
+  grid-column-start: -1;
+  grid-row-end: -1;
+}
+.solar-system .orbit-size-4 {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
+}
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes spin-reverse {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: -360deg;
+  }
+}
+
 .stack-scroll {
   position: relative;
 }
