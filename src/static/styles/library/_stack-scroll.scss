@@ -9,7 +9,7 @@
   &__nav {
     @include row-center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 16px;
     padding-top: calc($panel-to-top / 2); // margin is choppy with scrolltrigger
     padding-inline: var(--body-padding);
 
@@ -85,6 +85,10 @@
     // background: rgba($black, 0.75);
     // backdrop-filter: blur(4px);
     // transform-origin: bottom center;
+
+    @include mq-max(lg) {
+      width: 100%;
+    }
 
     &-1 {
       top: $panel-to-top !important; // Strange specificity issue when I introduced the stack-scroll__copy?
@@ -168,6 +172,10 @@
   &.right {
     .stack-panel {
       right: var(--body-padding);
+
+      @include mq-max(lg) {
+        right: 0;
+      }
     }
   }
 
