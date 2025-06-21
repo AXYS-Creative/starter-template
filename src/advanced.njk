@@ -12,6 +12,51 @@ description:
   <p>More complex components, advanced js, webGL, svg shaders, etc.</p>
 </section>
 
+<section
+  class="grid-show"
+  data-grid-enter="ripple-out"
+  data-grid-exit="ripple-out"
+  data-stagger-interval="50"
+>
+  <h2 class="h4">Grid Background</h2>
+  <p>
+    A subtle and modern background effect. Just add
+    <code>&lt;canvas id="grid-bg"&gt;&lt;/canvas&gt;</code> at the bottom of
+    your app to get started.
+  </p>
+  <p>
+    Out of the box this will follow the user's mouse cursor. It will also have
+    an interval that shows the grid in an animation of your choice. This is so
+    users without a mouse can still enjoy the effect. Current animation options
+    include:
+  </p>
+  <ul class="classic-list">
+    <li><code>stack-top</code></li>
+    <li><code>stack-bottom</code></li>
+    <li><code>stack-left</code></li>
+    <li><code>stack-right</code></li>
+    <li><code>ripple-out</code></li>
+    <li><code>ripple-in</code></li>
+    <li><code>random</code></li>
+    <li><code>diag-tl</code></li>
+    <li><code>diag-tr</code></li>
+    <li><code>diag-br</code></li>
+    <li><code>diag-bl</code></li>
+  </ul>
+  <p>
+    You can also tack on the util class of <code>grid-show</code> to fade the
+    grid in (as you're currently seeing).
+  </p>
+  <p>Fully configurable with:</p>
+  <ul class="classic-list">
+    <li><code>data-grid-enter</code> to handle the 'enter' animation.</li>
+    <li><code>data-grid-exit</code> to handle the 'exit' animation.</li>
+    <li>
+      <code>data-stagger-interval</code> a number do alter the animation speed.
+    </li>
+  </ul>
+</section>
+
 <!-- Mouse position seems affected by content placement -->
 <section class="dots-field">
   <svg

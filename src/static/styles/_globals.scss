@@ -520,5 +520,24 @@ code {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
-  opacity: 0.125;
+
+  @include mq-mouse {
+    opacity: 0.25;
+  }
+
+  @include mq-touch {
+    opacity: 0.5;
+  }
+}
+
+.grid-show {
+  @include column-center;
+  gap: 24px;
+  height: 120vh;
+
+  p {
+    max-width: 950px;
+    text-align: center;
+    text-wrap: balance;
+  }
 }

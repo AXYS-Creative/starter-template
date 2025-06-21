@@ -780,7 +780,30 @@ code {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
-  opacity: 0.125;
+}
+@media (hover: hover) and (pointer: fine) {
+  #grid-bg {
+    opacity: 0.25;
+  }
+}
+@media (hover: none) and (pointer: coarse) {
+  #grid-bg {
+    opacity: 0.5;
+  }
+}
+
+.grid-show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  height: 120vh;
+}
+.grid-show p {
+  max-width: 950px;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .section-thin {

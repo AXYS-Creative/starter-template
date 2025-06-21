@@ -1,13 +1,17 @@
 // Grid effect, requires canvas in html
-if (document.querySelector(".main-advanced")) {
-  const CELL_SIZE = 64;
-  const STROKE_COLOR_HEX = "#e48c66";
+(() => {
+  const CELL_SIZE = 48;
+  const STROKE_COLOR_HEX = "#3d3d3d";
   const STARTING_ALPHA = 255;
   const BACKGROUND_COLOR = "#101010";
   const PROB_OF_NEIGHBOR = 0.5;
   const AMT_FADE_PER_FRAME = 5;
   const STROKE_WIDTH = 1;
   const SHOW_HOVERED_CELL = false;
+  const IS_TOUCH_DEVICE = window.matchMedia("(pointer: coarse)").matches;
+  const TOUCH_INTERVAL_MS = 7500; // Interval between simulated touches
+
+  let freezeGridFade = false;
 
   const canvas = document.getElementById("grid-bg");
   const ctx = canvas.getContext("2d");
@@ -122,21 +126,173 @@ if (document.querySelector(".main-advanced")) {
       }
     }
 
+    const now = Date.now();
+
     allNeighbors = allNeighbors.filter((neighbor) => {
-      neighbor.opacity = Math.max(0, neighbor.opacity - AMT_FADE_PER_FRAME);
-      if (neighbor.opacity > 0) {
-        const x = neighbor.col * CELL_SIZE;
-        const y = neighbor.row * CELL_SIZE;
-        const alpha = neighbor.opacity / 255;
-        ctx.strokeStyle = hexToRgba(STROKE_COLOR_HEX, neighbor.opacity / 255);
-        ctx.strokeRect(x, y, CELL_SIZE, CELL_SIZE);
-        return true;
+      // Delay-based fade-in trigger
+      if (neighbor.revealDelay && now >= neighbor.revealDelay) {
+        neighbor.fadingIn = true;
+        delete neighbor.revealDelay; // remove to avoid retriggering
       }
-      return false;
+
+      // Fade-in and fade-out logic
+      if (neighbor.fadingIn) {
+        neighbor.opacity += AMT_FADE_PER_FRAME;
+        if (neighbor.opacity >= STARTING_ALPHA) {
+          neighbor.opacity = STARTING_ALPHA;
+          neighbor.fadingIn = false;
+        }
+      } else if (!freezeGridFade) {
+        if (neighbor.fadeOutDelay && now < neighbor.fadeOutDelay) {
+          // wait for delay
+        } else {
+          neighbor.opacity = Math.max(0, neighbor.opacity - AMT_FADE_PER_FRAME);
+        }
+      }
+
+      const x = neighbor.col * CELL_SIZE;
+      const y = neighbor.row * CELL_SIZE;
+      const alpha = neighbor.opacity / 255;
+      ctx.strokeStyle = hexToRgba(STROKE_COLOR_HEX, alpha);
+      ctx.strokeRect(x, y, CELL_SIZE, CELL_SIZE);
+
+      return neighbor.opacity > 0 || neighbor.revealDelay;
     });
 
     requestAnimationFrame(draw);
   }
 
   draw();
-}
+
+  // Interval animation (optional)
+  function triggerAmbientGridLoop() {
+    // const animation = "ripple-out";
+    // const stagger = 50;
+    const animation = "random";
+    const stagger = 100;
+
+    setInterval(() => {
+      if (!freezeGridFade) {
+        revealAllGridSquares({ animation, stagger });
+      }
+    }, TOUCH_INTERVAL_MS);
+  }
+
+  // Mobile only animation. Remove conditional for all devices.
+  // if (IS_TOUCH_DEVICE) {
+  triggerAmbientGridLoop();
+  // }
+
+  //
+  //
+  // Configurable animations with GSAP
+  function getRevealDelay(row, col, { animation, stagger }) {
+    const centerRow = Math.floor(numRows / 2);
+    const centerCol = Math.floor(numCols / 2);
+
+    switch (animation) {
+      case "stack-top":
+        return row * stagger;
+
+      case "stack-bottom":
+        return (numRows - row) * stagger;
+
+      case "stack-left":
+        return col * stagger;
+
+      case "stack-right":
+        return (numCols - col) * stagger;
+
+      case "ripple-out":
+        return Math.hypot(row - centerRow, col - centerCol) * stagger;
+
+      case "ripple-in":
+        const maxDist = Math.hypot(centerRow, centerCol);
+        return (
+          (maxDist - Math.hypot(row - centerRow, col - centerCol)) * stagger
+        );
+
+      case "random":
+        return Math.random() * stagger * 10; // adjust multiplier if needed
+
+      case "diag-tl":
+        return (row + col) * stagger;
+
+      case "diag-tr":
+        return (row + (numCols - col)) * stagger;
+
+      case "diag-br":
+        return (numRows - row + (numCols - col)) * stagger;
+
+      case "diag-bl":
+        return (numRows - row + col) * stagger;
+
+      default:
+        return row * stagger; // fallback to stack-top
+    }
+  }
+
+  function revealAllGridSquares({
+    animation = "stack-top",
+    stagger = 50,
+  } = {}) {
+    const now = Date.now();
+
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const delay = getRevealDelay(row, col, { animation, stagger });
+
+        allNeighbors.push({
+          row,
+          col,
+          opacity: 0,
+          fadingIn: false,
+          revealDelay: now + delay,
+        });
+      }
+    }
+  }
+
+  const fadeOut = (animation = "stack-bottom", stagger = 50) => {
+    const now = Date.now();
+
+    for (const neighbor of allNeighbors) {
+      const delay = getRevealDelay(neighbor.row, neighbor.col, {
+        animation,
+        stagger,
+      });
+
+      neighbor.fadingIn = false;
+      neighbor.revealDelay = null; // cancel any pending reveals
+      neighbor.fadeOutDelay = now + delay;
+    }
+  };
+
+  document.querySelectorAll(".grid-show").forEach((el) => {
+    const enter = el.dataset.gridEnter || "stack-top";
+    const exit = el.dataset.gridExit || "stack-top";
+    const stagger = parseInt(el.dataset.gridStagger) || 50;
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top top",
+      end: "bottom 75%",
+      onEnter: () => {
+        freezeGridFade = true;
+        revealAllGridSquares({ animation: enter, stagger });
+      },
+      onEnterBack: () => {
+        freezeGridFade = true;
+        revealAllGridSquares({ animation: enter, stagger });
+      },
+      onLeave: () => {
+        freezeGridFade = false;
+        fadeOut(exit, stagger);
+      },
+      onLeaveBack: () => {
+        freezeGridFade = false;
+        fadeOut(exit, stagger);
+      },
+    });
+  });
+})();
