@@ -1,5 +1,5 @@
 // Grid effect, requires canvas in html
-(() => {
+if (document.getElementById("grid-bg")) {
   const CELL_SIZE = 48;
   const STROKE_COLOR_HEX = "#3d3d3d";
   const STARTING_ALPHA = 255;
@@ -295,4 +295,4 @@
       },
     });
   });
-})();
+}
