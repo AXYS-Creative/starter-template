@@ -1,10 +1,10 @@
-.horizontal-scroll {
+.scroll-horizontal {
   overflow: hidden;
   max-width: 100%; // allow full width. Comment to clip width
 
   &:has(&__title),
   &:has(&__desc) {
-    .horizontal-scroll__container {
+    .scroll-horizontal__container {
       height: 65%;
     }
   }
@@ -21,12 +21,13 @@
   &__title {
     margin-block-end: var(--section-gap);
 
-    &:has(+ .horizontal-scroll__desc) {
+    &:has(+ .scroll-horizontal__desc) {
       margin-block-end: var(--section-gap--sm);
     }
   }
 
   &__desc {
+    display: block;
     margin-block-end: var(--section-gap);
   }
 

@@ -382,19 +382,19 @@ path: library
 </section>
 
 <!-- prettier-ignore -->
-{% set hs_title = library.horizontal_scroll.title %} 
-{% set hs_desc = library.horizontal_scroll.desc %}
-{% set hs_message = library.horizontal_scroll.message %}
-{% set hs_imgs = library.horizontal_scroll.imgs %}
-{% set hs_img_parallax = library.horizontal_scroll.img_parallax %}
-{% include './_includes/library/horizontal-scroll.njk' %}
+{% set hs_title = library.scroll_horizontal.title %} 
+{% set hs_desc = library.scroll_horizontal.desc %}
+{% set hs_message = library.scroll_horizontal.message %}
+{% set hs_imgs = library.scroll_horizontal.imgs %}
+{% set hs_img_parallax = library.scroll_horizontal.img_parallax %}
+{% include './_includes/library/scroll-horizontal.njk' %}
 
 <!-- prettier-ignore  -->
-{% set panel_nav = library.stack_scroll.panel_nav %}
-{% set panel_copy = library.stack_scroll.panel_copy %} 
-{% set panel_data = library.stack_scroll.panels %}
-{% set panel_configs = library.stack_scroll.panel_configs %}
-{% include './_includes/library/stack-scroll.njk' %}
+{% set panel_nav = library.scroll_stack.panel_nav %}
+{% set panel_copy = library.scroll_stack.panel_copy %} 
+{% set panel_data = library.scroll_stack.panels %}
+{% set panel_configs = library.scroll_stack.panel_configs %}
+{% include './_includes/library/scroll-stack.njk' %}
 
 <section class="video-section library-section">
   <h2 class="h5">[ Video Overlay - Util ]</h2>

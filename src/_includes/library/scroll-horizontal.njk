@@ -1,27 +1,27 @@
 <!-- prettier-ignore -->
 {% set img_parallax_class = '' %} 
 {% if hs_img_parallax %} 
-  {% set img_parallax_class = 'horizontal-scroll__figure--parallax' %} 
+  {% set img_parallax_class = 'scroll-horizontal__figure--parallax' %} 
 {% endif %}
 
-<section class="horizontal-scroll">
-  <div class="horizontal-scroll__pin">
+<section class="scroll-horizontal">
+  <div class="scroll-horizontal__pin">
     {% if hs_title %}
-    <h2 class="horizontal-scroll__title h5">{{ hs_title }}</h2>
+    <h2 class="scroll-horizontal__title h5">{{ hs_title }}</h2>
     {% endif %}
 
     <!-- prettier-ignore -->
     {% if hs_desc %}
-    <p class="horizontal-scroll__desc">{{ hs_desc }}</p>
+    <p class="scroll-horizontal__desc">{{ hs_desc }}</p>
     {% endif %}
 
-    <div class="horizontal-scroll__container">
-      <div class="horizontal-scroll__slider">
+    <div class="scroll-horizontal__container">
+      <div class="scroll-horizontal__slider">
         <!-- prettier-ignore -->
         {% if hs_imgs %} 
           {% for item in hs_imgs %}
         <figure
-          class="figure horizontal-scroll__figure {{ img_parallax_class }}"
+          class="figure scroll-horizontal__figure {{ img_parallax_class }}"
         >
           <img src="{{ item.src }}" alt="" />
           <figcaption>
@@ -38,7 +38,7 @@
         {% endif %}
   
         {% if hs_message %}
-        <h3 class="horizontal-scroll__message">{{ hs_message }}</h3>
+        <h3 class="scroll-horizontal__message">{{ hs_message }}</h3>
         {% endif %}
       </div>
     </div>

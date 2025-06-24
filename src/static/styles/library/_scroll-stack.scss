@@ -1,4 +1,4 @@
-.stack-scroll {
+.scroll-stack {
   // $panel-height: calc(100lvh - var(--body-padding-double));
   $panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(100lvh - $panel-to-top * 2);
@@ -69,7 +69,7 @@
     }
   }
 
-  .stack-panel {
+  &__panel {
     // @include gradient-border;
     @include column-start(flex-start);
     gap: var(--section-gap);
@@ -91,7 +91,7 @@
     }
 
     &-1 {
-      top: $panel-to-top !important; // Strange specificity issue when I introduced the stack-scroll__copy?
+      top: $panel-to-top !important; // Strange specificity issue when I introduced the scroll-stack__copy?
     }
 
     &:nth-of-type(n + 2) {
@@ -117,7 +117,7 @@
     }
   }
 
-  .stack-pin {
+  .scroll-stack__pin {
     // Need vh, can't use percentage since it's children are position absolute
     height: calc(100lvh - var(--body-padding-double));
   }
@@ -137,17 +137,17 @@
 
   // Modifiers
   &.full {
-    .stack-scroll__copy--unpinned {
+    .scroll-stack__copy--unpinned {
       display: flex;
     }
 
-    .stack-scroll__copy--pinned {
+    .scroll-stack__copy--pinned {
       display: none;
     }
   }
 
   &.half {
-    .stack-panel {
+    .scroll-stack__panel {
       @include mq-min(lg) {
         width: max(500px, 50%);
       }
@@ -155,22 +155,22 @@
   }
 
   &.center {
-    .stack-panel {
+    .scroll-stack__panel {
       left: 50%;
       translate: -50% 0;
     }
 
-    .stack-scroll__copy--pinned {
+    .scroll-stack__copy--pinned {
       display: none;
     }
 
-    .stack-scroll__copy--unpinned {
+    .scroll-stack__copy--unpinned {
       display: flex;
     }
   }
 
   &.right {
-    .stack-panel {
+    .scroll-stack__panel {
       right: var(--body-padding);
 
       @include mq-max(lg) {
@@ -180,7 +180,7 @@
   }
 
   &.left {
-    .stack-scroll__copy--pinned {
+    .scroll-stack__copy--pinned {
       right: var(--body-padding);
     }
   }

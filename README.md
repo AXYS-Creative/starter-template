@@ -7,8 +7,9 @@ Collection of UI components and library of utility classes. To get started, move
 - Accordion
 - Carousel Variants
 - Form Variants
-- Horizontal Scroll
 - Marquee
+- Scroll Horizontal
+- Scroll Stack
 - Tabs
 - Video Overlay
 
