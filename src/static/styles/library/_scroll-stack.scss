@@ -1,16 +1,25 @@
 .scroll-stack {
-  $panel-to-top: 200px; // Match with panelToTop in animation.js
-  $panel-height: calc(svh(100) - $panel-to-top * 2);
+  --panel-to-top: 200px; // Match with panelToTop in animation.js
+  $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
 
   position: relative;
+
+  @include mq-max(sm) {
+    --panel-to-top: 96px;
+  }
 
   // Optional nav
   &__nav {
     @include row-center;
     flex-wrap: wrap;
     gap: 16px;
-    padding-top: calc($panel-to-top / 2); // margin is choppy with scrolltrigger
-    padding-inline: var(--body-padding);
+    padding-top: calc(
+      var(--panel-to-top) / 2
+    ); // margin is choppy with scrolltrigger    padding-inline: var(--body-padding);
+
+    @include mq-max(sm) {
+      display: none;
+    }
 
     &-link {
       opacity: 0.5;
@@ -47,7 +56,7 @@
       position: absolute;
       top: 50%;
       translate: 0 -50%; // Consider config for alignment?
-      // top: calc($panel-to-top + var(--body-padding));
+      // top: calc(var(--panel-to-top) + var(--body-padding));
       // left: var(--body-padding);
 
       @include mq-min(lg) {
@@ -90,7 +99,9 @@
     }
 
     &-1 {
-      top: $panel-to-top !important; // Strange specificity issue when I introduced the scroll-stack__copy?
+      top: var(
+        --panel-to-top
+      ) !important; // Strange specificity issue when I introduced the scroll-stack__copy?
     }
 
     &:nth-of-type(n + 2) {
