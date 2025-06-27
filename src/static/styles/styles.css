@@ -888,7 +888,9 @@ code {
 }
 @media (max-width: 768px) {
   .hero-alert {
-    height: clamp(500px, 100svh, 950px);
+    min-height: 500px;
+    height: calc(var(--svh, 1vh) * 100);
+    max-height: 950px;
   }
 }
 .hero-alert__title {
@@ -1002,16 +1004,20 @@ code {
   }
 }
 @media all {
+  .icon-md {
+    width: 20px;
+    height: 20px;
+  }
+  .icon-sm {
+    width: 16px;
+    height: 16px;
+  }
   .library-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 24px;
-  }
-  .small-icon {
-    width: 24px;
-    height: 24px;
   }
 }
 @media all {
@@ -1210,7 +1216,9 @@ code {
 }
 @media (max-width: 768px) {
   .hero {
-    height: clamp(500px, 100svh, 950px);
+    min-height: 500px;
+    height: calc(var(--svh, 1vh) * 100);
+    max-height: 950px;
   }
 }
 .hero h1,
@@ -1716,7 +1724,9 @@ code {
 }
 @media (max-width: 768px) {
   .carousel-hero {
-    height: clamp(500px, 100svh, 950px);
+    min-height: 500px;
+    height: calc(var(--svh, 1vh) * 100);
+    max-height: 950px;
   }
 }
 .carousel-hero::before {
@@ -2130,6 +2140,8 @@ code {
 .scroll-horizontal__pin {
   height: 100vh;
   min-height: 850px;
+  max-width: 1512px;
+  margin: auto;
 }
 @media (max-width: 1512px) {
   .scroll-horizontal__pin {
@@ -2396,7 +2408,9 @@ code {
 }
 @media (max-width: 768px) {
   .solar-system {
-    height: clamp(500px, 100svh, 950px);
+    min-height: 500px;
+    height: calc(var(--svh, 1vh) * 100);
+    max-height: 950px;
   }
 }
 .solar-system .orbit {
@@ -2520,7 +2534,7 @@ code {
   position: absolute;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  height: max(100lvh - 400px, 400px);
+  height: max(var(--svh, 1vh) * 100 - 400px, 400px);
   width: calc(100% - var(--body-padding-double));
   padding: var(--body-padding);
   transform-origin: top center;

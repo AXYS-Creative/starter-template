@@ -45,5 +45,20 @@ export const isSafari = () => {
   return ua.indexOf("safari") !== -1 && ua.indexOf("chrome") === -1;
 };
 
+// Polyfill for lvh, and svh. They all seemed to be dvh.
+const setViewportUnits = (() => {
+  const innerHeight = window.innerHeight;
+  const lvhOffset = 48; // Eyeballing mobile browser ui height
+
+  document.documentElement.style.setProperty(
+    "--lvh",
+    `${(innerHeight + lvhOffset) * 0.01}px`
+  );
+  document.documentElement.style.setProperty(
+    "--svh",
+    `${innerHeight * 0.01}px`
+  );
+})();
+
 // console.clear();
 console.log("visit axyscreative.com for more info");

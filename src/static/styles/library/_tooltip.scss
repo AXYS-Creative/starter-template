@@ -4,6 +4,7 @@
 $tooltip-font-size: 14px;
 $tooltip-undeline-offset: 4px;
 
+// Component (Static)
 .tooltip {
   $icon-size: 20px;
 
@@ -116,7 +117,7 @@ $tooltip-undeline-offset: 4px;
   }
 }
 
-// mouse-cursor
+// Util (Follows mouse)
 .tooltip-util {
   cursor: help;
   text-decoration: underline dotted var(--color-brand--secondary);

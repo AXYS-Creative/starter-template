@@ -1,7 +1,6 @@
 .scroll-stack {
-  // $panel-height: calc(100lvh - var(--body-padding-double));
   $panel-to-top: 200px; // Match with panelToTop in animation.js
-  $panel-height: calc(100lvh - $panel-to-top * 2);
+  $panel-height: calc(svh(100) - $panel-to-top * 2);
 
   position: relative;
 

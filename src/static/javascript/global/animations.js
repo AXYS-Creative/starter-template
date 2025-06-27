@@ -60,8 +60,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         }
       }
 
-      // GLOBAL (place under other tweens i.e. pinned sections) - Animate any element with the class 'gsap-animate' using the 'animate' companion class
+      // GLOBAL Animations (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
+        // - Animate any element with the class 'gsap-animate' using the 'animate' companion class
         const targetElements = document.querySelectorAll(".gsap-animate");
 
         targetElements.forEach((targetElem) => {
@@ -77,6 +78,28 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             },
           });
         });
+
+        // GSAP SplitText (characters & words)
+        {
+          const splitCharacters = document.querySelectorAll(".split-chars");
+          const splitWords = document.querySelectorAll(".split-words");
+
+          splitCharacters.forEach((el) => {
+            new SplitText(el, {
+              type: "chars",
+              charsClass: "split-chars__char",
+              tag: "span",
+            });
+          });
+
+          splitWords.forEach((el) => {
+            new SplitText(el, {
+              type: "words",
+              charsClass: "split-words__word",
+              tag: "span",
+            });
+          });
+        }
       }
 
       // Library - Lift any desired code blocks out, then delete from production
@@ -437,71 +460,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           }
         }
 
-        // Scroll Horizontal (pinned section)
-        {
-          const scrollHorizontal =
-            document.querySelectorAll(".scroll-horizontal");
-
-          let scrollHorizontalScrub = maxSm ? 1 : 0.5;
-
-          scrollHorizontal.forEach((el) => {
-            let container = el.querySelector(".scroll-horizontal__container");
-            let slider = el.querySelector(".scroll-horizontal__slider");
-            let imgs = el.querySelectorAll(
-              ".scroll-horizontal__figure--parallax img"
-            );
-            const sliderWidth = slider.scrollWidth;
-            const containerWidth = container.offsetWidth;
-            const distanceToTranslate = sliderWidth - containerWidth;
-
-            let duration = maxSm ? "+=150%" : "+=200%";
-
-            // Actual Pinning
-            gsap.to(el, {
-              scrollTrigger: {
-                trigger: el,
-                start: "top top",
-                end: duration,
-                pin: true,
-              },
-            });
-
-            // Slider Along X-Axis
-            gsap.fromTo(
-              slider,
-              { x: 0 },
-              {
-                x: () => -distanceToTranslate,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top top",
-                  end: duration,
-                  scrub: scrollHorizontalScrub,
-                },
-              }
-            );
-
-            // Optional parallax effect on images (use landscape images in portrait view)
-            imgs.forEach((img) => {
-              gsap.fromTo(
-                img,
-                { x: 0 },
-                {
-                  x: "25%", // Adjust this value for more or less parallax effect
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: el,
-                    start: "top top",
-                    end: duration,
-                    scrub: scrollHorizontalScrub,
-                  },
-                }
-              );
-            });
-          });
-        }
-
         // Marquee Animations
         {
           let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
@@ -615,7 +573,72 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Stack Scroll (Overlapping Panels) — Duration and Delays can be controls via pin-steps in _scroll-stack.scss
+        // Scroll Horizontal (pinned section)
+        {
+          const scrollHorizontal =
+            document.querySelectorAll(".scroll-horizontal");
+
+          let scrollHorizontalScrub = maxSm ? 1 : 0.5;
+
+          scrollHorizontal.forEach((el) => {
+            let container = el.querySelector(".scroll-horizontal__container");
+            let slider = el.querySelector(".scroll-horizontal__slider");
+            let imgs = el.querySelectorAll(
+              ".scroll-horizontal__figure--parallax img"
+            );
+            const sliderWidth = slider.scrollWidth;
+            const containerWidth = container.offsetWidth;
+            const distanceToTranslate = sliderWidth - containerWidth;
+
+            let duration = maxSm ? "+=150%" : "+=200%";
+
+            // Actual Pinning
+            gsap.to(el, {
+              scrollTrigger: {
+                trigger: el,
+                start: "top top",
+                end: duration,
+                pin: true,
+              },
+            });
+
+            // Slider Along X-Axis
+            gsap.fromTo(
+              slider,
+              { x: 0 },
+              {
+                x: () => -distanceToTranslate,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top top",
+                  end: duration,
+                  scrub: scrollHorizontalScrub,
+                },
+              }
+            );
+
+            // Optional parallax effect on images (use landscape images in portrait view)
+            imgs.forEach((img) => {
+              gsap.fromTo(
+                img,
+                { x: 0 },
+                {
+                  x: "25%", // Adjust this value for more or less parallax effect
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top top",
+                    end: duration,
+                    scrub: scrollHorizontalScrub,
+                  },
+                }
+              );
+            });
+          });
+        }
+
+        // Scroll Stack (Overlapping Panels) — Duration and Delays can be controls via pin-steps in _scroll-stack.scss
         {
           const stackScrollSections =
             document.querySelectorAll(".scroll-stack");

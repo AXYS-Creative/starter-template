@@ -3,7 +3,7 @@
 //
 
 $max-breakpoints: (
-  xs: 390px,
+  xs: 360px,
   sm: 480px,
   md: 768px,
   lg: 1024px,
@@ -20,7 +20,7 @@ $max-breakpoints: (
 }
 
 $min-breakpoints: (
-  xs: 391px,
+  xs: 361px,
   sm: 481px,
   md: 769px,
   lg: 1025px,
@@ -233,7 +233,11 @@ $min-breakpoints: (
   }
 
   @include mq-max(md) {
-    height: clamp(500px, 100svh, 950px);
+    // height: clamp(500px, 100svh, 950px);
+    // Using polyfill. Maybe one day lvh/svh will be fixed on mobile.
+    min-height: 500px;
+    height: svh(100);
+    max-height: 950px;
   }
 }
 

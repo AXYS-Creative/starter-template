@@ -134,7 +134,9 @@ if (cursor && mqMouse.matches) {
 
   targetHover();
 
+  //
   // Tooltip
+  //
   {
     const tooltipTriggers = document.querySelectorAll(".tooltip-util");
     const tooltipMessage = document.querySelector(".tooltip-util-message");

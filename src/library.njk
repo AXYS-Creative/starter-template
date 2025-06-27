@@ -45,12 +45,14 @@ path: library
 
 <section class="library-section hide-cursor">
   <h2 class="h5">[ Tooltip - Component or Util ]</h2>
+  <p>A tooltip can be added in two ways: as a component or a utility class. Each method comes with different pros and cons.</p>
+  <br>
 
   <h3 class="h6">Tooltip Component (static)</h3>
-  <p>The tooltip component can be used as a component or a utility class. The component variation comes with the following config options:</p>
+  <p>The component variation <code>tooltip.njk</code> comes with the following config options:</p>
   <ul class="classic-list">
     <li><code>message</code> a string, this is the text within the message bubble.</li>
-    <li><code>text</code> an optional string that can be used as the tooltip trigger vs an icon.</li>
+    <li><code>text</code> an optional string that can be used as the tooltip trigger (vs an icon).</li>
     <li><code>icon</code> an optional string used to override the default icon image. This is the path to the image source.</li>
     <li><code>size</code> a string of either <code>sm | md | lg</code> to adjust the tooltip message size. Defaults to 'md'</li>
     <li><code>place</code> a string of either <code>top | right | bottom | left</code> to position the tooltip bubble. Defaults to 'top'</li>
@@ -83,13 +85,13 @@ path: library
 
   <p>
     Tooltip util 
-    <span
+    <button
       class="tooltip-util" 
       data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
       data-tooltip-min-width="212"
     >
       used with inline text
-  </span>
+  </button>
   . You’ll notice that the text bubble is 
   <span
     class="tooltip-util" 
@@ -101,7 +103,7 @@ path: library
   and will reposition based on the mouse position in the viewport.
   </p>
   <img 
-    class="tooltip-util small-icon" 
+    class="tooltip-util icon-md" 
     data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
     data-tooltip-min-width="250"
     src="/static/img/library/icon-google-info.svg" 

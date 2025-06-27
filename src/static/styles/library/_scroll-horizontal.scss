@@ -12,6 +12,8 @@
   &__pin {
     height: 100vh;
     min-height: 850px;
+    max-width: $content-width;
+    margin: auto;
 
     @include mq-max(xxl) {
       min-height: 650px;

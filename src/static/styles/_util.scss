@@ -160,15 +160,20 @@
     }
   }
 
+  .icon-md {
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon-sm {
+    width: 16px;
+    height: 16px;
+  }
+
   .library-section {
     // library section styles - Doesn't work with Swiper or Fill-text sections
     @include column-start;
     gap: 24px;
-  }
-
-  .small-icon {
-    width: 24px;
-    height: 24px;
   }
 }
 
