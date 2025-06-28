@@ -737,6 +737,110 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
+        // Typing Text Effect
+        {
+          // Typing Cycle
+          const typingCycleElems = document.querySelectorAll(".typing-cycle");
+
+          typingCycleElems.forEach((el) => {
+            const words = el.dataset.typingCycleWords
+              .split(",")
+              .map((w) => w.trim());
+            const colors = (el.dataset.typingCycleColors || "")
+              .split(",")
+              .map((c) => c.trim())
+              .filter((c) => c);
+
+            const speedIn = parseInt(el.dataset.typingSpeedIn, 10) || 120;
+            const speedOut = parseInt(el.dataset.typingSpeedOut, 10) || 50;
+            const interval =
+              parseInt(el.dataset.typingCycleInterval, 10) || 2000;
+
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            const type = () => {
+              const currentWord = words[wordIndex];
+              const displayedText = isDeleting
+                ? currentWord.substring(0, charIndex--)
+                : currentWord.substring(0, charIndex++);
+
+              el.textContent = displayedText;
+
+              // Handle color per word
+              if (!isDeleting && charIndex === 1 && colors.length) {
+                const currentColor = colors[wordIndex % colors.length];
+                el.style.color = currentColor;
+              }
+
+              if (!isDeleting && charIndex > currentWord.length) {
+                setTimeout(() => {
+                  isDeleting = true;
+                  type();
+                }, interval);
+              } else if (isDeleting && charIndex < 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                charIndex = 0;
+                type();
+              } else {
+                const baseSpeed = isDeleting ? speedOut : speedIn;
+                const humanizedDelay = baseSpeed + Math.random() * 100 - 50;
+                setTimeout(type, Math.max(humanizedDelay, 20));
+              }
+            };
+
+            type();
+          });
+
+          // Typing Scroll
+          const typingScrollElems = document.querySelectorAll(".typing-scroll");
+
+          typingScrollElems.forEach((el) => {
+            if (!el.dataset.originalText) {
+              el.dataset.originalText = el.textContent.trim();
+            }
+            el.textContent = "";
+
+            const speed = parseInt(el.dataset.typingSpeed, 10) || 50;
+            const once = el.dataset.typingOnce === "true";
+            let hasTyped = false;
+            let timeoutId;
+
+            const typeOut = () => {
+              if (once && hasTyped) return;
+
+              // Important: stop any existing typing chain (random characters were generated)
+              if (timeoutId) {
+                clearTimeout(timeoutId);
+              }
+
+              hasTyped = true;
+              el.textContent = "";
+              let charIndex = 0;
+              const text = el.dataset.originalText;
+
+              const typeChar = () => {
+                if (charIndex < text.length) {
+                  el.textContent += text.charAt(charIndex++);
+                  const delay = speed + Math.random() * 40 - 20;
+                  timeoutId = setTimeout(typeChar, Math.max(delay, 20));
+                }
+              };
+
+              typeChar();
+            };
+
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top bottom",
+              onEnter: typeOut,
+              onEnterBack: typeOut,
+            });
+          });
+        }
+
         // Video Scrub
         {
           const video = document.querySelector(".video-scrub");

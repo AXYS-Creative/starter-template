@@ -491,6 +491,13 @@ figure {
   font-size: 0; // Chrome's user agent stylesheet adds 1em padding-block-end
 }
 
+hr {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: var(--color-font--primary);
+}
+
 // Partials
 
 // .hero {

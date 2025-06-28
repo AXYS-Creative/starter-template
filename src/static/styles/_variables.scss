@@ -99,6 +99,12 @@ $test-bg: rgba(navy, 0.75);
 
   --btn-padding: 8px 16px;
 
+  --spacing--xs: 12px;
+  --spacing--sm: 24px;
+  --spacing: 36px;
+  --spacing--lg: 48px;
+  --spacing--xl: 60px;
+
   --section-gap: 24px;
   --section-gap--sm: 8px;
   --section-gap--lg: 64px;
@@ -106,9 +112,12 @@ $test-bg: rgba(navy, 0.75);
   --border-width--btn: 1px;
   --border-width--bold: 2px;
 
-  --radius: 24px;
-  --radius--sm: 4px;
-  --radius-btn: var(--radius--sm);
+  // Consider radius vars for outter/inner based on spacing (padding)
+  --radius: 16px;
+  --radius--lg: 24px;
+  --radius--sm: 8px;
+  --radius--xs: 4px;
+  --radius-btn: var(--radius--xs);
 
   @media (max-width: 1512px) {
     --body-padding: 48px;

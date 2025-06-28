@@ -37,11 +37,11 @@
 
 .classic-list {
   @include column-start;
-  gap: 8px;
+  gap: 0.5ch;
   list-style: initial;
 
   li {
-    translate: 1.5ch 0;
+    margin-inline: 1.8ch;
     list-style-type: circle;
   }
 }
@@ -87,6 +87,21 @@
       background: linear-gradient(180deg, $coral, $black);
       flex: 1;
       width: 100%;
+    }
+  }
+
+  .fill-text,
+  .fill-text-hover {
+    @include fill-text;
+
+    &:is(.fill-text-hover) {
+      background-size: 0%;
+      // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+      transition: $ease;
+
+      @include desktop-hover {
+        background-size: 100%;
+      }
     }
   }
 
@@ -145,17 +160,43 @@
     transition: $magnet;
   }
 
-  .fill-text,
-  .fill-text-hover {
-    @include fill-text;
+  .typing-cycle,
+  .typing-scroll {
+    position: relative;
 
-    &:is(.fill-text-hover) {
-      background-size: 0%;
-      // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
-      transition: $ease;
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: var(--color-font--primary);
+      z-index: -1;
+      animation: typing-flicker 1s infinite;
+    }
 
-      @include desktop-hover {
-        background-size: 100%;
+    &--caret {
+      &::after {
+        top: 50%;
+        right: -0.25ch;
+        translate: 0 -50%;
+        width: 0.1ch;
+        height: 0.75lh;
+      }
+    }
+
+    &--underscore {
+      &::after {
+        bottom: 0.25ch;
+        right: -1.25ch;
+        width: 1ch;
+        height: 0.1ch;
+      }
+    }
+
+    @keyframes typing-flicker {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
       }
     }
   }
@@ -272,11 +313,9 @@
   .text-balance {
     text-wrap: balance;
   }
-
   .text-glow {
     filter: drop-shadow(0px 0px 6px #fff);
   }
-
   .text-stroke {
     -webkit-text-stroke: 1px var(--color-font--primary);
     color: transparent;
@@ -291,19 +330,97 @@
     font-style: italic;
   }
 
-  .text-thin {
-    font-weight: 100;
+  // font-size util
+  @for $i from 12 through 96 {
+    .fs-#{$i} {
+      font-size: #{$i}px;
+    }
   }
 
-  .text-bold {
-    font-weight: 700;
-  }
-
+  // font-weight util
   $font-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
 
   @each $weight in $font-weights {
     .fw-#{$weight} {
       font-weight: $weight;
+    }
+  }
+  .text-thin,
+  .text-hairline {
+    font-weight: 100;
+  }
+  .text-extra-light,
+  .text-ultra-light {
+    font-weight: 200;
+  }
+  .text-light {
+    font-weight: 300;
+  }
+  .text-normal,
+  .text-regular {
+    font-weight: 400;
+  }
+  .text-medium {
+    font-weight: 500;
+  }
+  .text-semi-bold,
+  .text-demi-bold {
+    font-weight: 500;
+  }
+  .text-bold {
+    font-weight: 700;
+  }
+  .text-extra-bold,
+  .text-ultra-bold {
+    font-weight: 800;
+  }
+  .text-black,
+  .text-heavy {
+    font-weight: 900;
+  }
+
+  // margin util
+  $min: -128;
+  $max: 128;
+  $step: 2;
+
+  $directions: (
+    "": "",
+    "t": "block-start",
+    "r": "inline-end",
+    "b": "block-end",
+    "l": "inline-start",
+    "x": "x",
+    "y": "y",
+  );
+
+  @for $i from $min through $max {
+    @if ($i % $step == 0) {
+      @each $suffix, $dir in $directions {
+        $absValue: abs($i);
+        $neg: if($i < 0, "-", "");
+        $name: "m#{$suffix}#{$neg}#{$absValue}";
+
+        @if $dir == "" {
+          .#{$name} {
+            margin: #{$i}px;
+          }
+        } @else if $dir == "x" {
+          .#{$name} {
+            margin-left: #{$i}px;
+            margin-right: #{$i}px;
+          }
+        } @else if $dir == "y" {
+          .#{$name} {
+            margin-top: #{$i}px;
+            margin-bottom: #{$i}px;
+          }
+        } @else {
+          .#{$name} {
+            margin-#{$dir}: #{$i}px;
+          }
+        }
+      }
     }
   }
 }

@@ -90,27 +90,30 @@ module.exports = async function (eleventyConfig) {
   // Token Replacement at build time vs client (prevent tokens from showing up briefly)
   eleventyConfig.addTransform("tokenReplace", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
-      // Replace [%br%] and [%span%] tokens at build time
-      return content
-        .replace(/\[%br(\.[^\]]+)?%\]/g, (match, className) => {
-          // Handle [%br%] or [%br.class-name%] tokens
-          if (className) {
-            const cleanClass = className.substring(1); // Remove the leading '.'
-            return `<br class="${cleanClass}" aria-hidden="true">`;
-          }
-          return `<br aria-hidden="true">`;
-        })
-        .replace(
-          /\[%span(\.[^\]]+)?%\](.*?)\[%span%\]/g,
-          (match, className, innerContent) => {
-            // Handle [%span%] or [%span.class-name%] tokens
-            if (className) {
-              const cleanClass = className.substring(1); // Remove the leading '.'
-              return `<span class="${cleanClass}">${innerContent}</span>`;
+      return (
+        content
+          // Handle paired tokens like [%span.class%]content[%/span%]
+          .replace(
+            /\[\%(?!\/)(\w+)(?:\.([\w\- ]+))?\%\](.*?)\[\%\1\%\]/gs,
+            (match, tag, className, innerContent) => {
+              const classAttr = className ? ` class="${className}"` : "";
+              return `<${tag}${classAttr}>${innerContent}</${tag}>`;
             }
-            return `<span>${innerContent}</span>`;
-          }
-        );
+          )
+          // Handle self-closing tokens like [%br.class%]
+          .replace(
+            /\[\%(\/?)(\w+)(?:\.([\w\- ]+))?\%\]/g,
+            (match, slash, tag, className) => {
+              if (slash) {
+                return `</${tag}>`;
+              }
+
+              const classAttr = className ? ` class="${className}"` : "";
+              const ariaHidden = tag === "br" ? ` aria-hidden="true"` : "";
+              return `<${tag}${classAttr}${ariaHidden}>`;
+            }
+          )
+      );
     }
     return content;
   });

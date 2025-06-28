@@ -154,7 +154,7 @@ $min-breakpoints: (
   font-weight: 400;
 
   @media all {
-    @include mq-max(xxl) {
+    @include mq-max(xl) {
       --font-size: 16px;
     }
 
@@ -168,12 +168,12 @@ $min-breakpoints: (
 
     line-height: 1.5;
 
-    @include mq-max(xxl) {
-      --font-size: 20px;
+    @include mq-max(xl) {
+      --font-size: 22px;
     }
 
     @include mq-max(md) {
-      --font-size: 16px;
+      --font-size: 20px;
     }
   }
 }

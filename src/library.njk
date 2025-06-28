@@ -24,6 +24,12 @@ path: library
   </ol>
 </section>
 
+<section class="library-section tilt-cards">
+  <h2 class="h5">[ Tilt cards - Util ]</h2>
+
+  <p>A subtle 3d effect for desktop users.</p>
+</section>
+
 <section class="library-section testimonials-section">
   <h2 class="h5">[ Solar system - Component ]</h2>
 
@@ -32,6 +38,10 @@ path: library
   {% set orbit_data = library.solar_system.orbits %}
   {% include "./_includes/library/solar-system.njk" %}
 </section>
+
+<!-- prettier-ignore -->
+{% set price_cards_data = library.price_cards %}
+{% include './_includes/library/price-cards.njk' %}
 
 <section class="library-section gradient-border-section">
   <h2 class="h5">[ Gradient border - Util ]</h2>
@@ -142,20 +152,74 @@ path: library
   </div>
 </section>
 
+<section class="typing-section library-section">
+    <h2 class="h5">
+      <span class="typing-scroll">[ Typing Text&nbsp;-&nbsp;</span>
+      <span
+        class="typing-cycle typing-cycle--caret"
+        data-typing-cycle-words="Utility, Class, Block"
+      >
+        Utility
+      </span>
+    &nbsp;]
+  </h2>
+
+  <h3 class="h6">Typing Cycle</h3>
+  <p>The typing cycle uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure. You can also add a caret or underscore with the modifier classes <code>typing-cycle--caret</code> and <code>typing-cycle--underscore</code></p>
+  <ul class="classic-list">
+    <li><code>data-typing-cycle-words</code> An array of strings separated by a comma.</li>
+    <li><code>data-typing-cycle-colors</code> Ana array of strings separated by a comma. Takes any valid css color value.</li>
+    <li><code>data-typing-speed-in</code> The number, in ms, representing the typing speed. Default is 120</li>
+    <li><code>data-typing-speed-out</code> The number, in ms, representing the deleting speed. Default is 50</li>
+    <li><code>data-typing-cycle-interval</code> The number, in ms, representing the interval between when the word finishes typing and when to start deleting. Default is 2000</li>
+  </ul>
+  <h6>The human senses:
+    <span
+      class="typing-cycle typing-cycle--caret"
+      data-typing-cycle-words="touch, sight, sound, taste, smell"
+      data-typing-cycle-colors="var(--color-brand--primary), forestgreen, slateblue, pale, cyan"
+      data-typing-speed-in="100"
+      data-typing-speed-out="25"
+      data-typing-cycle-interval="2000"
+    ></span>
+  </h6>
+  <h6>The four seasons:
+    <span
+      class="typing-cycle typing-cycle--underscore"
+      data-typing-cycle-words="Spring, Summer, Autumn, Winter"
+      data-typing-speed-in="75"
+      data-typing-speed-out="200"
+      data-typing-cycle-interval="1250"
+    ></span>
+  </h6>
+
+  <br>
+
+  <h3 class="h6">Typing Scroll</h3>
+  <p>The class <code>typing-scroll</code> will trigger the typing animation when the element comes into view. Comes with the following configs:</p>
+    <ul class="classic-list">
+    <li><code>data-typing-once</code> A boolean to toggle if the animation should fire each time the element scrolls into view. Default is false.</li>
+    <li><code>data-typing-speed</code> The number, in ms, representing the typing speed. Default is 50</li>
+  </ul>
+  <p class="typing-scroll typing-cycle--underscore">This will type out as many times as you scroll into view. Default behavior.</p>
+  <p 
+    class="typing-scroll" 
+    data-typing-once="true" 
+    data-typing-speed="25"
+  >
+  This will only type out once, the very first time it comes into view.
+</p>
+</section>
+
 <section class="glitch-text-section library-section">
   <h2 class="h5">
-    [
-    <span class="glitch-scroll"
-      >Glitch Text</span
-    >
-    -
+    <span class="glitch-scroll">[ Glitch Text&nbsp-&nbsp</span>
     <span
       class="glitch-cycle"
       data-glitch-cycle-words="Utility, Class, Block"
     >
-      Utility</span
-    >
-    ]
+      Utility
+    </span>&nbsp;]
   </h2>
   <p>While not required, there is a class: <code>glitch-text</code>, that clips the max width to the content width to prevent overshooting. This could be used for other variable/util needs.</p>
 

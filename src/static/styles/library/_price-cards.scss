@@ -1,0 +1,52 @@
+.price-cards {
+  @include column-center;
+  gap: var(--section-gap);
+
+  // &__title {
+
+  // }
+
+  // &__desc {
+
+  // }
+
+  &__group {
+    display: flex;
+    align-items: stretch;
+    gap: var(--section-gap);
+    margin-block-start: var(--spacing);
+    width: 100%;
+
+    @include mq-max(lg) {
+      flex-direction: column;
+    }
+  }
+
+  .price-card {
+    @include column-start(flex-start);
+    background: var(--color-surface--1);
+    padding: var(--section-gap);
+    flex: 1;
+    border-radius: var(--radius--sm);
+
+    &__title {
+      @include row-center;
+    }
+
+    // &__desc {
+
+    // }
+
+    &__price {
+      @include body-font-styles(lg);
+    }
+
+    &__divider {
+      margin-block: var(--spacing);
+    }
+
+    .cta-group {
+      margin-block-start: var(--spacing--xl);
+    }
+  }
+}
