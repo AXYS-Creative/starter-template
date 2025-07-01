@@ -510,6 +510,9 @@ hr {
   margin-block: 64px;
 }
 
+li:has(code) {
+  font-size: 14px;
+}
 code {
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
