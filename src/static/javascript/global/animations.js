@@ -113,7 +113,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Counter
+        // Counter (Default values are declared in .njk component)
         {
           const counters = document.querySelectorAll(".counter");
 
@@ -121,19 +121,19 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const valueWrapper = el.querySelector(".counter__value");
             const digitEl = el.querySelector(".counter__value-digit");
 
-            const prefix =
-              el.querySelector(".counter__value-prefix")?.textContent || "";
-            const suffix =
-              el.querySelector(".counter__value-suffix")?.textContent || "";
-
+            const prefix = el.querySelector(
+              ".counter__value-prefix"
+            )?.textContent;
+            const suffix = el.querySelector(
+              ".counter__value-suffix"
+            )?.textContent;
             const endValue = parseFloat(el.dataset.counterNumber);
-            const duration =
-              parseInt(el.dataset.counterDuration, 10) / 1000 || 2;
-            const once = el.dataset.counterOnce === "true";
+            const duration = parseInt(el.dataset.counterDuration, 10) / 1000;
+            const runOnce = el.dataset.counterOnce === "true";
+            const comma = el.dataset.counterComma === "true";
 
             if (isNaN(endValue)) return;
 
-            // Fix flickering decimals
             const isWholeNumber = Number.isInteger(endValue);
             const snapValue = isWholeNumber ? 1 : 0.1;
 
@@ -141,38 +141,58 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const estimatedLength = estimatedText.length;
             valueWrapper.style.width = `${estimatedLength}ch`;
 
-            const tween = gsap.fromTo(
-              digitEl,
-              { innerText: 0 },
-              {
-                innerText: endValue,
-                duration,
-                ease: "power4.out", // ease: "power3.inOut",
-                snap: { innerText: snapValue },
-                paused: true,
+            let hasPlayed = false;
+
+            const obj = { val: 0 };
+
+            const formatValue = (num) => {
+              if (comma) {
+                return num.toLocaleString(undefined, {
+                  minimumFractionDigits: isWholeNumber ? 0 : 1,
+                  maximumFractionDigits: isWholeNumber ? 0 : 1,
+                });
+              } else {
+                return isWholeNumber ? Math.round(num) : num.toFixed(1);
               }
-            );
+            };
+
+            const tween = gsap.to(obj, {
+              val: endValue,
+              duration,
+              ease: "power1.out",
+              snap: { val: snapValue },
+              paused: true,
+              onUpdate: () => {
+                digitEl.innerText = formatValue(obj.val);
+              },
+            });
 
             ScrollTrigger.create({
               trigger: el,
               start: "top bottom",
-              once,
-              onEnter: () => tween.play(),
+              once: runOnce,
+              onEnter: () => {
+                if (!runOnce || !hasPlayed) {
+                  tween.play();
+                  hasPlayed = true;
+                }
+              },
               onLeave: () => {
-                if (!once) {
+                if (!runOnce) {
                   tween.pause(0);
                   digitEl.innerText = "0";
                 }
               },
               onEnterBack: () => {
-                if (!once) {
+                if (!runOnce) {
                   tween.restart(0);
                 }
               },
               onLeaveBack: () => {
-                if (!once) {
+                if (!runOnce) {
                   tween.pause(0);
                   digitEl.innerText = "0";
+                  hasPlayed = false;
                 }
               },
             });
@@ -184,34 +204,33 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           // Use 'fill-text' for default, then 'quick-fill' or 'slow-fill' to modify animation end
           const fillText = document.querySelectorAll(".fill-text");
 
-          if (fillText) {
-            fillText.forEach((el) => {
-              let end = "bottom 60%";
+          fillText.forEach((el) => {
+            const fillSpeed = el.dataset.fillTextSpeed;
+            let end = "bottom 60%";
 
-              // Modifier classes –— Higher percentage ends the animation faster
-              if (el.classList.contains("quick-fill")) {
-                end = "bottom 80%";
-              } else if (el.classList.contains("slow-fill")) {
-                end = "bottom 40%";
-              }
+            // Modifier classes –— Higher percentage ends the animation faster
+            if (fillSpeed === "quick") {
+              end = "bottom 80%";
+            } else if (fillSpeed === "slow") {
+              end = "bottom 40%";
+            }
 
-              gsap.fromTo(
-                el,
-                {
-                  backgroundSize: "0%",
+            gsap.fromTo(
+              el,
+              {
+                backgroundSize: "0%",
+              },
+              {
+                backgroundSize: "100%",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top 90%",
+                  end: end,
+                  scrub: 1,
                 },
-                {
-                  backgroundSize: "100%",
-                  scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%",
-                    end: end,
-                    scrub: 1,
-                  },
-                }
-              );
-            });
-          }
+              }
+            );
+          });
         }
 
         // Glitch Text (Uses gsap scrambleText)

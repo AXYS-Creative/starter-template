@@ -131,12 +131,12 @@ path: library
 
   <p>The counter can be used to reflect stats and showcase data. It comes with a wide range of configs.</p>
   <ul class="classic-list">
-    <li><code>digit</code> takes a numeric value</li>
+    <li><code>digit</code> the numeric value to reach</li>
     <li><code>prefix</code> an optional string at the start of the digit e.g. $</li>
     <li><code>suffix</code> an optional string at the end of the digit e.g. M</li>
     <li><code>label</code> a string describing what the stat measures</li>
-    <li><code>duration</code> a number (in ms) for the count to complete the animation</li>
-    <li><code>once</code> a boolean for whether or not this should animate each time it comes into view</li>
+    <li><code>duration</code> a number (in ms) for the count to complete the animation. Defaults to 3200</li>
+    <li><code>once</code> a boolean for whether or not this should animate each time it comes into view. Defaults to false.</li>
     <li><code>class</code> a string value for a custom css class</li>
   </ul>
 
@@ -167,16 +167,16 @@ path: library
   </h2>
 
   <h3 class="h6">Typing Cycle</h3>
-  <p>The typing cycle uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure. You can also add a caret or underscore with the modifier classes <code>typing-cycle--caret</code> and <code>typing-cycle--underscore</code></p>
+  <p>The typing cycle effect mimics human typing in an endless loop. It uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
   <ul class="classic-list">
-    <li><code>data-typing-cycle-words</code> An array of strings separated by a comma.</li>
-    <li><code>data-typing-cycle-colors</code> An array of strings separated by a comma. Takes any valid css color value.</li>
-    <li><code>data-typing-speed-in</code> The number, in ms, representing the typing speed. Default is <code>120</code></li>
-    <li><code>data-typing-speed-out</code> The number, in ms, representing the deleting speed. Default is <code>50</code></li>
-    <li><code>data-typing-cycle-interval</code> The number, in ms, representing the interval between when the word finishes typing and when to start deleting. Default is <code>2000</code></li>
-    <li><code>data-typing-delay</code> Optional number, in ms, representing the initial delay of the animation. Default is <code>0</code></li>
+    <li><code>data-typing-cycle-words</code> An array of strings.</li>
+    <li><code>data-typing-cycle-colors</code> An array of strings. Takes any valid css color value.</li>
+    <li><code>data-typing-speed-in</code> A number (in ms) that controls the typing speed. Default is <code>120</code></li>
+    <li><code>data-typing-speed-out</code> A number (in ms) that controls the deleting speed. Default is <code>50</code></li>
+    <li><code>data-typing-cycle-interval</code> A number (in ms) that controls the interval between when the word finishes typing & when the word starts deleting. Default is <code>2000</code></li>
+    <li><code>data-typing-delay</code> Optional number (in ms) representing the initial delay of the animation. Default is <code>0</code></li>
     <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
-    <li><code>data-typing-on-scroll</code> Optional boolean, begin the cycle when the element scrolls into view. Default is <code>false</code>.</li>
+    <li><code>data-typing-on-scroll</code> Optional boolean, to start the cycle when the element scrolls into view. Default is <code>false</code>.</li>
 </li>
   </ul>
   <h6>The human senses:
@@ -406,7 +406,7 @@ path: library
   {% include './_includes/library/carousel-swiper.njk' %}
 </section>
 
-<div class="library-section" style="margin: var(--body-padding-double) 0 48px var(--body-padding);">
+<div class="library-section section-thin">
   <h2 class="h5">[ Marquee - Component ]</h2>
   <p>Comes with a handful of configs:</p>
   <ul class="classic-list">
@@ -420,7 +420,7 @@ path: library
 {% set marquee = library.marquee.marquee %}
 {% include './_includes/library/marquee.njk' %}
 
-<section class="accordion-section">
+<section class="accordion-section section-thin">
   <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <!-- prettier-ignore -->
   {% set accordion_list = library.accordion.accordion_data %}
@@ -431,32 +431,17 @@ path: library
   <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br>
   <br>
-  <h3 class="h6 fill-text slow-fill">This is a random slow title.....</h3>  
+  <h3 class="h6 fill-text" data-fill-text-speed="slow">This is a random slow title.....</h3>  
   <br>
   <br>
-  <p class="fill-text quick-fill">
-    Use the 'fill-text' utility class to get this effect. Note: this relies on a simple utlity class.
-    Modify the speed with 'slow-fill' or 'quick-fill'. Lorem ipsum dolor sit
-    amet consectetur adipisicing elit. Perferendis earum maxime ab, accusantium
-    rem ex assumenda doloribus officia corrupti deserunt repellendus, rerum nisi
-    beatae debitis dolore eligendi accusamus dolor voluptate facilis quos odit
-    deleniti pariatur a. Consequuntur qui laudantium esse rem commodi odio
-    assumenda, architecto officiis consectetur quas, earum vel. Harum incidunt
-    eligendi alias commodi expedita enim perspiciatis sequi nemo, numquam
-    architecto ipsam? Perspiciatis eaque delectus fugit tempora iste iusto
-    aspernatur asperiores, atque esse corporis, id mollitia labore eos
-    doloremque consequatur! Qui officia natus voluptates cumque eum fugit aut
-    iure amet quam, earum libero, rerum obcaecati beatae totam, quaerat facere
-    harum! Fugiat neque laborum aspernatur ut. Minima soluta, harum quisquam
-    repellat vitae eveniet doloribus omnis excepturi? A officia eius
-    perferendis.
+  <p class="fill-text" data-fill-text-speed="quick">
+    Use the <strong>'fill-text'</strong> utility class to get this effect. Modify the speed with <strong>'data-fill-text-speed'</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis earum maxime ab, accusantium rem ex assumenda doloribus officia corrupti deserunt repellendus, rerum nisi beatae debitis dolore eligendi accusamus dolor voluptate facilis quos odit deleniti pariatur a. Consequuntur qui laudantium esse rem commodi odio assumenda, architecto officiis consectetur quas, earum vel. Harum incidunt eligendi alias commodi expedita enim perspiciatis sequi nemo, numquam architecto ipsam? Perspiciatis eaque delectus fugit tempora iste iusto aspernatur asperiores, atque esse corporis, id mollitia labore eos doloremque consequatur! Qui officia natus voluptates cumque eum fugit aut iure amet quam, earum libero, rerum obcaecati beatae totam, quaerat facere harum! Fugiat neque laborum aspernatur ut. Minima soluta, harum quisquam repellat vitae eveniet doloribus omnis excepturi? A officia eius perferendis.
   </p>
   <br>
   <br>
   <ul class="classic-list">
     <li>Requires the util class <code>fill-text</code></li>
-    <li>Speed up with additional modifier class <code>quick-fill</code></li>
-    <li>Slow down with additional modifier class <code>slow-fill</code></li>
+    <li>Adjust the speed with <code>data-fill-text-speed</code>. Accepts either <code>quick | slow</code>. Default is in-between.</li>
   </ul>
 </section>
 
