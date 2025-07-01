@@ -19,9 +19,25 @@
     {% for card in plans %}
     <div class="price-card">
       {% if card.title %}
-      <h3 class="price-card__title h6">{{ card.title }}</h3>
+      <h3 class="price-card__title h6">
+        {{ card.title }}
+
+        {% if card.title_desc %}
+        <span class="price-card__title-desc">
+          {{ card.title_desc }}
+        </span>
+        {% endif %}
+      </h3>
       {% endif %} {% if card.price %}
-      <strong class="price-card__price">{{ card.price }}</strong>
+      <strong class="price-card__price">
+        {{ card.price }}
+
+        {% if card.price_desc %}
+        <span class="price-card__price-desc">
+          {{ card.price_desc }}
+        </span>
+        {% endif %}
+      </strong>
       {% endif %}
 
       <!-- prettier-ignore -->

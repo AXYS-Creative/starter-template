@@ -17,7 +17,7 @@
     margin-block-start: var(--spacing);
     width: 100%;
 
-    @include mq-max(lg) {
+    @include mq-max(xl) {
       flex-direction: column;
     }
   }
@@ -31,6 +31,12 @@
 
     &__title {
       @include row-center;
+
+      &-desc {
+        @include body-font-styles;
+        margin-block-start: 4px;
+        margin-inline-start: 1ch;
+      }
     }
 
     // &__desc {
@@ -39,6 +45,13 @@
 
     &__price {
       @include body-font-styles(lg);
+
+      &-desc {
+        @include body-font-styles(sm);
+        margin-block-start: 4px;
+        margin-inline-start: 0.5ch;
+        opacity: 0.75;
+      }
     }
 
     &__divider {

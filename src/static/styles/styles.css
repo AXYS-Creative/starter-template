@@ -605,25 +605,12 @@ input,
 textarea,
 label,
 li {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
   text-decoration: none;
-}
-@media (max-width: 1200px) {
-  p,
-  a,
-  button,
-  figcaption,
-  blockquote,
-  input,
-  textarea,
-  label,
-  li {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   p,
@@ -647,26 +634,13 @@ input.body-lg,
 textarea.body-lg,
 label.body-lg,
 li.body-lg {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
   --font-size: 24px;
   line-height: 1.5;
-}
-@media (max-width: 1200px) {
-  p.body-lg,
-  a.body-lg,
-  button.body-lg,
-  figcaption.body-lg,
-  blockquote.body-lg,
-  input.body-lg,
-  textarea.body-lg,
-  label.body-lg,
-  li.body-lg {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   p.body-lg,
@@ -679,19 +653,6 @@ li.body-lg {
   label.body-lg,
   li.body-lg {
     --font-size: 14px;
-  }
-}
-@media (max-width: 1200px) {
-  p.body-lg,
-  a.body-lg,
-  button.body-lg,
-  figcaption.body-lg,
-  blockquote.body-lg,
-  input.body-lg,
-  textarea.body-lg,
-  label.body-lg,
-  li.body-lg {
-    --font-size: 22px;
   }
 }
 @media (max-width: 768px) {
@@ -4660,7 +4621,7 @@ code {
   transition: 0.24s ease;
 }
 .accordion-content {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
@@ -4669,11 +4630,6 @@ code {
   grid-template-rows: 0fr;
   visibility: hidden;
   transition: 0.24s ease;
-}
-@media (max-width: 1200px) {
-  .accordion-content {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   .accordion-content {
@@ -4910,16 +4866,11 @@ code {
   gap: 12px;
 }
 .btn-toggle__label {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
-}
-@media (max-width: 1200px) {
-  .btn-toggle__label {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   .btn-toggle__label {
@@ -5162,7 +5113,7 @@ code {
 
 .form-feedback,
 .form-redirect {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
@@ -5173,12 +5124,6 @@ code {
   align-items: center;
   gap: 2em;
   width: min(100%, 768px);
-}
-@media (max-width: 1200px) {
-  .form-feedback,
-  .form-redirect {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   .form-feedback,
@@ -5353,16 +5298,11 @@ code {
   font-variant-numeric: tabular-nums;
 }
 .counter__label {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
-}
-@media (max-width: 1200px) {
-  .counter__label {
-    --font-size: 16px;
-  }
 }
 @media (max-width: 768px) {
   .counter__label {
@@ -5684,7 +5624,7 @@ code {
   margin-block-start: var(--spacing);
   width: 100%;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .price-cards__group {
     flex-direction: column;
   }
@@ -5704,8 +5644,22 @@ code {
   justify-content: center;
   align-items: center;
 }
+.price-cards .price-card__title-desc {
+  --font-size: 16px;
+  color: var(--color-font--primary);
+  font-family: var(--font-family--body);
+  font-size: var(--font-size);
+  font-weight: 400;
+  margin-block-start: 4px;
+  margin-inline-start: 1ch;
+}
+@media (max-width: 768px) {
+  .price-cards .price-card__title-desc {
+    --font-size: 14px;
+  }
+}
 .price-cards .price-card__price {
-  --font-size: 18px;
+  --font-size: 16px;
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
@@ -5713,24 +5667,30 @@ code {
   --font-size: 24px;
   line-height: 1.5;
 }
-@media (max-width: 1200px) {
-  .price-cards .price-card__price {
-    --font-size: 16px;
-  }
-}
 @media (max-width: 768px) {
   .price-cards .price-card__price {
     --font-size: 14px;
   }
 }
-@media (max-width: 1200px) {
-  .price-cards .price-card__price {
-    --font-size: 22px;
-  }
-}
 @media (max-width: 768px) {
   .price-cards .price-card__price {
     --font-size: 20px;
+  }
+}
+.price-cards .price-card__price-desc {
+  --font-size: 16px;
+  color: var(--color-font--primary);
+  font-family: var(--font-family--body);
+  font-size: var(--font-size);
+  font-weight: 400;
+  --font-size: 14px;
+  margin-block-start: 4px;
+  margin-inline-start: 0.5ch;
+  opacity: 0.75;
+}
+@media (max-width: 768px) {
+  .price-cards .price-card__price-desc {
+    --font-size: 14px;
   }
 }
 .price-cards .price-card__divider {

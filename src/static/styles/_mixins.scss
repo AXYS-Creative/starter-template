@@ -146,21 +146,15 @@ $min-breakpoints: (
 }
 
 @mixin body-font-styles($size: md) {
-  --font-size: 18px;
+  --font-size: 16px;
 
   color: var(--color-font--primary);
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
 
-  @media all {
-    @include mq-max(xl) {
-      --font-size: 16px;
-    }
-
-    @include mq-max(md) {
-      --font-size: 14px;
-    }
+  @include mq-max(md) {
+    --font-size: 14px;
   }
 
   @if $size == lg {
@@ -168,13 +162,13 @@ $min-breakpoints: (
 
     line-height: 1.5;
 
-    @include mq-max(xl) {
-      --font-size: 22px;
-    }
-
     @include mq-max(md) {
       --font-size: 20px;
     }
+  }
+
+  @if $size == sm {
+    --font-size: 14px;
   }
 }
 
