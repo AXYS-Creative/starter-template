@@ -737,8 +737,34 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Typing Text Effect
+        // Typing Text Effects
         {
+          const injectTypingElements = (el, cursorType) => {
+            const typingSpan = document.createElement("span");
+            typingSpan.classList.add("typing-text");
+            el.textContent = "";
+            el.appendChild(typingSpan);
+
+            const cursorSpan = document.createElement("span");
+            cursorSpan.classList.add("typing-text-cursor");
+            setupCursorSpan(cursorSpan, cursorType);
+            el.appendChild(cursorSpan);
+
+            return { typingSpan, cursorSpan };
+          };
+
+          const setupCursorSpan = (cursorSpan, cursorType) => {
+            if (cursorType === "caret") {
+              cursorSpan.textContent = "|";
+            } else if (cursorType === "underscore") {
+              cursorSpan.textContent = "_";
+            } else if (cursorType === "none") {
+              cursorSpan.style.display = "none";
+            } else {
+              cursorSpan.textContent = "|";
+            }
+          };
+
           // Typing Cycle
           const typingCycleElems = document.querySelectorAll(".typing-cycle");
 
@@ -755,6 +781,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const speedOut = parseInt(el.dataset.typingSpeedOut, 10) || 50;
             const interval =
               parseInt(el.dataset.typingCycleInterval, 10) || 2000;
+            const cursorType = el.dataset.typingCursor || "caret";
+            const delay = parseInt(el.dataset.typingDelay, 10) || 0;
+            const onScroll = el.dataset.typingOnScroll === "true";
+            let hasStarted = false;
+
+            const { typingSpan } = injectTypingElements(el, cursorType);
 
             let wordIndex = 0;
             let charIndex = 0;
@@ -766,12 +798,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 ? currentWord.substring(0, charIndex--)
                 : currentWord.substring(0, charIndex++);
 
-              el.textContent = displayedText;
+              typingSpan.textContent = displayedText;
 
-              // Handle color per word
               if (!isDeleting && charIndex === 1 && colors.length) {
                 const currentColor = colors[wordIndex % colors.length];
-                el.style.color = currentColor;
+                typingSpan.style.color = currentColor;
               }
 
               if (!isDeleting && charIndex > currentWord.length) {
@@ -791,7 +822,26 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               }
             };
 
-            type();
+            if (onScroll) {
+              ScrollTrigger.create({
+                trigger: el,
+                start: "top bottom",
+                onEnter: () => {
+                  if (!hasStarted) {
+                    hasStarted = true;
+                    setTimeout(type, delay);
+                  }
+                },
+                onEnterBack: () => {
+                  if (!hasStarted) {
+                    hasStarted = true;
+                    setTimeout(type, delay);
+                  }
+                },
+              });
+            } else {
+              setTimeout(type, delay);
+            }
           });
 
           // Typing Scroll
@@ -801,35 +851,41 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             if (!el.dataset.originalText) {
               el.dataset.originalText = el.textContent.trim();
             }
-            el.textContent = "";
-
             const speed = parseInt(el.dataset.typingSpeed, 10) || 50;
             const once = el.dataset.typingOnce === "true";
-            let hasTyped = false;
+            const cursorType = el.dataset.typingCursor || "caret";
+            const delay = parseInt(el.dataset.typingDelay, 10) || 0;
+
+            const { typingSpan } = injectTypingElements(el, cursorType);
+
+            let hasStarted = false;
             let timeoutId;
 
             const typeOut = () => {
-              if (once && hasTyped) return;
+              if (once && hasStarted) return;
 
-              // Important: stop any existing typing chain (random characters were generated)
-              if (timeoutId) {
-                clearTimeout(timeoutId);
-              }
+              if (timeoutId) clearTimeout(timeoutId);
 
-              hasTyped = true;
-              el.textContent = "";
+              hasStarted = true;
+              typingSpan.textContent = "";
               let charIndex = 0;
               const text = el.dataset.originalText;
 
               const typeChar = () => {
                 if (charIndex < text.length) {
-                  el.textContent += text.charAt(charIndex++);
-                  const delay = speed + Math.random() * 40 - 20;
-                  timeoutId = setTimeout(typeChar, Math.max(delay, 20));
+                  typingSpan.textContent += text.charAt(charIndex++);
+                  const charDelay = speed + Math.random() * 40 - 20;
+                  timeoutId = setTimeout(typeChar, Math.max(charDelay, 20));
                 }
               };
 
-              typeChar();
+              timeoutId = setTimeout(typeChar, delay);
+            };
+
+            const stopTyping = () => {
+              if (!once && timeoutId) {
+                clearTimeout(timeoutId);
+              }
             };
 
             ScrollTrigger.create({
@@ -837,6 +893,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               start: "top bottom",
               onEnter: typeOut,
               onEnterBack: typeOut,
+              onLeave: stopTyping,
+              onLeaveBack: stopTyping,
             });
           });
         }

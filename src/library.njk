@@ -154,10 +154,12 @@ path: library
 
 <section class="typing-section library-section">
     <h2 class="h5">
-      <span class="typing-scroll">[ Typing Text&nbsp;-&nbsp;</span>
+      <span class="typing-scroll" data-typing-cursor="none">[ Typing Text&nbsp;-&nbsp;</span>
       <span
-        class="typing-cycle typing-cycle--caret"
+        class="typing-cycle"
         data-typing-cycle-words="Utility, Class, Block"
+        data-typing-delay="800"
+        data-typing-on-scroll="true"
       >
         Utility
       </span>
@@ -168,28 +170,35 @@ path: library
   <p>The typing cycle uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure. You can also add a caret or underscore with the modifier classes <code>typing-cycle--caret</code> and <code>typing-cycle--underscore</code></p>
   <ul class="classic-list">
     <li><code>data-typing-cycle-words</code> An array of strings separated by a comma.</li>
-    <li><code>data-typing-cycle-colors</code> Ana array of strings separated by a comma. Takes any valid css color value.</li>
-    <li><code>data-typing-speed-in</code> The number, in ms, representing the typing speed. Default is 120</li>
-    <li><code>data-typing-speed-out</code> The number, in ms, representing the deleting speed. Default is 50</li>
-    <li><code>data-typing-cycle-interval</code> The number, in ms, representing the interval between when the word finishes typing and when to start deleting. Default is 2000</li>
+    <li><code>data-typing-cycle-colors</code> An array of strings separated by a comma. Takes any valid css color value.</li>
+    <li><code>data-typing-speed-in</code> The number, in ms, representing the typing speed. Default is <code>120</code></li>
+    <li><code>data-typing-speed-out</code> The number, in ms, representing the deleting speed. Default is <code>50</code></li>
+    <li><code>data-typing-cycle-interval</code> The number, in ms, representing the interval between when the word finishes typing and when to start deleting. Default is <code>2000</code></li>
+    <li><code>data-typing-delay</code> Optional number, in ms, representing the initial delay of the animation. Default is <code>0</code></li>
+    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
+    <li><code>data-typing-on-scroll</code> Optional boolean, begin the cycle when the element scrolls into view. Default is <code>false</code>.</li>
+</li>
   </ul>
   <h6>The human senses:
     <span
-      class="typing-cycle typing-cycle--caret"
+      class="typing-cycle"
       data-typing-cycle-words="touch, sight, sound, taste, smell"
       data-typing-cycle-colors="var(--color-brand--primary), forestgreen, slateblue, pale, cyan"
       data-typing-speed-in="100"
       data-typing-speed-out="25"
       data-typing-cycle-interval="2000"
+      data-typing-delay="1500"
+      data-typing-cursor="underscore"
     ></span>
   </h6>
   <h6>The four seasons:
     <span
-      class="typing-cycle typing-cycle--underscore"
+      class="typing-cycle"
       data-typing-cycle-words="Spring, Summer, Autumn, Winter"
       data-typing-speed-in="75"
       data-typing-speed-out="200"
       data-typing-cycle-interval="1250"
+      data-typing-cursor="none"
     ></span>
   </h6>
 
@@ -198,14 +207,18 @@ path: library
   <h3 class="h6">Typing Scroll</h3>
   <p>The class <code>typing-scroll</code> will trigger the typing animation when the element comes into view. Comes with the following configs:</p>
     <ul class="classic-list">
-    <li><code>data-typing-once</code> A boolean to toggle if the animation should fire each time the element scrolls into view. Default is false.</li>
-    <li><code>data-typing-speed</code> The number, in ms, representing the typing speed. Default is 50</li>
+    <li><code>data-typing-once</code> A boolean to toggle if the animation should fire each time the element scrolls into view. Default is <code>false.</code></li>
+    <li><code>data-typing-speed</code> The number, in ms, representing the typing speed. Default is <code>50</code></li>
+    <li><code>data-typing-delay</code> Optional number, in ms, representing the initial delay of the animation. Default is <code>0</code></li>
+    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
   </ul>
-  <p class="typing-scroll typing-cycle--underscore">This will type out as many times as you scroll into view. Default behavior.</p>
+  <p class="typing-scroll" data-typing-delay="3200">This will type out as many times as you scroll into view. Default behavior.</p>
   <p 
     class="typing-scroll" 
     data-typing-once="true" 
     data-typing-speed="25"
+    data-typing-delay="3200"
+    data-typing-cursor="underscore"
   >
   This will only type out once, the very first time it comes into view.
 </p>

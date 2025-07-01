@@ -162,33 +162,8 @@
 
   .typing-cycle,
   .typing-scroll {
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      background-color: var(--color-font--primary);
-      z-index: -1;
+    .typing-text-cursor {
       animation: typing-flicker 1s infinite;
-    }
-
-    &--caret {
-      &::after {
-        top: 50%;
-        right: -0.25ch;
-        translate: 0 -50%;
-        width: 0.1ch;
-        height: 0.75lh;
-      }
-    }
-
-    &--underscore {
-      &::after {
-        bottom: 0.25ch;
-        right: -1.25ch;
-        width: 1ch;
-        height: 0.1ch;
-      }
     }
 
     @keyframes typing-flicker {

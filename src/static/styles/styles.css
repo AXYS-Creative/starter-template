@@ -1018,32 +1018,9 @@ code {
   .magnet {
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
-  .typing-cycle,
-  .typing-scroll {
-    position: relative;
-  }
-  .typing-cycle::after,
-  .typing-scroll::after {
-    content: "";
-    position: absolute;
-    background-color: var(--color-font--primary);
-    z-index: -1;
+  .typing-cycle .typing-text-cursor,
+  .typing-scroll .typing-text-cursor {
     animation: typing-flicker 1s infinite;
-  }
-  .typing-cycle--caret::after,
-  .typing-scroll--caret::after {
-    top: 50%;
-    right: -0.25ch;
-    translate: 0 -50%;
-    width: 0.1ch;
-    height: 0.75lh;
-  }
-  .typing-cycle--underscore::after,
-  .typing-scroll--underscore::after {
-    bottom: 0.25ch;
-    right: -1.25ch;
-    width: 1ch;
-    height: 0.1ch;
   }
   @keyframes typing-flicker {
     from {
