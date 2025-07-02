@@ -15,8 +15,10 @@ videoCloseBtn?.setAttribute("tabindex", "-1");
 // For Dropbox, replace end of link's string to allow video embed
 if (videoToggle) {
   videoToggle.forEach((btn) => {
-    const updatedSrc = btn.getAttribute("data-src").replace("dl=0", "raw=1");
-    btn.setAttribute("data-src", updatedSrc);
+    const updatedSrc = btn
+      .getAttribute("data-vid-src")
+      .replace("dl=0", "raw=1");
+    btn.setAttribute("data-vid-src", updatedSrc);
   });
 }
 
@@ -47,7 +49,7 @@ export const openvideoOverlay = (src) => {
 };
 
 videoToggle?.forEach((btn) => {
-  let vidSrc = btn.getAttribute("data-src");
+  let vidSrc = btn.getAttribute("data-vid-src");
 
   btn.addEventListener("click", () => {
     openvideoOverlay(vidSrc);

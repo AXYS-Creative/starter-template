@@ -25,196 +25,46 @@ path: library
   </ol>
 </section>
 
-<section class="library-section tilt-cards hide-cursor">
-  <h2 class="h5">[ Tilt cards - Util ]</h2>
-
-  <p>A subtle 3d effect for desktop users that uses the <a class="classic-link tab-element-page" href="https://micku7zu.github.io/vanilla-tilt.js/" target="_blank">vanilla tilt js library/cdn</a>. Comes with the following configs:</p>
-  <ul class="classic-list tilt-target__card">
-    <li><code>reverse</code> boolean, Reverse the tilt direction. Default is <code>false</code></li>
-    <li><code>max</code> number, max tilt rotation. Default is <code>35</code></li>
-    <li><code>startX</code> number, resting tilt along x-axis. Default is <code>0</code></li>
-    <li><code>startY</code> number, resting tilt along y-axis. Default is <code>0</code></li>
-    <li><code>perspective</code> number, lower value is more dramatic. Default is <code>1000</code></li>
-    <li><code>scale</code> number scale on hover (subtle pop effect). Default is <code>1</code></li>
-    <li><code>speed</code> number, speed of enter/exit transition. Default is <code>300</code></li>
-    <li><code>transition</code> boolean, set a transition on enter/exit. Default is <code>true</code></li>
-    <li><code>axis</code> string, limit to only one axis. Takes <code>x | y | null</code>. Default is <code>null</code></li>
-    <li><code>reset</code> boolean, toggle tilt reset on exit. Default is <code>true</code></li>
-    <li><code>easing</code> string, easing value on enter/exit. Accepts cubic-bezier curves. Default is <code>cubic-bezier(.03,.98,.52,.99)</code></li>
-    <li><code>glare</code> boolean, toggle glare effect. Default is <code>false</code></li>
-    <li><code>max-glare</code> number between 0 and 1 for opacity. Default is <code>1</code></li>
-    <li><code>mouse-event-element</code> string, css class or link to HTML elem that triggers tilt effect. Requires '.' on class. Default is <code>null</code></li>
-    <li><code>gyroscope</code> boolean, to toggle on orientation devices. Default is <code>true</code></li>
-  </ul>
-  <div class="tilt-card-group">
-    <div class="tilt-card" data-tilt>
-      <h3 class="h6">Default</h3>
-      <br>
-      <p>No extra attributes other than <code>data-tilt</code></p>
-      {% set cta_1 = { 
-        text: 'Learn more',
-        url: 'https://micku7zu.github.io/vanilla-tilt.js/'
-       } %}
-      {% include "./_includes/components/cta-group.njk" %}
-    </div>
-    <div 
-      class="tilt-card tilt-card--3d" 
-      data-tilt
-      data-tilt-reverse="true"
-      data-tilt-max="10" 
-      data-tilt-startX="0" 
-      data-tilt-startY="0" 
-      data-tilt-perspective="2400"
-      data-tilt-speed="750"
-      data-tilt-reset="true"
-      data-tilt-glare="true"
-      data-tilt-max-glare="0.125"
-      >
-      <h3 
-        class="h6">
-        Reversed
-      </h3>
-      <br>
-      <p>This sublte reversed tilt effect not only includes a glare, but also has a different transition speed.</p>
-      <br>
-      <p>It also sets up the parallax effect:</p>
-      <ol class="classic-list">
-        <li>Add <code>transform-style: preserve-3d</code> to the tilt element.</li>
-        <li>Add <code>transform: perspective(1000px);</code> to the tilt element.</li>
-        <li>Add <code>transform: translateZ(20px);</code> to the inner element(s) that you want to pop.</li>
-      </ol>
-      {% set cta_1 = { 
-        text: 'Get started',
-        url: 'https://axyscreative.com'
-       } %}
-      {% set cta_2 = { 
-        text: 'Visit FAQ',
-        url: 'https://axyscreative.com'
-       } %}
-      {% include "./_includes/components/cta-group.njk" %}
-    </div>
-    <div 
-      class="tilt-card" 
-      data-tilt
-      data-tilt-reverse="false"
-      data-tilt-max="20" 
-      data-tilt-startX="0" 
-      data-tilt-startY="0" 
-      data-tilt-perspective="750"
-      data-tilt-speed="100"
-      data-tilt-reset="false"
-      data-tilt-glare="true"
-      >
-      <h3 class="h6">Dramatic</h3>
-      <br>
-      <p>A bit stronger with the max-glare and the tilt doesn't reset.</p>
-      {% set cta_1 = { 
-        text: 'Get started',
-        url: 'https://axyscreative.com'
-       } %}
-      {% set cta_2 = { 
-        text: 'Visit FAQ',
-        url: 'https://axyscreative.com'
-       } %}
-      {% include "./_includes/components/cta-group.njk" %}
-    </div>
-  </div>
+<section class="accordion-section section-thin">
+  <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
+  <!-- prettier-ignore -->
+  {% set accordion_list = library.accordion.accordion_data %}
+  {% include './_includes/library/accordion.njk' %}
 </section>
 
-<section class="library-section testimonials-section">
-  <h2 class="h5">[ Solar system - Component ]</h2>
-
-  <p>A way to display badges and an image. Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
-
-  {% set orbit_data = library.solar_system.orbits %}
-  {% include "./_includes/library/solar-system.njk" %}
-</section>
-
-<!-- prettier-ignore -->
-{% set price_cards_data = library.price_cards %}
-{% include './_includes/library/price-cards.njk' %}
-
-<section class="library-section gradient-border-section">
-  <h2 class="h5">[ Gradient border - Util ]</h2>
-  <p>Gradient borders</p>
-
-  <div class="gradient-border">
-    <h3 class="h6">Gradient border</h3>
-    <p>Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae commodi veritatis totam harum accusamus quia sint aliquam quod non, earum reiciendis, minus consequuntur dolores.</p>
-  </div>
-</section>
-
-<section class="library-section hide-cursor">
-  <h2 class="h5">[ Tooltip - Component or Util ]</h2>
-  <p>A tooltip can be added in two ways: as a component or a utility class. Each method comes with different pros and cons.</p>
+<div class="carousel-hero-library">
+  <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
   <br>
-
-  <h3 class="h6">Tooltip Component (static)</h3>
-  <p>The component variation <code>tooltip.njk</code> comes with the following config options:</p>
+  <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>
+  <br>
+  <br>
   <ul class="classic-list">
-    <li><code>message</code> a string, this is the text within the message bubble.</li>
-    <li><code>text</code> an optional string that can be used as the tooltip trigger (vs an icon).</li>
-    <li><code>icon</code> an optional string used to override the default icon image. This is the path to the image source.</li>
-    <li><code>size</code> a string of either <code>sm | md | lg</code> to adjust the tooltip message size. Defaults to 'md'</li>
-    <li><code>place</code> a string of either <code>top | right | bottom | left</code> to position the tooltip bubble. Defaults to 'top'</li>
+    <li><code>data-grid-fade</code> string of either <code>in-out | in</code> depending on scroll preference. Default is <code>in</code></li>
+    <li><code>data-grid-tile-size</code> string of either <code>small | medium | large</code>. Default is <code>medium</code></li>
+    <li><code>data-grid-fade-random</code> boolean to toggle the animation style. Default is <code>true</code></li>
   </ul>
-  
-  {% set tooltip_data = library.tooltip.tooltip_1 %}
-  {% include "./_includes/library/tooltip.njk" %}
-  
-  {% set tooltip_data = library.tooltip.tooltip_2 %}
-  {% include "./_includes/library/tooltip.njk" %}
-  
-  <div>
-    <p>
-      Does this work inline?  
-      {% set tooltip_data = library.tooltip.tooltip_3 %}
-      {% include "./_includes/library/tooltip.njk" %}
-      then some text afterward.
-    </p>
-  </div>
-  
-  <br aria-hidden="true">
-  <br aria-hidden="true">
-  <h3 class="h6">Tooltip Util (follows mouse)</h3>
-  <p>Need to find a way to make this keyboard & mobile accessible 🤔</p>
-  <p>The tooltip can also be tagged on any element using the class <code>tooltip-util</code>. The configs are as follows:</p>
-  <ul class="classic-list">
-    <li><code>data-tooltip-message</code> A string, this is the value of the message for the tooltip (perhaps see if this can take html).</li>
-    <li><code>data-tooltip-min-width</code> A number, this applies a minimum width to the message bubble.</li>
-  </ul>
+</div>
+<div 
+  class="grid-fade"
+  data-grid-fade="in-out"
+  data-grid-tile-size="small"
+  data-grid-fade-random="true"
+>
+  <!-- prettier-ignore -->
+  {% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
+  {% set carousel_hero_slides = library.carousel_hero.slides %}
+  {% include "./_includes/library/carousel-hero.njk" %}
+</div>
 
-  <p>
-    Tooltip util 
-    <button
-      class="tooltip-util" 
-      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
-      data-tooltip-min-width="212"
-    >
-      used with inline text
-  </button>
-  . You’ll notice that the text bubble is 
-  <span
-    class="tooltip-util" 
-    data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
-    data-tooltip-min-width="250"
-  >
-    directionally aware
-</span>
-  and will reposition based on the mouse position in the viewport.
-  </p>
-  <img 
-    class="tooltip-util icon-md" 
-    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
-    data-tooltip-min-width="250"
-    src="/static/img/library/icon-google-info.svg" 
-    alt="" 
-    eleventy:ignore
-  />
-</section>
+<section class="carousel-swiper-section">
+  <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
 
-<section class="image-comparison-section library-section">
-  <h2 class="h5">[ Image Comparison - Component ]</h2>
+  <!-- prettier-ignore -->
+  {% set carousel_autoplay = library.carousel_swiper.autoplay %}
+  {% set carousel_controls = library.carousel_swiper.controls %}
+  {% set carousel_slides = library.carousel_swiper.slides %}
+  {% set carousel_pagination = library.carousel_swiper.pagination %}
+  {% include './_includes/library/carousel-swiper.njk' %}
 </section>
 
 <section class="counter-section">
@@ -241,140 +91,6 @@ path: library
     
     {% set counter_data = library.counter.counter_3 %}
     {% include "./_includes/library/counter.njk" %}
-  </div>
-</section>
-
-<section class="typing-section library-section">
-    <h2 class="h5">
-      <span class="typing-scroll" data-typing-cursor="none">[ Typing Text&nbsp;-&nbsp;</span>
-      <span
-        class="typing-cycle"
-        data-typing-cycle-words="Utility, Class, Block"
-        data-typing-delay="800"
-        data-typing-on-scroll="true"
-      >
-        Utility
-      </span>
-    &nbsp;]
-  </h2>
-
-  <h3 class="h6">Typing Cycle</h3>
-  <p>The typing cycle effect mimics human typing in an endless loop. It uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
-  <ul class="classic-list">
-    <li><code>data-typing-cycle-words</code> An array of strings.</li>
-    <li><code>data-typing-cycle-colors</code> An array of strings. Takes any valid css color value.</li>
-    <li><code>data-typing-speed-in</code> A number (in ms) that controls the typing speed. Default is <code>120</code></li>
-    <li><code>data-typing-speed-out</code> A number (in ms) that controls the deleting speed. Default is <code>50</code></li>
-    <li><code>data-typing-cycle-interval</code> A number (in ms) that controls the interval between when the word finishes typing & when the word starts deleting. Default is <code>2000</code></li>
-    <li><code>data-typing-delay</code> Optional number (in ms) representing the initial delay of the animation. Default is <code>0</code></li>
-    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
-    <li><code>data-typing-on-scroll</code> Optional boolean, to start the cycle when the element scrolls into view. Default is <code>false</code>.</li>
-</li>
-  </ul>
-  <h6>The human senses:
-    <span
-      class="typing-cycle"
-      data-typing-cycle-words="touch, sight, sound, taste, smell"
-      data-typing-cycle-colors="var(--color-brand--primary), forestgreen, #c0c0c0, crimson, slateblue"
-      data-typing-speed-in="100"
-      data-typing-speed-out="25"
-      data-typing-cycle-interval="2000"
-      data-typing-delay="1500"
-      data-typing-cursor="underscore"
-    ></span>
-  </h6>
-  <h6>The four seasons:
-    <span
-      class="typing-cycle"
-      data-typing-cycle-words="Spring, Summer, Autumn, Winter"
-      data-typing-speed-in="75"
-      data-typing-speed-out="200"
-      data-typing-cycle-interval="1250"
-      data-typing-cursor="none"
-    ></span>
-  </h6>
-
-  <br>
-
-  <h3 class="h6">Typing Scroll</h3>
-  <p>The class <code>typing-scroll</code> will trigger the typing animation when the element comes into view. Comes with the following configs:</p>
-    <ul class="classic-list">
-    <li><code>data-typing-once</code> A boolean to toggle if the animation should fire each time the element scrolls into view. Default is <code>false.</code></li>
-    <li><code>data-typing-speed</code> The number (in ms), representing the typing speed. Default is <code>50</code></li>
-    <li><code>data-typing-delay</code> Optional number (in ms), representing the initial delay of the animation. Default is <code>0</code></li>
-    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
-  </ul>
-  <p class="typing-scroll">This will type out as many times as you scroll into view. Default behavior.</p>
-  <p 
-    class="typing-scroll" 
-    data-typing-once="true" 
-    data-typing-speed="25"
-    data-typing-delay="3200"
-    data-typing-cursor="underscore"
-  >
-  This will only type out once, the very first time it comes into view. Also has a delay of 3200ms.
-</p>
-</section>
-
-<section class="glitch-text-section library-section">
-  <h2 class="h5">
-    <span class="glitch-scroll">[ Glitch Text&nbsp-&nbsp</span>
-    <span
-      class="glitch-cycle"
-      data-glitch-cycle-words="Utility, Class, Block"
-    >
-      Utility
-    </span>&nbsp;]
-  </h2>
-  <p>While not required, there is a class: <code>glitch-text</code>, that clips the max width to the content width to prevent overshooting. This could be used for other variable/util needs.</p>
-
-  <h3 class="h6">Glitch Cycle</h3>
-  <p>The glitch cycle uses the <code>glitch-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
-  <ul class="classic-list">
-    <li><code>data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"</code></li>
-    <li><code>data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"</code></li>
-    <li><code>data-glitch-cycle-interval="2000"</code></li>
-  </ul>
-  <h6>Here’s an example:
-    <span
-      class="glitch-cycle"
-      data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"
-      data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
-      data-glitch-cycle-interval="2000"
-    >
-      Creative
-    </span>
-  </h6>
-
-  <br>
-
-  <h3 class="h6">Glitch Scroll</h3>
-  <p>The class <code>glitch-scroll</code> will scramble the text when the element comes into view. Using with the attribute: <code>data-glitch-once="true"</code> will toggle the effect to occur only the first time the element scrolls into view.</p>
-  <p class="glitch-scroll">This will glitch out as many times as you scroll into view. Default behavior.</p>
-  <p class="glitch-scroll" data-glitch-once="true">This will only glitch out once.</p>
-  
-  <br>
-  
-  <h3 class="h6">Glitch Hover</h3>
-  <p>The class <code>glitch-hover</code> causes the innerText (works with nested elements) to scramble on hover or focus.</p>
-  <a href="/" class="cta-1 glitch-hover">Hover over me</a>
-  <a href="/" class="classic-link glitch-hover">Hover over me</a>
-  
-  <br>
-  
-  <h3 class="h6">Glitch Target</h3>
-  <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The target will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
-  
-  <div class="glitch-pair">
-    <p>This one can get tricky with scaling e.g. using target glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are targets in the markup (rather than nested, such as .cta-2).</p>
-    <br>
-    <br>
-    <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
-      Hover or focus me
-    </button>
-    <br>
-    <br>
-    <p class="glitch-target__paragraph">This text should now glitch out</p>
   </div>
 </section>
 
@@ -449,76 +165,6 @@ path: library
   </p>
 </section>
 
-<section class="tabs-section">
-  <h2 class="h5">[ Tabs - Component ]</h2>
-
-  <!-- prettier-ignore -->
-  {% set tab_list = library.tabs.tabs %}
-  {% include "./_includes/library/tabs.njk" %}
-</section>
-
-<section class="library-section testimonials-section">
-  <h2 class="h5">[ Testimonials ]</h2>
-
-  <h3 class="h6">Auto carousel</h3>
-  <p>Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
-</section>
-
-<div class="carousel-hero-library">
-  <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
-  <br>
-  <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>
-  <br>
-  <ul class="classic-list">
-    <li><code>data-grid-fade</code> which takes <code>in-out</code> or <code>in</code> (default) depending on scroll preference.</li>
-    <li><code>data-grid-tile-size</code> which takes either: <code>small</code>, <code>medium</code> (default), or <code>large</code>.</li>
-    <li><code>data-grid-fade-random</code> which takes either: <code>true</code> (default) or <code>false</code>.</li>
-  </ul>
-</div>
-<div 
-  class="grid-fade"
-  data-grid-fade="in-out"
-  data-grid-tile-size="small"
-  data-grid-fade-random="true"
->
-  <!-- prettier-ignore -->
-  {% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
-  {% set carousel_hero_slides = library.carousel_hero.slides %}
-  {% include "./_includes/library/carousel-hero.njk" %}
-</div>
-
-<section class="carousel-swiper-section">
-  <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
-
-  <!-- prettier-ignore -->
-  {% set carousel_autoplay = library.carousel_swiper.autoplay %}
-  {% set carousel_controls = library.carousel_swiper.controls %}
-  {% set carousel_slides = library.carousel_swiper.slides %}
-  {% set carousel_pagination = library.carousel_swiper.pagination %}
-  {% include './_includes/library/carousel-swiper.njk' %}
-</section>
-
-<div class="library-section section-thin">
-  <h2 class="h5">[ Marquee - Component ]</h2>
-  <p>Comes with a handful of configs:</p>
-  <ul class="classic-list">
-    <li><code>text</code> Accepts a string value and will display the message passed in. (Not recommneded to use with <code>imgs</code>)</li>
-    <li><code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to use with <code>text</code>)</li>
-    <li><code>scrub</code> A boolean that toggles whether the velocity should be controlled by the scroll position.</li>
-    <li><code>count</code> The number of marquee elements stacked on top of one another.</li>
-  </ul>
-</div>
-<!-- prettier-ignore -->
-{% set marquee = library.marquee.marquee %}
-{% include './_includes/library/marquee.njk' %}
-
-<section class="accordion-section section-thin">
-  <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
-  <!-- prettier-ignore -->
-  {% set accordion_list = library.accordion.accordion_data %}
-  {% include './_includes/library/accordion.njk' %}
-</section>
-
 <section class="fill-text-section">
   <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br>
@@ -533,9 +179,124 @@ path: library
   <br>
   <ul class="classic-list">
     <li>Requires the util class <code>fill-text</code></li>
-    <li>Adjust the speed with <code>data-fill-text-speed</code>. Accepts either <code>fast | slow | null</code>. Default is medium.</li>
+    <li>Adjust the speed with <code>data-fill-text-speed</code>. Accepts either <code>fast | slow | null</code>. Default is <code>null</code></li>
   </ul>
 </section>
+
+<section class="form-section">
+  <h2 class="h5">[ Form Feedback - Component ]</h2>
+  <p>After submitting the form, the user simply sees a temporary feedback message. Either success or error.</p>
+  <br>
+  <br>
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_contact.form_data %}
+  {% include "./_includes/library/form-feedback.njk" %}
+</section>
+
+<section class="form-section">
+  <h2 class="h5">[ Form Redirect - Component ]</h2>
+  <p>After submitting the form, the user is redirected to a new page.</p>
+  <br>
+  <br>
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_redirect.form_data %}
+  {% include "./_includes/library/form-redirect.njk" %}
+</section>
+
+<section class="glitch-text-section library-section">
+  <h2 class="h5">
+    <span class="glitch-scroll">[ Glitch Text&nbsp-&nbsp</span>
+    <span
+      class="glitch-cycle"
+      data-glitch-cycle-words="Utility, Class, Block"
+    >
+      Utility
+    </span>&nbsp;]
+  </h2>
+  <p>Utilize GSAP's <code>text-scrambler</code> effect! While not required, there is a class: <code>glitch-text</code>, that clips the max width to the content width to prevent overshooting. This could be used for other variable/util needs.</p>
+
+  <h3 class="h6">Glitch Cycle</h3>
+  <p>The glitch cycle uses the <code>glitch-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
+  <ul class="classic-list">
+    <li><code>data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"</code></li>
+    <li><code>data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"</code></li>
+    <li><code>data-glitch-cycle-interval="2000"</code></li>
+  </ul>
+  <h6>Here’s an example:
+    <span
+      class="glitch-cycle"
+      data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"
+      data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
+      data-glitch-cycle-interval="2000"
+    >
+      Creative
+    </span>
+  </h6>
+
+  <br>
+
+  <h3 class="h6">Glitch Scroll</h3>
+  <p>The class <code>glitch-scroll</code> will scramble the text when the element comes into view. Using with the attribute: <code>data-glitch-once="true"</code> will toggle the effect to occur only the first time the element scrolls into view.</p>
+  <p class="glitch-scroll">This will glitch out as many times as you scroll into view. Default behavior.</p>
+  <p class="glitch-scroll" data-glitch-once="true">This will only glitch out once.</p>
+  
+  <br>
+  
+  <h3 class="h6">Glitch Hover</h3>
+  <p>The class <code>glitch-hover</code> causes the innerText (works with nested elements) to scramble on hover or focus.</p>
+  <a href="/" class="cta-1 glitch-hover">Hover over me</a>
+  <a href="/" class="classic-link glitch-hover">Hover over me</a>
+  
+  <br>
+  
+  <h3 class="h6">Glitch Target</h3>
+  <p>The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a unique value that matches the class of the target. The target will then have the class that matches <code>class="glitch-target__arbitrary"</code></p>
+  
+  <div class="glitch-pair">
+    <p>This one can get tricky with scaling e.g. using target glitch on a component since there would be multiple triggers and targets with the same value. A work around is using a parent wrapper with the class <code>glitch-pair</code> IF the elements are targets in the markup (rather than nested, such as .cta-2).</p>
+    <br>
+    <br>
+    <button class="cta-1 glitch-trigger" data-glitch-target="glitch-target__paragraph">
+      Hover or focus me
+    </button>
+    <br>
+    <br>
+    <p class="glitch-target__paragraph">This text should now glitch out</p>
+  </div>
+</section>
+
+<section class="gradient-border-section library-section ">
+  <h2 class="h5">[ Gradient border - Util ]</h2>
+  <p>Gradient borders. Simple but confusing. Saw Okta doing this and wanted to see what it was about.</p>
+
+  <div class="gradient-border">
+    <h3 class="h6">Gradient border</h3>
+    <p>Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae commodi veritatis totam harum accusamus quia sint aliquam quod non, earum reiciendis, minus consequuntur dolores.</p>
+  </div>
+</section>
+
+<section class="image-comparison-section library-section">
+  <h2 class="h5">[ Image Comparison - Component ]</h2>
+  <p>Coming soon!</p>
+</section>
+
+<div class="marquee-companion-text library-section section-thin">
+  <h2 class="h5">[ Marquee - Component ]</h2>
+  <p>Comes with a handful of configs:</p>
+  <ul class="classic-list">
+    <li><code>text</code> Accepts a string value and will display the message passed in. (Not recommneded to use with <code>imgs</code>)</li>
+    <li><code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to use with <code>text</code>)</li>
+    <li><code>scrub</code> A boolean that toggles whether the velocity should be controlled by the scroll position.</li>
+    <li><code>count</code> The number of marquee elements stacked on top of one another.</li>
+  </ul>
+</div>
+<!-- prettier-ignore -->
+{% set marquee = library.marquee.marquee %}
+{% include './_includes/library/marquee.njk' %}
+
+<!-- prettier-ignore -->
+{% set price_cards_data = library.price_cards %}
+{% include './_includes/library/price-cards.njk' %}
 
 <!-- prettier-ignore -->
 {% set hs_title = library.scroll_horizontal.title %} 
@@ -552,35 +313,288 @@ path: library
 {% set panel_configs = library.scroll_stack.panel_configs %}
 {% include './_includes/library/scroll-stack.njk' %}
 
+<section class="solar-system-section library-section">
+  <h2 class="h5">[ Solar system - Component ]</h2>
+
+  <p>A way to display badges and an image. Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
+
+  {% set orbit_data = library.solar_system.orbits %}
+  {% include "./_includes/library/solar-system.njk" %}
+</section>
+
+<section class="tabs-section">
+  <h2 class="h5">[ Tabs - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set tab_list = library.tabs.tabs %}
+  {% include "./_includes/library/tabs.njk" %}
+</section>
+
+<section class="testimonials-section library-section">
+  <h2 class="h5">[ Testimonials - Component ]</h2>
+  <p>Coming Soon!</p>
+
+  <h3 class="h6">Auto carousel</h3>
+  <p>Visit <a class="classic-link" href="https://www.delphi.ai/" target="_blank">https://www.delphi.ai/</a> to see the sample.</p>
+</section>
+
+<section class="tilt-cards library-section hide-cursor">
+  <h2 class="h5">[ Tilt cards - Util ]</h2>
+
+  <p>A subtle 3d effect for desktop users that uses the <a class="classic-link tab-element-page" href="https://micku7zu.github.io/vanilla-tilt.js/" target="_blank">vanilla tilt js library/cdn</a>. Comes with the following configs:</p>
+  <ul class="classic-list tilt-target__card">
+    <li><code>reverse</code> boolean, Reverse the tilt direction. Default is <code>false</code></li>
+    <li><code>max</code> number, max tilt rotation. Default is <code>35</code></li>
+    <li><code>startX</code> number, resting tilt along x-axis. Default is <code>0</code></li>
+    <li><code>startY</code> number, resting tilt along y-axis. Default is <code>0</code></li>
+    <li><code>perspective</code> number, lower value is more dramatic. Default is <code>1000</code></li>
+    <li><code>scale</code> number scale on hover (subtle pop effect). Default is <code>1</code></li>
+    <li><code>speed</code> number, speed of enter/exit transition. Default is <code>300</code></li>
+    <li><code>transition</code> boolean, set a transition on enter/exit. Default is <code>true</code></li>
+    <li><code>axis</code> string, limit to only one axis. Takes <code>x | y | null</code>. Default is <code>null</code></li>
+    <li><code>reset</code> boolean, toggle tilt reset on exit. Default is <code>true</code></li>
+    <li><code>easing</code> string, easing value on enter/exit. Accepts cubic-bezier curves. Default is <code>cubic-bezier(.03,.98,.52,.99)</code></li>
+    <li><code>glare</code> boolean, toggle glare effect. Default is <code>false</code></li>
+    <li><code>max-glare</code> number between 0 and 1 for opacity. Default is <code>1</code></li>
+    <li><code>mouse-event-element</code> string, css class or link to HTML elem that triggers tilt effect. Requires '.' on class. Default is <code>null</code></li>
+    <li><code>gyroscope</code> boolean, to toggle on orientation devices. Default is <code>true</code></li>
+  </ul>
+  <div class="tilt-card-group">
+    <div class="tilt-card" data-tilt>
+      <h3 class="h6">Default</h3>
+      <br>
+      <p>No extra attributes other than <code>data-tilt</code></p>
+      {% set cta_1 = { 
+        text: 'Learn more',
+        url: 'https://micku7zu.github.io/vanilla-tilt.js/'
+       } %}
+      {% include "./_includes/components/cta-group.njk" %}
+    </div>
+    <div 
+      class="tilt-card tilt-card--3d" 
+      data-tilt
+      data-tilt-reverse="true"
+      data-tilt-max="10" 
+      data-tilt-startX="0" 
+      data-tilt-startY="0" 
+      data-tilt-perspective="2400"
+      data-tilt-speed="750"
+      data-tilt-reset="true"
+      data-tilt-glare="true"
+      data-tilt-max-glare="0.125"
+      >
+      <h3 
+        class="h6">
+        Reversed
+      </h3>
+      <br>
+      <p>This sublte reversed tilt effect not only includes a glare, but also has a different transition speed.</p>
+      <br>
+      <p>It also sets up the 3d/parallax effect:</p>
+      <ol class="classic-list">
+        <li>Add <code>transform-style: preserve-3d</code> to the tilt element.</li>
+        <li>Add <code>transform: perspective(1000px);</code> to the tilt element.</li>
+        <li>Add <code>transform: translateZ(20px);</code> to the inner element(s) that you want to pop.</li>
+      </ol>
+      {% set cta_1 = { 
+        text: 'Get started',
+        url: 'https://axyscreative.com'
+       } %}
+      {% set cta_2 = { 
+        text: 'Visit FAQ',
+        url: 'https://axyscreative.com'
+       } %}
+      {% include "./_includes/components/cta-group.njk" %}
+    </div>
+    <div 
+      class="tilt-card" 
+      data-tilt
+      data-tilt-reverse="false"
+      data-tilt-max="20" 
+      data-tilt-startX="0" 
+      data-tilt-startY="0" 
+      data-tilt-perspective="750"
+      data-tilt-speed="100"
+      data-tilt-reset="false"
+      data-tilt-glare="true"
+      >
+      <h3 class="h6">Dramatic</h3>
+      <br>
+      <p>A bit stronger with the max-glare and the tilt doesn't reset.</p>
+      {% set cta_1 = { 
+        text: 'Get started',
+        url: 'https://axyscreative.com'
+       } %}
+      {% set cta_2 = { 
+        text: 'Visit FAQ',
+        url: 'https://axyscreative.com'
+       } %}
+      {% include "./_includes/components/cta-group.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="tooltip-section library-section hide-cursor">
+  <h2 class="h5">[ Tooltip - Component or Util ]</h2>
+  <p>A tooltip can be added in two ways: as a component or a utility class. Each method comes with different pros and cons.</p>
+  <br>
+
+  <h3 class="h6">Tooltip Component (static)</h3>
+  <p>The component variation <code>tooltip.njk</code> comes with the following config options:</p>
+  <ul class="classic-list">
+    <li><code>message</code> a string, this is the text within the message bubble.</li>
+    <li><code>text</code> an optional string that can be used as the tooltip trigger (vs an icon).</li>
+    <li><code>icon</code> an optional string used to override the default icon image. This is the path to the image source.</li>
+    <li><code>size</code> a string of either <code>sm | md | lg</code> to adjust the tooltip message size. Defaults is <code>md</code></li>
+    <li><code>place</code> a string of either <code>top | right | bottom | left</code> to position the tooltip bubble. Default is <code>top</code></li>
+  </ul>
+  
+  {% set tooltip_data = library.tooltip.tooltip_1 %}
+  {% include "./_includes/library/tooltip.njk" %}
+  
+  {% set tooltip_data = library.tooltip.tooltip_2 %}
+  {% include "./_includes/library/tooltip.njk" %}
+  
+  <div>
+    <p>
+      Does this work inline?  
+      {% set tooltip_data = library.tooltip.tooltip_3 %}
+      {% include "./_includes/library/tooltip.njk" %}
+      then some text afterward.
+    </p>
+  </div>
+  
+  <br aria-hidden="true">
+  <br aria-hidden="true">
+  <h3 class="h6">Tooltip Util (follows mouse)</h3>
+  <p>Need to find a way to make this keyboard & mobile accessible 🤔</p>
+  <p>The tooltip can also be tagged on any element using the class <code>tooltip-util</code>. The configs are as follows:</p>
+  <ul class="classic-list">
+    <li><code>data-tooltip-message</code> A string, this is the value of the message for the tooltip (perhaps see if this can take html).</li>
+    <li><code>data-tooltip-min-width</code> A number, this applies a minimum width to the message bubble.</li>
+  </ul>
+
+  <p>
+    Tooltip util 
+    <button
+      class="tooltip-util" 
+      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
+      data-tooltip-min-width="212"
+    >
+      used with inline text
+  </button>
+  . You’ll notice that the text bubble is 
+  <span
+    class="tooltip-util" 
+    data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
+    data-tooltip-min-width="250"
+  >
+    directionally aware
+</span>
+  and will reposition based on the mouse position in the viewport.
+  </p>
+  <img 
+    class="tooltip-util icon-md" 
+    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
+    data-tooltip-min-width="250"
+    src="/static/img/library/icon-google-info.svg" 
+    alt="" 
+    eleventy:ignore
+  />
+</section>
+
+<section class="typing-section library-section">
+    <h2 class="h5">
+      <span class="typing-scroll" data-typing-cursor="none">[ Typing Text&nbsp;-&nbsp;</span>
+      <span
+        class="typing-cycle"
+        data-typing-cycle-words="Utility, Class, Block"
+        data-typing-delay="800"
+        data-typing-on-scroll="true"
+      >
+        Utility
+      </span>
+    &nbsp;]
+  </h2>
+
+  <h3 class="h6">Typing Cycle</h3>
+  <p>The typing cycle effect mimics human typing in an endless loop. It uses the <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure.</p>
+  <ul class="classic-list">
+    <li><code>data-typing-cycle-words</code> An array of strings.</li>
+    <li><code>data-typing-cycle-colors</code> An array of strings. Takes any valid css color value.</li>
+    <li><code>data-typing-speed-in</code> A number (in ms) that controls the typing speed. Default is <code>120</code></li>
+    <li><code>data-typing-speed-out</code> A number (in ms) that controls the deleting speed. Default is <code>50</code></li>
+    <li><code>data-typing-cycle-interval</code> A number (in ms) that controls the interval between when the word finishes typing & when the word starts deleting. Default is <code>2000</code></li>
+    <li><code>data-typing-delay</code> Optional number (in ms) representing the initial delay of the animation. Default is <code>0</code></li>
+    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
+    <li><code>data-typing-on-scroll</code> Optional boolean, to start the cycle when the element scrolls into view. Default is <code>false</code>.</li>
+</li>
+  </ul>
+  <h6>The human senses:
+    <span
+      class="typing-cycle"
+      data-typing-cycle-words="touch, sight, sound, taste, smell"
+      data-typing-cycle-colors="var(--color-brand--primary), forestgreen, #c0c0c0, crimson, slateblue"
+      data-typing-speed-in="100"
+      data-typing-speed-out="25"
+      data-typing-cycle-interval="2000"
+      data-typing-delay="1500"
+      data-typing-cursor="underscore"
+    ></span>
+  </h6>
+  <h6>The four seasons:
+    <span
+      class="typing-cycle"
+      data-typing-cycle-words="Spring, Summer, Autumn, Winter"
+      data-typing-speed-in="75"
+      data-typing-speed-out="200"
+      data-typing-cycle-interval="1250"
+      data-typing-cursor="none"
+    ></span>
+  </h6>
+
+  <br>
+
+  <h3 class="h6">Typing Scroll</h3>
+  <p>The class <code>typing-scroll</code> will trigger the typing animation when the element comes into view. Comes with the following configs:</p>
+    <ul class="classic-list">
+    <li><code>data-typing-once</code> A boolean to toggle if the animation should fire each time the element scrolls into view. Default is <code>false.</code></li>
+    <li><code>data-typing-speed</code> The number (in ms), representing the typing speed. Default is <code>50</code></li>
+    <li><code>data-typing-delay</code> Optional number (in ms), representing the initial delay of the animation. Default is <code>0</code></li>
+    <li><code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to alter the text cursor. Defaults to <code>caret</code>.
+  </ul>
+  <p class="typing-scroll">This will type out as many times as you scroll into view. Default behavior.</p>
+  <p 
+    class="typing-scroll" 
+    data-typing-once="true" 
+    data-typing-speed="25"
+    data-typing-delay="3200"
+    data-typing-cursor="underscore"
+  >
+  This will only type out once, the very first time it comes into view. Also has a delay of 3200ms.
+</p>
+</section>
+
 <section class="video-section library-section">
   <h2 class="h5">[ Video Overlay - Util ]</h2>
   <p>
-    This can be a traditional cta or can simply wrap an element i.e. an image.
+    Note: while this is marked as a util, it requires the video-overlay.njk component at the base of your app (scope to the page with the toggle). This can be a traditional button or you can simply wrap an element <em>i.e.</em> an image. The setup is simple:
+    <br>
+    <ol class="classic-list">
+      <li>Ensure you have the <code>video-overlay.njk</code> component in your app.</li>
+      <li>Add the utility class of <code>video-toggle</code> to your button/trigger.</li>
+      <li>Provide the data- tag <code>data-vid-src</code> generally Dropbox can host these video files.</li>
+      <li>That's it!</li>
+    </ol>
   </p>
 
   <!-- prettier-ignore -->
   <button
     class="cta-1 video-toggle tab-element-page"
-    data-src="{{ library.video_overlay.video_src }}"
+    data-vid-src="{{ library.video_overlay.video_src }}"
     aria-label="Open video overlay for {{ item.title }}"
     aria-controls="video-overlay"
   >
     Toggle video overlay
   </button>
-</section>
-
-<section class="form-section">
-  <h2 class="h5">[ Form Feedback - Component ]</h2>
-
-  <!-- prettier-ignore -->
-  {% set form_data = library.form_contact.form_data %}
-  {% include "./_includes/library/form-feedback.njk" %}
-</section>
-
-<section class="form-section">
-  <h2 class="h5">[ Form Redirect - Component ]</h2>
-
-  <!-- prettier-ignore -->
-  {% set form_data = library.form_redirect.form_data %}
-  {% include "./_includes/library/form-redirect.njk" %}
 </section>

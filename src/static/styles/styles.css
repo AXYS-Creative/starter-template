@@ -725,7 +725,8 @@ hr {
   margin-block: 64px;
 }
 
-li:has(code) {
+ul:has(code) li,
+ol:has(code) li {
   font-size: 14px;
 }
 
