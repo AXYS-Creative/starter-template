@@ -4,8 +4,8 @@
 <div
   class="marquee {%if marquee.text%}marquee--text{%endif%} {%if marquee.imgs%}marquee--imgs{%endif%} {%if marquee.scrub%}marquee--scrub{%endif%}"
   data-marquee-alternate="{{ marquee.alternate }}"
-  role="region"
   aria-label="{{ marquee.text | removeTokens }}"
+  role="region"
 >
   {% if marquee.text %} {% for i in range(0, count) %}
   <div class="marquee-inner" aria-hidden="true">

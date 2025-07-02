@@ -770,14 +770,19 @@ code {
   text-wrap: balance;
 }
 
-.section-thin {
+.section-width-thin {
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding-double);
 }
 @media (min-width: 1025px) {
-  .section-thin {
+  .section-width-thin {
     padding-inline: calc(var(--body-padding) * 4);
   }
+}
+
+.section-width-full {
+  max-width: 100%;
+  margin: 0;
 }
 
 .classic-link {
@@ -975,12 +980,6 @@ code {
     flex: 1;
     background: var(--color-background);
     transition: 0.5s ease;
-  }
-  .grid-fade .grid-fade__overlay.full-viewport {
-    left: 50%;
-    translate: -50% 0;
-    width: 100vw;
-    height: 100vh;
   }
   .magnet {
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
@@ -5416,7 +5415,6 @@ code {
 
 .scroll-horizontal {
   overflow: hidden;
-  max-width: 100%;
 }
 .scroll-horizontal:has(.scroll-horizontal__title) .scroll-horizontal__container, .scroll-horizontal:has(.scroll-horizontal__desc) .scroll-horizontal__container {
   height: 65%;

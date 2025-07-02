@@ -1,6 +1,6 @@
 .scroll-horizontal {
+  // Remove util section-width-full to clip width.
   overflow: hidden;
-  max-width: 100%; // allow full width. Comment to clip width
 
   &:has(&__title),
   &:has(&__desc) {

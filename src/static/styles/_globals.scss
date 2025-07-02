@@ -32,6 +32,7 @@ body {
   .site-header,
   .site-footer,
   section {
+    // see util.scss to adjust section width
     max-width: $content-width;
     margin: auto;
   }
