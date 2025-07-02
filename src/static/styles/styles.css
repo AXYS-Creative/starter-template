@@ -819,10 +819,11 @@ code {
   justify-content: center;
   align-items: flex-start;
   gap: 0.5ch;
-  list-style: initial;
 }
 .classic-list li {
   margin-inline: 1.8ch;
+}
+.classic-list:is(ul) li {
   list-style-type: circle;
 }
 
@@ -1009,6 +1010,61 @@ code {
     justify-content: center;
     align-items: flex-start;
     gap: 24px;
+  }
+  .library-section .tilt-card-group {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+    overflow: hidden;
+    padding: var(--spacing--lg);
+  }
+  .library-section .tilt-card-group .tilt-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    aspect-ratio: 1/1.25;
+    max-width: 450px;
+    border-radius: var(--radius);
+    background: var(--color-surface--1);
+    padding: var(--spacing);
+    flex: 1 1 320px;
+  }
+}
+@media (max-width: 768px) {
+  .library-section .tilt-card-group .tilt-card {
+    width: 100%;
+  }
+}
+@media all {
+  .library-section .tilt-card-group .tilt-card .cta-group {
+    margin-top: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .library-section .tilt-card-group .tilt-card--3d:hover, .library-section .tilt-card-group .tilt-card--3d:focus-visible {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .library-section .tilt-card-group .tilt-card--3d:hover h3,
+  .library-section .tilt-card-group .tilt-card--3d:hover p,
+  .library-section .tilt-card-group .tilt-card--3d:hover ol,
+  .library-section .tilt-card-group .tilt-card--3d:hover .cta-group, .library-section .tilt-card-group .tilt-card--3d:focus-visible h3,
+  .library-section .tilt-card-group .tilt-card--3d:focus-visible p,
+  .library-section .tilt-card-group .tilt-card--3d:focus-visible ol,
+  .library-section .tilt-card-group .tilt-card--3d:focus-visible .cta-group {
+    transform: translateZ(20px);
+  }
+}
+@media all {
+  .library-section .tilt-card-group .tilt-card--3d h3,
+  .library-section .tilt-card-group .tilt-card--3d p,
+  .library-section .tilt-card-group .tilt-card--3d ol,
+  .library-section .tilt-card-group .tilt-card--3d .cta-group {
+    transition: 0.3s ease !important;
   }
 }
 @media all {
@@ -5505,7 +5561,7 @@ code {
   border-radius: 50%;
   transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
 }
-.mouse-cursor.hidden .mouse-cursor__shape {
+.mouse-cursor.hide-cursor div.mouse-cursor__shape {
   opacity: 0;
   width: 0px;
   height: 0px;

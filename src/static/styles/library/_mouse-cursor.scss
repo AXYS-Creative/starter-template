@@ -29,8 +29,8 @@
   }
 
   // Hidden with '.hide-cursor'
-  &.hidden {
-    .mouse-cursor__shape {
+  &.hide-cursor {
+    div.mouse-cursor__shape {
       opacity: 0;
       width: 0px; // scale makes the border thick
       height: 0px;

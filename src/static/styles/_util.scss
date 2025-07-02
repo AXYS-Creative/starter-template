@@ -38,11 +38,15 @@
 .classic-list {
   @include column-start;
   gap: 0.5ch;
-  list-style: initial;
 
   li {
     margin-inline: 1.8ch;
-    list-style-type: circle;
+  }
+
+  &:is(ul) {
+    li {
+      list-style-type: circle;
+    }
   }
 }
 
@@ -190,6 +194,54 @@
     // library section styles - Doesn't work with Swiper or Fill-text sections
     @include column-start;
     gap: 24px;
+
+    .tilt-card-group {
+      @include row-start;
+      flex-wrap: wrap;
+      gap: 24px;
+      width: 100%;
+      overflow: hidden;
+      padding: var(--spacing--lg);
+
+      .tilt-card {
+        @include column-start;
+        aspect-ratio: 1 / 1.25;
+        max-width: 450px;
+        border-radius: var(--radius);
+        background: var(--color-surface--1);
+        padding: var(--spacing);
+        flex: 1 1 320px;
+
+        @include mq-max(md) {
+          width: 100%;
+        }
+
+        .cta-group {
+          margin-top: auto;
+        }
+
+        &--3d {
+          @include desktop-hover {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+
+            h3,
+            p,
+            ol,
+            .cta-group {
+              transform: translateZ(20px); // higher value for more pop.
+            }
+          }
+
+          h3,
+          p,
+          ol,
+          .cta-group {
+            transition: 0.3s ease !important;
+          }
+        }
+      }
+    }
   }
 }
 

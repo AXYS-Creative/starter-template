@@ -201,7 +201,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Fill Text - Scrub only
         {
-          // Use 'fill-text' for default, then 'quick-fill' or 'slow-fill' to modify animation end
+          // Use 'fill-text' for default, then 'data-fill-text-speed' to modify animation speed
           const fillText = document.querySelectorAll(".fill-text");
 
           fillText.forEach((el) => {
@@ -209,7 +209,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             let end = "bottom 60%";
 
             // Modifier classes –— Higher percentage ends the animation faster
-            if (fillSpeed === "quick") {
+            if (fillSpeed === "fast") {
               end = "bottom 80%";
             } else if (fillSpeed === "slow") {
               end = "bottom 40%";

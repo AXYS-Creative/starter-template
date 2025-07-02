@@ -78,8 +78,10 @@ if (cursor && mqMouse.matches) {
   });
 
   hideCursor.forEach((el) => {
-    el.addEventListener("mousemove", () => cursor.classList.add("hidden"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("hidden"));
+    el.addEventListener("mousemove", () => cursor.classList.add("hide-cursor"));
+    el.addEventListener("mouseleave", () =>
+      cursor.classList.remove("hide-cursor")
+    );
   });
 
   const targetHover = () => {
