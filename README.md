@@ -6,16 +6,27 @@ Collection of UI components and library of utility classes. To get started, move
 
 - Accordion
 - Carousel Variants
+- Counter
 - Form Variants
 - Marquee
-- Scroll Horizontal
-- Scroll Stack
 - Tabs
 - Video Overlay
 
+## Section Components
+
+- Carousel Hero
+- Price Cards
+- Scroll Horizontal
+- Scroll Stack
+
 ## Utilities
 
+- Cursor Target
 - Fill Text
 - Glitch Text
+- Gradient Border
+- Grid Fade
 - Magnet
 - Parallax
+- Tilt Cards
+- Typing Text
