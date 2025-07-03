@@ -5764,65 +5764,140 @@ code {
 }
 
 .solar-system {
+  font-size: 16px;
   position: relative;
-  padding: 24px;
   margin: auto;
+  padding: 5em;
+  overflow: hidden;
 }
-@media (min-width: 1513px) {
+@media (max-width: 1024px) {
   .solar-system {
-    height: clamp(750px, 100vh, 1250px);
-  }
-}
-@media (max-width: 1512px) {
-  .solar-system {
-    height: clamp(625px, 100vh, 1100px);
-  }
-}
-@media (max-width: 768px) {
-  .solar-system {
-    min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
-    max-height: 950px;
+    font-size: 14px;
   }
 }
 .solar-system .orbit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--color-border);
+  padding: 8em;
+  min-width: 25em;
+  max-width: 750px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+@media (max-width: 1024px) {
+  .solar-system .orbit {
+    min-width: 20em;
+  }
+}
+.solar-system .orbit-badge {
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: var(--color-surface--1);
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 24px;
+  z-index: 1;
+}
+.solar-system .orbit.orbit-1 {
+  animation: spin-reverse 24s linear infinite;
+}
+.solar-system .orbit.orbit-1 > .orbit-badge {
+  animation: spin 24s linear infinite;
+}
+.solar-system .orbit.orbit-1.orbit-size-3 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-3 > .orbit-badge-2 {
+  bottom: 0;
+  right: 0;
+  translate: 0em -8em;
+}
+.solar-system .orbit.orbit-1.orbit-size-3 > .orbit-badge-3 {
+  bottom: 0;
+  left: 0;
+  translate: 0em -8em;
+}
+.solar-system .orbit.orbit-1.orbit-size-4 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-4 > .orbit-badge-2 {
+  top: 50%;
+  right: 0;
+  translate: 50% -50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-4 > .orbit-badge-3 {
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-4 > .orbit-badge-4 {
+  top: 50%;
+  left: 0;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2 {
+  animation: spin 12s linear infinite;
+}
+.solar-system .orbit.orbit-2 .orbit-badge {
+  animation: spin-reverse 24s linear infinite;
+}
+.solar-system .orbit.orbit-2.orbit-size-3 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-3 > .orbit-badge-2 {
+  bottom: 0;
+  left: 0;
+  translate: -2.125em -6em;
+}
+.solar-system .orbit.orbit-2.orbit-size-3 > .orbit-badge-3 {
+  bottom: 0;
+  right: 0;
+  translate: 2.125em -6em;
+}
+.solar-system .orbit.orbit-2.orbit-size-4 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-4 > .orbit-badge-2 {
+  top: 50%;
+  left: 0;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-4 > .orbit-badge-3 {
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-4 > .orbit-badge-4 {
+  top: 50%;
+  right: 0;
+  translate: 50% -50%;
+}
+.solar-system .orbit-image {
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  border: 1px solid var(--color-border);
-  width: 50vw;
   aspect-ratio: 1;
-  border-radius: 48px;
-}
-.solar-system .orbit-badge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: darkgrey;
-  width: auto;
-  border-radius: 24px;
-}
-.solar-system .orbit-size-3 {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
-}
-.solar-system .orbit-size-3 .orbit-badge-1 {
-  grid-column-start: 3;
-  grid-row-start: 0;
-}
-.solar-system .orbit-size-3 .orbit-badge-2 {
-  grid-column-start: 0;
-  grid-row-end: -1;
-}
-.solar-system .orbit-size-3 .orbit-badge-3 {
-  grid-column-start: -1;
-  grid-row-end: -1;
-}
-.solar-system .orbit-size-4 {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 12em;
+  border-radius: 50%;
 }
 @keyframes spin {
   from {

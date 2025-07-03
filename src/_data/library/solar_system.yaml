@@ -1,12 +1,17 @@
+# Set to 2 orbits
+# between 3 - 6 badges (widget)
+
+orbit_image: "./static/img/library/img-sample-1.jpg"
 orbits:
-  - orbit_content:
-    size: 40vw
-    items:
-      - text: test a1
-      - text: test a2
-      - text: test a2
-  # - orbit_content:
-  #   size: 30vw
-  #   items:
-  #     - text: test b1
-  #     - text: test b2
+  - orbit_ring:
+      badges:
+        - text: Creative
+        - text: Responsive
+        - text: Accessible
+        - text: Engaging
+      orbit_ring:
+        badges:
+          - text: HTML5
+          - text: CSS3/SCSS
+          - text: JavaScript
+          # - text: badge b4
