@@ -26,14 +26,20 @@
     }
 
     &-badge {
-      font-size: 1em;
       @include row-center;
+      gap: 8px;
+      // border: 2px solid var(--color-background);
+      font-size: 1em;
       position: absolute;
       background: var(--color-surface--1);
       width: auto;
       padding: 8px 16px;
       border-radius: 24px;
       z-index: 1;
+
+      // &__icon {
+
+      // }
     }
 
     &.orbit-1 {

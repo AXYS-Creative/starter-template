@@ -5,7 +5,19 @@
 {% macro renderOrbit(orbit, index) %}
 <div class="orbit orbit-{{ index }} orbit-size-{{ orbit.badges | length }}">
   {% for badge in orbit.badges %}
-  <div class="orbit-badge orbit-badge-{{ loop.index }}">{{ badge.text }}</div>
+  <div class="orbit-badge orbit-badge-{{ loop.index }}">
+    {% if badge.icon %}
+    <span
+      class="orbit-badge__icon mask-icon"
+      style="mask-image: url('{{ badge.icon }}')"
+    ></span>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if badge.text %}
+    <span class="orbit-badge__text">{{ badge.text }}</span>
+    {% endif %}
+  </div>
   {% endfor %}
 
   <!-- prettier-ignore -->
