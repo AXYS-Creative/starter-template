@@ -1,19 +1,43 @@
-<div
-  class="accordion {%if library.accordion.accordion_behavior_single %}single-accordion{% endif %}"
->
-  {% for accordion in accordion_list %}
+<!-- prettier-ignore -->
+{% set id = accordion_data.id or 1 %}
+{% set icon = accordion_data.icon or '' %}
+{% set plus = accordion_data.plus or false %}
+{% set single_open = accordion_data.single_open or false %}
+{% set items = accordion_data.items or null %}
+
+<div class="accordion" data-single-open="{{ single_open }}">
+  {% for item in items %}
   <button
     class="accordion-btn tab-element-page"
     aria-expanded="false"
-    aria-controls="accordion-item-{{ loop.index }}"
+    aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
   >
     <div class="accordion-label">
-      <span class="accordion-label__title">{{ accordion.title }}</span>
-      <span class="accordion-label__icon" aria-hidden="true">►</span>
+      <span class="accordion-label__title">{{ item.title }}</span>
+
+      {% if icon %}
+      <span
+        class="accordion-label__icon mask-icon"
+        style="mask-image: url('{{ icon }}')"
+        aria-hidden="true"
+      >
+      </span>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if plus %}
+      <span class="accordion-label__plus" aria-hidden="true">
+        <span class="accordion-label__plus-line"></span>
+        <span class="accordion-label__plus-line"></span>
+      </span>
+      {% endif %}
     </div>
-    <div class="accordion-content" id="accordion-item-{{ loop.index }}">
+    <div
+      class="accordion-content"
+      id="accordion-{{ id }}-item-{{ loop.index }}"
+    >
       <div class="accordion-content__inner">
-        <p class="accordion-content__message">{{ accordion.content }}</p>
+        <p class="accordion-content__message">{{ item.content }}</p>
       </div>
     </div>
   </button>

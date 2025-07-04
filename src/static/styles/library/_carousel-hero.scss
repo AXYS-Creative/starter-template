@@ -1,9 +1,3 @@
-.carousel-hero-library {
-  padding: 0 var(--body-padding) 48px;
-  margin: auto;
-  max-width: $content-width;
-}
-
 .carousel-hero {
   @include full-viewport-section;
   max-width: 100%;

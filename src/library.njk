@@ -30,12 +30,22 @@ path: library
   <p>Note, this section contains the utility class <code>section-width-thin</code> to add extra inline padding.</p>
   <br>
   <br>
+  
+  <p style="display: block; margin-bottom: 64px">Accordion with <code>icon</code> config and <code>single_open</code> set to true.</p>
   <!-- prettier-ignore -->
-  {% set accordion_list = library.accordion.accordion_data %}
+  {% set accordion_data = library.accordion.accordion_1 %}
+  {% include './_includes/library/accordion.njk' %}
+  <br>
+  <br>
+  <br>
+  <br>
+  <p style="display: block; margin-bottom: 64px">Accordion with <code>plus</code> config</p>
+  <!-- prettier-ignore -->
+  {% set accordion_data = library.accordion.accordion_2 %}
   {% include './_includes/library/accordion.njk' %}
 </section>
 
-<div class="carousel-hero-library">
+<div class="section-width-thin">
   <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
   <br>
   <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>

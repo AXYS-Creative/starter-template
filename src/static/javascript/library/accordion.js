@@ -2,11 +2,11 @@ const accordions = document.querySelectorAll(".accordion");
 
 accordions.forEach((accordion) => {
   const accordionBtns = accordion.querySelectorAll(".accordion-btn");
+  let singleOpen = accordion.dataset.singleOpen === "true";
 
   accordionBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Check if this specific accordion has 'single-accordion'
-      if (accordion.classList.contains("single-accordion")) {
+      if (singleOpen) {
         accordionBtns.forEach((otherBtn) => {
           if (otherBtn !== btn) {
             otherBtn.setAttribute("aria-expanded", "false");

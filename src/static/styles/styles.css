@@ -25,6 +25,7 @@
   --section-gap--sm: 8px;
   --section-gap--lg: 64px;
   --border-width--btn: 1px;
+  --border-width: 1px;
   --border-width--bold: 2px;
   --radius: 16px;
   --radius--lg: 24px;
@@ -4650,17 +4651,22 @@ code {
 .accordion-btn {
   border-bottom: var(--border-width--bold) solid var(--color-border);
   text-align: left;
-  padding-block: 24px;
+  padding-block: 20px;
 }
-.accordion-btn:first-of-type {
-  border-top: var(--border-width--bold) solid var(--color-border);
-}
-.accordion-btn[aria-expanded=true] .accordion-label__icon {
-  rotate: 90deg;
+@media (hover: hover) and (pointer: fine) {
+  .accordion-btn:hover, .accordion-btn:focus-visible {
+    border-color: var(--color-brand--primary);
+  }
 }
 .accordion-btn[aria-expanded=true] .accordion-content {
   grid-template-rows: 1fr;
   visibility: visible;
+}
+.accordion-btn[aria-expanded=true] .accordion-label__icon {
+  transform: scaleY(-1);
+}
+.accordion-btn[aria-expanded=true] .accordion-label__plus-line:last-of-type {
+  rotate: 0deg;
 }
 .accordion-label {
   --font-size: 16px;
@@ -4696,9 +4702,36 @@ code {
   font-weight: inherit;
   cursor: pointer;
 }
-.accordion-label__icon {
+.accordion-label__icon, .accordion-label__plus {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
   display: inline-flex;
-  transition: 0.24s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-label__icon, .accordion-label__plus {
+    transition: 0.24s ease;
+  }
+}
+.accordion-label__plus {
+  position: relative;
+}
+.accordion-label__plus-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 24px;
+  height: 2px;
+  background: var(--color-font--primary);
+}
+.accordion-label__plus-line:last-of-type {
+  rotate: 90deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-label__plus-line:last-of-type {
+    transition: 0.24s ease;
+  }
 }
 .accordion-content {
   --font-size: 16px;
@@ -4709,11 +4742,15 @@ code {
   display: grid;
   grid-template-rows: 0fr;
   visibility: hidden;
-  transition: 0.24s ease;
 }
 @media (max-width: 768px) {
   .accordion-content {
     --font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-content {
+    transition: 0.24s ease;
   }
 }
 .accordion-content__inner {
@@ -5010,12 +5047,6 @@ code {
 }
 .btn-toggle[aria-pressed=true] .btn-toggle__switch-nob {
   translate: 32px 0;
-}
-
-.carousel-hero-library {
-  padding: 0 var(--body-padding) 48px;
-  margin: auto;
-  max-width: 1512px;
 }
 
 .carousel-hero {
