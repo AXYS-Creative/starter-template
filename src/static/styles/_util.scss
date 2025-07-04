@@ -201,7 +201,10 @@
       gap: 24px;
       width: 100%;
       overflow: hidden;
-      padding: var(--spacing--lg);
+
+      @include mq-min(lg) {
+        padding: var(--spacing--lg);
+      }
 
       .tilt-card {
         @include column-start;

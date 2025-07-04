@@ -6,6 +6,7 @@
   margin: auto;
   padding: 5em; // prevent cropping for translated badges
   overflow: hidden;
+  width: 100%;
 
   @include mq-max(lg) {
     font-size: 14px;
@@ -20,15 +21,17 @@
     max-width: 750px;
     aspect-ratio: 1;
     border-radius: 50%;
+    margin: auto;
 
     @include mq-max(lg) {
-      min-width: 20em;
+      min-width: 22em;
+      padding: 4em;
     }
 
     &-badge {
       @include row-center;
+      border: 3px solid var(--color-background);
       gap: 8px;
-      // border: 2px solid var(--color-background);
       font-size: 1em;
       position: absolute;
       background: var(--color-surface--1);
@@ -103,6 +106,82 @@
           translate: -50% -50%;
         }
       }
+
+      &.orbit-size-5 {
+        $x: 4em;
+        $y: -6em;
+
+        & > .orbit-badge-1 {
+          top: 0;
+          left: 50%;
+          translate: -50% -50%;
+        }
+
+        & > .orbit-badge-2 {
+          top: 50%;
+          right: 0;
+          translate: $x $y;
+        }
+
+        & > .orbit-badge-3 {
+          bottom: 6%;
+          left: 68%;
+          // translate: -$x $y;
+        }
+
+        & > .orbit-badge-4 {
+          bottom: 6%;
+          right: 68%;
+          // translate: -$x $y;
+        }
+
+        & > .orbit-badge-5 {
+          top: 50%;
+          left: 0;
+          translate: -$x $y;
+        }
+      }
+
+      &.orbit-size-6 {
+        $x: 1.5em;
+        $y: 12em;
+
+        & > .orbit-badge-1 {
+          top: 0;
+          left: 50%;
+          translate: -50% -50%;
+        }
+
+        & > .orbit-badge-2 {
+          top: 50%;
+          right: 0;
+          translate: $x #{-$y};
+        }
+
+        & > .orbit-badge-3 {
+          bottom: 50%;
+          right: 0;
+          translate: $x $y;
+        }
+
+        & > .orbit-badge-4 {
+          bottom: 0;
+          right: 50%;
+          translate: 50% 50%;
+        }
+
+        & > .orbit-badge-5 {
+          bottom: 50%;
+          left: 0;
+          translate: -$x $y;
+        }
+
+        & > .orbit-badge-6 {
+          top: 50%;
+          left: 0;
+          translate: -$x #{-$y};
+        }
+      }
     }
 
     &.orbit-2 {
@@ -159,6 +238,82 @@
           top: 50%;
           right: 0;
           translate: 50% -50%;
+        }
+      }
+
+      &.orbit-size-5 {
+        $x: 3.2em;
+        $y: -5em;
+
+        & > .orbit-badge-1 {
+          top: 0;
+          left: 50%;
+          translate: -50% -50%;
+        }
+
+        & > .orbit-badge-2 {
+          top: 50%;
+          right: 0;
+          translate: $x $y;
+        }
+
+        & > .orbit-badge-3 {
+          bottom: 6%;
+          left: 68%;
+          // translate: -$x $y;
+        }
+
+        & > .orbit-badge-4 {
+          bottom: 6%;
+          right: 68%;
+          // translate: -$x $y;
+        }
+
+        & > .orbit-badge-5 {
+          top: 50%;
+          left: 0;
+          translate: -$x $y;
+        }
+      }
+
+      &.orbit-size-6 {
+        $x: 2em;
+        $y: 8em;
+
+        & > .orbit-badge-1 {
+          top: 0;
+          left: 50%;
+          translate: -50% -50%;
+        }
+
+        & > .orbit-badge-2 {
+          top: 50%;
+          right: 0;
+          translate: $x #{-$y};
+        }
+
+        & > .orbit-badge-3 {
+          bottom: 50%;
+          right: 0;
+          translate: $x $y;
+        }
+
+        & > .orbit-badge-4 {
+          bottom: 0;
+          right: 50%;
+          translate: 50% 50%;
+        }
+
+        & > .orbit-badge-5 {
+          bottom: 50%;
+          left: 0;
+          translate: -$x $y;
+        }
+
+        & > .orbit-badge-6 {
+          top: 50%;
+          left: 0;
+          translate: -$x #{-$y};
         }
       }
     }

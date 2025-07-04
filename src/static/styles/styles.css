@@ -483,15 +483,23 @@ body:has(.load-complete) .hero div {
   z-index: 5;
 }
 .site-loader__text {
+  --font-size: 16px;
   color: var(--color-font--primary);
-  font-family: var(--font-family--heading);
-  font-size: 32px;
-  font-weight: 300;
+  font-family: var(--font-family--body);
+  font-size: var(--font-size);
+  font-weight: 400;
+  --font-size: 24px;
+  line-height: 1.5;
   color: var(--color-font--primary);
 }
-@media (max-width: 1512px) {
+@media (max-width: 768px) {
   .site-loader__text {
-    font-size: max(28px, 2.8vw);
+    --font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .site-loader__text {
+    --font-size: 20px;
   }
 }
 .site-loader.load-complete {
@@ -1021,8 +1029,14 @@ code {
     gap: 24px;
     width: 100%;
     overflow: hidden;
+  }
+}
+@media (min-width: 1025px) {
+  .library-section .tilt-card-group {
     padding: var(--spacing--lg);
   }
+}
+@media all {
   .library-section .tilt-card-group .tilt-card {
     display: flex;
     flex-direction: column;
@@ -5771,6 +5785,7 @@ code {
   margin: auto;
   padding: 5em;
   overflow: hidden;
+  width: 100%;
 }
 @media (max-width: 1024px) {
   .solar-system {
@@ -5788,16 +5803,19 @@ code {
   max-width: 750px;
   aspect-ratio: 1;
   border-radius: 50%;
+  margin: auto;
 }
 @media (max-width: 1024px) {
   .solar-system .orbit {
-    min-width: 20em;
+    min-width: 22em;
+    padding: 4em;
   }
 }
 .solar-system .orbit-badge {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid var(--color-background);
   gap: 8px;
   font-size: 1em;
   position: absolute;
@@ -5849,6 +5867,59 @@ code {
   left: 0;
   translate: -50% -50%;
 }
+.solar-system .orbit.orbit-1.orbit-size-5 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-5 > .orbit-badge-2 {
+  top: 50%;
+  right: 0;
+  translate: 4em -6em;
+}
+.solar-system .orbit.orbit-1.orbit-size-5 > .orbit-badge-3 {
+  bottom: 6%;
+  left: 68%;
+}
+.solar-system .orbit.orbit-1.orbit-size-5 > .orbit-badge-4 {
+  bottom: 6%;
+  right: 68%;
+}
+.solar-system .orbit.orbit-1.orbit-size-5 > .orbit-badge-5 {
+  top: 50%;
+  left: 0;
+  translate: -4em -6em;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-2 {
+  top: 50%;
+  right: 0;
+  translate: 1.5em -12em;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-3 {
+  bottom: 50%;
+  right: 0;
+  translate: 1.5em 12em;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-4 {
+  bottom: 0;
+  right: 50%;
+  translate: 50% 50%;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-5 {
+  bottom: 50%;
+  left: 0;
+  translate: -1.5em 12em;
+}
+.solar-system .orbit.orbit-1.orbit-size-6 > .orbit-badge-6 {
+  top: 50%;
+  left: 0;
+  translate: -1.5em -12em;
+}
 .solar-system .orbit.orbit-2 {
   animation: spin 12s linear infinite;
 }
@@ -5890,6 +5961,59 @@ code {
   top: 50%;
   right: 0;
   translate: 50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-5 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-5 > .orbit-badge-2 {
+  top: 50%;
+  right: 0;
+  translate: 3.2em -5em;
+}
+.solar-system .orbit.orbit-2.orbit-size-5 > .orbit-badge-3 {
+  bottom: 6%;
+  left: 68%;
+}
+.solar-system .orbit.orbit-2.orbit-size-5 > .orbit-badge-4 {
+  bottom: 6%;
+  right: 68%;
+}
+.solar-system .orbit.orbit-2.orbit-size-5 > .orbit-badge-5 {
+  top: 50%;
+  left: 0;
+  translate: -3.2em -5em;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-1 {
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-2 {
+  top: 50%;
+  right: 0;
+  translate: 2em -8em;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-3 {
+  bottom: 50%;
+  right: 0;
+  translate: 2em 8em;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-4 {
+  bottom: 0;
+  right: 50%;
+  translate: 50% 50%;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-5 {
+  bottom: 50%;
+  left: 0;
+  translate: -2em 8em;
+}
+.solar-system .orbit.orbit-2.orbit-size-6 > .orbit-badge-6 {
+  top: 50%;
+  left: 0;
+  translate: -2em -8em;
 }
 .solar-system .orbit-image {
   position: absolute;

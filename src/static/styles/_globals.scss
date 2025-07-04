@@ -388,7 +388,7 @@ body {
   z-index: $z-index--loader;
 
   &__text {
-    @include h6;
+    @include body-font-styles(lg);
     color: var(--color-font--primary);
   }
 

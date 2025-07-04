@@ -6,13 +6,17 @@ orbits:
   - orbit_ring:
       badges:
         - text: Creative
-          icon: /static/img/library/icon-google-rocket.svg
+          icon: /static/img/library/icon-google-palette.svg
         - text: Responsive
           icon: /static/img/library/icon-google-mobile.svg
         - text: Accessible
-          icon: /static/img/library/icon-google-new-tab.svg
+          icon: /static/img/library/icon-google-accessible.svg
         - text: Engaging
+          icon: /static/img/library/icon-google-target.svg
+        - text: Speedy
           icon: /static/img/library/icon-google-bolt.svg
+        - text: Unlimited
+          icon: /static/img/library/icon-google-infinity.svg
       orbit_ring:
         badges:
           - text: HTML5
@@ -21,4 +25,9 @@ orbits:
             icon:
           - text: JavaScript
             icon:
-          # - text: badge b4
+          - text: HTML5
+            icon:
+          - text: CSS3/SCSS
+            icon:
+          # - text: JavaScript
+          #   icon:
