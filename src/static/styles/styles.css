@@ -6185,36 +6185,36 @@ code {
 .scroll-stack .pin-steps .pin-step {
   scroll-margin-top: -24px;
 }
-.scroll-stack.full .scroll-stack__copy--unpinned {
+.scroll-stack--full .scroll-stack__copy--unpinned {
   display: flex;
 }
-.scroll-stack.full .scroll-stack__copy--pinned {
+.scroll-stack--full .scroll-stack__copy--pinned {
   display: none;
 }
 @media (min-width: 1025px) {
-  .scroll-stack.half .scroll-stack__panel {
+  .scroll-stack--half .scroll-stack__panel {
     width: max(500px, 50%);
   }
 }
-.scroll-stack.center .scroll-stack__panel {
+.scroll-stack--center .scroll-stack__panel {
   left: 50%;
   translate: -50% 0;
 }
-.scroll-stack.center .scroll-stack__copy--pinned {
+.scroll-stack--center .scroll-stack__copy--pinned {
   display: none;
 }
-.scroll-stack.center .scroll-stack__copy--unpinned {
+.scroll-stack--center .scroll-stack__copy--unpinned {
   display: flex;
 }
-.scroll-stack.right .scroll-stack__panel {
+.scroll-stack--right .scroll-stack__panel {
   right: var(--body-padding);
 }
 @media (max-width: 1024px) {
-  .scroll-stack.right .scroll-stack__panel {
+  .scroll-stack--right .scroll-stack__panel {
     right: 0;
   }
 }
-.scroll-stack.left .scroll-stack__copy--pinned {
+.scroll-stack--left .scroll-stack__copy--pinned {
   right: var(--body-padding);
 }
 
