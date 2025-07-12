@@ -1,7 +1,7 @@
 panel_nav: true # based on each panel in 'panels' below
 panel_copy:
-  title: "[ Stack Scroll -[%br%] Section-component ]"
-  desc: "The Stack Scroll section-component is a great way to show perks and benefits to a user in a unique way. Intended for two or more panels."
+  title: "[ Scroll Stack -[%br%] Section-component ]"
+  desc: "The Scroll Stack section-component is a great way to show perks and benefits to a user in a unique way. Intended for two or more panels."
   cta_1:
     text: View Plans
     url: /

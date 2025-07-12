@@ -9,9 +9,9 @@
     {%endif%}
     aria-label="{{ cta_1.text_desc or cta_1.text }}"
   >
-    {{ cta_1.text }}
-    {% if cta_1.text_desc %}
-      <span class="sr-only">{{ cta_1.text_desc }}</span>
+    <span class="cta-1__text">{{ cta_1.text }}</span>
+    {% if cta_1.icon %}
+      <span class="cta-1__icon mask-icon" style="mask-image: url('{{cta_1.icon}}');"></span>
     {% endif %}
   </a>
   {% endif %}
@@ -29,10 +29,12 @@
     data-cursor-target="cursor-target__cta-2"
     data-cursor-class="cta-2"
   >
-    {{ cta_2.text }}
-    <span class="cta-2__icon cursor-target__cta-2"></span>
-    {% if cta_2.text_desc %}
-      <span class="sr-only">{{ cta_2.text_desc }}</span>
+    <span class="cta-2__text">{{ cta_2.text }}</span>
+    {% if cta_2.icon %}
+      <span 
+        class="cta-2__icon cursor-target__cta-2"
+        style="mask-image: url('{{cta_2.icon}}');"
+      ></span>
     {% endif %}
   </a>
   {% endif %}

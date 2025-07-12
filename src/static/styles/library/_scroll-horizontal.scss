@@ -6,6 +6,10 @@
   &:has(&__desc) {
     .scroll-horizontal__container {
       height: 65%;
+
+      @include mq-max(sm) {
+        height: 50%;
+      }
     }
   }
 
@@ -37,7 +41,7 @@
     // border: $test;
     display: flex;
     align-items: center;
-    height: 80%; // Conditionally changes from 85% if there's a title or description.
+    height: 80%; // Conditionally changes if there's a title or description.
   }
 
   &__slider {
@@ -53,6 +57,10 @@
 
     @include mq-max(xl) {
       width: 350px;
+    }
+
+    @include mq-max(sm) {
+      width: 250px;
     }
 
     picture {

@@ -236,6 +236,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Glitch Text (Uses gsap scrambleText)
         {
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
+          const glitchTextElems = document.querySelectorAll(".glitch-text");
+
+          glitchTextElems.forEach((el) => {
+            // Helps with preventing inline shifting (center aligned text)
+            const width = el.offsetWidth;
+            el.style.width = `${width}px`;
+          });
 
           // Scroll-based glitch
           document.querySelectorAll(".glitch-scroll").forEach((el) => {
@@ -694,46 +701,45 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
               if (!triggerStep || !nextPanel) return;
 
+              let startPoint = "top 112%";
+              let endPoint = "bottom 112%";
+
               // Scale panels
               gsap.fromTo(
                 `.scroll-stack__panel-${panelIndex}`,
                 { scale: 1 },
                 {
-                  scale: 0.95,
+                  scale: 0.94,
                   ease: "none",
                   scrollTrigger: {
                     trigger: triggerStep,
-                    start: "top 112%",
-                    end: "bottom 112%",
+                    start: startPoint,
+                    end: endPoint,
                     scrub: panelScrub,
                   },
                 }
               );
 
-              // Slide in next panel
+              // Slide in panels
               gsap.fromTo(
                 `.scroll-stack__panel-${panelIndex + 1}`,
                 {
                   top: "120%",
-                  // transform:
-                  //   "perspective(1200px) rotateX(-50deg) translate(-50%, 0%)",
                 },
                 {
                   top: panelToTop,
-                  // transform:
-                  //   "perspective(1200px) rotateX(0deg) translate(-50%, 0%)",
                   ease: "none",
                   scrollTrigger: {
                     trigger: triggerStep,
-                    start: "top 112%",
-                    end: "bottom 112%",
+                    start: startPoint,
+                    end: endPoint,
                     scrub: panelScrub,
                   },
                 }
               );
             });
 
-            // Stack Link highlight
+            // Link highlight
             if (document.querySelector(".scroll-stack__nav-link")) {
               const stackLinks = document.querySelectorAll(
                 ".scroll-stack__nav-link"

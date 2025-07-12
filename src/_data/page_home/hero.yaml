@@ -4,9 +4,11 @@ cta_1:
   text: Visit Library
   text_desc: Visit our component library
   url: /library
+  # icon: /static/img/library/icon-google-new-tab.svg
   new_tab: false
 cta_2:
   text: Get Started
   text_desc: Get started with AXYS Creative
   url: https://axyscreative.com/
+  icon: /static/img/library/icon-google-chevron-right.svg
   new_tab: true

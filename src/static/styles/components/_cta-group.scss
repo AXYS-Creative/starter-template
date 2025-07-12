@@ -1,11 +1,28 @@
+.cta-1,
+.cta-2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  &__icon {
+    --icon-size: 24px;
+
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    @include mq-motion-allow {
+      transition: $ease;
+    }
+  }
+}
+
 .cta-1 {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius-btn);
   background: var(--color-btn-bg);
   color: var(--color-btn-text);
   padding: var(--btn-padding);
-  flex-shrink: 0;
-  display: inline-block;
 
   @include mq-motion-allow {
     // transition: $ease;
@@ -17,13 +34,16 @@
     background: var(--color-btn-bg--hover);
     color: var(--color-btn-text--hover);
   }
+
+  &__icon {
+    --icon-size: 16px;
+
+    background-color: currentColor;
+  }
 }
 
 .cta-2 {
-  @include row-center(space-between);
   color: var(--color-btn-2-text);
-  gap: 8px;
-  flex-shrink: 0;
 
   @include mq-motion-allow {
     transition: $ease;
@@ -38,18 +58,7 @@
   }
 
   &__icon {
-    --icon-size: 12px;
-
-    @include mask-image(
-      "../img/library/icon-angle-arrow-right.svg"
-    ); // Use inline style for cms config
     background-color: var(--color-brand--primary);
-    width: var(--icon-size);
-    height: var(--icon-size);
-
-    @include mq-motion-allow {
-      transition: $ease;
-    }
   }
 }
 

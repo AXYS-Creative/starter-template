@@ -8,6 +8,14 @@
     --panel-to-top: 96px;
   }
 
+  &:has(&__copy) {
+    .pin-step {
+      @include mq-max(md) {
+        margin-block-start: 320px; // rough height of copy on mobile, change per use case
+      }
+    }
+  }
+
   // Optional nav
   &__nav {
     @include row-center;
@@ -129,7 +137,12 @@
 
   .scroll-stack__pin {
     // Need vh, can't use percentage since it's children are position absolute
-    height: calc(100lvh - var(--body-padding-double));
+    height: calc(lvh(100) - var(--body-padding-double));
+    min-height: 500px;
+
+    @include mq-max(md) {
+      min-height: 350px;
+    }
   }
 
   .pin-steps {

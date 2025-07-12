@@ -16,7 +16,7 @@
   &::before {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     right: auto;
     width: 100%;
@@ -118,6 +118,7 @@
 
   .glitch-text {
     max-width: var(--content-width); // Prevent overflow
+    overflow: hidden;
   }
 
   .glitch-hover,
