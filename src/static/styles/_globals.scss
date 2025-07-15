@@ -8,6 +8,9 @@
 
   &::selection {
     background-color: rgba($coral, 0.5);
+
+    color: var(--color-font--primary);
+    stroke-width: 0;
   }
 
   // Autofill for form fields: input, textarea, select, etc. Feel free to delete if there are no forms

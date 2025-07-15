@@ -1,11 +1,20 @@
 marquee_1:
   text: "• Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee.text prop to control the content" # Keep at least 64 characters or add more spans
   # imgs:
-  scroll: true
-  velocity: true
-  count: 2
+  count: 1
+  scroll_alternate: false
+  velocity: 0
+  scrub: false
 
 marquee_2:
+  text: This is the sample text of the second marquee. This one is more configured.
+  # imgs:
+  count: 2
+  scroll_alternate: true
+  velocity: 5
+  scrub: false
+
+marquee_3:
   # text:
   imgs:
     - src: /static/img/library/img-sample-1.jpg
@@ -20,6 +29,7 @@ marquee_2:
       alt: "Sample Image 5"
     - src: /static/img/library/img-sample-6.jpg
       alt: "Sample Image 6"
-  scroll: true
-  velocity: true
   count: 2
+  scroll_alternate: true
+  velocity: 10
+  scrub: true

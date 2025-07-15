@@ -79,9 +79,13 @@ html[data-theme=light] {
 }
 *::-moz-selection {
   background-color: rgba(228, 140, 102, 0.5);
+  color: var(--color-font--primary);
+  stroke-width: 0;
 }
 *::selection {
   background-color: rgba(228, 140, 102, 0.5);
+  color: var(--color-font--primary);
+  stroke-width: 0;
 }
 *:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus-visible {
   -webkit-text-fill-color: var(--color-font--primary);
@@ -777,6 +781,14 @@ code {
   max-width: 950px;
   text-align: center;
   text-wrap: balance;
+}
+
+.section-width {
+  padding-inline: var(--body-padding);
+  padding-block: var(--body-padding-double);
+  max-width: 1512px;
+  width: 100%;
+  margin: auto;
 }
 
 .section-width-thin {
@@ -5542,8 +5554,6 @@ code {
   font-family: var(--font-family--heading);
   font-size: 64px;
   font-weight: 300;
-  padding-inline: var(--body-padding);
-  padding-block: var(--body-padding-double);
   padding-inline: 0;
   overflow: hidden;
   width: 100%;
@@ -5564,7 +5574,6 @@ code {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  line-height: 100%;
   text-wrap: nowrap;
   display: inline-flex;
   gap: 0.5ch;
@@ -5824,6 +5833,7 @@ code {
 
 .promo-banner {
   border: 2px dashed rgba(255, 255, 0, 0.75);
+  font-size: 16px;
   width: 100%;
   max-width: 1512px;
   margin: auto;

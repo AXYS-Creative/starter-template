@@ -1,6 +1,6 @@
 {% set message = promo_banner_data.message or '' %}
 {% set btn_url = promo_banner_data.btn_url %}
-{% set marquee = promo_banner_data.marquee %}
+{% set marquee_data = promo_banner_data.marquee %}
 {% set initial_hide = promo_banner_data.initial_hide or 0 %}
 {% set modifiers = promo_banner_data.modifiers or [] %}
 
@@ -23,15 +23,9 @@
   <div class="{{ classList }}" {{ dataDelay }}>
 {% endif %}
 
-  {% if marquee %}
-    <div class="marquee-inner" aria-hidden="true">
-      <p class="marquee-inner__split">
-        <span>{{ message }}</span>
-        <span>{{ message }}</span>
-        <span>{{ message }}</span>
-        <span>{{ message }}</span>
-      </p>
-    </div>
+  {% if marquee_data %}
+    {% set marquee = marquee_data %}
+    {% include "./marquee.njk" %}
   {% else %}
     <p class="promo-banner__message">{{ message }}</p>
   {% endif %}

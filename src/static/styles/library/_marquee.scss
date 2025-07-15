@@ -2,7 +2,6 @@
   $gap-offset: 0.5ch; // inline padding start and in-between duplicate span
 
   @include h2; // Setting font here to use ch units above
-  @include section-padding;
   padding-inline: 0;
   overflow: hidden;
   // width: 100vw; // causing x overflow scroll?
@@ -20,7 +19,6 @@
     // nested targets (should have two divs/spans)
     &__split {
       @include inherit-font;
-      line-height: 100%;
       text-wrap: nowrap;
       display: inline-flex;
       gap: $gap-offset;

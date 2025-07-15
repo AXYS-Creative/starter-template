@@ -1,3 +1,9 @@
+.section-width {
+  @include section-padding;
+  max-width: $content-width;
+  width: 100%;
+  margin: auto;
+}
 .section-width-thin {
   @include section-padding(thin);
 }

@@ -490,40 +490,27 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         {
           let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
 
-          // Loop through each marquee block
           gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
             const marqueeInners =
               marqueeBlock.querySelectorAll(".marquee-inner");
-            const hasVelocity = marqueeBlock.hasAttribute(
-              "data-marquee-velocity"
+            const velocity = parseFloat(
+              marqueeBlock.getAttribute("data-marquee-velocity")
             );
-            const sensitivity = parseFloat(
-              marqueeBlock.getAttribute("data-marquee-sensitivity")
+            const scrubEnabled =
+              marqueeBlock.hasAttribute("data-marquee-scrub");
+
+            const scrollAlternate = marqueeBlock.hasAttribute(
+              "data-marquee-scroll-alternate"
             );
 
-            const marqueeTweens = [];
-
-            marqueeInners.forEach((inner, index) => {
-              // Always create the baseline marquee animation
-              const tween = gsap
-                .to(inner, {
-                  xPercent: -50,
-                  repeat: -1,
-                  duration: marqueeSpeed,
-                  ease: "linear",
-                })
-                .totalProgress(0.5)
-                .timeScale(index % 2 === 0 ? 1 : -1);
-
-              marqueeTweens.push(tween);
-
-              // If velocity enhancement, overlay a scrub on x
-              if (hasVelocity) {
+            if (scrubEnabled) {
+              // Scrub disables marquee animation, ties x directly to scroll
+              marqueeInners.forEach((inner, index) => {
                 gsap.fromTo(
                   inner,
-                  { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
+                  { x: index % 2 === 0 ? "0%" : `-${velocity}%` },
                   {
-                    x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                    x: index % 2 === 0 ? `-${velocity}%` : "0%",
                     scrollTrigger: {
                       trigger: marqueeBlock,
                       start: "top bottom",
@@ -533,29 +520,66 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                     },
                   }
                 );
+              });
+            } else {
+              const marqueeTweens = [];
+
+              marqueeInners.forEach((inner, index) => {
+                // Always baseline animation
+                const tween = gsap
+                  .to(inner, {
+                    xPercent: -50,
+                    repeat: -1,
+                    duration: marqueeSpeed,
+                    ease: "linear",
+                  })
+                  .totalProgress(0.5)
+                  .timeScale(index % 2 === 0 ? 1 : -1);
+
+                marqueeTweens.push(tween);
+
+                // If velocity is set > 0, overlay velocity scrub
+                if (velocity > 0) {
+                  gsap.fromTo(
+                    inner,
+                    { x: index % 2 === 0 ? "0%" : `-${velocity}%` },
+                    {
+                      x: index % 2 === 0 ? `-${velocity}%` : "0%",
+                      scrollTrigger: {
+                        trigger: marqueeBlock,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                      },
+                    }
+                  );
+                }
+              });
+
+              // Scroll direction swap
+              if (scrollAlternate) {
+                let currentScroll = window.scrollY;
+
+                const adjustTimeScale = () => {
+                  const isScrollingDown = window.scrollY > currentScroll;
+
+                  marqueeTweens.forEach((tween, index) =>
+                    gsap.to(tween, {
+                      timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+                      duration: 0.3,
+                      ease: "power2.out",
+                    })
+                  );
+
+                  currentScroll = window.scrollY;
+                };
+
+                window.addEventListener("scroll", adjustTimeScale, {
+                  passive: true,
+                });
               }
-            });
-
-            // Scroll direction alternating
-            let currentScroll = window.scrollY;
-
-            const adjustTimeScale = () => {
-              const isScrollingDown = window.scrollY > currentScroll;
-
-              marqueeTweens.forEach((tween, index) =>
-                gsap.to(tween, {
-                  timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
-                  duration: 0.3,
-                  ease: "power2.out",
-                })
-              );
-
-              currentScroll = window.scrollY;
-            };
-
-            window.addEventListener("scroll", adjustTimeScale, {
-              passive: true,
-            });
+            }
           });
         }
 

@@ -1,16 +1,18 @@
 <!-- prettier-ignore -->
 {% set text = marquee.text or '' %}
-{% set imgs = marquee.imgs or [] %}
+{% set imgs = marquee.imgs or null %}
 {% set count = marquee.count or 1 %}
-{% set velocity = marquee.velocity or false %}
-{% set sensitivity = marquee.sensitivity or 5 %}
+{% set velocity = marquee.velocity or 0 %}
+{% set scroll_alternate = marquee.scroll_alternate or false %}
+{% set scrub = marquee.scrub or false %}
 
 <!-- prettier-ignore -->
 <div
   class="marquee {%if imgs%}marquee--imgs{%endif%}"
-  {% if velocity %}data-marquee-velocity{% endif %}
-  {% if velocity %}data-marquee-sensitivity="{{ sensitivity }}"{% endif %}
+  {% if velocity > 0 %}data-marquee-velocity="{{ velocity }}"{% endif %}
+  {% if scroll_alternate %}data-marquee-scroll-alternate{% endif %}
   {% if text %} aria-label="{{ text | removeTokens }}"{% endif %}
+  {% if scrub %}data-marquee-scrub{% endif %}
   role="region"
 >
   {# Text marquee #}
