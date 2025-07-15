@@ -45,7 +45,7 @@ path: library
   {% include './_includes/library/accordion.njk' %}
 </section>
 
-<div class="section-width-thin">
+<div class="section-width-thin parallax" data-parallax-y="25%" data-parallax-scrub="1.25">
   <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
   <br>
   <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>
@@ -455,7 +455,7 @@ path: library
   <p>A tooltip can be added in two ways: as a component or a utility class. Each method comes with different pros and cons.</p>
   <br>
 
-  <h3 class="h6">Tooltip Component (static)</h3>
+  <h3 class="h6">Tooltip Component (fixed)</h3>
   <p>The component variation <code>tooltip.njk</code> comes with the following config options:</p>
   <ul class="classic-list">
     <li><code>message</code> a string, this is the text within the message bubble.</li>
@@ -492,18 +492,22 @@ path: library
 
   <p>
     Tooltip util 
-    <button
+    <span
       class="tooltip-util" 
       data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
       data-tooltip-min-width="212"
+      role="button"
+      tabindex="0"
     >
       used with inline text
-  </button>
+  </span>
   . You’ll notice that the text bubble is 
   <span
     class="tooltip-util" 
     data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
     data-tooltip-min-width="250"
+    role="button"
+    tabindex="0"
   >
     directionally aware
 </span>
@@ -515,6 +519,8 @@ path: library
     data-tooltip-min-width="250"
     src="/static/img/library/icon-google-info.svg" 
     alt="" 
+    role="button"
+    tabindex="0"
     eleventy:ignore
   />
 </section>

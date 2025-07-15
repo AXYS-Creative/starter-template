@@ -575,26 +575,21 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           }
         }
 
-        // Parallax
+        // Parallax Util
         {
-          const parallaxConfigs = [
-            { selector: ".parallax", y: "15%", scrub: 1 },
-            { selector: ".parallax--strong", y: "25%", scrub: 1 },
-            { selector: ".parallax--reverse", y: "-25%", scrub: 0.25 },
-          ];
+          document.querySelectorAll(".parallax").forEach((el) => {
+            const y = el.dataset.parallaxY || "15%";
+            const scrub = parseFloat(el.dataset.parallaxScrub) || 1;
 
-          parallaxConfigs.forEach(({ selector, y, scrub }) => {
-            document.querySelectorAll(selector).forEach((el) => {
-              gsap.to(el, {
-                y,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub,
-                },
-              });
+            gsap.to(el, {
+              y,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                start: "top bottom",
+                end: "bottom top",
+                scrub,
+              },
             });
           });
         }
