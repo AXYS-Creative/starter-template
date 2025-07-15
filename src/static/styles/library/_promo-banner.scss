@@ -1,0 +1,16 @@
+.promo-banner {
+  border: $test;
+  width: 100%;
+  max-width: $content-width;
+  margin: auto;
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+  }
+
+  &--full-width {
+    width: 100vw;
+    max-width: 100%;
+  }
+}

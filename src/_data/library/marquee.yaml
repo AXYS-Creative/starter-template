@@ -1,17 +1,25 @@
-marquee:
+marquee_1:
   text: "• Sample [%span.text-stroke%]marquee[%span%] • Sometimes known as a [%span.text-stroke%]ticker[%span%] • Use the marquee.text prop to control the content" # Keep at least 64 characters or add more spans
   # imgs:
-  #   - src: /static/img/library/img-sample-1.jpg
-  #     alt: "Sample Image 1"
-  #   - src: /static/img/library/img-sample-2.jpg
-  #     alt: "Sample Image 2"
-  #   - src: /static/img/library/img-sample-3.jpg
-  #     alt: "Sample Image 3"
-  #   - src: /static/img/library/img-sample-4.jpg
-  #     alt: "Sample Image 4"
-  #   - src: /static/img/library/img-sample-5.jpg
-  #     alt: "Sample Image 5"
-  #   - src: /static/img/library/img-sample-6.jpg
-  #     alt: "Sample Image 6"
-  scrub: true
+  scroll: true
+  velocity: true
+  count: 2
+
+marquee_2:
+  # text:
+  imgs:
+    - src: /static/img/library/img-sample-1.jpg
+      alt: "Sample Image 1"
+    - src: /static/img/library/img-sample-2.jpg
+      alt: "Sample Image 2"
+    - src: /static/img/library/img-sample-3.jpg
+      alt: "Sample Image 3"
+    - src: /static/img/library/img-sample-4.jpg
+      alt: "Sample Image 4"
+    - src: /static/img/library/img-sample-5.jpg
+      alt: "Sample Image 5"
+    - src: /static/img/library/img-sample-6.jpg
+      alt: "Sample Image 6"
+  scroll: true
+  velocity: true
   count: 2

@@ -1,36 +1,45 @@
 <!-- prettier-ignore -->
-{% if marquee.text or marquee.imgs %}
-{% set count = marquee.count %}
+{% set text = marquee.text or '' %}
+{% set imgs = marquee.imgs or [] %}
+{% set count = marquee.count or 1 %}
+{% set velocity = marquee.velocity or false %}
+{% set sensitivity = marquee.sensitivity or 5 %}
+
+<!-- prettier-ignore -->
 <div
-  class="marquee {%if marquee.text%}marquee--text{%endif%} {%if marquee.imgs%}marquee--imgs{%endif%} {%if marquee.scrub%}marquee--scrub{%endif%}"
-  data-marquee-alternate="{{ marquee.alternate }}"
-  aria-label="{{ marquee.text | removeTokens }}"
+  class="marquee {%if imgs%}marquee--imgs{%endif%}"
+  {% if velocity %}data-marquee-velocity{% endif %}
+  {% if velocity %}data-marquee-sensitivity="{{ sensitivity }}"{% endif %}
+  {% if text %} aria-label="{{ text | removeTokens }}"{% endif %}
   role="region"
 >
-  {% if marquee.text %} {% for i in range(0, count) %}
-  <div class="marquee-inner" aria-hidden="true">
-    <p class="marquee-inner__split">
-      <span>{{ marquee.text }}</span>
-      <span>{{ marquee.text }}</span>
-    </p>
-  </div>
-  {% endfor %} {% endif %}
+  {# Text marquee #}
+  {% if text %}
+    {% for i in range(0, count) %}
+      <div class="marquee-inner" aria-hidden="true">
+        <p class="marquee-inner__split">
+          <span>{{ text }}</span>
+          <span>{{ text }}</span>
+        </p>
+      </div>
+    {% endfor %}
+  {% endif %}
 
-  <!-- prettier-ignore -->
-  {% if marquee.imgs %} 
-  {% for i in range(0, count) %}
-  <div class="marquee-inner" aria-hidden="true">
-    <div class="marquee-inner__split">
-      {% for img in marquee.imgs %}
-      <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
-      {% endfor %}
-    </div>
-    <div class="marquee-inner__split">
-      {% for img in marquee.imgs %}
-      <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
-      {% endfor %}
-    </div>
-  </div>
-  {% endfor %} {% endif %}
+  {# Image marquee #}
+  {% if imgs %}
+    {% for i in range(0, count) %}
+      <div class="marquee-inner" aria-hidden="true">
+        <div class="marquee-inner__split">
+          {% for img in imgs %}
+            <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
+          {% endfor %}
+        </div>
+        <div class="marquee-inner__split">
+          {% for img in imgs %}
+            <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>
-{% endif %}

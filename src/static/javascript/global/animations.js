@@ -486,35 +486,57 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           }
         }
 
-        // Marquee Animations
+        // Marquee
         {
           let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
 
-          // Standard Marquee
-          {
-            const autoMarquees = gsap.utils.toArray(".marquee-inner");
-            let marqueeTweens = [];
+          // Loop through each marquee block
+          gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
+            const marqueeInners =
+              marqueeBlock.querySelectorAll(".marquee-inner");
+            const hasVelocity = marqueeBlock.hasAttribute(
+              "data-marquee-velocity"
+            );
+            const sensitivity = parseFloat(
+              marqueeBlock.getAttribute("data-marquee-sensitivity")
+            );
 
-            const createMarqueeTweens = () => {
-              marqueeTweens.forEach((tween) => tween.kill()); // Kill previous tweens to prevent stacking memory
-              marqueeTweens = [];
+            const marqueeTweens = [];
 
-              autoMarquees.forEach((elem) => {
-                const tween = gsap
-                  .to(elem, {
-                    xPercent: -50,
-                    repeat: -1,
-                    duration: marqueeSpeed,
-                    ease: "linear",
-                  })
-                  .totalProgress(0.5);
+            marqueeInners.forEach((inner, index) => {
+              // Always create the baseline marquee animation
+              const tween = gsap
+                .to(inner, {
+                  xPercent: -50,
+                  repeat: -1,
+                  duration: marqueeSpeed,
+                  ease: "linear",
+                })
+                .totalProgress(0.5)
+                .timeScale(index % 2 === 0 ? 1 : -1);
 
-                marqueeTweens.push(tween);
-              });
-            };
+              marqueeTweens.push(tween);
 
-            createMarqueeTweens();
+              // If velocity enhancement, overlay a scrub on x
+              if (hasVelocity) {
+                gsap.fromTo(
+                  inner,
+                  { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
+                  {
+                    x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
+                    scrollTrigger: {
+                      trigger: marqueeBlock,
+                      start: "top bottom",
+                      end: "bottom top",
+                      scrub: 1,
+                      invalidateOnRefresh: true,
+                    },
+                  }
+                );
+              }
+            });
 
+            // Scroll direction alternating
             let currentScroll = window.scrollY;
 
             const adjustTimeScale = () => {
@@ -534,45 +556,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             window.addEventListener("scroll", adjustTimeScale, {
               passive: true,
             });
-          }
-
-          // Scrub Effect for Specific Marquees
-          {
-            const scrubMarquees = gsap.utils.toArray(".marquee--scrub");
-            const sensitivity = 5;
-            let scrubTriggers = [];
-
-            const createScrubMarquees = () => {
-              scrubTriggers.forEach((trigger) => trigger.kill());
-              scrubTriggers = [];
-
-              scrubMarquees.forEach((scrubElem) => {
-                const marqueeInners =
-                  scrubElem.querySelectorAll(".marquee-inner");
-
-                marqueeInners.forEach((inner, index) => {
-                  const scrubTween = gsap.fromTo(
-                    inner,
-                    { x: index % 2 === 0 ? "0%" : `-${sensitivity}%` },
-                    {
-                      x: index % 2 === 0 ? `-${sensitivity}%` : "0%",
-                      scrollTrigger: {
-                        trigger: scrubElem,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1,
-                        invalidateOnRefresh: true,
-                      },
-                    }
-                  );
-
-                  scrubTriggers.push(scrubTween.scrollTrigger);
-                });
-              });
-            };
-
-            createScrubMarquees();
-          }
+          });
         }
 
         // Parallax Util

@@ -5822,6 +5822,21 @@ code {
   margin-block-start: var(--spacing--xl);
 }
 
+.promo-banner {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
+  width: 100%;
+  max-width: 1512px;
+  margin: auto;
+}
+.promo-banner--fixed {
+  position: fixed;
+  top: 0;
+}
+.promo-banner--full-width {
+  width: 100vw;
+  max-width: 100%;
+}
+
 .solar-system {
   --top-padding: 8em;
   font-size: 16px;

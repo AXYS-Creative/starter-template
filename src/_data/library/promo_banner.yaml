@@ -1,0 +1,6 @@
+message: Promo banner content here
+btn_url: null
+initial_hide: 3200
+modifiers: ["fixed", "full-width"]
+marquee: true
+# a list of optional classes: 'fixed', 'full_width'
