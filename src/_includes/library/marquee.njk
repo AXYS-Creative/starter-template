@@ -5,14 +5,20 @@
 {% set velocity = marquee.velocity or 0 %}
 {% set scroll_alternate = marquee.scroll_alternate or false %}
 {% set scrub = marquee.scrub or false %}
+{% set speed = marquee.speed or 28 %}
+{% set speed_md = marquee.speed_md or 24 %}
+{% set speed_sm = marquee.speed_sm or 20 %}
 
 <!-- prettier-ignore -->
 <div
   class="marquee {%if imgs%}marquee--imgs{%endif%}"
   {% if velocity > 0 %}data-marquee-velocity="{{ velocity }}"{% endif %}
-  {% if scroll_alternate %}data-marquee-scroll-alternate{% endif %}
   {% if text %} aria-label="{{ text | removeTokens }}"{% endif %}
+  {% if scroll_alternate %}data-marquee-scroll-alternate{% endif %}
   {% if scrub %}data-marquee-scrub{% endif %}
+  {% if speed %}data-marquee-speed="{{ speed }}"{% endif %}
+  {% if speed_md %}data-marquee-speed-md="{{ speed_md }}"{% endif %}
+  {% if speed_sm %}data-marquee-speed-sm="{{ speed_sm }}"{% endif %}
   role="region"
 >
   {# Text marquee #}

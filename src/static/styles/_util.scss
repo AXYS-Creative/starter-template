@@ -144,6 +144,7 @@
 
   .grid-fade {
     position: relative;
+    overflow: hidden;
 
     .grid-fade__overlay {
       position: absolute;
@@ -159,8 +160,9 @@
         // min-width controlled via javascript/config
         // border: $test;
         // opacity: 1 !important;
-        flex: 1;
+        flex: 1 0 24px;
         background: var(--color-background);
+        aspect-ratio: 1;
         // transition: $ease;
         transition: 0.5s ease;
       }

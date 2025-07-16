@@ -4,6 +4,9 @@ marquee_1:
   count: 1
   scroll_alternate: false
   velocity: 0
+  # speed: 28
+  # speed_md: 24
+  # speed_sm: 20
   scrub: false
 
 marquee_2:
@@ -12,6 +15,9 @@ marquee_2:
   count: 2
   scroll_alternate: true
   velocity: 5
+  speed: 60
+  speed_md: 30
+  speed_sm: 25
   scrub: false
 
 marquee_3:
@@ -32,4 +38,7 @@ marquee_3:
   count: 2
   scroll_alternate: true
   velocity: 10
+  # speed: 32
+  # speed_md: 28
+  # speed_sm: 24
   scrub: true

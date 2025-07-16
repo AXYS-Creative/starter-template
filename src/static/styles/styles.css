@@ -989,6 +989,7 @@ code {
   }
   .grid-fade {
     position: relative;
+    overflow: hidden;
   }
   .grid-fade .grid-fade__overlay {
     position: absolute;
@@ -1001,8 +1002,9 @@ code {
     pointer-events: none;
   }
   .grid-fade .grid-fade__overlay--tile {
-    flex: 1;
+    flex: 1 0 24px;
     background: var(--color-background);
+    aspect-ratio: 1;
     transition: 0.5s ease;
   }
   .magnet {
@@ -5838,6 +5840,11 @@ code {
   max-width: 1512px;
   margin: auto;
 }
+@media (max-width: 480px) {
+  .promo-banner {
+    font-size: 12px;
+  }
+}
 .promo-banner--fixed {
   position: fixed;
   top: 0;
@@ -5845,6 +5852,9 @@ code {
 .promo-banner--full-width {
   width: 100vw;
   max-width: 100%;
+}
+.promo-banner .marquee {
+  font-size: inherit;
 }
 
 .solar-system {

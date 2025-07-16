@@ -6,6 +6,10 @@
   max-width: $content-width;
   margin: auto;
 
+  @include mq-max(sm) {
+    font-size: 12px;
+  }
+
   &--fixed {
     position: fixed;
     top: 0;
@@ -14,5 +18,9 @@
   &--full-width {
     width: 100vw;
     max-width: 100%;
+  }
+
+  .marquee {
+    font-size: inherit;
   }
 }

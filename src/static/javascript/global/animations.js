@@ -411,15 +411,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               const tileFadeRandom = section.dataset.gridFadeRandom || "true";
 
               // Determine config based on tileSize (default medium)
-              let tileCount = 40;
-              let minWidth = "12%";
+              let tileCount = 192;
+              let minWidth = "6%";
 
               if (tileSize === "large") {
-                tileCount = 20;
-                minWidth = "18%";
+                tileCount = 40;
+                minWidth = "12%";
               } else if (tileSize === "small") {
-                tileCount = 192;
-                minWidth = "6%";
+                tileCount = 520;
+                minWidth = "3%";
               }
 
               const overlay = document.createElement("div");
@@ -488,13 +488,20 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Marquee
         {
-          let marqueeSpeed = maxSm ? 20 : maxMd ? 24 : 28;
-
           gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
             const marqueeInners =
               marqueeBlock.querySelectorAll(".marquee-inner");
             const velocity = parseFloat(
               marqueeBlock.getAttribute("data-marquee-velocity")
+            );
+            const speedDefault = parseFloat(
+              marqueeBlock.getAttribute("data-marquee-speed")
+            );
+            const speedMd = parseFloat(
+              marqueeBlock.getAttribute("data-marquee-speed-md")
+            );
+            const speedSm = parseFloat(
+              marqueeBlock.getAttribute("data-marquee-speed-sm")
             );
             const scrubEnabled =
               marqueeBlock.hasAttribute("data-marquee-scrub");
@@ -502,6 +509,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const scrollAlternate = marqueeBlock.hasAttribute(
               "data-marquee-scroll-alternate"
             );
+
+            let marqueeSpeed = maxSm ? speedSm : maxMd ? speedMd : speedDefault;
 
             if (scrubEnabled) {
               // Scrub disables marquee animation, ties x directly to scroll
