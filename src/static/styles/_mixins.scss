@@ -342,6 +342,20 @@ $min-breakpoints: (
   }
 }
 
+// Library
+
+@mixin fill-text($color: rgba(125, 125, 125, 0.25)) {
+  display: inline; // for fill line-wrap
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(currentColor, currentColor);
+  -webkit-text-fill-color: $color;
+
+  // filter: drop-shadow(0 0 1px grey); // optional for readability
+  // background-size: 100%; // Alter this for the effect
+}
+
 @mixin gradient-border(
   $deg: 10deg,
   $col-1: var(--color-border-gradient),
@@ -364,16 +378,9 @@ $min-breakpoints: (
   }
 }
 
-// Library
-
-@mixin fill-text($color: rgba(125, 125, 125, 0.25)) {
-  display: inline; // for fill line-wrap
-  background-repeat: no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(currentColor, currentColor);
-  -webkit-text-fill-color: $color;
-
-  // filter: drop-shadow(0 0 1px grey); // optional for readability
-  // background-size: 100%; // Alter this for the effect
+@mixin tooltip-text-decoration {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-brand--secondary);
+  text-underline-offset: $tooltip-undeline-offset;
 }

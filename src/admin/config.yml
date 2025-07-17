@@ -97,6 +97,26 @@ collections:
         name: cover_image
         widget: "image"
         required: false
+  - name: page_home
+    label: Page - Home
+    description: >
+      (Optional) Home Page Description
+    files:
+      - name: home_hero
+        label: Section - Hero
+        file: src/_data/page_home/hero.yaml
+        preview_path: /
+        editor:
+          preview: true
+        fields:
+          - name: section_title
+            label: Section Title
+            widget: string
+            required: true
+          - name: section_desc
+            label: Section Description
+            widget: markdown
+            required: true
   - name: page_library
     label: Page - Library
     description: >

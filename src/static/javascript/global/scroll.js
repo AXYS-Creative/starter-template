@@ -12,21 +12,21 @@ window.addEventListener("scroll", () => {
   let nearBottom = currentScrollY + windowHeight >= documentHeight - 120; // Adjust threshold as needed
 
   if (awayFromTop) {
-    siteHeader.classList.add("away-from-top");
+    siteHeader.classList.add("site-header--away-from-top");
   } else {
-    siteHeader.classList.remove("away-from-top");
+    siteHeader.classList.remove("site-header--away-from-top");
   }
 
   if (scrollingDown && awayFromTop) {
-    siteHeader.classList.add("scrolling-down");
+    siteHeader.classList.add("site-header--scrolling-down");
   } else {
-    siteHeader.classList.remove("scrolling-down");
+    siteHeader.classList.remove("site-header--scrolling-down");
   }
 
   if (nearBottom) {
-    siteHeader.classList.add("near-bottom");
+    siteHeader.classList.add("site-header--near-bottom");
   } else {
-    siteHeader.classList.remove("near-bottom");
+    siteHeader.classList.remove("site-header--near-bottom");
   }
 
   lastScrollY = currentScrollY;

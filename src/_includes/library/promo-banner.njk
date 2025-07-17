@@ -13,7 +13,7 @@
 {# Set data attribute for initial hide delay #}
 {% set dataDelay = '' %}
 {% if initial_hide %}
-  {% set dataDelay = 'data-initial-hide="' + initial_hide + '"' %}
+  {% set dataDelay = 'data-initial-hide=' + initial_hide %}
 {% endif %}
 
 {# Start component #}

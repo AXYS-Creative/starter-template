@@ -1,13 +1,33 @@
 .promo-banner {
-  border: $test;
-
-  font-size: 16px;
+  background: var(--color-surface--1);
+  padding-block: 8px;
   width: 100%;
   max-width: $content-width;
   margin: auto;
+  font-size: 16px;
+  text-align: center;
+  display: block;
 
   @include mq-max(sm) {
     font-size: 12px;
+  }
+
+  &:is(a) {
+    @include mq-motion-allow {
+      transition: $ease, width 0s;
+    }
+
+    @include desktop-hover {
+      filter: brightness(1.25);
+    }
+  }
+
+  &[data-initial-hide] {
+    translate: 0 -100%;
+  }
+
+  &.promo-banner--reveal {
+    translate: 0 0;
   }
 
   &--fixed {
@@ -21,6 +41,10 @@
   }
 
   .marquee {
+    // --clip-sides: 0px;
+
     font-size: inherit;
+    // width: calc(100% - calc(var(--clip-sides) * 2)); // optional side clipping
+    // max-width: 1512px; // optional
   }
 }

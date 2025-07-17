@@ -77,6 +77,7 @@ body {
 .site-header {
   // No static content here to allow clickthrough
   --children-height: 32px;
+  --children-top: var(--body-padding);
 
   & > * {
     z-index: $z-index--header;
@@ -86,7 +87,7 @@ body {
 
   .header-logo {
     @include left-spacing;
-    top: var(--body-padding);
+    top: var(--children-top);
     height: var(--children-height);
     aspect-ratio: 1;
   }
@@ -96,7 +97,7 @@ body {
 
     @include row-center;
     @include right-spacing;
-    top: var(--body-padding);
+    top: var(--children-top);
     gap: var(--links-gap);
     height: var(--children-height);
 
@@ -119,22 +120,21 @@ body {
 
     @include mq-max(lg) {
       @include right-spacing;
-      top: var(--body-padding);
+      top: var(--children-top);
       height: var(--children-height);
       display: block;
-      transition: opacity $ease;
     }
 
     // See _nav-btns.scss for variants
   }
 
-  // &.away-from-top {
+  // &--away-from-top {
   //   > * {
   //     @include hide-content;
   //   }
   // }
 
-  &.scrolling-down {
+  &--scrolling-down {
     > * {
       @include hide-content;
     }
@@ -146,13 +146,27 @@ body {
     }
   }
 
-  // &.near-bottom {
+  // &--near-bottom {
 
   // }
 
-  &.nav-active {
+  &--nav-active {
     > * {
       @include show-content;
+    }
+  }
+
+  &--promo-banner {
+    // promo-banner-height var set in js. See promo-banner.js
+
+    --children-top: calc(var(--body-padding) + var(--promo-banner-height));
+
+    > * {
+      transition: top $ease, opacity $ease;
+    }
+
+    &.site-header--away-from-top {
+      --children-top: var(--body-padding);
     }
   }
 

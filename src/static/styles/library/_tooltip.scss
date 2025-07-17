@@ -32,9 +32,7 @@ $tooltip-undeline-offset: 4px;
     }
 
     &-text {
-      text-decoration: underline dotted var(--color-brand--secondary);
-      text-underline-offset: $tooltip-undeline-offset;
-      // text-underline-position: below;
+      @include tooltip-text-decoration;
       padding-inline: 0.5ch;
     }
 
@@ -119,10 +117,8 @@ $tooltip-undeline-offset: 4px;
 
 // Util (Follows mouse)
 .tooltip-util {
+  @include tooltip-text-decoration;
   cursor: help;
-  text-decoration: underline dotted var(--color-brand--secondary);
-  text-underline-offset: $tooltip-undeline-offset;
-  // text-underline-position: below;
 }
 
 .tooltip-util-message {

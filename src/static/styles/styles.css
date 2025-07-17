@@ -126,6 +126,7 @@ body:has(.load-complete) .hero div {
 
 .site-header {
   --children-height: 32px;
+  --children-top: var(--body-padding);
 }
 .site-header > * {
   z-index: 4;
@@ -134,7 +135,7 @@ body:has(.load-complete) .hero div {
 }
 .site-header .header-logo {
   left: var(--body-padding);
-  top: var(--body-padding);
+  top: var(--children-top);
   height: var(--children-height);
   aspect-ratio: 1;
 }
@@ -149,7 +150,7 @@ body:has(.load-complete) .hero div {
   justify-content: center;
   align-items: center;
   right: var(--body-padding);
-  top: var(--body-padding);
+  top: var(--children-top);
   gap: var(--links-gap);
   height: var(--children-height);
 }
@@ -172,10 +173,9 @@ body:has(.load-complete) .hero div {
 @media (max-width: 1024px) {
   .site-header .site-nav-btn-wrapper {
     right: var(--body-padding);
-    top: var(--body-padding);
+    top: var(--children-top);
     height: var(--children-height);
     display: block;
-    transition: opacity 0.24s ease;
   }
 }
 @media (max-width: 1024px) and (min-width: 1513px) {
@@ -183,26 +183,35 @@ body:has(.load-complete) .hero div {
     right: calc(50% - (756px - var(--body-padding)));
   }
 }
-.site-header.scrolling-down > * {
+.site-header--scrolling-down > * {
   opacity: 0;
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
-.site-header.scrolling-down:focus-within > * {
+.site-header--scrolling-down:focus-within > * {
   opacity: 1;
   pointer-events: all;
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto;
 }
-.site-header.nav-active > * {
+.site-header--nav-active > * {
   opacity: 1;
   pointer-events: all;
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto;
+}
+.site-header--promo-banner {
+  --children-top: calc(var(--body-padding) + var(--promo-banner-height));
+}
+.site-header--promo-banner > * {
+  transition: top 0.24s ease, opacity 0.24s ease;
+}
+.site-header--promo-banner.site-header--away-from-top {
+  --children-top: var(--body-padding);
 }
 .site-header .skip-to-content {
   position: fixed;
@@ -5834,16 +5843,35 @@ code {
 }
 
 .promo-banner {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
-  font-size: 16px;
+  background: var(--color-surface--1);
+  padding-block: 8px;
   width: 100%;
   max-width: 1512px;
   margin: auto;
+  font-size: 16px;
+  text-align: center;
+  display: block;
 }
 @media (max-width: 480px) {
   .promo-banner {
     font-size: 12px;
   }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .promo-banner:is(a) {
+    transition: 0.24s ease, width 0s;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .promo-banner:is(a):hover, .promo-banner:is(a):focus-visible {
+    filter: brightness(1.25);
+  }
+}
+.promo-banner[data-initial-hide] {
+  translate: 0 -100%;
+}
+.promo-banner.promo-banner--reveal {
+  translate: 0 0;
 }
 .promo-banner--fixed {
   position: fixed;
@@ -6385,8 +6413,9 @@ code {
   translate: 0 -50%;
 }
 .tooltip__btn-text {
-  -webkit-text-decoration: underline dotted var(--color-brand--secondary);
-          text-decoration: underline dotted var(--color-brand--secondary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-brand--secondary);
   text-underline-offset: 4px;
   padding-inline: 0.5ch;
 }
@@ -6462,10 +6491,11 @@ code {
 }
 
 .tooltip-util {
-  cursor: help;
-  -webkit-text-decoration: underline dotted var(--color-brand--secondary);
-          text-decoration: underline dotted var(--color-brand--secondary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-brand--secondary);
   text-underline-offset: 4px;
+  cursor: help;
 }
 
 .tooltip-util-message {
