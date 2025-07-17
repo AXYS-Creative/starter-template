@@ -116,7 +116,11 @@ collections:
           - name: section_desc
             label: Section Description
             widget: markdown
-            required: true
+            button: []
+            modes: ["raw"]
+            minimal: true
+            sanitize_preview: true
+            required: false
   - name: page_library
     label: Page - Library
     description: >
