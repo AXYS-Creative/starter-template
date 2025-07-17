@@ -1,13 +1,6 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
 section_desc: |-
-  Section description goes here.
-
-  ```
-  <br>
-  <p>Testing out the markdown/code block feature.</p>
-  ```
-
-  This is not part of the code block
+  <p>Testing out the <a href="https://decapcms.org/docs/widgets/#markdown" class="classic-link">markdown feature</a> which comes with a code block editor.</p>
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
