@@ -1,7 +1,7 @@
 # message: This is where the promo banner 'message' goes.
 btn_url: https://axyscreative.com
 initial_hide: 3200
-# modifiers: ["fixed", "full-width"]
+modifiers: ["fixed", "full-width"]
 marquee:
   text: Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026 Get 50% off — Sales ends 12/31/2026
   # imgs:
