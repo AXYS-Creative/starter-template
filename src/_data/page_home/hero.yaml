@@ -1,5 +1,27 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
-section_desc: <p>Does this convert to html?</p>
+section_desc: >-
+  ## This is a heading 2
+
+
+  This is a paragraph
+
+
+  ```
+
+  <p>This is a code block "p" tag.</p>
+
+  ```
+
+
+  <h2>HTML declared h2</h2>
+
+
+  <p>HTML declared paragraph with a <a href="https://axyscreative.com">nested link</a> inside.</p>
+
+
+
+
+  All of this is using the 'Rich Text' toggle vs 'Markdown'.
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
