@@ -1,10 +1,17 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
-section_desc: Section description goes here.
+section_desc: |-
+  Section description goes here.
+
+  ```
+  <br>
+  <p>Testing out the markdown/code block feature.</p>
+  ```
+
+  This is not part of the code block
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
   url: /library
-  # icon: /static/img/library/icon-google-new-tab.svg
   new_tab: false
 cta_2:
   text: Get Started
