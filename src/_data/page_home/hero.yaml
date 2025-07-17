@@ -1,5 +1,5 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
-section_desc: Let's start with something simple.
+section_desc: <p>Does this convert to html?</p>
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
