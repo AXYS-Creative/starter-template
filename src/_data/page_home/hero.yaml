@@ -1,12 +1,6 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
 section_desc: >-
-  This is markdown text. This <span class="text-stroke">also</span> includes a
-  nested <a href="https://axyscreative.com" target="_blank">classic link</a>
-  that takes you to a cool business.
-
-  <br class="md-up">
-
-  This text should be on a new line above 769px.
+  Description goes here. Supports <a class="classic-link" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
 cta_1:
   text: Visit Library
   text_desc: Visit our component library

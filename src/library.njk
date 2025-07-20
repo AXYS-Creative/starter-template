@@ -204,7 +204,7 @@ path: library
     Note: If you have multiple elements (or components) with shared
     trigger/target names, but want each instance to be unique from one another
     you'll need to wrap each instance in a container with the class
-    <code>glitch-pair</code> Otherwise only the first instance will work
+    <code>cursor-pair</code> Otherwise only the first instance will work
     properly.
   </p>
   <p class="cursor-pair" data-cursor-target="cursor-target__square">
@@ -330,16 +330,61 @@ path: library
   <h3 class="h6">Glitch Scroll</h3>
   <p>
     The class <code>glitch-scroll</code> will scramble the text when the element
-    comes into view. Using with the attribute:
-    <code>data-glitch-once="true"</code> will toggle the effect to occur only
-    the first time the element scrolls into view.
+    comes into view. Use the following data attributes to customize the
+    experience:
   </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-glitch-chars</code> String value determining scramle characters
+      shown. Default is <code>"upperAndLowerCase"</code>
+    </li>
+    <li>
+      <code>data-glitch-reveal-delay</code> Number, the delay of the scroll
+      animation. Default is <code>0.05</code>
+    </li>
+    <li>
+      <code>data-glitch-duration</code> Number, the duration of the glitch
+      animation. Default is <code>0.75</code>
+    </li>
+    <li>
+      <code>data-glitch-once</code> An optional boolean that will toggle the
+      effect to occur only the first time the element scrolls into view. Default
+      is <code>false</code>
+    </li>
+    <li>
+      <code>data-glitch-trigger</code> String, the class or id (don't forget .
+      or #) for the element that triggers the effect. Default is the glitch
+      element itself.
+    </li>
+    <li>
+      <code>data-glitch-start</code> String, the parameters for scrollTrigger.
+      Default is <code>"top 98%"</code>
+    </li>
+    <li>
+      <code>data-glitch-end</code> String, the parameters for scrollTrigger.
+      Default is <code>"bottom top"</code>
+    </li>
+    <li>
+      <code>data-glitch-markers</code> Optional boolean, markers to help
+      build/debug. Default is
+      <code>false</code>
+    </li>
+  </ul>
   <p class="glitch-scroll">
     This will glitch out as many times as you scroll into view. Default
     behavior.
   </p>
   <p class="glitch-scroll" data-glitch-once="true">
     This will only glitch out once.
+  </p>
+  <p
+    class="glitch-scroll"
+    data-glitch-trigger=".glitch-trigger-subtitle"
+    data-glitch-end="bottom center"
+  >
+    This will glitch out when the sub title "Glitch Trigger/Target" comes into
+    view. Useful for pinned sections. Don't forget to add the '.' before the
+    class name!
   </p>
 
   <br />
@@ -354,7 +399,7 @@ path: library
 
   <br />
 
-  <h3 class="h6">Glitch Trigger/Target</h3>
+  <h3 class="h6 glitch-trigger-subtitle">Glitch Trigger/Target</h3>
   <p>
     The class <code>glitch-trigger</code> will act as the hover/focus point to
     trigger the glitch elsewhere. This requires the

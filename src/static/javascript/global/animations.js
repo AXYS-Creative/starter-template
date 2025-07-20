@@ -63,18 +63,23 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
       // GLOBAL Animations (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
         // - Animate any element with the class 'gsap-animate' using the 'animate' companion class
-        const targetElements = document.querySelectorAll(".gsap-animate");
+        const gsapElems = document.querySelectorAll(".gsap-animate");
 
-        targetElements.forEach((targetElem) => {
-          gsap.to(targetElem, {
+        gsapElems.forEach((gsapElem) => {
+          let startVal = gsapElem.dataset.gsapStart || "top 98%";
+          let endVal = gsapElem.dataset.gsapEnd || "bottom top";
+          let showMarkers = gsapElem.dataset.gsapMarkers === "true";
+
+          gsap.to(gsapElem, {
             scrollTrigger: {
-              trigger: targetElem,
-              start: "top 98%",
-              end: "bottom top",
-              onEnter: () => targetElem.classList.add("animate"),
-              onLeave: () => targetElem.classList.remove("animate"),
-              onEnterBack: () => targetElem.classList.add("animate"),
-              onLeaveBack: () => targetElem.classList.remove("animate"),
+              trigger: gsapElem,
+              start: startVal,
+              end: endVal,
+              onEnter: () => gsapElem.classList.add("animate"),
+              onLeave: () => gsapElem.classList.remove("animate"),
+              onEnterBack: () => gsapElem.classList.add("animate"),
+              onLeaveBack: () => gsapElem.classList.remove("animate"),
+              markers: showMarkers,
             },
           });
         });
@@ -87,7 +92,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           splitCharacters.forEach((el) => {
             new SplitText(el, {
               type: "chars",
-              charsClass: "split-chars__char",
+              charsClass: "split-chars__char++",
               tag: "span",
             });
           });
@@ -95,7 +100,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           splitWords.forEach((el) => {
             new SplitText(el, {
               type: "words",
-              charsClass: "split-words__word",
+              wordsClass: "split-words__word++",
               tag: "span",
             });
           });
@@ -233,7 +238,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Glitch Text (Uses gsap scrambleText)
+        // Glitch Text (Uses gsap scrambleText) TODO: Consider making shared configs across glitch effects, e.g. data-glitch-chars could be used for all instances.
         {
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
           const glitchTextElems = document.querySelectorAll(".glitch-text");
@@ -249,19 +254,24 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const originalText = el.textContent;
             const chars = el.dataset.glitchChars || "upperAndLowerCase";
             const revealDelay =
-              parseFloat(el.dataset.glitchRevealDelay) || 0.05; // Ensure revealDelay is less than the duration
+              parseFloat(el.dataset.glitchRevealDelay) || 0.05;
             const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
             const playOnceAttr = el.dataset.glitchOnce;
-            const playOnce = playOnceAttr === "true"; // Default behavior — Change to playOnceAttr !== "false" to swap the behavior
+            const playOnce = playOnceAttr === "true"; // Default is false (repeat), only true if explicitly set
+            const glitchTrigger = el.dataset.glitchTrigger || el; // Requires . or #
+            const glitchStart = el.dataset.glitchStart || "top 98%";
+            const glitchEnd = el.dataset.glitchEnd || "bottom top"; // Only on "playOnce = false"
+            const glitchMarkers = el.dataset.glitchMarkers === "true";
 
             if (playOnce) {
-              // 🔁 Play once using scrollTrigger animation timeline
+              // 🔁 Play once on scroll
               gsap
                 .timeline({
                   scrollTrigger: {
-                    trigger: el,
-                    start: "top 98%",
+                    trigger: glitchTrigger,
+                    start: glitchStart,
                     once: true,
+                    markers: glitchMarkers,
                   },
                 })
                 .to(el, {
@@ -273,18 +283,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   duration,
                 });
             } else {
-              // 🔁 Play every time
-              gsap.to(el, {
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top 98%",
-                  toggleActions: "play reset play reset",
-                  onEnter: () => animateScramble(),
-                  onEnterBack: () => animateScramble(),
-                },
-              });
-
-              function animateScramble() {
+              // 🔁 Repeat on scroll in both directions
+              const animateScramble = () => {
                 el.textContent = originalText;
 
                 gsap.to(el, {
@@ -295,7 +295,18 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   },
                   duration,
                 });
-              }
+              };
+
+              gsap.to(el, {
+                scrollTrigger: {
+                  trigger: glitchTrigger,
+                  start: glitchStart,
+                  end: glitchEnd,
+                  onEnter: animateScramble,
+                  onEnterBack: animateScramble,
+                  markers: glitchMarkers,
+                },
+              });
             }
           });
 
@@ -960,9 +971,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
     }
   );
 
-  // Refresh ScrollTrigger instances on page load and resize
+  // Refresh ScrollTrigger after a brief page load. This allows images to use lazy loading and content to generate from 11ty
   window.addEventListener("load", () => {
-    ScrollTrigger.refresh();
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500); // try 200–500ms if needed
   });
 
   // Greater than 520 so it doesn't refresh on  mobile(dvh)
@@ -972,28 +985,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
     });
   }
 
-  // Fix scrollTrigger issue with loading="lazy" (alternate approach loading="eager")
-  {
-    function handleLazyLoad(config = {}) {
-      let lazyImages = gsap.utils.toArray("img[loading='lazy']"),
-        timeout = gsap
-          .delayedCall(config.timeout || 1, ScrollTrigger.refresh)
-          .pause(),
-        lazyMode = config.lazy !== false,
-        imgLoaded = lazyImages.length,
-        onImgLoad = () =>
-          lazyMode
-            ? timeout.restart(true)
-            : --imgLoaded || ScrollTrigger.refresh();
-      lazyImages.forEach((img, i) => {
-        lazyMode || (img.loading = "eager");
-        img.naturalWidth
-          ? onImgLoad()
-          : img.addEventListener("load", onImgLoad);
-      });
-    }
-
-    // Timeout is how many seconds it throttles the loading events that call ScrollTrigger.refresh()
-    handleLazyLoad({ lazy: false, timeout: 1 });
-  }
+  // Any page specific scrollTrigger fix (Optional)
+  // if (document.querySelector(".main-library")) {
+  //   window.addEventListener("load", () => {
+  //     setTimeout(() => {
+  //       ScrollTrigger.refresh();
+  //     }, 500); // try 200–500ms if needed
+  //   });
+  // }
 }
