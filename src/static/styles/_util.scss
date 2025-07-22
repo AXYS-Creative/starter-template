@@ -270,12 +270,17 @@
       }
     }
 
-    &__title {
+    &__title,
+    &__subtitle {
       @include fade-snap-left(0.08s);
     }
 
     &__desc {
       @include fade-snap-left(0.12s);
+    }
+
+    &__li {
+      @include fade-snap-left(0.16s);
     }
   }
 }
