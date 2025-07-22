@@ -1108,6 +1108,28 @@ code {
     transition: 0.3s ease !important;
   }
 }
+@media (prefers-reduced-motion: no-preference) {
+  .gsap-animate-section__title {
+    opacity: 0;
+    translate: 96px 0;
+    transition: 0.24s cubic-bezier(0.02, 1.14, 0.7, 1.24) 0.08s;
+  }
+  .gsap-animate-section__title.gsap-animated {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .gsap-animate-section__desc {
+    opacity: 0;
+    translate: 96px 0;
+    transition: 0.24s cubic-bezier(0.02, 1.14, 0.7, 1.24) 0.12s;
+  }
+  .gsap-animate-section__desc.gsap-animated {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
 @media all {
   .xxl-up {
     display: none;

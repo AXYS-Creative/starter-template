@@ -255,6 +255,29 @@
       }
     }
   }
+
+  .gsap-animate-section {
+    @mixin fade-snap-left($delay: 0s) {
+      @include mq-motion-allow {
+        opacity: 0;
+        translate: 96px 0;
+        transition: 0.24s $cubic-ease-back $delay;
+
+        &.gsap-animated {
+          opacity: 1;
+          translate: 0 0;
+        }
+      }
+    }
+
+    &__title {
+      @include fade-snap-left(0.08s);
+    }
+
+    &__desc {
+      @include fade-snap-left(0.12s);
+    }
+  }
 }
 
 // Media Query Utility, be mindful of flex vs block

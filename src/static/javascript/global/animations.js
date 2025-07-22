@@ -62,27 +62,43 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
       // GLOBAL Animations (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
-        // - Animate any element with the class 'gsap-animate' using the 'animate' companion class
-        const gsapElems = document.querySelectorAll(".gsap-animate");
+        // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
+        {
+          const gsapElems = document.querySelectorAll(".gsap-animate");
 
-        gsapElems.forEach((gsapElem) => {
-          let startVal = gsapElem.dataset.gsapStart || "top 98%";
-          let endVal = gsapElem.dataset.gsapEnd || "bottom top";
-          let showMarkers = gsapElem.dataset.gsapMarkers === "true";
+          gsapElems.forEach((gsapElem) => {
+            const animOnce = gsapElem.dataset.gsapOnce === "true";
+            const animTrigger = gsapElem.dataset.gsapTrigger || gsapElem;
+            const animStart = gsapElem.dataset.gsapStart || "top 98%";
+            const animEnd = gsapElem.dataset.gsapEnd || "bottom 2%";
+            const animMarkers = gsapElem.dataset.gsapMarkers === "true";
 
-          gsap.to(gsapElem, {
-            scrollTrigger: {
-              trigger: gsapElem,
-              start: startVal,
-              end: endVal,
-              onEnter: () => gsapElem.classList.add("animate"),
-              onLeave: () => gsapElem.classList.remove("animate"),
-              onEnterBack: () => gsapElem.classList.add("animate"),
-              onLeaveBack: () => gsapElem.classList.remove("animate"),
-              markers: showMarkers,
-            },
+            if (animOnce) {
+              ScrollTrigger.create({
+                trigger: animTrigger,
+                start: animStart,
+                end: animEnd,
+                once: true,
+                onEnter: () => {
+                  gsapElem.classList.add("gsap-animated");
+                },
+                markers: animMarkers,
+              });
+            } else {
+              // Repeating animation
+              ScrollTrigger.create({
+                trigger: animTrigger,
+                start: animStart,
+                end: animEnd,
+                onEnter: () => gsapElem.classList.add("gsap-animated"),
+                onLeave: () => gsapElem.classList.remove("gsap-animated"),
+                onEnterBack: () => gsapElem.classList.add("gsap-animated"),
+                onLeaveBack: () => gsapElem.classList.remove("gsap-animated"),
+                markers: animMarkers,
+              });
+            }
           });
-        });
+        }
 
         // GSAP SplitText (characters & words)
         {
@@ -260,7 +276,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const playOnce = playOnceAttr === "true"; // Default is false (repeat), only true if explicitly set
             const glitchTrigger = el.dataset.glitchTrigger || el; // Requires . or #
             const glitchStart = el.dataset.glitchStart || "top 98%";
-            const glitchEnd = el.dataset.glitchEnd || "bottom top"; // Only on "playOnce = false"
+            const glitchEnd = el.dataset.glitchEnd || "bottom 2%"; // Only on "playOnce = false"
             const glitchMarkers = el.dataset.glitchMarkers === "true";
 
             if (playOnce) {

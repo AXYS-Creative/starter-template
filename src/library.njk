@@ -133,16 +133,21 @@ path: library
   </ul>
 
   <div class="counter-section__group">
-    {% set counter_data = library.counter.counter_1 %} {% include
-    "./_includes/library/counter.njk" %} {% set counter_data =
-    library.counter.counter_2 %} {% include "./_includes/library/counter.njk" %}
-    {% set counter_data = library.counter.counter_3 %} {% include
-    "./_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_1 %} 
+    {% include "./_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_2 %} 
+    {% include "./_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_3 %} 
+    {% include "./_includes/library/counter.njk" %}
   </div>
 </section>
 
 <section class="cursor-target-section library-section">
   <h2 class="h5">[ Cursor Target - Util ]</h2>
+  <strong>Requires custom mouse cursor*</strong>
   <p>
     If using a mouse cursor, you can set up a trigger and target to spice things
     up! The class <code>cursor-trigger</code> goes on the trigger element. It
@@ -353,7 +358,7 @@ path: library
     </li>
     <li>
       <code>data-glitch-trigger</code> String, the class or id (don't forget .
-      or #) for the element that triggers the effect. Default is the glitch
+      or #) of the element that triggers the effect. Default is the glitch
       element itself.
     </li>
     <li>
@@ -445,6 +450,43 @@ path: library
       non, earum reiciendis, minus consequuntur dolores.
     </p>
   </div>
+</section>
+
+<section class="gsap-animate-section library-section">
+  <h2 class="gsap-animate-section__title gsap-animate h5">
+    [ GSAP animate - Util ]
+  </h2>
+  <p class="gsap-animate-section__desc gsap-animate">
+    With the utility class <code>gsap-animate</code>, you'll unlock the powers
+    of GSAP's <code>scrollTrigger</code> plugin. When the element comes into
+    view, you'll be able to apply additional styles with the temporary
+    <code>gsap-animated</code> class.
+  </p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-gsap-once</code> Boolean, to toggle the animation only the
+      first time. Default is <code>false</code>.
+    </li>
+    <li>
+      <code>data-gsap-trigger</code> String, the class or id (don't forget . or
+      #) of the element that triggers the effect. Default is the gsap-animate
+      element itself.
+    </li>
+    <li>
+      <code>data-gsap-start</code> String, the parameters for scrollTrigger.
+      Default is <code>"top 98%"</code>
+    </li>
+    <li>
+      <code>data-gsap-end</code> String, the parameters for scrollTrigger.
+      Default is <code>"bottom 2%"</code>
+    </li>
+    <li>
+      <code>data-gsap-markers</code> Boolean, markers to help build/debug.
+      Default is
+      <code>false</code>
+    </li>
+  </ul>
 </section>
 
 <section class="image-comparison-section library-section">
@@ -593,6 +635,7 @@ path: library
 <section class="tilt-cards library-section hide-cursor">
   <h2 class="h5">[ Tilt cards - Util ]</h2>
 
+  <strong>Requires additional script tag*</strong>
   <p>
     A subtle 3d effect for desktop users that uses the
     <a
@@ -600,68 +643,78 @@ path: library
       href="https://micku7zu.github.io/vanilla-tilt.js/"
       target="_blank"
       >vanilla tilt js library/cdn</a
-    >. Comes with the following configs:
+    >. Throw the <code>data-tilt</code> attribute on any element to activate.
+    Comes with the following configs:
   </p>
   <ul class="classic-list tilt-target__card">
     <li>
-      <code>reverse</code> boolean, Reverse the tilt direction. Default is
+      <code>data-tilt-reverse</code> boolean, Reverse the tilt direction.
+      Default is
       <code>false</code>
     </li>
     <li>
-      <code>max</code> number, max tilt rotation. Default is <code>35</code>
+      <code>data-tilt-max</code> number, max tilt rotation. Default is
+      <code>35</code>
     </li>
     <li>
-      <code>startX</code> number, resting tilt along x-axis. Default is
+      <code>data-tilt-startX</code> number, resting tilt along x-axis. Default
+      is
       <code>0</code>
     </li>
     <li>
-      <code>startY</code> number, resting tilt along y-axis. Default is
+      <code>data-tilt-startY</code> number, resting tilt along y-axis. Default
+      is
       <code>0</code>
     </li>
     <li>
-      <code>perspective</code> number, lower value is more dramatic. Default is
+      <code>data-tilt-perspective</code> number, lower value is more dramatic.
+      Default is
       <code>1000</code>
     </li>
     <li>
-      <code>scale</code> number scale on hover (subtle pop effect). Default is
+      <code>data-tilt-scale</code> number scale on hover (subtle pop effect).
+      Default is
       <code>1</code>
     </li>
     <li>
-      <code>speed</code> number, speed of enter/exit transition. Default is
+      <code>data-tilt-speed</code> number, speed of enter/exit transition.
+      Default is
       <code>300</code>
     </li>
     <li>
-      <code>transition</code> boolean, set a transition on enter/exit. Default
-      is <code>true</code>
+      <code>data-tilt-transition</code> boolean, set a transition on enter/exit.
+      Default is <code>true</code>
     </li>
     <li>
-      <code>axis</code> string, limit to only one axis. Takes
+      <code>data-tilt-axis</code> string, limit to only one axis. Takes
       <code>x | y | null</code> Default is <code>null</code>
     </li>
     <li>
-      <code>reset</code> boolean, toggle tilt reset on exit. Default is
+      <code>data-tilt-reset</code> boolean, toggle tilt reset on exit. Default
+      is
       <code>true</code>
     </li>
     <li>
-      <code>easing</code> string, easing value on enter/exit. Accepts
+      <code>data-tilt-easing</code> string, easing value on enter/exit. Accepts
       cubic-bezier curves. Default is <code>cubic-bezier(.03,.98,.52,.99)</code>
     </li>
     <li>
-      <code>glare</code> boolean, toggle glare effect. Default is
+      <code>data-tilt-glare</code> boolean, toggle glare effect. Default is
       <code>false</code>
     </li>
     <li>
-      <code>max-glare</code> number between 0 and 1 for opacity. Default is
+      <code>data-tilt-max-glare</code> number between 0 and 1 for opacity.
+      Default is
       <code>1</code>
     </li>
     <li>
-      <code>mouse-event-element</code> string, css class or link to HTML elem
-      that triggers tilt effect. Requires '.' on class. Default is
+      <code>data-tilt-mouse-event-element</code> string, css class or link to
+      HTML elem that triggers tilt effect. Requires '.' on class. Default is
       <code>null</code>
     </li>
     <li>
-      <code>gyroscope</code> boolean, to toggle on orientation devices. Default
-      is <code>true</code>
+      <code>data-tilt-gyroscope</code> boolean, to toggle on orientation
+      devices. Default is <code>true</code>
     </li>
   </ul>
   <div class="tilt-card-group">
@@ -967,7 +1020,8 @@ path: library
   <br />
   <ol class="classic-list">
     <li>
-      Ensure you have the <code>video-overlay.njk</code> component in your app.
+      Ensure you have the <code>video-overlay.njk</code> component and
+      <code>video-overlay.js</code> file in your app.
     </li>
     <li>
       Add the utility class of <code>video-toggle</code> to your button/trigger.
