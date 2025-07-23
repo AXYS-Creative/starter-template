@@ -60,7 +60,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         }
       }
 
-      // GLOBAL Animations (Consider placement of code block. Sometimes may need to be placed above or beneath others)
+      // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
         // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
         {
@@ -220,36 +220,105 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
+        // Fade Text
+        {
+          const fadeElems = document.querySelectorAll(".fade-text");
+
+          fadeElems.forEach((el) => {
+            const fadeType = el.dataset.fadeType || "chars"; // "chars" or "words"
+            const fadeStyle = el.dataset.fadeStyle || "random"; // "linear" or "random"
+            const fadeDuration = parseFloat(el.dataset.fadeDuration) || 0.25;
+            const fadeScrub = el.dataset.fadeScrub === "true"; // default false
+            const fadeOnce = !fadeScrub && el.dataset.fadeOnce === "true"; // only if scrub is false
+            const fadeStart = el.dataset.fadeStart || "top 98%";
+            const fadeEnd = el.dataset.fadeEnd || "bottom 2%";
+            const fadeMarkers = el.dataset.fadeMarkers || false;
+
+            const split = new SplitText(el, {
+              type: fadeType,
+              [`${fadeType}Class`]: `fade-text__${fadeType}`,
+            });
+
+            const targets = fadeType === "words" ? split.words : split.chars;
+
+            const scrollTriggerConfig = {
+              trigger: el,
+              start: fadeStart,
+              end: fadeEnd,
+              scrub: fadeScrub || false,
+              markers: fadeMarkers,
+            };
+
+            if (!fadeScrub) {
+              scrollTriggerConfig.toggleActions = fadeOnce
+                ? "play none none none"
+                : "play reset play reset";
+
+              scrollTriggerConfig.onEnter = () =>
+                el.classList.add("fade-text--active");
+
+              scrollTriggerConfig.onLeaveBack = () => {
+                if (!fadeOnce) el.classList.remove("fade-text--active");
+              };
+
+              scrollTriggerConfig.once = fadeOnce;
+            }
+
+            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+            tl.fromTo(
+              fadeStyle === "random" ? gsap.utils.shuffle(targets) : targets,
+              { opacity: 0, scale: 0.92 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: fadeDuration,
+                stagger: 0.0125,
+                ease: "linear",
+              }
+            );
+          });
+        }
+
         // Fill Text - Scrub only
         {
-          // Use 'fill-text' for default, then 'data-fill-text-speed' to modify animation speed
-          const fillText = document.querySelectorAll(".fill-text");
+          const fillTextElems = document.querySelectorAll(".fill-text");
 
-          fillText.forEach((el) => {
-            const fillSpeed = el.dataset.fillTextSpeed;
-            let end = "bottom 60%";
+          fillTextElems.forEach((el) => {
+            const speed = el.dataset.fillSpeed;
+            const scrubAttr = el.dataset.fillScrub;
+            const onceAttr = el.dataset.fillOnce;
+            const markersAttr = el.dataset.fillMarkers === "true";
 
-            // Modifier classes –— Higher percentage ends the animation faster
-            if (fillSpeed === "fast") {
-              end = "bottom 80%";
-            } else if (fillSpeed === "slow") {
-              end = "bottom 40%";
-            }
+            const scrub = scrubAttr !== "false";
+            const once = onceAttr === "true";
+
+            // Set end point based on speed
+            const end =
+              speed === "fast"
+                ? "bottom 80%"
+                : speed === "slow"
+                ? "bottom 40%"
+                : "bottom 60%";
+
+            const scrollTrigger = {
+              trigger: el,
+              start: scrub ? "top 90%" : "top 98%",
+              end: scrub ? end : "bottom 2%",
+              ...(scrub
+                ? { scrub }
+                : {
+                    toggleActions: once
+                      ? "play none none none"
+                      : "play reset play reset",
+                  }),
+              markers: markersAttr,
+            };
 
             gsap.fromTo(
               el,
-              {
-                backgroundSize: "0%",
-              },
-              {
-                backgroundSize: "100%",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top 90%",
-                  end: end,
-                  scrub: 1,
-                },
-              }
+              { backgroundSize: "0%" },
+              { backgroundSize: "100%", scrollTrigger }
             );
           });
         }

@@ -107,6 +107,17 @@
     }
   }
 
+  .fade-text {
+    .fade-text__word,
+    .fade-text__char {
+      display: inline-block;
+    }
+
+    // &.fade-text--active {
+
+    // }
+  }
+
   .fill-text,
   .fill-text-hover {
     @include fill-text;
@@ -204,6 +215,17 @@
     @include column-start;
     gap: 24px;
 
+    .fade-text {
+      code.gsap-animate {
+        background: transparent;
+
+        &.gsap-animated {
+          background: var(--color-surface--1);
+          transition: 0.48s ease 0.96s;
+        }
+      }
+    }
+
     .tilt-card-group {
       @include row-start;
       flex-wrap: wrap;
@@ -257,6 +279,8 @@
   }
 
   .gsap-animate-section {
+    overflow: hidden;
+
     @mixin fade-snap-left($delay: 0s) {
       @include mq-motion-allow {
         opacity: 0;
@@ -380,6 +404,10 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  // text-fade
+  // text-fill
+
   .text-glow {
     filter: drop-shadow(0px 0px 6px #fff);
   }
@@ -446,7 +474,7 @@
     font-weight: 900;
   }
 
-  // margin util
+  // margin util: m-16 = margin: 16px || mx8 = margin-left/right: 8px || mt--4 = margin-top: -4px
   $min: -128;
   $max: 128;
   $step: 2;

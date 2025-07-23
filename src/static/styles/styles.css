@@ -758,7 +758,7 @@ code {
   font-weight: 700;
   color: var(--color-font--primary);
   background: var(--color-surface--1);
-  padding: 4px;
+  padding: 4px 8px;
   border-radius: var(--radius--sm);
 }
 
@@ -944,6 +944,10 @@ code {
     flex: 1;
     width: 100%;
   }
+  .fade-text .fade-text__word,
+  .fade-text .fade-text__char {
+    display: inline-block;
+  }
   .fill-text,
   .fill-text-hover {
     display: inline;
@@ -1046,6 +1050,13 @@ code {
     align-items: flex-start;
     gap: 24px;
   }
+  .library-section .fade-text code.gsap-animate {
+    background: transparent;
+  }
+  .library-section .fade-text code.gsap-animate.gsap-animated {
+    background: var(--color-surface--1);
+    transition: 0.48s ease 0.96s;
+  }
   .library-section .tilt-card-group {
     display: flex;
     justify-content: center;
@@ -1106,6 +1117,9 @@ code {
   .library-section .tilt-card-group .tilt-card--3d ol,
   .library-section .tilt-card-group .tilt-card--3d .cta-group {
     transition: 0.3s ease !important;
+  }
+  .gsap-animate-section {
+    overflow: hidden;
   }
 }
 @media (prefers-reduced-motion: no-preference) {

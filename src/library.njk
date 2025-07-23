@@ -224,39 +224,106 @@ path: library
   </p>
 </section>
 
+<section class="fade-text-section library-section">
+  <h2 class="h5 fade-text">[ Fade Text - Util ]</h2>
+  <p class="fade-text" data-fade-duration="0.5">
+    This uses GSAP's <strong>ScrollTrigger</strong> and
+    <strong>SplitText</strong> plugins to fade in either words or characters.
+  </p>
+  <p class="fade-text" data-fade-type="words" data-fade-duration="0.5">
+    This paragraph will animate each word rather than each character. Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
+    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
+    sequi dignissimos dolores? Magni, nisi quae.
+  </p>
+  <p
+    class="fade-text"
+    data-fade-type="chars"
+    data-fade-once="true"
+    data-fade-style="linear"
+    data-fade-duration="2"
+  >
+    This text should only fade in the <strong>very first time!</strong> The
+    letter split should also take a bit longer than expected (2s), making use of
+    the data-fill-duration attribute.
+  </p>
+  <br />
+  <p class="fade-text">
+    You can use the <code class="gsap-animate">fade-text</code> utility class
+    with the following attributes:
+  </p>
+  <ul class="classic-list">
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-type</code> A string that takes in
+      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">chars</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-style</code> A string that takes in
+      <code class="gsap-animate">linear | random</code>. Defaults to
+      <code class="gsap-animate">random</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-duration</code> A number to control
+      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-once</code> A boolean to fire to
+      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+  </ul>
+</section>
+
 <section class="fill-text-section">
   <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br />
   <br />
-  <h3 class="h6 fill-text" data-fill-text-speed="slow">
+  <strong class="fill-text">
+    Note: Flexbox affects the line by line animation <sup>*</sup>
+  </strong>
+  <br />
+  <br />
+  <h3 class="h6 fill-text" data-fill-speed="slow">
     This is a random slow title.....
   </h3>
   <br />
   <br />
-  <p class="fill-text" data-fill-text-speed="fast">
+  <p
+    class="fill-text"
+    data-fill-speed="fast"
+    data-fill-scrub="false"
+    data-fill-once="true"
+    data-fill-markers="false"
+  >
     Use the <strong>'fill-text'</strong> utility class to get this effect.
-    Modify the speed with <strong>'data-fill-text-speed'</strong> Lorem ipsum
-    dolor sit amet consectetur adipisicing elit. Perferendis earum maxime ab,
-    accusantium rem ex assumenda doloribus officia corrupti deserunt
-    repellendus, rerum nisi beatae debitis dolore eligendi accusamus dolor
-    voluptate facilis quos odit deleniti pariatur a. Consequuntur qui laudantium
-    esse rem commodi odio assumenda, architecto officiis consectetur quas, earum
-    vel. Harum incidunt eligendi alias commodi expedita enim perspiciatis sequi
-    nemo, numquam architecto ipsam? Perspiciatis eaque delectus fugit tempora
-    iste iusto aspernatur asperiores, atque esse corporis, id mollitia labore
-    eos doloremque consequatur! Qui officia natus voluptates cumque eum fugit
-    aut iure amet quam, earum libero, rerum obcaecati beatae totam, quaerat
-    facere harum! Fugiat neque laborum aspernatur ut. Minima soluta, harum
-    quisquam repellat vitae eveniet doloribus omnis excepturi? A officia eius
-    perferendis.
+    Modify the speed with <strong>'data-fill-text-speed'</strong> This comes
+    with aditional configs, one of which detaches scrub and allows you to fire
+    the animation once. Lorem ipsum dolor, sit amet consectetur adipisicing
+    elit. Non laudantium ad tempora facilis tempore, enim earum molestiae iusto
+    doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum quia.
+    Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab
+    odio laborum!
   </p>
   <br />
   <br />
   <ul class="classic-list">
     <li>Requires the util class <code>fill-text</code></li>
     <li>
-      Adjust the speed with <code>data-fill-text-speed</code> Accepts either
+      <code>data-fill-speed</code> Optional string, accepts either
       <code>fast | slow | null</code> Default is <code>null</code>
+    </li>
+    <li>
+      <code>data-fill-scrub</code> boolean, to toggle scrubbing. Defaults to
+      <code>true</code>
+    </li>
+    <li>
+      <code>data-fill-once</code> boolean, to toggle multiple animations when
+      scrolling to the element. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>data-fill-markers</code> boolean, to toggle visual debugging
+      markers. Defaults to <code>false</code>
     </li>
   </ul>
 </section>
