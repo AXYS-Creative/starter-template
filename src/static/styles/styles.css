@@ -5628,6 +5628,13 @@ code {
   width: -moz-fit-content;
   width: fit-content;
 }
+.marquee-inner .alternate-img {
+  display: inline-block;
+  transition: 0.24s ease;
+}
+.marquee-inner:nth-of-type(odd) .alternate-img {
+  rotate: 180deg;
+}
 .marquee-inner__split {
   font-family: inherit;
   font-size: inherit;
@@ -5657,6 +5664,12 @@ code {
 }
 .marquee--imgs picture img {
   height: 100%;
+}
+.marquee--alternated .alternate-img {
+  rotate: 180deg;
+}
+.marquee--alternated .marquee-inner:nth-of-type(odd) .alternate-img {
+  rotate: 0deg;
 }
 
 .mouse-cursor {

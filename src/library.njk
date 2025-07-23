@@ -584,34 +584,33 @@ path: library
       another. Defaults to <code>1</code>
     </li>
     <li>
-      <code>data-marquee-scroll-alternate</code> A boolean, alternate the
-      marquee animation direction based on the user's scroll direction. Defaults
-      to
-      <code>false</code>
+      <code>scroll-alternate</code> A boolean, alternate the marquee animation
+      direction based on the user's scroll direction. Defaults to
+      <code>false</code>. Also adds the modifier class
+      <code>marquee--alternate</code>.
     </li>
     <li>
-      <code>data-marquee-velocity</code> A number that adjusts how dramatic the
-      translate is (also used with <code>scrub</code>). Default is
-      <code>0</code> (which removes the velocity and works nicely with
+      <code>velocity</code> A number that adjusts how dramatic the translate is
+      (also used with <code>scrub</code>). Default is <code>0</code> (which
+      removes the velocity and works nicely with
       <code>scroll_alternate: false</code> ).
     </li>
     <li>
-      <code>data-marquee-scrub</code> A boolean that disabled the auto
-      scrolling/panning and instead hoooks up the scroll to the user's scroll
-      position. Requires
-      <code>velocity</code>
+      <code>scrub</code> A boolean that disabled the auto scrolling/panning and
+      instead hoooks up the scroll to the user's scroll position. Requires
+      <code>velocity</code> and defaults to <code>false</code>
     </li>
     <li>
-      <code>data-marquee-speed</code> A number representing the animation speed
-      above 769px.
+      <code>speed</code> A number representing the animation speed above 769px.
+      Defaults to <code>28</code>
     </li>
     <li>
-      <code>data-marquee-speed-md</code> A number representing the animation
-      speed below 768px.
+      <code>speed-md</code> A number representing the animation speed below
+      768px. Defaults to <code>24</code>
     </li>
     <li>
-      <code>data-marquee-speed-sm</code> A number representing the animation
-      speed below 480px.
+      <code>speed-sm</code> A number representing the animation speed below
+      480px. Defaults to <code>20</code>
     </li>
   </ul>
 </section>
@@ -639,7 +638,7 @@ path: library
 <br />
 <br />
 <div class="section-width" style="padding-block: 0">
-  [ This is an image marquee that scrubs and doesn't auto animate. ]
+  [ This is an image marquee that scrubs rather than auto animate. ]
 </div>
 <br /><br /><br /><br /><br /><br />
 

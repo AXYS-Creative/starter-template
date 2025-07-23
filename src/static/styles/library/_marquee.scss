@@ -16,6 +16,17 @@
     width: fit-content;
     // will-change: transform; // use sparingly.
 
+    .alternate-img {
+      display: inline-block;
+      transition: $ease;
+    }
+
+    &:nth-of-type(odd) {
+      .alternate-img {
+        rotate: 180deg;
+      }
+    }
+
     // nested targets (should have two divs/spans)
     &__split {
       @include inherit-font;
@@ -42,6 +53,18 @@
 
       img {
         height: 100%;
+      }
+    }
+  }
+
+  &--alternated {
+    .alternate-img {
+      rotate: 180deg;
+    }
+
+    .marquee-inner:nth-of-type(odd) {
+      .alternate-img {
+        rotate: 0deg;
       }
     }
   }

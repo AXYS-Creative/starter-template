@@ -677,6 +677,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                     })
                   );
 
+                  // Toggle class based on scroll direction
+                  marqueeBlock.classList.toggle(
+                    "marquee--alternated",
+                    !isScrollingDown
+                  );
+
                   currentScroll = window.scrollY;
                 };
 
