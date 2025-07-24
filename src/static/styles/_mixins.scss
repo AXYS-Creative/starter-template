@@ -100,6 +100,8 @@ $min-breakpoints: (
   font-family: var(--font-family--heading);
   font-size: $size;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 
 @mixin h1 {

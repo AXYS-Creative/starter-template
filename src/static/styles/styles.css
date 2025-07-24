@@ -210,9 +210,6 @@ body:has(.load-complete) .hero div {
 .site-header--promo-banner > * {
   transition: top 0.24s ease, opacity 0.24s ease;
 }
-.site-header--promo-banner.site-header--away-from-top {
-  --children-top: var(--body-padding);
-}
 .site-header .skip-to-content {
   position: fixed;
   top: -40px;
@@ -304,6 +301,8 @@ body:has(.load-complete) .hero div {
   font-family: var(--font-family--heading);
   font-size: 56px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
   height: 100%;
   translate: 0 100%;
   border-left: 4px solid transparent;
@@ -536,6 +535,8 @@ h1,
   font-family: var(--font-family--heading);
   font-size: 72px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h1,
@@ -550,6 +551,8 @@ h2,
   font-family: var(--font-family--heading);
   font-size: 64px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h2,
@@ -564,6 +567,8 @@ h3,
   font-family: var(--font-family--heading);
   font-size: 56px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h3,
@@ -578,6 +583,8 @@ h4,
   font-family: var(--font-family--heading);
   font-size: 48px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h4,
@@ -592,6 +599,8 @@ h5,
   font-family: var(--font-family--heading);
   font-size: 40px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h5,
@@ -606,6 +615,8 @@ h6,
   font-family: var(--font-family--heading);
   font-size: 32px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 @media (max-width: 1512px) {
   h6,
@@ -4872,6 +4883,8 @@ code {
   font-family: var(--font-family--heading);
   font-size: 72px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
   font-size: 10vw;
   font-weight: 600;
   line-height: 90%;
@@ -4887,6 +4900,8 @@ code {
   font-family: var(--font-family--heading);
   font-size: 64px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -5469,6 +5484,8 @@ code {
   font-family: var(--font-family--heading);
   font-size: 48px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
   display: inline-flex;
   justify-content: space-between;
 }
@@ -5612,6 +5629,8 @@ code {
   font-family: var(--font-family--heading);
   font-size: 64px;
   font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1px;
   padding-inline: 0;
   overflow: hidden;
   width: 100%;
@@ -5633,7 +5652,7 @@ code {
   transition: 0.24s ease;
 }
 .marquee-inner:nth-of-type(odd) .alternate-img {
-  rotate: 180deg;
+  transform: scaleX(-1);
 }
 .marquee-inner__split {
   font-family: inherit;
@@ -5666,10 +5685,10 @@ code {
   height: 100%;
 }
 .marquee--alternated .alternate-img {
-  rotate: 180deg;
+  transform: scaleX(-1);
 }
 .marquee--alternated .marquee-inner:nth-of-type(odd) .alternate-img {
-  rotate: 0deg;
+  transform: scaleX(1);
 }
 
 .mouse-cursor {

@@ -237,6 +237,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const split = new SplitText(el, {
               type: fadeType,
               [`${fadeType}Class`]: `fade-text__${fadeType}`,
+              tag: "span",
             });
 
             const targets = fadeType === "words" ? split.words : split.chars;

@@ -165,9 +165,9 @@ body {
       transition: top $ease, opacity $ease;
     }
 
-    &.site-header--away-from-top {
-      --children-top: var(--body-padding);
-    }
+    // &.site-header--away-from-top {
+    //   --children-top: var(--body-padding);
+    // }
   }
 
   .skip-to-content {

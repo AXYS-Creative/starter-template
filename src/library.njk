@@ -247,6 +247,14 @@ path: library
     letter split should also take a bit longer than expected (2s), making use of
     the data-fill-duration attribute.
   </p>
+  <p
+    class="fade-text"
+    data-fade-style="linear"
+    data-fade-scrub="true"
+    data-fade-end="bottom 60%"
+  >
+    This text should scrub in a linear animation.
+  </p>
   <br />
   <p class="fade-text">
     You can use the <code class="gsap-animate">fade-text</code> utility class
@@ -272,6 +280,26 @@ path: library
       animation only the first time it comes into view. Defaults to
       <code class="gsap-animate">false</code>
     </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub
+      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-start</code> A string to set the
+      start animation. Defaults to
+      <code class="gsap-animate">"top 98%"</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-end</code> A string to set the end
+      animation. Defaults to
+      <code class="gsap-animate">"bottom 2%"</code>
+    </li>
+    <li class="fade-text">
+      <code class="gsap-animate">data-fade-markers</code> A boolean to toggle
+      visual debugging markers.
+      <code class="gsap-animate">false</code>
+    </li>
   </ul>
 </section>
 
@@ -279,7 +307,7 @@ path: library
   <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br />
   <br />
-  <strong class="fill-text">
+  <strong class="fill-text" data-fill-scrub="false">
     Note: Flexbox affects the line by line animation <sup>*</sup>
   </strong>
   <br />
@@ -296,6 +324,18 @@ path: library
     data-fill-once="true"
     data-fill-markers="false"
   >
+    Use the <strong>'fill-text'</strong> utility class to get this effect.
+    Modify the speed with <strong>'data-fill-text-speed'</strong> This comes
+    with aditional configs, one of which detaches scrub and allows you to fire
+    the animation once. Lorem ipsum dolor, sit amet consectetur adipisicing
+    elit. Non laudantium ad tempora facilis tempore, enim earum molestiae iusto
+    doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum quia.
+    Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab
+    odio laborum!
+  </p>
+  <br />
+  <br />
+  <p class="fill-text" data-fill-speed="slow">
     Use the <strong>'fill-text'</strong> utility class to get this effect.
     Modify the speed with <strong>'data-fill-text-speed'</strong> This comes
     with aditional configs, one of which detaches scrub and allows you to fire
@@ -450,13 +490,13 @@ path: library
     This will only glitch out once.
   </p>
   <p
-    class="glitch-scroll"
+    class="glitch-text glitch-scroll"
     data-glitch-trigger=".glitch-trigger-subtitle"
     data-glitch-end="bottom center"
   >
-    This will glitch out when the sub title "Glitch Trigger/Target" comes into
-    view. Useful for pinned sections. Don't forget to add the '.' before the
-    class name!
+    This will glitch when the subtitle "Glitch Trigger/Target" comes into view.
+    Great for pinned sections, just don't forget to add the '.' with the
+    classname!
   </p>
 
   <br />

@@ -23,7 +23,8 @@
 
     &:nth-of-type(odd) {
       .alternate-img {
-        rotate: 180deg;
+        // rotate: 180deg;
+        transform: scaleX(-1);
       }
     }
 
@@ -59,12 +60,14 @@
 
   &--alternated {
     .alternate-img {
-      rotate: 180deg;
+      // rotate: 180deg;
+      transform: scaleX(-1);
     }
 
     .marquee-inner:nth-of-type(odd) {
       .alternate-img {
-        rotate: 0deg;
+        // rotate: 0deg;
+        transform: scaleX(1);
       }
     }
   }
