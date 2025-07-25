@@ -65,3 +65,16 @@
     }
   }
 }
+
+body:has(.tooltip-util) {
+  .mouse-cursor {
+    display: block;
+  }
+  @include mq-touch {
+    .mouse-cursor {
+      &__shape {
+        opacity: 0;
+      }
+    }
+  }
+}

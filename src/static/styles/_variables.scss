@@ -54,8 +54,8 @@ $test-bg: rgba(navy, 0.75);
   --color-btn-2-text--hover: var(--color-brand--primary);
   // --color-btn-2-border--hover: transparent;
 
-  --color-link: #{$grey-light};
-  --color-link--hover: #{$white};
+  // --color-link: #{$grey-light};
+  // --color-link--hover: #{$white};
 
   --color-surface--1: #{$grey-light};
 
@@ -67,6 +67,10 @@ $test-bg: rgba(navy, 0.75);
   --color-font--primary: #{$white};
 
   --color-btn-2-text: #{$white};
+
+  // --color-link: #{$grey-light};
+  // --color-link--hover: #{$white};
+
   --color-surface--1: #{$grey-dark};
 
   --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
@@ -94,6 +98,9 @@ $test-bg: rgba(navy, 0.75);
   --color-btn-bg--hover: transparent;
   --color-btn-text--hover: var(--color-brand--primary);
   --color-btn-border--hover: var(--color-brand--primary);
+
+  --color-link: var(--color-font--primary);
+  --color-link--hover: var(--color-brand--primary);
 
   --color-border: #{$grey-light};
 

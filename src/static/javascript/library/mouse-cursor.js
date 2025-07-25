@@ -1,12 +1,12 @@
-import { mqMouse, isSafari } from "../util.js";
+import { mqMouse, mqMaxMd, isSafari } from "../util.js";
 import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
 const hideCursor = document.querySelectorAll(".hide-cursor");
 
-// removing for 'tooltip util
+// commenting this line for tooltip util
 // if (cursor && mqMouse.matches) {
-{
+if (cursor) {
   const isElastic = cursor.dataset.elastic === "true";
   const shape = cursor.querySelector(".mouse-cursor__shape");
 
@@ -127,7 +127,7 @@ const hideCursor = document.querySelectorAll(".hide-cursor");
   (() => {
     const tooltipTriggers = document.querySelectorAll(".tooltip-util");
     const tooltipMessage = document.querySelector(".tooltip-util-message");
-    const edgeMargin = 180;
+    const edgeMargin = mqMaxMd ? 96 : 180;
 
     const applyQuadrantClass = (x, y) => {
       tooltipMessage.classList.remove(
@@ -162,8 +162,18 @@ const hideCursor = document.querySelectorAll(".hide-cursor");
     };
 
     document.addEventListener("mousemove", (e) => {
-      if (anchored) return;
+      if (anchored) {
+        followMouse = true;
+        anchored = false;
+      }
+
       applyQuadrantClass(e.clientX, e.clientY);
+    });
+
+    window.addEventListener("scroll", () => {
+      tooltipMessage.classList.remove("active");
+      anchored = false;
+      followMouse = true;
     });
 
     tooltipTriggers.forEach((el) => {

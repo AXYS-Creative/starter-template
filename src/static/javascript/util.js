@@ -6,10 +6,15 @@ export const mqMotionAllow = window.matchMedia(
 );
 export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
 export const mqMinLg = window.matchMedia("(min-width: 1025px)").matches;
+export const mqMaxMd = window.matchMedia("(max-width: 768px)").matches;
 
 export const lenis = new Lenis({
   autoRaf: true,
 });
+
+//
+// Library DELETE ME
+//
 
 // Get current year for copyright
 {
@@ -34,9 +39,28 @@ export const lenis = new Lenis({
   }
 }
 
-// Theme swap
-if (document.querySelector(".theme-swap")) {
-  console.log("Theme swap enabled");
+// CSS Util for .split-link
+{
+  document.querySelectorAll(".split-link").forEach((el) => {
+    const text = el.textContent;
+
+    // Wrap all letter groups inside a single span with the class "text-content"
+    el.innerHTML =
+      `<span class="split-link__content">` +
+      Array.from(text)
+        .map((char) => {
+          if (char === " ") {
+            return `<span class="letter-group space" aria-hidden="true"> </span>`;
+          }
+          return `
+            <span class="letter-group">
+              <span class="letter" data-char="${char}">${char}</span>
+            </span>
+          `;
+        })
+        .join("") +
+      `</span>`;
+  });
 }
 
 // Detect Safari Browser
@@ -48,16 +72,10 @@ export const isSafari = () => {
 // Polyfill for lvh, and svh. They all seemed to be dvh.
 const setViewportUnits = (() => {
   const innerHeight = window.innerHeight;
-  const lvhOffset = 64; // Eyeballing mobile browser ui height
+  const lvhOffset = 64; // Mobile browser UI height (eyeballing)
 
-  document.documentElement.style.setProperty(
-    "--lvh",
-    `${(innerHeight + lvhOffset) * 0.01}px`
-  );
-  document.documentElement.style.setProperty(
-    "--svh",
-    `${innerHeight * 0.01}px`
-  );
+  root.style.setProperty("--lvh", `${(innerHeight + lvhOffset) * 0.01}px`);
+  root.style.setProperty("--svh", `${innerHeight * 0.01}px`);
 })();
 
 // console.clear();

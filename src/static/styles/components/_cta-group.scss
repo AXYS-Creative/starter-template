@@ -63,7 +63,7 @@
 }
 
 .cta-group {
-  @include row-center;
+  @include row-center(flex-start);
   gap: 24px;
   flex-shrink: 0;
 }

@@ -42,6 +42,10 @@ title: Style Guide
     <li>Classic List, Child II</li>
     <li>Classic List, Child III</li>
   </ul>
+
+  <br />
+  <br />
+
   <!-- prettier-ignore -->
   {% set cta_1 = ({
     text: 'Primary CTA',
@@ -52,11 +56,39 @@ title: Style Guide
   {% set cta_2 = ({
     text: 'Secondary CTA',
     url: 'https://axyscreative.com',
+    icon: '/static/img/library/icon-google-chevron-right.svg',
     new_tab: true
   }) %}
   {% include "./_includes/components/cta-group.njk" %}
 
+  <br />
+  <br />
+  <h2 class="h5">[ Links ]</h2>
+  <br />
+  <br />
+
   <a href="" class="classic-link tab-element-page">Classic link</a>
+  <br />
+  <br />
+  <a href="" class="magnet magnet-strong tab-element-page">Magnet link</a>
+  <br />
+  <br />
+  <a href="" class="split-link tab-element-page">Split link</a>
+  <br />
+  <br />
+  <p>
+    <a href="" class="split-link tab-element-page" data-hover-alt>
+      Split link alt
+    </a>
+    &nbsp;
+    <span>
+      Use the <code>data-hover-alt</code>to only animate intially (vs
+      mouseleave)
+    </span>
+  </p>
+
+  <br />
+  <br />
 
   <!-- prettier-ignore -->
   {% set btn_toggle_label = 'Autoplay:' %}

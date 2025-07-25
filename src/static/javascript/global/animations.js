@@ -399,25 +399,35 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           // Hover-based glitch
           document.querySelectorAll(".glitch-hover").forEach((el) => {
             const originalText = el.textContent;
-            const width = el.scrollWidth;
-            el.style.width = `${width}px`;
-            el.style.display = "inline-block";
+            const newText = el.dataset.glitchNewText;
+            const chars = el.dataset.glitchChars || "upperAndLowerCase";
+            const duration = parseFloat(el.dataset.glitchDuration) || 1;
+            const revealDelay =
+              parseFloat(el.dataset.glitchRevealDelay) || 0.125;
 
-            const runGlitch = () => {
-              el.textContent = originalText;
+            // Prevent layout shift
+            if (!newText) {
+              const width = el.scrollWidth;
+              el.style.width = `${width}px`;
+              el.style.display = "inline-block";
+            }
 
+            const glitchTo = (text = originalText) => {
+              el.textContent = text; // Reset to base before scrambling
               gsap.to(el, {
                 scrambleText: {
-                  text: originalText,
-                  chars: "upperAndLowerCase",
+                  text,
+                  chars,
+                  revealDelay,
                 },
-                duration: 1,
-                revealDelay: 0.125,
+                duration,
               });
             };
 
-            el.addEventListener("mouseenter", runGlitch);
-            el.addEventListener("focus", runGlitch);
+            el.addEventListener("mouseenter", () => glitchTo(newText));
+            el.addEventListener("focus", () => glitchTo(newText));
+            el.addEventListener("mouseleave", () => glitchTo(originalText));
+            el.addEventListener("blur", () => glitchTo(originalText));
           });
 
           // Glitch Target, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class

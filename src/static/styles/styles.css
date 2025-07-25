@@ -14,6 +14,8 @@
   --color-btn-bg--hover: transparent;
   --color-btn-text--hover: var(--color-brand--primary);
   --color-btn-border--hover: var(--color-brand--primary);
+  --color-link: var(--color-font--primary);
+  --color-link--hover: var(--color-brand--primary);
   --color-border: #c0c0c0;
   --btn-padding: 8px 16px;
   --spacing--xs: 12px;
@@ -59,8 +61,6 @@ html[data-theme=light] {
   --color-font--secondary: #c0c0c0;
   --color-btn-2-text: #0a0a0a;
   --color-btn-2-text--hover: var(--color-brand--primary);
-  --color-link: #c0c0c0;
-  --color-link--hover: #fefefe;
   --color-surface--1: #c0c0c0;
   --color-border-gradient: rgba(0, 0, 0, 0.5);
 }
@@ -828,6 +828,8 @@ code {
 
 .classic-link {
   position: relative;
+  min-height: 1.1lh;
+  color: var(--color-link);
 }
 @media (prefers-reduced-motion: no-preference) {
   .classic-link {
@@ -837,7 +839,7 @@ code {
 .classic-link::before {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   right: auto;
   width: 100%;
@@ -851,7 +853,7 @@ code {
 }
 @media (hover: hover) and (pointer: fine) {
   .classic-link:hover, .classic-link:focus-visible {
-    color: var(--color-brand--primary);
+    color: var(--color-link--hover);
   }
   .classic-link:hover::before, .classic-link:focus-visible::before {
     width: 0;
@@ -1032,6 +1034,7 @@ code {
     transition: 0.5s ease;
   }
   .magnet {
+    display: inline-block;
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
   .typing-cycle .typing-text-cursor,
@@ -1053,6 +1056,303 @@ code {
   .icon-sm {
     width: 16px;
     height: 16px;
+  }
+  .split-link {
+    position: relative;
+    color: var(--color-link);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .split-link {
+    transition: 0.32s ease;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .split-link:hover, .split-link:focus-visible {
+    color: var(--color-link--hover);
+  }
+  .split-link:hover::before, .split-link:focus-visible::before {
+    width: 0;
+    left: auto;
+    right: 0;
+    background-color: var(--color-link--hover);
+  }
+  .split-link:hover .letter-group, .split-link:focus-visible .letter-group {
+    translate: 0 -100%;
+  }
+  .split-link:hover .letter-group:nth-of-type(1), .split-link:focus-visible .letter-group:nth-of-type(1) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.02s;
+  }
+  .split-link:hover .letter-group:nth-of-type(2), .split-link:focus-visible .letter-group:nth-of-type(2) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.04s;
+  }
+  .split-link:hover .letter-group:nth-of-type(3), .split-link:focus-visible .letter-group:nth-of-type(3) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.06s;
+  }
+  .split-link:hover .letter-group:nth-of-type(4), .split-link:focus-visible .letter-group:nth-of-type(4) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.08s;
+  }
+  .split-link:hover .letter-group:nth-of-type(5), .split-link:focus-visible .letter-group:nth-of-type(5) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.1s;
+  }
+  .split-link:hover .letter-group:nth-of-type(6), .split-link:focus-visible .letter-group:nth-of-type(6) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.12s;
+  }
+  .split-link:hover .letter-group:nth-of-type(7), .split-link:focus-visible .letter-group:nth-of-type(7) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.14s;
+  }
+  .split-link:hover .letter-group:nth-of-type(8), .split-link:focus-visible .letter-group:nth-of-type(8) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.16s;
+  }
+  .split-link:hover .letter-group:nth-of-type(9), .split-link:focus-visible .letter-group:nth-of-type(9) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.18s;
+  }
+  .split-link:hover .letter-group:nth-of-type(10), .split-link:focus-visible .letter-group:nth-of-type(10) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.2s;
+  }
+  .split-link:hover .letter-group:nth-of-type(11), .split-link:focus-visible .letter-group:nth-of-type(11) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.22s;
+  }
+  .split-link:hover .letter-group:nth-of-type(12), .split-link:focus-visible .letter-group:nth-of-type(12) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.24s;
+  }
+  .split-link:hover .letter-group:nth-of-type(13), .split-link:focus-visible .letter-group:nth-of-type(13) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.26s;
+  }
+  .split-link:hover .letter-group:nth-of-type(14), .split-link:focus-visible .letter-group:nth-of-type(14) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.28s;
+  }
+  .split-link:hover .letter-group:nth-of-type(15), .split-link:focus-visible .letter-group:nth-of-type(15) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.3s;
+  }
+  .split-link:hover .letter-group:nth-of-type(16), .split-link:focus-visible .letter-group:nth-of-type(16) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.32s;
+  }
+  .split-link:hover .letter-group:nth-of-type(17), .split-link:focus-visible .letter-group:nth-of-type(17) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.34s;
+  }
+  .split-link:hover .letter-group:nth-of-type(18), .split-link:focus-visible .letter-group:nth-of-type(18) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s;
+  }
+  .split-link:hover .letter-group:nth-of-type(19), .split-link:focus-visible .letter-group:nth-of-type(19) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.38s;
+  }
+  .split-link:hover .letter-group:nth-of-type(20), .split-link:focus-visible .letter-group:nth-of-type(20) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
+  }
+  .split-link:hover .letter-group:nth-of-type(21), .split-link:focus-visible .letter-group:nth-of-type(21) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.42s;
+  }
+  .split-link:hover .letter-group:nth-of-type(22), .split-link:focus-visible .letter-group:nth-of-type(22) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.44s;
+  }
+  .split-link:hover .letter-group:nth-of-type(23), .split-link:focus-visible .letter-group:nth-of-type(23) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.46s;
+  }
+  .split-link:hover .letter-group:nth-of-type(24), .split-link:focus-visible .letter-group:nth-of-type(24) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.48s;
+  }
+  .split-link:hover .letter-group:nth-of-type(25), .split-link:focus-visible .letter-group:nth-of-type(25) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.5s;
+  }
+}
+@media all {
+  .split-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-link);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .split-link::before {
+    transition: 0.32s ease;
+  }
+}
+@media all {
+  .split-link__content {
+    display: inline-flex;
+    overflow: hidden;
+  }
+  .split-link .letter-group {
+    display: grid;
+  }
+  .split-link .letter-group:nth-of-type(1) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.02s;
+  }
+  .split-link .letter-group:nth-of-type(2) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.04s;
+  }
+  .split-link .letter-group:nth-of-type(3) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.06s;
+  }
+  .split-link .letter-group:nth-of-type(4) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.08s;
+  }
+  .split-link .letter-group:nth-of-type(5) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.1s;
+  }
+  .split-link .letter-group:nth-of-type(6) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.12s;
+  }
+  .split-link .letter-group:nth-of-type(7) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.14s;
+  }
+  .split-link .letter-group:nth-of-type(8) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.16s;
+  }
+  .split-link .letter-group:nth-of-type(9) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.18s;
+  }
+  .split-link .letter-group:nth-of-type(10) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.2s;
+  }
+  .split-link .letter-group:nth-of-type(11) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.22s;
+  }
+  .split-link .letter-group:nth-of-type(12) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.24s;
+  }
+  .split-link .letter-group:nth-of-type(13) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.26s;
+  }
+  .split-link .letter-group:nth-of-type(14) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.28s;
+  }
+  .split-link .letter-group:nth-of-type(15) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.3s;
+  }
+  .split-link .letter-group:nth-of-type(16) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.32s;
+  }
+  .split-link .letter-group:nth-of-type(17) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.34s;
+  }
+  .split-link .letter-group:nth-of-type(18) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s;
+  }
+  .split-link .letter-group:nth-of-type(19) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.38s;
+  }
+  .split-link .letter-group:nth-of-type(20) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
+  }
+  .split-link .letter-group:nth-of-type(21) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.42s;
+  }
+  .split-link .letter-group:nth-of-type(22) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.44s;
+  }
+  .split-link .letter-group:nth-of-type(23) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.46s;
+  }
+  .split-link .letter-group:nth-of-type(24) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.48s;
+  }
+  .split-link .letter-group:nth-of-type(25) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.5s;
+  }
+  .split-link .letter-group .letter {
+    position: relative;
+    grid-area: 1/1;
+  }
+  .split-link .letter-group .letter::after {
+    content: attr(data-char);
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+  }
+  .split-link .letter-group.space {
+    margin-inline-start: 0.5ch;
+  }
+  .split-link .letter-group.space:last-of-type {
+    display: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(1), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(1) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.02s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(2), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(2) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.04s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(3), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(3) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.06s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(4), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(4) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.08s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(5), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(5) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.1s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(6), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(6) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.12s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(7), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(7) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.14s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(8), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(8) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.16s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(9), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(9) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.18s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(10), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(10) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.2s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(11), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(11) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.22s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(12), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(12) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.24s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(13), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(13) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.26s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(14), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(14) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.28s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(15), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(15) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.3s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(16), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(16) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.32s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(17), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(17) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.34s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(18), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(18) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(19), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(19) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.38s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(20), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(20) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.4s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(21), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(21) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.42s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(22), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(22) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.44s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(23), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(23) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.46s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(24), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(24) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.48s;
+  }
+  .split-link[data-hover-alt]:hover .letter-group:nth-of-type(25), .split-link[data-hover-alt]:focus-visible .letter-group:nth-of-type(25) {
+    transition: translate 0.6s cubic-bezier(0.18, 0.97, 0.47, 1) 0.5s;
+  }
+}
+@media all {
+  .split-link[data-hover-alt] .letter-group {
+    transition: 0s;
   }
   .library-section {
     display: flex;
@@ -4687,7 +4987,7 @@ code {
 
 .cta-group {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
@@ -5738,6 +6038,15 @@ code {
   scale: 1 1 !important;
   opacity: 1;
   transition: 1s ease, opacity 1s 0.12s, scale 0s;
+}
+
+body:has(.tooltip-util) .mouse-cursor {
+  display: block;
+}
+@media (hover: none) and (pointer: coarse) {
+  body:has(.tooltip-util) .mouse-cursor__shape {
+    opacity: 0;
+  }
 }
 
 .site-nav-btn {

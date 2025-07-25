@@ -22,6 +22,7 @@ path: library
     <li>_includes library directory</li>
     <li>Library img directory</li>
     <li>Update all "CHANGE ME"</li>
+    <li>Delete all "DELETE ME"</li>
   </ol>
 </section>
 
@@ -370,6 +371,9 @@ path: library
 
 <section class="form-section">
   <h2 class="h5">[ Form Feedback - Component ]</h2>
+  <strong>Note: Forms require additional setup in Netlify.</strong>
+  <br />
+  <br />
   <p>
     After submitting the form, the user simply sees a temporary feedback
     message. Either success or error.
@@ -504,10 +508,19 @@ path: library
   <h3 class="h6">Glitch Hover</h3>
   <p>
     The class <code>glitch-hover</code> causes the innerText (works with nested
-    elements) to scramble on hover or focus.
+    elements) to scramble on hover or focus. You can also use the
+    <code>data-glitch-new-text</code> attribute to alter the text when hovered
+    or focused.
   </p>
-  <a href="/" class="cta-1 glitch-hover">Hover over me</a>
+  <a href="/" class="cta-1 glitch-hover"> Hover over me </a>
   <a href="/" class="classic-link glitch-hover">Hover over me</a>
+  <a
+    href="/"
+    class="classic-link glitch-hover"
+    data-glitch-new-text="Wow, so cool"
+  >
+    Hover to change
+  </a>
 
   <br />
 
@@ -654,6 +667,7 @@ path: library
     </li>
   </ul>
 </section>
+
 <!-- prettier-ignore -->
 {% set marquee = library.marquee.marquee_1 %}
 {% include './_includes/library/marquee.njk' %}
@@ -678,7 +692,7 @@ path: library
 <br />
 <br />
 <div class="section-width" style="padding-block: 0">
-  [ This is an image marquee that scrubs rather than auto animate. ]
+  [ This is an image marquee that scrubs instead of auto animates. ]
 </div>
 <br /><br /><br /><br /><br /><br />
 
@@ -739,6 +753,44 @@ path: library
     >
     to see the sample.
   </p>
+</section>
+
+<section class="theme-toggle-section library-section">
+  <h2 class="h5">[ Theme toggle - Component ]</h2>
+
+  <strong>
+    Because of input/label IDs, recommended to only use one per page.
+  </strong>
+
+  <p>
+    Make use of css variables to handle dynamic color for text, links, buttons
+    and backgrounds.
+  </p>
+  <p>Be sure to include the <code>theme-toggle.js</code>file</p>
+
+  {% include "./_includes/library/theme-toggle.njk" %}
+
+  <p>Also comes with theme dynamic images that make use of the attributes:</p>
+  <ul class="classic-list">
+    <li><code>data-light</code> The path to the image shown in light mode.</li>
+    <li><code>data-dark</code> The path to the image shown in dark mode.</li>
+  </ul>
+
+  <p>
+    <strong>Note:</strong> requires
+    <code>eleventy:ignore</code>
+  </p>
+
+  <img
+    class="theme-img"
+    src="/static/img/library/img-sample-light.png"
+    data-light="/static/img/library/img-sample-light.png"
+    data-dark="/static/img/library/img-sample-dark.png"
+    alt="light dark image"
+    width="250"
+    style="width: 250px"
+    eleventy:ignore
+  />
 </section>
 
 <section class="tilt-cards library-section hide-cursor">
@@ -944,7 +996,10 @@ path: library
   <br aria-hidden="true" />
   <br aria-hidden="true" />
   <h3 class="h6">Tooltip Util (follows mouse)</h3>
-  <p>Need to find a way to make this keyboard & mobile accessible 🤔</p>
+  <strong>
+    Note: the tooltip doesn't display while the user is scrolling. With Lenis
+    this may cause a delay to see the tooltip.
+  </strong>
   <p>
     The tooltip can also be tagged on any element using the class
     <code>tooltip-util</code> The configs are as follows:
@@ -1118,7 +1173,11 @@ path: library
   </p>
 </section>
 
-<section class="video-section library-section">
+<section class="video-player-section">
+  <h2 class="h5">[ Video Player - Component ]</h2>
+</section>
+
+<section class="video-overlay-section library-section">
   <h2 class="h5">[ Video Overlay - Util ]</h2>
   <p>
     Note: while this is marked as a util, it requires the video-overlay.njk

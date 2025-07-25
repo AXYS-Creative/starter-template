@@ -41,7 +41,8 @@
       }
     });
 
-  // Handle image swap. Requires 'theme-img' utility class and the 'data-light' & 'data-dark' attributes
+  // Dyanic image source based on theme
+  // Requires '.theme-img' util class and the 'data-light' & 'data-dark' attributes
   const swapThemeImages = () => {
     const theme = document.documentElement.getAttribute("data-theme");
     const images = document.querySelectorAll("img.theme-img");

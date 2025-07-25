@@ -14,6 +14,8 @@
 
 .classic-link {
   position: relative;
+  min-height: 1.1lh; // added in case overflow hidden is used
+  color: var(--color-link);
 
   @include mq-motion-allow {
     transition: $ease;
@@ -22,7 +24,7 @@
   &::before {
     content: "";
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     right: auto;
     width: 100%;
@@ -35,7 +37,7 @@
   }
 
   @include desktop-hover {
-    color: var(--color-brand--primary);
+    color: var(--color-link--hover);
 
     &::before {
       width: 0;
@@ -144,7 +146,7 @@
   }
 
   .glitch-hover {
-    overflow: hidden;
+    overflow: hidden; // Leave separate or it will hide the glitch target
   }
 
   .gradient-border {
@@ -181,6 +183,7 @@
   }
 
   .magnet {
+    display: inline-block; // ensure it can be transformed
     transition: $magnet;
   }
 
@@ -208,6 +211,106 @@
   .icon-sm {
     width: 16px;
     height: 16px;
+  }
+
+  .split-link {
+    position: relative;
+    color: var(--color-link);
+
+    @include mq-motion-allow {
+      transition: 0.32s ease;
+    }
+
+    @include desktop-hover {
+      color: var(--color-link--hover);
+
+      &::before {
+        width: 0;
+        left: auto;
+        right: 0;
+        background-color: var(--color-link--hover);
+      }
+
+      .letter-group {
+        translate: 0 -100%;
+
+        @for $i from 1 through 25 {
+          &:nth-of-type(#{$i}) {
+            transition: translate 0.6s $cubic-ease $i * 0.02s;
+          }
+        }
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: auto;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-link);
+
+      @include mq-motion-allow {
+        transition: 0.32s ease;
+      }
+    }
+
+    &__content {
+      // overflow hidden on parent was hiding the tooltip on focus
+      display: inline-flex;
+      overflow: hidden;
+    }
+
+    .letter-group {
+      display: grid;
+
+      @for $i from 1 through 25 {
+        &:nth-of-type(#{$i}) {
+          transition: translate 0.6s $cubic-ease $i * 0.02s;
+        }
+      }
+
+      .letter {
+        position: relative;
+        grid-area: 1 / 1;
+
+        &::after {
+          content: attr(data-char);
+          position: absolute;
+          bottom: -100%;
+          left: 0;
+        }
+        // &:nth-of-type(2) {
+        //   translate: 0 100%;
+        // }
+      }
+
+      &.space {
+        margin-inline-start: 0.5ch;
+
+        &:last-of-type {
+          display: none; // Hides extra space character for social media on contact page
+        }
+      }
+    }
+
+    &[data-hover-alt] {
+      @include desktop-hover {
+        .letter-group {
+          @for $i from 1 through 25 {
+            &:nth-of-type(#{$i}) {
+              transition: translate 0.6s $cubic-ease $i * 0.02s;
+            }
+          }
+        }
+      }
+
+      .letter-group {
+        transition: 0s;
+      }
+    }
   }
 
   .library-section {

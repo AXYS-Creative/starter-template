@@ -1,5 +1,10 @@
 <footer class="site-footer footer-simple">
-  {% include "../library/theme-toggle.njk" %}
+  <div
+    class="tooltip-util"
+    data-tooltip-message="This sample won't work on the Library page."
+  >
+    {% include "../library/theme-toggle.njk" %}
+  </div>
 
   <small class="copyright">
     <span>&copy;<time class="year-text"></time> {{ meta_data.site_name }}</span>
