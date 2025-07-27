@@ -7,25 +7,8 @@
   {% set logo = global.header.logo %}
   {% include "../components/site-logo.njk" %}
 
-  {% if global.header.links %}
-  <ul class="header-links" aria-label="Header navigation">
-    {% for link in global.header.links %}
-    <li>
-      <!-- prettier-ignore -->
-      <a
-        class="header-links__link classic-link tab-element-page"
-        href="{{ link.url }}"
-        {% if link.new_tab %}
-          target="_blank"
-          rel="noopener noreferrer"
-        {% endif %}
-      >
-        {{ link.text }}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+  {% set links_location = 'header' %}
+  {% include "../components/menu-links.njk" %}
 
   <div class="site-nav-btn-wrapper glitch-pair">
     <button

@@ -92,10 +92,11 @@ body {
     aspect-ratio: 1;
   }
 
+  // Menu links
   .header-links {
     --links-gap: 36px;
 
-    @include row-center;
+    @include row-start;
     @include right-spacing;
     top: var(--children-top);
     gap: var(--links-gap);
@@ -174,7 +175,8 @@ body {
     position: fixed;
     top: -40px;
     left: 0;
-    color: #fff;
+    background: var(--color-background);
+    color: var(--color-font--primary);
     padding: 8px;
     z-index: 10;
     transition: top 0.3s ease;
@@ -231,6 +233,7 @@ body {
     }
   }
 
+  // Menu links
   .nav-links {
     @include left-spacing;
     @include column-start;
@@ -337,6 +340,11 @@ body {
     }
   }
 }
+
+// using modifier classes header-links and nav-links
+// .menu-links {
+//   border: $test;
+// }
 
 .site-footer {
   @include row-center(space-between);
@@ -501,7 +509,8 @@ video {
   height: auto;
 }
 
-ul {
+ul,
+menu {
   list-style: none;
 }
 

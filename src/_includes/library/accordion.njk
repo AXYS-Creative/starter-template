@@ -8,7 +8,7 @@
 <div class="accordion" data-single-open="{{ single_open }}">
   {% for item in items %}
   <button
-    class="accordion-btn tab-element-page"
+    class="accordion-btn tab-element-page {%if item.content_start%}content-start{%endif%}"
     aria-expanded="false"
     aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
   >

@@ -5,17 +5,9 @@
   aria-hidden="true"
 >
   <div class="width-constraint">
-    {% if global.nav.links %}
-    <ul class="nav-links">
-      {% for link in global.nav.links %}
-      <li>
-        <a class="nav-link tab-element-nav" href="{{ link.url }}">
-          {{ link.text }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+    <!-- prettier-ignore -->
+    {% set links_location = 'nav' %}
+    {% include "../components/menu-links.njk" %}
 
     <ul class="nav-footer-links">
       <li>

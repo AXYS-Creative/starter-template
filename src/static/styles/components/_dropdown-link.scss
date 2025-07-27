@@ -1,0 +1,53 @@
+.dropdown-link {
+  position: relative;
+
+  &:hover,
+  &:focus-within {
+    .dropdown-link__list {
+      translate: 0 0;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  // &__trigger {
+  //   border: $test;
+  // }
+
+  &__list {
+    --top-offset: 8px;
+
+    @include column-start;
+    gap: 8px;
+    position: absolute;
+    top: calc(100% + var(--top-offset));
+    // top: 0;
+    left: -14px;
+    background: var(--color-surface--1);
+    border-radius: var(--radius--sm);
+    padding: 16px;
+
+    pointer-events: none;
+    opacity: 0;
+    translate: 0 24px;
+    transition: $ease;
+
+    // Bridge for hovering. The gap caused the menu to hide.
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--top-offset) * -1);
+      left: 0;
+      width: 100%;
+      height: var(--top-offset);
+    }
+
+    li {
+      white-space: nowrap;
+    }
+  }
+
+  // &__link {
+
+  // }
+}

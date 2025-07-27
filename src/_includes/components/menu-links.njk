@@ -1,0 +1,32 @@
+<!-- prettier-ignore -->
+{% if global.header.links %}
+<menu
+  class="menu-links {{ links_location }}-links hide-cursor"
+  aria-label="navigation links"
+>
+  <!-- prettier-ignore -->
+  {% for link in global.header.links %}
+  {% if link.inner_links %}
+  <li>
+    <!-- prettier-ignore -->
+    {% set link_label = link.text %}
+    {% set inner_links = link.inner_links %}
+    {% include "./dropdown-link.njk" %}
+  </li>
+  {% else %}
+  <li>
+    <!-- prettier-ignore -->
+    <a
+      class="header-links__link classic-link tab-element-page"
+      href="{{ link.url }}"
+      {% if link.new_tab %}
+        target="_blank"
+        rel="noopener noreferrer"
+      {% endif %}
+    >
+      {{ link.text }}
+    </a>
+  </li>
+  {% endif %} {% endfor %}
+</menu>
+{% endif %}

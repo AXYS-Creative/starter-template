@@ -1,11 +1,12 @@
-links:
-  - text: Home
-    url: "/"
-  - text: Style Guide
-    url: "/style-guide"
-  - text: Library
-    url: "/library"
-  - text: Advanced
-    url: "/advanced"
-  - text: Blog
-    url: "/blog"
+# Share links from header.yaml
+# links:
+#   - text: Home
+#     url: "/"
+#   - text: Style Guide
+#     url: "/style-guide"
+#   - text: Library
+#     url: "/library"
+#   - text: Advanced
+#     url: "/advanced"
+#   - text: Blog
+#     url: "/blog"

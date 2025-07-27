@@ -1,0 +1,20 @@
+<div class="dropdown-link">
+  <button class="dropdown-link__trigger classic-link">{{ link_label }}</button>
+  <ul class="dropdown-link__list">
+    {% for link in inner_links %}
+    <li>
+      <!-- prettier-ignore -->
+      <a
+        class="classic-link tab-element-page"
+        href="{{ link.url }}"
+        {% if link.new_tab %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}
+      >
+        {{ link.text }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -148,7 +148,7 @@ body:has(.load-complete) .hero div {
   --links-gap: 36px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   right: var(--body-padding);
   top: var(--children-top);
   gap: var(--links-gap);
@@ -214,7 +214,8 @@ body:has(.load-complete) .hero div {
   position: fixed;
   top: -40px;
   left: 0;
-  color: #fff;
+  background: var(--color-background);
+  color: var(--color-font--primary);
   padding: 8px;
   z-index: 10;
   transition: top 0.3s ease;
@@ -739,7 +740,8 @@ video {
   height: auto;
 }
 
-ul {
+ul,
+menu {
   list-style: none;
 }
 
@@ -4991,6 +4993,44 @@ code {
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
+}
+
+.dropdown-link {
+  position: relative;
+}
+.dropdown-link:hover .dropdown-link__list, .dropdown-link:focus-within .dropdown-link__list {
+  translate: 0 0;
+  opacity: 1;
+  pointer-events: all;
+}
+.dropdown-link__list {
+  --top-offset: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  position: absolute;
+  top: calc(100% + var(--top-offset));
+  left: -14px;
+  background: var(--color-surface--1);
+  border-radius: var(--radius--sm);
+  padding: 16px;
+  pointer-events: none;
+  opacity: 0;
+  translate: 0 24px;
+  transition: 0.24s ease;
+}
+.dropdown-link__list::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--top-offset) * -1);
+  left: 0;
+  width: 100%;
+  height: var(--top-offset);
+}
+.dropdown-link__list li {
+  white-space: nowrap;
 }
 
 .social-media-links {
