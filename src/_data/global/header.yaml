@@ -1,4 +1,5 @@
 show_skip_to_content: true # Dev use only
+lock_nav_scroll: true
 
 logo:
   class: header-logo # Dev use only

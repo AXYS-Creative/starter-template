@@ -508,12 +508,22 @@ path: library
   <h3 class="h6">Glitch Hover</h3>
   <p>
     The class <code>glitch-hover</code> causes the innerText (works with nested
-    elements) to scramble on hover or focus. You can also use the
-    <code>data-glitch-new-text</code> attribute to alter the text when hovered
-    or focused.
+    elements) to scramble on hover or focus. Comes with the following configs:
   </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-glitch-new-text</code> A string that changes the glitch text to
+      a new message. Defaults to <code>null</code>
+    </li>
+    <li>
+      <code>data-glitch-out</code> A boolean that toggles if the animation
+      should also occur on mouseleave and blur. Defaults to <code>false</code>
+    </li>
+  </ul>
   <a href="/" class="cta-1 glitch-hover"> Hover over me </a>
-  <a href="/" class="classic-link glitch-hover">Hover over me</a>
+  <a href="/" class="classic-link glitch-hover" data-glitch-out="true">
+    Hover over me
+  </a>
   <a
     href="/"
     class="classic-link glitch-hover"

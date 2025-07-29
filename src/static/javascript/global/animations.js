@@ -404,6 +404,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const duration = parseFloat(el.dataset.glitchDuration) || 1;
             const revealDelay =
               parseFloat(el.dataset.glitchRevealDelay) || 0.125;
+            const glitchOut = el.dataset.glitchOut === "true"; // Default is false (hover in, hover out)
 
             // Prevent layout shift
             if (!newText) {
@@ -426,8 +427,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             el.addEventListener("mouseenter", () => glitchTo(newText));
             el.addEventListener("focus", () => glitchTo(newText));
-            el.addEventListener("mouseleave", () => glitchTo(originalText));
-            el.addEventListener("blur", () => glitchTo(originalText));
+
+            if (glitchOut || newText) {
+              el.addEventListener("mouseleave", () => glitchTo(originalText));
+              el.addEventListener("blur", () => glitchTo(originalText));
+            }
           });
 
           // Glitch Target, uses 'glitch-trigger' and 'glitch-target__arbitrary' — 'glitch-trigger' needs data-glitch-target attribute with the unique target class

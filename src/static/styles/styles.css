@@ -230,6 +230,7 @@ body:has(.load-complete) .hero div {
 }
 
 .site-nav {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
   opacity: 0;
   pointer-events: none;
   -webkit-user-select: none;
@@ -240,8 +241,9 @@ body:has(.load-complete) .hero div {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  overflow: auto;
+  overflow: hidden;
   z-index: 3;
+  transition: 0.24s ease, width 0s, height 0s;
 }
 @media (min-width: 1025px) {
   .site-nav {
@@ -249,6 +251,7 @@ body:has(.load-complete) .hero div {
   }
 }
 .site-nav .width-constraint {
+  border: 4px solid cornflowerblue;
   position: relative;
   max-width: 1512px;
   height: 100vh;
@@ -379,7 +382,6 @@ body:has(.load-complete) .hero div {
      -moz-user-select: auto;
           user-select: auto;
   background: var(--color-background);
-  transition: background 0s ease;
 }
 .site-nav[aria-hidden=false] .nav-links li:nth-of-type(1) .nav-link {
   transition: 0.2s ease, translate 0.41s ease 0.24s;
@@ -6096,11 +6098,13 @@ body:has(.tooltip-util) .mouse-cursor {
   gap: 12px;
   transition: 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
 }
-.site-nav-btn:hover .site-nav-btn__text, .site-nav-btn:focus-visible .site-nav-btn__text {
-  margin-inline-end: 12px;
-}
-.site-nav-btn:hover .site-nav-btn__icon, .site-nav-btn:focus-visible .site-nav-btn__icon {
-  scale: 1.1;
+@media (hover: hover) and (pointer: fine) {
+  .site-nav-btn:hover .site-nav-btn__text, .site-nav-btn:focus-visible .site-nav-btn__text {
+    margin-inline-end: 16px;
+  }
+  .site-nav-btn:hover .site-nav-btn__icon, .site-nav-btn:focus-visible .site-nav-btn__icon {
+    scale: 1.1;
+  }
 }
 .site-nav-btn:active .site-nav-btn__icon {
   scale: 0.9;

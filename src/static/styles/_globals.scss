@@ -192,20 +192,24 @@ body {
 }
 
 .site-nav {
+  border: $test;
   @include hide-content;
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  overflow: auto;
+  overflow: hidden;
   z-index: $z-index--nav;
+
+  transition: $ease, width 0s, height 0s;
 
   @include mq-min(lg) {
     display: none;
   }
 
   .width-constraint {
+    border: 4px solid cornflowerblue;
     position: relative;
     max-width: $content-width;
     height: 100vh;
@@ -312,7 +316,6 @@ body {
   &[aria-hidden="false"] {
     @include show-content;
     background: var(--color-background);
-    transition: background 0s ease;
 
     .nav-links li {
       @for $i from 1 through 10 {

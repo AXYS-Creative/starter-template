@@ -1,12 +1,13 @@
 .site-nav-btn {
+  $nav-btn-text-shift-hover: 16px;
+
   @include row-center;
   gap: 12px; // between text and icon
   transition: $ease, $magnet;
 
-  &:hover,
-  &:focus-visible {
+  @include desktop-hover {
     .site-nav-btn__text {
-      margin-inline-end: 12px;
+      margin-inline-end: $nav-btn-text-shift-hover;
     }
 
     .site-nav-btn__icon {

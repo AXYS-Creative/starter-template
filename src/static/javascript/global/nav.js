@@ -1,6 +1,7 @@
-const siteHeader = document.querySelector(".site-header"),
-  siteNav = document.querySelector(".site-nav"),
-  siteNavBtn = document.querySelector(".site-nav-btn"),
+import { siteHeader, menuBtn } from "./header.js";
+import { lenis } from "../util.js";
+
+const siteNav = document.querySelector(".site-nav"),
   skipToContent = document.querySelector(".skip-to-content"),
   contentStart = document.querySelector(".content-start");
 
@@ -11,17 +12,25 @@ export const navLinks = document.querySelectorAll(".nav-link"),
 
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
+let navScrollLock = siteNav.dataset.lockScroll === "true";
+
 const toggleNav = () => {
   const isNavOpen = siteNav.getAttribute("aria-hidden") === "true";
 
   siteHeader.classList.toggle("nav-active");
 
   siteNav.setAttribute("aria-hidden", !isNavOpen);
-  siteNavBtn.setAttribute("aria-expanded", isNavOpen);
-  siteNavBtn.setAttribute(
+  menuBtn.setAttribute("aria-expanded", isNavOpen);
+  menuBtn.setAttribute(
     "aria-label",
     isNavOpen ? "Close navigation menu" : "Open navigation menu"
   );
+
+  if (isNavOpen && navScrollLock) {
+    lenis.stop();
+  } else {
+    lenis.start();
+  }
 
   // Update tabindex for tabElementsPage and tabElementsNav
   tabElementsPage.forEach((el) =>
@@ -34,7 +43,7 @@ const toggleNav = () => {
 
 const closeNav = () => {
   siteNav.setAttribute("aria-hidden", "true");
-  siteNavBtn.setAttribute("aria-expanded", "false");
+  menuBtn.setAttribute("aria-expanded", "false");
 
   siteHeader.classList.remove("nav-active");
 
@@ -43,14 +52,14 @@ const closeNav = () => {
   tabElementsNav.forEach((el) => el.setAttribute("tabindex", "-1"));
 };
 
-// Close nav when clicking on any nav link (except those with prevent-nav-close class)
+// Close nav when clicking any nav link (except those with prevent-nav-close class)
 [...navLinks, ...navFooterLinks].forEach((link) => {
   if (!link.classList.contains("prevent-nav-close")) {
     link.addEventListener("click", closeNav);
   }
 });
 
-siteNavBtn?.addEventListener("click", toggleNav);
+menuBtn?.addEventListener("click", toggleNav);
 
 // Library
 // Skip to main content option
