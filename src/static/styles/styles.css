@@ -251,6 +251,10 @@ body:has(.load-complete) .hero div {
   }
 }
 .site-nav .width-constraint {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   border: 4px solid cornflowerblue;
   position: relative;
   max-width: 1512px;
@@ -268,14 +272,6 @@ body:has(.load-complete) .hero div {
   .site-nav .width-constraint {
     min-height: 520px;
   }
-}
-.site-nav .nav-links,
-.site-nav .nav-footer-links {
-  position: absolute;
-}
-.site-nav .nav-links li a,
-.site-nav .nav-footer-links li a {
-  font-family: "Funnel Display", source-sans-pro, sans-serif;
 }
 .site-nav .nav-links {
   left: var(--body-padding);
@@ -364,16 +360,6 @@ body:has(.load-complete) .hero div {
 }
 .site-nav .nav-footer-links li .nav-footer-link:hover, .site-nav .nav-footer-links li .nav-footer-link:focus-visible {
   border-color: var(--primary-accent-color);
-}
-.site-nav .social-media-links {
-  right: var(--body-padding);
-  position: absolute;
-  bottom: var(--body-padding);
-}
-@media (min-width: 1513px) {
-  .site-nav .social-media-links {
-    right: calc(50% - (756px - var(--body-padding)));
-  }
 }
 .site-nav[aria-hidden=false] {
   opacity: 1;

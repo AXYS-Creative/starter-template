@@ -209,6 +209,7 @@ body {
   }
 
   .width-constraint {
+    @include column-start;
     border: 4px solid cornflowerblue;
     position: relative;
     max-width: $content-width;
@@ -223,17 +224,6 @@ body {
 
     @include mq-max(sm) {
       min-height: 520px;
-    }
-  }
-
-  .nav-links,
-  .nav-footer-links {
-    position: absolute;
-
-    li {
-      a {
-        font-family: $brand-font--body;
-      }
     }
   }
 
@@ -307,11 +297,11 @@ body {
     }
   }
 
-  .social-media-links {
-    @include right-spacing;
-    position: absolute;
-    bottom: var(--body-padding);
-  }
+  // .social-media-links {
+  //   @include right-spacing;
+  //   position: absolute;
+  //   bottom: var(--body-padding);
+  // }
 
   &[aria-hidden="false"] {
     @include show-content;

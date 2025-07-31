@@ -1,5 +1,5 @@
 show_skip_to_content: true # Dev use only
-lock_nav_scroll: true
+lock_nav_scroll: false # Might disable all scrolling...
 
 logo:
   class: header-logo # Dev use only
