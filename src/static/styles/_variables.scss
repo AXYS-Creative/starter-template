@@ -18,9 +18,9 @@ $content-width: 1512px; // Be mindful of media query breakpoints with left/right
 // Layering
 $z-index--nav: 3;
 $z-index--header: 4;
-$z-index--loader: 5;
-$z-index--video-overlay: 6; // Library
-$z-index--mouse-cursor: 7; // Library
+$z-index--loader: 5; // Library DELETE ME
+$z-index--video-overlay: 6; // Library DELETE ME
+$z-index--mouse-cursor: 7; // Library DELETE ME
 
 // Easing
 $cubic-ease: cubic-bezier(0.18, 0.97, 0.47, 1);
@@ -41,40 +41,6 @@ $magnet: transform 0.5s $cubic-ease;
 // Debugging
 $test: 2px dashed rgba(yellow, 0.75);
 $test-bg: rgba(navy, 0.75);
-
-@mixin light-theme {
-  --color-background: #{$white};
-  --color-font--primary: #{$black};
-  --color-font--secondary: #{$grey-light};
-
-  // --color-btn-2-bg: var(--color-brand--primary);
-  --color-btn-2-text: #{$black};
-  // --color-btn-2-border: transparent;
-  // --color-btn-2-bg--hover: transparent;
-  --color-btn-2-text--hover: var(--color-brand--primary);
-  // --color-btn-2-border--hover: transparent;
-
-  // --color-link: #{$grey-light};
-  // --color-link--hover: #{$white};
-
-  --color-surface--1: #{$grey-light};
-
-  --color-border-gradient: rgba(0, 0, 0, 0.5); // Library
-}
-
-@mixin dark-theme {
-  --color-background: #{$black};
-  --color-font--primary: #{$white};
-
-  --color-btn-2-text: #{$white};
-
-  // --color-link: #{$grey-light};
-  // --color-link--hover: #{$white};
-
-  --color-surface--1: #{$grey-dark};
-
-  --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
-}
 
 :root {
   --color-brand--primary: #{$coral}; // Consistent across themes
@@ -138,7 +104,41 @@ $test-bg: rgba(navy, 0.75);
   }
 }
 
-// Library (themes and component vars)
+// Theme Toggle
+@mixin light-theme {
+  --color-background: #{$white};
+  --color-font--primary: #{$black};
+  --color-font--secondary: #{$grey-light};
+
+  // --color-btn-2-bg: var(--color-brand--primary);
+  --color-btn-2-text: #{$black};
+  // --color-btn-2-border: transparent;
+  // --color-btn-2-bg--hover: transparent;
+  --color-btn-2-text--hover: var(--color-brand--primary);
+  // --color-btn-2-border--hover: transparent;
+
+  // --color-link: #{$grey-light};
+  // --color-link--hover: #{$white};
+
+  --color-surface--1: #{$grey-light};
+
+  --color-border-gradient: rgba(0, 0, 0, 0.5); // Library
+}
+
+@mixin dark-theme {
+  --color-background: #{$black};
+  --color-font--primary: #{$white};
+
+  --color-btn-2-text: #{$white};
+
+  // --color-link: #{$grey-light};
+  // --color-link--hover: #{$white};
+
+  --color-surface--1: #{$grey-dark};
+
+  --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
+}
+
 html[data-theme="dark"] {
   @include dark-theme;
 }

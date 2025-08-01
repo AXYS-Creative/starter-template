@@ -1,5 +1,5 @@
 show_skip_to_content: true # Dev use only
-lock_nav_scroll: false # Might disable all scrolling...
+lock_body_scroll: true # Locks body scroll when nav is open
 
 logo:
   class: header-logo # Dev use only
@@ -9,7 +9,6 @@ logo:
   url: /
   new_tab: false
 
-# Discover a way to config 'drop down' links as an option.
 links:
   - text: Home
     url: "/"
@@ -33,6 +32,18 @@ links:
   - text: Blog
     url: "/blog"
     new_tab: false
+
+# mobile nav specific content...
+nav_footer:
+  links:
+    - text: Privacy Policy
+      url: "/privacy-policy"
+      new_tab: false
+    - text: Terms of Service
+      url: "/terms-of-service"
+      new_tab: false
+  social_media: true
+  admin_login: true
 
 nav_btn:
   text: menu

@@ -12,7 +12,7 @@ export const navLinks = document.querySelectorAll(".nav-link"),
 
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
-let navScrollLock = siteNav.dataset.lockScroll === "true";
+let navScrollLock = siteNav.dataset.scrollLock === "true";
 
 const toggleNav = () => {
   const isNavOpen = siteNav.getAttribute("aria-hidden") === "true";

@@ -1,10 +1,18 @@
+<!-- prettier-ignore -->
+{% set tab_class = '' %}
+{% if tab_nav %}
+  {% set tab_class = 'tab-element-nav' %}
+{% else %}
+  {% set tab_class = 'tab-element-page' %}
+{% endif %}
+
 <ul class="social-media-links">
   {% for link in global.social_media.links %}
   <li aria-label="{{ meta_data.author }} social media links">
     <a
       href="{{ link.url }}"
       target="_blank"
-      class="social-media-link {% if tab_nav %}tab-element-nav{% else %}tab-element-page{% endif %}"
+      class="social-media-link {{ tab_class }}"
       aria-label="{{ link.title }}"
     >
       <span

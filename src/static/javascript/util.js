@@ -8,6 +8,7 @@ export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
 export const mqMinLg = window.matchMedia("(min-width: 1025px)").matches;
 export const mqMaxMd = window.matchMedia("(max-width: 768px)").matches;
 
+// Remember to add 'data-lenis-prevent' to any that should scroll normally
 export const lenis = new Lenis({
   autoRaf: true,
 });

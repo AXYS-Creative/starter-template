@@ -1,9 +1,13 @@
 <!-- prettier-ignore -->
+{% set tab_class = '' %}
+{% if tab_nav %}
+  {% set tab_class = 'tab-element-nav' %}
+{% else %}
+  {% set tab_class = 'tab-element-page' %}
+{% endif %}
+
 {% if global.header.links %}
-<menu
-  class="menu-links {{ links_location }}-links hide-cursor"
-  aria-label="navigation links"
->
+<menu class="menu-links hide-cursor" aria-label="navigation links">
   <!-- prettier-ignore -->
   {% for link in global.header.links %}
   {% if link.inner_links %}
@@ -17,7 +21,7 @@
   <li>
     <!-- prettier-ignore -->
     <a
-      class="header-links__link classic-link tab-element-page"
+      class="{{ links_location }}-links__link classic-link {{tab_class}}"
       href="{{ link.url }}"
       {% if link.new_tab %}
         target="_blank"

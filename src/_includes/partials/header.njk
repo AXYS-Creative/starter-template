@@ -1,3 +1,5 @@
+{% set tab_nav = false %}
+
 <header class="site-header" aria-label="Site Header">
   {% if global.header.show_skip_to_content %}
   <button class="skip-to-content tab-element-page">Skip to main content</button>
@@ -7,7 +9,6 @@
   {% set logo = global.header.logo %}
   {% include "../components/site-logo.njk" %}
 
-  {% set links_location = 'header' %}
   {% include "../components/menu-links.njk" %}
 
   <div class="site-nav-btn-wrapper glitch-pair">

@@ -1,37 +1,45 @@
+<!-- prettier-ignore -->
+{% set tab_nav = true %}
+{% set nav_footer = global.header.nav_footer %}
+
 <nav
   class="site-nav"
   id="site-navigation"
   aria-label="Site Navigation"
   aria-hidden="true"
-  data-lock-scroll="{{ global.header.lock_nav_scroll or false }}"
+  data-scroll-lock="{{ global.header.lock_body_scroll or false }}"
 >
-  <div class="width-constraint">
-    <!-- prettier-ignore -->
-    {% set links_location = 'nav' %}
+  <div class="width-constraint" data-lenis-prevent>
     {% include "../components/menu-links.njk" %}
 
-    <ul class="nav-footer-links">
-      <li>
-        <a
-          class="nav-footer-link tab-element-nav"
-          href="{{ settings.url }}admin"
-        >
-          Admin Login
-        </a>
-      </li>
-      <li>
-        <a class="nav-footer-link tab-element-nav" href="/">Privacy Policy</a>
-      </li>
-      <li>
-        <a class="nav-footer-link tab-element-nav" href="/">
-          Terms & Conditions
-        </a>
-      </li>
-    </ul>
+    <div class="site-nav__footer">
+      {% if nav_footer.links or nav_footer.admin_login %}
+      <ul class="site-nav__footer-links">
+        {% for link in nav_footer.links %}
+        <li>
+          <a class="nav-footer-link tab-element-nav" href="/">{{
+            link.text
+          }}</a>
+        </li>
+        {% endfor %}
 
-    <!-- prettier-ignore -->
-    {% set tab_nav = true %}
-    {% set social_data = social_media.links %}
-    {% include "../components/social-media.njk" %}
+        <!-- prettier-ignore -->
+        {% if nav_footer.admin_login %}
+        <li>
+          <a
+            class="nav-footer-link tab-element-nav"
+            href="{{ settings.url }}admin"
+          >
+            Admin Login
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% set social_data = social_media.links %}
+      {% include "../components/social-media.njk" %}
+    </div>
   </div>
 </nav>
