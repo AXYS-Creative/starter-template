@@ -1,5 +1,16 @@
+<!-- prettier-ignore -->
+{% set tab_class = '' %}
+{% if tab_nav %}
+  {% set tab_class = 'tab-element-nav' %}
+{% else %}
+  {% set tab_class = 'tab-element-page' %}
+{% endif %}
+
 <div class="dropdown-link">
-  <button class="dropdown-link__trigger classic-link" aria-expanded="false">
+  <button
+    class="dropdown-link__trigger classic-link {{ tab_class }}"
+    aria-expanded="false"
+  >
     {{ dropdown_link.text or 'No text provided'}}
 
     <!-- prettier-ignore -->
@@ -16,7 +27,7 @@
       <li>
         <!-- prettier-ignore -->
         <a
-          class="classic-link tab-element-page"
+          class="classic-link {{tab_class}}"
           href="{{ link.url }}"
           {% if link.new_tab %}
             target="_blank"

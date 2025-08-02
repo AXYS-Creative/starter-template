@@ -33,7 +33,7 @@
   --radius--lg: 24px;
   --radius--sm: 8px;
   --radius--xs: 4px;
-  --radius-btn: var(--radius--xs);
+  --radius--btn: var(--radius--xs);
 }
 @media (max-width: 1512px) {
   :root {
@@ -321,9 +321,6 @@ body:has(.load-complete) .hero div {
   .menu-links .dropdown-link {
     font-size: 24px;
   }
-}
-.menu-links .dropdown-link__trigger {
-  all: inherit;
 }
 
 .site-footer {
@@ -735,6 +732,7 @@ code {
   position: relative;
   min-height: 1.1lh;
   color: var(--color-link);
+  border-radius: var(--radius--btn);
 }
 @media (prefers-reduced-motion: no-preference) {
   .classic-link {
@@ -4848,7 +4846,7 @@ code {
 
 .cta-1, .tabs__btn {
   border: var(--border-width--btn) solid var(--color-btn-border);
-  border-radius: var(--radius-btn);
+  border-radius: var(--radius--btn);
   background: var(--color-btn-bg);
   color: var(--color-btn-text);
   padding: var(--btn-padding);
@@ -4900,6 +4898,7 @@ code {
 
 .dropdown-link {
   position: relative;
+  cursor: pointer;
 }
 @media (max-width: 1024px) {
   .dropdown-link:has([aria-expanded=true]) .dropdown-link__accordion {
@@ -4928,7 +4927,12 @@ code {
 }
 .dropdown-link__trigger {
   --icon-size: 20px;
+  all: inherit;
   margin-inline-end: var(--icon-size);
+  border-radius: var(--radius--btn);
+}
+.dropdown-link__trigger:focus-visible {
+  box-shadow: 0 0 0 1.5px #275dc5, 0 0 0 3px #fff;
 }
 .dropdown-link__trigger-icon {
   position: absolute;
@@ -6820,7 +6824,7 @@ body:has(.tooltip-util) .mouse-cursor {
   min-width: 180px;
   background: var(--color-surface--1);
   padding: var(--btn-padding);
-  border-radius: var(--radius-btn);
+  border-radius: var(--radius--btn);
   z-index: 1;
   transition: 0.24s ease;
 }
@@ -6891,7 +6895,7 @@ body:has(.tooltip-util) .mouse-cursor {
   position: fixed;
   top: 0;
   background: var(--color-surface--1);
-  border-radius: var(--radius-btn);
+  border-radius: var(--radius--btn);
   padding: var(--btn-padding);
   font-size: 14px;
   transition: 0.24s ease;

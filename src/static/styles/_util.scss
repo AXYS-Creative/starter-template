@@ -16,6 +16,7 @@
   position: relative;
   min-height: 1.1lh; // added in case overflow hidden is used
   color: var(--color-link);
+  border-radius: var(--radius--btn);
 
   @include mq-motion-allow {
     transition: $ease;

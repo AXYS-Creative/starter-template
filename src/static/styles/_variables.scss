@@ -92,7 +92,7 @@ $test-bg: rgba(navy, 0.75);
   --radius--lg: 24px;
   --radius--sm: 8px;
   --radius--xs: 4px;
-  --radius-btn: var(--radius--xs);
+  --radius--btn: var(--radius--xs);
 
   @media (max-width: 1512px) {
     --body-padding: 48px;
