@@ -14,8 +14,7 @@ links:
     url: "/"
     new_tab: false
   - text: Content
-    # url: "/style-guide"
-    # new_tab: false
+    icon: "/static/img/library/icon-google-chevron-down.svg"
     inner_links:
       - text: Library
         url: "/library"

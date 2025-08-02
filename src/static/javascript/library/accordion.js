@@ -1,23 +1,32 @@
-const accordions = document.querySelectorAll(".accordion");
+function initDisclosure(containerSelector, buttonSelector, options = {}) {
+  const containers = document.querySelectorAll(containerSelector);
 
-accordions.forEach((accordion) => {
-  const accordionBtns = accordion.querySelectorAll(".accordion-btn");
-  let singleOpen = accordion.dataset.singleOpen === "true";
+  containers.forEach((container) => {
+    const buttons = container.querySelectorAll(buttonSelector);
+    const singleOpen =
+      options.forceSingleOpen ?? container.dataset.singleOpen === "true";
 
-  accordionBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (singleOpen) {
-        accordionBtns.forEach((otherBtn) => {
-          if (otherBtn !== btn) {
-            otherBtn.setAttribute("aria-expanded", "false");
-          }
-        });
-      }
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (singleOpen) {
+          buttons.forEach((otherBtn) => {
+            if (otherBtn !== btn) {
+              otherBtn.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
 
-      btn.setAttribute(
-        "aria-expanded",
-        btn.getAttribute("aria-expanded") === "true" ? "false" : "true"
-      );
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+      });
     });
   });
+}
+
+// Initialize accordions (optionally respect data-single-open)
+initDisclosure(".accordion", ".accordion-btn");
+
+// Initialize dropdown links (always allow multiple open)
+initDisclosure(".dropdown-link", ".dropdown-link__trigger", {
+  forceSingleOpen: false,
 });

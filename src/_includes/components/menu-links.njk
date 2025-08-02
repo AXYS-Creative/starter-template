@@ -13,15 +13,14 @@
   {% if link.inner_links %}
   <li>
     <!-- prettier-ignore -->
-    {% set link_label = link.text %}
-    {% set inner_links = link.inner_links %}
+    {% set dropdown_link = link %}
     {% include "./dropdown-link.njk" %}
   </li>
   {% else %}
   <li>
     <!-- prettier-ignore -->
     <a
-      class="{{ links_location }}-links__link classic-link {{tab_class}}"
+      class="menu-links__link classic-link {{tab_class}}"
       href="{{ link.url }}"
       {% if link.new_tab %}
         target="_blank"

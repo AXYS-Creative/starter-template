@@ -1,45 +1,100 @@
 .dropdown-link {
+  $active-icon: scaleY(-1);
+
   position: relative;
 
-  &:hover,
-  &:focus-within {
-    .dropdown-link__list {
-      translate: 0 0;
-      opacity: 1;
-      pointer-events: all;
+  @include mq-max(lg) {
+    &:has([aria-expanded="true"]) {
+      .dropdown-link__accordion {
+        grid-template-rows: 1fr;
+        visibility: visible;
+        margin-block-start: 12px;
+      }
+
+      .dropdown-link__trigger-icon {
+        transform: $active-icon;
+      }
+
+      .dropdown-link__list {
+        padding: 12px;
+      }
     }
   }
 
-  // &__trigger {
-  //   border: $test;
-  // }
+  &:hover,
+  &:focus-within {
+    .dropdown-link__trigger-icon {
+      @include mq-min(lg) {
+        transform: $active-icon;
+      }
+    }
+    .dropdown-link__list {
+      @include mq-min(lg) {
+        translate: 0 0;
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+  }
+
+  &__trigger {
+    --icon-size: 20px;
+
+    margin-inline-end: var(--icon-size);
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      // translate: calc(var(--icon-size) * 1.2) -1ch;
+      translate: calc(var(--icon-size) * 1.2) -50%;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      transition: $ease;
+    }
+  }
+
+  &__accordion {
+    @include mq-max(lg) {
+      display: grid;
+      grid-template-rows: 0fr;
+      visibility: hidden;
+      transition: $ease;
+    }
+  }
 
   &__list {
-    --top-offset: 8px;
-
     @include column-start;
     gap: 8px;
-    position: absolute;
-    top: calc(100% + var(--top-offset));
-    // top: 0;
-    left: -14px;
     background: var(--color-surface--1);
     border-radius: var(--radius--sm);
-    padding: 16px;
 
-    pointer-events: none;
-    opacity: 0;
-    translate: 0 24px;
-    transition: $ease;
+    @include mq-max(lg) {
+      overflow: hidden;
+      transition: $ease;
+    }
 
-    // Bridge for hovering. The gap caused the menu to hide.
-    &::before {
-      content: "";
+    @include mq-min(lg) {
+      --top-offset: 8px;
+
+      padding: 16px;
       position: absolute;
-      top: calc(var(--top-offset) * -1);
-      left: 0;
-      width: 100%;
-      height: var(--top-offset);
+      top: calc(100% + var(--top-offset));
+      left: -14px;
+      pointer-events: none;
+      opacity: 0;
+      translate: 0 24px;
+      transition: $ease;
+
+      // Bridge for hovering. The gap caused the menu to hide.
+      &::before {
+        content: "";
+        position: absolute;
+        top: calc(var(--top-offset) * -1);
+        left: 0;
+        width: 100%;
+        height: var(--top-offset);
+      }
     }
 
     li {

@@ -92,6 +92,7 @@ body {
     aspect-ratio: 1;
   }
 
+  // scoped to header
   .menu-links {
     --links-gap: 36px;
 
@@ -103,15 +104,6 @@ body {
 
     @include mq-max(lg) {
       display: none;
-    }
-
-    &__link {
-      &:hover,
-      &:focus-visible {
-        &::after {
-          background: var(--color-font--primary);
-        }
-      }
     }
   }
 
@@ -207,12 +199,11 @@ body {
   }
 
   .width-constraint {
-    border: $test;
     @include column-start;
+    gap: 24px; // minimum gap in case they start to hug
 
     position: relative;
     max-width: $content-width;
-    height: 100vh;
     height: 100dvh;
     min-height: 768px;
     margin: auto;
@@ -227,10 +218,15 @@ body {
     }
   }
 
+  // scoped to nav
   .menu-links {
     @include column-start;
     gap: 12px;
-    margin-block: auto;
+    margin-block: 40vh auto;
+
+    @include mq-max(sm) {
+      margin-block: 32vh auto;
+    }
   }
 
   &__footer {
@@ -240,6 +236,7 @@ body {
     @include mq-max(md) {
       flex-direction: column;
       align-items: flex-start;
+      gap: var(--section-gap);
     }
 
     &-links {
@@ -256,6 +253,19 @@ body {
   &[aria-hidden="false"] {
     @include show-content;
     background: var(--color-background);
+  }
+}
+
+.menu-links {
+  .menu-links__link,
+  .dropdown-link {
+    @include mq-max(lg) {
+      font-size: 24px;
+    }
+  }
+
+  .dropdown-link__trigger {
+    all: inherit;
   }
 }
 

@@ -17,7 +17,7 @@
       <ul class="site-nav__footer-links">
         {% for link in nav_footer.links %}
         <li>
-          <a class="nav-footer-link tab-element-nav" href="/">{{
+          <a class="nav-footer-link classic-link tab-element-nav" href="/">{{
             link.text
           }}</a>
         </li>
@@ -26,10 +26,7 @@
         <!-- prettier-ignore -->
         {% if nav_footer.admin_login %}
         <li>
-          <a
-            class="nav-footer-link tab-element-nav"
-            href="{{ settings.url }}admin"
-          >
+          <a class="nav-footer-link classic-link tab-element-nav" href="/admin">
             Admin Login
           </a>
         </li>
