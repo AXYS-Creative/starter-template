@@ -1,0 +1,95 @@
+---
+layout: app
+path: library/components
+# Non public facing DELETE ME CHANGE ME
+---
+
+<section class="hero">
+  <h1>Components</h1>
+  <p class="text-balance">
+    Reusable common components to help speed things up.
+  </p>
+</section>
+
+<section class="accordion-section section-width-thin">
+  <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
+  <p>
+    Note, this section contains the utility class
+    <code>section-width-thin</code> to add extra inline padding.
+  </p>
+  <br />
+  <br />
+
+  <p style="display: block; margin-bottom: 64px">
+    Accordion with <code>icon</code> config and <code>single_open</code> set to
+    true.
+  </p>
+  <!-- prettier-ignore -->
+  {% set accordion_data = library.accordion.accordion_1 %}
+  {% include '../_includes/library/accordion.njk' %}
+  <br />
+  <br />
+  <br />
+  <br />
+  <p style="display: block; margin-bottom: 64px">
+    Accordion with <code>plus</code> config
+  </p>
+  <!-- prettier-ignore -->
+  {% set accordion_data = library.accordion.accordion_2 %}
+  {% include '../_includes/library/accordion.njk' %}
+</section>
+
+<section class="carousel-swiper-section">
+  <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set carousel_autoplay = library.carousel_swiper.autoplay %}
+  {% set carousel_controls = library.carousel_swiper.controls %}
+  {% set carousel_pagination = library.carousel_swiper.pagination %}
+  {% set carousel_slides = library.carousel_swiper.slides %}
+  {% include '../_includes/library/carousel-swiper.njk' %}
+</section>
+
+<section class="counter-section">
+  <h2 class="h5">[ Counter - Component ]</h2>
+
+  <p>
+    The counter can be used to reflect stats and showcase data. It comes with a
+    wide range of configs.
+  </p>
+  <ul class="classic-list">
+    <li><code>digit</code> the numeric value you're counting to.</li>
+    <li>
+      <code>prefix</code> an optional string at the start of the digit e.g. $
+    </li>
+    <li>
+      <code>suffix</code> an optional string at the end of the digit e.g. M
+    </li>
+    <li><code>label</code> a string describing what the stat measures</li>
+    <li>
+      <code>duration</code> a number (in ms) for the count to complete the
+      animation. Defaults to <code>3200</code>
+    </li>
+    <li>
+      <code>once</code> a boolean for whether or not this should animate each
+      time it comes into view. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>comma</code> a boolean to toggle the comma every thousand. Defaults
+      to <code>false</code>
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+
+  <div class="counter-section__group">
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_1 %} 
+    {% include "../_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_2 %} 
+    {% include "../_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_3 %} 
+    {% include "../_includes/library/counter.njk" %}
+  </div>
+</section>

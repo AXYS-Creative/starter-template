@@ -13,17 +13,26 @@ links:
   - text: Home
     url: "/"
     new_tab: false
-  - text: Content
+  - text: Library
     icon: "/static/img/library/icon-google-chevron-down.svg"
     inner_links:
-      - text: Library
-        url: "/library"
+      - text: Components
+        url: "/library/components"
+        new_tab: false
+      - text: Sections
+        url: "/library/sections"
+        new_tab: false
+      - text: Utility Classes
+        url: "/library/utility-classes"
+        new_tab: false
+      - text: Advanced
+        url: "/library/advanced"
         new_tab: false
       - text: Style Guide
         url: "/style-guide"
         new_tab: false
-      - text: Advanced
-        url: "/advanced"
+      - text: OG Library
+        url: "/library"
         new_tab: false
       - text: Tokens
         url: "https://axyscreative.com/tokens"
@@ -33,6 +42,13 @@ links:
     new_tab: false
 
 # mobile nav specific content...
+nav_btn:
+  text: menu
+  type: chocolate # burger | chocolate | kebab
+  shape: square # square | round
+  display: md # Dev use only
+  class: "magnet magnet-strong glitch-trigger cursor-target__menu-btn" # Dev use only
+
 nav_footer:
   links:
     - text: Privacy Policy
@@ -43,10 +59,3 @@ nav_footer:
       new_tab: false
   social_media: true
   admin_login: true
-
-nav_btn:
-  text: menu
-  type: chocolate # burger | chocolate | kebab
-  shape: square # square | round
-  display: md # Dev use only
-  class: "magnet magnet-strong glitch-trigger cursor-target__menu-btn" # Dev use only

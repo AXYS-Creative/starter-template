@@ -1,33 +1,63 @@
 .btn-play {
-  --btn-size: 48px;
+  --btn-size: 40px;
+  --btn-padding: 6px; // icon size
   $icon-swap-scale: 0.5;
   $icon-swap-duration: 0.3s;
   $icon-swap-delay: 0.2s;
 
+  border: var(--border-width--btn) solid var(--color-border);
   display: grid;
   margin-block: var(--content-spacing) calc(var(--content-spacing) / 2);
   // align-self: flex-end;
   width: var(--btn-size);
   height: var(--btn-size);
+  padding: var(--btn-padding);
   border-radius: 50%;
-  padding: 12px;
   scroll-margin-top: 520px;
+  transition: $ease;
 
-  @include mq-max(xxl) {
-    scroll-margin-top: 360px;
+  @media all {
+    @include mq-max(xxl) {
+      scroll-margin-top: 360px;
+    }
+
+    @include mq-max(lg) {
+      --btn-size: 40px;
+      padding: 10px;
+    }
+
+    @include mq-max(sm) {
+      --btn-size: 36px;
+      padding: 10px;
+    }
   }
 
-  @include mq-max(lg) {
-    --btn-size: 40px;
-    padding: 10px;
+  &:active {
+    scale: 0.9;
   }
 
-  @include mq-max(sm) {
-    --btn-size: 36px;
-    padding: 10px;
+  &[aria-pressed="true"] {
+    .btn-play__icon--playing {
+      opacity: 0;
+      scale: $icon-swap-scale;
+
+      @include mq-motion-allow {
+        transition: $icon-swap-duration $cubic-ease 0s;
+      }
+    }
+
+    .btn-play__icon--paused {
+      opacity: 1;
+      scale: 1;
+
+      @include mq-motion-allow {
+        transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
+      }
+    }
   }
 
-  &-icon {
+  &__icon {
+    background: var(--color-font--primary);
     grid-area: 1 / 1;
     width: 100%;
     height: 100%;
@@ -37,7 +67,6 @@
     mask-size: contain;
 
     &--playing {
-      mask-image: url("/static/img/icon-pause.svg");
       opacity: 1;
       scale: 1;
 
@@ -47,32 +76,11 @@
     }
 
     &--paused {
-      mask-image: url("/static/img/icon-play.svg");
       opacity: 0;
       scale: $icon-swap-scale;
 
       @include mq-motion-allow {
         transition: $icon-swap-duration $cubic-ease 0s;
-      }
-    }
-  }
-
-  &.paused {
-    .carousel__btn-icon--playing {
-      opacity: 0;
-      scale: $icon-swap-scale;
-
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease 0s;
-      }
-    }
-
-    .carousel__btn-icon--paused {
-      opacity: 1;
-      scale: 1;
-
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
       }
     }
   }

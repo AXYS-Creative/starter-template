@@ -128,21 +128,23 @@
     <!-- prettier-ignore -->
     {% include "./partials/header.njk" %}
     {% include "./partials/nav.njk" %}
-    <main class="main-content main-{{ path }} ">{{ content | safe }}</main>
+    <main class="main-content main-{{ path | slugifyPath }}">
+      {{ content | safe }}
+    </main>
     {%include "./partials/footer-simple.njk" %}
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
-    {% if path == "home" or path == "library" %}
+    {% if path == "home" or path == "library/utility-classes" %}
       {% include "./library/mouse-cursor.njk" %}
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if path == "library" %}
+    {% if path == "library/components" %}
       {% include "./library/video-overlay.njk" %}
     {% endif %}
     
-    {% if path == "advanced" %}
+    {% if path == "library/advanced" %}
     <canvas id="grid-bg"></canvas>
     {% endif %}
 

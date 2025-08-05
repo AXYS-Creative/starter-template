@@ -87,6 +87,12 @@ module.exports = async function (eleventyConfig) {
     return value.replace(/\[%.*?%\]/g, "");
   });
 
+  // Slugfiy paths (see app <main> tag — useful for nested pathnames /library/advanced becomes .main-library-advanced)
+  eleventyConfig.addFilter("slugifyPath", function (path) {
+    if (typeof path !== "string") return "";
+    return path.replace(/\//g, "-");
+  });
+
   // Token Replacement at build time vs client (prevent tokens from showing up briefly)
   eleventyConfig.addTransform("tokenReplace", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {

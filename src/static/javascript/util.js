@@ -17,6 +17,19 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
+// Buttons
+{
+  const playButtons = document.querySelectorAll(".btn-play");
+
+  playButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      console.log("clicked the button");
+      const isPressed = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", !isPressed);
+    });
+  });
+}
+
 // Get current year for copyright
 {
   const yearText = document.querySelector(".year-text");

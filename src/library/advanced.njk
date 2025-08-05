@@ -1,6 +1,6 @@
 ---
 layout: app
-path: advanced
+path: library/advanced
 # Non public facing
 
 title: Advanced // Delete this file from production sites
@@ -83,12 +83,12 @@ description:
   {% set grid_flow_img_src = '/static/img/library/landscape-1.webp' %}
   {% set grid_flow_img_alt = '' %}
   {% set grid_flow_img_size = 'lg' %}
-  {% include './_includes/library/grid-flow-img.njk' %}
+  {% include '../_includes/library/grid-flow-img.njk' %}
   
   {% set grid_flow_img_src = '/static/img/library/landscape-2.webp' %}
   {% set grid_flow_img_alt = '' %}
   {% set grid_flow_img_size = 'md' %}
-  {% include './_includes/library/grid-flow-img.njk' %}
+  {% include '../_includes/library/grid-flow-img.njk' %}
 </section>
 
 <section class="light">
@@ -137,4 +137,4 @@ description:
 </section>
 
 <!-- prettier-ignore -->
-{% include './_includes/partials/loader.njk' %}
+{% include '../_includes/partials/loader.njk' %}
