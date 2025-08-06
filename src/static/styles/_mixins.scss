@@ -154,6 +154,7 @@ $min-breakpoints: (
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
 
   @include mq-max(md) {
     --font-size: 14px;

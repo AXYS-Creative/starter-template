@@ -70,6 +70,10 @@
   height: 16px;
 }
 
+.max-width-text {
+  max-width: 620px;
+}
+
 .sr-only {
   @include sr-only;
 }

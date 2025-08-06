@@ -87,7 +87,7 @@ module.exports = async function (eleventyConfig) {
     return value.replace(/\[%.*?%\]/g, "");
   });
 
-  // Slugfiy paths (see app <main> tag — useful for nested pathnames /library/advanced becomes .main-library-advanced)
+  // Slugfiy paths (see app.njk <main> tag — useful for nested pathnames: '/library/advanced' becomes '.main-library-advanced')
   eleventyConfig.addFilter("slugifyPath", function (path) {
     if (typeof path !== "string") return "";
     return path.replace(/\//g, "-");

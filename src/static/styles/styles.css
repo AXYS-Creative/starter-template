@@ -402,6 +402,7 @@ body:has(.load-complete) .hero div {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   --font-size: 24px;
   line-height: 1.5;
   color: var(--color-font--primary);
@@ -544,6 +545,7 @@ li {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   text-decoration: none;
 }
 @media (max-width: 768px) {
@@ -573,6 +575,7 @@ li.body-lg {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   --font-size: 24px;
   line-height: 1.5;
 }
@@ -790,6 +793,10 @@ code {
   background: var(--color-font--primary);
   width: 16px;
   height: 16px;
+}
+
+.max-width-text {
+  max-width: 620px;
 }
 
 .sr-only {
@@ -5053,6 +5060,7 @@ code {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   --font-size: 24px;
   line-height: 1.5;
   display: flex;
@@ -5120,6 +5128,7 @@ code {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   display: grid;
   grid-template-rows: 0fr;
   visibility: hidden;
@@ -5376,6 +5385,7 @@ code {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
 }
 @media (max-width: 768px) {
   .btn-toggle__label {
@@ -5617,6 +5627,7 @@ code {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5804,6 +5815,7 @@ code {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
 }
 @media (max-width: 768px) {
   .counter__label {
@@ -6183,6 +6195,7 @@ body:has(.tooltip-util) .mouse-cursor {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   margin-block-start: 4px;
   margin-inline-start: 1ch;
 }
@@ -6197,6 +6210,7 @@ body:has(.tooltip-util) .mouse-cursor {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   --font-size: 24px;
   line-height: 1.5;
 }
@@ -6216,6 +6230,7 @@ body:has(.tooltip-util) .mouse-cursor {
   font-family: var(--font-family--body);
   font-size: var(--font-size);
   font-weight: 400;
+  letter-spacing: -0.25px;
   --font-size: 14px;
   margin-block-start: 4px;
   margin-inline-start: 0.5ch;

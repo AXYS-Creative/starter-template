@@ -6,8 +6,9 @@ path: library/components
 
 <section class="hero">
   <h1>Components</h1>
-  <p class="text-balance">
-    Reusable common components to help speed things up.
+  <p class="max-width-text">
+    A collection of reusable common components to help simplify your built and
+    speed things up.
   </p>
 </section>
 
@@ -93,3 +94,121 @@ path: library/components
     {% include "../_includes/library/counter.njk" %}
   </div>
 </section>
+
+<section class="form-section">
+  <h2 class="h5">[ Form Feedback - Component ]</h2>
+  <strong>Note: Forms require additional setup in Netlify.</strong>
+  <br />
+  <br />
+  <p>
+    After submitting the form, the user sees a temporary feedback message.
+    Either success or error.
+  </p>
+  <br />
+  <br />
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_contact.form_data %}
+  {% include "../_includes/library/form-feedback.njk" %}
+</section>
+
+<section class="form-section">
+  <h2 class="h5">[ Form Redirect - Component ]</h2>
+  <p>After submitting the form, the user is redirected to a new page.</p>
+  <br />
+  <br />
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_redirect.form_data %}
+  {% include "../_includes/library/form-redirect.njk" %}
+</section>
+
+<section class="image-comparison-section library-section">
+  <h2 class="h5">[ Image Comparison - Component ]</h2>
+  <p>Coming soon!</p>
+</section>
+
+<section class="tile-shuffle-section library-section">
+  <h2 class="h5">[ Image Shuffle - Component ]</h2>
+  <p>
+    Traditionally used to show off a logos, but could be adapted to shuffle
+    through any kind of content.
+  </p>
+</section>
+
+<section class="marquee-companion-text library-section">
+  <h2 class="h5">[ Marquee - Component ]</h2>
+  <p>
+    Display content across the page using the marquee. Comes with the following
+    configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>text</code> Accepts a string value and will display the message
+      passed in. (Not recommneded to use with <code>imgs</code>)
+    </li>
+    <li>
+      <code>imgs</code> Accepts an array of images (taking src and alt props).
+      (Not recommneded to use with <code>text</code>)
+    </li>
+    <li>
+      <code>count</code> The number of marquee elements stacked on top of one
+      another. Defaults to <code>1</code>
+    </li>
+    <li>
+      <code>scroll-alternate</code> A boolean, alternate the marquee animation
+      direction based on the user's scroll direction. Defaults to
+      <code>false</code>. Also adds the modifier class
+      <code>marquee--alternate</code>.
+    </li>
+    <li>
+      <code>velocity</code> A number that adjusts how dramatic the translate is
+      (also used with <code>scrub</code>). Default is <code>0</code> (which
+      removes the velocity and works nicely with
+      <code>scroll_alternate: false</code> ).
+    </li>
+    <li>
+      <code>scrub</code> A boolean that disabled the auto scrolling/panning and
+      instead hoooks up the scroll to the user's scroll position. Requires
+      <code>velocity</code> and defaults to <code>false</code>
+    </li>
+    <li>
+      <code>speed</code> A number representing the animation speed above 769px.
+      Defaults to <code>28</code>
+    </li>
+    <li>
+      <code>speed-md</code> A number representing the animation speed below
+      768px. Defaults to <code>24</code>
+    </li>
+    <li>
+      <code>speed-sm</code> A number representing the animation speed below
+      480px. Defaults to <code>20</code>
+    </li>
+  </ul>
+</section>
+
+<!-- prettier-ignore -->
+{% set marquee = library.marquee.marquee_1 %}
+{% include '../_includes/library/marquee.njk' %}
+<br />
+<br />
+<div class="section-width" style="padding-block: 0">
+  [ This marquee is the simplest form of the marquee component ]
+</div>
+<br /><br /><br /><br /><br /><br />
+<!-- prettier-ignore -->
+{% set marquee = library.marquee.marquee_2 %}
+{% include '../_includes/library/marquee.njk' %}
+<br />
+<br />
+<div class="section-width" style="padding-block: 0">
+  [ This is a double marquee that changes direction based on scroll direction ]
+</div>
+<br /><br /><br /><br /><br /><br />
+<!-- prettier-ignore -->
+{% set marquee = library.marquee.marquee_3 %}
+{% include '../_includes/library/marquee.njk' %}
+<br />
+<br />
+<div class="section-width" style="padding-block: 0">
+  [ This is an image marquee that scrubs instead of auto animates. ]
+</div>
+<br /><br /><br /><br /><br /><br />
