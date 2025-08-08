@@ -11,7 +11,11 @@
   >
     <span class="cta-1__text">{{ cta_1.text }}</span>
     {% if cta_1.icon %}
-      <span class="cta-1__icon mask-icon" style="mask-image: url('{{cta_1.icon}}');"></span>
+      <span 
+        class="cta-1__icon mask-icon" 
+        style="mask-image: url('{{cta_1.icon}}');" 
+        role="img"
+      ></span>
     {% endif %}
   </a>
   {% endif %}
@@ -34,6 +38,7 @@
       <span 
         class="cta-2__icon cursor-target__cta-2"
         style="mask-image: url('{{cta_2.icon}}');"
+        role="img"
       ></span>
     {% endif %}
   </a>
