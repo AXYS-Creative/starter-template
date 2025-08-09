@@ -17,8 +17,7 @@
   --color-btn-border--hover: var(--color-brand--primary);
   --color-link: var(--color-font--primary);
   --color-link--hover: var(--color-brand--primary);
-  --color-pill: #007bff;
-  --color-pill: #aecce4;
+  --color-pill: var(--color-brand--primary);
   --btn-padding: 8px 16px;
   --spacing--xs: 12px;
   --spacing--sm: 24px;
@@ -125,6 +124,9 @@ body:has(.load-complete) .hero p,
 body:has(.load-complete) .hero div {
   opacity: 1;
 }
+body:has(.promo-banner) .site-header > * {
+  transition: top 0.24s ease, opacity 0.24s ease;
+}
 
 .site-header {
   --children-height: 32px;
@@ -205,9 +207,6 @@ body:has(.load-complete) .hero div {
 }
 .site-header--promo-banner {
   --children-top: calc(var(--body-padding) + var(--promo-banner-height));
-}
-.site-header--promo-banner > * {
-  transition: top 0.24s ease, opacity 0.24s ease;
 }
 .site-header .skip-to-content {
   position: fixed;
@@ -6277,18 +6276,18 @@ body:has(.tooltip-util) .mouse-cursor {
   text-align: center;
   display: block;
 }
+@media (prefers-reduced-motion: no-preference) {
+  .promo-banner {
+    transition: 0.24s ease, width 0s;
+  }
+}
 @media (max-width: 480px) {
   .promo-banner {
     font-size: 12px;
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .promo-banner:is(a) {
-    transition: 0.24s ease, width 0s;
-  }
-}
 @media (hover: hover) and (pointer: fine) {
-  .promo-banner:is(a):hover, .promo-banner:is(a):focus-visible {
+  .promo-banner:is(a):hover, .promo-banner:is(a):focus-visible, .promo-banner:is(button):hover, .promo-banner:is(button):focus-visible {
     filter: brightness(1.25);
   }
 }
@@ -6297,6 +6296,9 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .promo-banner.promo-banner--reveal {
   translate: 0 0;
+}
+.promo-banner.promo-banner--closed {
+  pointer-events: none;
 }
 .promo-banner--fixed {
   position: fixed;

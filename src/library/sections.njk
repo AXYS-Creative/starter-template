@@ -47,3 +47,22 @@ path: library/sections
   {% set carousel_hero_slides = library.carousel_hero.slides %}
   {% include "../_includes/library/carousel-hero.njk" %}
 </div>
+
+<!-- prettier-ignore -->
+{% set price_cards_data = library.price_cards %}
+{% include '../_includes/library/price-cards.njk' %}
+
+<!-- prettier-ignore -->
+{% set hs_title = library.scroll_horizontal.title %} 
+{% set hs_desc = library.scroll_horizontal.desc %}
+{% set hs_message = library.scroll_horizontal.message %}
+{% set hs_imgs = library.scroll_horizontal.imgs %}
+{% set hs_img_parallax = library.scroll_horizontal.img_parallax %}
+{% include '../_includes/library/scroll-horizontal.njk' %}
+
+<!-- prettier-ignore  -->
+{% set panel_nav = library.scroll_stack.panel_nav %}
+{% set panel_copy = library.scroll_stack.panel_copy %} 
+{% set panel_data = library.scroll_stack.panels %}
+{% set panel_configs = library.scroll_stack.panel_configs %}
+{% include '../_includes/library/scroll-stack.njk' %}

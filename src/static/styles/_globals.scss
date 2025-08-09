@@ -72,6 +72,12 @@ body {
       }
     }
   }
+
+  &:has(.promo-banner) {
+    .site-header > * {
+      transition: top $ease, opacity $ease; // for transition
+    }
+  }
 }
 
 .site-header {
@@ -152,10 +158,6 @@ body {
     // promo-banner-height var set in js. See promo-banner.js
 
     --children-top: calc(var(--body-padding) + var(--promo-banner-height));
-
-    > * {
-      transition: top $ease, opacity $ease;
-    }
 
     // &.site-header--away-from-top {
     //   --children-top: var(--body-padding);

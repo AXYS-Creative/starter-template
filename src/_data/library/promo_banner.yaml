@@ -1,5 +1,6 @@
 # message: This is where the promo banner 'message' goes.
-btn_url: https://axyscreative.com
+close_on_click: true # Not compatible with btn_url
+# btn_url: https://axyscreative.com
 initial_hide: 3200
 modifiers: ["fixed", "full-width"]
 marquee:

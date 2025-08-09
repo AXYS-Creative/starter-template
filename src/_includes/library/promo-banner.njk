@@ -1,24 +1,24 @@
 {% set message = promo_banner_data.message or '' %}
+{% set close_on_click = promo_banner_data.close_on_click or false %}
 {% set btn_url = promo_banner_data.btn_url %}
 {% set marquee_data = promo_banner_data.marquee %}
 {% set initial_hide = promo_banner_data.initial_hide or 0 %}
 {% set modifiers = promo_banner_data.modifiers or [] %}
 
-{# Build class list with BEM modifiers #}
 {% set classList = 'promo-banner' %}
 {% for mod in modifiers %}
-  {% set classList = classList + ' promo-banner--' + mod %}
+{% set classList = classList + ' promo-banner--' + mod %}
 {% endfor %}
 
-{# Set data attribute for initial hide delay #}
 {% set dataDelay = '' %}
 {% if initial_hide %}
   {% set dataDelay = 'data-initial-hide=' + initial_hide %}
 {% endif %}
 
-{# Start component #}
 {% if btn_url %}
   <a href="{{ btn_url }}" class="{{ classList }}" {{ dataDelay }}>
+{% elseif close_on_click %}
+  <button class="{{ classList }} promo-banner--close-on-click" {{ dataDelay }}>
 {% else %}
   <div class="{{ classList }}" {{ dataDelay }}>
 {% endif %}
@@ -30,8 +30,10 @@
     <p class="promo-banner__message">{{ message }}</p>
   {% endif %}
 
-{% if btn_url %}
+{% if btn_url and not close_on_click %}
   </a>
+{% elseif close_on_click %}
+  </button>
 {% else %}
   </div>
 {% endif %}

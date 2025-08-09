@@ -8,15 +8,16 @@
   text-align: center;
   display: block;
 
+  @include mq-motion-allow {
+    transition: $ease, width 0s;
+  }
+
   @include mq-max(sm) {
     font-size: 12px;
   }
 
-  &:is(a) {
-    @include mq-motion-allow {
-      transition: $ease, width 0s;
-    }
-
+  &:is(a),
+  &:is(button) {
     @include desktop-hover {
       filter: brightness(1.25);
     }
@@ -28,6 +29,10 @@
 
   &.promo-banner--reveal {
     translate: 0 0;
+  }
+
+  &.promo-banner--closed {
+    pointer-events: none;
   }
 
   &--fixed {

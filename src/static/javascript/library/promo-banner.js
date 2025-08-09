@@ -13,4 +13,15 @@ if (promoBanner) {
     promoBanner.classList.add("promo-banner--reveal");
     siteHeader.classList.add("site-header--promo-banner");
   }, initialHide);
+
+  // Close on click
+  if (promoBanner.classList.contains("promo-banner--close-on-click")) {
+    promoBanner.addEventListener("click", () => {
+      promoBanner.classList.remove("promo-banner--reveal");
+      promoBanner.classList.add("promo-banner--closed");
+      promoBanner.setAttribute("aria-hidden", true);
+      promoBanner.setAttribute("tabindex", -1);
+      siteHeader.classList.remove("site-header--promo-banner");
+    });
+  }
 }
