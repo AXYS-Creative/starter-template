@@ -8,6 +8,7 @@
   --color-brand--primary: #e48c66;
   --color-brand--secondary: #a4d1a2;
   --color-font--error: #dc143c;
+  --color-border: #c0c0c0;
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-text: #fefefe;
   --color-btn-border: var(--color-btn-bg);
@@ -16,7 +17,8 @@
   --color-btn-border--hover: var(--color-brand--primary);
   --color-link: var(--color-font--primary);
   --color-link--hover: var(--color-brand--primary);
-  --color-border: #c0c0c0;
+  --color-pill: #007bff;
+  --color-pill: #aecce4;
   --btn-padding: 8px 16px;
   --spacing--xs: 12px;
   --spacing--sm: 24px;
@@ -6153,6 +6155,23 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .site-nav-btn[aria-expanded=true] .site-nav-btn__icon--chocolate .site-nav-btn__stroke.stroke-2, .site-nav-btn[aria-expanded=true] .site-nav-btn__icon--chocolate .site-nav-btn__stroke.stroke-4, .site-nav-btn[aria-expanded=true] .site-nav-btn__icon--chocolate .site-nav-btn__stroke.stroke-6, .site-nav-btn[aria-expanded=true] .site-nav-btn__icon--chocolate .site-nav-btn__stroke.stroke-8 {
   scale: 0;
+}
+
+.pill {
+  --icon-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--color-pill);
+  color: var(--color-pill);
+  border-radius: 128px;
+  padding: 4px 12px;
+  font-size: 14px;
+}
+.pill__icon {
+  background-color: currentColor;
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .price-cards {

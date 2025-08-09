@@ -58,6 +58,8 @@ $test-bg: rgba(navy, 0.75);
 
   --color-font--error: #{$red};
 
+  --color-border: #{$grey-light};
+
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-text: #{$white};
   --color-btn-border: var(--color-btn-bg);
@@ -68,7 +70,8 @@ $test-bg: rgba(navy, 0.75);
   --color-link: var(--color-font--primary);
   --color-link--hover: var(--color-brand--primary);
 
-  --color-border: #{$grey-light};
+  --color-pill: #{$blue};
+  --color-pill: #aecce4;
 
   --btn-padding: 8px 16px;
 

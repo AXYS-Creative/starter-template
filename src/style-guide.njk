@@ -105,6 +105,16 @@ title: Style Guide
   }) %}
   {% include "./_includes/library/button-toggle.njk" %}
 
+  <br />
   <!-- prettier-ignore -->
+  {% set play_btn_id = 'library-id-play-btn' %}
   {% include "./_includes/library/button-play.njk" %}
+
+  <br />
+  <!-- prettier-ignore -->
+  {% set pill = ({
+    text: 'Sample Pill',
+    icon: '/static/img/library/icon-google-orbit.svg'
+  }) %}
+  {% include "./_includes/library/pill.njk" %}
 </section>
