@@ -5800,7 +5800,7 @@ code {
   line-height: 1.1;
   letter-spacing: -1px;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 @media (max-width: 1512px) {
   .counter__value {
@@ -5824,6 +5824,86 @@ code {
   }
 }
 
+@media all {
+  .counter__value-digit--ticker {
+    display: flex;
+    height: 2ch;
+    overflow: hidden;
+  }
+  .digit {
+    display: block;
+    width: 1ch;
+    overflow: hidden;
+    transition-property: transform;
+  }
+  .digit:nth-of-type(20) {
+    transition-delay: 3.2s;
+  }
+  .digit:nth-of-type(19) {
+    transition-delay: 3.04s;
+  }
+  .digit:nth-of-type(18) {
+    transition-delay: 2.88s;
+  }
+  .digit:nth-of-type(17) {
+    transition-delay: 2.72s;
+  }
+  .digit:nth-of-type(16) {
+    transition-delay: 2.56s;
+  }
+  .digit:nth-of-type(15) {
+    transition-delay: 2.4s;
+  }
+  .digit:nth-of-type(14) {
+    transition-delay: 2.24s;
+  }
+  .digit:nth-of-type(13) {
+    transition-delay: 2.08s;
+  }
+  .digit:nth-of-type(12) {
+    transition-delay: 1.92s;
+  }
+  .digit:nth-of-type(11) {
+    transition-delay: 1.76s;
+  }
+  .digit:nth-of-type(10) {
+    transition-delay: 1.6s;
+  }
+  .digit:nth-of-type(9) {
+    transition-delay: 1.44s;
+  }
+  .digit:nth-of-type(8) {
+    transition-delay: 1.28s;
+  }
+  .digit:nth-of-type(7) {
+    transition-delay: 1.12s;
+  }
+  .digit:nth-of-type(6) {
+    transition-delay: 0.96s;
+  }
+  .digit:nth-of-type(5) {
+    transition-delay: 0.8s;
+  }
+  .digit:nth-of-type(4) {
+    transition-delay: 0.64s;
+  }
+  .digit:nth-of-type(3) {
+    transition-delay: 0.48s;
+  }
+  .digit:nth-of-type(2) {
+    transition-delay: 0.32s;
+  }
+  .digit:nth-of-type(1) {
+    transition-delay: 0.16s;
+  }
+  .digit .sequence {
+    display: block;
+    transition-property: inherit;
+    transition-duration: 1.24s;
+    transition-timing-function: cubic-bezier(0.8, 0, 0.3, 1.05);
+    transition-delay: inherit;
+  }
+}
 .grid-flow-parent {
   position: relative;
   overflow: hidden;
@@ -5945,6 +6025,7 @@ code {
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+  line-height: 1.5;
   padding-inline: 0;
   overflow: hidden;
   width: 100%;

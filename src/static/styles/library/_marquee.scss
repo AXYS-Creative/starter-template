@@ -2,6 +2,7 @@
   $gap-offset: 0.5ch; // inline padding start and in-between duplicate span
 
   @include h2; // Setting font here to use ch units above
+  line-height: 1.5;
   padding-inline: 0;
   overflow: hidden;
   // width: 100vw; // causing x overflow scroll?

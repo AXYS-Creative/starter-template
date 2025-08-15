@@ -4,10 +4,18 @@
 {% set suffix = counter_data.suffix or '' %}
 {% set label = counter_data.label or '' %}
 {% set spoken_label = counter_data.spoken_label or '' %}
-{% set duration = counter_data.duration or 3200 %}
+{% set duration = counter_data.duration or 2400 %}
 {% set once = counter_data.once or false %}
 {% set comma = counter_data.comma or false %}
+{% set ticker = counter_data.ticker or false %}
 {% set class = counter_data.class or '' %}
+
+{% set ticker_class = '' %}
+{% if ticker %}
+{% set ticker_class = 'counter__value-digit counter__value-digit--ticker' %}
+{% else %}
+{% set ticker_class = 'counter__value-digit' %}
+{% endif %}
 
 <!-- prettier-ignore -->
 <h2 
@@ -20,7 +28,7 @@
 >
   <span class="counter__value" aria-hidden="true">
     <span class="counter__value-prefix">{{ prefix }}</span>
-    <span class="counter__value-digit">0</span>
+    <span class="{{ ticker_class }}"></span>
     <span class="counter__value-suffix">{{ suffix }}</span>
   </span>
   {% if label %}

@@ -61,6 +61,10 @@ path: library/components
   <ul class="classic-list">
     <li><code>digit</code> the numeric value you're counting to.</li>
     <li>
+      <code>comma</code> a boolean to toggle the comma every thousand. Defaults
+      to <code>false</code>
+    </li>
+    <li>
       <code>prefix</code> an optional string at the start of the digit e.g. $
     </li>
     <li>
@@ -69,15 +73,15 @@ path: library/components
     <li><code>label</code> a string describing what the stat measures</li>
     <li>
       <code>duration</code> a number (in ms) for the count to complete the
-      animation. Defaults to <code>3200</code>
+      animation. Defaults to <code>2400</code>
     </li>
     <li>
       <code>once</code> a boolean for whether or not this should animate each
       time it comes into view. Defaults to <code>false</code>
     </li>
     <li>
-      <code>comma</code> a boolean to toggle the comma every thousand. Defaults
-      to <code>false</code>
+      <code>ticker</code> a boolean to alter the display animation. Defaults to
+      <code>false</code> (Recommended to drop duration)
     </li>
     <li><code>class</code> a string value for a custom css class</li>
   </ul>
@@ -91,6 +95,9 @@ path: library/components
     {% include "../_includes/library/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_3 %} 
+    {% include "../_includes/library/counter.njk" %}
+    <!-- prettier-ignore -->
+    {% set counter_data = library.counter.counter_4 %} 
     {% include "../_includes/library/counter.njk" %}
   </div>
 </section>

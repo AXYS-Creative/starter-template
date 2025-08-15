@@ -21,7 +21,7 @@
     // border: $test;
     @include h4;
     display: inline-flex;
-    justify-content: space-between; // optional for prefix/suffix
+    justify-content: center; // For prefix/suffix
 
     &-digit {
       font-variant-numeric: tabular-nums;
@@ -30,5 +30,39 @@
 
   &__label {
     @include body-font-styles;
+  }
+}
+
+// counter ticker
+@media all {
+  @mixin stagger-transition-delay($i, $initial-delay, $stagger-delay) {
+    @while $i > 0 {
+      &:nth-of-type(#{$i}) {
+        transition-delay: ($initial-delay + $stagger-delay * $i);
+      }
+      $i: $i - 1;
+    }
+  }
+
+  .counter__value-digit--ticker {
+    display: flex;
+    height: 2ch;
+    overflow: hidden;
+  }
+
+  .digit {
+    @include stagger-transition-delay(20, 0s, 0.16s); // Control ease logic here
+    display: block;
+    width: 1ch;
+    overflow: hidden;
+    transition-property: transform;
+
+    .sequence {
+      display: block;
+      transition-property: inherit;
+      transition-duration: 1.24s;
+      transition-timing-function: cubic-bezier(0.8, 0, 0.3, 1.05);
+      transition-delay: inherit;
+    }
   }
 }
