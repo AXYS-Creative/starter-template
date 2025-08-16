@@ -33,15 +33,15 @@ export const lenis = new Lenis({
   });
 }
 
-// Get current year for copyright
+// Dynamic update current year
 {
-  const yearText = document.querySelector(".year-text");
   const currentYear = new Date().getFullYear();
+  const currentYearElements = document.querySelectorAll("[data-current-year]");
 
-  if (yearText) {
-    yearText.innerHTML = currentYear;
-    yearText.setAttribute("datetime", currentYear);
-  }
+  currentYearElements.forEach((currentYearElement) => {
+    currentYearElement.textContent = currentYear;
+    currentYearElement.setAttribute("datetime", currentYear);
+  });
 }
 
 // Return to top

@@ -35,7 +35,7 @@ counter_3:
   class: counter-3
 
 counter_4:
-  digit: 15297
+  digit: 1529718
   comma: true
   prefix: "$"
   suffix: null
