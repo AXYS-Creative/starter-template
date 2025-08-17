@@ -51,6 +51,40 @@ path: library/components
   {% include '../_includes/library/carousel-swiper.njk' %}
 </section>
 
+<section class="clipboard-copy-section">
+  <h2 class="h5">[ Clipboard Copy - Component ]</h2>
+
+  <br />
+  <br />
+  <p>Copy any text to the user’s clipboard.</p>
+  <br />
+  <br />
+  <ul class="classic-list">
+    <li>
+      <code>copy_target</code> a string value for the text that will be copied
+      to the clipboard.
+    </li>
+    <li>
+      <code>button_text</code> a string value for the copy button text. Defaults
+      to 'Copy'
+    </li>
+    <li>
+      <code>icon</code> optional source to button copy icon. Default icon
+      provided.
+    </li>
+  </ul>
+
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set clipboard_copy = ({
+    copy_target: 'Yeetus Deletus',
+    button_text: 'Copy Message',
+    id: 'sample-1'
+  }) %} 
+  {% include "../_includes/library/clipboard-copy.njk" %}
+</section>
+
 <section class="counter-section">
   <h2 class="h5">[ Counter - Component ]</h2>
 

@@ -1,0 +1,24 @@
+<!-- prettier-ignore -->
+{% set icon = clipboard_copy.icon or '../../static/img/library/icon-google-copy.svg'%}
+{% set copy_target = clipboard_copy.copy_target or 'No copy_target provided'%}
+{% set button_text = clipboard_copy.button_text or 'Copy' %}
+{% set id = clipboard_copy.id or '' %}
+
+<div class="clipboard-copy">
+  <div class="clipboard-copy__target" id="{{ id }}">
+    {{ copy_target }}
+  </div>
+  <button
+    class="clipboard-copy__button cta-1"
+    type="button"
+    aria-label="Copy to clipboard"
+    data-copy-target="{{ id }}"
+  >
+    <span
+      class="clipboard-copy__button-icon mask-icon"
+      style="mask-image: url('{{ icon }}');"
+      role="img"
+    ></span>
+    <span class="clipboard-copy__button-text">{{ button_text }}</span>
+  </button>
+</div>
