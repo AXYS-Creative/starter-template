@@ -23,7 +23,7 @@ links:
         url: "/library/sections"
         new_tab: false
       - text: Utility Classes
-        url: "/library/utility-classes"
+        url: "/library/utils"
         new_tab: false
       - text: Advanced
         url: "/library/advanced"

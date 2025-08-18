@@ -7,6 +7,7 @@ import "./global/nav.js";
 import "./global/scroll.js";
 
 import "./library/advanced.js";
+import "./library/alert.js";
 import "./library/background.js";
 import "./library/accordion.js";
 import "./library/buttons.js";

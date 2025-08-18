@@ -1,6 +1,6 @@
 ---
 layout: app
-path: library/utility-classes
+path: library/utils
 # Non public facing DELETE ME CHANGE ME
 ---
 
@@ -460,4 +460,39 @@ path: library/utility-classes
       <code>false</code>
     </li>
   </ul>
+</section>
+
+<section class="video-overlay-section library-section">
+  <h2 class="h5">[ Video Overlay - Util ]</h2>
+  <p>
+    Note: while this is marked as a util, it requires the video-overlay.njk
+    component at the base of your app (scope to the page with the toggle). This
+    can be a traditional button or you can simply wrap an element
+    <em>i.e.</em> an image. The setup is simple:
+  </p>
+  <br />
+  <ol class="classic-list">
+    <li>
+      Ensure you have the <code>video-overlay.njk</code> component and
+      <code>video-overlay.js</code> file in your app.
+    </li>
+    <li>
+      Add the utility class of <code>video-toggle</code> to your button/trigger.
+    </li>
+    <li>
+      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
+      these video files.
+    </li>
+    <li>That's it!</li>
+  </ol>
+
+  <!-- prettier-ignore -->
+  <button
+    class="cta-1 video-toggle tab-element-page"
+    data-vid-src="{{ library.video_overlay.src }}"
+    aria-label="Open video overlay for {{ item.title }}"
+    aria-controls="video-overlay"
+  >
+    {{ library.video_overlay.btn_text }}
+  </button>
 </section>

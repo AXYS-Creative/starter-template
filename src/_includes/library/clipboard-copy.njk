@@ -1,8 +1,9 @@
 <!-- prettier-ignore -->
-{% set icon = clipboard_copy.icon or '../../static/img/library/icon-google-copy.svg'%}
+{% set id = clipboard_copy.id or '' %}
 {% set copy_target = clipboard_copy.copy_target or 'No copy_target provided'%}
 {% set button_text = clipboard_copy.button_text or 'Copy' %}
-{% set id = clipboard_copy.id or '' %}
+{% set button_text_active = clipboard_copy.button_text_active or 'Copied!' %}
+{% set icon = clipboard_copy.icon | default('../../static/img/library/icon-google-copy.svg') %}
 
 <div class="clipboard-copy">
   <div class="clipboard-copy__target" id="{{ id }}">
@@ -14,11 +15,18 @@
     aria-label="Copy to clipboard"
     data-copy-target="{{ id }}"
   >
+    {% if icon %}
     <span
-      class="clipboard-copy__button-icon mask-icon"
+      class="clipboard-copy__button-icon cta-1__icon mask-icon"
       style="mask-image: url('{{ icon }}');"
       role="img"
     ></span>
-    <span class="clipboard-copy__button-text">{{ button_text }}</span>
+    {% endif %}
+    <span
+      class="clipboard-copy__button-text"
+      data-button-text-active="{{ button_text_active }}"
+    >
+      {{ button_text }}
+    </span>
   </button>
 </div>

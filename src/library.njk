@@ -355,7 +355,7 @@ path: library
     class="tooltip-util icon-md"
     data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
     data-tooltip-min-width="250"
-    src="/static/img/library/icon-google-info.svg"
+    src="/static/img/library/icon-google-info-circle.svg"
     alt=""
     role="button"
     tabindex="0"
@@ -488,39 +488,4 @@ path: library
 
 <section class="video-player-section">
   <h2 class="h5">[ Video Player - Component ]</h2>
-</section>
-
-<section class="video-overlay-section library-section">
-  <h2 class="h5">[ Video Overlay - Util ]</h2>
-  <p>
-    Note: while this is marked as a util, it requires the video-overlay.njk
-    component at the base of your app (scope to the page with the toggle). This
-    can be a traditional button or you can simply wrap an element
-    <em>i.e.</em> an image. The setup is simple:
-  </p>
-  <br />
-  <ol class="classic-list">
-    <li>
-      Ensure you have the <code>video-overlay.njk</code> component and
-      <code>video-overlay.js</code> file in your app.
-    </li>
-    <li>
-      Add the utility class of <code>video-toggle</code> to your button/trigger.
-    </li>
-    <li>
-      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
-      these video files.
-    </li>
-    <li>That's it!</li>
-  </ol>
-
-  <!-- prettier-ignore -->
-  <button
-    class="cta-1 video-toggle tab-element-page"
-    data-vid-src="{{ library.video_overlay.video_src }}"
-    aria-label="Open video overlay for {{ item.title }}"
-    aria-controls="video-overlay"
-  >
-    Toggle video overlay
-  </button>
 </section>

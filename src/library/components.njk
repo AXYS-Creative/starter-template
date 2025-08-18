@@ -69,6 +69,10 @@ path: library/components
       to 'Copy'
     </li>
     <li>
+      <code>button_text_active</code> a string value for the copy button text
+      when clicked. Defaults to 'Copied!'
+    </li>
+    <li>
       <code>icon</code> optional source to button copy icon. Default icon
       provided.
     </li>
@@ -78,9 +82,20 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set clipboard_copy = ({
-    copy_target: 'Yeetus Deletus',
-    button_text: 'Copy Message',
-    id: 'sample-1'
+    id: 'copy-sample-1',
+    copy_target: ('
+  <p>&lbrack;%br%&rbrack;</p>
+  ' | safe) }) %} {% include "../_includes/library/clipboard-copy.njk" %}
+
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set clipboard_copy = ({
+    id: 'copy-sample-2',
+    copy_target: 'Doo diddy daha',
+    button_text: 'Copy to clipboard',
+    button_text_active: 'Copied successfully!',
+    icon: null
   }) %} 
   {% include "../_includes/library/clipboard-copy.njk" %}
 </section>
@@ -115,7 +130,7 @@ path: library/components
     </li>
     <li>
       <code>ticker</code> a boolean to alter the display animation. Defaults to
-      <code>false</code> (Recommended to drop duration)
+      <code>false</code> Note: doesn't work with <code>duration</code> property.
     </li>
     <li><code>class</code> a string value for a custom css class</li>
   </ul>

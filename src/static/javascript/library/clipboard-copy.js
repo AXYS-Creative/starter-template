@@ -4,20 +4,23 @@ copyButtons.forEach((btn) => {
   btn.addEventListener("click", async () => {
     const targetId = btn.getAttribute("data-copy-target");
     const target = document.getElementById(targetId);
-    const btnText = btn.querySelector(".clipboard-copy__button-text");
-    const originalBtnText = btnText.textContent;
+    const btnTextEl = btn.querySelector(".clipboard-copy__button-text");
+    const btnTextBase = btnTextEl.textContent;
+    const btnTextActive = btnTextEl.dataset.buttonTextActive;
+
+    console.log(btnTextActive);
 
     if (target) {
       const targetText = target.innerText || target.textContent;
 
       try {
         await navigator.clipboard.writeText(targetText);
-        btnText.textContent = "Copied!";
+        btnTextEl.textContent = btnTextActive;
         btn.setAttribute("aria-label", "Copied to clipboard");
 
         // Reset after 2 seconds
         setTimeout(() => {
-          btnText.textContent = originalBtnText;
+          btnTextEl.textContent = btnTextBase;
           btn.setAttribute("aria-label", "Copy to clipboard");
         }, 2000);
       } catch (err) {

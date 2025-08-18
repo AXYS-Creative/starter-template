@@ -1,0 +1,51 @@
+.alert {
+  --toast-spacing: var(--spacing--xs);
+  --icon-size: 24px;
+
+  @include row-start;
+  gap: var(--toast-spacing);
+  background-color: var(--color-surface--1);
+  padding: var(--toast-spacing);
+  max-width: 420px;
+  position: fixed;
+  bottom: var(--spacing--sm);
+  right: var(--spacing--sm);
+  border-radius: var(--radius--sm);
+  z-index: $z-index--header;
+
+  &-content {
+    @include column-start;
+    gap: var(--toast-spacing);
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__actions {
+      @include row-center;
+      gap: var(--toast-spacing);
+    }
+  }
+
+  &__icon {
+    background: var(--icon-color, var(--color-font--primary));
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  &--success {
+    --icon-color: #{$green};
+  }
+
+  &--info {
+    --icon-color: #{$blue};
+  }
+
+  &--warning {
+    --icon-color: #{$yellow};
+  }
+
+  &--error {
+    --icon-color: #{$red};
+  }
+}

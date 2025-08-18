@@ -24,7 +24,7 @@ if (videoToggle) {
 
 export let isvideoOverlayOpen = false;
 
-export const openvideoOverlay = (src) => {
+export const openVideoOverlay = (src) => {
   isvideoOverlayOpen = true;
 
   videoOverlay.setAttribute("aria-hidden", !isvideoOverlayOpen);
@@ -52,11 +52,11 @@ videoToggle?.forEach((btn) => {
   let vidSrc = btn.getAttribute("data-vid-src");
 
   btn.addEventListener("click", () => {
-    openvideoOverlay(vidSrc);
+    openVideoOverlay(vidSrc);
   });
 });
 
-export const closevideoOverlay = () => {
+export const closeVideoOverlay = () => {
   isvideoOverlayOpen = false;
 
   videoOverlay.setAttribute("aria-hidden", "true");
@@ -83,8 +83,8 @@ export const closevideoOverlay = () => {
 // Close the video player when clicking outside the embed
 videoOverlay?.addEventListener("click", (e) => {
   if (e.target.classList.contains("video-overlay")) {
-    closevideoOverlay();
+    closeVideoOverlay();
   }
 });
 
-videoCloseBtn?.addEventListener("click", () => closevideoOverlay());
+videoCloseBtn?.addEventListener("click", () => closeVideoOverlay());

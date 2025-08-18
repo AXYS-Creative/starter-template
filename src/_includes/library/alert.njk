@@ -1,0 +1,23 @@
+{% set alert_type = '' %}
+
+<div class="alert">
+  <span
+    style="
+      mask-image: url('../../static/img/library/icon-google-info-circle.svg');
+    "
+    class="alert__icon mask-icon"
+    role="img"
+  ></span>
+  <div class="alert-content">
+    <strong class="alert-content__title">Alert Title</strong>
+    <p class="alert-content__message">
+      Content goes here. Consider making a way to pass in custom markup, or at
+      the very least include a way to seamlessly add links using the cms.
+    </p>
+    <div class="alert-content__actions">
+      <a class="alert-content__action-1 classic-link" href="#">Action 1</a>
+      <a class="alert-content__action-2 classic-link" href="#">Action 2</a>
+    </div>
+  </div>
+  <button class="alert__close-btn classic-link">Close</button>
+</div>

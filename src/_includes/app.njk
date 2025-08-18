@@ -135,12 +135,17 @@
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
-    {% if path == "home" or path == "library/utility-classes" or path == "library" %}
+    {% if path == "home" or path == "library/utils" or path == "library" %}
       {% include "./library/mouse-cursor.njk" %}
     {% endif %}
 
     <!-- prettier-ignore -->
     {% if path == "library/components" %}
+      {% include "./library/alert.njk" %}
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if path == "library/utils" %}
       {% include "./library/video-overlay.njk" %}
     {% endif %}
     

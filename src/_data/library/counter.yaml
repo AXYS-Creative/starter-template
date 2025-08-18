@@ -41,7 +41,7 @@ counter_4:
   suffix: null
   label: "'Ticker' style"
   spoken_label:
-  # duration: 2400
+  # duration: 8000
   once: false
   ticker: true
   class: counter-4
