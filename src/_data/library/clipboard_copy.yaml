@@ -1,0 +1,30 @@
+comp_1:
+  id: "copy-sample-1"
+  copy_target: "This message should copy."
+
+comp_2:
+  id: "copy-sample-2"
+  copy_target: "&lbrack;%br%&rbrack;"
+  button_text: "Copy Token"
+  button_text_copied: "Token Copied!"
+  icon: null
+
+comp_3:
+  id: "copy-sample-3"
+  copy_target: "Sample text three — This will copy to the clipboard."
+  button_text: "Copy to clipboard"
+  button_text_active: "Copied successfully!"
+  # icon:
+  alert:
+    type: "success" # success | info | warning | error — defaults to null
+    title: "Copy Successful!"
+    message: ""
+    auto_close: 1600 # use 0 for manual closing, which adds the close button
+    # link_1:
+    #   text: "Visit Google"
+    #   url: "https://google.com"
+    #   new_tab: true
+    # link_2:
+    #   text: "Action 2"
+    #   url: "#"
+    #   new_tab: false

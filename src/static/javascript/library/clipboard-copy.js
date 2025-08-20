@@ -8,8 +8,6 @@ copyButtons.forEach((btn) => {
     const btnTextBase = btnTextEl.textContent;
     const btnTextActive = btnTextEl.dataset.buttonTextActive;
 
-    console.log(btnTextActive);
-
     if (target) {
       const targetText = target.innerText || target.textContent;
 

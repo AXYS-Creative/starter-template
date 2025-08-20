@@ -60,43 +60,51 @@ path: library/components
   <br />
   <br />
   <ul class="classic-list">
+    <li><code>id</code> a string value for the unique component id.</li>
     <li>
       <code>copy_target</code> a string value for the text that will be copied
-      to the clipboard.
+      to the clipboard. Note: this accepts markup (toggle 'safe' filter in
+      component to turn off)
     </li>
     <li>
-      <code>button_text</code> a string value for the copy button text. Defaults
-      to 'Copy'
+      <code>button_text</code> an optional string to change the copy button
+      text. Defaults to 'Copy'
     </li>
     <li>
-      <code>button_text_active</code> a string value for the copy button text
-      when clicked. Defaults to 'Copied!'
+      <code>button_text_active</code> an optional string to change the copy
+      button text when clicked. Defaults to 'Copied!'
     </li>
     <li>
-      <code>icon</code> optional source to button copy icon. Default icon
-      provided.
+      <code>icon</code> optional string, the file path to the icon shown on the
+      button. Default icon provided. Use <code>null</code> to remove the icon.
     </li>
   </ul>
 
   <br />
-
-  <!-- prettier-ignore -->
-  {% set clipboard_copy = ({
-    id: 'copy-sample-1',
-    copy_target: ('
-  <p>&lbrack;%br%&rbrack;</p>
-  ' | safe) }) %} {% include "../_includes/library/clipboard-copy.njk" %}
-
+  <br />
+  <h6>Most basic clipboard-copy component</h6>
   <br />
 
   <!-- prettier-ignore -->
-  {% set clipboard_copy = ({
-    id: 'copy-sample-2',
-    copy_target: 'Doo diddy daha',
-    button_text: 'Copy to clipboard',
-    button_text_active: 'Copied successfully!',
-    icon: null
-  }) %} 
+  {% set clipboard_copy = library.clipboard_copy.comp_1 %}
+  {% include "../_includes/library/clipboard-copy.njk" %}
+
+  <br />
+  <br />
+  <h6>CMS Token clipboard copy</h6>
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set clipboard_copy = library.clipboard_copy.comp_2 %}
+  {% include "../_includes/library/clipboard-copy.njk" %}
+
+  <br />
+  <br />
+  <h6>Hooked up to the alert.njk component.</h6>
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set clipboard_copy = library.clipboard_copy.comp_3 %}
   {% include "../_includes/library/clipboard-copy.njk" %}
 </section>
 

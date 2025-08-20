@@ -2,26 +2,43 @@
   --toast-spacing: var(--spacing--xs);
   --icon-size: 24px;
 
-  @include row-start;
+  @include row-center;
   gap: var(--toast-spacing);
   background-color: var(--color-surface--1);
   padding: var(--toast-spacing);
-  max-width: 420px;
   position: fixed;
   bottom: var(--spacing--sm);
   right: var(--spacing--sm);
-  border-radius: var(--radius--sm);
+  border-radius: var(--radius--xs);
   z-index: $z-index--header;
+  translate: 0 200%;
+  transition: 0.5s cubic-bezier(0.75, -0.05, 0.75, -0.5) 0.125s;
+
+  &:has(.alert__close-btn) {
+    @include mq-min(sm) {
+      max-width: 420px;
+      min-width: 296px;
+    }
+
+    .alert-content {
+      margin-inline-end: auto;
+    }
+  }
+
+  @include mq-max(sm) {
+    width: calc(100% - calc(var(--spacing--sm) * 2));
+  }
 
   &-content {
     @include column-start;
     gap: var(--toast-spacing);
+    margin-inline-end: var(--spacing--xs);
 
     &__title {
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    &__actions {
+    &__links {
       @include row-center;
       gap: var(--toast-spacing);
     }
@@ -33,19 +50,40 @@
     height: var(--icon-size);
   }
 
-  &--success {
+  &__close-btn {
+    @include row-center;
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  // Modifiers
+
+  &[data-alert-type="success"] {
     --icon-color: #{$green};
   }
 
-  &--info {
+  &[data-alert-type="info"] {
     --icon-color: #{$blue};
   }
 
-  &--warning {
+  &[data-alert-type="warning"] {
     --icon-color: #{$yellow};
   }
 
-  &--error {
+  &[data-alert-type="error"] {
     --icon-color: #{$red};
+  }
+
+  &--active {
+    translate: 0 0;
+
+    transition: 0.5s cubic-bezier(0.25, 1.5, 0.25, 1.05);
+  }
+
+  &--has-content {
+    align-items: flex-start;
   }
 }
