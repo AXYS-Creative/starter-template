@@ -1,3 +1,16 @@
+// Libary display
+.alert-section {
+  &__group {
+    @include row-center(flex-start);
+    gap: var(--section-gap);
+
+    @include mq-max(md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
 .alert {
   --toast-spacing: var(--spacing--xs);
   --icon-size: 24px;
@@ -38,6 +51,10 @@
       font-size: 16px;
     }
 
+    &__message {
+      opacity: 0.85;
+    }
+
     &__links {
       @include row-center;
       gap: var(--toast-spacing);
@@ -45,7 +62,7 @@
   }
 
   &__icon {
-    background: var(--icon-color, var(--color-font--primary));
+    background: var(--accent-color, var(--color-font--primary));
     width: var(--icon-size);
     height: var(--icon-size);
   }
@@ -62,19 +79,19 @@
   // Modifiers
 
   &[data-alert-type="success"] {
-    --icon-color: #{$green};
+    --accent-color: #{$green};
   }
 
   &[data-alert-type="info"] {
-    --icon-color: #{$blue};
+    --accent-color: #{$blue};
   }
 
   &[data-alert-type="warning"] {
-    --icon-color: #{$yellow};
+    --accent-color: #{$yellow};
   }
 
   &[data-alert-type="error"] {
-    --icon-color: #{$red};
+    --accent-color: #{$red};
   }
 
   &--active {
@@ -85,5 +102,9 @@
 
   &--has-content {
     align-items: flex-start;
+  }
+
+  &--side-bar {
+    border-left: 6px solid var(--accent-color);
   }
 }

@@ -52,14 +52,18 @@ path: library/components
     alert object:
   </p>
   <ul class="classic-list">
-    <li><code>id</code> a string value</li>
     <li>
-      <code>type</code> a string value of success | info | warning | error that
-      alters the icon and color of the alert.
+      <code>id</code> a string value, unique identifier that will plug into the
+      <code>aria-controls</code> of the button that fires the alert.
+    </li>
+    <li>
+      <code>type</code> a string value of
+      <code>success | info | warning | error</code> that alters the icon and
+      color of the alert.
     </li>
     <li>
       <code>title</code> a string value for the alert title. Recommended to keep
-      short.
+      it short.
     </li>
     <li><code>message</code> a string value that accepts custom markup.</li>
     <li>
@@ -78,61 +82,77 @@ path: library/components
     </li>
   </ul>
 
-  <br />
-  <!-- prettier-ignore -->
-  {% set alert = ({
-    id: 'sample-alert-1',
-    type: 'success',
-    title: 'Basic "success" Alert',
-    message: '',
-    auto_close: 2400
-  }) %}
-  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-    Success alert
-  </button>
-  {% include "../_includes/library/alert.njk" %}
+  <div class="alert-section__group">
+    <!-- prettier-ignore -->
+    {% set alert = ({
+      id: 'sample-alert-1',
+      type: 'success',
+      title: 'Basic "success" Alert',
+      message: '',
+      auto_close: 1600
+    }) %}
+    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+      Success alert
+    </button>
+    {% include "../_includes/library/alert.njk" %}
 
-  <br />
-  <!-- prettier-ignore -->
-  {% set alert = ({
-    id: 'sample-alert-2',
-    type: 'info',
-    title: 'Basic "info" Alert',
-    message: 'A simple alert. This alert doesn&rsquo;t include auto_close.',
-    link_1: {
-      text: 'Learn more',
-      url: 'https://www.axyscreative.com',
-      new_tab: true
-    }
-  }) %}
-  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-    Info alert
-  </button>
-  {% include "../_includes/library/alert.njk" %}
+    <!-- prettier-ignore -->
+    {% set alert = ({
+      id: 'sample-alert-2',
+      type: 'info',
+      title: 'Basic "info" Alert',
+      message: 'A simple alert. This will close in 2.4 seconds',
+      auto_close: 2400,
+      side_bar: false
+    }) %}
+    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+      Info alert
+    </button>
+    {% include "../_includes/library/alert.njk" %}
 
-  <br />
-  <!-- prettier-ignore -->
-  {% set alert = ({
-    id: 'sample-alert-3',
-    type: 'warning',
-    title: 'Basic "warning" Alert',
-    message: 'A warning alert. This alert will auto close in 5.6 seconds.',
-    auto_close: 5600,
-    link_1: {
-      text: 'Learn more',
-      url: 'https://www.axyscreative.com',
-      new_tab: true
-    },
-    link_2: {
-      text: 'Visit Google',
-      url: 'https://www.google.com',
-      new_tab: true
-    }
-  }) %}
-  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-    Warning alert
-  </button>
-  {% include "../_includes/library/alert.njk" %}
+    <!-- prettier-ignore -->
+    {% set alert = ({
+      id: 'sample-alert-3',
+      type: 'warning',
+      title: 'Basic "warning" Alert',
+      message: 'A warning alert with a side_bar. This alert will auto close in 3.6 seconds.',
+      auto_close: 3600,
+      side_bar: true,
+      link_1: {
+        text: 'Learn more',
+        url: 'https://www.axyscreative.com',
+        new_tab: true
+      }
+    }) %}
+    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+      Warning alert
+    </button>
+    {% include "../_includes/library/alert.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set alert = ({
+      id: 'sample-alert-4',
+      type: 'error',
+      title: 'Basic "error" Alert',
+      message: 'An error alert. This alert doesn&rsquo;t have auto_close so you have to close it manually.',
+      auto_close: 0,
+      side_bar: true,
+      link_1: {
+        text: 'Learn more',
+        url: 'https://www.axyscreative.com',
+        new_tab: true
+      },
+      link_2: {
+        text: 'Google it',
+        url: 'https://www.google.com',
+        new_tab: true
+      }
+    }) %}
+    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+      Error alert
+    </button>
+    {% include "../_includes/library/alert.njk" %}
+  </div>
 </section>
 
 <section class="carousel-swiper-section">

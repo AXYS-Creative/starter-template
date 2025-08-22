@@ -7,6 +7,7 @@
 {% set auto_close = alert.auto_close or null %}
 {% set link_1 = alert.link_1 or null %}
 {% set link_2 = alert.link_2 or null %}
+{% set side_bar = alert.side_bar or false %}
 
 <!-- logic -->
 <!-- prettier-ignore -->
@@ -22,8 +23,13 @@
 {% endif %}
 
 {% set content_class = '' %}
+
 {% if message or link_1 %}
-  {% set content_class = 'alert--has-content' %}
+  {% set content_class = content_class + ' alert--has-content' %}
+{% endif %}
+
+{% if side_bar %}
+  {% set content_class = content_class + ' alert--side-bar' %}
 {% endif %}
 
 <!-- prettier-ignore -->

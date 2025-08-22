@@ -5255,6 +5255,19 @@ code {
   display: none;
 }
 
+.alert-section__group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--section-gap);
+}
+@media (max-width: 768px) {
+  .alert-section__group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .alert {
   --toast-spacing: var(--spacing--xs);
   --icon-size: 24px;
@@ -5297,6 +5310,9 @@ code {
 .alert-content__title {
   font-size: 16px;
 }
+.alert-content__message {
+  opacity: 0.85;
+}
 .alert-content__links {
   display: flex;
   justify-content: center;
@@ -5304,7 +5320,7 @@ code {
   gap: var(--toast-spacing);
 }
 .alert__icon {
-  background: var(--icon-color, var(--color-font--primary));
+  background: var(--accent-color, var(--color-font--primary));
   width: var(--icon-size);
   height: var(--icon-size);
 }
@@ -5318,16 +5334,16 @@ code {
   height: 24px;
 }
 .alert[data-alert-type=success] {
-  --icon-color: #a4d1a2;
+  --accent-color: #a4d1a2;
 }
 .alert[data-alert-type=info] {
-  --icon-color: #ada4e3;
+  --accent-color: #ada4e3;
 }
 .alert[data-alert-type=warning] {
-  --icon-color: #fdfd96;
+  --accent-color: #fdfd96;
 }
 .alert[data-alert-type=error] {
-  --icon-color: #dc143c;
+  --accent-color: #dc143c;
 }
 .alert--active {
   translate: 0 0;
@@ -5335,6 +5351,9 @@ code {
 }
 .alert--has-content {
   align-items: flex-start;
+}
+.alert--side-bar {
+  border-left: 6px solid var(--accent-color);
 }
 
 .blog-article-list {
