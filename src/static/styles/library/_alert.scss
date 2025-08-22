@@ -9,6 +9,7 @@
   position: fixed;
   bottom: var(--spacing--sm);
   right: var(--spacing--sm);
+  max-width: 420px;
   border-radius: var(--radius--xs);
   z-index: $z-index--header;
   translate: 0 200%;
@@ -16,7 +17,6 @@
 
   &:has(.alert__close-btn) {
     @include mq-min(sm) {
-      max-width: 420px;
       min-width: 296px;
     }
 

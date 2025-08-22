@@ -1,8 +1,5 @@
 // Libary display
 .counter-section {
-  @include column-start;
-  gap: var(--section-gap);
-
   &__group {
     @include row-center(flex-start);
     gap: var(--section-gap--lg);

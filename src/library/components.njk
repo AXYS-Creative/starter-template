@@ -40,6 +40,101 @@ path: library/components
   {% include '../_includes/library/accordion.njk' %}
 </section>
 
+<section class="alert-section library-section">
+  <h2 class="h5">[ Alert - Component + Util ]</h2>
+
+  <p>
+    Alerts (toasts) are tools used to display notifications and other helpful
+    info to the user. They can be used to display success, info, warning, or
+    error content. The <code>alert.njk</code> component used along side a
+    utility class <code>alert-trigger</code> on a button to fire the alert. Once
+    you include the alert.njk you have access to the following props on the
+    alert object:
+  </p>
+  <ul class="classic-list">
+    <li><code>id</code> a string value</li>
+    <li>
+      <code>type</code> a string value of success | info | warning | error that
+      alters the icon and color of the alert.
+    </li>
+    <li>
+      <code>title</code> a string value for the alert title. Recommended to keep
+      short.
+    </li>
+    <li><code>message</code> a string value that accepts custom markup.</li>
+    <li>
+      <code>auto_close</code> an optional number (in ms) that controls if the
+      alert will automatically close. A falsey value will add a close button to
+      manually close the alert.
+    </li>
+  </ul>
+
+  <p>Here's the setup for the <code>button</code> tag:</p>
+  <ul class="classic-list">
+    <li><code>alert-trigger</code> the utility class required to add.</li>
+    <li>
+      <code>aria-controls</code> a string value that goes on the button that
+      matches the alert id.
+    </li>
+  </ul>
+
+  <br />
+  <!-- prettier-ignore -->
+  {% set alert = ({
+    id: 'sample-alert-1',
+    type: 'success',
+    title: 'Basic "success" Alert',
+    message: '',
+    auto_close: 2400
+  }) %}
+  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+    Success alert
+  </button>
+  {% include "../_includes/library/alert.njk" %}
+
+  <br />
+  <!-- prettier-ignore -->
+  {% set alert = ({
+    id: 'sample-alert-2',
+    type: 'info',
+    title: 'Basic "info" Alert',
+    message: 'A simple alert. This alert doesn&rsquo;t include auto_close.',
+    link_1: {
+      text: 'Learn more',
+      url: 'https://www.axyscreative.com',
+      new_tab: true
+    }
+  }) %}
+  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+    Info alert
+  </button>
+  {% include "../_includes/library/alert.njk" %}
+
+  <br />
+  <!-- prettier-ignore -->
+  {% set alert = ({
+    id: 'sample-alert-3',
+    type: 'warning',
+    title: 'Basic "warning" Alert',
+    message: 'A warning alert. This alert will auto close in 5.6 seconds.',
+    auto_close: 5600,
+    link_1: {
+      text: 'Learn more',
+      url: 'https://www.axyscreative.com',
+      new_tab: true
+    },
+    link_2: {
+      text: 'Visit Google',
+      url: 'https://www.google.com',
+      new_tab: true
+    }
+  }) %}
+  <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
+    Warning alert
+  </button>
+  {% include "../_includes/library/alert.njk" %}
+</section>
+
 <section class="carousel-swiper-section">
   <h2 class="h5">[ Carousel 'Swiper' - Component ]</h2>
 
@@ -51,18 +146,19 @@ path: library/components
   {% include '../_includes/library/carousel-swiper.njk' %}
 </section>
 
-<section class="clipboard-copy-section">
-  <h2 class="h5">[ Clipboard Copy - Component ]</h2>
-
-  <br />
-  <br />
-  <p>Copy any text to the user’s clipboard.</p>
-  <br />
-  <br />
+<section class="clipboard-copy-section library-section">
+  <h2 class="h5">[ Clipboard Copy - Component + Util ]</h2>
+  <p>
+    Copy any string to the user’s clipboard using the clipboard-copy.njk
+    component. This requires a few things:
+  </p>
   <ul class="classic-list">
-    <li><code>id</code> a string value for the unique component id.</li>
     <li>
-      <code>copy_target</code> a string value for the text that will be copied
+      <code>id</code> a string value for the unique component id. This will also
+      be passed to the html element target.
+    </li>
+    <li>
+      <code>copy_message</code> a string value for the text that will be copied
       to the clipboard. Note: this accepts markup (toggle 'safe' filter in
       component to turn off)
     </li>
@@ -81,34 +177,51 @@ path: library/components
   </ul>
 
   <br />
-  <br />
-  <h6>Most basic clipboard-copy component</h6>
-  <br />
-
+  <h6>Most basic clipboard-copy usage</h6>
+  {% set alert = null %}
   <!-- prettier-ignore -->
-  {% set clipboard_copy = library.clipboard_copy.comp_1 %}
+  {% set clipboard_copy = ({id: 'clipboard-copy-1'}) %}
   {% include "../_includes/library/clipboard-copy.njk" %}
+  <p id="{{ clipboard_copy.id }}">
+    Copy this message by clicking the button above!
+  </p>
 
   <br />
-  <br />
-  <h6>CMS Token clipboard copy</h6>
-  <br />
-
+  <h6>Copying CMS tokens</h6>
   <!-- prettier-ignore -->
-  {% set clipboard_copy = library.clipboard_copy.comp_2 %}
+  {% set clipboard_copy = ({
+    id: 'clipboard-copy-2',
+    btn_text: 'Copy Token',
+    btn_text_active: 'Token Copied!',
+    icon: null
+  }) %}
   {% include "../_includes/library/clipboard-copy.njk" %}
+  <p id="{{ clipboard_copy.id }}">&lbrack;%br%&rbrack;</p>
 
   <br />
-  <br />
-  <h6>Hooked up to the alert.njk component.</h6>
-  <br />
-
+  <h6>Hooked up to alert.njk</h6>
   <!-- prettier-ignore -->
-  {% set clipboard_copy = library.clipboard_copy.comp_3 %}
+  {% set clipboard_copy = ({
+    id: 'clipboard-copy-3',
+    btn_text: 'Copy Message',
+    btn_text_active: 'Copied Successfully!',
+    btn_text_swap_time: 5600
+  }) %}
+  {% set alert = ({
+    id: 'copy-alert-1',
+    type: 'success',
+    title: 'Copy Successful!',
+    message: 'Way to go! You actually copied the message to your clipboard. Hooray! 🎉',
+    auto_close: 5600
+  }) %}
   {% include "../_includes/library/clipboard-copy.njk" %}
+  <p id="{{ clipboard_copy.id }}">
+    Sample text three — This will copy to the clipboard.
+  </p>
+  {% include "../_includes/library/alert.njk" %}
 </section>
 
-<section class="counter-section">
+<section class="counter-section library-section">
   <h2 class="h5">[ Counter - Component ]</h2>
 
   <p>

@@ -1,58 +1,33 @@
 <!-- prettier-ignore -->
 {% set id = clipboard_copy.id or '' %}
-{% set copy_target = clipboard_copy.copy_target or 'No copy_target provided'%}
-{% set button_text = clipboard_copy.button_text or 'Copy' %}
-{% set button_text_active = clipboard_copy.button_text_active or 'Copied!' %}
+{% set btn_text = clipboard_copy.btn_text or 'Copy' %}
+{% set btn_text_active = clipboard_copy.btn_text_active or 'Copied!' %}
+{% set btn_text_swap_time = clipboard_copy.btn_text_swap_time or 2000 %}
 {% set icon = clipboard_copy.icon | default('../../static/img/library/icon-google-copy.svg') %}
 
-{% set alert_trigger_class = '' %}
-{% set alert = clipboard_copy.alert %}
-
-{% if alert %}
-  {% set alert_trigger_class = 'alert-trigger' %}
-  {% set alert_id = clipboard_copy.id or '' %}
-
-  {% set type = alert.type %}
-  {% set title = alert.title %}
-  {% set message = alert.message %}
-  {% set auto_close = alert.auto_close %}
-  {% set link_1 = alert.link_1 %}
-  {% set link_2 = alert.link_2 %}
-{% endif %}
-
-<div class="clipboard-copy">
-  <div class="clipboard-copy__target" id="{{ id }}">
-    <!-- toggle 'safe' flag to turn off markup -->
-    {{ copy_target | safe }}
-  </div>
-  <!-- prettier-ignore -->
-  <button
-    class="clipboard-copy__button cta-1 {{ alert_trigger_class }}"
-    type="button"
-    aria-label="Copy to clipboard"
-    data-copy-target="{{ id }}"
-    {% if alert.type %}
-      data-alert-type="{{ alert.type }}"
-      aria-controls="{{ alert_id }}"
+<!-- prettier-ignore -->
+<button
+  class="clipboard-copy-btn cta-1 {%if alert%}alert-trigger{%endif%}"
+  aria-label="Copy to clipboard"
+  data-copy-target="{{ id }}"
+  {% if alert.id %}
+    aria-controls="{{ alert.id }}"
+  {% endif %}
+>
+  {% if icon %} 
+  <span
+    class="clipboard-copy-btn__icon cta-1__icon mask-icon"
+    style="mask-image: url('{{ icon }}');"
+    role="img"
+  ></span>
+  {% endif %}
+  <span
+    class="clipboard-copy-btn__text"
+    data-btn-text-active="{{ btn_text_active }}"
+    {% if btn_text_swap_time %}
+      data-btn-text-swap-time="{{btn_text_swap_time}}"
     {% endif %}
   >
-    {% if icon %} 
-    <span
-      class="clipboard-copy__button-icon cta-1__icon mask-icon"
-      style="mask-image: url('{{ icon }}');"
-      role="img"
-    ></span>
-    {% endif %}
-    <span
-      class="clipboard-copy__button-text"
-      data-button-text-active="{{ button_text_active }}"
-    >
-      {{ button_text }}
-    </span>
-  </button>
-</div>
-
-<!-- prettier-ignore -->
-{% if alert %}
-  {% include "./alert.njk" %}
-{% endif %}
+    {{ btn_text }}
+  </span>
+</button>
