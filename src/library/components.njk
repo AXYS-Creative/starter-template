@@ -14,10 +14,44 @@ path: library/components
 
 <section class="accordion-section section-width-thin">
   <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
-  <p>
+  <strong>
     Note, this section contains the utility class
     <code>section-width-thin</code> to add extra inline padding.
+  </strong>
+  <p>
+    Accordions can be used to tuck away lengthy info. They’re often used for FAQ
+    sections. The <code>accordion.njk</code> component comes with the following
+    configs:
   </p>
+  <br />
+  <br />
+
+  <ul class="classic-list">
+    <li>
+      <code>id</code> a string, unique identifier if there’s more than one
+      accordion
+    </li>
+    <li>
+      <code>icon</code> an optional string, the path to the icon used for the
+      accordion arrow. Default is an empty string (no icon)
+    </li>
+    <li>
+      <code>plus</code> a boolean to use a plus sign (html markup) instad of an
+      icon. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>single_open</code> a boolean to only allow one accordion open at a
+      time. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>items</code> an object that takes in <code>title</code> and
+      <code>content</code> both of which are strings (content is 'safe' for
+      markup) — used for the accordion title and message within. You also have
+      access to <code>content_start</code> if using
+      <code>skip-to-content</code> util in the header.
+    </li>
+  </ul>
+
   <br />
   <br />
 
@@ -71,11 +105,18 @@ path: library/components
       alert will automatically close. A falsey value will add a close button to
       manually close the alert.
     </li>
+    <li>
+      <code>left_border</code> an optional boolean that adds a left border to
+      the card. Defaults to <code>false</code>
+    </li>
   </ul>
 
   <p>Here's the setup for the <code>button</code> tag:</p>
   <ul class="classic-list">
-    <li><code>alert-trigger</code> the utility class required to add.</li>
+    <li>
+      <code>alert-trigger</code> the utility class to signal this is an
+      alert-trigger.
+    </li>
     <li>
       <code>aria-controls</code> a string value that goes on the button that
       matches the alert id.
@@ -101,9 +142,10 @@ path: library/components
       id: 'sample-alert-2',
       type: 'info',
       title: 'Basic "info" Alert',
-      message: 'A simple alert. This will close in 2.4 seconds',
-      auto_close: 2400,
-      side_bar: false
+      message: 'A simple alert. This will close in 2.8 seconds',
+      auto_close: 2800,
+      timer: true,
+      left_border: false
     }) %}
     <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
       Info alert
@@ -115,9 +157,10 @@ path: library/components
       id: 'sample-alert-3',
       type: 'warning',
       title: 'Basic "warning" Alert',
-      message: 'A warning alert with a side_bar. This alert will auto close in 3.6 seconds.',
+      message: 'A warning alert with a left_border. This alert will auto close in 3.6 seconds.',
       auto_close: 3600,
-      side_bar: true,
+      left_border: true,
+      timer: false,
       link_1: {
         text: 'Learn more',
         url: 'https://www.axyscreative.com',
@@ -136,7 +179,7 @@ path: library/components
       title: 'Basic "error" Alert',
       message: 'An error alert. This alert doesn&rsquo;t have auto_close so you have to close it manually.',
       auto_close: 0,
-      side_bar: true,
+      left_border: true,
       link_1: {
         text: 'Learn more',
         url: 'https://www.axyscreative.com',

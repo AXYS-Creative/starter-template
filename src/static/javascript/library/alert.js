@@ -19,6 +19,24 @@ const hideAlert = (alertEl) => {
 const showAlert = (alertEl) => {
   alertEl.classList.add("alert--active");
   setAlertTabIndex(alertEl, 0);
+
+  const autoClose = parseInt(alertEl.dataset.alertAutoclose, 10) || 0;
+  const timerEl = alertEl.querySelector(".alert-timer");
+
+  if (timerEl && autoClose > 0) {
+    timerEl.style.transition = "none";
+    timerEl.style.width = "0%";
+
+    timerEl.offsetHeight;
+
+    // now animate to 100% width
+    timerEl.style.transition = `width ${autoClose}ms linear`;
+    timerEl.style.width = "100%";
+  }
+
+  if (autoClose > 0) {
+    setTimeout(() => hideAlert(alertEl), autoClose);
+  }
 };
 
 alertEls.forEach((alertEl) => {

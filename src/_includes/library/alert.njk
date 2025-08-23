@@ -7,7 +7,8 @@
 {% set auto_close = alert.auto_close or null %}
 {% set link_1 = alert.link_1 or null %}
 {% set link_2 = alert.link_2 or null %}
-{% set side_bar = alert.side_bar or false %}
+{% set left_border = alert.left_border or false %}
+{% set timer = alert.timer or false %}
 
 <!-- logic -->
 <!-- prettier-ignore -->
@@ -28,8 +29,12 @@
   {% set content_class = content_class + ' alert--has-content' %}
 {% endif %}
 
-{% if side_bar %}
-  {% set content_class = content_class + ' alert--side-bar' %}
+{% if left_border %}
+  {% set content_class = content_class + ' alert--left-border' %}
+{% endif %}
+
+{% if timer %}
+  {% set content_class = content_class + ' alert--timer' %}
 {% endif %}
 
 <!-- prettier-ignore -->
@@ -82,5 +87,8 @@
         role="img"
       ></span>
     </button>
+  {% endif %}
+  {% if timer %}
+    <div class="alert-timer"></div>
   {% endif %}
 </div>

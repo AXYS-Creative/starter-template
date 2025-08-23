@@ -104,7 +104,19 @@
     align-items: flex-start;
   }
 
-  &--side-bar {
+  &--left-border {
     border-left: 6px solid var(--accent-color);
+  }
+
+  &--timer {
+    .alert-timer {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: var(--accent-color);
+      // border-radius: var(--radius--xs) var(--radius--xs) 0 0;
+    }
   }
 }

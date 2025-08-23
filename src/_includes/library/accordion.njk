@@ -38,7 +38,7 @@
       id="accordion-{{ id }}-item-{{ loop.index }}"
     >
       <div class="accordion-content__inner">
-        <p class="accordion-content__message">{{ item.content }}</p>
+        <p class="accordion-content__message">{{ item.content | safe }}</p>
       </div>
     </div>
   </button>

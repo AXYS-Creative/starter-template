@@ -5352,8 +5352,16 @@ code {
 .alert--has-content {
   align-items: flex-start;
 }
-.alert--side-bar {
+.alert--left-border {
   border-left: 6px solid var(--accent-color);
+}
+.alert--timer .alert-timer {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: var(--accent-color);
 }
 
 .blog-article-list {
