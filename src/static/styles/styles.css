@@ -6319,7 +6319,7 @@ body:has(.tooltip-util) .mouse-cursor {
 .site-nav-btn__icon--kebab .site-nav-btn__stroke.stroke-3 {
   translate: -50% calc(-50% + 8px);
 }
-.site-nav-btn__icon.round .site-nav-btn__stroke {
+.site-nav-btn__icon--round .site-nav-btn__stroke {
   border-radius: 24px;
 }
 .site-nav-btn__stroke {

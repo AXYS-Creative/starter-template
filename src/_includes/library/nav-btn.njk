@@ -1,0 +1,45 @@
+<!-- prettier-ignore -->
+{% set text = nav_btn.text or '' %} 
+{% set symbol = nav_btn.symbol | default('burger') %}
+{% set shape = nav_btn.shape or 'square' %}
+
+<button
+  class="site-nav-btn cursor-trigger glitch-trigger"
+  aria-controls="site-navigation"
+  aria-label="Toggle navigation menu"
+  aria-expanded="false"
+  data-cursor-target="cursor-target__menu-btn"
+  data-cursor-class="menu-btn"
+  data-glitch-target="glitch-target__menu-btn"
+>
+  {% if text %}
+  <!-- prettier-ignore -->
+  <span class="site-nav-btn__text glitch-text glitch-hover glitch-target__menu-btn">
+    {{ text }}
+  </span>
+  {% endif %}
+
+  <!-- prettier-ignore -->
+  {% if symbol %}
+  <div
+    class="
+      site-nav-btn__icon 
+      site-nav-btn__icon--{{ symbol }} 
+      site-nav-btn__icon--{{ shape }}
+      magnet
+      magnet-strong
+      glitch-trigger
+      cursor-target__menu-btn
+    "
+    data-glitch-target="glitch-target__menu-btn"
+  >
+    {% if symbol == 'burger' %} {% for i in range(0, 2) %}
+    <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+    {% endfor %} {% elif symbol == 'chocolate' %} {% for i in range(0, 9) %}
+    <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+    {% endfor %} {% elif symbol == 'kebab' %} {% for i in range(0, 3) %}
+    <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+    {% endfor %} {% endif %}
+  </div>
+  {% endif %}
+</button>

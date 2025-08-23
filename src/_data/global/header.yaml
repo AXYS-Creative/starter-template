@@ -44,10 +44,9 @@ links:
 # mobile nav specific content...
 nav_btn:
   text: menu
-  type: chocolate # burger | chocolate | kebab
+  symbol: chocolate # burger | chocolate | kebab
   shape: square # square | round
-  display: md # Dev use only
-  class: "magnet magnet-strong glitch-trigger cursor-target__menu-btn" # Dev use only
+  # display: md # Dev use only
 
 nav_footer:
   links:
