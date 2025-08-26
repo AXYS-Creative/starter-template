@@ -275,7 +275,8 @@ path: library/components
     type: 'success',
     title: 'Copy Successful!',
     message: 'Way to go! You actually copied the message to your clipboard. Hooray! 🎉',
-    auto_close: 5600
+    auto_close: 5600,
+    timer: true
   }) %}
   {% include "../_includes/library/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">

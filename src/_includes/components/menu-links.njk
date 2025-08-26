@@ -1,4 +1,6 @@
 <!-- prettier-ignore -->
+{% set links = global.header.links or [] %}
+
 {% set tab_class = '' %}
 {% if tab_nav %}
   {% set tab_class = 'tab-element-nav' %}
@@ -6,7 +8,7 @@
   {% set tab_class = 'tab-element-page' %}
 {% endif %}
 
-{% if global.header.links %}
+{% if links %}
 <menu class="menu-links hide-cursor" aria-label="navigation links">
   <!-- prettier-ignore -->
   {% for link in global.header.links %}

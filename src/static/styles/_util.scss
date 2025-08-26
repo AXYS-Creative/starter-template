@@ -188,7 +188,7 @@
   }
 
   .magnet {
-    display: inline-block; // ensure it can be transformed
+    display: inline-flex; // ensure it can be transformed
     transition: $magnet;
   }
 

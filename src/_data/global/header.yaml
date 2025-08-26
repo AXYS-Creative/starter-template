@@ -1,5 +1,5 @@
 show_skip_to_content: true # Dev use only
-lock_body_scroll: true # Locks body scroll when nav is open
+lock_body_scroll: true # nav.njk Locks body scroll when nav is open
 
 logo:
   class: header-logo # Dev use only
@@ -9,6 +9,7 @@ logo:
   url: /
   new_tab: false
 
+# menu-links.njk
 links:
   - text: Home
     url: "/"
@@ -40,6 +41,24 @@ links:
   - text: Blog
     url: "/blog"
     new_tab: false
+
+link_placement: center # start | center | end
+
+cta_1:
+  text: Get Started
+  text_desc: Get started with AXYS Creative
+  url: "/about"
+  new_tab: false
+  style: primary # primary | secondary | text-only
+  icon: null # /static/img/icon.svg
+
+cta_2:
+  text: Log In
+  text_desc:
+  url: https://axyscreative.com/
+  icon: /static/img/library/icon-google-chevron-right.svg
+  new_tab: true
+  style: primary # primary | secondary | text-only
 
 # mobile nav specific content...
 nav_btn:
