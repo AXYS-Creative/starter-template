@@ -56,6 +56,16 @@ export const lenis = new Lenis({
   }
 }
 
+// Skip to main content option (for lenghthy headers)
+const skipToContent = document.querySelector(".skip-to-content"),
+  contentStart = document.querySelector(".content-start");
+
+if (skipToContent) {
+  skipToContent.addEventListener("click", () => {
+    contentStart?.focus();
+  });
+}
+
 // CSS Util for .split-link
 {
   document.querySelectorAll(".split-link").forEach((el) => {

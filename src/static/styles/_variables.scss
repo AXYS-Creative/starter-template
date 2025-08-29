@@ -60,7 +60,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-font--error: #{$red};
 
-  --color-border: #{$grey-light};
+  // --color-border: #{$grey-light};
 
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-text: #{$white};
@@ -97,6 +97,9 @@ $test-bg: rgba(navy, 0.75);
   --radius--xs: 4px;
   --radius--btn: var(--radius--xs);
 
+  // header
+  --header-children-height: 32px;
+
   @media (max-width: 1512px) {
     --body-padding: 48px;
   }
@@ -125,6 +128,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-surface--1: #{$grey-light};
 
+  --color-border: #{$grey-light};
   --color-border-gradient: rgba(0, 0, 0, 0.5); // Library
 }
 
@@ -139,6 +143,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-surface--1: #{$grey-dark};
 
+  --color-border: #{$grey-dark};
   --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
 }
 

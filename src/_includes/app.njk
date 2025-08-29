@@ -126,8 +126,7 @@
   </head>
   <body>
     <!-- prettier-ignore -->
-    {% include "./partials/header.njk" %}
-    {% include "./partials/nav.njk" %}
+    {% include "./partials/header-simple.njk" %}
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}
     </main>

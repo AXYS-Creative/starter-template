@@ -7,6 +7,7 @@
   font-size: 16px;
   text-align: center;
   display: block;
+  z-index: $z-index--header;
 
   @include mq-motion-allow {
     transition: $ease, width 0s;

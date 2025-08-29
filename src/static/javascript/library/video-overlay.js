@@ -1,5 +1,4 @@
-import { tabElementsPage } from "../global/nav.js";
-import { headerLogo, menuBtn } from "../global/header.js";
+import { headerLogo, menuBtn, tabElementsPage } from "../global/header.js";
 import { lenis } from "../util.js";
 
 const videoOverlay = document.querySelector(".video-overlay"),

@@ -205,6 +205,12 @@ $min-breakpoints: (
   color: var(--color-font--primary);
 }
 
+@mixin width-clamp($max-width: $content-width) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+}
+
 @mixin ultra-wide($bg-color: $test-bg, $z-index: -1) {
   &::before {
     content: "";
