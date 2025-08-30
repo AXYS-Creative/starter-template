@@ -156,7 +156,7 @@ $min-breakpoints: (
   font-weight: 400;
   letter-spacing: -0.25px;
 
-  @include mq-max(md) {
+  @include mq-max(sm) {
     --font-size: 14px;
   }
 
@@ -165,7 +165,7 @@ $min-breakpoints: (
 
     line-height: 1.5;
 
-    @include mq-max(md) {
+    @include mq-max(sm) {
       --font-size: 20px;
     }
   }
@@ -191,6 +191,91 @@ $min-breakpoints: (
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@mixin button-type-primary {
+  border: var(--border-width--btn) solid var(--color-btn-border);
+  border-radius: var(--radius--btn);
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  padding: var(--padding-btn);
+
+  @include mq-motion-allow {
+    // transition: $ease;
+    transition: all $ease, $magnet;
+  }
+
+  @include desktop-hover {
+    border-color: var(--color-btn-border--hover);
+    background: var(--color-btn-bg--hover);
+    color: var(--color-btn-text--hover);
+  }
+}
+
+@mixin button-type-secondary {
+  color: var(--color-btn-2-text);
+
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
+  @include desktop-hover {
+    color: var(--color-btn-text--hover);
+
+    .link__icon-end {
+      translate: 1ch 0;
+    }
+  }
+
+  .link__icon-end {
+    background-color: var(--color-brand--primary);
+  }
+}
+
+@mixin button-type-underline {
+  position: relative;
+  min-height: 1.1lh; // added in case overflow hidden is used
+  color: var(--color-font--primary);
+  border-radius: var(--radius--btn);
+
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+
+    @include mq-motion-allow {
+      transition: $ease;
+    }
+  }
+
+  @include desktop-hover {
+    &::before {
+      width: 0;
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+@mixin button-type-text {
+  color: var(--color-link);
+
+  @include mq-motion-allow {
+    transition: $ease;
+  }
+
+  @include desktop-hover {
+    color: var(--color-link--hover);
+  }
 }
 
 //

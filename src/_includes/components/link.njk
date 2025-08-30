@@ -1,0 +1,60 @@
+<!-- prettier-ignore -->
+{% set text = link.text or '' %}
+{% set text_desc = link.text_desc or '' %}
+{% set url = link.url or '' %}
+{% set new_tab = link.new_tab or false %}
+{% set a11y_tab = a11y_tab or 'tab-element-page' %}
+{% set type = link.type or 'text' %}
+{% set class = link.class or '' %}
+{% set attributes = link.attributes or '' %}
+{% set icon_start = link.icon_start or '' %}
+{% set icon_end = link.icon_end or '' %}
+{% set icon_end_class = link.icon_end_class or '' %}
+{% set use_btn = link.use_btn or false %}
+
+{% if type == 'secondary' %}
+  {% set icon_end = '/static/img/library/icon-google-chevron-right.svg' %}
+{% endif %}
+
+{% set element_to_use = 'a' %}
+{% if use_btn %}
+{% set element_to_use = 'button' %}
+{% endif %}
+
+{% set content_start_class = '' %}
+{% if content_start %}
+  {% set content_start_class = 'content-start' %}
+{% endif %}
+
+<!-- prettier-ignore -->
+<{{element_to_use}}
+  class="{{ class }} link link-type--{{ type }} {{ a11y_tab }} {{ content_start_class}}"
+  {%if not use_btn %}
+    href="{{ url }}"
+  {%endif%}
+  {%if new_tab%}
+    target="_blank" rel="noopener noreferrer"
+  {%endif%}
+  {% if not text or text_desc %}
+    aria-label="{{ text_desc or 'no text, please provide a text_desc' }}"
+  {% endif %}
+  {% if attributes %}
+    {{ attributes }}
+  {% endif %}
+>
+  {% if icon_start %}
+    <span 
+      class="link__icon-start mask-icon"
+      style="mask-image: url('{{icon_start}}');"
+      role="img"
+    ></span>
+  {% endif %}
+  <span class="link__text">{{ text }}</span>
+  {% if icon_end or type == 'secondary' %}
+    <span 
+      class="{{ icon_end_class }} link__icon-end mask-icon"
+      style="mask-image: url('{{icon_end}}');"
+      role="img"
+    ></span>
+  {% endif %}
+</{{element_to_use}}>

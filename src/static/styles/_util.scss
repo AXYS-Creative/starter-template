@@ -13,39 +13,7 @@
 }
 
 .classic-link {
-  position: relative;
-  min-height: 1.1lh; // added in case overflow hidden is used
-  color: var(--color-link);
-  border-radius: var(--radius--btn);
-
-  @include mq-motion-allow {
-    transition: $ease;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: auto;
-    width: 100%;
-    height: 1px;
-    background-color: currentColor;
-
-    @include mq-motion-allow {
-      transition: $ease;
-    }
-  }
-
-  @include desktop-hover {
-    color: var(--color-link--hover);
-
-    &::before {
-      width: 0;
-      left: auto;
-      right: 0;
-    }
-  }
+  @include button-type-underline;
 }
 
 .classic-list {
@@ -66,8 +34,8 @@
 .mask-icon {
   @include mask-image();
 
-  width: 16px;
-  height: 16px;
+  width: 1em;
+  height: 1em;
 }
 
 .max-width-text {
@@ -218,7 +186,7 @@
     height: 16px;
   }
 
-  .split-link {
+  .link--split-text {
     position: relative;
     color: var(--color-link);
 
@@ -229,36 +197,14 @@
     @include desktop-hover {
       color: var(--color-link--hover);
 
-      &::before {
-        width: 0;
-        left: auto;
-        right: 0;
-        background-color: var(--color-link--hover);
-      }
-
       .letter-group {
         translate: 0 -100%;
 
-        @for $i from 1 through 25 {
+        @for $i from 1 through 99 {
           &:nth-of-type(#{$i}) {
             transition: translate 0.6s $cubic-ease $i * 0.02s;
           }
         }
-      }
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: auto;
-      width: 100%;
-      height: 1px;
-      background-color: var(--color-link);
-
-      @include mq-motion-allow {
-        transition: 0.32s ease;
       }
     }
 
@@ -271,7 +217,7 @@
     .letter-group {
       display: grid;
 
-      @for $i from 1 through 25 {
+      @for $i from 1 through 99 {
         &:nth-of-type(#{$i}) {
           transition: translate 0.6s $cubic-ease $i * 0.02s;
         }
@@ -316,6 +262,10 @@
         transition: 0s;
       }
     }
+  }
+
+  .link--underline {
+    @include button-type-underline;
   }
 
   .library-section {
@@ -413,6 +363,18 @@
 
     &__li {
       @include fade-snap-left(0.16s);
+    }
+  }
+}
+
+// Style Guide DELETE ME
+@media all {
+  .style-guide {
+    .primary-links,
+    .secondary-links {
+      @include row-center(flex-start);
+      gap: 24px;
+      margin-block: 24px;
     }
   }
 }

@@ -1,46 +1,36 @@
+{% if cta_1 %}
 <div class="cta-group disable-bg">
-  {% if cta_1.text and cta_1.url %}
   <!-- prettier-ignore -->
-  <a
-    class="cta-1 magnet magnet-wide-btn hide-cursor tab-element-page {%if content_start%}content-start{%endif%}"
-    href="{{ cta_1.url }}"
-    {%if cta_1.new_tab%}
-      target="_blank" rel="noopener noreferrer"
-    {%endif%}
-    aria-label="{{ cta_1.text_desc or cta_1.text }}"
-  >
-    <span class="cta-1__text">{{ cta_1.text }}</span>
-    {% if cta_1.icon %}
-      <span 
-        class="cta-1__icon mask-icon" 
-        style="mask-image: url('{{cta_1.icon}}');" 
-        role="img"
-      ></span>
-    {% endif %}
-  </a>
+  {% if cta_1 %}
+    {% set link = ({
+      text: cta_1.text,
+      text_desc: cta_1.text_desc,
+      url: cta_1.url,
+      new_tab: cta_1.new_tab,
+      icon_start: cta_1.icon_start,
+      icon_end: cta_1.icon_end,
+      type: 'primary',
+      class: '',
+      attributes: ''
+    }) %}
+    {% include "./link.njk" %}
   {% endif %}
 
   <!-- prettier-ignore -->
-  {% if cta_2.text and cta_2.url %}
-  <!-- prettier-ignore -->
-  <a
-    class="cta-2 tab-element-page cursor-trigger cursor-pair"
-    href="{{ cta_2.url }}"
-    {%if cta_2.new_tab%}
-      target="_blank" rel="noopener noreferrer"
-    {%endif%}
-    aria-label="{{ cta_2.text_desc or cta_2.text }}"
-    data-cursor-target="cursor-target__cta-2"
-    data-cursor-class="cta-2"
-  >
-    <span class="cta-2__text">{{ cta_2.text }}</span>
-    {% if cta_2.icon %}
-      <span 
-        class="cta-2__icon cursor-target__cta-2"
-        style="mask-image: url('{{cta_2.icon}}');"
-        role="img"
-      ></span>
-    {% endif %}
-  </a>
+  {% if cta_2 %}
+    {% set link = ({
+      text: cta_2.text,
+      text_desc: cta_2.text_desc,
+      url: cta_2.url,
+      new_tab: cta_2.new_tab,
+      icon_start: cta_2.icon_start,
+      icon_end: cta_2.icon_end,
+      icon_end_class: 'cursor-target__cta-2',
+      type: 'secondary',
+      class: 'cursor-trigger cursor-pair',
+      attributes: 'data-cursor-target=cursor-target__cta-2 data-cursor-class=cta-2'
+    }) %}
+    {% include "./link.njk" %}
   {% endif %}
 </div>
+{% endif %}

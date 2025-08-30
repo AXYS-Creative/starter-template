@@ -49,7 +49,7 @@ cta_1:
   text_desc: Get started with AXYS Creative
   url: "/about"
   new_tab: false
-  style: primary # primary | secondary | text-only
+  type: primary # primary | secondary | classic | text
   icon: null # /static/img/icon.svg
 
 cta_2:
@@ -58,7 +58,7 @@ cta_2:
   url: https://axyscreative.com/
   icon: /static/img/library/icon-google-chevron-right.svg
   new_tab: true
-  style: primary # primary | secondary | text-only
+  type: primary # primary | secondary | classic | text
 
 # mobile nav specific content...
 nav_btn:

@@ -1,9 +1,9 @@
 <!-- prettier-ignore -->
-{% set tab_class = '' %}
+{% set a11y_tab = '' %}
 {% if tab_nav %}
-  {% set tab_class = 'tab-element-nav' %}
+  {% set a11y_tab = 'tab-element-nav' %}
 {% else %}
-  {% set tab_class = 'tab-element-page' %}
+  {% set a11y_tab = 'tab-element-page' %}
 {% endif %}
 
 <ul class="social-media-links">
@@ -12,7 +12,7 @@
     <a
       href="{{ link.url }}"
       target="_blank"
-      class="social-media-link {{ tab_class }}"
+      class="social-media-link {{ a11y_tab }}"
       aria-label="{{ link.title }}"
     >
       <span

@@ -66,14 +66,14 @@ if (skipToContent) {
   });
 }
 
-// CSS Util for .split-link
+// CSS Util for .link--split-text
 {
-  document.querySelectorAll(".split-link").forEach((el) => {
+  document.querySelectorAll(".link--split-text").forEach((el) => {
     const text = el.textContent;
 
     // Wrap all letter groups inside a single span with the class "text-content"
     el.innerHTML =
-      `<span class="split-link__content">` +
+      `<span class="link--split-text__content">` +
       Array.from(text)
         .map((char) => {
           if (char === " ") {

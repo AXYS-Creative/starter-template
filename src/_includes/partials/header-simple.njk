@@ -33,13 +33,31 @@
   <div class="site-header__inner">
     <!-- prettier-ignore -->
     {% include "../components/site-logo.njk" %}
-  
+
+    {% set links = global.header_simple.links %}
     {% include "../components/menu-links.njk" %}
-    
-    {% if cta_1.url %}
-      {% include "../components/cta-group.njk" %}
+
+    <!-- prettier-ignore -->
+    {% if cta_1 or cta_2 %}
+    <div class="site-header__cta-group">
+      <!-- prettier-ignore -->
+      {% set link = cta_2 %}
+      {% include "../components/link.njk" %}
+
+      <!-- prettier-ignore -->
+      {% set link = ({
+        text: cta_1.text,
+        url: cta_1.url,
+        new_tab: true,
+        type: cta_1.type,
+        class: '',
+        attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+      }) %}
+      {% include "../components/link.njk" %}
+    </div>
     {% endif %}
-  
+
+    <!-- prettier-ignore -->
     {% if nav_btn %}
     <div class="site-nav-btn-wrapper glitch-pair">
       {% include "../components/nav-btn.njk" %}

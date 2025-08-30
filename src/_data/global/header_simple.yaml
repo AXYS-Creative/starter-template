@@ -15,58 +15,72 @@ links:
   - text: Home
     url: "/"
     new_tab: false
+    type: underline
+    class: menu-links__link link--split-text
   - text: Library
     icon: "/static/img/library/icon-google-chevron-down.svg"
+    trigger_class: link--underline link--split-text
     inner_links:
       - text: Components
         url: "/library/components"
         new_tab: false
+        type: text
       - text: Sections
         url: "/library/sections"
         new_tab: false
+        type: text
       - text: Utility Classes
         url: "/library/utils"
         new_tab: false
+        type: text
       - text: Advanced
         url: "/library/advanced"
         new_tab: false
+        type: text
       - text: Style Guide
         url: "/style-guide"
         new_tab: false
+        type: text
       - text: OG Library
         url: "/library"
         new_tab: false
+        type: text
       - text: Tokens
         url: "https://axyscreative.com/tokens"
         new_tab: true
+        type: text
   - text: Blog
     url: "/blog"
     new_tab: false
+    type: underline
+    class: menu-links__link link--split-text
 
 link_placement: center # start | center | end
 
 cta_1:
   text: Get Started
   text_desc: Get started with AXYS Creative
-  url: "/about"
-  new_tab: false
-  style: primary # primary | secondary | text-only
-  icon: null # /static/img/icon.svg
+  url: "https://axyscreative.com"
+  new_tab: true
+  type: primary # primary | secondary | underline |  text
+  icon_end: null # /static/img/icon.svg
 
 cta_2:
   text: Log In
-  text_desc:
-  url: https://axyscreative.com/
-  icon: /static/img/library/icon-google-chevron-right.svg
+  # text_desc:
+  url: /admin
+  icon_end: ""
   new_tab: true
-  style: primary # primary | secondary | text-only
+  type: underline # primary | secondary | underline |  text
+  class: ""
+  attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
 
 # mobile nav specific content
 lock_body_scroll: true # nav.njk Locks body scroll when nav is open
 
 nav_btn:
   text: menu
-  symbol: chocolate # burger | chocolate | kebab
+  symbol: burger # burger | chocolate | kebab
   shape: square # square | round
   # display: md # Dev use only
 

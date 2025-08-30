@@ -45,8 +45,6 @@ $test: 2px dashed rgba(yellow, 0.75);
 $test-bg: rgba(navy, 0.75);
 
 :root {
-  --color-brand--primary: #{$coral}; // Consistent across themes
-
   --font-family--heading: #{$brand-font--heading};
   --font-family--body: #{$brand-font--body};
 
@@ -55,7 +53,11 @@ $test-bg: rgba(navy, 0.75);
   --body-padding: 64px;
   --body-padding-double: calc(var(--body-padding) * 2);
 
-  --color-brand--primary: #{$coral};
+  --border-width: 1px;
+  --border-width--btn: 1px;
+  --border-width--bold: 2px;
+
+  --color-brand--primary: #{$coral}; // Generally consistent across themes
   --color-brand--secondary: #{$green};
 
   --color-font--error: #{$red};
@@ -69,12 +71,14 @@ $test-bg: rgba(navy, 0.75);
   --color-btn-text--hover: var(--color-brand--primary);
   --color-btn-border--hover: var(--color-brand--primary);
 
-  --color-link: var(--color-font--primary);
-  --color-link--hover: var(--color-brand--primary);
+  --color-link: var(--color-brand--primary);
+  --color-link--hover: var(--color-font--primary);
+
+  --gap-btn-icon: 0.5ch;
 
   --color-pill: var(--color-brand--primary);
 
-  --btn-padding: 8px 16px;
+  --padding-btn: 8px 16px;
 
   --spacing--xs: 12px;
   --spacing--sm: 24px;
@@ -85,10 +89,6 @@ $test-bg: rgba(navy, 0.75);
   --section-gap: 24px;
   --section-gap--sm: 8px;
   --section-gap--lg: 64px;
-
-  --border-width: 1px;
-  --border-width--btn: 1px;
-  --border-width--bold: 2px;
 
   // Consider radius vars for outter/inner based on spacing (padding)
   --radius: 16px;

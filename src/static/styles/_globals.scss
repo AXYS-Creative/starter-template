@@ -260,29 +260,6 @@ hr {
 
 // }
 
-// Libary
-
-.style-guide {
-  margin-block: 64px;
-}
-
-ul:has(code),
-ol:has(code) {
-  li {
-    font-size: 14px;
-  }
-}
-code {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-font--primary);
-  background: var(--color-surface--1);
-  padding: 4px 8px;
-  border-radius: var(--radius--sm);
-  // white-space: nowrap;
-}
-
 #grid-bg {
   width: 100vw;
   height: 100vh;
@@ -307,4 +284,27 @@ code {
     text-align: center;
     text-wrap: balance;
   }
+}
+
+// Libary
+
+.style-guide__heading {
+  margin-block: 48px;
+}
+
+ul:has(code),
+ol:has(code) {
+  li {
+    font-size: 14px;
+  }
+}
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-font--primary);
+  background: var(--color-surface--1);
+  padding: 4px 8px;
+  border-radius: var(--radius--sm);
+  // white-space: nowrap;
 }

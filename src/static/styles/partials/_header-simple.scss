@@ -23,7 +23,7 @@
   .menu-links {
     --links-gap: 36px;
 
-    @include row-start;
+    @include row-center;
     gap: var(--links-gap);
 
     @include mq-max(lg) {
@@ -31,8 +31,9 @@
     }
   }
 
-  .cta-group {
+  &__cta-group {
     @include row-center;
+    gap: 2ch;
 
     @include mq-max(lg) {
       display: none;
@@ -168,7 +169,7 @@
 
   .width-constraint {
     @include column-start;
-    gap: 24px; // minimum gap in case they start to hug
+    gap: 48px;
 
     position: relative;
     max-width: $content-width;
@@ -189,7 +190,7 @@
   .menu-links {
     @include column-start;
     gap: 12px;
-    margin-block: 40vh auto;
+    margin-block: max(40vh, 200px) auto;
 
     @include mq-max(sm) {
       margin-block: 32vh auto;
@@ -210,7 +211,7 @@
       @include row-center;
       gap: 1ch;
 
-      @include mq-max(sm) {
+      @include mq-max(md) {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -251,7 +252,7 @@
     transition: $ease;
   }
 
-  div.site-nav-btn__icon {
+  .site-nav-btn__icon {
     aspect-ratio: 1;
     transition: $ease, $magnet;
 
@@ -364,6 +365,9 @@
   .menu-links__link,
   .dropdown-link {
     @include mq-max(lg) {
+      font-size: 32px;
+    }
+    @include mq-max(sm) {
       font-size: 24px;
     }
   }

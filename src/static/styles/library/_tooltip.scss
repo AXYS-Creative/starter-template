@@ -52,7 +52,7 @@ $tooltip-undeline-offset: 4px;
     width: 40vw;
     min-width: 180px;
     background: var(--color-surface--1);
-    padding: var(--btn-padding);
+    padding: var(--padding-btn);
     border-radius: var(--radius--btn);
     z-index: 1;
     transition: $ease;
@@ -127,7 +127,7 @@ $tooltip-undeline-offset: 4px;
   top: 0;
   background: var(--color-surface--1);
   border-radius: var(--radius--btn);
-  padding: var(--btn-padding);
+  padding: var(--padding-btn);
   font-size: $tooltip-font-size;
   transition: $ease;
 

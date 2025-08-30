@@ -1,17 +1,16 @@
 <!-- prettier-ignore -->
-{% set tab_class = '' %}
+{% set a11y_tab = '' %}
 {% if tab_nav %}
-  {% set tab_class = 'tab-element-nav' %}
+  {% set a11y_tab = 'tab-element-nav' %}
 {% else %}
-  {% set tab_class = 'tab-element-page' %}
+  {% set a11y_tab = 'tab-element-page' %}
 {% endif %}
 
 <div class="dropdown-link">
-  <button
-    class="dropdown-link__trigger classic-link {{ tab_class }}"
-    aria-expanded="false"
-  >
-    {{ dropdown_link.text or 'No text provided'}}
+  <button class="dropdown-link__trigger {{ a11y_tab }}" aria-expanded="false">
+    <span class="dropdown-link__trigger-text {{ dropdown_link.trigger_class }}">
+      {{ dropdown_link.text or 'No text provided'}}
+    </span>
 
     <!-- prettier-ignore -->
     {% if dropdown_link.icon %}
@@ -27,16 +26,8 @@
       {% for link in dropdown_link.inner_links %}
       <li>
         <!-- prettier-ignore -->
-        <a
-          class="classic-link {{tab_class}}"
-          href="{{ link.url }}"
-          {% if link.new_tab %}
-            target="_blank"
-            rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{ link.text }}
-        </a>
+        {% set link = link %}
+        {% include "./link.njk" %}
       </li>
       {% endfor %}
     </ul>

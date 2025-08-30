@@ -10,6 +10,10 @@
     text-align: left;
     padding-block: 20px;
 
+    @include mq-motion-allow {
+      transition: border $ease;
+    }
+
     @include desktop-hover {
       border-color: var(--color-brand--primary);
     }

@@ -66,9 +66,80 @@ title: Style Guide
   }) %}
   {% include "./_includes/components/cta-group.njk" %}
 
-  <br />
-  <br />
-  <h2 class="h5">[ Links ]</h2>
+  <h2 class="h5 style-guide__heading">[ Links ]</h2>
+
+  <div class="primary-links">
+    <!-- prettier-ignore -->
+    {% set link = ({
+      text: 'Primary',
+      url: 'https://google.com',
+      new_tab: true,
+      type: 'primary',
+      class: '',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/link.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set link = ({
+      text: 'Primary Icon Start',
+      url: 'https://google.com',
+      new_tab: true,
+      type: 'primary',
+      class: '',
+      icon_start: '/static/img/library/icon-google-orbit.svg',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/link.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set link = ({
+      text: 'Primary Icon End',
+      url: 'https://google.com',
+      new_tab: true,
+      type: 'primary',
+      class: 'magnet magnet-wide-btn',
+      icon_end: '/static/img/library/icon-google-new-tab.svg',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/link.njk" %}
+  </div>
+
+  <div class="secondary-links">
+    <!-- prettier-ignore -->
+    {% set link = ({
+      text: 'Secondary Link',
+      url: 'https://google.com',
+      new_tab: true,
+      type: 'secondary',
+      class: 'hide-cursor',
+      attributes: ''
+    }) %}
+    {% include "./_includes/components/link.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set link = ({
+      text: 'Secondary Link',
+      url: 'https://google.com',
+      new_tab: true,
+      type: 'secondary',
+      class: 'cursor-trigger cursor-pair',
+      icon_end_class: 'sample-link-icon',
+      attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
+    }) %}
+    {% include "./_includes/components/link.njk" %}
+  </div>
+
+  <!-- prettier-ignore -->
+  {% set link = ({
+    text: 'Text Link',
+    url: 'https://google.com',
+    new_tab: true,
+    type: 'text',
+    class: 'split-link',
+    attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+  }) %}
+  {% include "./_includes/components/link.njk" %}
   <br />
   <br />
 
@@ -78,12 +149,18 @@ title: Style Guide
   <a href="" class="magnet magnet-strong tab-element-page">Magnet link</a>
   <br />
   <br />
-  <a href="" class="split-link tab-element-page">Split link</a>
+  <a href="" class="link--split-text link--underline tab-element-page">
+    Link Split text
+  </a>
   <br />
   <br />
   <p>
-    <a href="" class="split-link tab-element-page" data-hover-alt>
-      Split link alt
+    <a
+      href=""
+      class="link--split-text link--underline tab-element-page"
+      data-hover-alt
+    >
+      Link Split text - hover alt
     </a>
     &nbsp;
     <span>
@@ -109,6 +186,8 @@ title: Style Guide
   <!-- prettier-ignore -->
   {% set play_btn_id = 'library-id-play-btn' %}
   {% include "./_includes/library/button-play.njk" %}
+
+  <h2 class="h5 style-guide__heading">[ Pills ]</h2>
 
   <br />
   <!-- prettier-ignore -->

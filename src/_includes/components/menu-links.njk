@@ -1,36 +1,28 @@
 <!-- prettier-ignore -->
-{% set links = global.header.links or [] %}
+{% set menu_links = links %}
 
-{% set tab_class = '' %}
+{% set a11y_tab = '' %}
 {% if tab_nav %}
-  {% set tab_class = 'tab-element-nav' %}
+  {% set a11y_tab = 'tab-element-nav' %}
 {% else %}
-  {% set tab_class = 'tab-element-page' %}
+  {% set a11y_tab = 'tab-element-page' %}
 {% endif %}
 
-{% if links %}
+{% if menu_links %}
 <menu class="menu-links hide-cursor" aria-label="navigation links">
   <!-- prettier-ignore -->
-  {% for link in global.header.links %}
-  {% if link.inner_links %}
+  {% for menu_link in menu_links %}
+  {% if menu_link.inner_links %}
   <li>
     <!-- prettier-ignore -->
-    {% set dropdown_link = link %}
+    {% set dropdown_link = menu_link %}
     {% include "./dropdown-link.njk" %}
   </li>
   {% else %}
   <li>
     <!-- prettier-ignore -->
-    <a
-      class="menu-links__link classic-link {{tab_class}}"
-      href="{{ link.url }}"
-      {% if link.new_tab %}
-        target="_blank"
-        rel="noopener noreferrer"
-      {% endif %}
-    >
-      {{ link.text }}
-    </a>
+    {% set link = menu_link %}
+    {% include "./link.njk" %}
   </li>
   {% endif %} {% endfor %}
 </menu>

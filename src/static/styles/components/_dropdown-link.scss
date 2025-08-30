@@ -39,10 +39,11 @@
   }
 
   &__trigger {
-    --icon-size: 20px;
+    --icon-size: 1em;
 
     all: inherit;
-    margin-inline-end: var(--icon-size);
+    @include row-center;
+    gap: var(--gap-btn-icon);
     border-radius: var(--radius--btn);
 
     &:focus-visible {
@@ -50,11 +51,6 @@
     }
 
     &-icon {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      // translate: calc(var(--icon-size) * 1.2) -1ch;
-      translate: calc(var(--icon-size) * 1.2) -50%;
       width: var(--icon-size);
       height: var(--icon-size);
       transition: $ease;
@@ -74,9 +70,10 @@
     @include column-start;
     gap: 8px;
     background: var(--color-surface--1);
-    border-radius: var(--radius--sm);
+    border-radius: var(--radius--xs);
 
     @include mq-max(lg) {
+      padding-inline: 12px;
       overflow: hidden;
       transition: $ease;
     }

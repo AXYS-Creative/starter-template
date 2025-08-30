@@ -1,6 +1,6 @@
 .btn-play {
   --btn-size: 40px;
-  --btn-padding: 6px; // icon size
+  --padding-btn: 6px; // icon size
   $icon-swap-scale: 0.5;
   $icon-swap-duration: 0.3s;
   $icon-swap-delay: 0.2s;
@@ -11,7 +11,7 @@
   // align-self: flex-end;
   width: var(--btn-size);
   height: var(--btn-size);
-  padding: var(--btn-padding);
+  padding: var(--padding-btn);
   border-radius: 50%;
   scroll-margin-top: 520px;
   transition: $ease;
