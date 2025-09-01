@@ -1,14 +1,8 @@
 show_skip_to_content: true # Dev use only
-float: false
+float: true
 glass: false
 
-logo:
-  class: header-logo # Dev use only
-  src_light: /static/img/favicon-dark.svg
-  src_dark: /static/img/favicon-light.svg
-  text: Sample Business
-  url: /
-  new_tab: false
+logo: true
 
 # menu-links.njk
 links:
@@ -19,36 +13,38 @@ links:
     class: menu-links__link link--split-text
   - text: Library
     icon: "/static/img/library/icon-google-chevron-down.svg"
-    trigger_class: link--underline link--split-text
+    trigger_class: menu-links__link link--split-text link--underline link--split-text
     inner_links:
       - text: Components
         url: "/library/components"
         new_tab: false
         type: text
+        icon_start: /static/img/library/icon-google-orbit.svg
       - text: Sections
         url: "/library/sections"
         new_tab: false
         type: text
+        icon_start: /static/img/library/icon-google-dashboard.svg
       - text: Utility Classes
         url: "/library/utils"
         new_tab: false
         type: text
+        icon_start: /static/img/library/icon-google-bolt.svg
       - text: Advanced
         url: "/library/advanced"
         new_tab: false
         type: text
+        icon_start: /static/img/library/icon-google-target.svg
       - text: Style Guide
         url: "/style-guide"
         new_tab: false
         type: text
-      - text: OG Library
-        url: "/library"
-        new_tab: false
-        type: text
+        icon_start: /static/img/library/icon-google-palette.svg
       - text: Tokens
         url: "https://axyscreative.com/tokens"
         new_tab: true
         type: text
+        icon_start: /static/img/library/icon-google-inventory.svg
   - text: Blog
     url: "/blog"
     new_tab: false
@@ -62,8 +58,11 @@ cta_1:
   text_desc: Get started with AXYS Creative
   url: "https://axyscreative.com"
   new_tab: true
-  type: primary # primary | secondary | underline |  text
-  icon_end: null # /static/img/icon.svg
+  type: outline # visit _link.scss for all types
+  class: link--split-text
+  attributes: "data-hover-alt"
+  # icon_end: static/img/library/icon-google-chevron-right.svg
+  # icon_start: static/img/library/icon-google-info-circle.svg
 
 cta_2:
   text: Log In
@@ -71,8 +70,8 @@ cta_2:
   url: /admin
   icon_end: ""
   new_tab: true
-  type: underline # primary | secondary | underline |  text
-  class: ""
+  type: underline # visit _link.scss for all types
+  class: link--split-text
   attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
 
 # mobile nav specific content

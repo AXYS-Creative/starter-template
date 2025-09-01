@@ -46,14 +46,22 @@ export const lenis = new Lenis({
 
 // Return to top
 {
-  const returnToTop = document.querySelector(".return-to-top"),
+  const returnToTop = document.querySelectorAll(".return-to-top"),
     logo = document.querySelector(".header-logo");
 
-  if (returnToTop) {
-    returnToTop.addEventListener("click", (e) => {
-      logo.focus();
+  returnToTop.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      lenis.scrollTo(0, {
+        duration: 1.2,
+        easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic
+      });
+
+      // Restore focus for accessibility
+      logo.focus({ preventScroll: true });
     });
-  }
+  });
 }
 
 // Skip to main content option (for lenghthy headers)
@@ -69,10 +77,17 @@ if (skipToContent) {
 // CSS Util for .link--split-text
 {
   document.querySelectorAll(".link--split-text").forEach((el) => {
-    const text = el.textContent;
+    // Decide what to target
+    const target = el.classList.contains("link")
+      ? el.querySelector(".link__text")
+      : el;
 
-    // Wrap all letter groups inside a single span with the class "text-content"
-    el.innerHTML =
+    if (!target) return;
+
+    const text = target.textContent;
+
+    // Build split markup
+    const splitHTML =
       `<span class="link--split-text__content">` +
       Array.from(text)
         .map((char) => {
@@ -87,6 +102,9 @@ if (skipToContent) {
         })
         .join("") +
       `</span>`;
+
+    // Replace only the text node inside the target, not the whole element
+    target.innerHTML = splitHTML;
   });
 }
 

@@ -5,7 +5,8 @@ $brand-font--body: "Funnel Display", source-sans-pro, sans-serif;
 
 $black: #0a0a0a;
 $grey-dark: #313131;
-$grey-light: #c0c0c0;
+$grey: #c0c0c0;
+$grey-light: #f0f0f0;
 $white: #fefefe;
 
 $coral: #e48c66;
@@ -59,16 +60,17 @@ $test-bg: rgba(navy, 0.75);
 
   --color-brand--primary: #{$coral}; // Generally consistent across themes
   --color-brand--secondary: #{$green};
+  // --color-brand--on-primary: #{$white};
 
   --color-font--error: #{$red};
 
   // --color-border: #{$grey-light};
 
   --color-btn-bg: var(--color-brand--primary);
-  --color-btn-text: #{$white};
-  --color-btn-border: var(--color-btn-bg);
   --color-btn-bg--hover: transparent;
+  --color-btn-text: #{$white};
   --color-btn-text--hover: var(--color-brand--primary);
+  --color-btn-border: var(--color-btn-bg);
   --color-btn-border--hover: var(--color-brand--primary);
 
   --color-link: var(--color-brand--primary);
@@ -114,7 +116,7 @@ $test-bg: rgba(navy, 0.75);
 @mixin light-theme {
   --color-background: #{$white};
   --color-font--primary: #{$black};
-  --color-font--secondary: #{$grey-light};
+  --color-font--secondary: #{$grey-dark};
 
   // --color-btn-2-bg: var(--color-brand--primary);
   --color-btn-2-text: #{$black};
@@ -135,6 +137,7 @@ $test-bg: rgba(navy, 0.75);
 @mixin dark-theme {
   --color-background: #{$black};
   --color-font--primary: #{$white};
+  --color-font--secondary: #{$grey};
 
   --color-btn-2-text: #{$white};
 

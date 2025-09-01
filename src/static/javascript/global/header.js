@@ -11,6 +11,21 @@ export const navLinks = document.querySelectorAll(".nav-link"),
   tabElementsPage = document.querySelectorAll(".tab-element-page"),
   tabElementsNav = document.querySelectorAll(".tab-element-nav");
 
+// // Default 'tab-element-page' for all clickables ... but some content might need focus in both cases, eg. logo
+// const clickables = document.querySelectorAll(
+//   "a, button, [role='button'], [tabindex]"
+// );
+
+// clickables.forEach((el) => {
+//   const hasCustomTabClass = [...el.classList].some((cls) =>
+//     cls.includes("tab-element-")
+//   );
+
+//   if (!hasCustomTabClass) {
+//     el.classList.add("tab-element-page");
+//   }
+// });
+
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
 let navScrollLock = siteNav.dataset.scrollLock === "true";
@@ -29,8 +44,10 @@ const toggleNav = () => {
 
   if (isNavOpen && navScrollLock) {
     lenis.stop();
+    document.body.style.overflow = "hidden";
   } else {
     lenis.start();
+    document.body.style.overflow = "auto";
   }
 
   // Update tabindex for tabElementsPage and tabElementsNav

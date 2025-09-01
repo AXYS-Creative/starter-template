@@ -496,3 +496,392 @@ path: library/utils
     {{ library.video_overlay.btn_text }}
   </button>
 </section>
+
+<section class="tilt-cards library-section hide-cursor">
+  <h2 class="h5">[ Tilt cards - Util ]</h2>
+
+  <strong>Requires additional script tag*</strong>
+  <p>
+    A subtle 3d effect for desktop users that uses the
+    <a
+      class="classic-link tab-element-page"
+      href="https://micku7zu.github.io/vanilla-tilt.js/"
+      target="_blank"
+      >vanilla tilt js library/cdn</a
+    >. Throw the <code>data-tilt</code> attribute on any element to activate.
+    Comes with the following configs:
+  </p>
+  <ul class="classic-list tilt-target__card">
+    <li>
+      <code>data-tilt-reverse</code> boolean, Reverse the tilt direction.
+      Default is
+      <code>false</code>
+    </li>
+    <li>
+      <code>data-tilt-max</code> number, max tilt rotation. Default is
+      <code>35</code>
+    </li>
+    <li>
+      <code>data-tilt-startX</code> number, resting tilt along x-axis. Default
+      is
+      <code>0</code>
+    </li>
+    <li>
+      <code>data-tilt-startY</code> number, resting tilt along y-axis. Default
+      is
+      <code>0</code>
+    </li>
+    <li>
+      <code>data-tilt-perspective</code> number, lower value is more dramatic.
+      Default is
+      <code>1000</code>
+    </li>
+    <li>
+      <code>data-tilt-scale</code> number scale on hover (subtle pop effect).
+      Default is
+      <code>1</code>
+    </li>
+    <li>
+      <code>data-tilt-speed</code> number, speed of enter/exit transition.
+      Default is
+      <code>300</code>
+    </li>
+    <li>
+      <code>data-tilt-transition</code> boolean, set a transition on enter/exit.
+      Default is <code>true</code>
+    </li>
+    <li>
+      <code>data-tilt-axis</code> string, limit to only one axis. Takes
+      <code>x | y | null</code> Default is <code>null</code>
+    </li>
+    <li>
+      <code>data-tilt-reset</code> boolean, toggle tilt reset on exit. Default
+      is
+      <code>true</code>
+    </li>
+    <li>
+      <code>data-tilt-easing</code> string, easing value on enter/exit. Accepts
+      cubic-bezier curves. Default is <code>cubic-bezier(.03,.98,.52,.99)</code>
+    </li>
+    <li>
+      <code>data-tilt-glare</code> boolean, toggle glare effect. Default is
+      <code>false</code>
+    </li>
+    <li>
+      <code>data-tilt-max-glare</code> number between 0 and 1 for opacity.
+      Default is
+      <code>1</code>
+    </li>
+    <li>
+      <code>data-tilt-mouse-event-element</code> string, css class or link to
+      HTML elem that triggers tilt effect. Requires '.' on class. Default is
+      <code>null</code>
+    </li>
+    <li>
+      <code>data-tilt-gyroscope</code> boolean, to toggle on orientation
+      devices. Default is <code>true</code>
+    </li>
+  </ul>
+  <div class="tilt-card-group">
+    <div class="tilt-card" data-tilt>
+      <h3 class="h6">Default</h3>
+      <br />
+      <p>No extra attributes other than <code>data-tilt</code></p>
+      {% set cta_1 = { text: 'Learn more', url:
+      'https://micku7zu.github.io/vanilla-tilt.js/' } %} {% include
+      "../_includes/components/cta-group.njk" %}
+    </div>
+    <div
+      class="tilt-card tilt-card--3d"
+      data-tilt
+      data-tilt-reverse="true"
+      data-tilt-max="10"
+      data-tilt-startX="0"
+      data-tilt-startY="0"
+      data-tilt-perspective="2400"
+      data-tilt-speed="750"
+      data-tilt-reset="true"
+      data-tilt-glare="true"
+      data-tilt-max-glare="0.125"
+    >
+      <h3 class="h6">Reversed</h3>
+      <br />
+      <p>
+        This sublte reversed tilt effect not only includes a glare, but also has
+        a different transition speed.
+      </p>
+      <br />
+      <p>It also sets up the 3d/parallax effect:</p>
+      <ol class="classic-list">
+        <li>
+          Add <code>transform-style: preserve-3d</code> to the tilt element.
+        </li>
+        <li>
+          Add <code>transform: perspective(1000px);</code> to the tilt element.
+        </li>
+        <li>
+          Add <code>transform: translateZ(20px);</code> to the inner element(s)
+          that you want to pop.
+        </li>
+      </ol>
+      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
+      {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com' } %}
+      {% include "../_includes/components/cta-group.njk" %}
+    </div>
+    <div
+      class="tilt-card"
+      data-tilt
+      data-tilt-reverse="false"
+      data-tilt-max="20"
+      data-tilt-startX="0"
+      data-tilt-startY="0"
+      data-tilt-perspective="750"
+      data-tilt-speed="100"
+      data-tilt-reset="false"
+      data-tilt-glare="true"
+    >
+      <h3 class="h6">Dramatic</h3>
+      <br />
+      <p>A bit stronger with the max-glare and the tilt doesn't reset.</p>
+      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
+      {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com' } %}
+      {% include "../_includes/components/cta-group.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="tooltip-section library-section hide-cursor">
+  <h2 class="h5">[ Tooltip - Util or Component ]</h2>
+  <p>
+    A tooltip can be added in two ways: as a utility class or a component. Each
+    method comes with different pros and cons.
+  </p>
+  <br />
+
+  <h3 class="h6">Tooltip Util (follows mouse)</h3>
+  <strong>
+    Note: requires mouse-cursor.njk component.
+    <br />
+    Also, the tooltip doesn't display while the user is scrolling. With Lenis
+    this may cause a delay to see the tooltip.
+  </strong>
+  <p>
+    The tooltip can also be tagged on any element using the class
+    <code>tooltip-util</code> The configs are as follows:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-tooltip-message</code> A string, this is the value of the
+      message for the tooltip (perhaps see if this can take html).
+    </li>
+    <li>
+      <code>data-tooltip-min-width</code> A number, this applies a minimum width
+      to the message bubble.
+    </li>
+  </ul>
+
+  <p>
+    Tooltip util
+    <span
+      class="tooltip-util"
+      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
+      data-tooltip-min-width="212"
+      role="button"
+      tabindex="0"
+    >
+      used with inline text
+    </span>
+    . You’ll notice that the text bubble is
+    <span
+      class="tooltip-util"
+      data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
+      data-tooltip-min-width="250"
+      role="button"
+      tabindex="0"
+    >
+      directionally aware
+    </span>
+    and will reposition based on the mouse position in the viewport.
+  </p>
+  <img
+    class="tooltip-util icon-md"
+    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
+    data-tooltip-min-width="250"
+    src="/static/img/library/icon-google-info-circle.svg"
+    alt=""
+    role="button"
+    tabindex="0"
+    eleventy:ignore
+  />
+
+  <br aria-hidden="true" />
+  <br aria-hidden="true" />
+
+  <h3 class="h6">Tooltip Component (fixed)</h3>
+  <p>
+    The component variation <code>tooltip.njk</code> comes with the following
+    config options:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>message</code> a string, this is the text within the message bubble.
+    </li>
+    <li>
+      <code>text</code> an optional string that can be used as the tooltip
+      trigger (vs an icon).
+    </li>
+    <li>
+      <code>icon</code> an optional string used to override the default icon
+      image. This is the path to the image source.
+    </li>
+    <li>
+      <code>size</code> a string of either <code>sm | md | lg</code> to adjust
+      the tooltip message size. Defaults is <code>md</code>
+    </li>
+    <li>
+      <code>place</code> a string of either
+      <code>top | right | bottom | left</code> to position the tooltip bubble.
+      Default is <code>top</code>
+    </li>
+  </ul>
+
+  <!-- prettier-ignore -->
+  {% set tooltip_data = library.tooltip.tooltip_1 %} 
+  {% include "../_includes/library/tooltip.njk" %} 
+
+  {% set tooltip_data = library.tooltip.tooltip_2 %} 
+  {% include "../_includes/library/tooltip.njk" %}
+
+  <div>
+    <p>
+      Does this work inline? Yes,
+      <!-- prettier-ignore -->
+      {% set tooltip_data = library.tooltip.tooltip_3 %}
+      {% include "../_includes/library/tooltip.njk" %} 
+      then some text afterward.
+    </p>
+  </div>
+</section>
+
+<section class="typing-section library-section">
+  <h2 class="h5">
+    <span class="typing-scroll" data-typing-cursor="none"
+      >[ Typing Text&nbsp;-&nbsp;</span
+    >
+    <span
+      class="typing-cycle"
+      data-typing-cycle-words="Util, Class, Block"
+      data-typing-delay="800"
+      data-typing-on-scroll="true"
+    >
+      Util
+    </span>
+    &nbsp;]
+  </h2>
+
+  <h3 class="h6">Typing Cycle</h3>
+  <p>
+    The typing cycle effect mimics human typing in an endless loop. It uses the
+    <code>typing-cycle</code> class along with multiple
+    <code>data</code> attributes to configure.
+  </p>
+  <ul class="classic-list">
+    <li><code>data-typing-cycle-words</code> An array of strings.</li>
+    <li>
+      <code>data-typing-cycle-colors</code> An array of strings. Takes any valid
+      css color value.
+    </li>
+    <li>
+      <code>data-typing-speed-in</code> A number (in ms) that controls the
+      typing speed. Default is <code>120</code>
+    </li>
+    <li>
+      <code>data-typing-speed-out</code> A number (in ms) that controls the
+      deleting speed. Default is <code>50</code>
+    </li>
+    <li>
+      <code>data-typing-cycle-interval</code> A number (in ms) that controls the
+      interval between when the word finishes typing & when the word starts
+      deleting. Default is <code>2000</code>
+    </li>
+    <li>
+      <code>data-typing-delay</code> Optional number (in ms) representing the
+      initial delay of the animation. Default is <code>0</code>
+    </li>
+    <li>
+      <code>data-typing-cursor</code> A string of either
+      <code>caret | underscore | none</code> to alter the text cursor. Defaults
+      to <code>caret</code>
+    </li>
+    <li>
+      <code>data-typing-on-scroll</code> Optional boolean, to start the cycle
+      when the element scrolls into view. Default is <code>false</code>
+    </li>
+  </ul>
+  <h6>
+    The human senses:
+    <span
+      class="typing-cycle"
+      data-typing-cycle-words="touch, sight, sound, taste, smell"
+      data-typing-cycle-colors="var(--color-brand--primary), forestgreen, #c0c0c0, crimson, slateblue"
+      data-typing-speed-in="100"
+      data-typing-speed-out="25"
+      data-typing-cycle-interval="2000"
+      data-typing-delay="1500"
+      data-typing-cursor="underscore"
+    ></span>
+  </h6>
+  <h6>
+    The four seasons:
+    <span
+      class="typing-cycle"
+      data-typing-cycle-words="Spring, Summer, Autumn, Winter"
+      data-typing-speed-in="75"
+      data-typing-speed-out="200"
+      data-typing-cycle-interval="1250"
+      data-typing-cursor="none"
+    ></span>
+  </h6>
+
+  <br />
+
+  <h3 class="h6">Typing Scroll</h3>
+  <p>
+    The class <code>typing-scroll</code> will trigger the typing animation when
+    the element comes into view. Comes with the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-typing-once</code> A boolean to toggle if the animation should
+      fire each time the element scrolls into view. Default is
+      <code>false.</code>
+    </li>
+    <li>
+      <code>data-typing-speed</code> The number (in ms), representing the typing
+      speed. Default is <code>50</code>
+    </li>
+    <li>
+      <code>data-typing-delay</code> Optional number (in ms), representing the
+      initial delay of the animation. Default is <code>0</code>
+    </li>
+    <li>
+      <code>data-typing-cursor</code> A string of either
+      <code>caret | underscore | none</code> to alter the text cursor. Defaults
+      to <code>caret</code>
+    </li>
+  </ul>
+
+  <p class="typing-scroll">
+    This will type out as many times as you scroll into view. Default behavior.
+  </p>
+  <p
+    class="typing-scroll"
+    data-typing-once="true"
+    data-typing-speed="25"
+    data-typing-delay="3200"
+    data-typing-cursor="underscore"
+  >
+    This will only type out once, the very first time it comes into view. Also
+    has a delay of 3200ms.
+  </p>
+</section>

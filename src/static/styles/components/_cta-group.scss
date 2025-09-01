@@ -1,9 +1,9 @@
 .cta-1 {
-  @include button-type-primary;
+  @include button-type--solid;
 }
 
 .cta-2 {
-  @include button-type-secondary;
+  @include button-type--icon-end;
 }
 
 .cta-group {

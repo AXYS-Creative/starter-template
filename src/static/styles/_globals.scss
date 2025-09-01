@@ -33,7 +33,7 @@ body {
   color: var(--color-font--primary);
 
   // .site-header,
-  .site-footer,
+  // .site-footer,
   section {
     // see util.scss to adjust section width
     max-width: $content-width;
@@ -73,61 +73,19 @@ body {
     }
   }
 
-  &:has(.promo-banner) {
-    .site-header > * {
-      transition: top $ease, opacity $ease; // for transition
-    }
-  }
+  // &:has(.promo-banner) {
+  //   .site-header > * {
+  //     transition: top $ease, opacity $ease; // for transition
+  //   }
+  // }
 }
 
-.site-footer {
-  @include row-center(space-between);
-  gap: 12px;
-  position: relative;
-  padding: var(--body-padding);
+.site-logo {
+  --logo-size: 32px; // aspect ration not working as exptected.
 
-  @media all {
-    @include mq-max(lg) {
-      justify-content: flex-start;
-    }
-
-    @include mq-max(md) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    @include mq-max(sm) {
-      padding-block-end: 48px;
-    }
-  }
-
-  .copyright {
-    @include row-center;
-    gap: 10px;
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    translate: calc(-50% - 6px) 50%;
-
-    @include mq-max(lg) {
-      left: auto;
-      bottom: 0;
-      right: var(--body-padding);
-      translate: 0 calc(var(--body-padding) * -1);
-    }
-
-    @include mq-max(sm) {
-      position: static;
-      order: 1;
-      translate: 0 0;
-    }
-  }
-
-  .return-to-top,
-  .axys-link {
-    font-size: 12px;
-  }
+  display: block;
+  width: var(--logo-size);
+  height: var(--logo-size);
 }
 
 .site-loader {

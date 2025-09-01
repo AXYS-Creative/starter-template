@@ -23,11 +23,11 @@
   </button>
   <div class="dropdown-link__accordion">
     <ul class="dropdown-link__list">
-      {% for link in dropdown_link.inner_links %}
+      {% for inner_link in dropdown_link.inner_links %}
       <li>
         <!-- prettier-ignore -->
-        {% set link = link %}
-        {% include "./link.njk" %}
+        {% set link = inner_link %}
+        {% include "./button.njk" %}
       </li>
       {% endfor %}
     </ul>

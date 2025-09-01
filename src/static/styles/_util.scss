@@ -13,7 +13,7 @@
 }
 
 .classic-link {
-  @include button-type-underline;
+  @include button-type--underline;
 }
 
 .classic-list {
@@ -265,7 +265,7 @@
   }
 
   .link--underline {
-    @include button-type-underline;
+    @include button-type--underline;
   }
 
   .library-section {

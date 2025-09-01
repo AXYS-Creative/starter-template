@@ -15,10 +15,12 @@
     position: relative;
   }
 
-  .header-logo {
-    height: var(--header-children-height);
-    aspect-ratio: 1;
-  }
+  // .site-logo {
+  //   &-link {
+  //   }
+  //   &-img {
+  //   }
+  // }
 
   .menu-links {
     --links-gap: 36px;
@@ -93,7 +95,7 @@
   &--float {
     --float-offset: 24px;
 
-    border: 1px solid var(--color-border);
+    border: var(--border-width) solid var(--color-border);
     top: var(--float-offset);
     width: calc(100% - (var(--float-offset) * 2));
     border-radius: var(--radius--sm);
@@ -107,10 +109,16 @@
     }
 
     &.site-header--scrolling-down {
-      translate: -50% -150%;
+      translate: -50% calc(-100% - var(--float-offset));
     }
+
     &.site-header--promo-banner {
       top: calc(var(--promo-banner-height) + var(--float-offset));
+    }
+
+    // Placing below to override all
+    &:focus-within {
+      translate: -50% 0;
     }
   }
 
@@ -123,29 +131,44 @@
     // promo-banner-height var set in js. See promo-banner.js
     top: var(--promo-banner-height);
 
-    // &.site-header--away-from-top {
+    &.site-header--scrolling-down {
+      translate: 0 calc(-100% - var(--promo-banner-height));
+    }
 
-    // }
+    &.site-header--float {
+      &.site-header--scrolling-down {
+        translate: -50% calc(-100% - var(--promo-banner-height));
+      }
+
+      &:focus-within {
+        translate: -50% 0;
+      }
+    }
+
+    &:focus-within {
+      translate: 0 0;
+    }
   }
 
   // Library
   .skip-to-content {
+    @include button-type--outline;
     @include hide-content;
-    position: fixed;
-    top: -40px;
-    left: 0;
+    position: absolute;
+    top: 100%;
+    left: -20%;
     background: var(--color-background);
     color: var(--color-font--primary);
     padding: 8px;
-    z-index: 10;
-    transition: $ease;
+    z-index: -1;
+    transition: 0.5s ease;
 
     &:focus {
       @include show-content;
-      top: 0;
+      left: 0;
     }
 
-    @include mq-max(xl) {
+    @include mq-max(lg) {
       display: none;
     }
   }
@@ -175,7 +198,7 @@
     max-width: $content-width;
     height: 100dvh;
     min-height: 768px;
-    margin: auto;
+    margin: 0 auto var(--body-padding);
     padding: var(--body-padding);
 
     @include mq-max(xxl) {
@@ -262,7 +285,7 @@
       $stroke-width: 100%;
 
       position: relative;
-      width: 24px;
+      width: 20px;
 
       .site-nav-btn__stroke {
         @include absolute-center;
@@ -362,13 +385,12 @@
 }
 
 .menu-links {
-  .menu-links__link,
-  .dropdown-link {
+  .menu-links__link {
     @include mq-max(lg) {
-      font-size: 32px;
+      font-size: 24px;
     }
     @include mq-max(sm) {
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 }

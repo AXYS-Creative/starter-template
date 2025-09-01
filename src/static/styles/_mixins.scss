@@ -156,17 +156,17 @@ $min-breakpoints: (
   font-weight: 400;
   letter-spacing: -0.25px;
 
-  @include mq-max(sm) {
+  @include mq-max(md) {
     --font-size: 14px;
   }
 
   @if $size == lg {
-    --font-size: 24px;
+    --font-size: 20px;
 
     line-height: 1.5;
 
     @include mq-max(sm) {
-      --font-size: 20px;
+      --font-size: 18px;
     }
   }
 
@@ -193,7 +193,7 @@ $min-breakpoints: (
   border: 0;
 }
 
-@mixin button-type-primary {
+@mixin button-type--solid {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius--btn);
   background: var(--color-btn-bg);
@@ -212,8 +212,11 @@ $min-breakpoints: (
   }
 }
 
-@mixin button-type-secondary {
+@mixin button-type--outline {
+  border: var(--border-width--btn) solid var(--color-btn-border);
+  border-radius: var(--radius--btn);
   color: var(--color-btn-2-text);
+  padding: var(--padding-btn);
 
   @include mq-motion-allow {
     transition: $ease;
@@ -221,18 +224,29 @@ $min-breakpoints: (
 
   @include desktop-hover {
     color: var(--color-btn-text--hover);
+    scale: 0.96;
+  }
 
-    .link__icon-end {
+  .button__text {
+    overflow: hidden;
+  }
+}
+
+@mixin button-type--icon-end {
+  @include desktop-hover {
+    color: var(--color-btn-text--hover);
+
+    .button__icon-end {
       translate: 1ch 0;
     }
   }
 
-  .link__icon-end {
+  .button__icon-end {
     background-color: var(--color-brand--primary);
   }
 }
 
-@mixin button-type-underline {
+@mixin button-type--underline {
   position: relative;
   min-height: 1.1lh; // added in case overflow hidden is used
   color: var(--color-font--primary);
@@ -266,7 +280,7 @@ $min-breakpoints: (
   }
 }
 
-@mixin button-type-text {
+@mixin button-type--text {
   color: var(--color-link);
 
   @include mq-motion-allow {
@@ -424,12 +438,14 @@ $min-breakpoints: (
   box-shadow: 0 0 0 1.5px #275dc5, 0 0 0 3px #fff;
 }
 
-@mixin mask-image($url: null) {
+@mixin mask-image($url: null, $color: currentColor) {
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
   aspect-ratio: 1/1;
-  background: var(--color-font--primary);
+  background: $color;
+  display: inline-block;
+  vertical-align: middle;
 
   @if $url {
     mask-image: url($url);

@@ -9,7 +9,10 @@
 {% endif %}
 
 {% if menu_links %}
-<menu class="menu-links hide-cursor" aria-label="navigation links">
+<menu
+  class="menu-links hide-cursor {{ menu_links_class }}"
+  aria-label="navigation links"
+>
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}
   {% if menu_link.inner_links %}
@@ -22,7 +25,7 @@
   <li>
     <!-- prettier-ignore -->
     {% set link = menu_link %}
-    {% include "./link.njk" %}
+    {% include "./button.njk" %}
   </li>
   {% endif %} {% endfor %}
 </menu>

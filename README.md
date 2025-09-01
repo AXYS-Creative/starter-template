@@ -1,6 +1,6 @@
 # CMS Starter Template
 
-Collection of UI components and utility classes. To get started:
+Collection of UI components and utility classes. To get started pick what you need from the library and then be sure to delete the following:
 
 1. **JS library directory**
 2. **JS `animations.js` library blocks**
@@ -8,7 +8,7 @@ Collection of UI components and utility classes. To get started:
 4. **CSS `utility.scss` library block**
 5. **`_data` library directory**
 6. **`_includes` library directory**
-7. **Library `img` directory**
+7. **`static/img` library directory**
 8. Update all `"CHANGE ME"`
 9. Delete all `"DELETE ME"`
 
@@ -20,6 +20,7 @@ Collection of UI components and utility classes. To get started:
 - Form Variants
 - Marquee
 - Tabs
+- Tooltip
 - Video Overlay
 
 ## Section Components
@@ -32,6 +33,7 @@ Collection of UI components and utility classes. To get started:
 ## Utilities
 
 - Cursor Target
+- Fade Text
 - Fill Text
 - Glitch Text
 - Gradient Border
@@ -39,4 +41,5 @@ Collection of UI components and utility classes. To get started:
 - Magnet
 - Parallax
 - Tilt Cards
+- Tooltip
 - Typing Text

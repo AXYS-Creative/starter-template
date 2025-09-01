@@ -1,26 +1,30 @@
-.link {
-  --icon-size: 1.25em;
+.button {
+  --icon-size: 1em;
 
   display: inline-flex;
   align-items: center;
   gap: var(--gap-btn-icon);
   flex-shrink: 0;
 
-  // link types
-  &-type--primary {
-    @include button-type-primary;
+  // LINK_TYPES // solid | outline | icon-end | underline | text
+  &-type--solid {
+    @include button-type--solid;
   }
 
-  &-type--secondary {
-    @include button-type-secondary;
+  &-type--outline {
+    @include button-type--outline;
+  }
+
+  &-type--icon-end {
+    @include button-type--icon-end;
   }
 
   &-type--underline {
-    @include button-type-underline;
+    @include button-type--underline;
   }
 
   &-type--text {
-    @include button-type-text;
+    @include button-type--text;
   }
 
   &__icon-start,

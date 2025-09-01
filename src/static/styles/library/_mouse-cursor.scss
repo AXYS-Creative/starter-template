@@ -53,6 +53,13 @@
     }
   }
 
+  &.cursor-social-media {
+    .mouse-cursor__shape {
+      --size: 36px;
+      opacity: 1;
+    }
+  }
+
   &.star-icon {
     .mouse-cursor__shape {
       --size: 32px;

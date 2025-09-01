@@ -32,9 +32,12 @@
 
   <div class="site-header__inner">
     <!-- prettier-ignore -->
-    {% include "../components/site-logo.njk" %}
+    {% if logo %}
+      {% include "../components/logo.njk" %}
+    {% endif %}
 
     {% set links = global.header_simple.links %}
+    {% set menu_links_class = 'site-header__primary-links' %}
     {% include "../components/menu-links.njk" %}
 
     <!-- prettier-ignore -->
@@ -42,18 +45,11 @@
     <div class="site-header__cta-group">
       <!-- prettier-ignore -->
       {% set link = cta_2 %}
-      {% include "../components/link.njk" %}
+      {% include "../components/button.njk" %}
 
       <!-- prettier-ignore -->
-      {% set link = ({
-        text: cta_1.text,
-        url: cta_1.url,
-        new_tab: true,
-        type: cta_1.type,
-        class: '',
-        attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
-      }) %}
-      {% include "../components/link.njk" %}
+      {% set link = cta_1 %}
+      {% include "../components/button.njk" %}
     </div>
     {% endif %}
 
@@ -85,6 +81,8 @@
   data-scroll-lock="{{ lock_body_scroll }}"
 >
   <div class="width-constraint" data-lenis-prevent>
+    <!-- prettier-ignore -->
+    {% set menu_links_class = 'site-nav__primary-links' %}
     {% include "../components/menu-links.njk" %}
 
     <div class="site-nav__footer">

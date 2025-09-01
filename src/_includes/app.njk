@@ -130,11 +130,11 @@
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}
     </main>
-    {%include "./partials/footer-simple.njk" %}
+    {%include "./partials/footer-advanced.njk" %}
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
-    {% if path == "home" or path == "library/utils" or path == "style-guide" or path == "library" %}
+    {% if path == "home" or path == "library/utils" or path == "library/components" or path == "style-guide" %}
       {% include "./library/mouse-cursor.njk" %}
     {% endif %}
 

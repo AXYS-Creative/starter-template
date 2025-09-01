@@ -8,9 +8,10 @@
  "fonts",
  "animations";
 
-// // // // // Pages
+// // // // // Partials
 // prettier-ignore
-@import "./partials/header-simple";
+@import "./partials/header-simple",
+ "./partials/footer-advanced";
 
 // // // // // Pages
 // prettier-ignore
@@ -19,9 +20,9 @@
 
 // // // // // Components
 // prettier-ignore
-@import "./components/cta-group",
+@import "./components/button", 
+"./components/cta-group",
 "./components/dropdown-link",
-"./components/link",
 "./components/social-media";
 
 // // // // // Library // DELETE ME CHANGE ME after pulling files

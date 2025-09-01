@@ -8,12 +8,15 @@
 
 <ul class="social-media-links">
   {% for link in global.social_media.links %}
-  <li>
+  <li class="cursor-pair">
+    <!-- prettier-ignore -->
     <a
       href="{{ link.url }}"
       target="_blank"
-      class="social-media-link {{ a11y_tab }}"
+      class="social-media-link magnet magnet-strong cursor-trigger {{a11y_tab}}"
       aria-label="{{ link.title }}"
+      data-cursor-target="social-media-link"
+      data-cursor-class="cursor-social-media"
     >
       <span
         class="social-media-link__img"

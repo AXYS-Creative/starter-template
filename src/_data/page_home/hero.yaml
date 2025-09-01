@@ -1,10 +1,10 @@
 section_title: Title goes [%span.text-italic%]here[%span%]
 section_desc: >-
-  Description goes here. Supports <a class="classic-link" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
+  Description goes here. Supports <a class="classic-link tab-element-page" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
-  url: /library
+  url: /library/components
   new_tab: false
   # icon_start: /static/img/library/icon-google-copy.svg
   # icon_end: /static/img/library/icon-google-chevron-right.svg

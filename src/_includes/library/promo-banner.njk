@@ -27,7 +27,7 @@
     {% set marquee = marquee_data %}
     {% include "./marquee.njk" %}
   {% else %}
-    <p class="promo-banner__message">{{ message }}</p>
+    <p class="promo-banner__message">{{ message | safe }}</p>
   {% endif %}
 
 {% if btn_url and not close_on_click %}

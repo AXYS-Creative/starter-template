@@ -453,3 +453,200 @@ path: library/components
   [ This is an image marquee that scrubs instead of auto animates. ]
 </div>
 <br /><br /><br /><br /><br /><br />
+
+<section class="solar-system-section library-section">
+  <h2 class="h5">[ Solar system - Component ]</h2>
+
+  <p>
+    A way to display badges and an image. Visit
+    <a class="classic-link" href="https://www.delphi.ai/" target="_blank">
+      https://www.delphi.ai/
+    </a>
+    to see the sample.
+  </p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set orbit_data = library.solar_system %} 
+  {% include "../_includes/library/solar-system.njk" %}
+</section>
+
+<section class="tabs-section">
+  <h2 class="h5">[ Tabs - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set tab_list = library.tabs.tabs %}
+  {% include "../_includes/library/tabs.njk" %}
+</section>
+
+<section class="testimonials-section library-section">
+  <h2 class="h5">[ Testimonials - Component ]</h2>
+  <p>Coming Soon!</p>
+
+  <h3 class="h6">Auto carousel</h3>
+  <p>
+    Visit
+    <a class="classic-link" href="https://www.delphi.ai/" target="_blank">
+      https://www.delphi.ai/
+    </a>
+    to see the sample.
+  </p>
+</section>
+
+<section class="theme-toggle-section library-section">
+  <h2 class="h5">[ Theme toggle - Component ]</h2>
+
+  <strong>
+    Because of input/label IDs, it’s recommended to only use one component per
+    page.
+  </strong>
+
+  <p>
+    Make use of css variables to handle dynamic color for text, links, buttons
+    and backgrounds.
+  </p>
+  <p>Be sure to include the <code>theme-toggle.js</code> file</p>
+
+  {% include "../_includes/library/theme-toggle.njk" %}
+
+  <p>
+    You can also have a dynamic image source based on the theme with the
+    <code>theme-img</code> class! Then use the following attributes to set up
+    the source path.
+  </p>
+  <ul class="classic-list">
+    <li><code>data-light</code> The path to the image shown in light mode.</li>
+    <li><code>data-dark</code> The path to the image shown in dark mode.</li>
+  </ul>
+
+  <p>
+    <strong>Note:</strong> requires
+    <code>eleventy:ignore</code>
+  </p>
+
+  <img
+    class="theme-img"
+    src="/static/img/library/img-sample-light.png"
+    data-light="/static/img/library/img-sample-light.png"
+    data-dark="/static/img/library/img-sample-dark.png"
+    alt="light dark image"
+    width="250"
+    style="width: 250px"
+    eleventy:ignore
+  />
+</section>
+
+<section class="tooltip-section library-section hide-cursor">
+  <h2 class="h5">[ Tooltip - Component or Util ]</h2>
+  <p>
+    A tooltip can be added in two ways: as a component or a utility class. Each
+    method comes with different pros and cons.
+  </p>
+  <br />
+
+  <h3 class="h6">Tooltip Component (fixed)</h3>
+  <p>
+    The component variation <code>tooltip.njk</code> comes with the following
+    config options:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>message</code> a string, this is the text within the message bubble.
+    </li>
+    <li>
+      <code>text</code> an optional string that can be used as the tooltip
+      trigger (vs an icon).
+    </li>
+    <li>
+      <code>icon</code> an optional string used to override the default icon
+      image. This is the path to the image source.
+    </li>
+    <li>
+      <code>size</code> a string of either <code>sm | md | lg</code> to adjust
+      the tooltip message size. Defaults is <code>md</code>
+    </li>
+    <li>
+      <code>place</code> a string of either
+      <code>top | right | bottom | left</code> to position the tooltip bubble.
+      Default is <code>top</code>
+    </li>
+  </ul>
+
+  <!-- prettier-ignore -->
+  {% set tooltip_data = library.tooltip.tooltip_1 %} 
+  {% include "../_includes/library/tooltip.njk" %} 
+  
+  {% set tooltip_data = library.tooltip.tooltip_2 %} 
+  {% include "../_includes/library/tooltip.njk" %}
+
+  <div>
+    <p>
+      Does this work inline? {% set tooltip_data = library.tooltip.tooltip_3 %}
+      {% include "../_includes/library/tooltip.njk" %} then some text afterward.
+    </p>
+  </div>
+
+  <br aria-hidden="true" />
+  <br aria-hidden="true" />
+  <h3 class="h6">Tooltip Util (follows mouse)</h3>
+  <strong>
+    Note: requires mouse-cursor.njk component.
+    <br />
+    Also, the tooltip doesn't display while the user is scrolling. With Lenis
+    this may cause a delay to see the tooltip.
+  </strong>
+  <p>
+    The tooltip can also be tagged on any element using the class
+    <code>tooltip-util</code> The configs are as follows:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-tooltip-message</code> A string, this is the value of the
+      message for the tooltip (perhaps see if this can take html).
+    </li>
+    <li>
+      <code>data-tooltip-min-width</code> A number, this applies a minimum width
+      to the message bubble.
+    </li>
+  </ul>
+
+  <p>
+    Tooltip util
+    <span
+      class="tooltip-util"
+      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
+      data-tooltip-min-width="212"
+      role="button"
+      tabindex="0"
+    >
+      used with inline text
+    </span>
+    . You’ll notice that the text bubble is
+    <span
+      class="tooltip-util"
+      data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
+      data-tooltip-min-width="250"
+      role="button"
+      tabindex="0"
+    >
+      directionally aware
+    </span>
+    and will reposition based on the mouse position in the viewport.
+  </p>
+  <img
+    class="tooltip-util icon-md"
+    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
+    data-tooltip-min-width="250"
+    src="/static/img/library/icon-google-info-circle.svg"
+    alt=""
+    role="button"
+    tabindex="0"
+    eleventy:ignore
+  />
+</section>
+
+<section class="video-player-section">
+  <h2 class="h5">[ Video Player - Component ]</h2>
+</section>

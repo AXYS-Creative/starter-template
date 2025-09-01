@@ -1,0 +1,88 @@
+float: true
+
+has_logo: true
+message: A custom footer with a wide range of configuration options. A means of simplifying the build process.
+social_media: true
+
+linkset_1_title: Explore
+linkset_1:
+  - text: Home
+    url: "/"
+    new_tab: false
+    type: underline
+  - text: Blog
+    url: "/blog"
+    new_tab: false
+    type: underline
+  - text: Style Guide
+    url: "/style-guide"
+    new_tab: false
+    type: underline
+  # - text: Library
+  #   icon: "/static/img/library/icon-google-chevron-down.svg"
+  #   trigger_class: link--underline
+  #   inner_links:
+  #     - text: Components
+  #       url: "/library/components"
+  #       new_tab: false
+
+linkset_2_title: Library
+linkset_2:
+  - text: Utils
+    url: "/library/utils"
+    new_tab: false
+    type: underline
+  - text: Components
+    url: "/library/components"
+    new_tab: false
+    type: underline
+  - text: Sections
+    url: "/library/sections"
+    new_tab: false
+    type: underline
+  - text: Advanced
+    url: "/library/advanced"
+    new_tab: false
+    type: underline
+
+linkset_3_title: Axys Creative
+linkset_3:
+  - text: Website
+    url: "https://axyscreative.com"
+    new_tab: true
+    type: underline
+  - text: Tokens
+    url: "https://axyscreative.com/tokens"
+    new_tab: true
+    type: underline
+  - text: Client Login
+    url: "https://billing.stripe.com/p/login/bIYcNw7NXeQDchi000"
+    new_tab: true
+    type: underline
+
+divider: true
+
+# return_to_top:
+#   text: "Return To Top"
+#   url: "#"
+#   class: "return-to-top"
+#   type: underline
+#   icon_end: /static/img/library/icon-google-chevron-up.svg
+
+copyright: "&copy;<span data-current-year></span>&nbsp;Sample Business. All rights reserved"
+
+legal_links:
+  - text: Privacy Policy
+    url: "https://google.com"
+    type: underline
+    # class: "link--split-text"
+  - text: Terms & Conditions
+    url: "https://google.com"
+    type: underline
+    # class: "link--split-text"
+  # - text: Cookie Policy
+  #   url: "https://google.com"
+  #   type: underline
+  # class: "link--split-text"
+
+theme_toggle: true
