@@ -152,7 +152,7 @@
 
   // Library
   .skip-to-content {
-    @include button-type--outline;
+    @include btn-type--outline;
     @include hide-content;
     position: absolute;
     top: 100%;

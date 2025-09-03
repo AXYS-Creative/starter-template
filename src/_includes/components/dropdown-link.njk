@@ -26,8 +26,8 @@
       {% for inner_link in dropdown_link.inner_links %}
       <li>
         <!-- prettier-ignore -->
-        {% set link = inner_link %}
-        {% include "./button.njk" %}
+        {% set btn = inner_link %}
+        {% include "./btn.njk" %}
       </li>
       {% endfor %}
     </ul>

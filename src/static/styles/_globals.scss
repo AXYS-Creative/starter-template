@@ -32,6 +32,10 @@ body {
   background: var(--color-background);
   color: var(--color-font--primary);
 
+  @include mq-motion-allow {
+    transition: background $ease; // Library, used for theme toggle
+  }
+
   // .site-header,
   // .site-footer,
   section {
@@ -158,6 +162,14 @@ li {
 
   &.body-lg {
     @include body-font-styles(lg);
+  }
+}
+
+a {
+  color: var(--color-link);
+
+  @include desktop-hover {
+    color: var(--color-link--hover);
   }
 }
 

@@ -2,7 +2,7 @@
 <div class="cta-group disable-bg">
   <!-- prettier-ignore -->
   {% if cta_1 %}
-    {% set link = ({
+    {% set btn = ({
       text: cta_1.text,
       text_desc: cta_1.text_desc,
       url: cta_1.url,
@@ -13,12 +13,12 @@
       class: 'magnet magnet-wide-btn hide-cursor',
       attributes: ''
     }) %}
-    {% include "./button.njk" %}
+    {% include "./btn.njk" %}
   {% endif %}
 
   <!-- prettier-ignore -->
   {% if cta_2 %}
-    {% set link = ({
+    {% set btn = ({
       text: cta_2.text,
       text_desc: cta_2.text_desc,
       url: cta_2.url,
@@ -30,7 +30,7 @@
       class: 'cursor-trigger cursor-pair',
       attributes: 'data-cursor-target=cursor-target__cta-2 data-cursor-class=cta-2'
     }) %}
-    {% include "./button.njk" %}
+    {% include "./btn.njk" %}
   {% endif %}
 </div>
 {% endif %}

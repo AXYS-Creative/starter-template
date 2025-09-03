@@ -1,20 +1,20 @@
 <!-- props -->
 <!-- prettier-ignore -->
-{% set text = link.text or '' %}
-{% set text_desc = link.text_desc or '' %}
-{% set url = link.url or '' %}
-{% set new_tab = link.new_tab or false %}
-{% set type = link.type or 'text' %}
-{% set class = link.class or '' %}
-{% set attributes = link.attributes or '' %}
-{% set icon_start = link.icon_start or '' %}
-{% set icon_end = link.icon_end or '' %}
-{% set icon_end_class = link.icon_end_class or '' %}
+{% set text = btn.text or '' %}
+{% set text_desc = btn.text_desc or '' %}
+{% set url = btn.url or '' %}
+{% set new_tab = btn.new_tab or false %}
+{% set type = btn.type or 'text' %}
+{% set class = btn.class or '' %}
+{% set attributes = btn.attributes or '' %}
+{% set icon_start = btn.icon_start or '' %}
+{% set icon_end = btn.icon_end or '' %}
+{% set icon_end_class = btn.icon_end_class or '' %}
 
 <!-- prettier-ignore -->
 {% set a11y_tab = a11y_tab or 'tab-element-page' %}
 
-{% if type == 'icon_end' %}
+{% if type == 'icon-end' %}
   {% set icon_end = '/static/img/library/icon-google-chevron-right.svg' %}
 {% endif %}
 
@@ -30,7 +30,7 @@
 
 <!-- prettier-ignore -->
 <{{element_to_use}}
-  class="{{ class }} button button-type--{{ type }} {{ a11y_tab }} {{ content_start_class}}"
+  class="{{ class }} btn btn-type--{{ type }} {{ a11y_tab }} {{ content_start_class}}"
   {%if url %}
     href="{{ url }}"
   {%endif%}
@@ -46,15 +46,15 @@
 >
   {% if icon_start %}
     <span 
-      class="button__icon-start mask-icon"
+      class="btn__icon-start mask-icon"
       style="mask-image: url('{{icon_start}}');"
       role="img"
     ></span>
   {% endif %}
-  <span class="button__text">{{ text }}</span>
+  <span class="btn__text">{{ text }}</span>
   {% if icon_end or type == 'icon_end' %}
     <span 
-      class="{{ icon_end_class }} button__icon-end mask-icon"
+      class="{{ icon_end_class }} btn__icon-end mask-icon"
       style="mask-image: url('{{icon_end}}');"
       role="img"
     ></span>

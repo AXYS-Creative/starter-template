@@ -1,29 +1,41 @@
 <!-- prettier-ignore -->
 {% set a11y_tab = 'tab-element-page' %}
+{% set meta_data = meta_data %}
 {% set footer = global.footer_advanced %}
 
-{% set float = footer.float %}
-{% set has_logo = footer.has_logo %}
-{% set message = footer.message %}
-{% set social_media = footer.social_media %}
-{% set linkset_1_title = footer.linkset_1_title %}
-{% set linkset_1 = footer.linkset_1 %}
-{% set linkset_2_title = footer.linkset_2_title %}
-{% set linkset_2 = footer.linkset_2 %}
-{% set linkset_3_title = footer.linkset_3_title %}
-{% set linkset_3 = footer.linkset_3 %}
-{% set tertiary_links_title = footer.tertiary_links_title %}
-{% set tertiary_links = footer.tertiary_links %}
-{% set divider = footer.divider %}
-{% set return_to_top = footer.return_to_top %}
-{% set copyright = footer.copyright %}
+<!-- prettier-ignore -->
+{% set float = footer.float or false %}
+{% set has_logo = footer.has_logo or null %}
+{% set message = footer.message or '' %}
+{% set social_media = footer.social_media or null %}
+
+{% set linkset_1_title = footer.linkset_1_title or '' %}
+{% set linkset_1 = footer.linkset_1 or null %}
+{% set linkset_2_title = footer.linkset_2_title or '' %}
+{% set linkset_2 = footer.linkset_2 or null %}
+{% set linkset_3_title = footer.linkset_3_title or '' %}
+{% set linkset_3 = footer.linkset_3 or null %}
+
+{% set divider = footer.divider or true %}
+{% set divider_width_full = footer.divider_width_full or false %}
+
+{% set return_to_top = footer.return_to_top or false %}
 {% set legal_links = footer.legal_links %}
 {% set theme_toggle = footer.theme_toggle %}
+{% set copyright = footer.copyright | default(
+  '©<span data-current-year></span>
+&nbsp;' + meta_data.site_name + '. All rights reserved' ) %}
 
-{% set footer_class = '' %}
-{% if float %}
-  {% set footer_class = 'site-footer--float' %}
+<!-- prettier-ignore -->
+{% set footer_class = '' %} 
+{% if float %} 
+  {% set footer_class = 'site-footer--float' %} 
 {% endif %}
+
+{% set footer_divider_class = '' %} 
+{%if divider_width_full%}
+  {% set footer_divider_class = 'site-footer__divider--width-full' %}
+{%endif%}
 
 <footer class="site-footer site-footer--advanced {{ footer_class }}">
   <div class="site-footer__inner">
@@ -91,14 +103,14 @@
     </div>
 
     {% if divider %}
-    <hr class="site-footer__divider" />
+    <hr class="site-footer__divider what {{ footer_divider_class }}" />
     {% endif %}
 
     <div class="site-footer__bottom">
       <!-- prettier-ignore -->
       {% if return_to_top %}
-        {% set link = return_to_top %}
-        {% include "../components/button.njk" %}
+        {% set btn = return_to_top %}
+        {% include "../components/btn.njk" %}
       {% endif %}
   
       {% if copyright %}

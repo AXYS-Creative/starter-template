@@ -1,0 +1,41 @@
+.btn {
+  --icon-size: 1em;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-btn-icon);
+  flex-shrink: 0;
+
+  // LINK_TYPES // solid | outline | icon-end | underline | text — Use a 'select' as the CMS config type
+  &-type--solid {
+    @include btn-type--solid;
+  }
+
+  &-type--outline {
+    @include btn-type--outline;
+  }
+
+  // Used to force a specific icon for ALL using this button type. Not to be used with unique right icons per instance. If that is the goal, just use another button type with the icon_end prop.
+  &-type--icon-end {
+    @include btn-type--icon-end;
+  }
+
+  &-type--underline {
+    @include btn-type--underline;
+  }
+
+  &-type--text {
+    @include btn-type--text;
+  }
+
+  &__icon-start,
+  &__icon-end {
+    background: currentColor;
+    width: var(--icon-size);
+    height: var(--icon-size);
+
+    @include mq-motion-allow {
+      transition: $ease;
+    }
+  }
+}

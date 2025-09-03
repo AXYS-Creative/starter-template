@@ -490,7 +490,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
           // Hover-based glitch
           document.querySelectorAll(".glitch-hover").forEach((el) => {
-            const originalText = el.textContent;
+            const target = el.querySelector(".btn__text") || el;
+
+            const originalText = target.textContent;
             const newText = el.dataset.glitchNewText;
             const chars = el.dataset.glitchChars || "upperAndLowerCase";
             const duration = parseFloat(el.dataset.glitchDuration) || 1;
@@ -498,16 +500,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               parseFloat(el.dataset.glitchRevealDelay) || 0.125;
             const glitchOut = el.dataset.glitchOut === "true"; // Default is false (hover in, hover out)
 
-            // Prevent layout shift
             if (!newText) {
-              const width = el.scrollWidth;
-              el.style.width = `${width}px`;
-              el.style.display = "inline-block";
+              const width = target.offsetWidth;
+              target.style.width = `${width}px`;
+              target.style.display = "inline-block";
             }
 
             const glitchTo = (text = originalText) => {
-              el.textContent = text; // Reset to base before scrambling
-              gsap.to(el, {
+              target.textContent = text;
+              gsap.to(target, {
                 scrambleText: {
                   text,
                   chars,

@@ -13,7 +13,7 @@
 }
 
 .classic-link {
-  @include button-type--underline;
+  @include btn-type--underline;
 }
 
 .classic-list {
@@ -119,7 +119,11 @@
   }
 
   .glitch-hover {
-    overflow: hidden; // Leave separate or it will hide the glitch target
+    // overflow: hidden; // Leave separate from above selector, or else it will hide the glitch target
+
+    .btn__text {
+      overflow: hidden; // if used on btn.njk component
+    }
   }
 
   .gradient-border {
@@ -186,7 +190,7 @@
     height: 16px;
   }
 
-  .link--split-text {
+  .btn--split-text {
     position: relative;
     color: var(--color-link);
 
@@ -264,8 +268,8 @@
     }
   }
 
-  .link--underline {
-    @include button-type--underline;
+  .btn--underline {
+    @include btn-type--underline;
   }
 
   .library-section {
@@ -370,8 +374,7 @@
 // Style Guide DELETE ME
 @media all {
   .style-guide {
-    .primary-links,
-    .secondary-links {
+    &__buttons {
       @include row-center(flex-start);
       gap: 24px;
       margin-block: 24px;

@@ -74,12 +74,12 @@ if (skipToContent) {
   });
 }
 
-// CSS Util for .link--split-text
+// CSS Util for .btn--split-text
 {
-  document.querySelectorAll(".link--split-text").forEach((el) => {
+  document.querySelectorAll(".btn--split-text").forEach((el) => {
     // Decide what to target
-    const target = el.classList.contains("link")
-      ? el.querySelector(".link__text")
+    const target = el.classList.contains("btn")
+      ? el.querySelector(".btn__text")
       : el;
 
     if (!target) return;
@@ -88,7 +88,7 @@ if (skipToContent) {
 
     // Build split markup
     const splitHTML =
-      `<span class="link--split-text__content">` +
+      `<span class="btn--split-text__content">` +
       Array.from(text)
         .map((char) => {
           if (char === " ") {

@@ -1,5 +1,5 @@
-show_skip_to_content: true # Dev use only
-float: true
+show_skip_to_content: true
+float: false
 glass: false
 
 logo: true
@@ -10,11 +10,16 @@ links:
     url: "/"
     new_tab: false
     type: underline
-    class: menu-links__link link--split-text
+    class: menu-links__link btn--split-text
   - text: Library
     icon: "/static/img/library/icon-google-chevron-down.svg"
-    trigger_class: menu-links__link link--split-text link--underline link--split-text
+    trigger_class: menu-links__link btn--split-text btn--underline btn--split-text
     inner_links:
+      - text: Utility Classes
+        url: "/library/utils"
+        new_tab: false
+        type: text
+        icon_start: /static/img/library/icon-google-bolt.svg
       - text: Components
         url: "/library/components"
         new_tab: false
@@ -25,11 +30,6 @@ links:
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-dashboard.svg
-      - text: Utility Classes
-        url: "/library/utils"
-        new_tab: false
-        type: text
-        icon_start: /static/img/library/icon-google-bolt.svg
       - text: Advanced
         url: "/library/advanced"
         new_tab: false
@@ -49,7 +49,7 @@ links:
     url: "/blog"
     new_tab: false
     type: underline
-    class: menu-links__link link--split-text
+    class: menu-links__link btn--split-text
 
 link_placement: center # start | center | end
 
@@ -59,10 +59,10 @@ cta_1:
   url: "https://axyscreative.com"
   new_tab: true
   type: outline # visit _link.scss for all types
-  class: link--split-text
+  class: btn--split-text
   attributes: "data-hover-alt"
-  # icon_end: static/img/library/icon-google-chevron-right.svg
-  # icon_start: static/img/library/icon-google-info-circle.svg
+  icon_end: /static/img/library/icon-google-chevron-right.svg
+  # icon_start: /static/img/library/icon-google-info-circle.svg
 
 cta_2:
   text: Log In
@@ -71,7 +71,7 @@ cta_2:
   icon_end: ""
   new_tab: true
   type: underline # visit _link.scss for all types
-  class: link--split-text
+  class: btn--split-text
   attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
 
 # mobile nav specific content

@@ -44,12 +44,12 @@
     {% if cta_1 or cta_2 %}
     <div class="site-header__cta-group">
       <!-- prettier-ignore -->
-      {% set link = cta_2 %}
-      {% include "../components/button.njk" %}
+      {% set btn = cta_2 %}
+      {% include "../components/btn.njk" %}
 
       <!-- prettier-ignore -->
-      {% set link = cta_1 %}
-      {% include "../components/button.njk" %}
+      {% set btn = cta_1 %}
+      {% include "../components/btn.njk" %}
     </div>
     {% endif %}
 

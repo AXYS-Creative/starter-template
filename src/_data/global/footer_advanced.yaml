@@ -1,4 +1,4 @@
-float: true
+float: false
 
 has_logo: true
 message: A custom footer with a wide range of configuration options. A means of simplifying the build process.
@@ -20,7 +20,7 @@ linkset_1:
     type: underline
   # - text: Library
   #   icon: "/static/img/library/icon-google-chevron-down.svg"
-  #   trigger_class: link--underline
+  #   trigger_class: btn--underline
   #   inner_links:
   #     - text: Components
   #       url: "/library/components"
@@ -28,7 +28,7 @@ linkset_1:
 
 linkset_2_title: Library
 linkset_2:
-  - text: Utils
+  - text: Utility Classes
     url: "/library/utils"
     new_tab: false
     type: underline
@@ -45,7 +45,7 @@ linkset_2:
     new_tab: false
     type: underline
 
-linkset_3_title: Axys Creative
+linkset_3_title: axys creative
 linkset_3:
   - text: Website
     url: "https://axyscreative.com"
@@ -61,6 +61,7 @@ linkset_3:
     type: underline
 
 divider: true
+divider_width_full: false
 
 # return_to_top:
 #   text: "Return To Top"
@@ -69,20 +70,20 @@ divider: true
 #   type: underline
 #   icon_end: /static/img/library/icon-google-chevron-up.svg
 
-copyright: "&copy;<span data-current-year></span>&nbsp;Sample Business. All rights reserved"
+# copyright: ""
 
 legal_links:
   - text: Privacy Policy
     url: "https://google.com"
     type: underline
-    # class: "link--split-text"
+    # class: "btn--split-text"
   - text: Terms & Conditions
     url: "https://google.com"
     type: underline
-    # class: "link--split-text"
+    # class: "btn--split-text"
   # - text: Cookie Policy
   #   url: "https://google.com"
   #   type: underline
-  # class: "link--split-text"
+  # class: "btn--split-text"
 
 theme_toggle: true

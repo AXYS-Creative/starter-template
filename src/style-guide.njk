@@ -48,8 +48,154 @@ title: Style Guide
     <li>Classic List, Child III</li>
   </ul>
 
+  <h2 class="h5 style-guide__heading">[ Buttons ]</h2>
+
+  <div class="style-guide__buttons">
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Solid Button',
+      url: '/',
+      new_tab: false,
+      type: 'solid',
+      class: '',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Solid Icon Start',
+      url: '/',
+      new_tab: false,
+      type: 'solid',
+      class: '',
+      icon_start: '/static/img/library/icon-google-orbit.svg',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Solid Custom',
+      url: '/',
+      new_tab: false,
+      type: 'solid',
+      class: 'magnet magnet-wide-btn',
+      icon_end: '/static/img/library/icon-google-new-tab.svg',
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+  </div>
+
+  <div class="style-guide__buttons">
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Outline Button',
+      url: '/',
+      new_tab: false,
+      type: 'outline',
+      class: 'hide-cursor',
+      attributes: ''
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Outline Custom',
+      url: '/',
+      new_tab: false,
+      type: 'outline',
+      class: 'btn--split-text cursor-trigger cursor-pair',
+      icon_end: '/static/img/library/icon-google-chevron-right.svg',
+      icon_end_class: 'sample-link-icon',
+      attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+  </div>
+
+  <div class="style-guide__buttons">
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Icon End Button',
+      url: '/',
+      new_tab: false,
+      type: 'icon-end'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Text Button Custom',
+      url: '/',
+      new_tab: false,
+      type: 'icon-end',
+      class: 'btn--underline',
+      icon_end: '/static/img/library/icon-google-chevron-right.svg'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+  </div>
+
+  <div class="style-guide__buttons">
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Text Button',
+      url: '/',
+      new_tab: false,
+      type: 'text'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Text Button Custom',
+      url: '/',
+      new_tab: true,
+      type: 'text',
+      class: 'glitch-hover',
+      icon_end: '/static/img/library/icon-google-new-tab.svg'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+  </div>
+
+  <br /><br />
+  <h3 class="h6">Utility snippets</h3>
+  <br /><br />
+  <p style="display: flex; align-items: center; gap: 0.5ch">
+    <a href="" class="glitch-text glitch-hover tab-element-page">
+      Glitch Button
+    </a>
+    <span>Class: <code>glitch-hover</code></span>
+  </p>
   <br />
-  <br />
+  <p>
+    <a href="" class="magnet magnet-strong tab-element-page">Magnet Button</a>
+    <span>Class: <code>magnet magnet-strong</code></span>
+  </p>
+  <br /><br />
+  <p>
+    <a href="" class="btn--split-text tab-element-page">Split Text Button</a>
+    <span>Class: <code>btn--split-text</code></span>
+  </p>
+  <br /><br />
+  <p>
+    <a href="" class="btn--split-text tab-element-page" data-hover-alt
+      >Split Text Button Alt</a
+    >
+    <span
+      >Class: <code>btn--split-text</code> Attribute:
+      <code>data-hover-alt</code> (only animates in)
+    </span>
+  </p>
+  <br /><br />
+  <p>
+    <a href="" class="btn--underline tab-element-page">Underline Button</a>
+    &nbsp;
+    <span> Class: <code>btn--underline</code></span>
+  </p>
+
+  <br /><br /><br /><br />
+  <h3 class="h6">CTA Group</h3>
+  <br /><br />
 
   <!-- prettier-ignore -->
   {% set cta_1 = ({
@@ -65,109 +211,6 @@ title: Style Guide
     new_tab: true
   }) %}
   {% include "./_includes/components/cta-group.njk" %}
-
-  <h2 class="h5 style-guide__heading">[ Links ]</h2>
-
-  <div class="primary-links">
-    <!-- prettier-ignore -->
-    {% set link = ({
-      text: 'Primary',
-      url: 'https://google.com',
-      new_tab: true,
-      type: 'primary',
-      class: '',
-      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
-    }) %}
-    {% include "./_includes/components/button.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set link = ({
-      text: 'Primary Icon Start',
-      url: 'https://google.com',
-      new_tab: true,
-      type: 'primary',
-      class: '',
-      icon_start: '/static/img/library/icon-google-orbit.svg',
-      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
-    }) %}
-    {% include "./_includes/components/button.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set link = ({
-      text: 'Primary Icon End',
-      url: 'https://google.com',
-      new_tab: true,
-      type: 'primary',
-      class: 'magnet magnet-wide-btn',
-      icon_end: '/static/img/library/icon-google-new-tab.svg',
-      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
-    }) %}
-    {% include "./_includes/components/button.njk" %}
-  </div>
-
-  <div class="secondary-links">
-    <!-- prettier-ignore -->
-    {% set link = ({
-      text: 'Secondary Link',
-      url: 'https://google.com',
-      new_tab: true,
-      type: 'secondary',
-      class: 'hide-cursor',
-      attributes: ''
-    }) %}
-    {% include "./_includes/components/button.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set link = ({
-      text: 'Secondary Link',
-      url: 'https://google.com',
-      new_tab: true,
-      type: 'secondary',
-      class: 'cursor-trigger cursor-pair',
-      icon_end_class: 'sample-link-icon',
-      attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
-    }) %}
-    {% include "./_includes/components/button.njk" %}
-  </div>
-
-  <!-- prettier-ignore -->
-  {% set link = ({
-    text: 'Text Link',
-    url: 'https://google.com',
-    new_tab: true,
-    type: 'text',
-    class: 'split-link',
-    attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
-  }) %}
-  {% include "./_includes/components/button.njk" %}
-  <br />
-  <br />
-
-  <a href="" class="classic-link tab-element-page">Classic link</a>
-  <br />
-  <br />
-  <a href="" class="magnet magnet-strong tab-element-page">Magnet link</a>
-  <br />
-  <br />
-  <a href="" class="link--split-text link--underline tab-element-page">
-    Link Split text
-  </a>
-  <br />
-  <br />
-  <p>
-    <a
-      href=""
-      class="link--split-text link--underline tab-element-page"
-      data-hover-alt
-    >
-      Link Split text - hover alt
-    </a>
-    &nbsp;
-    <span>
-      Use the <code>data-hover-alt</code>to only animate intially (vs
-      mouseleave)
-    </span>
-  </p>
 
   <br />
   <br />

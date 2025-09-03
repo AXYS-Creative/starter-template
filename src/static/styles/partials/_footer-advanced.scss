@@ -9,10 +9,19 @@
 
     .site-footer__divider {
       position: absolute;
-      left: 0;
-      width: 100vw;
+      left: 50%;
+      translate: -50% 0;
+      width: calc(100% - calc(var(--body-padding) * 2));
+      max-width: calc($content-width - calc(var(--body-padding) * 2));
       height: var(--border-width);
       background: var(--color-border);
+
+      &--width-full {
+        left: 0;
+        width: 100vw;
+        max-width: 100%;
+        translate: 0 0;
+      }
     }
   }
 
@@ -139,8 +148,9 @@
 
     &:has(.site-footer__divider) {
       .site-footer__divider {
-        position: static;
-        width: 100%;
+        &--width-full {
+          width: 100%;
+        }
       }
     }
 

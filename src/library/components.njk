@@ -132,10 +132,14 @@ path: library/components
       message: '',
       auto_close: 1600
     }) %}
-    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-      Success alert
-    </button>
-    {% include "../_includes/library/alert.njk" %}
+    {% set btn = ({
+      text: 'Success Alert',
+      type: 'solid',
+      class: 'alert-trigger',
+      attributes: 'aria-controls='~alert.id~''
+    }) %}
+    {%include "../_includes/components/btn.njk" %}
+    {%include "../_includes/library/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -147,9 +151,14 @@ path: library/components
       timer: true,
       left_border: false
     }) %}
-    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-      Info alert
-    </button>
+    {% set btn = ({
+      text: 'Info Alert',
+      type: 'outline',
+      icon_end: '/static/img/library/icon-google-info-circle.svg',
+      class: 'alert-trigger',
+      attributes: 'aria-controls='~alert.id~''
+    }) %}
+    {%include "../_includes/components/btn.njk" %}
     {% include "../_includes/library/alert.njk" %}
 
     <!-- prettier-ignore -->
@@ -167,9 +176,14 @@ path: library/components
         new_tab: true
       }
     }) %}
-    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-      Warning alert
-    </button>
+    {% set btn = ({
+      text: 'Warning Alert',
+      type: 'text',
+      icon_end: '/static/img/library/icon-google-warning-triangle.svg',
+      class: 'alert-trigger',
+      attributes: 'aria-controls='~alert.id~''
+    }) %}
+    {%include "../_includes/components/btn.njk" %}
     {% include "../_includes/library/alert.njk" %}
 
     <!-- prettier-ignore -->
@@ -191,9 +205,14 @@ path: library/components
         new_tab: true
       }
     }) %}
-    <button class="alert-trigger cta-1" aria-controls="{{ alert.id }}">
-      Error alert
-    </button>
+    {% set btn = ({
+      text: 'Error Alert',
+      type: 'underline',
+      icon_end: '/static/img/library/icon-google-x-octagon.svg',
+      class: 'alert-trigger',
+      attributes: 'aria-controls='~alert.id~''
+    }) %}
+    {%include "../_includes/components/btn.njk" %}
     {% include "../_includes/library/alert.njk" %}
   </div>
 </section>

@@ -1,6 +1,6 @@
 .btn-play {
   --btn-size: 40px;
-  --padding-btn: 6px; // icon size
+  --padding-btn: 8px; // icon size
   $icon-swap-scale: 0.5;
   $icon-swap-duration: 0.3s;
   $icon-swap-delay: 0.2s;
@@ -91,7 +91,7 @@
   $switch-padding: 4px;
 
   @include row-center;
-  gap: 12px;
+  gap: 0.5ch;
 
   &__label {
     @include body-font-styles;
@@ -104,11 +104,11 @@
     width: $switch-width;
     height: 32px;
     border-radius: var(--radius);
-    background: $grey-light;
+    background: var(--color-surface--1);
 
     &::before,
     &::after {
-      color: $white;
+      color: var(--color-font--primary);
       font-weight: 700;
       font-size: 12px;
 
@@ -133,7 +133,8 @@
       width: 24px;
       aspect-ratio: 1;
       border-radius: 50%;
-      background: $white;
+      background: var(--color-background);
+      border: 1px solid $grey;
 
       @include mq-motion-allow {
         transition: $ease;
