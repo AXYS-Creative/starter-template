@@ -236,8 +236,12 @@ $min-breakpoints: (
   @include desktop-hover {
     color: var(--color-btn-text--hover);
 
-    .btn__icon-end {
+    .btn__icon-group {
       translate: 1ch 0;
+    }
+
+    .btn__icon-circle path {
+      stroke-dashoffset: 0;
     }
   }
 

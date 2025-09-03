@@ -82,7 +82,8 @@ title: Style Guide
       type: 'solid',
       class: 'magnet magnet-wide-btn',
       icon_end: '/static/img/library/icon-google-new-tab.svg',
-      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
+      attributes: 'data-test-1=no-quotes data-test-2="with-quotes"',
+      icon_circle: true
     }) %}
     {% include "./_includes/components/btn.njk" %}
   </div>
@@ -125,7 +126,19 @@ title: Style Guide
 
     <!-- prettier-ignore -->
     {% set btn = ({
-      text: 'Text Button Custom',
+      text: 'Icon End Circle',
+      url: '/',
+      new_tab: false,
+      type: 'icon-end',
+      class: 'hide-cursor',
+      icon_end: '/static/img/library/icon-google-chevron-right.svg',
+      icon_circle: true
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Icon End Button Custom',
       url: '/',
       new_tab: false,
       type: 'icon-end',

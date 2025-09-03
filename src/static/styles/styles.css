@@ -5651,6 +5651,14 @@ code {
   gap: var(--gap-btn-icon);
   flex-shrink: 0;
 }
+.btn:has(.btn__icon-end) {
+  --icon-circle-size: 1.5em;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:has(.btn__icon-end):hover .btn__icon-circle path, .btn:has(.btn__icon-end):focus-visible .btn__icon-circle path {
+    stroke-dashoffset: 0;
+  }
+}
 .btn-type--solid {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius--btn);
@@ -5694,8 +5702,11 @@ code {
   .btn-type--icon-end:hover, .btn-type--icon-end:focus-visible {
     color: var(--color-btn-text--hover);
   }
-  .btn-type--icon-end:hover .btn__icon-end, .btn-type--icon-end:focus-visible .btn__icon-end {
+  .btn-type--icon-end:hover .btn__icon-group, .btn-type--icon-end:focus-visible .btn__icon-group {
     translate: 1ch 0;
+  }
+  .btn-type--icon-end:hover .btn__icon-circle path, .btn-type--icon-end:focus-visible .btn__icon-circle path {
+    stroke-dashoffset: 0;
   }
 }
 .btn-type--icon-end .btn__icon-end {
@@ -5775,6 +5786,15 @@ code {
     color: var(--color-link--hover);
   }
 }
+.btn__icon-group {
+  position: relative;
+  display: inline-flex;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn__icon-group {
+    transition: 0.24s ease;
+  }
+}
 .btn__icon-start, .btn__icon-end {
   background: currentColor;
   width: var(--icon-size);
@@ -5783,6 +5803,25 @@ code {
 @media (prefers-reduced-motion: no-preference) {
   .btn__icon-start, .btn__icon-end {
     transition: 0.24s ease;
+  }
+}
+.btn__icon-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: var(--icon-circle-size);
+  height: var(--icon-circle-size);
+}
+.btn__icon-circle path {
+  stroke-width: 2px;
+  stroke-dashoffset: 203.0511932373px;
+  stroke-dasharray: 203.0511932373px;
+  stroke: currentColor;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn__icon-circle path {
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 
@@ -5810,8 +5849,11 @@ code {
   .cta-2:hover, .cta-2:focus-visible {
     color: var(--color-btn-text--hover);
   }
-  .cta-2:hover .btn__icon-end, .cta-2:focus-visible .btn__icon-end {
+  .cta-2:hover .btn__icon-group, .cta-2:focus-visible .btn__icon-group {
     translate: 1ch 0;
+  }
+  .cta-2:hover .btn__icon-circle path, .cta-2:focus-visible .btn__icon-circle path {
+    stroke-dashoffset: 0;
   }
 }
 .cta-2 .btn__icon-end {

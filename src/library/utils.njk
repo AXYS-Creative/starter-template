@@ -347,8 +347,9 @@ path: library/utils
 
   <h3 class="h6">Glitch Hover</h3>
   <p>
-    The class <code>glitch-hover</code> causes the innerText (works with nested
-    elements) to scramble on hover or focus. Comes with the following configs:
+    The class <code>glitch-hover</code> causes the text content (works with
+    nested elements) to scramble on hover or focus. Comes with the following
+    configs:
   </p>
   <ul class="classic-list">
     <li>
@@ -360,17 +361,29 @@ path: library/utils
       should also occur on mouseleave and blur. Defaults to <code>false</code>
     </li>
   </ul>
-  <a href="/" class="cta-1 glitch-hover"> Hover over me </a>
-  <a href="/" class="classic-link glitch-hover" data-glitch-out="true">
-    Hover over me
-  </a>
-  <a
-    href="/"
-    class="classic-link glitch-hover"
-    data-glitch-new-text="Wow, so cool"
-  >
-    Hover to change
-  </a>
+  <!-- prettier-ignore -->
+  {% set btn = ({
+    text: 'Hover Me',
+    type: 'solid',
+    class: 'glitch-hover'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+  
+  {% set btn = ({
+    text: 'Glitch Out',
+    type: 'outline',
+    class: 'glitch-hover',
+    attributes: 'data-glitch-out=true'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+  
+  {% set btn = ({
+    text: 'Change Text',
+    type: 'icon-end',
+    class: 'glitch-hover',
+    attributes: 'data-glitch-new-text="Updated Text"'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
 
   <br />
 
