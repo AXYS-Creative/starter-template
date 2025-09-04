@@ -16,11 +16,11 @@
 {% endif %}
 
 {% if btn_url %}
-  <a href="{{ btn_url }}" class="{{ classList }}" {{ dataDelay }}>
+  <a href="{{ btn_url }}" class="{{ classList }}" {{ dataDelay }} aria-live="polite">
 {% elseif close_on_click %}
-  <button class="{{ classList }} promo-banner--close-on-click" {{ dataDelay }}>
+  <button class="{{ classList }} promo-banner--close-on-click" {{ dataDelay }} aria-live="polite">
 {% else %}
-  <div class="{{ classList }}" {{ dataDelay }}>
+  <div class="{{ classList }}" {{ dataDelay }} aria-live="polite" role="banner">
 {% endif %}
 
   {% if marquee_data %}

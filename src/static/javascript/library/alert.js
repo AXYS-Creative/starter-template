@@ -13,12 +13,20 @@ const setAlertTabIndex = (alertEl, index) => {
 
 const hideAlert = (alertEl) => {
   alertEl.classList.remove("alert--active");
+  alertEl.setAttribute("aria-hidden", true);
   setAlertTabIndex(alertEl, -1);
 };
 
 const showAlert = (alertEl) => {
   alertEl.classList.add("alert--active");
+  alertEl.setAttribute("aria-hidden", false);
   setAlertTabIndex(alertEl, 0);
+
+  // Nudge content so SRs announce it
+  const msg = alertEl.querySelector(".alert-content__message");
+  if (msg) {
+    msg.textContent = msg.textContent; // aria-live - re-assign triggers live announcement
+  }
 
   const autoClose = parseInt(alertEl.dataset.alertAutoclose, 10) || 0;
   const timerEl = alertEl.querySelector(".alert-timer");
@@ -26,10 +34,7 @@ const showAlert = (alertEl) => {
   if (timerEl && autoClose > 0) {
     timerEl.style.transition = "none";
     timerEl.style.width = "0%";
-
-    timerEl.offsetHeight;
-
-    // now animate to 100% width
+    timerEl.offsetHeight; // force reflow
     timerEl.style.transition = `width ${autoClose}ms linear`;
     timerEl.style.width = "100%";
   }

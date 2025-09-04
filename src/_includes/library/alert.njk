@@ -43,6 +43,9 @@
   id="alert-{{ id }}"
   {% if type %}data-alert-type="{{ type }}"{% endif %}
   {% if auto_close %}data-alert-autoclose="{{ auto_close }}"{% endif %}
+  role="alert"
+  aria-hidden="true"
+  aria-live="polite"
   >
   <span
     style="mask-image: url({{icon_path}});"

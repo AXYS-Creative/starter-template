@@ -9,10 +9,23 @@ if (promoBanner) {
 
   root.style.setProperty("--promo-banner-height", `${promoBannerHeight}px`);
 
-  setTimeout(() => {
-    promoBanner.classList.add("promo-banner--reveal");
-    siteHeader.classList.add("site-header--promo-banner");
-  }, initialHide);
+  if (initialHide > 0) {
+    promoBanner.setAttribute("aria-hidden", true);
+    promoBanner.setAttribute("tabindex", -1);
+
+    setTimeout(() => {
+      promoBanner.setAttribute("aria-hidden", false);
+      promoBanner.setAttribute("tabindex", 0);
+      promoBanner.classList.add("promo-banner--reveal");
+
+      // aria-live: re-assign text so it's treated as new
+      const msg = promoBanner.querySelector(".promo-banner__message");
+      if (msg) msg.textContent = msg.textContent;
+
+      // Modify header based on promo banner
+      siteHeader.classList.add("site-header--promo-banner");
+    }, initialHide);
+  }
 
   // Close on click
   if (promoBanner.classList.contains("promo-banner--close-on-click")) {
