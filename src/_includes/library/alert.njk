@@ -55,38 +55,36 @@
     {% if link_1 %}
     <div class="alert-content__links">
       {% if link_1 %}
-      <a 
-        class="alert-content__link-1 classic-link" 
-        href="{{link_1.url}}"
-        {%if link_1.new_tab%}
-          target="_blank" rel="noopener noreferrer"
-        {%endif%}
-        >
-        {{link_1.text}}
-      </a>
+        {% set btn = ({
+          text: link_1.text,
+          url: link_1.url,
+          new_tab: link_1.new_tab,
+          type: 'underline',
+          class: 'alert-content__link-1'
+        }) %}
+        {% include "../components/btn.njk" %}
       {% endif %}
+
       {% if link_2 %}
-      <a 
-        class="alert-content__link-2 classic-link" 
-        href="{{link_2.url}}"
-        {%if link_2.new_tab%}
-          target="_blank" rel="noopener noreferrer"
-        {%endif%}
-        >
-        {{link_2.text}}
-      </a>
+        {% set btn = ({
+          text: link_2.text,
+          url: link_2.url,
+          new_tab: link_2.new_tab,
+          type: 'underline',
+          class: 'alert-content__link-2'
+        }) %}
+        {% include "../components/btn.njk" %}
       {% endif %}
     </div>
     {% endif %}
   </div>
   {% if auto_close < 1 %}
-    <button class="alert__close-btn" aria-label="Close alert">
-      <span
-        style="mask-image: url('../../static/img/library/icon-google-x.svg');"
-        class="alert__close-btn__icon mask-icon"
-        role="img"
-      ></span>
-    </button>
+    {% set btn = ({
+      icon_end: '../../static/img/library/icon-google-x-lg.svg',
+      class: 'alert__close-btn',
+      attributes: 'aria-label="Close alert"'
+    }) %}
+    {% include "../components/btn.njk" %}
   {% endif %}
   {% if timer %}
     <div class="alert-timer"></div>

@@ -5792,7 +5792,7 @@ code {
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn__icon-group {
-    transition: 0.24s ease;
+    transition: 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 .btn__icon-start, .btn__icon-end {
@@ -6063,8 +6063,8 @@ code {
   cursor: pointer;
 }
 .accordion-label__icon, .accordion-label__plus {
-  --icon-size: 40px;
-  --plus-size: 16px;
+  --icon-size: 2.5ch;
+  --plus-size: 1.25ch;
   width: var(--icon-size);
   height: var(--icon-size);
   flex-shrink: 0;
@@ -6295,15 +6295,6 @@ code {
   background: var(--accent-color, var(--color-font--primary));
   width: var(--icon-size);
   height: var(--icon-size);
-}
-.alert__close-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.alert__close-btn__icon {
-  width: 24px;
-  height: 24px;
 }
 .alert[data-alert-type=success] {
   --accent-color: #a4d1a2;

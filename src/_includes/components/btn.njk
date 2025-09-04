@@ -52,7 +52,9 @@
       role="img"
     ></span>
   {% endif %}
-  <span class="btn__text">{{ text }}</span>
+  {% if text %}
+    <span class="btn__text">{{ text }}</span>
+  {% endif %}
   {% if icon_end or type == 'icon_end' %}
   <span class="btn__icon-group {{ icon_end_class }}">
     <span 

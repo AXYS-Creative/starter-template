@@ -67,15 +67,6 @@
     height: var(--icon-size);
   }
 
-  &__close-btn {
-    @include row-center;
-
-    &__icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
   // Modifiers
 
   &[data-alert-type="success"] {
@@ -96,7 +87,6 @@
 
   &--active {
     translate: 0 0;
-
     transition: 0.5s cubic-bezier(0.25, 1.5, 0.25, 1.05);
   }
 
