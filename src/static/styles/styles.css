@@ -5794,7 +5794,7 @@ code {
   }
 }
 .btn--icon-only .btn__icon-group {
-  --icon-size: 1.5em;
+  --icon-size: 1.25em;
 }
 .btn__icon-group {
   position: relative;
