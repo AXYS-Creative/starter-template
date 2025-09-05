@@ -1,4 +1,4 @@
-float: false
+float: true
 
 has_logo: true
 message: A custom footer with a wide range of configuration options. A means of simplifying the build process.
@@ -63,12 +63,12 @@ linkset_3:
 divider: true
 divider_width_full: false
 
-# return_to_top:
-#   text: "Return To Top"
-#   url: "#"
-#   class: "return-to-top"
-#   type: underline
-#   icon_end: /static/img/library/icon-google-chevron-up.svg
+return_to_top:
+  text: "Return To Top"
+  url: "#"
+  class: "return-to-top"
+  type: underline
+  icon_end: /static/img/library/icon-google-chevron-up.svg
 
 # copyright: ""
 

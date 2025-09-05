@@ -95,10 +95,11 @@
     }
 
     &:has(.return-to-top) {
+      // Also update this version in 'float'
       position: relative;
 
       .site-footer__copyright {
-        @include mq-min(lg) {
+        @include mq-min(xl) {
           @include absolute-center;
         }
       }
@@ -158,12 +159,12 @@
       position: relative;
 
       .site-footer__copyright {
-        @include mq-min(lg) {
+        @include mq-min(xl) {
           position: absolute;
           top: auto;
           bottom: 0;
           left: 50%;
-          translate: -50% 0;
+          translate: -50% -0.2lh;
         }
       }
     }

@@ -24,6 +24,10 @@
 {% set element_to_use = 'a' %}
 {% endif %}
 
+{% if not text %}
+  {% set class = class + ' btn--icon-only' %}
+{% endif %}
+
 {% set content_start_class = '' %}
 {% if content_start %}
   {% set content_start_class = 'content-start' %}

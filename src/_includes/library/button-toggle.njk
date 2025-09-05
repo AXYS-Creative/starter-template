@@ -1,3 +1,7 @@
+<!-- prettier-ignore -->
+{% set label_true = btn_toggle.label_true | default('ON') %}
+{% set label_false = btn_toggle.label_false | default('OFF') %}
+
 <button
   class="btn-toggle tab-element-page {{ btn_toggle.class }}"
   aria-pressed="false"
@@ -10,8 +14,8 @@
   <span
     class="btn-toggle__switch {{ btn_toggle.class }}__switch"
     aria-hidden="true"
-    data-label-true="{{ btn_toggle.label_true or 'ON' }}"
-    data-label-false="{{ btn_toggle.label_false or 'OFF' }}"
+    data-label-true="{{ label_true }}"
+    data-label-false="{{ label_false }}"
   >
     <span
       class="btn-toggle__switch-nob {{ btn_toggle.class }}__switch-nob"

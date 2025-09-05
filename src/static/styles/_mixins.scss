@@ -2,6 +2,7 @@
 // Media Queries
 //
 
+// Define base max breakpoints
 $max-breakpoints: (
   xs: 360px,
   sm: 480px,
@@ -12,22 +13,24 @@ $max-breakpoints: (
   xxxl: 1920px,
 );
 
+// Derive min breakpoints (max + 1px)
+$min-breakpoints: ();
+@each $name, $value in $max-breakpoints {
+  $min-breakpoints: map-merge(
+    $min-breakpoints,
+    (
+      $name: $value + 1px,
+    )
+  );
+}
+
+// Mixins
 @mixin mq-max($breakpoint) {
   $value: map-get($max-breakpoints, $breakpoint);
   @media (max-width: $value) {
     @content;
   }
 }
-
-$min-breakpoints: (
-  xs: 361px,
-  sm: 481px,
-  md: 769px,
-  lg: 1025px,
-  xl: 1201px,
-  xxl: 1513px,
-  xxxl: 1921px,
-);
 
 @mixin mq-min($breakpoint) {
   $value: map-get($min-breakpoints, $breakpoint);
@@ -257,7 +260,8 @@ $min-breakpoints: (
   border-radius: var(--radius--btn);
 
   @include mq-motion-allow {
-    transition: $ease;
+    // transition: $ease;
+    transition: all $ease, $magnet;
   }
 
   &::before {
