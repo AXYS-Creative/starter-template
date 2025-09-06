@@ -68,7 +68,7 @@ if (document.getElementById("grid-bg")) {
 
   function disableBgEffect(e) {
     const target = e.target;
-    const isUtilityClass = target.closest(".disable-bg");
+    const isUtilityClass = target.closest(".grid-bg-disable");
 
     return isUtilityClass;
   }

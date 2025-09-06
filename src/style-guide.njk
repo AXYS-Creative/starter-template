@@ -70,7 +70,7 @@ title: Style Guide
 
     <!-- prettier-ignore -->
     {% set btn = ({
-      text: 'Solid Icon Start',
+      text: 'Solid Custom 1',
       type: 'solid',
       class: 'btn--bg-slide',
       icon_start: '/static/img/library/icon-google-orbit.svg'
@@ -79,7 +79,7 @@ title: Style Guide
 
     <!-- prettier-ignore -->
     {% set btn = ({
-      text: 'Solid Custom',
+      text: 'Solid Custom 2',
       url: '/',
       new_tab: false,
       type: 'solid',
@@ -210,7 +210,8 @@ title: Style Guide
     {% set btn = ({
       text_desc: 'This is an icon button',
       type: 'solid',
-      icon_end: '/static/img/library/icon-google-check.svg'
+      icon_end: '/static/img/library/icon-google-check.svg',
+      class: 'btn--bg-slide'
     }) %}
     {% include "./_includes/components/btn.njk" %}
 
@@ -258,12 +259,12 @@ title: Style Guide
     <span>Class: <code>magnet magnet-strong</code></span>
   </p>
   <br /><br />
-  <button class="btn-type--solid btn--bg-slide">Solid Button</button>
+  <button class="btn-type--solid btn--bg-slide">Bg Slide Button (solid)</button>
   <span>Class: <code>btn-type--solid btn--bg-slide</code></span>
 
   <br /><br />
   <button class="btn-type--outline btn--bg-slide" data-btn-slide="down">
-    Outline Button
+    Bg Slide Button (outline)
   </button>
   <span>Class: <code>btn-type--outline btn--bg-slide</code></span>
   <span>Attributes: <code>data-btn-slide="down"</code></span>
@@ -321,12 +322,12 @@ title: Style Guide
     label_true: 'On',
     label_false: 'Off'
   }) %}
-  {% include "./_includes/library/button-toggle.njk" %}
+  {% include "./_includes/library/components/btn-toggle.njk" %}
 
   <br />
   <!-- prettier-ignore -->
   {% set play_btn_id = 'library-id-play-btn' %}
-  {% include "./_includes/library/button-play.njk" %}
+  {% include "./_includes/library/components/btn-play.njk" %}
 
   <h2 class="h5 style-guide__heading">[ Pills ]</h2>
 
@@ -336,5 +337,5 @@ title: Style Guide
     text: 'Sample Pill',
     icon: '/static/img/library/icon-google-orbit.svg'
   }) %}
-  {% include "./_includes/library/pill.njk" %}
+  {% include "./_includes/library/components/pill.njk" %}
 </section>

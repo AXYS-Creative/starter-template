@@ -1,8 +1,0 @@
-section_title: Form Submitted
-section_desc: Thank you! We'll be notified of your form submission and reach out shortly.
-
-cta_1:
-  text: Return home
-  text_desc:
-  url: /
-  new_tab: false

@@ -61,7 +61,7 @@ path: library/components
   </p>
   <!-- prettier-ignore -->
   {% set accordion_data = library.accordion.accordion_1 %}
-  {% include '../_includes/library/accordion.njk' %}
+  {% include '../_includes/library/components/accordion.njk' %}
   <br />
   <br />
   <br />
@@ -71,7 +71,7 @@ path: library/components
   </p>
   <!-- prettier-ignore -->
   {% set accordion_data = library.accordion.accordion_2 %}
-  {% include '../_includes/library/accordion.njk' %}
+  {% include '../_includes/library/components/accordion.njk' %}
 </section>
 
 <section class="alert-section library-section">
@@ -139,7 +139,7 @@ path: library/components
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {%include "../_includes/library/alert.njk" %}
+    {%include "../_includes/library/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -159,7 +159,7 @@ path: library/components
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/alert.njk" %}
+    {% include "../_includes/library/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -184,7 +184,7 @@ path: library/components
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/alert.njk" %}
+    {% include "../_includes/library/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -213,7 +213,7 @@ path: library/components
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/alert.njk" %}
+    {% include "../_includes/library/components/alert.njk" %}
   </div>
 </section>
 
@@ -225,7 +225,7 @@ path: library/components
   {% set carousel_controls = library.carousel_swiper.controls %}
   {% set carousel_pagination = library.carousel_swiper.pagination %}
   {% set carousel_slides = library.carousel_swiper.slides %}
-  {% include '../_includes/library/carousel-swiper.njk' %}
+  {% include '../_includes/library/components/carousel-swiper.njk' %}
 </section>
 
 <section class="clipboard-copy-section library-section">
@@ -263,7 +263,7 @@ path: library/components
   {% set alert = null %}
   <!-- prettier-ignore -->
   {% set clipboard_copy = ({id: 'clipboard-copy-1'}) %}
-  {% include "../_includes/library/clipboard-copy.njk" %}
+  {% include "../_includes/library/components/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">
     Copy this message by clicking the button above!
   </p>
@@ -277,7 +277,7 @@ path: library/components
     btn_text_active: 'Token Copied!',
     icon: null
   }) %}
-  {% include "../_includes/library/clipboard-copy.njk" %}
+  {% include "../_includes/library/components/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">&lbrack;%br%&rbrack;</p>
 
   <br />
@@ -297,11 +297,11 @@ path: library/components
     auto_close: 5600,
     timer: true
   }) %}
-  {% include "../_includes/library/clipboard-copy.njk" %}
+  {% include "../_includes/library/components/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">
     Sample text three — This will copy to the clipboard.
   </p>
-  {% include "../_includes/library/alert.njk" %}
+  {% include "../_includes/library/components/alert.njk" %}
 </section>
 
 <section class="counter-section library-section">
@@ -342,16 +342,16 @@ path: library/components
   <div class="counter-section__group">
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_1 %} 
-    {% include "../_includes/library/counter.njk" %}
+    {% include "../_includes/library/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_2 %} 
-    {% include "../_includes/library/counter.njk" %}
+    {% include "../_includes/library/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_3 %} 
-    {% include "../_includes/library/counter.njk" %}
+    {% include "../_includes/library/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_4 %} 
-    {% include "../_includes/library/counter.njk" %}
+    {% include "../_includes/library/components/counter.njk" %}
   </div>
 </section>
 
@@ -368,7 +368,7 @@ path: library/components
   <br />
   <!-- prettier-ignore -->
   {% set form_data = library.form_contact.form_data %}
-  {% include "../_includes/library/form-feedback.njk" %}
+  {% include "../_includes/library/components/form-feedback.njk" %}
 </section>
 
 <section class="form-section">
@@ -378,7 +378,7 @@ path: library/components
   <br />
   <!-- prettier-ignore -->
   {% set form_data = library.form_redirect.form_data %}
-  {% include "../_includes/library/form-redirect.njk" %}
+  {% include "../_includes/library/components/form-redirect.njk" %}
 </section>
 
 <section class="image-comparison-section library-section">
@@ -394,7 +394,7 @@ path: library/components
   </p>
 </section>
 
-<section class="marquee-companion-text library-section">
+<section class="marquee-section library-section full-width">
   <h2 class="h5">[ Marquee - Component ]</h2>
   <p>
     Display content across the page using the marquee. Comes with the following
@@ -443,35 +443,35 @@ path: library/components
       480px. Defaults to <code>20</code>
     </li>
   </ul>
+  <!-- prettier-ignore -->
+  {% set marquee = library.marquee.marquee_1 %}
+  {% include '../_includes/library/components/marquee.njk' %}
+  <br />
+  <br />
+  <div class="section-width" style="padding-block: 0">
+    [ This marquee is the simplest form of the marquee component ]
+  </div>
+  <br /><br /><br /><br /><br /><br />
+  <!-- prettier-ignore -->
+  {% set marquee = library.marquee.marquee_2 %}
+  {% include '../_includes/library/components/marquee.njk' %}
+  <br />
+  <br />
+  <div class="section-width" style="padding-block: 0">
+    [ This is a double marquee that changes direction based on scroll direction
+    ]
+  </div>
+  <br /><br /><br /><br /><br /><br />
+  <!-- prettier-ignore -->
+  {% set marquee = library.marquee.marquee_3 %}
+  {% include '../_includes/library/components/marquee.njk' %}
+  <br />
+  <br />
+  <div class="section-width" style="padding-block: 0">
+    [ This is an image marquee that scrubs instead of auto animates. ]
+  </div>
+  <br /><br /><br /><br /><br /><br />
 </section>
-
-<!-- prettier-ignore -->
-{% set marquee = library.marquee.marquee_1 %}
-{% include '../_includes/library/marquee.njk' %}
-<br />
-<br />
-<div class="section-width" style="padding-block: 0">
-  [ This marquee is the simplest form of the marquee component ]
-</div>
-<br /><br /><br /><br /><br /><br />
-<!-- prettier-ignore -->
-{% set marquee = library.marquee.marquee_2 %}
-{% include '../_includes/library/marquee.njk' %}
-<br />
-<br />
-<div class="section-width" style="padding-block: 0">
-  [ This is a double marquee that changes direction based on scroll direction ]
-</div>
-<br /><br /><br /><br /><br /><br />
-<!-- prettier-ignore -->
-{% set marquee = library.marquee.marquee_3 %}
-{% include '../_includes/library/marquee.njk' %}
-<br />
-<br />
-<div class="section-width" style="padding-block: 0">
-  [ This is an image marquee that scrubs instead of auto animates. ]
-</div>
-<br /><br /><br /><br /><br /><br />
 
 <section class="solar-system-section library-section">
   <h2 class="h5">[ Solar system - Component ]</h2>
@@ -489,7 +489,7 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set orbit_data = library.solar_system %} 
-  {% include "../_includes/library/solar-system.njk" %}
+  {% include "../_includes/library/components/solar-system.njk" %}
 </section>
 
 <section class="tabs-section">
@@ -497,7 +497,7 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set tab_list = library.tabs.tabs %}
-  {% include "../_includes/library/tabs.njk" %}
+  {% include "../_includes/library/components/tabs.njk" %}
 </section>
 
 <section class="testimonials-section library-section">
@@ -528,7 +528,7 @@ path: library/components
   </p>
   <p>Be sure to include the <code>theme-toggle.js</code> file</p>
 
-  {% include "../_includes/library/theme-toggle.njk" %}
+  {% include "../_includes/library/components/theme-toggle.njk" %}
 
   <p>
     You can also have a dynamic image source based on the theme with the
@@ -595,15 +595,16 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set tooltip_data = library.tooltip.tooltip_1 %} 
-  {% include "../_includes/library/tooltip.njk" %} 
+  {% include "../_includes/library/components/tooltip.njk" %} 
   
   {% set tooltip_data = library.tooltip.tooltip_2 %} 
-  {% include "../_includes/library/tooltip.njk" %}
+  {% include "../_includes/library/components/tooltip.njk" %}
 
   <div>
     <p>
       Does this work inline? {% set tooltip_data = library.tooltip.tooltip_3 %}
-      {% include "../_includes/library/tooltip.njk" %} then some text afterward.
+      {% include "../_includes/library/components/tooltip.njk" %} then some text
+      afterward.
     </p>
   </div>
 

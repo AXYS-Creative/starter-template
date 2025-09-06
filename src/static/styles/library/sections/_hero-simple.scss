@@ -1,0 +1,21 @@
+// Form Submit & 404 pages
+.hero-simple {
+  @include full-viewport-section;
+  @include column-center;
+
+  &__title {
+    margin-block-end: 24px;
+    text-align: center;
+  }
+
+  &__desc {
+    margin-block-end: 48px;
+    max-width: 750px;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  &--left {
+    align-items: flex-start;
+  }
+}

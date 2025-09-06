@@ -12,7 +12,7 @@ path: library/sections
 </section>
 
 <div class="section-width-thin">
-  <h2 class="h5">[ Carousel 'Hero' - Section-component ]</h2>
+  <h2 class="h5">[ Carousel 'Hero' - Section ]</h2>
   <br />
   <p>
     Also adding the utility class <code>grid-fade</code> along with it’s
@@ -45,12 +45,45 @@ path: library/sections
   <!-- prettier-ignore -->
   {% set carousel_hero_autoplay = library.carousel_hero.autoplay %}
   {% set carousel_hero_slides = library.carousel_hero.slides %}
-  {% include "../_includes/library/carousel-hero.njk" %}
+  {% include "../_includes/library/sections/carousel-hero.njk" %}
 </div>
+
+<div class="section-hero-simple section-width-thin" style="margin-top: 428px">
+  <h2 class="h5">[ Hero Simple - Section ]</h2>
+  <br />
+  <p>
+    A basic hero section which includes a title, description, and a cta-group.
+    Comes with the following configs:
+  </p>
+  <br />
+  <br />
+  <ul class="classic-list">
+    <li><code>title</code> A string for the section title</li>
+    <li>
+      <code>desc</code> A string (accepts custom markup) for the description
+    </li>
+    <li><code>cta_1</code> Any valide <code>btn.njk</code> prop</li>
+    <li><code>cta_2</code> Any valide <code>btn.njk</code> prop</li>
+    <li><code>class</code> A string for the section's custom class</li>
+  </ul>
+</div>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Section Title here',
+  desc: 'Section desc (description) here.',
+  class: 'sample-class',
+  cta_1: {
+    text: 'Get Started'
+  },
+  cta_2: {
+    text: 'Learn More'
+  }
+}) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}
 
 <!-- prettier-ignore -->
 {% set price_cards_data = library.price_cards %}
-{% include '../_includes/library/price-cards.njk' %}
+{% include '../_includes/library/sections/price-cards.njk' %}
 
 <!-- prettier-ignore -->
 {% set hs_title = library.scroll_horizontal.title %} 
@@ -58,11 +91,11 @@ path: library/sections
 {% set hs_message = library.scroll_horizontal.message %}
 {% set hs_imgs = library.scroll_horizontal.imgs %}
 {% set hs_img_parallax = library.scroll_horizontal.img_parallax %}
-{% include '../_includes/library/scroll-horizontal.njk' %}
+{% include '../_includes/library/sections/scroll-horizontal.njk' %}
 
 <!-- prettier-ignore  -->
 {% set panel_nav = library.scroll_stack.panel_nav %}
 {% set panel_copy = library.scroll_stack.panel_copy %} 
 {% set panel_data = library.scroll_stack.panels %}
 {% set panel_configs = library.scroll_stack.panel_configs %}
-{% include '../_includes/library/scroll-stack.njk' %}
+{% include '../_includes/library/sections/scroll-stack.njk' %}

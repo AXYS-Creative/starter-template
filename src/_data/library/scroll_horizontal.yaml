@@ -1,6 +1,6 @@
-# Section-components don't need to be one big object. Floating configs are allowed
+# Sections don't need to be one big object. Floating configs are allowed
 
-title: "[ Scroll Horizontal - Section-component ]"
+title: "[ Scroll Horizontal - Section ]"
 desc: "This is a scroll horizontal component that can be used to alter the scroll direction along the x axis. You can display text or images. It is useful for showcasing multiple items in a compact space, allowing users to scroll through the items horizontally."
 
 # message: "Horizontal [%span.text-stroke%]scroll[%span%] message goes here!"

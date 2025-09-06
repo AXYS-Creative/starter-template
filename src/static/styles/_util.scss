@@ -46,24 +46,6 @@
   @include sr-only;
 }
 
-// Form Submit & 404 pages
-.hero-alert {
-  @include full-viewport-section;
-  @include column-center;
-
-  &__title {
-    margin-block-end: 24px;
-    text-align: center;
-  }
-
-  &__desc {
-    margin-block-end: 48px;
-    max-width: 750px;
-    text-align: center;
-    text-wrap: balance;
-  }
-}
-
 // Library
 @media all {
   .pin-steps {
@@ -272,6 +254,7 @@
   button.btn--bg-slide {
     position: relative;
     background: none; // needs specificty lift
+    overflow: hidden;
 
     @include desktop-hover {
       transition: $ease 0.125s, $magnet; // Edge case not used with component (doesn't have .btn__text)

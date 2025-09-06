@@ -5,12 +5,6 @@ sitemap:
   ignore: true
 ---
 
-<section class="hero-alert">
-  <h1 class="hero-alert__title">{{ page_404.hero_error.section_title }}</h1>
-  <p class="hero-alert__desc">{{ page_404.hero_error.section_desc }}</p>
-
-  <!-- prettier-ignore -->
-  {% set content_start = true %}
-  {% set cta_1 = page_404.hero_error.cta_1 %}
-  {% include "./_includes/components/cta-group.njk" %}
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = page_404.hero_error %}
+{% include './_includes/library/sections/hero-simple.njk' %}

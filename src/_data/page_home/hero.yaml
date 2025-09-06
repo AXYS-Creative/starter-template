@@ -1,5 +1,5 @@
-section_title: Title goes [%span.text-italic%]here[%span%]
-section_desc: >-
+title: Title goes [%span.text-italic%]here[%span%]
+desc: >-
   Description goes here. Supports <a class="classic-link tab-element-page" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
 cta_1:
   text: Visit Library

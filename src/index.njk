@@ -5,17 +5,9 @@ path: home
 
 <!-- prettier-ignore -->
 {% set promo_banner_data = library.promo_banner %}
-{% include "./_includes/library/promo-banner.njk" %}
+{% include "./_includes/library/components/promo-banner.njk" %}
 
-<section class="hero">
-  <h1>{{ page_home.hero.section_title }}</h1>
-  <p>{{ page_home.hero.section_desc | safe }}</p>
-
-  <!-- prettier-ignore -->
-  {% set content_start = true %}
-  {% set cta_1 = page_home.hero.cta_1 %}
-  {% set cta_2 = page_home.hero.cta_2 %}
-  {% include "./_includes/components/cta-group.njk" %}
-</section>
+{% set hero_simple = page_home.hero %}
+{% include './_includes/library/sections/hero-simple.njk' %}
 
 {% include './_includes/partials/loader.njk' %}

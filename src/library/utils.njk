@@ -725,17 +725,17 @@ path: library/utils
 
   <!-- prettier-ignore -->
   {% set tooltip_data = library.tooltip.tooltip_1 %} 
-  {% include "../_includes/library/tooltip.njk" %} 
+  {% include "../_includes/library/components/tooltip.njk" %} 
 
   {% set tooltip_data = library.tooltip.tooltip_2 %} 
-  {% include "../_includes/library/tooltip.njk" %}
+  {% include "../_includes/library/components/tooltip.njk" %}
 
   <div>
     <p>
       Does this work inline? Yes,
       <!-- prettier-ignore -->
       {% set tooltip_data = library.tooltip.tooltip_3 %}
-      {% include "../_includes/library/tooltip.njk" %} 
+      {% include "../_includes/library/components/tooltip.njk" %} 
       then some text afterward.
     </p>
   </div>
