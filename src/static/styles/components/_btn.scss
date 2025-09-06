@@ -16,7 +16,7 @@
     }
   }
 
-  // LINK_TYPES // solid | outline | icon-end | underline | text — Use a 'select' as the CMS config type
+  // BTN_TYPES // solid | outline | icon-end | underline | text ... Use a 'select' as the CMS config type
   &-type--solid {
     @include btn-type--solid;
   }

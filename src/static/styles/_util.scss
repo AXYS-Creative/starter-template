@@ -193,10 +193,9 @@
 
   .btn--split-text {
     position: relative;
-    color: var(--color-link);
 
     @include mq-motion-allow {
-      transition: 0.32s ease;
+      transition: $ease, $magnet;
     }
 
     @include desktop-hover {
@@ -269,8 +268,87 @@
     }
   }
 
+  a.btn--bg-slide,
+  button.btn--bg-slide {
+    position: relative;
+    background: none; // needs specificty lift
+
+    @include desktop-hover {
+      transition: $ease 0.125s, $magnet; // Edge case not used with component (doesn't have .btn__text)
+
+      .btn__text,
+      .btn__icon-group,
+      .btn__icon-start,
+      .btn__icon-end {
+        transition: inherit;
+      }
+    }
+
+    &:is(.btn-type--solid) {
+      @include slide-solid-btn;
+
+      &[data-btn-slide="left"] {
+        @include slide-solid-btn(left);
+      }
+
+      &[data-btn-slide="up"] {
+        @include slide-solid-btn(up);
+      }
+
+      &[data-btn-slide="down"] {
+        @include slide-solid-btn(down);
+      }
+    }
+
+    &:is(.btn-type--outline) {
+      color: var(--color-btn-text); // If used outside of btn.njk
+
+      .btn__text {
+        color: inherit;
+      }
+
+      @include slide-outline-btn;
+
+      &[data-btn-slide="left"] {
+        @include slide-outline-btn(left);
+      }
+
+      &[data-btn-slide="up"] {
+        @include slide-outline-btn(up);
+      }
+
+      &[data-btn-slide="down"] {
+        @include slide-outline-btn(down);
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      // position and height defined in btn type (:is above)
+      inset: 0;
+      background: var(--color-btn-bg);
+      z-index: -1;
+      transition: 0.5s $cubic-ease-sudden;
+    }
+  }
+
   .btn--underline {
     @include btn-type--underline;
+  }
+
+  // DELETE ME — Template content
+  .style-guide {
+    &__buttons {
+      @include row-center(flex-start);
+      gap: 24px;
+      margin-block: 24px;
+
+      @include mq-max(md) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   }
 
   .library-section {
@@ -368,22 +446,6 @@
 
     &__li {
       @include fade-snap-left(0.16s);
-    }
-  }
-}
-
-// Style Guide DELETE ME
-@media all {
-  .style-guide {
-    &__buttons {
-      @include row-center(flex-start);
-      gap: 24px;
-      margin-block: 24px;
-
-      @include mq-max(md) {
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
   }
 }

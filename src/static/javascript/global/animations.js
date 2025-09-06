@@ -496,7 +496,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const originalText = target.textContent;
             const newText = el.dataset.glitchNewText;
             const chars = el.dataset.glitchChars || "upperAndLowerCase";
-            const duration = parseFloat(el.dataset.glitchDuration) || 1;
+            const duration = parseFloat(el.dataset.glitchDuration) || 0.5;
             const revealDelay =
               parseFloat(el.dataset.glitchRevealDelay) || 0.125;
             const glitchOut = el.dataset.glitchOut === "true"; // Default is false (hover in, hover out)

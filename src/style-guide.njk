@@ -50,12 +50,16 @@ title: Style Guide
 
   <h2 class="h5 style-guide__heading">[ Buttons ]</h2>
   <p>
-    Buttons that handle both button and link behavior. They come with the
-    following types: <code>solid</code>
+    Buttons <code>btn.njk</code> that keep styles consistent and easy to use.
+    These handle both button and link behavior and come with the following
+    types:
+    <code style="display: inline-block; margin-block: 12px 24px"
+      >solid | outline | text | icon-end | underline</code
+    >
   </p>
 
   <br />
-  <strong>Solid</strong>
+  <strong>Type Solid</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
@@ -68,6 +72,7 @@ title: Style Guide
     {% set btn = ({
       text: 'Solid Icon Start',
       type: 'solid',
+      class: 'btn--bg-slide',
       icon_start: '/static/img/library/icon-google-orbit.svg'
     }) %}
     {% include "./_includes/components/btn.njk" %}
@@ -85,16 +90,21 @@ title: Style Guide
     {% include "./_includes/components/btn.njk" %}
   </div>
 
-  <strong>Outline</strong>
+  <strong>Type Outline</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
       text: 'Outline Button',
-      url: '/',
-      new_tab: false,
+      type: 'outline'
+    }) %}
+    {% include "./_includes/components/btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: 'Outline Slide Button',
       type: 'outline',
-      class: 'hide-cursor',
-      attributes: ''
+      class: 'hide-cursor btn--bg-slide',
+      attributes: 'data-btn-slide="up"'
     }) %}
     {% include "./_includes/components/btn.njk" %}
 
@@ -112,7 +122,7 @@ title: Style Guide
     {% include "./_includes/components/btn.njk" %}
   </div>
 
-  <strong>Icon End</strong>
+  <strong>Type Icon End</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
@@ -148,7 +158,7 @@ title: Style Guide
     {% include "./_includes/components/btn.njk" %}
   </div>
 
-  <strong>Text</strong>
+  <strong>Type Text</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
@@ -171,7 +181,7 @@ title: Style Guide
     {% include "./_includes/components/btn.njk" %}
   </div>
 
-  <strong>Underline</strong>
+  <strong>Type Underline</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
@@ -194,7 +204,7 @@ title: Style Guide
     {% include "./_includes/components/btn.njk" %}
   </div>
 
-  <strong>Icon Only</strong>
+  <strong>Config Icon Only</strong>
   <div class="style-guide__buttons">
     <!-- prettier-ignore -->
     {% set btn = ({
@@ -231,7 +241,11 @@ title: Style Guide
 
   <br /><br />
   <h3 class="h6">Utility snippets</h3>
-  <br /><br />
+  <br />
+  <p>
+    You (and admin) can make use of utility classes to achieve special effects.
+  </p>
+  <br /><br /><br />
   <p style="display: flex; align-items: center; gap: 0.5ch">
     <a href="" class="glitch-text glitch-hover tab-element-page">
       Glitch Button
@@ -244,17 +258,29 @@ title: Style Guide
     <span>Class: <code>magnet magnet-strong</code></span>
   </p>
   <br /><br />
+  <button class="btn-type--solid btn--bg-slide">Solid Button</button>
+  <span>Class: <code>btn-type--solid btn--bg-slide</code></span>
+
+  <br /><br />
+  <button class="btn-type--outline btn--bg-slide" data-btn-slide="down">
+    Outline Button
+  </button>
+  <span>Class: <code>btn-type--outline btn--bg-slide</code></span>
+  <span>Attributes: <code>data-btn-slide="down"</code></span>
+
+  <br /><br />
   <p>
     <a href="" class="btn--split-text tab-element-page">Split Text Button</a>
     <span>Class: <code>btn--split-text</code></span>
   </p>
   <br /><br />
   <p>
-    <a href="" class="btn--split-text tab-element-page" data-hover-alt
-      >Split Text Button Alt</a
-    >
-    <span
-      >Class: <code>btn--split-text</code> Attribute:
+    <a href="" class="btn--split-text tab-element-page" data-hover-alt>
+      Split Text Button Alt
+    </a>
+    &nbsp;
+    <span>
+      Class: <code>btn--split-text</code> Attribute:
       <code>data-hover-alt</code> (only animates in)
     </span>
   </p>

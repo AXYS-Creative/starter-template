@@ -761,12 +761,11 @@ code {
   }
   .btn--split-text {
     position: relative;
-    color: var(--color-link);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn--split-text {
-    transition: 0.32s ease;
+    transition: 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -1477,6 +1476,204 @@ code {
   .btn--split-text[data-hover-alt] .letter-group {
     transition: 0s;
   }
+  a.btn--bg-slide,
+  button.btn--bg-slide {
+    position: relative;
+    background: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:hover, a.btn--bg-slide:focus-visible,
+  button.btn--bg-slide:hover,
+  button.btn--bg-slide:focus-visible {
+    transition: 0.24s ease 0.125s, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
+  a.btn--bg-slide:hover .btn__text,
+  a.btn--bg-slide:hover .btn__icon-group,
+  a.btn--bg-slide:hover .btn__icon-start,
+  a.btn--bg-slide:hover .btn__icon-end, a.btn--bg-slide:focus-visible .btn__text,
+  a.btn--bg-slide:focus-visible .btn__icon-group,
+  a.btn--bg-slide:focus-visible .btn__icon-start,
+  a.btn--bg-slide:focus-visible .btn__icon-end,
+  button.btn--bg-slide:hover .btn__text,
+  button.btn--bg-slide:hover .btn__icon-group,
+  button.btn--bg-slide:hover .btn__icon-start,
+  button.btn--bg-slide:hover .btn__icon-end,
+  button.btn--bg-slide:focus-visible .btn__text,
+  button.btn--bg-slide:focus-visible .btn__icon-group,
+  button.btn--bg-slide:focus-visible .btn__icon-start,
+  button.btn--bg-slide:focus-visible .btn__icon-end {
+    transition: inherit;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--solid):hover::before, a.btn--bg-slide:is(.btn-type--solid):focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--solid):hover::before,
+  button.btn--bg-slide:is(.btn-type--solid):focus-visible::before {
+    height: 100%;
+    width: 0%;
+    right: 0;
+    left: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--solid)::before,
+  button.btn--bg-slide:is(.btn-type--solid)::before {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]:hover::before, a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]:hover::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]:focus-visible::before {
+    height: 100%;
+    width: 0%;
+    left: 0;
+    right: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=left]::before {
+    height: 100%;
+    width: 100%;
+    right: 0;
+    left: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]:hover::before, a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]:hover::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]:focus-visible::before {
+    width: 100%;
+    height: 0%;
+    top: 0;
+    bottom: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=up]::before {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    top: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]:hover::before, a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]:hover::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]:focus-visible::before {
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    top: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]::before,
+  button.btn--bg-slide:is(.btn-type--solid)[data-btn-slide=down]::before {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: auto;
+  }
+  a.btn--bg-slide:is(.btn-type--outline),
+  button.btn--bg-slide:is(.btn-type--outline) {
+    color: var(--color-btn-text);
+  }
+  a.btn--bg-slide:is(.btn-type--outline) .btn__text,
+  button.btn--bg-slide:is(.btn-type--outline) .btn__text {
+    color: inherit;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--outline):hover::before, a.btn--bg-slide:is(.btn-type--outline):focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--outline):hover::before,
+  button.btn--bg-slide:is(.btn-type--outline):focus-visible::before {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--outline)::before,
+  button.btn--bg-slide:is(.btn-type--outline)::before {
+    height: 100%;
+    width: 0%;
+    left: auto;
+    right: 0;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]:hover::before, a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]:hover::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]:focus-visible::before {
+    height: 100%;
+    width: 100%;
+    left: auto;
+    right: 0;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=left]::before {
+    height: 100%;
+    width: 0%;
+    left: 0;
+    right: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]:hover::before, a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]:hover::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]:focus-visible::before {
+    width: 100%;
+    height: 100%;
+    top: auto;
+    bottom: 0;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=up]::before {
+    width: 100%;
+    height: 0%;
+    top: 0;
+    bottom: auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]:hover::before, a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]:focus-visible::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]:hover::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]:focus-visible::before {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: auto;
+  }
+}
+@media all {
+  a.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]::before,
+  button.btn--bg-slide:is(.btn-type--outline)[data-btn-slide=down]::before {
+    width: 100%;
+    height: 0%;
+    top: auto;
+    bottom: 0;
+  }
+  a.btn--bg-slide::before,
+  button.btn--bg-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-btn-bg);
+    z-index: -1;
+    transition: 0.5s cubic-bezier(1, 0.07, 0.2, 1);
+  }
   .btn--underline {
     position: relative;
     min-height: 1.1lh;
@@ -1543,6 +1740,21 @@ code {
 @media (prefers-reduced-motion: no-preference) {
   .btn--underline:has(.btn__text) .btn__text::before {
     transition: 0.24s ease;
+  }
+}
+@media all {
+  .style-guide__buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+    margin-block: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .style-guide__buttons {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media all {
@@ -1656,21 +1868,6 @@ code {
   .gsap-animate-section__li.gsap-animated {
     opacity: 1;
     translate: 0 0;
-  }
-}
-@media all {
-  .style-guide__buttons {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 24px;
-    margin-block: 24px;
-  }
-}
-@media (max-width: 768px) {
-  .style-guide__buttons {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
 @media all {
