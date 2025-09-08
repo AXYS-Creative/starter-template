@@ -28,8 +28,8 @@
     transition: $ease-opacity, $ease-size;
   }
 
-  // Hidden with '.hide-cursor'
-  &.hide-cursor {
+  // Hidden with '.cursor-hide'
+  &.cursor-hide {
     div.mouse-cursor__shape {
       opacity: 0;
       width: 0px; // scale makes the border thick

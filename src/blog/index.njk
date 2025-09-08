@@ -11,8 +11,12 @@ layout: archive-blog
     <img class="parallax" src="{{ post.data.poster }}" alt="" />
   </figure>
   <h2 class="h3 blog-article__title">
+    <!-- prettier-ignore -->
     <a
-      class="h3 classic-link {% if loop.first %}content-start{% endif %}"
+      class="h3 classic-link"
+      {% if loop.first %}
+        id="content-start"
+      {% endif %}
       href="{{ post.url | url }}"
     >
       <!-- prettier-ignore -->

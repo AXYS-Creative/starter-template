@@ -1,0 +1,36 @@
+.main-style-guide {
+  &__section {
+    @include width-clamp;
+    @include section-padding;
+
+    &-header {
+      @include column-start;
+      gap: var(--spacing--sm);
+      margin-block-end: var(--spacing--lg);
+    }
+
+    &-heading {
+      @include h5;
+    }
+  }
+
+  &__subgroup {
+    @include column-start;
+    gap: var(--spacing--xs);
+    margin-block-end: var(--spacing);
+
+    &-title {
+      @include h6;
+    }
+  }
+
+  //
+  .row-to-column {
+    @include row-center(flex-start);
+    gap: var(--spacing--sm);
+
+    @include mq-max(lg) {
+      flex-direction: column;
+    }
+  }
+}

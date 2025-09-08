@@ -2,7 +2,7 @@ import { mqMouse, mqMaxMd, isSafari } from "../util.js";
 import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
-const hideCursor = document.querySelectorAll(".hide-cursor");
+const hideCursor = document.querySelectorAll(".cursor-hide");
 
 // commenting this line for tooltip util
 // if (cursor && mqMouse.matches) {
@@ -82,9 +82,9 @@ if (cursor) {
   });
 
   hideCursor.forEach((el) => {
-    el.addEventListener("mousemove", () => cursor.classList.add("hide-cursor"));
+    el.addEventListener("mousemove", () => cursor.classList.add("cursor-hide"));
     el.addEventListener("mouseleave", () =>
-      cursor.classList.remove("hide-cursor")
+      cursor.classList.remove("cursor-hide")
     );
   });
 

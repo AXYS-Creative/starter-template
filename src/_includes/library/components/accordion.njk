@@ -7,8 +7,12 @@
 
 <div class="accordion" data-single-open="{{ single_open }}">
   {% for item in items %}
+  <!-- prettier-ignore -->
   <button
-    class="accordion-btn tab-element-page {%if item.content_start%}content-start{%endif%}"
+    class="accordion-btn tab-element-page"
+    {%if item.content_start%}
+      id="content-start"
+    {%endif%}
     aria-expanded="false"
     aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
   >

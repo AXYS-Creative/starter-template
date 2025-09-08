@@ -1,6 +1,15 @@
 .price-cards {
-  @include column-center;
-  gap: var(--section-gap);
+  &__inner {
+    @include section-padding;
+    @include width-clamp;
+    @include column-center;
+    gap: var(--section-gap);
+  }
+
+  &__text-group {
+    @include column-center;
+    gap: var(--spacing--sm);
+  }
 
   // &__title {
 

@@ -5,6 +5,7 @@
 {% set url = btn.url or '' %}
 {% set new_tab = btn.new_tab or false %}
 {% set type = btn.type or 'text' %}
+{% set size = btn.size or 'md' %}
 {% set class = btn.class or '' %}
 {% set attributes = btn.attributes or '' %}
 {% set icon_start = btn.icon_start or '' %}
@@ -28,14 +29,17 @@
   {% set class = class + ' btn--icon-only' %}
 {% endif %}
 
-{% set content_start_class = '' %}
-{% if content_start %}
-  {% set content_start_class = 'content-start' %}
+{% set size_class = '' %}
+{% if size == 'sm' %}
+  {% set size_class = 'btn-size--sm' %}
 {% endif %}
 
 <!-- prettier-ignore -->
 <{{element_to_use}}
-  class="{{ class }} btn btn-type--{{ type }} {{ a11y_tab }} {{ content_start_class}}"
+  class="btn btn-type--{{ type }} {{ class }} {{size_class}} {{ a11y_tab }}"
+  {%if content_start %}
+    id="content-start"
+  {%endif%}
   {%if url %}
     href="{{ url }}"
   {%endif%}

@@ -5,4 +5,4 @@ theme_src: # Works with theme-toggle.njk
 text: Sample Business
 url: /
 new_tab: false
-class: hide-cursor
+class: cursor-hide

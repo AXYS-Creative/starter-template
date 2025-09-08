@@ -4,69 +4,75 @@
 {% set plans = price_cards_data.plans or [] %}
 
 <section class="price-cards">
-  {% if title %}
-  <h2 class="price-cards__title h5">{{ title }}</h2>
-  {% endif %}
+  <div class="price-cards__inner">
+    {% if title or desc %}
+    <div class="price-cards__text-group">
+      {% if title %}
+      <h2 class="price-cards__title h5">{{ title }}</h2>
+      {% endif %}
 
-  <!-- prettier-ignore -->
-  {% if desc %}
-  <p class="price-cards__desc">{{ desc }}</p>
-  {% endif %}
+      <!-- prettier-ignore -->
+      {% if desc %}
+      <p class="price-cards__desc">{{ desc }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
 
-  <!-- prettier-ignore -->
-  {% if plans %}
-  <div class="price-cards__group">
-    {% for card in plans %}
-    <div class="price-card">
-      {% if card.title %}
-      <h3 class="price-card__title h6">
-        {{ card.title }}
+    <!-- prettier-ignore -->
+    {% if plans %}
+    <div class="price-cards__group">
+      {% for card in plans %}
+      <div class="price-card">
+        {% if card.title %}
+        <h3 class="price-card__title h6">
+          {{ card.title }}
 
-        {% if card.title_desc %}
-        <span class="price-card__title-desc">
-          {{ card.title_desc }}
-        </span>
+          {% if card.title_desc %}
+          <span class="price-card__title-desc">
+            {{ card.title_desc }}
+          </span>
+          {% endif %}
+        </h3>
+        {% endif %} {% if card.price %}
+        <strong class="price-card__price">
+          {{ card.price }}
+
+          {% if card.price_desc %}
+          <span class="price-card__price-desc">
+            {{ card.price_desc }}
+          </span>
+          {% endif %}
+        </strong>
         {% endif %}
-      </h3>
-      {% endif %} {% if card.price %}
-      <strong class="price-card__price">
-        {{ card.price }}
 
-        {% if card.price_desc %}
-        <span class="price-card__price-desc">
-          {{ card.price_desc }}
-        </span>
+        <!-- prettier-ignore -->
+        {% if card.divider %}
+        <hr class="price-card__divider" />
         {% endif %}
-      </strong>
-      {% endif %}
 
-      <!-- prettier-ignore -->
-      {% if card.divider %}
-      <hr class="price-card__divider" />
-      {% endif %}
+        <!-- prettier-ignore -->
+        {% if card.desc %}
+        <p class="price-card__desc">{{ card.desc }}</p>
+        {% endif %}
 
-      <!-- prettier-ignore -->
-      {% if card.desc %}
-      <p class="price-card__desc">{{ card.desc }}</p>
-      {% endif %}
+        <!-- prettier-ignore -->
+        {% if card.features %}
+        <ul class="classic-list">
+          {% for feature in card.features %}
+          <li class="price-card__features">{{ feature }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
 
-      <!-- prettier-ignore -->
-      {% if card.features %}
-      <ul class="classic-list">
-        {% for feature in card.features %}
-        <li class="price-card__features">{{ feature }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-
-      <!-- prettier-ignore -->
-      {% if card.cta_1 or card.cta_2 %}
+        <!-- prettier-ignore -->
+        {% if card.cta_1 or card.cta_2 %}
         {% set cta_1 = card.cta_1 %}
         {% set cta_2 = card.cta_2 %}
         {% include "../../components/cta-group.njk" %}
       {% endif %}
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+    {% endif %}
   </div>
-  {% endif %}
 </section>

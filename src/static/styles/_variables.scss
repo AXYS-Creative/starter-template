@@ -68,7 +68,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-bg--hover: transparent;
-  --color-btn-text: #{$white};
+  --color-btn-text: var(--color-font--primary);
   --color-btn-text--hover: var(--color-brand--primary);
   --color-btn-border: var(--color-btn-bg);
   --color-btn-border--hover: var(--color-brand--primary);
@@ -81,6 +81,9 @@ $test-bg: rgba(navy, 0.75);
   --color-pill: var(--color-brand--primary);
 
   --padding-btn: 8px 16px;
+  --padding-btn-icon: 8px;
+  --padding-btn--sm: 6px 12px;
+  --padding-btn-icon--sm: 4px;
 
   --spacing--xs: 12px;
   --spacing--sm: 24px;
@@ -118,13 +121,6 @@ $test-bg: rgba(navy, 0.75);
   --color-font--primary: #{$black};
   --color-font--secondary: #{$grey-dark};
 
-  // --color-btn-2-bg: var(--color-brand--primary);
-  --color-btn-2-text: #{$black};
-  // --color-btn-2-border: transparent;
-  // --color-btn-2-bg--hover: transparent;
-  --color-btn-2-text--hover: var(--color-brand--primary);
-  // --color-btn-2-border--hover: transparent;
-
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};
 
@@ -138,8 +134,6 @@ $test-bg: rgba(navy, 0.75);
   --color-background: #{$black};
   --color-font--primary: #{$white};
   --color-font--secondary: #{$grey};
-
-  --color-btn-2-text: #{$white};
 
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};

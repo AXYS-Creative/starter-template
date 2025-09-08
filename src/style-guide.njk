@@ -6,12 +6,15 @@ path: style-guide
 title: Style Guide
 ---
 
-<section class="hero">
-  <h1>Style Guide</h1>
-  <p class="text-balance">A place to view common styles and guidelines.</p>
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Style Guide',
+  desc: 'A place to view common styles and guidelines.',
+  direction: 'column'
+}) %}
+{% include './_includes/library/sections/hero-simple.njk' %}
 
-<section class="style-guide">
+<section class="main-style-guide__section">
   <h1>Heading I</h1>
   <h2>Heading II</h2>
   <h3>Heading III</h3>
@@ -47,197 +50,214 @@ title: Style Guide
     <li>Classic List, Child II</li>
     <li>Classic List, Child III</li>
   </ul>
+</section>
 
-  <h2 class="h5 style-guide__heading">[ Buttons ]</h2>
-  <p>
-    Buttons <code>btn.njk</code> that keep styles consistent and easy to use.
-    These handle both button and link behavior and come with the following
-    types:
-    <code style="display: inline-block; margin-block: 12px 24px"
-      >solid | outline | text | icon-end | underline</code
-    >
-  </p>
+<section class="main-style-guide__section">
+  <header class="main-style-guide__section-header">
+    <h2 class="main-style-guide__section-heading">[ Buttons ]</h2>
+    <p>
+      Buttons <code>btn.njk</code> that keep styles consistent and easy to use.
+      These handle both button and link behavior and come with the following
+      types:
+      <code style="display: inline-block; margin-block: 12px 24px"
+        >solid | outline | text | icon-end | underline</code
+      >
+    </p>
+  </header>
 
-  <br />
-  <strong>Type Solid</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Solid Button',
-      type: 'solid'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Type Solid</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Solid Button',
+        type: 'solid'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Solid Custom 1',
-      type: 'solid',
-      class: 'btn--bg-slide',
-      icon_start: '/static/img/library/icon-google-orbit.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Solid Custom 1',
+        type: 'solid',
+        size: 'sm',
+        class: 'btn--bg-slide',
+        icon_start: '/static/img/library/icon-google-orbit.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Solid Custom 2',
-      url: '/',
-      new_tab: false,
-      type: 'solid',
-      class: 'magnet magnet-wide-btn btn--underline glitch-hover hide-cursor',
-      icon_end: '/static/img/library/icon-google-new-tab.svg',
-      attributes: 'data-glitch-new-text="Let’s do this!"'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Solid Custom 2',
+        url: '/',
+        new_tab: false,
+        type: 'solid',
+        class: 'magnet magnet-wide-btn btn--underline glitch-hover cursor-hide',
+        icon_end: '/static/img/library/icon-google-new-tab.svg',
+        attributes: 'data-glitch-new-text="Let’s do this!"'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
-  <strong>Type Outline</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Outline Button',
-      type: 'outline'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Type Outline</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Outline Button',
+        type: 'outline'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Outline Slide Button',
-      type: 'outline',
-      class: 'hide-cursor btn--bg-slide',
-      attributes: 'data-btn-slide="up"'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Outline Slide Button',
+        type: 'outline',
+        class: 'cursor-hide btn--bg-slide',
+        attributes: 'data-btn-slide="up"'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Outline Custom',
-      url: '/',
-      new_tab: false,
-      type: 'outline',
-      class: 'btn--split-text cursor-trigger cursor-pair',
-      icon_end: '/static/img/library/icon-google-chevron-right.svg',
-      icon_end_class: 'sample-link-icon',
-      attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Outline Custom',
+        url: '/',
+        new_tab: false,
+        type: 'outline',
+        class: 'btn--split-text cursor-trigger cursor-pair',
+        icon_end: '/static/img/library/icon-google-chevron-right.svg',
+        icon_end_class: 'sample-link-icon',
+        attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
-  <strong>Type Icon End</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Icon End Button',
-      url: '/',
-      new_tab: false,
-      type: 'icon-end'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Type Text</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Text Button',
+        url: '/',
+        new_tab: false,
+        type: 'text'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Icon End Circle',
-      url: '/',
-      new_tab: false,
-      type: 'icon-end',
-      class: 'hide-cursor',
-      icon_end: '/static/img/library/icon-google-chevron-right.svg',
-      icon_end_class: 'magnet magnet-strong',
-      icon_circle: true
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Icon End Button Custom',
-      url: '/',
-      new_tab: false,
-      type: 'icon-end',
-      class: 'btn--underline',
-      icon_end: '/static/img/library/icon-google-chevron-right.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Text Button Custom',
+        url: '/',
+        new_tab: true,
+        type: 'text',
+        class: 'glitch-hover',
+        icon_end: '/static/img/library/icon-google-new-tab.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
-  <strong>Type Text</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Text Button',
-      url: '/',
-      new_tab: false,
-      type: 'text'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Type Icon End</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Icon End Button',
+        url: '/',
+        new_tab: false,
+        type: 'icon-end'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Text Button Custom',
-      url: '/',
-      new_tab: true,
-      type: 'text',
-      class: 'glitch-hover',
-      icon_end: '/static/img/library/icon-google-new-tab.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Icon End Circle',
+        url: '/',
+        new_tab: false,
+        type: 'icon-end',
+        class: 'cursor-hide',
+        icon_end: '/static/img/library/icon-google-chevron-right.svg',
+        icon_end_class: 'magnet magnet-strong',
+        icon_circle: true
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Icon End Button Custom',
+        url: '/',
+        new_tab: false,
+        type: 'icon-end',
+        class: 'btn--underline',
+        icon_end: '/static/img/library/icon-google-chevron-right.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
-  <strong>Type Underline</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Underline Button',
-      url: '/',
-      new_tab: false,
-      type: 'underline'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Type Underline</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Underline Button',
+        url: '/',
+        new_tab: false,
+        type: 'underline'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text: 'Underline Button Custom',
-      url: '/',
-      new_tab: true,
-      type: 'underline',
-      class: 'btn--split-text magnet magnet-wide-btn',
-      icon_end: '/static/img/library/icon-google-warning-triangle.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Underline Button Custom',
+        url: '/',
+        new_tab: true,
+        type: 'underline',
+        class: 'btn--split-text magnet magnet-wide-btn',
+        icon_end: '/static/img/library/icon-google-warning-triangle.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
-  <strong>Config Icon Only</strong>
-  <div class="style-guide__buttons">
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text_desc: 'This is an icon button',
-      type: 'solid',
-      icon_end: '/static/img/library/icon-google-check.svg',
-      class: 'btn--bg-slide'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+  <div class="main-style-guide__subgroup">
+    <strong>Config Icon Only</strong>
+    <div class="row-to-column">
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text_desc: 'This is an icon button',
+        type: 'solid',
+        size: 'sm',
+        icon_end: '/static/img/library/icon-google-check.svg',
+        class: 'btn--bg-slide'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text_desc: 'This is an icon button',
-      type: 'outline',
-      icon_end: '/static/img/library/icon-google-x-lg.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text_desc: 'This is an icon button',
+        type: 'outline',
+        icon_end: '/static/img/library/icon-google-x-lg.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text_desc: 'This is an icon button',
-      type: 'text',
-      icon_end: '/static/img/library/icon-google-check-circle.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text_desc: 'This is an icon button',
+        type: 'text',
+        icon_end: '/static/img/library/icon-google-check-circle.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
 
-    <!-- prettier-ignore -->
-    {% set btn = ({
-      text_desc: 'This is an icon button',
-      type: 'underline',
-      icon_end: '/static/img/library/icon-google-chevron-right.svg'
-    }) %}
-    {% include "./_includes/components/btn.njk" %}
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text_desc: 'This is an icon button',
+        type: 'underline',
+        icon_end: '/static/img/library/icon-google-chevron-right.svg'
+      }) %}
+      {% include "./_includes/components/btn.njk" %}
+    </div>
   </div>
 
   <br /><br />
@@ -328,8 +348,19 @@ title: Style Guide
   <!-- prettier-ignore -->
   {% set play_btn_id = 'library-id-play-btn' %}
   {% include "./_includes/library/components/btn-play.njk" %}
+</section>
 
-  <h2 class="h5 style-guide__heading">[ Pills ]</h2>
+<section class="main-style-guide__section">
+  <header class="main-style-guide__section-header">
+    <h2 class="main-style-guide__section-heading">[ Badge ]</h2>
+    <p>
+      Badge <code>badge.njk</code> that keep styles consistent and easy to use.
+      These come with the following types:
+      <code style="display: inline-block; margin-block: 12px 24px">
+        solid | outline | text | icon-end | underline
+      </code>
+    </p>
+  </header>
 
   <br />
   <!-- prettier-ignore -->

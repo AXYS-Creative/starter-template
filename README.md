@@ -23,9 +23,10 @@ Collection of UI components and utility classes. To get started pick what you ne
 - Tooltip
 - Video Overlay
 
-## Section Components
+## Sections
 
 - Carousel Hero
+- Hero Simple
 - Price Cards
 - Scroll Horizontal
 - Scroll Stack

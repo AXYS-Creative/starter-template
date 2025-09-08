@@ -1,21 +1,54 @@
-// Form Submit & 404 pages
 .hero-simple {
+  --float-offset: 24px;
+
   @include full-viewport-section;
-  @include column-center;
+
+  &__inner {
+    @include section-padding;
+    @include width-clamp;
+    @include column-center;
+    height: 100%;
+
+    &-main,
+    &-extra {
+      flex: 1 1 auto;
+      max-width: 50%;
+    }
+
+    &-main {
+      @include column-center;
+    }
+  }
 
   &__title {
-    margin-block-end: 24px;
+    margin-block-end: var(--spacing--sm);
     text-align: center;
   }
 
   &__desc {
-    margin-block-end: 48px;
+    margin-block-end: var(--spacing--lg);
     max-width: 750px;
     text-align: center;
     text-wrap: balance;
   }
 
-  &--left {
-    align-items: flex-start;
+  &--row {
+    .hero-simple__inner {
+      justify-content: flex-start;
+
+      &-main {
+        @include column-start;
+      }
+    }
+  }
+
+  &--float {
+    padding-block: var(--float-offset);
+
+    .hero-simple__inner {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius--sm);
+      margin-inline: var(--float-offset);
+    }
   }
 }

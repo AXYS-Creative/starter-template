@@ -39,10 +39,22 @@
   }
   // End Types
 
+  // BTN_SIZE
+  &-size--sm {
+    --font-size: 13px;
+    --padding-btn: var(--padding-btn--sm);
+  }
+
   // No text prop provided (assumes icon)
   &--icon-only {
+    --padding-btn: var(--padding-btn-icon);
+
     .btn__icon-group {
       --icon-size: 1.25em;
+    }
+
+    &.btn-size--sm {
+      --padding-btn: var(--padding-btn-icon--sm);
     }
   }
 

@@ -1,15 +1,12 @@
 .section-width {
+  @include width-clamp;
   @include section-padding;
-  max-width: $content-width;
-  width: 100%;
-  margin: auto;
 }
-.section-width-thin {
+.section-width--thin {
   @include section-padding(thin);
 }
-.section-width-full {
-  max-width: 100%;
-  margin: 0;
+.section-width--full {
+  @include width-full;
 }
 
 .classic-link {
@@ -321,21 +318,11 @@
   }
 
   // DELETE ME — Template content
-  .style-guide {
-    &__buttons {
-      @include row-center(flex-start);
-      gap: 24px;
-      margin-block: 24px;
-
-      @include mq-max(md) {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  }
 
   .library-section {
     // library section styles - Doesn't work with Swiper or Fill-text sections
+    @include width-clamp;
+    @include section-padding;
     @include column-start;
     gap: 24px;
 
@@ -400,6 +387,11 @@
         }
       }
     }
+  }
+
+  .carousel-swiper-section {
+    @include width-clamp;
+    @include section-padding;
   }
 
   .gsap-animate-section {

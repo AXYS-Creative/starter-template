@@ -218,7 +218,7 @@ $min-breakpoints: ();
 @mixin btn-type--outline {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius--btn);
-  color: var(--color-btn-2-text);
+  color: var(--color-btn-text);
   padding: var(--padding-btn);
 
   @include mq-motion-allow {
@@ -231,6 +231,7 @@ $min-breakpoints: ();
   }
 
   .btn__text {
+    color: inherit;
     overflow: hidden;
   }
 }
@@ -350,6 +351,12 @@ $min-breakpoints: ();
   width: 100%;
   max-width: $max-width;
   margin-inline: auto;
+}
+
+@mixin width-full {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
 }
 
 @mixin ultra-wide($bg-color: $test-bg, $z-index: -1) {

@@ -1,6 +1,11 @@
+float: false
+position: center
+
+eyebrow: Save time and money
 title: Title goes [%span.text-italic%]here[%span%]
-desc: >-
-  Description goes here. Supports <a class="classic-link tab-element-page" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
+desc: ""
+# desc: >-
+#   Description goes here. Supports <a class="classic-link tab-element-page" href="https://decapcms.org/docs/widgets/#markdown" target="_blank">raw html</a>.
 cta_1:
   text: Visit Library
   text_desc: Visit our component library
@@ -14,3 +19,5 @@ cta_2:
   url: https://axyscreative.com/
   new_tab: true
   icon_end: /static/img/library/icon-google-chevron-right.svg
+
+class: ""

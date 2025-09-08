@@ -1,24 +1,44 @@
 <!-- prettier-ignore -->
 {% set title = hero_simple.title or 'No title provided' %}
-{% set desc = hero_simple.desc or 'No desc provided' %}
+{% set desc = hero_simple.desc | default('No desc provided') %}
+{% set eyebrow = hero_simple.eyebrow or '' %}
 {% set cta_1 = hero_simple.cta_1 or null %}
 {% set cta_2 = hero_simple.cta_2 or null %}
-{% set position = hero_simple.position or 'center' %}
-{% set class = hero_simple.class %}
+{% set direction = hero_simple.direction or 'column' %}
+{% set float = hero_simple.float or false %}
+{% set glass = hero_simple.glass or false %}
+{% set class = hero_simple.class or '' %}
 
-<section class="hero-simple hero-simple--{{ position }} {{ class }}">
-  <!-- prettier-ignore -->
-  {% if title %}
-  <h1 class="hero-simple__title">{{ title }}</h1>
-  {% endif %}
+{% if float %}
+  {% set class = class + ' hero-simple--float' %}
+{% endif %}
 
-  <!-- prettier-ignore -->
-  {% if desc %}
-  <p class="hero-simple__desc">{{ desc | safe }}</p>
-  {% endif %}
+<section class="hero-simple hero-simple--{{ direction }} {{ class }}">
+  <div class="hero-simple__inner">
+    <div class="hero-simple__inner-main">
+      <!-- prettier-ignore -->
+      {% if title %}
+      <small class="hero-simple__eyebrow">{{ eyebrow }}</small>
+      {% endif %}
 
-  <!-- prettier-ignore -->
-  {% set content_start = true %}
-  {% include "../../components/cta-group.njk" %}
-  {% set content_start = false %}
+      <!-- prettier-ignore -->
+      {% if title %}
+      <h1 class="hero-simple__title">{{ title }}</h1>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if desc %}
+      <p class="hero-simple__desc">{{ desc | safe }}</p>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% set content_start = true %}
+      {% include "../../components/cta-group.njk" %}
+      {% set content_start = false %}
+    </div>
+
+    {% if extra_content %}
+    <div class="hero-simple__inner-extra">Extra content here</div>
+    {% endif %}
+  </div>
 </section>

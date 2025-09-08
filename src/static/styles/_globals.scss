@@ -36,14 +36,6 @@ body {
     transition: background $ease; // Library, used for theme toggle
   }
 
-  // .site-header,
-  // .site-footer,
-  section {
-    // see util.scss to adjust section width
-    max-width: $content-width;
-    margin: auto;
-  }
-
   // Loader styles, controlled by having a loader partial present in the html
   &:has(.site-loader) {
     $duration: 1s;
@@ -112,10 +104,6 @@ body {
     @include hide-content;
     transition: 0.5s ease;
   }
-}
-
-section {
-  @include section-padding;
 }
 
 h1,

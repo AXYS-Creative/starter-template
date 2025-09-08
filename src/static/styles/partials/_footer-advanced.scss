@@ -137,7 +137,8 @@
     padding: var(--footer-spacing-y) var(--body-padding);
 
     position: absolute;
-    bottom: var(--float-offset);
+    // bottom: var(--float-offset);
+    margin-block: var(--float-offset);
     left: 50%;
     translate: -50% 0;
     width: calc(100% - var(--float-offset) * 2);
