@@ -2,7 +2,10 @@
   --footer-spacing-y: 48px;
 
   @include column-start;
-  border-block-start: var(--border-width) solid var(--color-border);
+
+  &:has(.site-footer__top) {
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
 
   &:has(.site-footer__divider) {
     position: relative;
@@ -129,15 +132,16 @@
     }
   }
 
+  // modifiers
+
   &--float {
-    --float-offset: 24px;
+    --float-offset: var(--partial-float-offset);
 
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--radius--sm);
     padding: var(--footer-spacing-y) var(--body-padding);
 
     position: absolute;
-    // bottom: var(--float-offset);
     margin-block: var(--float-offset);
     left: 50%;
     translate: -50% 0;
@@ -146,6 +150,12 @@
 
     @include mq-max(md) {
       --float-offset: 8px;
+    }
+
+    &:not(:has(.site-footer__top)) {
+      .site-footer__bottom {
+        padding: 0;
+      }
     }
 
     &:has(.site-footer__divider) {

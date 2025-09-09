@@ -61,11 +61,11 @@
     }
   }
 
-  .fill-text,
-  .fill-text-hover {
-    @include fill-text;
+  .text-fill,
+  .text-fill-hover {
+    @include text-fill;
 
-    &:is(.fill-text-hover) {
+    &:is(.text-fill-hover) {
       background-size: 0%;
       // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
       transition: $ease;
@@ -331,7 +331,7 @@
   // DELETE ME — Template content
 
   .library-section {
-    // library section styles - Doesn't work with Swiper or Fill-text sections
+    // library section styles - Doesn't work with Swiper or text-fill sections
     @include width-clamp;
     @include section-padding;
     @include column-start;
@@ -357,7 +357,7 @@
       overflow: hidden;
 
       @include mq-min(lg) {
-        padding: var(--spacing--lg);
+        padding-block: var(--spacing--lg);
       }
 
       .tilt-card {
@@ -401,7 +401,8 @@
     }
   }
 
-  .carousel-swiper-section {
+  .carousel-swiper-section,
+  .text-fill-section {
     @include width-clamp;
     @include section-padding;
   }

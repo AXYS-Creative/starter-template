@@ -85,11 +85,11 @@ $test-bg: rgba(navy, 0.75);
   --padding-btn--sm: 6px 12px;
   --padding-btn-icon--sm: 4px;
 
-  --spacing--xs: 12px;
-  --spacing--sm: 24px;
-  --spacing: 36px;
+  --spacing--xs: 8px;
+  --spacing--sm: 16px;
+  --spacing: 24px;
   --spacing--lg: 48px;
-  --spacing--xl: 60px;
+  --spacing--xl: 72px;
 
   --section-gap: 24px;
   --section-gap--sm: 8px;
@@ -153,5 +153,7 @@ html[data-theme="light"] {
 }
 
 :root {
+  --partial-float-offset: 24px;
+
   --carousel-snap-gap: 24px;
 }

@@ -5,7 +5,7 @@ let promoBanner = document.querySelector(".promo-banner");
 
 if (promoBanner) {
   let initialHide = promoBanner.dataset.initialHide || 0;
-  let promoBannerHeight = promoBanner.getBoundingClientRect().height;
+  let promoBannerHeight = promoBanner.offsetHeight;
 
   root.style.setProperty("--promo-banner-height", `${promoBannerHeight}px`);
 

@@ -1,6 +1,4 @@
 .hero-simple {
-  --float-offset: 24px;
-
   @include full-viewport-section;
 
   &__inner {
@@ -43,12 +41,23 @@
   }
 
   &--float {
-    padding-block: var(--float-offset);
+    --float-offset: var(--partial-float-offset);
+    --float-offset-half: calc(var(--float-offset) / 2);
+
+    @include width-clamp;
+    padding-block: calc(
+        var(--header-height) + var(--promo-banner-height) +
+          var(--float-offset-half)
+      )
+      0;
+
+    @include mq-max(xxl) {
+      padding-inline: var(--float-offset);
+    }
 
     .hero-simple__inner {
       border: 1px solid var(--color-border);
       border-radius: var(--radius--sm);
-      margin-inline: var(--float-offset);
     }
   }
 }

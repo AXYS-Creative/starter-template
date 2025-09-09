@@ -1,5 +1,6 @@
-float: true
+float: false
 
+include_top: true
 has_logo: true
 message: A custom footer with a wide range of configuration options. A means of simplifying the build process.
 social_media: true
@@ -60,6 +61,7 @@ linkset_3:
     new_tab: true
     type: underline
 
+include_bottom: true
 divider: true
 divider_width_full: false
 

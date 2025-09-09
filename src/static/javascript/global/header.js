@@ -1,4 +1,4 @@
-import { lenis } from "../util.js";
+import { root, lenis } from "../util.js";
 
 export const siteHeader = document.querySelector(".site-header"),
   headerLogo = document.querySelector(".header-logo"),
@@ -11,20 +11,8 @@ export const navLinks = document.querySelectorAll(".nav-link"),
   tabElementsPage = document.querySelectorAll(".tab-element-page"),
   tabElementsNav = document.querySelectorAll(".tab-element-nav");
 
-// // Default 'tab-element-page' for all clickables ... but some content might need focus in both cases, eg. logo
-// const clickables = document.querySelectorAll(
-//   "a, button, [role='button'], [tabindex]"
-// );
-
-// clickables.forEach((el) => {
-//   const hasCustomTabClass = [...el.classList].some((cls) =>
-//     cls.includes("tab-element-")
-//   );
-
-//   if (!hasCustomTabClass) {
-//     el.classList.add("tab-element-page");
-//   }
-// });
+let headerHeight = siteHeader.offsetHeight;
+root.style.setProperty("--header-height", `${headerHeight}px`);
 
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 

@@ -312,9 +312,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Fill Text - Scrub only
+        // Text Fill - Scrub only
         {
-          const fillTextElems = document.querySelectorAll(".fill-text");
+          const fillTextElems = document.querySelectorAll(".text-fill");
 
           fillTextElems.forEach((el) => {
             const speed = el.dataset.fillSpeed;

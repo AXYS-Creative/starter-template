@@ -93,7 +93,7 @@
   }
 
   &--float {
-    --float-offset: 24px;
+    --float-offset: var(--partial-float-offset);
 
     border: var(--border-width) solid var(--color-border);
     top: var(--float-offset);

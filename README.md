@@ -35,7 +35,7 @@ Collection of UI components and utility classes. To get started pick what you ne
 
 - Cursor Target
 - Text Fade
-- Fill Text
+- Text Fill
 - Glitch Text
 - Gradient Border
 - Grid Fade

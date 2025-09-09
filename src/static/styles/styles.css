@@ -24,11 +24,11 @@
   --padding-btn-icon: 8px;
   --padding-btn--sm: 6px 12px;
   --padding-btn-icon--sm: 4px;
-  --spacing--xs: 12px;
-  --spacing--sm: 24px;
-  --spacing: 36px;
+  --spacing--xs: 8px;
+  --spacing--sm: 16px;
+  --spacing: 24px;
   --spacing--lg: 48px;
-  --spacing--xl: 60px;
+  --spacing--xl: 72px;
   --section-gap: 24px;
   --section-gap--sm: 8px;
   --section-gap--lg: 64px;
@@ -70,6 +70,7 @@ html[data-theme=light] {
 }
 
 :root {
+  --partial-float-offset: 24px;
   --carousel-snap-gap: 24px;
 }
 
@@ -616,8 +617,8 @@ code {
     flex: 1;
     width: 100%;
   }
-  .fill-text,
-  .fill-text-hover {
+  .text-fill,
+  .text-fill-hover {
     display: inline;
     background-repeat: no-repeat;
     background-clip: text;
@@ -625,16 +626,16 @@ code {
     background-image: linear-gradient(currentColor, currentColor);
     -webkit-text-fill-color: rgba(125, 125, 125, 0.25);
   }
-  .fill-text:is(.fill-text-hover),
-  .fill-text-hover:is(.fill-text-hover) {
+  .text-fill:is(.text-fill-hover),
+  .text-fill-hover:is(.text-fill-hover) {
     background-size: 0%;
     transition: 0.24s ease;
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .fill-text:is(.fill-text-hover):hover, .fill-text:is(.fill-text-hover):focus-visible,
-  .fill-text-hover:is(.fill-text-hover):hover,
-  .fill-text-hover:is(.fill-text-hover):focus-visible {
+  .text-fill:is(.text-fill-hover):hover, .text-fill:is(.text-fill-hover):focus-visible,
+  .text-fill-hover:is(.text-fill-hover):hover,
+  .text-fill-hover:is(.text-fill-hover):focus-visible {
     background-size: 100%;
   }
 }
@@ -1739,7 +1740,7 @@ code {
 }
 @media (min-width: 1025px) {
   .library-section .tilt-card-group {
-    padding: var(--spacing--lg);
+    padding-block: var(--spacing--lg);
   }
 }
 @media all {
@@ -1788,7 +1789,8 @@ code {
   .library-section .tilt-card-group .tilt-card--3d .cta-group {
     transition: 0.3s ease !important;
   }
-  .carousel-swiper-section {
+  .carousel-swiper-section,
+  .text-fill-section {
     width: 100%;
     max-width: 1512px;
     margin-inline: auto;
@@ -5326,7 +5328,7 @@ code {
   margin-inline: 24px auto;
 }
 .site-header--float {
-  --float-offset: 24px;
+  --float-offset: var(--partial-float-offset);
   border: var(--border-width) solid var(--color-border);
   top: var(--float-offset);
   width: calc(100% - var(--float-offset) * 2);
@@ -5617,6 +5619,8 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+.site-footer:has(.site-footer__top) {
   border-block-start: var(--border-width) solid var(--color-border);
 }
 .site-footer:has(.site-footer__divider) {
@@ -5744,7 +5748,7 @@ code {
   gap: 1ch;
 }
 .site-footer--float {
-  --float-offset: 24px;
+  --float-offset: var(--partial-float-offset);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius--sm);
   padding: var(--footer-spacing-y) var(--body-padding);
@@ -5759,6 +5763,9 @@ code {
   .site-footer--float {
     --float-offset: 8px;
   }
+}
+.site-footer--float:not(:has(.site-footer__top)) .site-footer__bottom {
+  padding: 0;
 }
 .site-footer--float:has(.site-footer__divider) .site-footer__divider--width-full {
   width: 100%;
@@ -8346,9 +8353,6 @@ body:has(.tooltip-util) .mouse-cursor {
   height: auto;
 }
 
-.hero-simple {
-  --float-offset: 24px;
-}
 @media (min-width: 1513px) {
   .hero-simple {
     height: clamp(750px, 100vh, 1250px);
@@ -8408,10 +8412,19 @@ body:has(.tooltip-util) .mouse-cursor {
   align-items: flex-start;
 }
 .hero-simple--float {
-  padding-block: var(--float-offset);
+  --float-offset: var(--partial-float-offset);
+  --float-offset-half: calc(var(--float-offset) / 2);
+  width: 100%;
+  max-width: 1512px;
+  margin-inline: auto;
+  padding-block: calc(var(--header-height) + var(--promo-banner-height) + var(--float-offset-half)) 0;
+}
+@media (max-width: 1512px) {
+  .hero-simple--float {
+    padding-inline: var(--float-offset);
+  }
 }
 .hero-simple--float .hero-simple__inner {
   border: 1px solid var(--color-border);
   border-radius: var(--radius--sm);
-  margin-inline: var(--float-offset);
 }/*# sourceMappingURL=styles.css.map */

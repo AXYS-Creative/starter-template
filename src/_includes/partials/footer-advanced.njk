@@ -5,6 +5,7 @@
 
 <!-- prettier-ignore -->
 {% set float = footer.float or false %}
+{% set include_top = footer.include_top | default(true) %}
 {% set has_logo = footer.has_logo or null %}
 {% set message = footer.message or '' %}
 {% set social_media = footer.social_media or null %}
@@ -16,7 +17,8 @@
 {% set linkset_3_title = footer.linkset_3_title or '' %}
 {% set linkset_3 = footer.linkset_3 or null %}
 
-{% set divider = footer.divider or true %}
+{% set include_bottom = footer.include_bottom | default(true) %}
+{% set divider = footer.divider | default(true) %}
 {% set divider_width_full = footer.divider_width_full or false %}
 
 {% set return_to_top = footer.return_to_top or false %}
@@ -39,22 +41,23 @@
 
 <footer class="site-footer site-footer--advanced {{ footer_class }}">
   <div class="site-footer__inner">
+    {% if include_top %}
     <div class="site-footer__top">
       <div class="site-footer__top-left">
         <!-- prettier-ignore -->
         {% if has_logo %}
-          {% set logo = global.components.logo %}
-          {% include "../components/logo.njk" %}
-        {% endif %}
-  
-        {% if message %}
+            {% set logo = global.components.logo %}
+            {% include "../components/logo.njk" %}
+          {% endif %}
+    
+          {% if message %}
         <p class="site-footer__top-message">{{ message }}</p>
         {% endif %}
 
         <!-- prettier-ignore -->
         {% if social_media %}
-          {% include "../components/social-media.njk" %}
-        {% endif %}
+            {% include "../components/social-media.njk" %}
+          {% endif %}
       </div>
 
       <div class="site-footer__top-right">
@@ -67,8 +70,8 @@
 
           <!-- prettier-ignore -->
           {% set links = linkset_1 %}
-          {% set menu_links_class = 'site-footer__primary-links' %}
-          {% include "../components/menu-links.njk" %}
+            {% set menu_links_class = 'site-footer__primary-links' %}
+            {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
 
@@ -81,8 +84,8 @@
 
           <!-- prettier-ignore -->
           {% set links = linkset_2 %}
-          {% set menu_links_class = '' %}
-          {% include "../components/menu-links.njk" %}
+            {% set menu_links_class = '' %}
+            {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
 
@@ -95,25 +98,29 @@
 
           <!-- prettier-ignore -->
           {% set links = linkset_3 %}
-          {% set menu_links_class = '' %}
-          {% include "../components/menu-links.njk" %}
+            {% set menu_links_class = '' %}
+            {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
       </div>
     </div>
-
-    {% if divider %}
-    <hr class="site-footer__divider what {{ footer_divider_class }}" />
     {% endif %}
 
+    <!-- prettier-ignore -->
+    {% if divider %}
+    <hr class="site-footer__divider {{ footer_divider_class }}" />
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if include_bottom %}
     <div class="site-footer__bottom">
       <!-- prettier-ignore -->
       {% if return_to_top %}
-        {% set btn = return_to_top %}
-        {% include "../components/btn.njk" %}
-      {% endif %}
-  
-      {% if copyright %}
+          {% set btn = return_to_top %}
+          {% include "../components/btn.njk" %}
+        {% endif %}
+    
+        {% if copyright %}
       <p class="site-footer__copyright">{{ copyright | safe }}</p>
       {% endif %}
 
@@ -122,17 +129,18 @@
       <div class="site-footer__bottom-group">
         <!-- prettier-ignore -->
         {% if legal_links %}
-          {% set links = legal_links %}
-          {% set menu_links_class = 'legal-links' %}
-          {% include "../components/menu-links.njk" %}
-        {% endif %}
+            {% set links = legal_links %}
+            {% set menu_links_class = 'legal-links' %}
+            {% include "../components/menu-links.njk" %}
+          {% endif %}
 
         <!-- prettier-ignore -->
         {% if theme_toggle %}
-          {% include "../library/components/theme-toggle.njk" %}
-        {% endif %}
+            {% include "../library/components/theme-toggle.njk" %}
+          {% endif %}
       </div>
       {% endif %}
     </div>
+    {% endif %}
   </div>
 </footer>

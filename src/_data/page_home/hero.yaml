@@ -1,7 +1,7 @@
 float: false
 position: center
 
-eyebrow: Save time and money
+eyebrow: // Save time and money
 title: Title goes [%span.text-italic%]here[%span%]
 desc: ""
 # desc: >-
