@@ -616,10 +616,6 @@ code {
     flex: 1;
     width: 100%;
   }
-  .fade-text .fade-text__word,
-  .fade-text .fade-text__char {
-    display: inline-block;
-  }
   .fill-text,
   .fill-text-hover {
     display: inline;
@@ -696,6 +692,14 @@ code {
   .magnet {
     display: inline-flex;
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
+  .text-fade .text-fade__words,
+  .text-fade .text-fade__chars {
+    display: inline-block;
+  }
+  .text-scale .text-scale__words,
+  .text-scale .text-scale__chars {
+    display: inline-block;
   }
   .typing-cycle .typing-text-cursor,
   .typing-scroll .typing-text-cursor {
@@ -1714,12 +1718,14 @@ code {
     align-items: flex-start;
     gap: 24px;
   }
-  .library-section .fade-text code.gsap-animate {
+  .library-section .text-fade code.gsap-animate,
+  .library-section .text-scale code.gsap-animate {
     background: transparent;
   }
-  .library-section .fade-text code.gsap-animate.gsap-animated {
+  .library-section .text-fade code.gsap-animate.gsap-animated,
+  .library-section .text-scale code.gsap-animate.gsap-animated {
     background: var(--color-surface--1);
-    transition: 0.48s ease 0.96s;
+    transition: 0.56s ease 0.36s;
   }
   .library-section .tilt-card-group {
     display: flex;

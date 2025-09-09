@@ -91,85 +91,6 @@ path: library/utils
   </p>
 </section>
 
-<section class="fade-text-section library-section">
-  <h2 class="h5 fade-text">[ Fade Text - Util ]</h2>
-  <p class="fade-text" data-fade-duration="0.5">
-    This uses GSAP's <strong>ScrollTrigger</strong> and
-    <strong>SplitText</strong> plugins to fade in either words or characters.
-  </p>
-  <p class="fade-text" data-fade-type="words" data-fade-duration="0.5">
-    This paragraph will animate each word rather than each character. Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
-    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
-    sequi dignissimos dolores? Magni, nisi quae.
-  </p>
-  <p
-    class="fade-text"
-    data-fade-type="chars"
-    data-fade-once="true"
-    data-fade-style="linear"
-    data-fade-duration="2"
-  >
-    This text should only fade in the <strong>very first time!</strong> The
-    letter split should also take a bit longer than expected (2s), making use of
-    the data-fill-duration attribute.
-  </p>
-  <p
-    class="fade-text"
-    data-fade-style="linear"
-    data-fade-scrub="true"
-    data-fade-end="bottom 60%"
-  >
-    This text should scrub in a linear animation.
-  </p>
-  <br />
-  <p class="fade-text">
-    You can use the <code class="gsap-animate">fade-text</code> utility class
-    with the following attributes:
-  </p>
-  <ul class="classic-list">
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-type</code> A string that takes in
-      <code class="gsap-animate">words | chars</code>. Defaults to
-      <code class="gsap-animate">chars</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-style</code> A string that takes in
-      <code class="gsap-animate">linear | random</code>. Defaults to
-      <code class="gsap-animate">random</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
-      <code class="gsap-animate">false</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
-      <code class="gsap-animate">false</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-start</code> A string to set the
-      start animation. Defaults to
-      <code class="gsap-animate">"top 98%"</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-end</code> A string to set the end
-      animation. Defaults to
-      <code class="gsap-animate">"bottom 2%"</code>
-    </li>
-    <li class="fade-text">
-      <code class="gsap-animate">data-fade-markers</code> A boolean to toggle
-      visual debugging markers.
-      <code class="gsap-animate">false</code>
-    </li>
-  </ul>
-</section>
-
 <section class="fill-text-section">
   <h2 class="h5 fill-text">[ Fill Text - Util ]</h2>
   <br />
@@ -471,6 +392,174 @@ path: library/utils
       <code>data-gsap-markers</code> Boolean, markers to help build/debug.
       Default is
       <code>false</code>
+    </li>
+  </ul>
+</section>
+
+<!-- Text animations -->
+<section class="text-fade-section library-section">
+  <h2 class="h5 text-fade">[ Text Fade - Util ]</h2>
+  <p class="text-fade" data-fade-duration="0.5">
+    This uses GSAP's <strong>ScrollTrigger</strong> and
+    <strong>SplitText</strong> plugins to fade in either words or characters.
+  </p>
+  <p class="text-fade" data-fade-type="words" data-fade-duration="0.5">
+    This paragraph will animate each word rather than each character. Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
+    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
+    sequi dignissimos dolores? Magni, nisi quae.
+  </p>
+  <p
+    class="text-fade"
+    data-fade-type="chars"
+    data-fade-once="true"
+    data-fade-style="linear"
+    data-fade-duration="2"
+  >
+    This text should only fade in the <strong>very first time!</strong> The
+    letter split should also take a bit longer than expected (2s), making use of
+    the data-fill-duration attribute.
+  </p>
+  <p
+    class="text-fade"
+    data-fade-style="linear"
+    data-fade-scrub="true"
+    data-fade-end="bottom 60%"
+  >
+    This text should scrub in a linear animation.
+  </p>
+  <br />
+  <p class="text-fade">
+    You can use the <code class="gsap-animate">text-fade</code> utility class
+    with the following attributes:
+  </p>
+  <ul class="classic-list">
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-type</code> A string that takes in
+      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">words</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-style</code> A string that takes in
+      <code class="gsap-animate">linear | random</code>. Defaults to
+      <code class="gsap-animate">random</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-duration</code> A number to control
+      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-once</code> A boolean to fire to
+      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub
+      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-start</code> A string to set the
+      start animation. Defaults to
+      <code class="gsap-animate">"top 98%"</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-end</code> A string to set the end
+      animation. Defaults to
+      <code class="gsap-animate">"bottom 2%"</code>
+    </li>
+    <li class="text-fade">
+      <code class="gsap-animate">data-fade-markers</code> A boolean to toggle
+      visual debugging markers.
+      <code class="gsap-animate">false</code>
+    </li>
+  </ul>
+</section>
+
+<section class="text-scale-section library-section">
+  <h2 class="h5 text-scale">[ Text scale - Util ]</h2>
+  <p class="text-scale" data-scale-duration="0.5">
+    This uses GSAP's <strong>ScrollTrigger</strong> and
+    <strong>SplitText</strong> plugins to scale in either words or characters.
+    This is position aware, meaning that the transform origin will determine the
+    words placement in the sentence.
+  </p>
+  <p
+    class="text-scale"
+    data-scale-type="words"
+    data-scale-duration="0.15"
+    data-scale-scrub="true"
+    data-scale-end="bottom 75%"
+    style="max-width: 750px"
+  >
+    This paragraph will animate each word rather than each character. Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
+    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
+    sequi dignissimos dolores? Magni, nisi quae.
+  </p>
+  <p
+    class="text-scale"
+    data-scale-type="chars"
+    data-scale-once="true"
+    data-scale-style="linear"
+    data-scale-duration="2"
+  >
+    This text should only scale in the <strong>very first time!</strong> The
+    letter split should also take a bit longer than expected (2s), making use of
+    the data-fill-duration attribute.
+  </p>
+  <p
+    class="text-scale"
+    data-scale-style="linear"
+    data-scale-scrub="true"
+    data-scale-end="bottom 60%"
+  >
+    This text should scrub in a linear animation.
+  </p>
+  <br />
+  <p class="text-scale">
+    You can use the <code class="gsap-animate">text-scale</code> utility class
+    with the following attributes:
+  </p>
+  <ul class="classic-list">
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-type</code> A string that takes in
+      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">chars</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-style</code> A string that takes in
+      <code class="gsap-animate">linear | random</code>. Defaults to
+      <code class="gsap-animate">random</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-duration</code> A number to control
+      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-once</code> A boolean to fire to
+      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-scrub</code> A boolean to scrub
+      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-start</code> A string to set the
+      start animation. Defaults to
+      <code class="gsap-animate">"top 98%"</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-end</code> A string to set the end
+      animation. Defaults to
+      <code class="gsap-animate">"bottom 2%"</code>
+    </li>
+    <li class="text-scale">
+      <code class="gsap-animate">data-scale-markers</code> A boolean to toggle
+      visual debugging markers.
+      <code class="gsap-animate">false</code>
     </li>
   </ul>
 </section>

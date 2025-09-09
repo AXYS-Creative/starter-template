@@ -312,67 +312,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Fade Text
-        {
-          const fadeElems = document.querySelectorAll(".fade-text");
-
-          fadeElems.forEach((el) => {
-            const fadeType = el.dataset.fadeType || "chars"; // "chars" or "words"
-            const fadeStyle = el.dataset.fadeStyle || "random"; // "linear" or "random"
-            const fadeDuration = parseFloat(el.dataset.fadeDuration) || 0.25;
-            const fadeScrub = el.dataset.fadeScrub === "true"; // default false
-            const fadeOnce = !fadeScrub && el.dataset.fadeOnce === "true"; // only if scrub is false
-            const fadeStart = el.dataset.fadeStart || "top 98%";
-            const fadeEnd = el.dataset.fadeEnd || "bottom 2%";
-            const fadeMarkers = el.dataset.fadeMarkers || false;
-
-            const split = new SplitText(el, {
-              type: fadeType,
-              [`${fadeType}Class`]: `fade-text__${fadeType}`,
-              tag: "span",
-            });
-
-            const targets = fadeType === "words" ? split.words : split.chars;
-
-            const scrollTriggerConfig = {
-              trigger: el,
-              start: fadeStart,
-              end: fadeEnd,
-              scrub: fadeScrub || false,
-              markers: fadeMarkers,
-            };
-
-            if (!fadeScrub) {
-              scrollTriggerConfig.toggleActions = fadeOnce
-                ? "play none none none"
-                : "play reset play reset";
-
-              scrollTriggerConfig.onEnter = () =>
-                el.classList.add("fade-text--active");
-
-              scrollTriggerConfig.onLeaveBack = () => {
-                if (!fadeOnce) el.classList.remove("fade-text--active");
-              };
-
-              scrollTriggerConfig.once = fadeOnce;
-            }
-
-            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
-
-            tl.fromTo(
-              fadeStyle === "random" ? gsap.utils.shuffle(targets) : targets,
-              { opacity: 0, scale: 0.92 },
-              {
-                opacity: 1,
-                scale: 1,
-                duration: fadeDuration,
-                stagger: 0.0125,
-                ease: "linear",
-              }
-            );
-          });
-        }
-
         // Fill Text - Scrub only
         {
           const fillTextElems = document.querySelectorAll(".fill-text");
@@ -983,6 +922,140 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 });
               });
             }
+          });
+        }
+
+        // Text Fade
+        {
+          const fadeElems = document.querySelectorAll(".text-fade");
+
+          fadeElems.forEach((el) => {
+            const fadeType = el.dataset.fadeType || "words"; // "chars" or "words"
+            const fadeStyle = el.dataset.fadeStyle || "random"; // "linear" or "random"
+            const fadeDuration = parseFloat(el.dataset.fadeDuration) || 0.25;
+            const fadeScrub = el.dataset.fadeScrub === "true"; // default false
+            const fadeOnce = !fadeScrub && el.dataset.fadeOnce === "true"; // only if scrub is false
+            const fadeStart = el.dataset.fadeStart || "top 98%";
+            const fadeEnd = el.dataset.fadeEnd || "bottom 2%";
+            const fadeMarkers = el.dataset.fadeMarkers || false;
+
+            const split = new SplitText(el, {
+              type: fadeType,
+              [`${fadeType}Class`]: `text-fade__${fadeType}`,
+              tag: "span",
+            });
+
+            const targets = fadeType === "words" ? split.words : split.chars;
+
+            const scrollTriggerConfig = {
+              trigger: el,
+              start: fadeStart,
+              end: fadeEnd,
+              scrub: fadeScrub || false,
+              markers: fadeMarkers,
+            };
+
+            if (!fadeScrub) {
+              scrollTriggerConfig.toggleActions = fadeOnce
+                ? "play none none none"
+                : "play reset play reset";
+
+              scrollTriggerConfig.onEnter = () =>
+                el.classList.add("text-fade--active");
+
+              scrollTriggerConfig.onLeaveBack = () => {
+                if (!fadeOnce) el.classList.remove("text-fade--active");
+              };
+
+              scrollTriggerConfig.once = fadeOnce;
+            }
+
+            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+            tl.fromTo(
+              fadeStyle === "random" ? gsap.utils.shuffle(targets) : targets,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                duration: fadeDuration,
+                stagger: 0.0125,
+                ease: "linear",
+              }
+            );
+          });
+        }
+
+        // Text Scale
+        {
+          const scaleElems = document.querySelectorAll(".text-scale");
+
+          scaleElems.forEach((el) => {
+            const scaleType = el.dataset.scaleType || "words"; // "chars" or "words"
+            const scaleStyle = el.dataset.scaleStyle || "random"; // "linear" or "random"
+            const scaleDuration = parseFloat(el.dataset.scaleDuration) || 0.25;
+            const scaleScrub = el.dataset.scaleScrub === "true";
+            const scaleOnce = !scaleScrub && el.dataset.scaleOnce === "true";
+            const scaleStart = el.dataset.scaleStart || "top 98%";
+            const scaleEnd = el.dataset.scaleEnd || "bottom 2%";
+            const scaleMarkers = el.dataset.scaleMarkers || false;
+
+            const split = new SplitText(el, {
+              type: scaleType,
+              [`${scaleType}Class`]: `text-scale__${scaleType}`,
+              tag: "span",
+            });
+
+            const targets = scaleType === "words" ? split.words : split.chars;
+
+            // Calculate transform-origin based on each element’s position
+            const parentBox = el.getBoundingClientRect();
+            targets.forEach((word) => {
+              const box = word.getBoundingClientRect();
+              const centerX =
+                (box.left + box.width / 2 - parentBox.left) / parentBox.width;
+
+              // Map 0–1 range to useful values for transform-origin
+              // left edge = "0% 50%", right edge = "100% 50%", middle = "50% 50%"
+              const originX = `${Math.round((1 - centerX) * 100)}%`;
+              word.style.transformOrigin = `${originX} 50%`;
+            });
+
+            const scrollTriggerConfig = {
+              trigger: el,
+              start: scaleStart,
+              end: scaleEnd,
+              scrub: scaleScrub || false,
+              markers: scaleMarkers,
+            };
+
+            if (!scaleScrub) {
+              scrollTriggerConfig.toggleActions = scaleOnce
+                ? "play none none none"
+                : "play reset play reset";
+
+              scrollTriggerConfig.onEnter = () =>
+                el.classList.add("text-scale--active");
+
+              scrollTriggerConfig.onLeaveBack = () => {
+                if (!scaleOnce) el.classList.remove("text-scale--active");
+              };
+
+              scrollTriggerConfig.once = scaleOnce;
+            }
+
+            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+            tl.fromTo(
+              scaleStyle === "random" ? gsap.utils.shuffle(targets) : targets,
+              { scale: 0, opacity: 0 },
+              {
+                scale: 1,
+                opacity: 1,
+                duration: scaleDuration,
+                stagger: 0.0125,
+                ease: "linear",
+              }
+            );
           });
         }
 

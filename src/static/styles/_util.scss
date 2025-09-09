@@ -61,17 +61,6 @@
     }
   }
 
-  .fade-text {
-    .fade-text__word,
-    .fade-text__char {
-      display: inline-block;
-    }
-
-    // &.fade-text--active {
-
-    // }
-  }
-
   .fill-text,
   .fill-text-hover {
     @include fill-text;
@@ -142,6 +131,28 @@
   .magnet {
     display: inline-flex; // ensure it can be transformed
     transition: $magnet;
+  }
+
+  .text-fade {
+    .text-fade__words,
+    .text-fade__chars {
+      display: inline-block;
+    }
+
+    // &.text-fade--active {
+
+    // }
+  }
+
+  .text-scale {
+    .text-scale__words,
+    .text-scale__chars {
+      display: inline-block;
+    }
+
+    // &.text-fade--active {
+
+    // }
   }
 
   .typing-cycle,
@@ -326,13 +337,14 @@
     @include column-start;
     gap: 24px;
 
-    .fade-text {
+    .text-fade,
+    .text-scale {
       code.gsap-animate {
         background: transparent;
 
         &.gsap-animated {
           background: var(--color-surface--1);
-          transition: 0.48s ease 0.96s;
+          transition: 0.56s ease 0.36s;
         }
       }
     }
