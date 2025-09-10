@@ -1,5 +1,6 @@
 .scroll-horizontal {
-  // Remove util section-width--full to clip width.
+  // @include width-clamp;
+  @include section-padding;
   overflow: hidden;
 
   &:has(&__title),

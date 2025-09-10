@@ -2,6 +2,9 @@
   --panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
 
+  @include width-clamp;
+  @include section-padding;
+
   position: relative;
 
   @include mq-max(sm) {
@@ -194,7 +197,8 @@
 
   &--right {
     .scroll-stack__panel {
-      right: var(--body-padding);
+      // right: var(--body-padding);
+      right: 0;
 
       @include mq-max(lg) {
         right: 0;
@@ -204,7 +208,8 @@
 
   &--left {
     .scroll-stack__copy--pinned {
-      right: var(--body-padding);
+      // right: var(--body-padding);
+      right: 0;
     }
   }
 }
