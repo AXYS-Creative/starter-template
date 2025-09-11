@@ -22,36 +22,38 @@
 // // // // // Components
 // prettier-ignore
 @import "./components/btn", 
-"./components/cta-group",
-"./components/dropdown-link",
-"./components/social-media";
+ "./components/cta-group",
+ "./components/dropdown-link",
+ "./components/social-media";
 
 // // // // // Library // DELETE ME CHANGE ME after pulling files
 // prettier-ignore
 @import "./library/accordion",
-  "./library/advanced",
-  "./library/alert",
-  "./library/blog-archive",
-  "./library/blog-post",
-  "./library/btn-play",
-  "./library/btn-toggle",
-  "./library/carousel-hero",
-  "./library/carousel-swiper",
-  "./library/contact-form",
-  "./library/counter",
-  "./library/grid-flow-img",
-  "./library/scroll-horizontal",
-  "./library/marquee",
-  "./library/mouse-cursor",
-  "./library/pills",
-  "./library/price-cards",
-  "./library/promo-banner",
-  "./library/solar-system",
-  "./library/scroll-stack",
-  "./library/tabs",
-  "./library/theme-toggle",
-  "./library/tooltip",
-  "./library/video-overlay",
-  "./library/video-scrub";
+ "./library/advanced",
+ "./library/alert",
+ "./library/blog-archive",
+ "./library/blog-post",
+ "./library/btn-play",
+ "./library/btn-toggle",
+ "./library/carousel-swiper",
+ "./library/contact-form",
+ "./library/counter",
+ "./library/grid-flow-img",
+ "./library/marquee",
+ "./library/mouse-cursor",
+ "./library/pills",
+ "./library/price-cards",
+ "./library/promo-banner",
+ "./library/solar-system",
+ "./library/tabs",
+ "./library/theme-toggle",
+ "./library/tooltip",
+ "./library/video-overlay",
+ "./library/video-scrub";
 
-@import "./library/sections/hero-simple";
+// prettier-ignore
+@import "./library/sections/hero-simple",
+ "./library/sections/carousel-hero",
+ "./library/sections/scroll-horizontal",
+ "./library/sections/scroll-stack",
+ "./library/sections/tunnel";

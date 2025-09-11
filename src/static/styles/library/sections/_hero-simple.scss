@@ -7,13 +7,16 @@
     @include column-center;
     height: 100%;
 
-    &-main,
+    &-text,
     &-extra {
       flex: 1 1 auto;
-      max-width: 50%;
+
+      @include mq-min(md) {
+        max-width: 50%;
+      }
     }
 
-    &-main {
+    &-text {
       @include column-center;
     }
   }
@@ -34,7 +37,7 @@
     .hero-simple__inner {
       justify-content: flex-start;
 
-      &-main {
+      &-text {
         @include column-start;
       }
     }

@@ -4,12 +4,12 @@ path: library/sections
 # Non public facing DELETE ME CHANGE ME
 ---
 
-<section class="hero">
-  <h1>Sections</h1>
-  <p class="text-balance">
-    Prebuilt reusable sections to speed up your build time.
-  </p>
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Sections',
+  desc: 'Prebuilt reusable sections to speed up your build time.'
+ }) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}
 
 <div class="section-width--thin">
   <h2 class="h5">[ Carousel 'Hero' - Section ]</h2>
@@ -99,3 +99,7 @@ path: library/sections
 {% set panel_data = library.scroll_stack.panels %}
 {% set panel_configs = library.scroll_stack.panel_configs %}
 {% include '../_includes/library/sections/scroll-stack.njk' %}
+
+<br />
+<h2 class="h5" style="text-align: center; margin-block: 24px">[ Tunnel ]</h2>
+{% include '../_includes/library/sections/tunnel.njk' %}

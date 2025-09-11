@@ -1,0 +1,26 @@
+.tunnel {
+  --section-height: 105vh;
+  --img-size-start: 420px;
+
+  @include row-center;
+  height: var(--section-height);
+
+  &-inner {
+    // max-width: $content-width;
+    // margin-inline: var(--body-padding);
+    width: var(--img-size-start);
+    overflow: hidden;
+    // border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  &__img {
+    height: var(--section-height);
+    object-fit: cover;
+    filter: brightness(1); // "from" position — see animations.js
+    scale: 1.2; // hide cropping when rotated
+  }
+
+  &--extended {
+    --section-height: 125vh;
+  }
+}

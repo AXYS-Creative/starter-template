@@ -39,9 +39,9 @@ body {
   // Loader styles, controlled by having a loader partial present in the html
   &:has(.site-loader) {
     $duration: 1s;
-    $delay: 0.25s;
+    $delay: 0.2s;
 
-    .hero {
+    .hero-simple {
       h1,
       p,
       div {
@@ -50,17 +50,17 @@ body {
       }
 
       p {
-        transition-delay: $delay + 0.075s;
+        transition-delay: $delay + 0.1s;
       }
       div {
-        transition-delay: $delay + 0.125s;
+        transition-delay: $delay + 0.2s;
       }
     }
   }
 
   // Loader complete styles
   &:has(.load-complete) {
-    .hero {
+    .hero-simple {
       h1,
       p,
       div {

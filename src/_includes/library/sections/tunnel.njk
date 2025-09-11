@@ -1,0 +1,17 @@
+<!-- prettier-ignore -->
+{% set extended = tunnel.extended or false %}
+
+{% set extended_class = '' %}
+{% if extended %}
+  {% set extended_class = 'tunnel--extended' %}
+{% endif %}
+
+<section class="tunnel {{ extended_class }}">
+  <div class="tunnel-inner">
+    <img
+      class="tunnel__img"
+      src="/static/img/library/img-sample-2.jpg"
+      alt=""
+    />
+  </div>
+</section>

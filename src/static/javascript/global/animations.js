@@ -1059,6 +1059,41 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
+        // Tunnel
+        {
+          document.querySelectorAll(".tunnel").forEach((el) => {
+            let tunnelInner = el.querySelector(".tunnel-inner");
+            let tunnelImg = el.querySelector(".tunnel__img");
+            const y = el.dataset.parallaxY || "-75%";
+            // const scrub = parseFloat(el.dataset.parallaxScrub) || 0.125;
+            const scrub = parseFloat(el.dataset.parallaxScrub) || 0;
+
+            gsap.to(tunnelInner, {
+              width: "100%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 50%",
+                end: "top top",
+                scrub,
+              },
+            });
+
+            gsap.from(tunnelImg, {
+              y,
+              rotate: "5deg",
+              filter: "brightness(0.125)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                start: "top bottom",
+                end: "top top",
+                scrub,
+              },
+            });
+          });
+        }
+
         // Typing Text Effects
         {
           const injectTypingElements = (el, cursorType) => {
