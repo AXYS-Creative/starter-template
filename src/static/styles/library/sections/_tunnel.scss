@@ -5,6 +5,11 @@
   @include row-center;
   height: var(--section-height);
 
+  @include mq-max(md) {
+    --img-size-start: 180px;
+    // --img-size-start: calc(100% - var(--body-padding-double));
+  }
+
   &:has(.tunnel__message) {
     position: relative;
   }
@@ -21,7 +26,7 @@
     height: var(--section-height);
     object-fit: cover;
     filter: brightness(1); // "from" position — see animations.js
-    scale: 1.2; // hide cropping when rotated
+    scale: 1.125; // hide cropping when rotated
   }
 
   &__message-wrapper {
@@ -41,10 +46,20 @@
     color: $white; // May not need theme swap
     text-transform: uppercase;
     font-weight: 900;
-    filter: drop-shadow(0 0px 2px rgba(0, 0, 0, 0.75));
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
+
+    @include mq-max(md) {
+      @include h6;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
   }
 
   &--extended {
     --section-height: 125vh;
+
+    @include mq-max(md) {
+      --section-height: 110vh;
+    }
   }
 }

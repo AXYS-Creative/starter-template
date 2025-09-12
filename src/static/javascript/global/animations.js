@@ -942,31 +942,30 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Text Fill - Scrub only
+        // Text Fill
         {
           const fillTextElems = document.querySelectorAll(".text-fill");
 
           fillTextElems.forEach((el) => {
-            const speed = el.dataset.fillSpeed;
-            const scrubAttr = el.dataset.fillScrub;
-            const onceAttr = el.dataset.fillOnce;
-            const markersAttr = el.dataset.fillMarkers === "true";
+            const scrubVal = el.dataset.fillScrub;
+            const onceVal = el.dataset.fillOnce;
+            const durationVal = el.dataset.fillDuration || 1;
+            const markersVal = el.dataset.fillMarkers === "true";
 
-            const scrub = scrubAttr !== "false";
-            const once = onceAttr === "true";
+            const scrub = scrubVal !== "false"; // default true
+            const once = onceVal === "true"; // default false
 
-            // Set end point based on speed
-            const end =
-              speed === "fast"
-                ? "bottom 80%"
-                : speed === "slow"
-                ? "bottom 40%"
-                : "bottom 60%";
+            // Defaults change based on scrub true or false
+            const defaultStart = scrub ? "top 90%" : "top 98%";
+            const defaultEnd = scrub ? "bottom 60%" : "bottom 2%";
+
+            const startVal = el.dataset.fillStart || defaultStart;
+            const endVal = el.dataset.fillEnd || defaultEnd;
 
             const scrollTrigger = {
               trigger: el,
-              start: scrub ? "top 90%" : "top 98%",
-              end: scrub ? end : "bottom 2%",
+              start: startVal,
+              end: endVal,
               ...(scrub
                 ? { scrub }
                 : {
@@ -974,13 +973,17 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                       ? "play none none none"
                       : "play reset play reset",
                   }),
-              markers: markersAttr,
+              markers: markersVal,
             };
 
             gsap.fromTo(
               el,
               { backgroundSize: "0%" },
-              { backgroundSize: "100%", scrollTrigger }
+              {
+                backgroundSize: "100%",
+                scrollTrigger,
+                ...(scrub ? {} : { duration: durationVal }),
+              }
             );
           });
         }
@@ -1072,7 +1075,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               ease: "none",
               scrollTrigger: {
                 trigger: el,
-                start: "top 50%",
+                start: "top 70%", // Control when the image gets wider
                 end: "top top",
                 scrub,
               },

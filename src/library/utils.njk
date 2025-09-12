@@ -421,54 +421,74 @@ path: library/utils
   </strong>
   <br />
   <br />
-  <h3 class="h6 text-fill" data-fill-speed="slow">
-    This is a random slow title.....
+  <h3 class="h6 text-fill" data-fill-end="bottom 40%">
+    Slow it down with 'bottom 20%'.....
   </h3>
+  <br />
+  <br />
+  <p class="text-fill" data-fill-end="bottom 40%">
+    Use the <strong>'text-fill'</strong> utility class to get started with this
+    effect. <strong>Note</strong> there are some caveats such as flexbox parent
+    containers and different position absolute. Modify the speed with
+    <strong>'data-fill-end'</strong> This comes with aditional configs, one of
+    which detaches scrub and allows you to fire the animation once. Lorem ipsum
+    dolor, sit amet consectetur adipisicing elit. Non laudantium ad tempora
+    facilis tempore, enim earum molestiae iusto doloremque incidunt voluptatum,
+    dolorum, obcaecati sint officia cum quia. Itaque et, ad accusantium a
+    impedit, consectetur, magni debitis tenetur ab odio laborum!
+  </p>
   <br />
   <br />
   <p
     class="text-fill"
-    data-fill-speed="fast"
+    data-fill-start="top 80%"
+    data-fill-end="bottom 80%"
     data-fill-scrub="false"
     data-fill-once="true"
+    data-fill-duration="5"
     data-fill-markers="false"
   >
-    Use the <strong>'text-fill'</strong> utility class to get this effect.
-    Modify the speed with <strong>'data-text-fill-speed'</strong> This comes
-    with aditional configs, one of which detaches scrub and allows you to fire
-    the animation once. Lorem ipsum dolor, sit amet consectetur adipisicing
-    elit. Non laudantium ad tempora facilis tempore, enim earum molestiae iusto
-    doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum quia.
-    Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab
-    odio laborum!
-  </p>
-  <br />
-  <br />
-  <p class="text-fill" data-fill-speed="slow">
-    Use the <strong>'text-fill'</strong> utility class to get this effect.
-    Modify the speed with <strong>'data-text-fill-speed'</strong> This comes
-    with aditional configs, one of which detaches scrub and allows you to fire
-    the animation once. Lorem ipsum dolor, sit amet consectetur adipisicing
-    elit. Non laudantium ad tempora facilis tempore, enim earum molestiae iusto
-    doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum quia.
-    Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab
-    odio laborum!
+    This sample will only fire once with
+    <strong class="text-underline">data-fill-once="true"</strong>. It also
+    starts a little bit later with
+    <strong class="text-underline">data-fill-start="top 80%"</strong>. The
+    duration can also be altered with
+    <strong class="text-underline">data-fill-duration="NUMBER"</strong> Lorem
+    ipsum dolor, sit amet consectetur adipisicing elit. Non laudantium ad
+    tempora facilis tempore, enim earum molestiae iusto doloremque incidunt
+    voluptatum, dolorum, obcaecati sint officia cum quia. Itaque et, ad
+    accusantium a impedit, consectetur, magni debitis tenetur ab odio laborum!
   </p>
   <br />
   <br />
   <ul class="classic-list">
     <li>Requires the util class <code>text-fill</code></li>
     <li>
-      <code>data-fill-speed</code> Optional string, accepts either
-      <code>fast | slow | null</code> Default is <code>null</code>
+      <code>data-fill-start</code> An optional string that takes two percentage
+      values. The values represent the target element and the viewport, where 0%
+      is the top while 100% is the bottom. Default is
+      <code>"0% 90%"</code>
+    </li>
+    <li>
+      <code>data-fill-end</code> An optional string that takes two percentage
+      values. The values represent the target element and the viewport, where 0%
+      is the top while 100% is the bottom. Default is
+      <code>"100% 60%"</code>
     </li>
     <li>
       <code>data-fill-scrub</code> boolean, to toggle scrubbing. Defaults to
       <code>true</code>
     </li>
     <li>
+      <code>data-fill-duration</code> A number that represents the number of
+      seconds to complete the animation. <strong>Requires</strong>
+      <code>data-fill-scrub="false"</code>. Defaults to
+      <code>1</code>
+    </li>
+    <li>
       <code>data-fill-once</code> boolean, to toggle multiple animations when
-      scrolling to the element. Defaults to <code>false</code>
+      scrolling to the element. <strong>Requires</strong>
+      <code>data-fill-scrub="false"</code>. Defaults to <code>false</code>
     </li>
     <li>
       <code>data-fill-markers</code> boolean, to toggle visual debugging
