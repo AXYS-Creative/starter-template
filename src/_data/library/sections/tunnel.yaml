@@ -1,0 +1,10 @@
+extended: true
+img:
+  src: /static/img/library/img-sample-1.jpg
+  alt: alt text here
+
+# message: ""
+message: This is a sample message to include as part of the tunnel section. It will come in as you scroll to the end of the section.
+# parallax:
+#   offset: -75%
+#   scrub: 0

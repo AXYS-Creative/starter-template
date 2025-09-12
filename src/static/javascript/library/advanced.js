@@ -266,7 +266,7 @@ if (document.querySelector(".main-advanced")) {
         const distX = mouse.x - svg.x - dot.position.x;
         const distY = mouse.y - svg.y - dot.position.y;
         const dist = Math.max(Math.hypot(distX, distY), 1);
-        let magnetSensitivity = 0.9; // default 0.9 // 1 looks like spilled salt
+        let magnetSensitivity = 0.9; // default 0.9 // 1 looks like sbadgeed salt
 
         const angle = Math.atan2(distY, distX);
 

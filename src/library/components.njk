@@ -4,13 +4,12 @@ path: library/components
 # Non public facing DELETE ME CHANGE ME
 ---
 
-<section class="hero">
-  <h1>Components</h1>
-  <p class="max-width-text">
-    A collection of reusable common components to help simplify your built and
-    speed things up.
-  </p>
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Components',
+  desc: 'A collection of reusable common components to help simplify your built and speed things up.'
+ }) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}
 
 <section class="accordion-section section-width--thin">
   <h2 class="h5" style="margin-bottom: 48px">[ Accordion - Component ]</h2>

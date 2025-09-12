@@ -100,6 +100,11 @@ path: library/sections
 {% set panel_configs = library.scroll_stack.panel_configs %}
 {% include '../_includes/library/sections/scroll-stack.njk' %}
 
-<br />
-<h2 class="h5" style="text-align: center; margin-block: 24px">[ Tunnel ]</h2>
+<div class="library-section-info text-center">
+  <h2 class="h5 text-fill" style="text-align: center; margin-block: 24px">
+    [ Tunnel ]
+  </h2>
+</div>
+<!-- prettier-ignore -->
+{% set tunnel = library.sections.tunnel %}
 {% include '../_includes/library/sections/tunnel.njk' %}

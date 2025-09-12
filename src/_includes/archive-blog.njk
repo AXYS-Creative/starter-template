@@ -7,13 +7,13 @@ layout: app
 path: archive-blog
 ---
 
-<section class="hero">
-  <h1>Blog Archive</h1>
-  <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus esse
-    repellendus a.
-  </p>
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Blog Archive',
+  desc: 'A place to view common styles and guidelines.',
+  direction: 'column'
+}) %}
+{% include './library/sections/hero-simple.njk' %}
 
 <!-- src > blog > index.njk -->
 <!-- prettier-ignore -->

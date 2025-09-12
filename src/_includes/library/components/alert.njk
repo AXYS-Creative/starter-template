@@ -14,13 +14,13 @@
 <!-- prettier-ignore -->
 {% set icon_path = '' %}
 {% if type == 'success' %}
-  {% set icon_path = '../../static/img/library/icon-google-check-circle.svg' %}
+  {% set icon_path = '/static/img/library/icon-google-check-circle.svg' %}
 {% elif type == 'info' %}
-  {% set icon_path = '../../static/img/library/icon-google-info-circle.svg' %}
+  {% set icon_path = '/static/img/library/icon-google-info-circle.svg' %}
 {% elif type == 'warning' %}
-  {% set icon_path = '../../static/img/library/icon-google-warning-triangle.svg' %}
+  {% set icon_path = '/static/img/library/icon-google-warning-triangle.svg' %}
 {% elif type == 'error' %}
-  {% set icon_path = '../../static/img/library/icon-google-x-octagon.svg' %}
+  {% set icon_path = '/static/img/library/icon-google-x-octagon.svg' %}
 {% endif %}
 
 {% set content_class = '' %}
@@ -83,7 +83,7 @@
   </div>
   {% if auto_close < 1 %}
     {% set btn = ({
-      icon_end: '../../static/img/library/icon-google-x-lg.svg',
+      icon_end: '/static/img/library/icon-google-x-lg.svg',
       class: 'alert__close-btn',
       attributes: 'aria-label="Close alert"'
     }) %}

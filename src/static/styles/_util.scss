@@ -401,6 +401,10 @@
     }
   }
 
+  .library-section-info {
+    margin-block: var(--spacing--lg);
+  }
+
   .carousel-swiper-section,
   .text-fill-section {
     @include width-clamp;
@@ -532,6 +536,10 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-center {
+    text-align: center;
   }
 
   // text-fade

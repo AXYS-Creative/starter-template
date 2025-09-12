@@ -1,0 +1,15 @@
+<!-- prettier-ignore -->
+{% set badge_text = badge.text or 'No Text Provided' %}
+{% set badge_icon = badge.icon or '' %}
+
+<div class="badge">
+  {% if badge_icon %}
+  <span
+    class="badge__icon mask-icon"
+    style="mask-image: url('{{ badge_icon }}');"
+    role="img"
+  >
+  </span>
+  {% endif %}
+  <span class="badge__text">{{ badge_text }}</span>
+</div>

@@ -4,12 +4,12 @@ path: library/utils
 # Non public facing DELETE ME CHANGE ME
 ---
 
-<section class="hero">
-  <h1>Utility Classes</h1>
-  <p class="text-balance">
-    Powerful and easy to use utility classes to achieve a wide range of effects.
-  </p>
-</section>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Utility Classes',
+  desc: 'Powerful and easy to use utility classes to achieve a wide range of effects.'
+ }) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}
 
 <section class="cursor-target-section library-section">
   <h2 class="h5">[ Cursor Target - Util ]</h2>
@@ -416,7 +416,8 @@ path: library/utils
   <br />
   <br />
   <strong class="text-fill" data-fill-scrub="false">
-    Note: Flexbox affects the line by line animation <sup>*</sup>
+    Note: Both flexbox (element or parent) and position absolute can affect the
+    line by line animation <sup>*</sup>
   </strong>
   <br />
   <br />

@@ -615,10 +615,10 @@ $min-breakpoints: ();
   background-clip: text;
   -webkit-background-clip: text;
   background-image: linear-gradient(currentColor, currentColor);
-  -webkit-text-fill-color: $color;
+  -webkit-text-fill-color: $color; // color for unfilled text placeholder. Use color css value to change fill color.
 
   // filter: drop-shadow(0 0 1px grey); // optional for readability
-  // background-size: 100%; // Alter this for the effect
+  // background-size: 100%; // This value is how the effect works. Controlled by js.
 }
 
 @mixin gradient-border(

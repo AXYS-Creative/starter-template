@@ -312,49 +312,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Text Fill - Scrub only
-        {
-          const fillTextElems = document.querySelectorAll(".text-fill");
-
-          fillTextElems.forEach((el) => {
-            const speed = el.dataset.fillSpeed;
-            const scrubAttr = el.dataset.fillScrub;
-            const onceAttr = el.dataset.fillOnce;
-            const markersAttr = el.dataset.fillMarkers === "true";
-
-            const scrub = scrubAttr !== "false";
-            const once = onceAttr === "true";
-
-            // Set end point based on speed
-            const end =
-              speed === "fast"
-                ? "bottom 80%"
-                : speed === "slow"
-                ? "bottom 40%"
-                : "bottom 60%";
-
-            const scrollTrigger = {
-              trigger: el,
-              start: scrub ? "top 90%" : "top 98%",
-              end: scrub ? end : "bottom 2%",
-              ...(scrub
-                ? { scrub }
-                : {
-                    toggleActions: once
-                      ? "play none none none"
-                      : "play reset play reset",
-                  }),
-              markers: markersAttr,
-            };
-
-            gsap.fromTo(
-              el,
-              { backgroundSize: "0%" },
-              { backgroundSize: "100%", scrollTrigger }
-            );
-          });
-        }
-
         // Glitch Text (Uses gsap scrambleText) TODO: Consider making shared configs across glitch effects, e.g. data-glitch-chars could be used for all instances.
         {
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
@@ -985,6 +942,49 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
+        // Text Fill - Scrub only
+        {
+          const fillTextElems = document.querySelectorAll(".text-fill");
+
+          fillTextElems.forEach((el) => {
+            const speed = el.dataset.fillSpeed;
+            const scrubAttr = el.dataset.fillScrub;
+            const onceAttr = el.dataset.fillOnce;
+            const markersAttr = el.dataset.fillMarkers === "true";
+
+            const scrub = scrubAttr !== "false";
+            const once = onceAttr === "true";
+
+            // Set end point based on speed
+            const end =
+              speed === "fast"
+                ? "bottom 80%"
+                : speed === "slow"
+                ? "bottom 40%"
+                : "bottom 60%";
+
+            const scrollTrigger = {
+              trigger: el,
+              start: scrub ? "top 90%" : "top 98%",
+              end: scrub ? end : "bottom 2%",
+              ...(scrub
+                ? { scrub }
+                : {
+                    toggleActions: once
+                      ? "play none none none"
+                      : "play reset play reset",
+                  }),
+              markers: markersAttr,
+            };
+
+            gsap.fromTo(
+              el,
+              { backgroundSize: "0%" },
+              { backgroundSize: "100%", scrollTrigger }
+            );
+          });
+        }
+
         // Text Scale
         {
           const scaleElems = document.querySelectorAll(".text-scale");
@@ -1062,11 +1062,10 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Tunnel
         {
           document.querySelectorAll(".tunnel").forEach((el) => {
-            let tunnelInner = el.querySelector(".tunnel-inner");
-            let tunnelImg = el.querySelector(".tunnel__img");
-            const y = el.dataset.parallaxY || "-75%";
-            // const scrub = parseFloat(el.dataset.parallaxScrub) || 0.125;
-            const scrub = parseFloat(el.dataset.parallaxScrub) || 0;
+            const tunnelInner = el.querySelector(".tunnel-inner");
+            const tunnelImg = el.querySelector(".tunnel__img");
+            const offset = tunnelImg.dataset.parallaxOffset;
+            const scrub = parseFloat(tunnelImg.dataset.parallaxScrub) || 0;
 
             gsap.to(tunnelInner, {
               width: "100%",
@@ -1080,7 +1079,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
 
             gsap.from(tunnelImg, {
-              y,
+              y: offset,
               rotate: "5deg",
               filter: "brightness(0.125)",
               ease: "none",

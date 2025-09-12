@@ -1,15 +1,15 @@
-// .pills-group {
+// .badges-group {
 
 // }
 
-.pill {
+.badge {
   --icon-size: 12px;
 
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  border: 1px solid var(--color-pill);
-  color: var(--color-pill);
+  border: 1px solid var(--color-badge);
+  color: var(--color-badge);
   border-radius: 128px;
   padding: 4px 12px;
   font-size: 14px;

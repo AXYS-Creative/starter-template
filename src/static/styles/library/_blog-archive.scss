@@ -1,5 +1,7 @@
 .blog-article-list {
   @include row-start;
+  @include section-padding;
+  @include width-clamp;
   gap: var(--section-gap--lg);
   flex-wrap: wrap;
 }
