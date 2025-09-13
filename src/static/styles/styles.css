@@ -6346,17 +6346,12 @@ code {
   overflow: hidden;
 }
 
-.main-library-advanced .grid-flow-img-section {
+.main-library-advanced .dots-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 128px;
-}
-.main-library-advanced .dots-field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: var(--section-gap--lg);
 }
 .main-library-advanced .dots-field svg {
   display: flex;
@@ -6368,89 +6363,12 @@ code {
   fill: var(--color-font--primary);
   opacity: 0.5;
 }
-.main-library-advanced .light {
-  display: none;
-}
-.main-library-advanced .light .container {
+.main-library-advanced .grid-flow-img-section {
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  align-items: center;
   flex-direction: column;
-  filter: url("#noise") url("#light");
   justify-content: center;
-  z-index: 1;
-  color: #fff;
-  text-align: center;
-}
-.main-library-advanced .light .title {
-  color: var(--color-font--primary);
-  font-family: var(--font-family--heading);
-  font-size: 72px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  font-size: 10vw;
-  font-weight: 600;
-  line-height: 90%;
-  margin-bottom: 24px;
-}
-@media (max-width: 1512px) {
-  .main-library-advanced .light .title {
-    font-size: max(48px, 4.8vw);
-  }
-}
-.main-library-advanced .light .subtitle {
-  color: var(--color-font--primary);
-  font-family: var(--font-family--heading);
-  font-size: 64px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-@media (max-width: 1512px) {
-  .main-library-advanced .light .subtitle {
-    font-size: max(44px, 4.4vw);
-  }
-}
-.main-library-advanced .light svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
-.main-library-advanced .light .cursor {
-  display: none;
-}
-.main-library-advanced .light .cursor__point {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  translate: -50% -50%;
-  background-color: white;
-  border-radius: 50%;
-  z-index: 2;
-  display: none;
-}
-.main-library-advanced .light .cursor__light {
-  margin: -24px 0 0 -24px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 48px;
-  height: 48px;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0.1;
-  z-index: 2;
-  display: none;
+  align-items: center;
+  gap: 128px;
 }
 
 .alert-section__group {

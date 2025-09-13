@@ -7,9 +7,68 @@ title: Advanced // Delete this file from production sites
 description:
 ---
 
-<section class="hero">
-  <h1>Advanced</h1>
-  <p>More complex components, advanced js, webGL, svg shaders, etc.</p>
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Advanced',
+  desc: 'More complex components, advanced js, webGL, spline, svg shaders, etc.'
+}) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}
+
+<!-- Mouse position seems affected by content placement -->
+<section class="dots-field">
+  <h2>[ dots ]</h2>
+  <!-- prettier-ignore -->
+  {% set dots = ({
+    width: '400',
+    height: '400'
+   }) %}
+  <svg
+    class="dots-field__svg grid-bg-disable"
+    xmlns="http://www.w3.org/2000/svg"
+    width="{{ dots.width }}"
+    height="{{ dots.height }}"
+    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
+  ></svg>
+  <!-- prettier-ignore -->
+  {% set dots = ({
+    width: '800',
+    height: '280',
+    size: 5,
+    gap: 16,
+    scatter: 0.00075,
+    sensitivity: 0.75
+   }) %}
+  <svg
+    class="dots-field__svg grid-bg-disable"
+    xmlns="http://www.w3.org/2000/svg"
+    width="{{ dots.width }}"
+    height="{{ dots.height }}"
+    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
+    data-dot-size="{{ dots.size }}"
+    data-dot-gap="{{ dots.gap }}"
+    data-dot-scatter="{{ dots.scatter }}"
+    data-dot-sensitivity="{{ dots.sensitivity }}"
+  ></svg>
+  <!-- prettier-ignore -->
+  {% set dots = ({
+    width: '180',
+    height: '180',
+    size: 1,
+    gap: 12,
+    scatter: 0.0005,
+    sensitivity: 0.99
+   }) %}
+  <svg
+    class="dots-field__svg grid-bg-disable"
+    xmlns="http://www.w3.org/2000/svg"
+    width="{{ dots.width }}"
+    height="{{ dots.height }}"
+    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
+    data-dot-size="{{ dots.size }}"
+    data-dot-gap="{{ dots.gap }}"
+    data-dot-scatter="{{ dots.scatter }}"
+    data-dot-sensitivity="{{ dots.sensitivity }}"
+  ></svg>
 </section>
 
 <section
@@ -57,27 +116,6 @@ description:
   </ul>
 </section>
 
-<!-- Mouse position seems affected by content placement -->
-<section class="dots-field">
-  <svg
-    class="grid-bg-disable"
-    xmlns="http://www.w3.org/2000/svg"
-    width="400"
-    height="400"
-    viewBox="0 0 400 400"
-  ></svg>
-</section>
-
-<section class="video-scrub-section">
-  <video
-    class="video-scrub"
-    src="/static/img/library/vid-sample.mp4"
-    preload="auto"
-    muted
-    playsinline
-  ></video>
-</section>
-
 <section class="grid-flow-img-section">
   <!-- prettier-ignore -->
   {% set grid_flow_img_src = '/static/img/library/landscape-1.webp' %}
@@ -91,49 +129,21 @@ description:
   {% include '../_includes/library/advanced/grid-flow-img.njk' %}
 </section>
 
-<section class="light">
-  <div class="container">
-    <h1 class="title">
-      UNLIMITED
-      <br />
-      DESIGN + DEVELOPMENT
-    </h1>
-    <div class="subtitle">AXYS CREATIVE</div>
-  </div>
+<section class="spline-section library-section">
+  <h2 class="h6">[ Spline ]</h2>
 
-  <div class="cursor">
-    <div class="cursor__point"></div>
-    <div class="cursor__light"></div>
-  </div>
+  <canvas id="spline-canvas"></canvas>
+  <!-- https://prod.spline.design/d7HscHvJYQfAtvcZ/scene.splinecode -->
+</section>
 
-  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <filter id="light">
-      <feSpecularLighting
-        result="specOut"
-        surfaceScale="1"
-        specularConstant="1.2"
-        specularExponent="10"
-        lighting-color="#999"
-      >
-        <fePointLight id="point-light" x="50" y="75" z="100" />
-      </feSpecularLighting>
-    </filter>
-
-    <filter id="noise">
-      <feTurbulence
-        id="turbulence"
-        type="fractalNoise"
-        baseFrequency="0.999 0.999"
-        seed="1"
-        numOctaves="10"
-      />
-      <feColorMatrix type="saturate" values="0" />
-      <feComponentTransfer result="noise">
-        <feFuncA type="linear" slope="1" />
-      </feComponentTransfer>
-      <feBlend in="noise" in2="SourceGraphic" mode="multiply" />
-    </filter>
-  </svg>
+<section class="video-scrub-section">
+  <video
+    class="video-scrub"
+    src="/static/img/library/vid-sample.mp4"
+    preload="auto"
+    muted
+    playsinline
+  ></video>
 </section>
 
 <!-- prettier-ignore -->

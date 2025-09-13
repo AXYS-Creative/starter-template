@@ -41,6 +41,6 @@ Collection of UI components and utility classes. To get started pick what you ne
 - Grid Fade
 - Magnet
 - Parallax
-- Tilt Cards
+- Tilt
 - Tooltip
 - Typing Text

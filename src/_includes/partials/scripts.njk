@@ -6,3 +6,13 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+
+<!-- spline -->
+<script type="module">
+  import { Application } from "https://cdn.jsdelivr.net/npm/@splinetool/runtime@1.0.69/build/runtime.esm.js";
+
+  const canvas = document.getElementById("canvas3d");
+  const app = new Application(canvas);
+
+  app.load("https://prod.spline.design/abcd1234/scene.splinecode");
+</script>
