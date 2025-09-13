@@ -8,7 +8,7 @@
   --border-width--btn: 1px;
   --border-width--bold: 2px;
   --color-brand--primary: #e48c66;
-  --color-brand--secondary: #a4d1a2;
+  --color-brand--secondary: #ada4e3;
   --color-font--error: #dc143c;
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-bg--hover: transparent;
@@ -6360,7 +6360,7 @@ code {
   overflow: visible;
 }
 .main-library-advanced .dots-field svg circle {
-  fill: var(--color-font--primary);
+  fill: var(--color-brand--secondary);
   opacity: 0.5;
 }
 .main-library-advanced .grid-flow-img-section {

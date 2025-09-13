@@ -3,86 +3,83 @@
   const dotFields = document.querySelectorAll(".dots-field__svg");
 
   dotFields.forEach((comp) => {
-    const sizeVal = parseFloat(comp.dataset.dotSize) || 3;
-    const gapVal = parseFloat(comp.dataset.dotGap) || 24;
-    const scatterVal = parseFloat(comp.dataset.dotScatter) || 0.5; // Try dropping lower e.g. 0.001
-    const sensitivityVal = parseFloat(comp.dataset.dotSensitivity) || 0.9;
+    // Defaults set in component (dots.njk)
+    const config = {
+      radius: parseFloat(comp.dataset.dotSize),
+      gap: parseFloat(comp.dataset.dotGap), // Don't drop below 8
+      restore: parseFloat(comp.dataset.dotRestore), // Smaller value eg 0.0001 means the dots take longer to restore position (with higher sensitivity eg 0.99)
+      sensitivity: parseFloat(comp.dataset.dotSensitivity), // [0.9 - 0.99] recommended. 1 prevents restore
+      distance: parseFloat(comp.dataset.dotDistance), // size of mouse radius (how many dots are affected)
+      strength: parseFloat(comp.dataset.dotStrength),
+      illuminate: comp.dataset.dotIlluminate === "true", // Adjust opacity of dots within range
+      grow: comp.dataset.dotGrow === "true", // Adjust scale of dots within range
+    };
 
     const svg = { el: comp, width: 1, height: 1, x: 0, y: 0 };
     const dots = [];
-    const circle = { radius: sizeVal, margin: gapVal };
     const mouse = { x: 0, y: 0, prevX: 0, prevY: 0, speed: 0 };
 
     // Resize
     function resizeHandler() {
       const bounding = svg.el.getBoundingClientRect();
-
       svg.width = bounding.width;
       svg.height = bounding.height;
-
-      // Include scroll offsets to account for the current scroll position
       svg.x = bounding.left + window.scrollX;
       svg.y = bounding.top + window.scrollY;
     }
 
     // Create dots
     function createDots() {
+      svg.el.innerHTML = ""; // clear previous
+      dots.length = 0; // reset array
       resizeHandler();
 
-      const dotSize = circle.radius * 2 + circle.margin;
-
+      const dotSize = config.radius * 2 + config.gap;
       const rows = Math.floor(svg.height / dotSize);
       const cols = Math.floor(svg.width / dotSize);
-
       const x = (svg.width % dotSize) / 2;
       const y = (svg.height % dotSize) / 2;
 
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const dot = {
-            anchor: {
-              x: x + col * dotSize + dotSize / 2,
-              y: y + row * dotSize + dotSize / 2,
-            },
-          };
+          const anchorX = x + col * dotSize + dotSize / 2;
+          const anchorY = y + row * dotSize + dotSize / 2;
 
-          dot.position = { x: dot.anchor.x, y: dot.anchor.y };
-          dot.smooth = { x: dot.anchor.x, y: dot.anchor.y };
-          dot.velocity = { x: 0, y: 0 };
-          dot.move = { x: 0, y: 0 };
+          const dot = {
+            anchor: { x: anchorX, y: anchorY },
+            position: { x: anchorX, y: anchorY },
+            smooth: { x: anchorX, y: anchorY },
+            velocity: { x: 0, y: 0 },
+          };
 
           dot.el = document.createElementNS(
             "http://www.w3.org/2000/svg",
             "circle"
           );
-          dot.el.setAttribute("cx", dot.anchor.x);
-          dot.el.setAttribute("cy", dot.anchor.y);
-          dot.el.setAttribute("r", circle.radius / 2);
-
+          dot.el.setAttribute("cx", anchorX);
+          dot.el.setAttribute("cy", anchorY);
+          dot.el.setAttribute("r", config.radius); // use radius directly
           svg.el.append(dot.el);
+
           dots.push(dot);
         }
       }
     }
 
-    /* Check mouse move */
+    // Mouse
     function mouseHandler(e) {
       mouse.x = e.pageX;
       mouse.y = e.pageY;
     }
 
-    // Check mouse speed
+    // Mouse speed
     function mouseSpeed() {
       const distX = mouse.prevX - mouse.x;
       const distY = mouse.prevY - mouse.y;
       const dist = Math.hypot(distX, distY);
 
-      let repositionDots = scatterVal;
-
-      mouse.speed += (dist - mouse.speed) * repositionDots;
-      if (mouse.speed < 0.001) {
-        mouse.speed = 0;
-      }
+      mouse.speed += (dist - mouse.speed) * config.restore;
+      if (mouse.speed < 0.001) mouse.speed = 0;
 
       mouse.prevX = mouse.x;
       mouse.prevY = mouse.y;
@@ -96,19 +93,35 @@
         const distX = mouse.x - svg.x - dot.position.x;
         const distY = mouse.y - svg.y - dot.position.y;
         const dist = Math.max(Math.hypot(distX, distY), 1);
-        let magnetSensitivity = sensitivityVal;
 
+        // --- Shared intensity calculation ---
+        const minIntensity = 0.2; // floor for dim/grow effects
+        let intensity = 1 - dist / config.distance;
+        intensity = Math.min(Math.max(intensity, 0), 1); // clamp 0–1
+        intensity = minIntensity + intensity * (1 - minIntensity); // scale
+
+        // --- Illuminate effect ---
+        if (config.illuminate) {
+          dot.el.style.opacity = intensity;
+          // OR use color: dot.el.style.fill = `rgba(255,255,255,${intensity})`;
+        }
+
+        // --- Grow effect ---
+        if (config.grow) {
+          dot.el.setAttribute("r", config.radius * (1 + intensity));
+        }
+
+        // --- Motion ---
         const angle = Math.atan2(distY, distX);
+        const move = (config.strength / dist) * (mouse.speed * 0.1);
 
-        const move = (500 / dist) * (mouse.speed * 0.1);
-
-        if (dist < 100) {
+        if (dist < config.distance) {
           dot.velocity.x += Math.cos(angle) * -move;
           dot.velocity.y += Math.sin(angle) * -move;
         }
 
-        dot.velocity.x *= magnetSensitivity;
-        dot.velocity.y *= magnetSensitivity;
+        dot.velocity.x *= config.sensitivity;
+        dot.velocity.y *= config.sensitivity;
 
         dot.position.x = dot.anchor.x + dot.velocity.x;
         dot.position.y = dot.anchor.y + dot.velocity.y;
@@ -123,19 +136,12 @@
       requestAnimationFrame(tick);
     }
 
-    // Ready
+    // Init
     (function () {
-      // Resize
       window.addEventListener("resize", resizeHandler);
-
-      // Mouse
       window.addEventListener("mousemove", mouseHandler);
       mouseSpeed();
-
-      // Dots
       createDots();
-
-      // Tick
       tick();
     })();
   });

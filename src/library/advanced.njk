@@ -16,59 +16,57 @@ description:
 
 <!-- Mouse position seems affected by content placement -->
 <section class="dots-field">
-  <h2>[ dots ]</h2>
+  <h2 class="h5">[ <span class="glitch-scroll">dots</span> ]</h2>
   <!-- prettier-ignore -->
   {% set dots = ({
     width: '400',
     height: '400'
    }) %}
-  <svg
-    class="dots-field__svg grid-bg-disable"
-    xmlns="http://www.w3.org/2000/svg"
-    width="{{ dots.width }}"
-    height="{{ dots.height }}"
-    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
-  ></svg>
+  {% include "../_includes/library/advanced/dots.njk" %}
+
   <!-- prettier-ignore -->
   {% set dots = ({
     width: '800',
     height: '280',
     size: 5,
     gap: 16,
-    scatter: 0.00075,
-    sensitivity: 0.75
+    restore: 0.0001,
+    sensitivity: 0.5,
+    distance: 100,
+    strength: 0,
+    illuminate: true,
+    grow: true
    }) %}
-  <svg
-    class="dots-field__svg grid-bg-disable"
-    xmlns="http://www.w3.org/2000/svg"
-    width="{{ dots.width }}"
-    height="{{ dots.height }}"
-    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
-    data-dot-size="{{ dots.size }}"
-    data-dot-gap="{{ dots.gap }}"
-    data-dot-scatter="{{ dots.scatter }}"
-    data-dot-sensitivity="{{ dots.sensitivity }}"
-  ></svg>
+   {% include "../_includes/library/advanced/dots.njk" %}
+
   <!-- prettier-ignore -->
   {% set dots = ({
     width: '180',
-    height: '180',
+    height: '240',
     size: 1,
     gap: 12,
-    scatter: 0.0005,
-    sensitivity: 0.99
+    restore: 0.01,
+    sensitivity: 0.9,
+    distance: 150,
+    strength: 25,
+    grow: true
    }) %}
-  <svg
-    class="dots-field__svg grid-bg-disable"
-    xmlns="http://www.w3.org/2000/svg"
-    width="{{ dots.width }}"
-    height="{{ dots.height }}"
-    viewBox="0 0 {{ dots.width }} {{ dots.height }}"
-    data-dot-size="{{ dots.size }}"
-    data-dot-gap="{{ dots.gap }}"
-    data-dot-scatter="{{ dots.scatter }}"
-    data-dot-sensitivity="{{ dots.sensitivity }}"
-  ></svg>
+  {% include "../_includes/library/advanced/dots.njk" %}
+
+  <!-- prettier-ignore -->
+  {% set dots = ({
+    width: '600',
+    height: '420',
+    size: 2,
+    gap: 16,
+    restore: 0,
+    sensitivity: 0.8,
+    distance: 200,
+    strength: 500,
+    illuminate: true,
+    grow: true
+   }) %}
+   {% include "../_includes/library/advanced/dots.njk" %}
 </section>
 
 <section

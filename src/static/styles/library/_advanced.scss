@@ -8,7 +8,9 @@
       overflow: visible;
 
       circle {
-        fill: var(--color-font--primary);
+        // fill: var(--color-font--primary);
+        // fill: var(--color-brand--primary);
+        fill: var(--color-brand--secondary);
         opacity: 0.5;
       }
     }
