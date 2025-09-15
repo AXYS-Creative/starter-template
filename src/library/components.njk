@@ -261,6 +261,7 @@ path: library/components
   <h6>Most basic clipboard-copy usage</h6>
   {% set alert = null %}
   <!-- prettier-ignore -->
+  {% set a11y_tab = 'tab-element-page' %}
   {% set clipboard_copy = ({id: 'clipboard-copy-1'}) %}
   {% include "../_includes/library/components/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">
@@ -634,7 +635,7 @@ path: library/components
   <p>
     Tooltip util
     <span
-      class="tooltip-util"
+      class="tooltip-util tab-element-page"
       data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
       data-tooltip-min-width="212"
       role="button"
@@ -644,18 +645,17 @@ path: library/components
     </span>
     . You’ll notice that the text bubble is
     <span
-      class="tooltip-util"
+      class="tooltip-util tab-element-page"
       data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
       data-tooltip-min-width="250"
       role="button"
-      tabindex="0"
     >
       directionally aware
     </span>
     and will reposition based on the mouse position in the viewport.
   </p>
   <img
-    class="tooltip-util icon-md"
+    class="tooltip-util icon-md tab-element-page"
     data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
     data-tooltip-min-width="250"
     src="/static/img/library/icon-google-info-circle.svg"
@@ -668,4 +668,15 @@ path: library/components
 
 <section class="video-player-section">
   <h2 class="h5">[ Video Player - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  <button
+    class="cta-1 video-toggle tab-element-page"
+    data-vid-src="{{ library.video_overlay.src }}"
+    aria-label="Open video overlay for {{ item.title }}"
+    aria-controls="video-overlay"
+  >
+    {{ library.video_overlay.btn_text }}
+  </button>
+  {% include "../_includes/library/components/video-overlay.njk" %}
 </section>

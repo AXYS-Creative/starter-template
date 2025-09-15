@@ -1,4 +1,4 @@
-import { mqNoMotion } from "../util.js";
+import { mqNoMotion, mqMouse } from "../util.js";
 
 // Cubic Bézier easing function (for cross-browser compatible animations)
 export const cubicBezier = (p1x, p1y, p2x, p2y) => {
@@ -1290,7 +1290,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
   });
 
   // Greater than 520 so it doesn't refresh on  mobile(dvh)
-  if (window.innerWidth > 520) {
+  if (window.innerWidth > 520 && mqMouse) {
     window.addEventListener("resize", () => {
       ScrollTrigger.refresh();
     });

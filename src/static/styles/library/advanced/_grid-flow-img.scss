@@ -1,0 +1,68 @@
+// Library DELETE ME
+.grid-flow-img-section {
+  @include section-padding;
+  @include width-clamp;
+  @include column-center;
+  gap: var(--section-gap--lg);
+}
+// Library DELETE ME
+
+.grid-flow-parent {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  width: 100%; // altered below with modifiers
+  height: auto;
+
+  @include mq-motion-reduce {
+    canvas {
+      display: none !important;
+    }
+  }
+
+  // img & canvas
+  & > * {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: bottom;
+  }
+
+  // &--lg {
+
+  // }
+
+  &--md {
+    @include mq-min(md) {
+      width: 50%;
+    }
+  }
+
+  &--sm {
+    @include mq-min(md) {
+      width: 25%;
+    }
+  }
+
+  &--landscape {
+    aspect-ratio: 1.75 / 1;
+  }
+
+  &--portrait {
+    aspect-ratio: 1 / 1.25;
+  }
+
+  &--greyscale {
+    // img & canvas
+    & > * {
+      filter: grayscale(1);
+      transition: $ease;
+
+      &:hover {
+        filter: grayscale(0);
+      }
+    }
+  }
+}

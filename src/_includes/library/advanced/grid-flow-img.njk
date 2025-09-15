@@ -1,15 +1,42 @@
+<!-- prettier-ignore -->
+{% set src = grid_flow_img.src or '' %}
+{% set alt = grid_flow_img.alt or '' %}
+{% set width = grid_flow_img.width or 400 %}
+{% set height = grid_flow_img.height or 400 %}
+{% set lazy_load = grid_flow_img.lazy_load | default(true) %}
+{% set size = grid_flow_img.size or 'lg' %} {# lg | md | sm #}
+{% set fit = grid_flow_img.fit or 'cover' %} {# stretch | cover | contain #}
+{% set orientation = grid_flow_img.orientation or 'landscape' %}
+
+{% set ease = grid_flow_img.ease or 0.05 %}
+{% set range = grid_flow_img.range or 0.3 %}
+{% set grid = grid_flow_img.grid or 32 %}
+{% set intensity = grid_flow_img.intensity or 1.0 %}
+{% set greyscale = grid_flow_img.greyscale | default(true) %}
+
 <div
-  class="grid-flow-parent {% if grid_flow_img_size %}grid-flow-parent--{{
-    grid_flow_img_size
-  }}{% endif %} cursor-hide"
+  class="
+  grid-flow-parent 
+  grid-flow-parent--{{ size }} 
+  grid-flow-parent--{{ orientation }}
+  {% if greyscale%}
+    grid-flow-parent--greyscale
+  {% endif %}
+  "
+  data-grid-flow-ease="{{ ease }}"
+  data-grid-flow-grid="{{ grid }}"
+  data-grid-flow-fit="{{ fit }}"
+  data-grid-flow-intensity="{{ intensity }}"
+  data-grid-flow-range="{{ range }}"
 >
+  <!-- prettier-ignore -->
   <img
     class="grid-flow-img"
-    src="{{ grid_flow_img_src }}"
-    alt="{{ grid_flow_img_alt }}"
-    loading="{{ grid_flow_img_loading or 'lazy' }}"
-    width="{{ grid_flow_img_width }}"
-    height="{{ grid_flow_img_height }}"
+    src="{{ src }}"
+    alt="{{ alt }}"
+    width="{{ width }}"
+    height="{{ height }}"
+    {% if lazy_load %}loading="lazy"{% endif %}
     eleventy:ignore
   />
 </div>

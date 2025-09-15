@@ -26,7 +26,6 @@ export const lenis = new Lenis({
 
   playButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log("clicked the button");
       const isPressed = btn.getAttribute("aria-pressed") === "true";
       btn.setAttribute("aria-pressed", !isPressed);
     });
@@ -65,13 +64,15 @@ export const lenis = new Lenis({
 }
 
 // Skip to main content option (for lenghthy headers)
-const skipToContent = document.querySelector(".skip-to-content"),
-  contentStart = document.querySelector("#content-start");
+{
+  const skipToContent = document.querySelector(".skip-to-content"),
+    contentStart = document.querySelector("#content-start");
 
-if (skipToContent) {
-  skipToContent.addEventListener("click", () => {
-    contentStart?.focus();
-  });
+  if (skipToContent) {
+    skipToContent.addEventListener("click", () => {
+      contentStart?.focus();
+    });
+  }
 }
 
 // CSS Util for .btn--split-text
@@ -125,3 +126,14 @@ const setViewportUnits = (() => {
 
 // console.clear();
 console.log("visit axyscreative.com for more info");
+
+// When the user changes tabs
+const originalTitle = document.title;
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    document.title = "👋 Hey, come back!";
+  } else {
+    document.title = originalTitle;
+  }
+});

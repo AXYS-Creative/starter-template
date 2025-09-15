@@ -29,7 +29,6 @@
 // // // // // Library // DELETE ME CHANGE ME after pulling files
 // prettier-ignore
 @import "./library/accordion",
- "./library/advanced",
  "./library/alert",
  "./library/blog-archive",
  "./library/blog-post",
@@ -38,7 +37,6 @@
  "./library/carousel-swiper",
  "./library/contact-form",
  "./library/counter",
- "./library/grid-flow-img",
  "./library/marquee",
  "./library/mouse-cursor",
  "./library/badge",
@@ -50,6 +48,10 @@
  "./library/tooltip",
  "./library/video-overlay",
  "./library/video-scrub";
+
+// prettier-ignore
+@import "./library/advanced/dots",
+ "./library/advanced/grid-flow-img";
 
 // prettier-ignore
 @import "./library/sections/hero-simple",

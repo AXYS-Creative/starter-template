@@ -1,0 +1,16 @@
+.dots-field {
+  @include column-center;
+  gap: var(--section-gap--lg);
+}
+
+.dots-flow {
+  @include row-center;
+  overflow: visible;
+
+  circle {
+    // fill: var(--color-font--primary);
+    // fill: var(--color-brand--primary);
+    fill: var(--color-brand--secondary);
+    // opacity: 0.5;
+  }
+}

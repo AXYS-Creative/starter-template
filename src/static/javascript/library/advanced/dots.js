@@ -4,7 +4,7 @@ dotFields.forEach((comp) => {
   // Defaults set in component (dots.njk)
   const config = {
     radius: parseFloat(comp.dataset.dotSize),
-    gap: parseFloat(comp.dataset.dotGap), // Don't drop below 8
+    gap: Math.max(parseFloat(comp.dataset.dotGap) || 24, 8), // Prevents gap below 8
     restore: parseFloat(comp.dataset.dotRestore), // Smaller value eg 0.0001 means the dots take longer to restore position (with higher sensitivity eg 0.99)
     sensitivity: parseFloat(comp.dataset.dotSensitivity), // [0.9 - 0.99] recommended. 1 prevents restore
     distance: parseFloat(comp.dataset.dotDistance), // size of mouse radius (how many dots are affected)
@@ -111,7 +111,7 @@ dotFields.forEach((comp) => {
 
       // --- Motion ---
       const angle = Math.atan2(distY, distX);
-      const move = (config.strength / dist) * (mouse.speed * 0.1);
+      const move = Math.min((config.strength / dist) * (mouse.speed * 0.1), 20);
 
       if (dist < config.distance) {
         dot.velocity.x += Math.cos(angle) * -move;

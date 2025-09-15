@@ -7,7 +7,7 @@ const videoOverlay = document.querySelector(".video-overlay"),
 
 const videoToggle = document.querySelectorAll(".video-toggle");
 
-let nonVideoOverlayTabElements = [...tabElementsPage, headerLogo, menuBtn];
+const nonVideoOverlayTabElements = [...tabElementsPage, headerLogo, menuBtn];
 
 videoCloseBtn?.setAttribute("tabindex", "-1");
 
@@ -21,12 +21,12 @@ if (videoToggle) {
   });
 }
 
-export let isvideoOverlayOpen = false;
+export let isVideoOverlayOpen = false;
 
 export const openVideoOverlay = (src) => {
-  isvideoOverlayOpen = true;
+  isVideoOverlayOpen = true;
 
-  videoOverlay.setAttribute("aria-hidden", !isvideoOverlayOpen);
+  videoOverlay.setAttribute("aria-hidden", !isVideoOverlayOpen);
   videoOverlay.classList.remove("video-overlay--inactive");
 
   if (src) videoPlayer.src = src; // Inject video source
@@ -35,14 +35,16 @@ export const openVideoOverlay = (src) => {
 
   videoOverlay.setAttribute("tabindex", "0");
   videoCloseBtn.setAttribute("tabindex", "0");
-  nonVideoOverlayTabElements.forEach((el) => el.setAttribute("tabindex", "-1"));
+  nonVideoOverlayTabElements.forEach((el) =>
+    el?.setAttribute("tabindex", "-1")
+  );
 
   lenis.stop();
 
   // // Notify other modules about the state change (from old sunder site)
   // document.dispatchEvent(
   //   new CustomEvent("videoOverlayStateChange", {
-  //     detail: isvideoOverlayOpen,
+  //     detail: isVideoOverlayOpen,
   //   })
   // );
 };
@@ -56,7 +58,7 @@ videoToggle?.forEach((btn) => {
 });
 
 export const closeVideoOverlay = () => {
-  isvideoOverlayOpen = false;
+  isVideoOverlayOpen = false;
 
   videoOverlay.setAttribute("aria-hidden", "true");
   videoOverlay.classList.add("video-overlay--inactive");
@@ -67,14 +69,14 @@ export const closeVideoOverlay = () => {
 
   videoOverlay.setAttribute("tabindex", "-1");
   videoCloseBtn.setAttribute("tabindex", "-1");
-  nonVideoOverlayTabElements.forEach((el) => el.setAttribute("tabindex", "0"));
+  nonVideoOverlayTabElements.forEach((el) => el?.setAttribute("tabindex", "0"));
 
   lenis.start();
 
   // // Notify other modules about the state change
   // document.dispatchEvent(
   //   new CustomEvent("videoOverlayStateChange", {
-  //     detail: isvideoOverlayOpen,
+  //     detail: isVideoOverlayOpen,
   //   })
   // );
 };
