@@ -5,8 +5,11 @@
 {% set place = tooltip_data.place or 'top' %}
 {% set size = tooltip_data.size or 'md' %}
 
+<!-- prettier-ignore -->
+{% set a11y_tab = a11y_tab or 'tab-element-page' %}
+
 <div class="tooltip">
-  <button class="tooltip__btn">
+  <button class="tooltip__btn {{ a11y_tab }}">
     <!-- prettier-ignore -->
     {% if text %}
     <span class="tooltip__btn-text">{{ text }}</span>
