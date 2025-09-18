@@ -66,36 +66,33 @@
   // below 'extneded' for specificity
   &--centered {
     --section-height: 200vh;
-    --scale-difference: 0.5;
+    --clip-width: 50vw;
+    --clip-height: 50vh;
     @include column-center(flex-start);
 
-    &-pin {
-      position: relative;
+    &-pin,
+    .tunnel-centered--pin {
+      @include column-center;
+      height: 100vh;
+      width: 100vw;
     }
 
     .tunnel-clip {
-      // border: $test;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      translate: -50% 0;
-      height: 100vh;
-      width: 100vw;
+      position: relative;
+      width: var(--clip-width);
+      height: var(--clip-height);
       transform-origin: center;
-      scale: calc(1 - var(--scale-difference));
-      border-radius: var(--radius--lg);
+      border-radius: var(--radius);
     }
 
     .tunnel__img {
       @include absolute-center;
-      transform-origin: center;
-      height: 100vh;
+      height: 90vh;
       width: 100vw;
-      scale: calc(1 / (1 - var(--scale-difference)));
-    }
+      z-index: -1;
 
-    .tunnel__message {
-      display: none;
+      rotate: -2deg;
+      filter: brightness(0.75);
     }
   }
 }

@@ -471,6 +471,14 @@ $min-breakpoints: ();
   translate: -50% -50%;
 }
 
+// Used for things like gsap
+@mixin absolute-center-legacy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
 // Other
 
 @mixin hide-content {

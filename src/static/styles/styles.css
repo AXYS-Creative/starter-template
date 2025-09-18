@@ -8443,36 +8443,37 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .tunnel--centered {
   --section-height: 200vh;
-  --scale-difference: 0.5;
+  --clip-width: 50vw;
+  --clip-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
-.tunnel--centered-pin {
-  position: relative;
-}
-.tunnel--centered .tunnel-clip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% 0;
+.tunnel--centered-pin,
+.tunnel--centered .tunnel-centered--pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
+}
+.tunnel--centered .tunnel-clip {
+  position: relative;
+  width: var(--clip-width);
+  height: var(--clip-height);
   transform-origin: center;
-  scale: calc(1 - var(--scale-difference));
-  border-radius: var(--radius--lg);
+  border-radius: var(--radius);
 }
 .tunnel--centered .tunnel__img {
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  transform-origin: center;
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
-  scale: calc(1 / (1 - var(--scale-difference)));
-}
-.tunnel--centered .tunnel__message {
-  display: none;
+  z-index: -1;
+  rotate: -2deg;
+  filter: brightness(0.75);
 }/*# sourceMappingURL=styles.css.map */

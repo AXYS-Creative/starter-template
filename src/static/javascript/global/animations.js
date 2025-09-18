@@ -1073,38 +1073,39 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             if (centered) {
               const tunnelPin = el.querySelector(".tunnel-centered--pin");
+              const clipDuration = "+=100%"; // 50% finishes before message comes in.
 
               gsap.to(tunnelPin, {
                 scrollTrigger: {
                   trigger: tunnelPin,
-                  start: `top top`,
-                  end: "+=150%",
+                  start: `center center`,
+                  end: "+=100%",
                   pin: true,
                 },
               });
 
               gsap.to(tunnelClip, {
-                scale: 1,
+                width: "100vw",
+                height: "100vh",
                 borderRadius: 1,
                 ease: "none",
                 scrollTrigger: {
-                  trigger: tunnelClip,
+                  trigger: el,
                   start: `top top`,
-                  end: "+=100%",
+                  end: clipDuration,
                   scrub,
-                  // markers: coralMarkers,
                 },
               });
 
               gsap.to(tunnelImg, {
-                scale: 1,
-                ease: "none",
+                // ease: "none",
+                rotate: "0deg",
+                filter: "brightness(1)",
                 scrollTrigger: {
-                  trigger: tunnelClip,
+                  trigger: tunnelPin,
                   start: `top top`,
-                  end: "+=100%",
+                  end: clipDuration,
                   scrub,
-                  // markers: whiteMarkers,
                 },
               });
             } else {
@@ -1116,7 +1117,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   start: "top 70%", // Control when the image gets wider
                   end: "top top",
                   scrub,
-                  // markers: whiteMarkers,
                 },
               });
 
