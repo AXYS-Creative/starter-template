@@ -8369,7 +8369,7 @@ body:has(.tooltip-util) .mouse-cursor {
 .tunnel:has(.tunnel__message) {
   position: relative;
 }
-.tunnel-inner {
+.tunnel-clip {
   width: var(--img-size-start);
   overflow: hidden;
 }
@@ -8440,4 +8440,39 @@ body:has(.tooltip-util) .mouse-cursor {
   .tunnel--extended {
     --section-height: 110vh;
   }
+}
+.tunnel--centered {
+  --section-height: 200vh;
+  --scale-difference: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tunnel--centered-pin {
+  position: relative;
+}
+.tunnel--centered .tunnel-clip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% 0;
+  height: 100vh;
+  width: 100vw;
+  transform-origin: center;
+  scale: calc(1 - var(--scale-difference));
+  border-radius: var(--radius--lg);
+}
+.tunnel--centered .tunnel__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transform-origin: center;
+  height: 100vh;
+  width: 100vw;
+  scale: calc(1 / (1 - var(--scale-difference)));
+}
+.tunnel--centered .tunnel__message {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */

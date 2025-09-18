@@ -14,7 +14,7 @@
     position: relative;
   }
 
-  &-inner {
+  &-clip {
     // max-width: $content-width;
     // margin-inline: var(--body-padding);
     width: var(--img-size-start);
@@ -60,6 +60,42 @@
 
     @include mq-max(md) {
       --section-height: 110vh;
+    }
+  }
+
+  // below 'extneded' for specificity
+  &--centered {
+    --section-height: 200vh;
+    --scale-difference: 0.5;
+    @include column-center(flex-start);
+
+    &-pin {
+      position: relative;
+    }
+
+    .tunnel-clip {
+      // border: $test;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% 0;
+      height: 100vh;
+      width: 100vw;
+      transform-origin: center;
+      scale: calc(1 - var(--scale-difference));
+      border-radius: var(--radius--lg);
+    }
+
+    .tunnel__img {
+      @include absolute-center;
+      transform-origin: center;
+      height: 100vh;
+      width: 100vw;
+      scale: calc(1 / (1 - var(--scale-difference)));
+    }
+
+    .tunnel__message {
+      display: none;
     }
   }
 }

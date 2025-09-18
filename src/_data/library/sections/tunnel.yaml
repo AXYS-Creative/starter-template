@@ -1,4 +1,5 @@
 extended: true
+centered: true
 img:
   src: /static/img/library/img-sample-2.jpg
   alt: alt text here

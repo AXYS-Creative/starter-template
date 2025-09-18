@@ -108,3 +108,10 @@ path: library/sections
 <!-- prettier-ignore -->
 {% set tunnel = library.sections.tunnel %}
 {% include '../_includes/library/sections/tunnel.njk' %}
+
+<!-- prettier-ignore -->
+{% set hero_simple = ({
+  title: 'Sections',
+  desc: 'Prebuilt reusable sections to speed up your build time.'
+ }) %}
+{% include '../_includes/library/sections/hero-simple.njk' %}

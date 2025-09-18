@@ -1,4 +1,4 @@
-import { mqNoMotion, mqMouse } from "../util.js";
+import { root, mqNoMotion, mqMouse } from "../util.js";
 
 // Cubic Bézier easing function (for cross-browser compatible animations)
 export const cubicBezier = (p1x, p1y, p2x, p2y) => {
@@ -1065,34 +1065,74 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Tunnel
         {
           document.querySelectorAll(".tunnel").forEach((el) => {
-            const tunnelInner = el.querySelector(".tunnel-inner");
+            const tunnelClip = el.querySelector(".tunnel-clip");
             const tunnelImg = el.querySelector(".tunnel__img");
             const offset = tunnelImg.dataset.parallaxOffset;
             const scrub = parseFloat(tunnelImg.dataset.parallaxScrub) || 0;
+            const centered = el.classList.contains("tunnel--centered");
 
-            gsap.to(tunnelInner, {
-              width: "100%",
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                start: "top 70%", // Control when the image gets wider
-                end: "top top",
-                scrub,
-              },
-            });
+            if (centered) {
+              const tunnelPin = el.querySelector(".tunnel-centered--pin");
 
-            gsap.from(tunnelImg, {
-              y: offset,
-              rotate: "5deg",
-              filter: "brightness(0.125)",
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                start: "top bottom",
-                end: "top top",
-                scrub,
-              },
-            });
+              gsap.to(tunnelPin, {
+                scrollTrigger: {
+                  trigger: tunnelPin,
+                  start: `top top`,
+                  end: "+=150%",
+                  pin: true,
+                },
+              });
+
+              gsap.to(tunnelClip, {
+                scale: 1,
+                borderRadius: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: tunnelClip,
+                  start: `top top`,
+                  end: "+=100%",
+                  scrub,
+                  // markers: coralMarkers,
+                },
+              });
+
+              gsap.to(tunnelImg, {
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: tunnelClip,
+                  start: `top top`,
+                  end: "+=100%",
+                  scrub,
+                  // markers: whiteMarkers,
+                },
+              });
+            } else {
+              gsap.to(tunnelClip, {
+                width: "100%",
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top 70%", // Control when the image gets wider
+                  end: "top top",
+                  scrub,
+                  // markers: whiteMarkers,
+                },
+              });
+
+              gsap.from(tunnelImg, {
+                y: offset,
+                rotate: "5deg",
+                filter: "brightness(0.125)",
+                ease: "none",
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top bottom",
+                  end: "top top",
+                  scrub,
+                },
+              });
+            }
           });
         }
 

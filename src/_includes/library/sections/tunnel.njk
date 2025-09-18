@@ -1,27 +1,43 @@
 <!-- prettier-ignore -->
 {% set extended = tunnel.extended or false %}
+{% set centered = tunnel.centered or false %}
 {% set img_src = tunnel.img.src or '' %}
 {% set img_alt = tunnel.img.alt or '' %}
 {% set message = tunnel.message | default('No message has been provided.') %}
 {% set parallax_offset = tunnel.parallax.offset or '-75%' %}
 {% set parallax_scrub = tunnel.parallax.scrub or 0 %}
 
-{% set extended_class = '' %}
+{% set class_modifier = '' %}
+
 {% if extended %}
-  {% set extended_class = 'tunnel--extended' %}
+  {% set pinned_tag_start = '' %}
+  {% set class_modifier = class_modifier + ' tunnel--extended' %}
 {% endif %}
 
-<section class="tunnel {{ extended_class }}">
-  <div class="tunnel-inner">
-    <img
-      class="tunnel__img"
-      src="{{ img_src }}"
-      alt="{{ img_alt }}"
-      data-parallax-offset="{{ parallax_offset }}"
-      data-parallax-scrub="{{ parallax_scrub }}"
-    />
-  </div>
+{% if centered %}
+  {% set class_modifier = class_modifier + ' tunnel--centered' %}
+{% endif %}
 
+<section class="tunnel {{ class_modifier }}">
+  {% if centered %}
+  <div class="tunnel-centered--pin">
+    {% endif %}
+
+    <div class="tunnel-clip">
+      <img
+        class="tunnel__img"
+        src="{{ img_src }}"
+        alt="{{ img_alt }}"
+        data-parallax-offset="{{ parallax_offset }}"
+        data-parallax-scrub="{{ parallax_scrub }}"
+      />
+    </div>
+
+    {% if centered %}
+  </div>
+  {%endif%}
+
+  <!-- prettier-ignore -->
   {% if message %}
   <div class="tunnel__message-wrapper">
     <p class="tunnel__message text-fill">
