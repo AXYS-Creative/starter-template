@@ -228,9 +228,7 @@ title: Style Guide
       {% set btn = ({
         text_desc: 'This is an icon button',
         type: 'solid',
-        size: 'sm',
-        icon_end: '/static/img/library/icon-google-check.svg',
-        class: 'btn--bg-slide'
+        icon_end: '/static/img/library/icon-google-check.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
 
@@ -238,7 +236,9 @@ title: Style Guide
       {% set btn = ({
         text_desc: 'This is an icon button',
         type: 'outline',
-        icon_end: '/static/img/library/icon-google-x-lg.svg'
+        size: 'sm',
+        icon_end: '/static/img/library/icon-google-x-lg.svg',
+        class: 'btn--bg-slide'
       }) %}
       {% include './_includes/components/btn.njk' %}
 
