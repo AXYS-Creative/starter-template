@@ -1018,8 +1018,9 @@ path: library/utils
 
   <div class="video-bg-group">
     <div class="video-bg video-bg--sample-2 cursor-hide">
-      <h3 class="text-fill h6">Autoplay: false</h3>
-      <p class="text-fill">Also has a different shadow.</p>
+      <h3 class="text-fill h6">2.0 Variant</h3>
+      <p class="text-fill">Shadow: top</p>
+      <p class="text-fill">Autoplay: false</p>
 
       <!-- prettier-ignore -->
       {% set video_bg = ({
@@ -1029,7 +1030,7 @@ path: library/utils
         shadow: top,
         toggle: {
           class: 'magnet magnet-strong',
-          placement: 'bl'
+          placement: 'tr'
         }
       }) %}
       {% include "../_includes/library/components/video-bg.njk" %}

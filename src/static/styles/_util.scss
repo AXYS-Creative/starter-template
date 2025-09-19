@@ -464,23 +464,39 @@
     gap: var(--spacing);
     width: 100%;
 
+    @include mq-max(lg) {
+      flex-direction: column;
+    }
+
     .video-bg--sample-2 {
       @include column-start(flex-start);
+      border: var(--border-width) solid var(--color-border);
       gap: var(--spacing);
       flex: 1;
       min-height: 580px;
-      padding: 48px;
+      padding: var(--spacing--lg);
       border-radius: var(--radius--lg);
+
+      @include mq-max(lg) {
+        padding: var(--spacing);
+      }
+
+      h3 {
+        margin-bottom: auto;
+      }
     }
 
     .video-bg--sample-3 {
       @include column-center(flex-start);
       gap: var(--spacing);
       flex: 1 1 auto;
-      max-width: 420px;
       min-height: 580px;
       padding: 48px;
       border-radius: var(--radius--lg);
+
+      @include mq-min(lg) {
+        max-width: 420px;
+      }
     }
   }
 }
