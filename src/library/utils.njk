@@ -1005,8 +1005,8 @@ path: library/utils
       the bottom, then watch the magic!
     </p>
     <!-- prettier-ignore -->
-    {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
-    {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com' } %}
+    {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com', new_tab: true } %}
+    {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com#faq', new_tab: true } %}
     {% include "../_includes/components/cta-group.njk" %}
 
     {% set video_bg = ({
@@ -1016,23 +1016,43 @@ path: library/utils
     {% include "../_includes/library/components/video-bg.njk" %}
   </div>
 
-  <div class="video-bg video-bg--sample-2 cursor-hide" data-tilt>
-    <h3 class="glitch-scroll h4">Space</h3>
-    <p class="typing-scroll" data-typing-cursor="underscore">
-      Simply remarkable
-    </p>
+  <div class="video-bg-group">
+    <div class="video-bg video-bg--sample-2 cursor-hide">
+      <h3 class="text-fill h6">Autoplay: false</h3>
+      <p class="text-fill">Also has a different shadow.</p>
 
-    <!-- prettier-ignore -->
-    {% set video_bg = ({
-      src: 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=sh670ugo&dl=0',
-      id: 'video-bg-2',
-      shadow: null,
-      toggle: {
-        class: 'magnet magnet-strong',
-        placement: 'bl'
-      }
-    }) %}
-    {% include "../_includes/library/components/video-bg.njk" %}
+      <!-- prettier-ignore -->
+      {% set video_bg = ({
+        src: 'https://www.dropbox.com/scl/fi/x64lje5a8nm7fezjdallt/sample-video-3.mp4?rlkey=wsn6jcpn1t3f6qxpqn3n5zywx&st=43kgpnu2&dl=0',
+        id: 'video-bg-2',
+        autoplay: false,
+        shadow: top,
+        toggle: {
+          class: 'magnet magnet-strong',
+          placement: 'bl'
+        }
+      }) %}
+      {% include "../_includes/library/components/video-bg.njk" %}
+    </div>
+
+    <div class="video-bg video-bg--sample-3 cursor-hide" data-tilt>
+      <h3 class="glitch-scroll h4">Space</h3>
+      <p class="typing-scroll" data-typing-cursor="underscore">
+        Simply remarkable
+      </p>
+
+      <!-- prettier-ignore -->
+      {% set video_bg = ({
+        src: 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=sh670ugo&dl=0',
+        id: 'video-bg-3',
+        shadow: null,
+        toggle: {
+          class: 'magnet magnet-strong',
+          placement: 'bl'
+        }
+      }) %}
+      {% include "../_includes/library/components/video-bg.njk" %}
+    </div>
   </div>
 </section>
 

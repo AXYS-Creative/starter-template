@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 {% set id = video_bg.id or '' %}
 {% set src = video_bg.src or '' %}
+{% set autoplay = video_bg.autoplay | default(true) %}
 {% set shadow = video_bg.shadow | default('bottom') %}
 {% set toggle_class = video_bg.toggle.class or '' %}
 {% set toggle_attributes = video_bg.toggle.attributes or '' %}
@@ -17,9 +18,11 @@
     class="video-bg__video"
     id="{{ id }}"
     src="{{ src }}"
-    autoplay
-    muted
-    playsinline
+    {% if autoplay %}
+      autoplay
+      muted
+      playsinline
+    {% endif %}
     loop
   ></video>
 </figure>
@@ -27,6 +30,7 @@
 <!-- prettier-ignore -->
 {% set btn_video_toggle = ({
   id: id,
+  video_type_autoplay: autoplay,
   class: 'video-bg__toggle '~toggle_class~'',
   attributes: toggle_attributes,
   placement: toggle_placement

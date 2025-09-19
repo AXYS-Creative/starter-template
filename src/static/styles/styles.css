@@ -1876,13 +1876,30 @@ code {
   }
 }
 @media all {
-  .video-bg--sample-2 {
+  .video-bg-group {
+    display: flex;
+    gap: var(--spacing);
+    width: 100%;
+  }
+  .video-bg-group .video-bg--sample-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--spacing);
+    flex: 1;
+    min-height: 580px;
+    padding: 48px;
+    border-radius: var(--radius--lg);
+  }
+  .video-bg-group .video-bg--sample-3 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: var(--spacing);
-    width: min(100%, 420px);
+    flex: 1 1 auto;
+    max-width: 420px;
     min-height: 580px;
     padding: 48px;
     border-radius: var(--radius--lg);
@@ -6618,6 +6635,42 @@ code {
 @media (prefers-reduced-motion: no-preference) {
   .btn-video-toggle__icon--paused {
     transition: 0.3s cubic-bezier(0.18, 0.97, 0.47, 1) 0s;
+  }
+}
+.btn-video-toggle--inverse .btn-video-toggle__icon--paused {
+  opacity: 1;
+  scale: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-video-toggle--inverse .btn-video-toggle__icon--paused {
+    transition: 0.3s cubic-bezier(0.18, 0.97, 0.47, 1) 0.2s;
+  }
+}
+.btn-video-toggle--inverse .btn-video-toggle__icon--playing {
+  opacity: 0;
+  scale: 0.5;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-video-toggle--inverse .btn-video-toggle__icon--playing {
+    transition: 0.3s cubic-bezier(0.18, 0.97, 0.47, 1) 0s;
+  }
+}
+.btn-video-toggle--inverse[aria-pressed=true] .btn-video-toggle__icon--paused {
+  opacity: 0;
+  scale: 0.5;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-video-toggle--inverse[aria-pressed=true] .btn-video-toggle__icon--paused {
+    transition: 0.3s cubic-bezier(0.18, 0.97, 0.47, 1) 0s;
+  }
+}
+.btn-video-toggle--inverse[aria-pressed=true] .btn-video-toggle__icon--playing {
+  opacity: 1;
+  scale: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-video-toggle--inverse[aria-pressed=true] .btn-video-toggle__icon--playing {
+    transition: 0.3s cubic-bezier(0.18, 0.97, 0.47, 1) 0.2s;
   }
 }
 

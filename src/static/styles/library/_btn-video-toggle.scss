@@ -17,6 +17,24 @@
   // transition: $ease;
   transition: $ease, $magnet;
 
+  @mixin show-icon {
+    opacity: 1;
+    scale: 1;
+
+    @include mq-motion-allow {
+      transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
+    }
+  }
+
+  @mixin hide-icon {
+    opacity: 0;
+    scale: $icon-swap-scale;
+
+    @include mq-motion-allow {
+      transition: $icon-swap-duration $cubic-ease 0s;
+    }
+  }
+
   @media all {
     @include mq-max(xxl) {
       scroll-margin-top: 360px;
@@ -39,21 +57,11 @@
 
   &[aria-pressed="true"] {
     .btn-video-toggle__icon--playing {
-      opacity: 0;
-      scale: $icon-swap-scale;
-
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease 0s;
-      }
+      @include hide-icon;
     }
 
     .btn-video-toggle__icon--paused {
-      opacity: 1;
-      scale: 1;
-
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
-      }
+      @include show-icon;
     }
   }
 
@@ -68,20 +76,29 @@
     mask-size: contain;
 
     &--playing {
-      opacity: 1;
-      scale: 1;
-
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
-      }
+      @include show-icon;
     }
 
     &--paused {
-      opacity: 0;
-      scale: $icon-swap-scale;
+      @include hide-icon;
+    }
+  }
 
-      @include mq-motion-allow {
-        transition: $icon-swap-duration $cubic-ease 0s;
+  &--inverse {
+    .btn-video-toggle__icon--paused {
+      @include show-icon;
+    }
+    .btn-video-toggle__icon--playing {
+      @include hide-icon;
+    }
+
+    &[aria-pressed="true"] {
+      .btn-video-toggle__icon--paused {
+        @include hide-icon;
+      }
+
+      .btn-video-toggle__icon--playing {
+        @include show-icon;
       }
     }
   }

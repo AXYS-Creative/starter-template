@@ -459,13 +459,29 @@
     }
   }
 
-  .video-bg--sample-2 {
-    @include column-center(flex-start);
+  .video-bg-group {
+    display: flex;
     gap: var(--spacing);
-    width: min(100%, 420px);
-    min-height: 580px;
-    padding: 48px;
-    border-radius: var(--radius--lg);
+    width: 100%;
+
+    .video-bg--sample-2 {
+      @include column-start(flex-start);
+      gap: var(--spacing);
+      flex: 1;
+      min-height: 580px;
+      padding: 48px;
+      border-radius: var(--radius--lg);
+    }
+
+    .video-bg--sample-3 {
+      @include column-center(flex-start);
+      gap: var(--spacing);
+      flex: 1 1 auto;
+      max-width: 420px;
+      min-height: 580px;
+      padding: 48px;
+      border-radius: var(--radius--lg);
+    }
   }
 }
 
