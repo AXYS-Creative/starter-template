@@ -1,5 +1,4 @@
 .video-overlay {
-  // Consider using dialog element
   @include column-center;
   gap: var(--section-gap);
   position: fixed;
@@ -17,45 +16,19 @@
   }
 
   .video-player {
-    height: 70%;
-    max-width: var(--full-width-snip-sm);
-    width: auto;
+    width: 80%;
+    height: auto;
+    max-width: $content-width;
+    min-height: 65%;
     background: black;
-  }
 
-  &__close {
-    border: 1px solid var(--color-brand--primary);
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: scale $ease;
-
-    @include desktop-hover {
-      scale: 1.1;
-    }
-
-    &:active {
-      scale: 0.9;
-    }
-
-    &-line {
-      @include absolute-center;
-      width: 72%;
-      height: 3px;
-      background: var(--color-brand--primary);
-
-      &:first-of-type {
-        rotate: -45deg;
-      }
-
-      &:last-of-type {
-        rotate: 45deg;
-      }
+    @include mq-portrait {
+      height: 80%;
+      width: 80%;
     }
   }
 
-  &--inactive {
+  &[hidden] {
     @include hide-content;
   }
 }

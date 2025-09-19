@@ -394,60 +394,62 @@ path: library/components
   </p>
 </section>
 
-<section class="marquee-section full-width">
-  <h2 class="h5">[ Marquee - Component ]</h2>
-  <p>
-    Display content across the page using the marquee. Comes with the following
-    configs:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>text</code> Accepts a string value and will display the message
-      passed in. (Not recommneded to use with <code>imgs</code>)
-    </li>
-    <li>
-      <code>imgs</code> Accepts an array of images (taking src and alt props).
-      (Not recommneded to use with <code>text</code>)
-    </li>
-    <li>
-      <code>count</code> The number of marquee elements stacked on top of one
-      another. Defaults to <code>1</code>
-    </li>
-    <li>
-      <code>scroll-alternate</code> A boolean, alternate the marquee animation
-      direction based on the user's scroll direction. Defaults to
-      <code>false</code>. Also adds the modifier class
-      <code>marquee--alternate</code>.
-    </li>
-    <li>
-      <code>velocity</code> A number that adjusts how dramatic the translate is
-      (also used with <code>scrub</code>). Default is <code>0</code> (which
-      removes the velocity and works nicely with
-      <code>scroll_alternate: false</code> ).
-    </li>
-    <li>
-      <code>scrub</code> A boolean that disabled the auto scrolling/panning and
-      instead hooks up the scroll to the user's scroll position. Requires
-      <code>velocity</code> and defaults to <code>false</code>
-    </li>
-    <li>
-      <code>speed</code> A number representing the animation speed above 769px.
-      Defaults to <code>28</code>
-    </li>
-    <li>
-      <code>speed-md</code> A number representing the animation speed below
-      768px. Defaults to <code>24</code>
-    </li>
-    <li>
-      <code>speed-sm</code> A number representing the animation speed below
-      480px. Defaults to <code>20</code>
-    </li>
-  </ul>
+<section class="marquee-section section-width--full">
+  <div class="library-section-info section-width">
+    <h2 class="h5">[ Marquee - Component ]</h2>
+    <p>
+      Display content across the page using the marquee. Comes with the
+      following configs:
+    </p>
+    <ul class="classic-list">
+      <li>
+        <code>text</code> Accepts a string value and will display the message
+        passed in. (Not recommneded to use with <code>imgs</code>)
+      </li>
+      <li>
+        <code>imgs</code> Accepts an array of images (taking src and alt props).
+        (Not recommneded to use with <code>text</code>)
+      </li>
+      <li>
+        <code>count</code> The number of marquee elements stacked on top of one
+        another. Defaults to <code>1</code>
+      </li>
+      <li>
+        <code>scroll-alternate</code> A boolean, alternate the marquee animation
+        direction based on the user's scroll direction. Defaults to
+        <code>false</code>. Also adds the modifier class
+        <code>marquee--alternate</code>.
+      </li>
+      <li>
+        <code>velocity</code> A number that adjusts how dramatic the translate
+        is (also used with <code>scrub</code>). Default is <code>0</code> (which
+        removes the velocity and works nicely with
+        <code>scroll_alternate: false</code> ).
+      </li>
+      <li>
+        <code>scrub</code> A boolean that disabled the auto scrolling/panning
+        and instead hooks up the scroll to the user's scroll position. Requires
+        <code>velocity</code> and defaults to <code>false</code>
+      </li>
+      <li>
+        <code>speed</code> A number representing the animation speed above
+        769px. Defaults to <code>28</code>
+      </li>
+      <li>
+        <code>speed-md</code> A number representing the animation speed below
+        768px. Defaults to <code>24</code>
+      </li>
+      <li>
+        <code>speed-sm</code> A number representing the animation speed below
+        480px. Defaults to <code>20</code>
+      </li>
+    </ul>
+  </div>
+  <div class=""></div>
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_1 %}
   {% include '../_includes/library/components/marquee.njk' %}
-  <br />
-  <br />
+  <br /><br /><br /><br />
   <div class="section-width" style="padding-block: 0">
     [ This marquee is the simplest form of the marquee component ]
   </div>
@@ -455,8 +457,7 @@ path: library/components
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_2 %}
   {% include '../_includes/library/components/marquee.njk' %}
-  <br />
-  <br />
+  <br /><br /><br /><br />
   <div class="section-width" style="padding-block: 0">
     [ This is a double marquee that changes direction based on scroll direction
     ]
@@ -470,7 +471,6 @@ path: library/components
   <div class="section-width" style="padding-block: 0">
     [ This is an image marquee that scrubs instead of auto animates. ]
   </div>
-  <br /><br /><br /><br /><br /><br />
 </section>
 
 <section class="solar-system-section library-section">
@@ -496,8 +496,14 @@ path: library/components
   {% include "../_includes/library/components/solar-system.njk" %}
 </section>
 
-<section class="tabs-section">
-  <h2 class="h5">[ Tabs - Component ]</h2>
+<section class="tabs-section library-section">
+  <div class="library-section-info">
+    <h2 class="h5">[ Tabs - Component ]</h2>
+    <p>
+      A simplified version of the util tabs. This version can be used to throw
+      tabs for identical tab content.
+    </p>
+  </div>
 
   <!-- prettier-ignore -->
   {% set tab_list = library.tabs.tabs %}
@@ -674,17 +680,50 @@ path: library/components
   />
 </section>
 
-<section class="video-player-section">
-  <h2 class="h5">[ Video Player - Component ]</h2>
+<section class="video-overlay-section library-section">
+  <h2 class="h5">[ Video Overlay - Component ]</h2>
+  <p>
+    <strong>Note:</strong> While this is marked as a component due to the use of
+    <code>video-overlay.njk</code> at the base of your app (scoped per page), it
+    requires the class <code>video-toggle</code> to be read by the
+    <code>video-overlay.js</code> file. Lastly, it requires the data source for
+    the video file.
+    <em>Generally dropbox can host these. Then just copy the share link.</em>
+    The setup is simple:
+  </p>
+  <br />
+  <ol class="classic-list">
+    <li>
+      Ensure you have the <code>video-overlay.njk</code> component and
+      <code>video-overlay.js</code> file in your app.
+    </li>
+    <li>
+      Add the utility class of <code>video-toggle</code> to your button/trigger.
+    </li>
+    <li>
+      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
+      these video files.
+    </li>
+    <li>That's it!</li>
+  </ol>
 
   <!-- prettier-ignore -->
-  <button
-    class="cta-1 video-toggle tab-element-page"
-    data-vid-src="{{ library.video_overlay.src }}"
-    aria-label="Open video overlay for {{ item.title }}"
-    aria-controls="video-overlay"
-  >
-    {{ library.video_overlay.btn_text }}
-  </button>
-  {% include "../_includes/library/components/video-overlay.njk" %}
+  {% set video_src = 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0' %}
+  {% set btn = ({
+    text: 'Toggle Video Overlay',
+    type: 'solid',
+    class: 'video-toggle glitch-hover',
+    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay"'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+
+  <!-- prettier-ignore -->
+  {% set video_src = 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=nyb73zpa&dl=0' %}
+  {% set btn = ({
+    text: 'Toggle Second Video',
+    type: 'outline',
+    class: 'video-toggle btn--bg-slide btn--split-text',
+    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay" data-btn-slide="up" data-hover-alt'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
 </section>

@@ -1,10 +1,11 @@
 <div
-  class="video-overlay video-overlay--inactive"
+  class="video-overlay"
   id="video-overlay"
   aria-label="video overlay"
   aria-hidden="true"
   aria-modal="true"
   role="dialog"
+  hidden
 >
   <video
     class="video-player"
@@ -12,8 +13,15 @@
     controls
     aria-label="Video player. Select to play the video."
   ></video>
-  <button class="video-overlay__close" aria-label="Close video overlay.">
-    <span class="video-overlay__close-line"></span>
-    <span class="video-overlay__close-line"></span>
-  </button>
+
+  <!-- prettier-ignore -->
+  {% set a11y_tab = 'tab-element-video-overlay' %}
+  {% set btn = ({
+    text_desc: 'This is an icon button',
+    type: 'solid',
+    icon_end: '/static/img/library/icon-google-x-lg.svg',
+    class: 'video-overlay__close btn--bg-slide',
+    attributes: 'data-btn-slide="up"'
+  }) %}
+  {% include "../../components/btn.njk" %}
 </div>

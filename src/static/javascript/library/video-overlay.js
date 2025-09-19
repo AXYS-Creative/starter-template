@@ -25,13 +25,9 @@ if (videoToggle) {
   });
 }
 
-export let isVideoOverlayOpen = false;
-
 export const openVideoOverlay = (src) => {
-  isVideoOverlayOpen = true;
-
-  videoOverlay.setAttribute("aria-hidden", !isVideoOverlayOpen);
-  videoOverlay.classList.remove("video-overlay--inactive");
+  videoOverlay.setAttribute("aria-hidden", "false");
+  videoOverlay.hidden = false;
 
   if (src) videoPlayer.src = src; // Inject video source
 
@@ -44,13 +40,6 @@ export const openVideoOverlay = (src) => {
   );
 
   lenis.stop();
-
-  // // Notify other modules about the state change (from old sunder site)
-  // document.dispatchEvent(
-  //   new CustomEvent("videoOverlayStateChange", {
-  //     detail: isVideoOverlayOpen,
-  //   })
-  // );
 };
 
 videoToggle?.forEach((btn) => {
@@ -58,17 +47,23 @@ videoToggle?.forEach((btn) => {
 
   btn.addEventListener("click", () => {
     openVideoOverlay(vidSrc);
+    btn.setAttribute("aria-expanded", "true");
   });
 });
 
 export const closeVideoOverlay = () => {
-  isVideoOverlayOpen = false;
-
   videoOverlay.setAttribute("aria-hidden", "true");
-  videoOverlay.classList.add("video-overlay--inactive");
+  videoOverlay.hidden = true;
+
+  videoToggle?.forEach((btn) => {
+    btn.setAttribute("aria-expanded", "false");
+  });
+
+  videoPlayer.pause();
 
   setTimeout(() => {
-    videoPlayer.src = ""; // Remove src to stop the video
+    videoPlayer.removeAttribute("src");
+    videoPlayer.load();
   }, 300);
 
   videoOverlay.setAttribute("tabindex", "-1");
@@ -76,13 +71,6 @@ export const closeVideoOverlay = () => {
   nonVideoOverlayTabElements.forEach((el) => el?.setAttribute("tabindex", "0"));
 
   lenis.start();
-
-  // // Notify other modules about the state change
-  // document.dispatchEvent(
-  //   new CustomEvent("videoOverlayStateChange", {
-  //     detail: isVideoOverlayOpen,
-  //   })
-  // );
 };
 
 // Close the video player when clicking outside the embed

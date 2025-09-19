@@ -402,6 +402,8 @@
   }
 
   .library-section-info {
+    @include column-start;
+    gap: 24px;
     margin-block: var(--spacing--lg);
   }
 

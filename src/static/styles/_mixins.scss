@@ -39,6 +39,18 @@ $min-breakpoints: ();
   }
 }
 
+@mixin mq-landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin mq-portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
 // Users that prefer dark theme
 @mixin mq-dark {
   @media (prefers-color-scheme: dark) {

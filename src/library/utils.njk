@@ -331,6 +331,15 @@ path: library/utils
   </ul>
 </section>
 
+<section class="tabs-section library-section">
+  <h2 class="h5">[ Tabs - Util ]</h2>
+  <strong>Upcoming!</strong>
+  <p>
+    Intended for dynamic markup or custom components. Basically a plane that
+    changes depending on the active tab.
+  </p>
+</section>
+
 <!-- Text animations -->
 <section class="text-fade-section library-section">
   <h2 class="h5 text-fade">[ Text Fade - Util ]</h2>
@@ -584,6 +593,7 @@ path: library/utils
     </li>
   </ul>
 </section>
+<!-- Text animations -->
 
 <section class="tilt-cards library-section cursor-hide">
   <h2 class="h5">[ Tilt - Util ]</h2>
@@ -974,13 +984,25 @@ path: library/utils
   </p>
 </section>
 
+<section class="video-background-section library-section">
+  <h2 class="h5">[ Video Background - Util ]</h2>
+  <strong>Upcoming!</strong>
+  <p>
+    Seamlessly add a video background to any section or element! Comes with
+    configurable play/pause button.
+  </p>
+</section>
+
 <section class="video-overlay-section library-section">
   <h2 class="h5">[ Video Overlay - Util ]</h2>
   <p>
-    Note: while this is marked as a util, it requires the video-overlay.njk
-    component at the base of your app (scope to the page with the toggle). This
-    can be a traditional button or you can simply wrap an element
-    <em>i.e.</em> an image. The setup is simple:
+    <strong>Note:</strong> While this is marked as a util due to the use of
+    <code>video-toggle</code>, it requires the component
+    <code>video-overlay.njk</code> somewhere in your app, along with the
+    <code>video-overlay.js</code> file. Lastly, it requires the data source for
+    the video file.
+    <em>Generally dropbox can host these. Then just copy the share link.</em>
+    The setup is simple:
   </p>
   <br />
   <ol class="classic-list">
@@ -999,12 +1021,22 @@ path: library/utils
   </ol>
 
   <!-- prettier-ignore -->
-  <button
-    class="cta-1 video-toggle tab-element-page"
-    data-vid-src="{{ library.video_overlay.src }}"
-    aria-label="Open video overlay for {{ item.title }}"
-    aria-controls="video-overlay"
-  >
-    {{ library.video_overlay.btn_text }}
-  </button>
+  {% set video_src = 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0' %}
+  {% set btn = ({
+    text: 'Toggle Video Overlay',
+    type: 'solid',
+    class: 'video-toggle glitch-hover',
+    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay"'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+
+  <!-- prettier-ignore -->
+  {% set video_src = 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=nyb73zpa&dl=0' %}
+  {% set btn = ({
+    text: 'Toggle Second Video',
+    type: 'outline',
+    class: 'video-toggle btn--bg-slide btn--split-text',
+    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay" data-btn-slide="up" data-hover-alt'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
 </section>
