@@ -1,13 +1,15 @@
 .tunnel {
   --section-height: 105vh;
-  --img-size-start: 420px;
+  --clip-width: 25vw;
+  --clip-height: 50vh; // Requires 'centered: true'
+  // --clip-corner-radius: var(--radius);
+  --message-y-offset: 0; // -50% to place higher
 
   @include row-center;
   height: var(--section-height);
 
   @include mq-max(md) {
     --img-size-start: 180px;
-    // --img-size-start: calc(100% - var(--body-padding-double));
   }
 
   &:has(.tunnel__message) {
@@ -15,11 +17,13 @@
   }
 
   &-clip {
+    width: var(--clip-width);
+    overflow: hidden;
+
+    // optional configs?
     // max-width: $content-width;
     // margin-inline: var(--body-padding);
-    width: var(--img-size-start);
-    overflow: hidden;
-    // border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: var(--clip-corner-radius, 0) var(--clip-corner-radius, 0) 0 0;
   }
 
   &__img {
@@ -35,23 +39,27 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    translate: -50% 0;
+    translate: -50% var(--message-y-offset, 0);
     text-align: center;
     text-wrap: balance;
-  }
 
-  &__message {
-    @include h2;
-    @include text-fill;
-    color: $white; // May not need theme swap
-    text-transform: uppercase;
-    font-weight: 900;
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
+    // @include mq-max(sm) {
+    //   --message-y-offset: -100%;
+    // }
 
-    @include mq-max(md) {
-      @include h6;
+    .tunnel__message {
+      @include h2;
+      @include text-fill;
+      color: $white; // May not need theme swap
       text-transform: uppercase;
       font-weight: 900;
+      filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
+
+      @include mq-max(md) {
+        @include h6;
+        text-transform: uppercase;
+        font-weight: 900;
+      }
     }
   }
 
@@ -66,8 +74,6 @@
   // below 'extneded' for specificity
   &--centered {
     --section-height: 200vh;
-    --clip-width: 50vw;
-    --clip-height: 50vh;
     @include column-center(flex-start);
 
     &-pin,
@@ -82,7 +88,9 @@
       width: var(--clip-width);
       height: var(--clip-height);
       transform-origin: center;
-      border-radius: var(--radius);
+
+      // optional config?
+      border-radius: var(--clip-corner-radius, 0);
     }
 
     .tunnel__img {

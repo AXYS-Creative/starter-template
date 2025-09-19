@@ -1,4 +1,4 @@
-import { headerLogo, menuBtn, tabElementsPage } from "../global/header.js";
+import { headerLogoLink, menuBtn, tabElementsPage } from "../global/header.js";
 import { lenis } from "../util.js";
 
 const videoOverlay = document.querySelector(".video-overlay"),
@@ -7,7 +7,11 @@ const videoOverlay = document.querySelector(".video-overlay"),
 
 const videoToggle = document.querySelectorAll(".video-toggle");
 
-const nonVideoOverlayTabElements = [...tabElementsPage, headerLogo, menuBtn];
+const nonVideoOverlayTabElements = [
+  ...tabElementsPage,
+  headerLogoLink,
+  menuBtn,
+];
 
 videoCloseBtn?.setAttribute("tabindex", "-1");
 

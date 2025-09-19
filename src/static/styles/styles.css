@@ -8355,7 +8355,9 @@ body:has(.tooltip-util) .mouse-cursor {
 
 .tunnel {
   --section-height: 105vh;
-  --img-size-start: 420px;
+  --clip-width: 25vw;
+  --clip-height: 50vh;
+  --message-y-offset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8370,8 +8372,9 @@ body:has(.tooltip-util) .mouse-cursor {
   position: relative;
 }
 .tunnel-clip {
-  width: var(--img-size-start);
+  width: var(--clip-width);
   overflow: hidden;
+  border-radius: var(--clip-corner-radius, 0) var(--clip-corner-radius, 0) 0 0;
 }
 .tunnel__img {
   height: var(--section-height);
@@ -8389,11 +8392,11 @@ body:has(.tooltip-util) .mouse-cursor {
   position: absolute;
   bottom: 0;
   left: 50%;
-  translate: -50% 0;
+  translate: -50% var(--message-y-offset, 0);
   text-align: center;
   text-wrap: balance;
 }
-.tunnel__message {
+.tunnel__message-wrapper .tunnel__message {
   color: var(--color-font--primary);
   font-family: var(--font-family--heading);
   font-size: 64px;
@@ -8412,12 +8415,12 @@ body:has(.tooltip-util) .mouse-cursor {
   filter: drop-shadow(0 0 0 rgb(0, 0, 0));
 }
 @media (max-width: 1512px) {
-  .tunnel__message {
+  .tunnel__message-wrapper .tunnel__message {
     font-size: max(44px, 4.4vw);
   }
 }
 @media (max-width: 768px) {
-  .tunnel__message {
+  .tunnel__message-wrapper .tunnel__message {
     color: var(--color-font--primary);
     font-family: var(--font-family--heading);
     font-size: 32px;
@@ -8429,7 +8432,7 @@ body:has(.tooltip-util) .mouse-cursor {
   }
 }
 @media (max-width: 768px) and (max-width: 1512px) {
-  .tunnel__message {
+  .tunnel__message-wrapper .tunnel__message {
     font-size: max(28px, 2.8vw);
   }
 }
@@ -8443,8 +8446,6 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .tunnel--centered {
   --section-height: 200vh;
-  --clip-width: 50vw;
-  --clip-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -8464,7 +8465,7 @@ body:has(.tooltip-util) .mouse-cursor {
   width: var(--clip-width);
   height: var(--clip-height);
   transform-origin: center;
-  border-radius: var(--radius);
+  border-radius: var(--clip-corner-radius, 0);
 }
 .tunnel--centered .tunnel__img {
   position: absolute;
