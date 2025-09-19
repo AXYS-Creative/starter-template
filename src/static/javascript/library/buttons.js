@@ -23,3 +23,15 @@
     });
   }
 }
+
+// Video Toggle
+{
+  const playButtons = document.querySelectorAll(".btn-video-toggle");
+
+  playButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const isPressed = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", !isPressed);
+    });
+  });
+}

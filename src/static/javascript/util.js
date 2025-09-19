@@ -20,18 +20,6 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
-// Buttons
-{
-  const playButtons = document.querySelectorAll(".btn-play");
-
-  playButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const isPressed = btn.getAttribute("aria-pressed") === "true";
-      btn.setAttribute("aria-pressed", !isPressed);
-    });
-  });
-}
-
 // Dynamic update current year
 {
   const currentYear = new Date().getFullYear();

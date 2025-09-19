@@ -8,6 +8,7 @@ import "./global/scroll.js";
 import "./library/advanced/dots.js";
 import "./library/advanced/bg-grid.js";
 import "./library/advanced/grid-flow-img.js";
+
 import "./library/alert.js";
 import "./library/accordion.js";
 import "./library/buttons.js";
@@ -21,4 +22,5 @@ import "./library/mouse-cursor.js";
 import "./library/promo-banner.js";
 import "./library/tabs.js";
 import "./library/theme-toggle.js";
+import "./library/video-bg.js";
 import "./library/video-overlay.js";

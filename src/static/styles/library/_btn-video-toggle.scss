@@ -1,4 +1,4 @@
-.btn-play {
+.btn-video-toggle {
   --btn-size: 40px;
   --padding-btn: 8px; // icon size
   $icon-swap-scale: 0.5;
@@ -14,7 +14,8 @@
   padding: var(--padding-btn);
   border-radius: 50%;
   scroll-margin-top: 520px;
-  transition: $ease;
+  // transition: $ease;
+  transition: $ease, $magnet;
 
   @media all {
     @include mq-max(xxl) {
@@ -37,7 +38,7 @@
   }
 
   &[aria-pressed="true"] {
-    .btn-play__icon--playing {
+    .btn-video-toggle__icon--playing {
       opacity: 0;
       scale: $icon-swap-scale;
 
@@ -46,7 +47,7 @@
       }
     }
 
-    .btn-play__icon--paused {
+    .btn-video-toggle__icon--paused {
       opacity: 1;
       scale: 1;
 

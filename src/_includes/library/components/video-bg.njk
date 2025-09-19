@@ -1,0 +1,34 @@
+<!-- prettier-ignore -->
+{% set id = video_bg.id or '' %}
+{% set src = video_bg.src or '' %}
+{% set shadow = video_bg.shadow | default('bottom') %}
+{% set toggle_class = video_bg.toggle.class or '' %}
+{% set toggle_attributes = video_bg.toggle.attributes or '' %}
+{% set toggle_placement = video_bg.toggle.placement | default('br') %}
+
+<!-- Can't add ::psuedo-tag to video element, and I want to keep props in one place. -->
+<figure 
+  class="video-bg__figure"
+  {% if shadow !== null %}
+    data-bg-shadow="{{ shadow }}"
+  {% endif %}
+>
+  <video
+    class="video-bg__video"
+    id="{{ id }}"
+    src="{{ src }}"
+    autoplay
+    muted
+    playsinline
+    loop
+  ></video>
+</figure>
+
+<!-- prettier-ignore -->
+{% set btn_video_toggle = ({
+  id: id,
+  class: 'video-bg__toggle '~toggle_class~'',
+  attributes: toggle_attributes,
+  placement: toggle_placement
+}) %}
+{% include "./btn-video-toggle.njk" %}

@@ -1,0 +1,33 @@
+<!-- prettier-ignore -->
+{% set id = btn_video_toggle.id or '' %}
+{% set class = btn_video_toggle.class or '' %}
+{% set attributes = btn_video_toggle.attributes or '' %}
+{% set placement = btn_video_toggle.placement or '' %}
+{% set icon_play = btn_video_toggle.icon_play | default('/static/img/library/icon-google-play.svg') %}
+{% set icon_pause = btn_video_toggle.icon_pause | default('/static/img/library/icon-google-pause.svg') %}
+
+{% if placement %}
+  {% set data_placement = 'data-placement='~placement~'' %}
+{% endif %}
+
+<!-- prettier-ignore -->
+<button
+  class="btn-video-toggle {{ class }} tab-element-page"
+  aria-pressed="false"
+  aria-controls="{{ id }}"
+  {{ attributes }}
+  {{ data_placement }}
+>
+  <span
+    class="btn-video-toggle__icon btn-video-toggle__icon--playing"
+    style="mask-image: url('{{ icon_play }}')"
+    role="img"
+  >
+  </span>
+  <span
+    class="btn-video-toggle__icon btn-video-toggle__icon--paused"
+    style="mask-image: url('{{ icon_pause }}')"
+    role="img"
+  >
+  </span>
+</button>

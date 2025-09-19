@@ -36,6 +36,7 @@
 }
 
 .max-width-text {
+  display: inline-block;
   max-width: 620px;
 }
 
@@ -441,6 +442,30 @@
     &__li {
       @include fade-snap-left(0.16s);
     }
+  }
+
+  .video-bg-section {
+    .video-bg--sample-1 {
+      @include gradient-border(130deg);
+      @include column-center(flex-end);
+      gap: var(--spacing);
+      width: 100%;
+      padding: 364px 64px 64px;
+      border-radius: var(--radius--lg);
+
+      @include mq-max(lg) {
+        padding: 296px 40px 40px;
+      }
+    }
+  }
+
+  .video-bg--sample-2 {
+    @include column-center(flex-start);
+    gap: var(--spacing);
+    width: min(100%, 420px);
+    min-height: 580px;
+    padding: 48px;
+    border-radius: var(--radius--lg);
   }
 }
 

@@ -1,0 +1,72 @@
+.video-bg {
+  position: relative;
+  overflow: hidden;
+
+  &__figure {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    &[data-bg-shadow] {
+      &::after {
+        content: "";
+      }
+    }
+
+    &::after {
+      $gradient-shadow: rgba(0, 0, 0, 1);
+      $gradient-transparent: rgba(0, 0, 0, 0);
+
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        var(--gradient-dir),
+        $gradient-transparent 0%,
+        $gradient-shadow 100%
+      );
+    }
+
+    // modifiers
+    &[data-bg-shadow="bottom"] {
+      --gradient-dir: 180deg;
+    }
+
+    &[data-bg-shadow="top"] {
+      --gradient-dir: 0deg;
+    }
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__toggle {
+    position: absolute;
+
+    &[data-placement="br"] {
+      right: var(--spacing);
+      bottom: var(--spacing);
+    }
+
+    &[data-placement="bl"] {
+      left: var(--spacing);
+      bottom: var(--spacing);
+    }
+
+    &[data-placement="tr"] {
+      right: var(--spacing);
+      top: var(--spacing);
+    }
+
+    &[data-placement="tl"] {
+      left: var(--spacing);
+      top: var(--spacing);
+    }
+  }
+}
