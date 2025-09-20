@@ -6581,6 +6581,47 @@ code {
      object-position: bottom;
 }
 
+.btn-back-to-top {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  right: var(--body-padding);
+  position: fixed;
+  bottom: var(--body-padding);
+  scale: 0.25;
+}
+@media (min-width: 1513px) {
+  .btn-back-to-top {
+    right: calc(50% - (756px - var(--body-padding)));
+  }
+}
+.btn-back-to-top:focus-visible {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+  scale: 1;
+}
+.btn-back-to-top--away-from-top {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+  scale: 1;
+}
+.btn-back-to-top--near-bottom {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  scale: 0.25;
+}
+
 .btn-video-toggle {
   --btn-size: 40px;
   --padding-btn: 8px;
@@ -8515,7 +8556,7 @@ body:has(.tooltip-util) .mouse-cursor {
 
 .tunnel {
   --section-height: 105vh;
-  --clip-width: 25vw;
+  --clip-width: 80vw;
   --clip-height: 50vh;
   --message-y-offset: 0;
   display: flex;
@@ -8605,6 +8646,8 @@ body:has(.tooltip-util) .mouse-cursor {
   }
 }
 .tunnel--centered {
+  --clip-width: 72vw;
+  --clip-height: 72vh;
   --section-height: 200vh;
   display: flex;
   flex-direction: column;

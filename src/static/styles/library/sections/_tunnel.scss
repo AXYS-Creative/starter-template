@@ -1,6 +1,6 @@
 .tunnel {
   --section-height: 105vh;
-  --clip-width: 25vw;
+  --clip-width: 80vw;
   --clip-height: 50vh; // Requires 'centered: true'
   // --clip-corner-radius: var(--radius);
   --message-y-offset: 0; // -50% to place higher
@@ -73,6 +73,8 @@
 
   // below 'extneded' for specificity
   &--centered {
+    --clip-width: 72vw;
+    --clip-height: 72vh; // Requires 'centered: true'
     --section-height: 200vh;
     @include column-center(flex-start);
 

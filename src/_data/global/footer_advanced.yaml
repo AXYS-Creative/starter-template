@@ -68,7 +68,7 @@ divider_width_full: false
 return_to_top:
   text: "Return To Top"
   url: "#"
-  class: "return-to-top"
+  class: "back-to-top"
   type: underline
   icon_end: /static/img/library/icon-google-chevron-up.svg
 

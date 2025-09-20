@@ -1,7 +1,7 @@
 extended: true
 centered: false
 img:
-  src: /static/img/library/img-sample-2.jpg
+  src: /static/img/library/img-sample-1.jpg
   alt: alt text here
 
 # message: ""

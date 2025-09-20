@@ -1,0 +1,22 @@
+.btn-back-to-top {
+  @include hide-content;
+  @include right-spacing;
+  position: fixed;
+  bottom: var(--body-padding);
+  scale: 0.25;
+
+  &:focus-visible {
+    @include show-content;
+    scale: 1;
+  }
+
+  &--away-from-top {
+    @include show-content;
+    scale: 1;
+  }
+
+  &--near-bottom {
+    @include hide-content;
+    scale: 0.25;
+  }
+}

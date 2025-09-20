@@ -31,9 +31,11 @@ export const lenis = new Lenis({
   });
 }
 
-// Return to top
+// Back to top
+export const btnBackToTop = document.querySelector(".btn-back-to-top");
+
 {
-  const returnToTop = document.querySelectorAll(".return-to-top"),
+  const returnToTop = document.querySelectorAll(".back-to-top"),
     logo = document.querySelector(".header-logo");
 
   returnToTop.forEach((el) => {
