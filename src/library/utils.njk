@@ -1018,16 +1018,27 @@ path: library/utils
 
   <div class="video-bg-group">
     <div class="video-bg video-bg--sample-2 cursor-hide">
-      <h3 class="text-fill h6">2.0 Variant</h3>
-      <p class="text-fill">Shadow: top</p>
-      <p class="text-fill">Autoplay: false</p>
+      <h3
+        class="text-fill h6"
+        data-fill-start="top 92%"
+        data-fill-end="bottom 86%"
+      >
+        2.0 Variant
+      </h3>
+      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
+        Shadow: top
+      </p>
+      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
+        Autoplay: false
+      </p>
 
       <!-- prettier-ignore -->
       {% set video_bg = ({
         src: 'https://www.dropbox.com/scl/fi/x64lje5a8nm7fezjdallt/sample-video-3.mp4?rlkey=wsn6jcpn1t3f6qxpqn3n5zywx&st=43kgpnu2&dl=0',
         id: 'video-bg-2',
         autoplay: false,
-        shadow: top,
+        shadow: 'top',
+        poster: 'https://www.dropbox.com/scl/fi/lqjw3dqkhiwn10gu42ber/sample-video-poster.png?rlkey=598hx6qc7hdfsq67wz59gab19&st=whjv4kl3&raw=1',
         toggle: {
           class: 'magnet magnet-strong',
           placement: 'tr'
@@ -1038,7 +1049,11 @@ path: library/utils
 
     <div class="video-bg video-bg--sample-3 cursor-hide" data-tilt>
       <h3 class="glitch-scroll h4">Space</h3>
-      <p class="typing-scroll" data-typing-cursor="underscore">
+      <p
+        class="typing-scroll"
+        data-typing-cursor="underscore"
+        data-typing-delay="500"
+      >
         Simply remarkable
       </p>
 

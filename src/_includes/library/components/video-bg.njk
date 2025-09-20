@@ -1,29 +1,39 @@
 <!-- prettier-ignore -->
 {% set id = video_bg.id or '' %}
 {% set src = video_bg.src or '' %}
+{% set poster = video_bg.poster or '' %}
 {% set autoplay = video_bg.autoplay | default(true) %}
 {% set shadow = video_bg.shadow | default('bottom') %}
 {% set toggle_class = video_bg.toggle.class or '' %}
 {% set toggle_attributes = video_bg.toggle.attributes or '' %}
 {% set toggle_placement = video_bg.toggle.placement | default('br') %}
 
-<!-- Can't add ::psuedo-tag to video element, and I want to keep props in one place. -->
-<figure 
-  class="video-bg__figure"
-  {% if shadow !== null %}
-    data-bg-shadow="{{ shadow }}"
-  {% endif %}
->
+{% set shadow_attribute = '' %}
+{% if shadow %}
+  {% set shadow_attribute = 'data-bg-shadow='~shadow~'' %}
+{% endif %}
+
+{% set autoplay_attributes = '' %}
+{% if autoplay %}
+  {% set autoplay_attributes = 'autoplay muted playsinline loop' %}
+{% endif %}
+
+{% set poster_attribute = '' %}
+{% if poster and autoplay == false %}
+  {% set poster_attribute = 'poster='~poster~'' %}
+{% endif %}
+
+<!-- Poster is required if autoplay is false. On mobile panel shows black. -->
+<!-- Including a figure since video tags can't have ::psuedo-tag. Also not aw and I want to keep props in one place. -->
+
+<!-- prettier-ignore -->
+<figure class="video-bg__figure" {{ shadow_attribute }}>
   <video
     class="video-bg__video"
     id="{{ id }}"
     src="{{ src }}"
-    {% if autoplay %}
-      autoplay
-      muted
-      playsinline
-    {% endif %}
-    loop
+    {{ autoplay_attributes }}
+    {{ poster_attribute }}
   ></video>
 </figure>
 

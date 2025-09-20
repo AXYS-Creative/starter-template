@@ -462,7 +462,11 @@ code {
   background: var(--color-surface--1);
   padding: 4px 8px;
   border-radius: var(--radius--sm);
-  white-space: nowrap;
+}
+@media (min-width: 481px) {
+  code {
+    white-space: nowrap;
+  }
 }
 
 .section-width {
@@ -7914,6 +7918,7 @@ body:has(.tooltip-util) .mouse-cursor {
   width: 100%;
   height: 100%;
   z-index: -1;
+  background: var(--background-color);
 }
 .video-bg__figure[data-bg-shadow]::after {
   content: "";

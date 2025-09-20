@@ -8,6 +8,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    background: var(--background-color);
 
     &[data-bg-shadow] {
       &::after {
