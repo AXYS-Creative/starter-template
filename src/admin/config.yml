@@ -435,9 +435,8 @@ collections:
     label: Meta Data
     description: >
       Meta data includes important information used by search engines and
-      social platforms, such as your site title, description, keywords, and
-      preview images. Updating these settings can improve SEO and control
-      how your content appears when shared online.
+      social platforms, such as your site title, description, and preview images.
+      Updating these settings improves SEO and controls how your content appears when shared.
     files:
       - name: meta_data
         label: Meta Data
@@ -445,16 +444,17 @@ collections:
         editor:
           preview: false
         fields:
+          # Global Site Settings
           - name: site_name
             label: Site Name
             widget: string
             required: true
-            hint: Sample Business Co
+            hint: Business or project name
           - name: url
             label: URL
             widget: string
             required: true
-            hint: Full URL to your site. Don't include end slash /
+            hint: Full site URL, no trailing slash
           - name: author
             label: Author
             widget: string
@@ -464,68 +464,108 @@ collections:
             label: Contact Email
             widget: string
             required: true
-            hint: Email address for rich results schema
+            hint: Used for rich results schema
           - name: theme_color
             label: Theme Color
             widget: color
             required: true
-            hint: Hex code for overflow color on some devices
+            hint: Hex code used on some devices
           - name: favicon_light_theme
             label: Favicon (Light Theme)
             widget: image
-            default: "https://CHANGE-ME.com/static/img/favicon-dark.svg"
             required: true
-            hint: Shown in browser tab and search engine results.
             media_library:
               config:
-                max_file_size: 500000 # 1MB = 1,000,000 bytes
+                max_file_size: 500000
           - name: favicon_dark_theme
             label: Favicon (Dark Theme)
             widget: image
-            default: "https://CHANGE-ME.com/static/img/favicon-light.svg"
             required: true
-            hint: Shown in browser tab and search engine results.
             media_library:
               config:
-                max_file_size: 500000 # 1MB = 1,000,000 bytes
+                max_file_size: 500000
+          # Defaults (Fallbacks)
+          - name: defaults
+            label: Global Defaults
+            widget: object
+            collapsed: true
+            fields:
+              - name: title
+                label: Default Title
+                widget: string
+                required: true
+                hint: Fallback page title
+              - name: description
+                label: Default Description
+                widget: text
+                required: true
+                hint: Fallback page description
+              - name: og_image
+                label: Default Open Graph Image
+                widget: image
+                required: true
+                media_library:
+                  config:
+                    max_file_size: 8000000
+              - name: robots
+                label: Default Robots
+                widget: string
+                required: false
+                default: "index, follow"
+                hint: Controls indexing/crawling
+          # Page-specific Metadata
           - name: page_details
             label: Page Details
-            allow_add: false
             widget: list
-            required: true
-            hint: Used for SEO and social sharing
+            collapsed: true
+            summary: "{{fields.label}}"
+            hint: Page-specific overrides for SEO, OG, and Schema
             fields:
+              - name: path
+                label: Path / Slug
+                widget: string
+                required: true
+                hint: File slug (e.g., "about", "library", "404")
               - name: label
                 label: Label (Admin Dashboard)
                 widget: string
                 required: false
-                hint: Dashboard label only — Do not edit this field
+                hint: Dashboard only
               - name: title
                 label: Page Title
                 widget: string
                 required: true
-                hint: Shown in browser tab and search engine results. Keep it under 60 characters.
+                hint: Browser tab and search results
               - name: description
                 label: Page Description
                 widget: text
                 required: true
-                hint: Short page summary for SEO and social media. Keep it around 140–160 characters.
-          - name: og_title
-            label: Open Graph Title
-            widget: string
-            required: true
-            hint: Sample Business | Motto here
-          - name: og_description
-            label: Open Graph Description
-            widget: text
-            required: true
-            hint: Keep at least 100 characters
-          - name: og_image
-            label: Open Graph Image
-            widget: image
-            default: "https://CHANGE-ME.com/static/img/og-image.png"
-            required: true
-            hint: "Recommended formats: PNG or JPG. Recommended image dimensions: 1200 x 630 pixels. File size should be under 8 MB."
-            media_library:
-              config:
-                max_file_size: 8000000 # 1MB = 1,000,000 bytes
+                hint: 140–160 characters recommended
+              - name: og_image
+                label: Open Graph Image
+                widget: image
+                required: false
+                hint: Overrides default OG image
+                media_library:
+                  config:
+                    max_file_size: 8000000
+              - name: canonical
+                label: Canonical URL
+                widget: string
+                required: false
+                hint: Relative path (e.g., "/about")
+              - name: robots
+                label: Robots
+                widget: string
+                required: false
+                hint: "Custom robots tag (e.g., noindex, nofollow)"
+              - name: schema_type
+                label: Schema Type
+                widget: select
+                options: ["Organization", "Article", "BlogPosting", "Product"]
+                required: false
+                default: "Organization"
+              - name: date
+                label: Publish Date (for Articles)
+                widget: datetime
+                required: false

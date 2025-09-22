@@ -1,34 +1,47 @@
 site_name: "Sample Business"
-url: "https://starter-template-cms.netlify.app" # CHANGE ME #Ensure no end slash for og-img
-author: Sample Author
-contact_email: info@sample.com
+url: "https://starter-template-cms.netlify.app" # Ensure no trailing slash
+author: "Sample Author"
+contact_email: "info@sample.com"
 theme_color: "#000000"
 favicon_light_theme: "/static/img/favicon-dark.svg"
 favicon_dark_theme: "/static/img/favicon-light.svg"
 
-page_details:
-  - path: ""
-    label: Home
-    title: Home | Business Name
-    description: Home page description
-  - path: about
-    label: About
-    title: About Us | Business Name
-    description: About description
-  - path: style-guide
-    label: Style Guide
-    title: Style Guide | Business Name
-    description: Style guide description...
-  - path: library
-    label: Library
-    title: Library | Business Name
-    description: The UI component library and utility collection.
-  - path: "404"
-    label: "404"
-    title: Page Not Found
-    description: The page you are looking for cannot be found. Please check the URL or return to the home page.
+# Defaults (fallbacks)
+defaults:
+  title: "Sample Business | Motto Here"
+  description: "Open Graph Description Here"
+  og_image: "/static/img/og-image.png"
+  robots: "index, follow"
 
-# Open Graph Protocol
-og_title: "Sample Business | Motto Here" #Separate from individual page title in index.html
-og_description: "Open Graph Description Here" #Separate from individual page description in index.html
-og_image: "/static/img/og-image.png"
+# Page-specific metadata
+page_details:
+  home:
+    label: "Home"
+    title: "Home | Business Name"
+    description: "Home page description"
+    og_image: "/static/img/og-home.png"
+    robots: "index, follow"
+    canonical: "/"
+  about:
+    label: "About"
+    title: "About Us | Business Name"
+    description: "About description"
+    og_image: "/static/img/og-about.png"
+    robots: "index, follow"
+    canonical: "/about"
+  style-guide:
+    label: "Style Guide"
+    title: "Style Guide | Business Name"
+    description: "Style guide description..."
+    canonical: "/library/style-guide"
+  blog:
+    label: "Blog"
+    title: "Blog | Business Name"
+    description: "Blog description goes here."
+    og_image: "/static/img/og-library.png"
+    canonical: "/blog"
+  "404":
+    label: "404"
+    title: "Page Not Found"
+    description: "The page you are looking for cannot be found."
+    robots: "noindex, nofollow"

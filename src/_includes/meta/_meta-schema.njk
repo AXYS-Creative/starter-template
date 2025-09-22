@@ -1,0 +1,38 @@
+<!-- prettier-ignore -->
+{% set schemaType = pageMeta.schema_type or "Organization" %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{{ schemaType }}",
+    "name": "{{ pageMeta.title or meta_data.site_name }}",
+    "url": "{{ meta_data.url }}{{ pageMeta.canonical or '' }}",
+    "logo": "{{ meta_data.url }}/favicon.svg",
+    "image": "{{ meta_data.url }}{{ pageMeta.og_image or defaults.og_image }}",
+    {% if schemaType == "Organization" %}
+      "sameAs": [{% for social_link in global.social_media.links %}
+        {% if social_link.url %}"{{ social_link.url }}"{% if not loop.last %},{% endif %}{% endif %}{% endfor %}],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "{{ meta_data.contact_email }}",
+        "contactType": "Support"
+      }
+    {% elseif schemaType == "Article" %}
+      "headline": "{{ pageMeta.title or defaults.title }}",
+      "description": "{{ pageMeta.description or defaults.description }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ meta_data.author }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ meta_data.site_name }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ meta_data.url }}/favicon.svg"
+        }
+      },
+      "datePublished": "{{ pageMeta.date or '' }}"
+    {% endif %}
+  }
+</script>

@@ -1,0 +1,34 @@
+<!-- Basics -->
+<meta charset="UTF-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="{{ meta_data.theme_color }}" />
+<meta name="author" content="{{ meta_data.author }}" />
+
+<!-- Title / Description / Robots -->
+<title>{{ pageMeta.title or defaults.title }}</title>
+<meta
+  name="description"
+  content="{{ pageMeta.description or defaults.description }}"
+/>
+<meta name="robots" content="{{ pageMeta.robots or defaults.robots }}" />
+
+<!-- Canonical -->
+{% if pageMeta.canonical %}
+<link rel="canonical" href="{{ meta_data.url }}{{ pageMeta.canonical }}" />
+{% endif %}
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link
+  rel="icon"
+  href="{{ meta_data.favicon_light_theme }}"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="icon"
+  href="{{ meta_data.favicon_dark_theme }}"
+  media="(prefers-color-scheme: dark)"
+/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />

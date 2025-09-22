@@ -1,0 +1,29 @@
+<!-- prettier-ignore -->
+{# --- Open Graph --- #}
+<meta property="og:title" content="{{ pageMeta.title or defaults.title }}" />
+<meta
+  property="og:description"
+  content="{{ pageMeta.description or defaults.description }}"
+/>
+<meta
+  property="og:image"
+  content="{{ meta_data.url }}{{ pageMeta.og_image or defaults.og_image }}"
+/>
+<meta property="og:type" content="website" />
+<meta
+  property="og:url"
+  content="{{ meta_data.url }}{{ pageMeta.canonical or '' }}"
+/>
+<meta property="og:site_name" content="{{ meta_data.site_name }}" />
+
+{# --- Twitter Card --- #}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ pageMeta.title or defaults.title }}" />
+<meta
+  name="twitter:description"
+  content="{{ pageMeta.description or defaults.description }}"
+/>
+<meta
+  name="twitter:image"
+  content="{{ meta_data.url }}{{ pageMeta.og_image or defaults.og_image }}"
+/>
