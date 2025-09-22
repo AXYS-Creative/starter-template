@@ -107,6 +107,17 @@ path: library/sections
 {% set tunnel = library.sections.tunnel %}
 {% include '../_includes/library/sections/tunnel.njk' %}
 
+<br /><br /><br /><br /><br />
+<!-- prettier-ignore -->
+{% set tunnel = ({
+  centered: true,
+  vid: {
+    src: 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0'
+  },
+  message: null
+}) %}
+{% include '../_includes/library/sections/tunnel.njk' %}
+
 <!-- prettier-ignore -->
 {% set hero_simple = ({
   title: 'Sections',

@@ -1,9 +1,9 @@
 <!-- prettier-ignore -->
-{% set message = tooltip_data.message or '' %}
-{% set text = tooltip_data.text or '' %}
-{% set icon = tooltip_data.icon or '/static/img/library/icon-google-info-circle.svg' %}
-{% set place = tooltip_data.place or 'top' %}
-{% set size = tooltip_data.size or 'md' %}
+{% set message = tooltip.message | default('No message provided.') %}
+{% set text = tooltip.text or '' %}
+{% set icon = tooltip.icon or '/static/img/library/icon-google-info-circle.svg' %}
+{% set place = tooltip.place or 'top' %}
+{% set size = tooltip.size or 'md' %}
 
 <!-- prettier-ignore -->
 {% set a11y_tab = a11y_tab or 'tab-element-page' %}
@@ -21,7 +21,11 @@
     ></span>
     {% endif %}
   </button>
-  <div class="tooltip__message {{ place }} {{ size }}">
+  <div
+    class="tooltip__message {{ place }} tooltip__message--{{ size }}"
+    aria-hidden="true"
+    role="tooltip"
+  >
     <p>{{ message }}</p>
   </div>
 </div>

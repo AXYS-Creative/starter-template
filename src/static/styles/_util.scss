@@ -62,21 +62,6 @@
     }
   }
 
-  .text-fill,
-  .text-fill-hover {
-    @include text-fill;
-
-    &:is(.text-fill-hover) {
-      background-size: 0%;
-      // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
-      transition: $ease;
-
-      @include desktop-hover {
-        background-size: 100%;
-      }
-    }
-  }
-
   .glitch-text {
     max-width: var(--content-width); // Prevent overflow
     overflow: hidden;
@@ -134,44 +119,6 @@
     transition: $magnet;
   }
 
-  .text-fade {
-    .text-fade__words,
-    .text-fade__chars {
-      display: inline-block;
-    }
-
-    // &.text-fade--active {
-
-    // }
-  }
-
-  .text-scale {
-    .text-scale__words,
-    .text-scale__chars {
-      display: inline-block;
-    }
-
-    // &.text-fade--active {
-
-    // }
-  }
-
-  .typing-cycle,
-  .typing-scroll {
-    .typing-text-cursor {
-      animation: typing-flicker 1s infinite;
-    }
-
-    @keyframes typing-flicker {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
-    }
-  }
-
   .icon-md {
     width: 20px;
     height: 20px;
@@ -180,6 +127,11 @@
   .icon-sm {
     width: 16px;
     height: 16px;
+  }
+
+  .indent-first {
+    text-indent: 8ch;
+    text-align: justify; // Reach edges
   }
 
   .btn--split-text {
@@ -441,6 +393,59 @@
 
     &__li {
       @include fade-snap-left(0.16s);
+    }
+  }
+
+  .text-fade {
+    .text-fade__words,
+    .text-fade__chars {
+      display: inline-block;
+    }
+
+    // &.text-fade--active {
+
+    // }
+  }
+
+  .text-fill,
+  .text-fill-hover {
+    @include text-fill;
+
+    &:is(.text-fill-hover) {
+      background-size: 0%;
+      // -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+      transition: $ease;
+
+      @include desktop-hover {
+        background-size: 100%;
+      }
+    }
+  }
+
+  .text-scale {
+    .text-scale__words,
+    .text-scale__chars {
+      display: inline-block;
+    }
+
+    // &.text-fade--active {
+
+    // }
+  }
+
+  .typing-cycle,
+  .typing-scroll {
+    .typing-text-cursor {
+      animation: typing-flicker 1s infinite;
+    }
+
+    @keyframes typing-flicker {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
     }
   }
 

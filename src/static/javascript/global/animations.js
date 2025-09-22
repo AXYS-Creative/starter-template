@@ -318,9 +318,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           const glitchTextElems = document.querySelectorAll(".glitch-text");
 
           glitchTextElems.forEach((el) => {
-            // Helps with preventing inline shifting (center aligned text)
-            const width = el.offsetWidth;
-            el.style.width = `${width}px`;
+            setTimeout(() => {
+              // Helps with preventing inline shifting (center aligned text)
+              const width = el.offsetWidth;
+              el.style.width = `${width}px`;
+            }, 1000);
           });
 
           // Scroll-based glitch
@@ -399,9 +401,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             // Prevent layout shift (measure width of target, not full button)
             if (!newText) {
-              const width = target.scrollWidth;
-              target.style.width = `${width}px`;
-              target.style.display = "inline-block";
+              setTimeout(() => {
+                const width = target.scrollWidth;
+                target.style.width = `${width}px`;
+                target.style.display = "inline-block";
+              }, 1000);
             }
 
             const glitchTo = (text = originalText) => {
@@ -435,9 +439,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             if (!target) return;
 
             if (!target.dataset.originalText) {
-              target.dataset.originalText = target.textContent;
-              target.style.width = `${target.scrollWidth}px`;
-              target.style.display = "inline-block";
+              setTimeout(() => {
+                target.dataset.originalText = target.textContent;
+                target.style.width = `${target.scrollWidth}px`;
+                target.style.display = "inline-block";
+              }, 1000);
             }
 
             const runGlitch = () => {
@@ -1067,13 +1073,16 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           document.querySelectorAll(".tunnel").forEach((el) => {
             const tunnelClip = el.querySelector(".tunnel-clip");
             const tunnelImg = el.querySelector(".tunnel__img");
-            const offset = tunnelImg.dataset.parallaxOffset;
-            const scrub = parseFloat(tunnelImg.dataset.parallaxScrub) || 0;
+            const tunnelVid = el.querySelector(".tunnel__vid");
+            const tunnelMedia = tunnelImg || tunnelVid;
+
+            const offset = tunnelMedia.dataset.parallaxOffset;
+            const scrub = parseFloat(tunnelMedia.dataset.parallaxScrub) || 0;
             const centered = el.classList.contains("tunnel--centered");
 
             if (centered) {
               const tunnelPin = el.querySelector(".tunnel-centered--pin");
-              const clipDuration = "+=100%"; // 50% finishes before message comes in.
+              const clipDuration = "+=100%"; // 50% finishes before message comes
 
               gsap.to(tunnelPin, {
                 scrollTrigger: {
@@ -1085,7 +1094,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               });
 
               gsap.to(tunnelClip, {
-                width: "100vw",
+                width: "100%",
                 height: "100vh",
                 borderRadius: 1,
                 ease: "none",
@@ -1097,8 +1106,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 },
               });
 
-              gsap.to(tunnelImg, {
-                // ease: "none",
+              gsap.to(tunnelMedia, {
                 rotate: "0deg",
                 filter: "brightness(1)",
                 scrollTrigger: {
@@ -1119,20 +1127,21 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   scrub,
                 },
               });
-
-              gsap.from(tunnelImg, {
-                y: offset,
-                rotate: "5deg",
-                filter: "brightness(0.125)",
-                ease: "none",
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top bottom",
-                  end: "top top",
-                  scrub,
-                },
-              });
             }
+
+            // Parallax on image (defaut for both)
+            gsap.from(tunnelMedia, {
+              y: offset,
+              rotate: "-1deg",
+              filter: "brightness(0.75)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                start: "top bottom",
+                end: "top top",
+                scrub,
+              },
+            });
           });
         }
 

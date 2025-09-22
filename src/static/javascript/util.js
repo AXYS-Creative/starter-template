@@ -20,20 +20,8 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
-// Dynamic update current year
-{
-  const currentYear = new Date().getFullYear();
-  const currentYearElements = document.querySelectorAll("[data-current-year]");
-
-  currentYearElements.forEach((currentYearElement) => {
-    currentYearElement.textContent = currentYear;
-    currentYearElement.setAttribute("datetime", currentYear);
-  });
-}
-
 // Back to top
 export const btnBackToTop = document.querySelector(".btn-back-to-top");
-
 {
   const returnToTop = document.querySelectorAll(".back-to-top"),
     logo = document.querySelector(".header-logo");
@@ -50,6 +38,29 @@ export const btnBackToTop = document.querySelector(".btn-back-to-top");
       // Restore focus for accessibility
       logo.focus({ preventScroll: true });
     });
+  });
+}
+
+// Dynamic update current year
+{
+  const currentYear = new Date().getFullYear();
+  const currentYearElements = document.querySelectorAll("[data-current-year]");
+
+  currentYearElements.forEach((currentYearElement) => {
+    currentYearElement.textContent = currentYear;
+    currentYearElement.setAttribute("datetime", currentYear);
+  });
+}
+
+// Dropbox video url fix
+{
+  document.querySelectorAll("video").forEach((vid) => {
+    const src = vid.getAttribute("src");
+
+    if (src && src.includes("dropbox")) {
+      const updatedSrc = src.replace("dl=0", "raw=1");
+      vid.setAttribute("src", updatedSrc);
+    }
   });
 }
 

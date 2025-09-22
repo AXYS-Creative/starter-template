@@ -9,6 +9,8 @@ import "./library/advanced/dots.js";
 import "./library/advanced/bg-grid.js";
 import "./library/advanced/grid-flow-img.js";
 
+import "./library/components/tooltip.js";
+
 import "./library/alert.js";
 import "./library/accordion.js";
 import "./library/buttons.js";

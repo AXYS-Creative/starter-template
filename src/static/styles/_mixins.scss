@@ -642,6 +642,25 @@ $min-breakpoints: ();
   // background-size: 100%; // This value is how the effect works. Controlled by js.
 }
 
+// Helpful for text over images
+@mixin gradient-backdrop(
+  $deg: 0deg,
+  $col-1: rgba(0, 0, 0, 0.5),
+  $col-2: transparent
+) {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient($deg, $col-1 0%, $col-2 100%);
+    // opacity: 0.25;
+  }
+}
+
 @mixin gradient-border(
   $deg: 10deg,
   $col-1: var(--color-border-gradient),

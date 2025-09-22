@@ -3,6 +3,7 @@
 {% set centered = tunnel.centered or false %}
 {% set img_src = tunnel.img.src or '' %}
 {% set img_alt = tunnel.img.alt or '' %}
+{% set vid_src = tunnel.vid.src or '' %}
 {% set message = tunnel.message | default('No message has been provided.') %}
 {% set parallax_offset = tunnel.parallax.offset or '-75%' %}
 {% set parallax_scrub = tunnel.parallax.scrub or 0 %}
@@ -24,6 +25,7 @@
     {% endif %}
 
     <div class="tunnel-clip">
+      {% if img_src %}
       <img
         class="tunnel__img"
         src="{{ img_src }}"
@@ -31,6 +33,21 @@
         data-parallax-offset="{{ parallax_offset }}"
         data-parallax-scrub="{{ parallax_scrub }}"
       />
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if vid_src %}
+      <video
+        class="tunnel__vid"
+        src="{{ vid_src }}"
+        data-parallax-offset="{{ parallax_offset }}"
+        data-parallax-scrub="{{ parallax_scrub }}"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+      {% endif %}
     </div>
 
     {% if centered %}

@@ -21,17 +21,38 @@ title: Style Guide
   <h4>Heading IV</h4>
   <h5>Heading V</h5>
   <h6>Heading VI</h6>
-  <br />
-  <p>
+  <br /><br /><br /><br /><br />
+  <p class="max-width-text">
     This is a paragraph. It uses the <code>body-font-styles</code> mixin.
     Responsive range from 18px (lg), 16px (md), to 14px (sm). Lorem ipsum dolor
     sit amet, consectetur adipisicing elit. Quasi, quod.
   </p>
+
+  <br /><br />
+  <p class="max-width-text indent-first">
+    This is a paragraph includes the util <code>indent-first</code>. This will
+    indent only the first line of the paragraph. It also uses the css property
+    <code>text-align: justify</code> to help reach the edges of the container
+    nicely.
+  </p>
+
+  <br /><br /><br /><br /><br />
   <div>
     <strong>This is strong text</strong>
+    <br /><br />
     <p class="text-bold">
-      This is bold text via global util (CMS Friendly, use '.text-bold')
+      This is bold text via global util <code>text-bold</code>
     </p>
+    &nbsp;
+
+    <!-- prettier-ignore -->
+    {% set tooltip = ({
+      message: 'CMS friendly!',
+      size: 'sm',
+      place: 'right'
+    }) %}
+    {% include "./_includes/library/components/tooltip.njk" %}
+    <br /><br />
   </div>
   <div>
     <em>This is emphasized text</em>
@@ -45,6 +66,9 @@ title: Style Guide
   >
   <code>This is a code block</code>
 
+  <br /><br /><br /><br /><br />
+  <p>[ Classic List ]</p>
+  <br /><br />
   <ul class="classic-list">
     <li>Classic List, Child I</li>
     <li>Classic List, Child II</li>
