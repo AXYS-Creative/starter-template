@@ -518,7 +518,6 @@ collections:
             label: Page Details
             widget: list
             collapsed: true
-            summary: "{{fields.label}}"
             hint: Page-specific overrides for SEO, OG, and Schema
             fields:
               - name: path
