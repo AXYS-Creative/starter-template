@@ -97,7 +97,7 @@
       align-items: flex-start;
     }
 
-    &:has(.return-to-top) {
+    &:has([class*="to-top"]) {
       // Also update this version in 'float'
       position: relative;
 
@@ -166,7 +166,7 @@
       }
     }
 
-    &:has(.return-to-top) {
+    &:has([class*="to-top"]) {
       position: relative;
 
       .site-footer__copyright {

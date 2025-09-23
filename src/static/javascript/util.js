@@ -21,7 +21,7 @@ export const lenis = new Lenis({
 //
 
 // Back to top
-export const btnBackToTop = document.querySelector(".btn-back-to-top");
+export const btnBackToTop = document.querySelector(".btn-back-to-top"); // floating page button
 {
   const returnToTop = document.querySelectorAll(".back-to-top"),
     logo = document.querySelector(".header-logo");

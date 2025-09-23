@@ -12,19 +12,19 @@
 }
 
 .alert {
-  --toast-spacing: var(--spacing--xs);
+  --alert-spacing: var(--spacing--xs);
   --icon-size: 24px;
 
   @include row-center;
-  gap: var(--toast-spacing);
+  gap: var(--alert-spacing);
   background-color: var(--color-surface--1);
-  padding: var(--toast-spacing);
+  padding: var(--alert-spacing);
   position: fixed;
   bottom: var(--spacing--sm);
   right: var(--spacing--sm);
   max-width: 420px;
   border-radius: var(--radius--xs);
-  z-index: $z-index--header;
+  z-index: $z-index--alert;
   translate: 0 200%;
   transition: 0.5s cubic-bezier(0.75, -0.05, 0.75, -0.5) 0.125s;
 
@@ -44,7 +44,7 @@
 
   &-content {
     @include column-start;
-    gap: var(--toast-spacing);
+    gap: var(--alert-spacing);
     margin-inline-end: var(--spacing--xs);
 
     &__title {
@@ -57,7 +57,7 @@
 
     &__links {
       @include row-center;
-      gap: var(--toast-spacing);
+      gap: var(--alert-spacing);
     }
   }
 
