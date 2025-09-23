@@ -11,7 +11,10 @@
   name="description"
   content="{{ pageMeta.description or defaults.description }}"
 />
-<meta name="robots" content="{{ pageMeta.robots or defaults.robots }}" />
+<meta
+  name="robots"
+  content="{{ 'index, follow' if pageMeta.crawl_page is not defined or pageMeta.crawl_page else 'noindex, nofollow' }}"
+/>
 
 <!-- Canonical -->
 {% if pageMeta.canonical %}

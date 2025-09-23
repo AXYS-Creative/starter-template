@@ -1,47 +1,41 @@
 site_name: "Sample Business"
-url: "https://starter-template-cms.netlify.app" # Ensure no trailing slash
-author: "Sample Author"
-contact_email: "info@sample.com"
+url: "https://starter-template-cms.netlify.app" # CHANGE ME #Ensure no end slash
+author: Sample Author
+contact_email: info@sample.com
 theme_color: "#000000"
 favicon_light_theme: "/static/img/favicon-dark.svg"
 favicon_dark_theme: "/static/img/favicon-light.svg"
 
-# Defaults (fallbacks)
 defaults:
   title: "Sample Business | Motto Here"
   description: "Open Graph Description Here"
+  crawl_page: true
   og_image: "/static/img/og-image.png"
-  robots: "index, follow"
 
-# Page-specific metadata
 page_details:
-  home:
-    label: "Home"
-    title: "Home | Business Name"
-    description: "Home page description"
-    og_image: "/static/img/og-home.png"
-    robots: "index, follow"
-    canonical: "/"
-  about:
-    label: "About"
-    title: "About Us | Business Name"
-    description: "About description"
-    og_image: "/static/img/og-about.png"
-    robots: "index, follow"
-    canonical: "/about"
-  style-guide:
-    label: "Style Guide"
-    title: "Style Guide | Business Name"
-    description: "Style guide description..."
-    canonical: "/library/style-guide"
-  blog:
-    label: "Blog"
-    title: "Blog | Business Name"
-    description: "Blog description goes here."
-    og_image: "/static/img/og-library.png"
-    canonical: "/blog"
-  "404":
+  - path: ""
+    label: Home
+    title: Home | Business Name
+    description: Home page description
+    crawl_page: true
+    og_image: "/static/img/og-image-alt.png"
+  - path: blog
+    label: Blog
+    title: Blog | Business Name
+    description: Blog description
+    crawl_page: true
+  - path: library/components
+    label: Components
+    title: Components | Business Name
+    description: The UI component library and utility collection.
+    crawl_page: true
+  - path: style-guide
+    label: Style Guide
+    title: Style Guide | Business Name
+    description: Style guide description...
+    crawl_page: false
+  - path: "404"
     label: "404"
-    title: "Page Not Found"
-    description: "The page you are looking for cannot be found."
-    robots: "noindex, nofollow"
+    title: Page Not Found
+    description: The page you are looking for cannot be found. Please check the URL or return to the home page.
+    crawl_page: false

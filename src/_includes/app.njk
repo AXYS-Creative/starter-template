@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <!-- prettier-ignore -->
-    {% set pageMeta = meta_data.page_details[page.fileSlug] or {} %}
+    {% set pageMeta = null %}
     {% set defaults = meta_data.defaults %}
-    
+    {% for meta in meta_data.page_details %}
+      {% if '/' + meta.path in page.url %}
+        {% set pageMeta = meta %}
+      {% endif %}
+    {% endfor %}
+
     {% include "./meta/_meta-core.njk" %}
-    {% include "./meta/_meta-open-graph.njk" %}
     {% include "./meta/_meta-schema.njk" %}
+    {% include "./meta/_meta-open-graph.njk" %}
     {% include "./meta/_meta-theme-script.njk" %}
 
     <!-- Stylesheets -->
