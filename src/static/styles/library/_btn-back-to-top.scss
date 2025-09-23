@@ -4,6 +4,7 @@
   position: fixed;
   bottom: var(--body-padding);
   scale: 0.25;
+  z-index: $z-index--btn-back-to-top;
 
   &:focus-visible {
     @include show-content;

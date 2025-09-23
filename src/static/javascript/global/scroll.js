@@ -17,7 +17,7 @@ window.addEventListener("scroll", () => {
 
   let awayFromTop = currentScrollY > 96;
   let scrollingDown = currentScrollY > lastScrollY;
-  let nearBottom = currentScrollY + windowHeight >= documentHeight - 180; // Adjust threshold as needed
+  let nearBottom = currentScrollY + windowHeight >= documentHeight - 296; // Adjust threshold as needed
 
   if (awayFromTop) {
     siteHeader?.classList.add("site-header--away-from-top");

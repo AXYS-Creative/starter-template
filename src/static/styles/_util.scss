@@ -452,7 +452,7 @@
   .video-bg-section {
     .video-bg--sample-1 {
       @include gradient-border(130deg);
-      @include column-center(flex-end);
+      @include column-center(end);
       gap: var(--spacing);
       width: 100%;
       padding: 364px 64px 64px;
@@ -460,6 +460,11 @@
 
       @include mq-max(lg) {
         padding: 296px 40px 40px;
+      }
+
+      @include mq-max(md) {
+        align-items: start;
+        padding: 148px 24px;
       }
     }
   }
@@ -604,6 +609,14 @@
 
   .text-center {
     text-align: center;
+
+    &--md-up {
+      text-align: start;
+
+      @include mq-min(md) {
+        text-align: center;
+      }
+    }
   }
 
   // text-fade
