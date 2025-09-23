@@ -513,8 +513,8 @@ collections:
               - name: og_image
                 label: Open Graph Image (Default)
                 widget: image
-                required: false
-                hint: Overrides default OG image
+                required: true
+                hint: Default image for social sharing (See 'page details' below to override per page)
                 media_library:
                   config:
                     max_file_size: 8000000
@@ -523,7 +523,7 @@ collections:
             allow_add: false
             widget: list
             required: true
-            hint: Used for SEO and social sharing
+            hint: Page specific meta data, used for SEO and social sharing
             fields:
               - name: label
                 label: Label (Admin Dashboard)
@@ -533,18 +533,18 @@ collections:
               - name: title
                 label: Page Title
                 widget: string
-                required: true
+                required: false
                 hint: Shown in browser tab and search engine results. Keep it under 60 characters.
               - name: description
                 label: Page Description
                 widget: text
-                required: true
+                required: false
                 hint: Short page summary for SEO and social media. Keep it around 140–160 characters.
               - name: og_image
                 label: Open Graph Image
                 widget: image
                 required: false
-                hint: Overrides default OG image
+                hint: Image for social sharing. If not set, the default image will be used. (see 'defaults' above)
                 media_library:
                   config:
                     max_file_size: 8000000
