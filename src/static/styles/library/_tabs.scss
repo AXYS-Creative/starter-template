@@ -1,26 +1,17 @@
-// .tabs-section {
-
-// }
-
 .tabs {
   &__controls {
     padding-block: var(--section-gap);
   }
 
   &__btn {
-    @extend .cta-1;
+    opacity: 0.5;
 
     &--active {
-      background: var(--color-font--primary);
-      color: var(--color-background);
+      opacity: 1;
     }
   }
 
   &__panel {
-    img {
-      max-width: 480px;
-    }
-
     &--hidden {
       display: none;
     }

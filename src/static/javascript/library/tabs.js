@@ -1,25 +1,49 @@
-const tabsBtn = document.querySelectorAll(".tabs__btn");
-const tabsPanel = document.querySelectorAll(".tabs__panel");
+document.querySelectorAll(".tabs").forEach((tabs) => {
+  const panels = tabs.querySelectorAll(".tabs__panel");
+  let btns = tabs.querySelectorAll(".tabs__btn");
+  let tabList = tabs.querySelector(".tabs__list");
 
-if (tabsBtn.length > 0 && tabsPanel.length > 0) {
-  // Set first tab as active by default
-  tabsBtn[0].classList.add("tabs__btn--active");
-  tabsPanel[0].classList.remove("tabs__panel--hidden");
-}
+  // If no tablist/buttons exist, generate them
+  if (!btns.length) {
+    tabList = document.createElement("div");
+    tabList.className = "tabs__list";
+    tabList.setAttribute("role", "tablist");
+    tabs.prepend(tabList);
 
-tabsBtn.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    tabsBtn.forEach((btn) => btn.classList.remove("tabs__btn--active"));
+    panels.forEach((panel, i) => {
+      const id = `${tabs.classList[1] || "tabs"}-${i}`; // unique ID per instance
+      const label = panel.dataset.tabLabel || `Tab ${i + 1}`;
 
-    tabsPanel.forEach((content) =>
-      content.classList.add("tabs__panel--hidden")
-    );
+      panel.id = id;
+      panel.setAttribute("role", "tabpanel");
 
-    button.classList.add("tabs__btn--active");
+      const btn = document.createElement("button");
+      btn.className = "tabs__btn";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-controls", id);
+      btn.textContent = label;
+      tabList.appendChild(btn);
+    });
 
-    const activeTab = document.querySelector(`#tabs__panel-${index + 1}`);
-    if (activeTab) {
-      activeTab.classList.remove("tabs__panel--hidden");
-    }
+    btns = tabList.querySelectorAll(".tabs__btn");
+  }
+
+  // Activate tab helper
+  function activateTab(index) {
+    btns.forEach((b, i) => {
+      const panel = panels[i];
+      const active = i === index;
+      b.setAttribute("aria-selected", active);
+      panel.hidden = !active;
+      b.classList.toggle("tabs__btn--active", active);
+    });
+  }
+
+  // Init: first tab open
+  activateTab(0);
+
+  // Events
+  btns.forEach((btn, i) => {
+    btn.addEventListener("click", () => activateTab(i));
   });
 });

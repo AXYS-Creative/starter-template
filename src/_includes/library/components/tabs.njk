@@ -1,7 +1,21 @@
-<div class="tabs">
-  <div class="tabs__controls">
+{% set default_selected = '' %}
+
+<div class="tabs tabs--component">
+  <div class="tabs__list" role="tablist">
     {% for item in tab_list %}
-    <button class="tabs__btn tab-element-page" id="tabs__btn-{{ loop.index }}">
+    <!-- prettier-ignore -->
+    {% if loop.index == 0 %}
+      {% set default_selected = true %}
+    {% else %}
+      {% set default_selected = false %}
+    {% endif %}
+    <button
+      class="tabs__btn"
+      id="tab-btn-{{ loop.index }}"
+      role="tab"
+      aria-controls="tab-panel-{{ loop.index }}"
+      aria-selected="{{ default_selected }}"
+    >
       Tab {{ loop.index }}
     </button>
     {% endfor %}
@@ -9,15 +23,15 @@
 
   <div class="tabs__content">
     {% for item in tab_list %}
+    <!-- prettier-ignore -->
     <div
-      class="tabs__panel tabs__panel--hidden"
-      id="tabs__panel-{{ loop.index }}"
+      class="tabs__panel"
+      id="tab-panel-{{ loop.index }}"
+      role="tabpanel"
+      aria-labelledby="tab-btn-{{ loop.index }}"
+      {% if not loop.first %}hidden{% endif %}
     >
-      <h3>{{ item.title }}</h3>
-
-      <p>{{ item.description }}</p>
-
-      <img src="{{ item.img }}" alt="" />
+      Content for Tab {{ loop.index }}
     </div>
     {% endfor %}
   </div>

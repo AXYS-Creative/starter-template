@@ -6165,7 +6165,7 @@ code {
   }
 }
 
-.cta-1, .tabs__btn {
+.cta-1 {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius--btn);
   background: var(--color-btn-bg);
@@ -6173,12 +6173,12 @@ code {
   padding: var(--padding-btn);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .cta-1, .tabs__btn {
+  .cta-1 {
     transition: all 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .cta-1:hover, .tabs__btn:hover, .cta-1:focus-visible, .tabs__btn:focus-visible {
+  .cta-1:hover, .cta-1:focus-visible {
     border-color: var(--color-btn-border--hover);
     background: var(--color-btn-bg--hover);
     color: var(--color-btn-text--hover);
@@ -7748,12 +7748,11 @@ body:has(.tooltip-util) .mouse-cursor {
 .tabs__controls {
   padding-block: var(--section-gap);
 }
-.tabs__btn--active {
-  background: var(--color-font--primary);
-  color: var(--color-background);
+.tabs__btn {
+  opacity: 0.5;
 }
-.tabs__panel img {
-  max-width: 480px;
+.tabs__btn--active {
+  opacity: 1;
 }
 .tabs__panel--hidden {
   display: none;
