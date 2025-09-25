@@ -14,9 +14,22 @@ export const navLinks = document.querySelectorAll(".nav-link"),
 let headerHeight = siteHeader.offsetHeight;
 root.style.setProperty("--header-height", `${headerHeight}px`);
 
+siteNav.setAttribute("tabIndex", "-1"); // Keep this, was able to tab the nav initially
 tabElementsNav.forEach((elem) => elem.setAttribute("tabIndex", "-1"));
 
 let navScrollLock = siteNav.dataset.scrollLock === "true";
+
+// Track the current focus scope globally
+let currentScope = "page";
+
+function updateTabScope(scope) {
+  currentScope = scope; // keep in sync
+  const pageEls = document.querySelectorAll(".tab-element-page");
+  const navEls = document.querySelectorAll(".tab-element-nav");
+
+  pageEls.forEach((el) => (el.tabIndex = scope === "page" ? 0 : -1));
+  navEls.forEach((el) => (el.tabIndex = scope === "nav" ? 0 : -1));
+}
 
 const toggleNav = () => {
   const isNavOpen = siteNav.getAttribute("aria-hidden") === "true";
@@ -38,13 +51,7 @@ const toggleNav = () => {
     document.body.style.overflow = "auto";
   }
 
-  // Update tabindex for tabElementsPage and tabElementsNav
-  tabElementsPage.forEach((el) =>
-    el.setAttribute("tabindex", isNavOpen ? "-1" : "0")
-  );
-  tabElementsNav.forEach((el) =>
-    el.setAttribute("tabindex", isNavOpen ? "0" : "-1")
-  );
+  updateTabScope(isNavOpen ? "nav" : "page");
 };
 
 const closeNav = () => {
@@ -53,9 +60,7 @@ const closeNav = () => {
 
   siteHeader.classList.remove("site-header--nav-active");
 
-  // Reset tabindex for tabElementsPage and tabElementsNav
-  tabElementsPage.forEach((el) => el.setAttribute("tabindex", "0"));
-  tabElementsNav.forEach((el) => el.setAttribute("tabindex", "-1"));
+  updateTabScope("page");
 };
 
 // Close nav when clicking any nav link (except those with prevent-nav-close class)
@@ -66,3 +71,22 @@ const closeNav = () => {
 });
 
 menuBtn?.addEventListener("click", toggleNav);
+
+// 🔎 MutationObserver ensures newly added tab-elements also get the right tabindex
+const observer = new MutationObserver(() => {
+  updateTabScope(currentScope);
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
+// Debug: Log any focused element
+// document.addEventListener(
+//   "focus",
+//   (e) => {
+//     console.log("Focused element:", e.target);
+//   },
+//   true
+// );

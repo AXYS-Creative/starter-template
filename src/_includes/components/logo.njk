@@ -1,7 +1,5 @@
 <!-- prettier-ignore -->
-{% set meta_data = meta_data %}
 {% set logo = global.logo %}
-{% set a11y_tab = a11y_tab or '' %}
 
 {% set src = logo.src or '' %}
 {% set a11y_text = logo.a11y_text or meta_data.site_name + ' Logo' %}
@@ -15,17 +13,17 @@
   {% set theme_class = 'theme-img' %}
 {% endif %}
 
-{% set dymanic_src = '' %}
+{% set dynamic_src = '' %}
 {% if theme_src %}
-  {% set dymanic_src = theme_src.dark %}
+  {% set dynamic_src = theme_src.dark %}
 {% else %}
-  {% set dymanic_src = src %}
+  {% set dynamic_src = src %}
 {% endif %}
 
 {% if logo.url %}
 <!-- prettier-ignore -->
 <a 
-  class="site-logo site-logo-link {{class}} {{a11y_tab}}" 
+  class="site-logo site-logo-link {{class}} {{a11y_tab or ''}}" 
   href="{{ url }}" 
   {% if new_tab %}
     target="_blank" 
@@ -34,7 +32,7 @@
 >
   <img
     class="site-logo site-logo-img {{ theme_class }}"
-    src="{{ dymanic_src }}"
+    src="{{ dynamic_src }}"
     {% if theme_src %}      
       data-light="{{ theme_src.light }}"
       data-dark="{{ theme_src.dark }}"
@@ -47,7 +45,7 @@
 <!-- prettier-ignore -->
 <img
   class="site-logo site-logo-img {{class}} {{ theme_class }}" 
-  src="{{ logo.dymanic_src }}"
+  src="{{ logo.dynamic_src }}"
   {% if theme_src %}      
     data-light="{{ theme_src.light }}"
     data-dark="{{ theme_src.dark }}"

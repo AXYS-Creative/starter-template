@@ -13,6 +13,7 @@ const nonVideoOverlayTabElements = [
   menuBtn,
 ];
 
+videoPlayer?.setAttribute("tabindex", "-1");
 videoCloseBtn?.setAttribute("tabindex", "-1");
 
 // For Dropbox, replace end of link's string to allow video embed
@@ -34,6 +35,7 @@ export const openVideoOverlay = (src) => {
   videoCloseBtn.focus();
 
   videoOverlay.setAttribute("tabindex", "0");
+  videoPlayer.setAttribute("tabindex", "0");
   videoCloseBtn.setAttribute("tabindex", "0");
   nonVideoOverlayTabElements.forEach((el) =>
     el?.setAttribute("tabindex", "-1")
@@ -57,6 +59,7 @@ export const closeVideoOverlay = () => {
 
   videoToggle?.forEach((btn) => {
     btn.setAttribute("aria-expanded", "false");
+    btn.focus(); // Since overlay exists outside of main, this helps restore focus when closing overlay (vs going to footer)
   });
 
   videoPlayer.pause();

@@ -1,26 +1,14 @@
 const alertEls = document.querySelectorAll(".alert");
 const alertTriggers = document.querySelectorAll(".alert-trigger");
 
-const setAlertTabIndex = (alertEl, index) => {
-  const focusables = [
-    alertEl.querySelector(".alert__close-btn"),
-    alertEl.querySelector(".alert-content__link-1"),
-    alertEl.querySelector(".alert-content__link-2"),
-  ].filter(Boolean); // remove nulls
-
-  focusables.forEach((el) => (el.tabIndex = index));
-};
-
 const hideAlert = (alertEl) => {
-  alertEl.classList.remove("alert--active");
   alertEl.setAttribute("aria-hidden", true);
-  setAlertTabIndex(alertEl, -1);
+  alertEl.setAttribute("inert", "");
 };
 
 const showAlert = (alertEl) => {
-  alertEl.classList.add("alert--active");
   alertEl.setAttribute("aria-hidden", false);
-  setAlertTabIndex(alertEl, 0);
+  alertEl.removeAttribute("inert");
 
   // Nudge content so SRs announce it
   const msg = alertEl.querySelector(".alert-content__message");
@@ -45,7 +33,7 @@ const showAlert = (alertEl) => {
 };
 
 alertEls.forEach((alertEl) => {
-  setAlertTabIndex(alertEl, -1);
+  alertEl.setAttribute("inert", "");
 
   const closeBtn = alertEl.querySelector(".alert__close-btn");
   if (closeBtn) {

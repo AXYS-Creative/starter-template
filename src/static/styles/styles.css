@@ -6487,7 +6487,7 @@ code {
   right: var(--spacing--sm);
   max-width: 420px;
   border-radius: var(--radius--xs);
-  z-index: 6;
+  z-index: 3;
   translate: 0 200%;
   transition: 0.5s cubic-bezier(0.75, -0.05, 0.75, -0.5) 0.125s;
 }
@@ -6541,7 +6541,7 @@ code {
 .alert[data-alert-type=error] {
   --accent-color: #dc143c;
 }
-.alert--active {
+.alert[aria-hidden=false] {
   translate: 0 0;
   transition: 0.5s cubic-bezier(0.25, 1.5, 0.25, 1.05);
 }
@@ -6611,7 +6611,7 @@ code {
   position: fixed;
   bottom: var(--body-padding);
   scale: 0.25;
-  z-index: 5;
+  z-index: 2;
 }
 @media (min-width: 1513px) {
   .btn-back-to-top {

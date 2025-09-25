@@ -14,8 +14,6 @@
 {% set icon_circle = btn.icon_circle or false %}
 
 <!-- prettier-ignore -->
-{% set a11y_tab = a11y_tab or 'tab-element-page' %}
-
 {% if type == 'icon-end' %}
   {% set icon_end = '/static/img/library/icon-google-chevron-right.svg' %}
 {% endif %}
@@ -36,7 +34,7 @@
 
 <!-- prettier-ignore -->
 <{{element_to_use}}
-  class="btn btn-type--{{ type }} {{ class }} {{size_class}} {{ a11y_tab }}"
+  class="btn btn-type--{{ type }} {{ class }} {{size_class}} {{a11y_tab or 'tab-element-page'}}"
   {%if content_start %}
     id="content-start"
   {%endif%}

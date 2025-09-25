@@ -1,15 +1,18 @@
 <!-- prettier-ignore -->
 {% set src = icon_svg.src or '' %}
 {% set class = icon_svg.class or '' %}
+{% set label = icon_svg.label or '' %}
 
-{% set icon_classes = '' %}
+{% set icon_classes = (class ~ ' mask-icon') | trim %}
 
-{% if class %}
-  {% set icon_classes = class + ' mask-icon' %}
-{% endif %}
-
+<!-- prettier-ignore -->
 <span
   class="{{ icon_classes }}"
   style="mask-image: url('{{ src }}');"
-  role="img"
+  {% if label %}
+    role="img"
+    aria-label="{{ label }}"
+  {% else %}
+    aria-hidden="true"
+  {% endif %}
 ></span>

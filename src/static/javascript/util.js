@@ -20,19 +20,50 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
+// Cubic-bezier helper
+function cubicBezier(p0, p1, p2, p3) {
+  // Polyfill-like implementation of bezier easing
+  return (t) => {
+    const cx = 3 * p0;
+    const bx = 3 * (p2 - p0) - cx;
+    const ax = 1 - cx - bx;
+
+    const cy = 3 * p1;
+    const by = 3 * (p3 - p1) - cy;
+    const ay = 1 - cy - by;
+
+    const bezierX = (t) => ((ax * t + bx) * t + cx) * t;
+    const bezierY = (t) => ((ay * t + by) * t + cy) * t;
+
+    // Newton-Raphson to solve for t from x
+    let x = t,
+      i = 0;
+    for (; i < 5; i++) {
+      const x2 = bezierX(x) - t;
+      if (Math.abs(x2) < 1e-4) break;
+      const d2 = (3 * ax * x + 2 * bx) * x + cx;
+      if (Math.abs(d2) < 1e-4) break;
+      x -= x2 / d2;
+    }
+    return bezierY(x);
+  };
+}
+
 // Back to top
 export const btnBackToTop = document.querySelector(".btn-back-to-top"); // floating page button
 {
   const returnToTop = document.querySelectorAll(".back-to-top"),
     logo = document.querySelector(".header-logo");
 
+  const customEase = cubicBezier(0.6, 0, 0.25, 1);
+
   returnToTop.forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
 
       lenis.scrollTo(0, {
-        duration: 1.2,
-        easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic
+        duration: 1.5,
+        easing: customEase,
       });
 
       // Restore focus for accessibility

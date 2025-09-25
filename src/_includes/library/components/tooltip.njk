@@ -9,7 +9,7 @@
 {% set a11y_tab = a11y_tab or 'tab-element-page' %}
 
 <div class="tooltip">
-  <button class="tooltip__btn {{ a11y_tab }}">
+  <button class="tooltip__btn {{a11y_tab or 'tab-element-page'}}">
     <!-- prettier-ignore -->
     {% if text %}
     <span class="tooltip__btn-text">{{ text }}</span>

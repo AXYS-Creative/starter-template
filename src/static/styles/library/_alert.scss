@@ -85,7 +85,7 @@
     --accent-color: #{$red};
   }
 
-  &--active {
+  &[aria-hidden="false"] {
     translate: 0 0;
     transition: 0.5s cubic-bezier(0.25, 1.5, 0.25, 1.05);
   }

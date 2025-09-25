@@ -401,10 +401,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             // Prevent layout shift (measure width of target, not full button)
             if (!newText) {
+              const width = target.scrollWidth;
+              target.style.display = "inline-block";
+
               setTimeout(() => {
-                const width = target.scrollWidth;
                 target.style.width = `${width}px`;
-                target.style.display = "inline-block";
               }, 1000);
             }
 
@@ -439,10 +440,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             if (!target) return;
 
             if (!target.dataset.originalText) {
+              target.dataset.originalText = target.textContent;
+              target.style.display = "inline-block";
+
               setTimeout(() => {
-                target.dataset.originalText = target.textContent;
                 target.style.width = `${target.scrollWidth}px`;
-                target.style.display = "inline-block";
               }, 1000);
             }
 

@@ -20,10 +20,10 @@ $content-width: 1512px; // Be mindful of media query breakpoints with left/right
 // Layering
 $z-index--nav: 3;
 $z-index--header: 4;
+$z-index--btn-back-to-top: 2; // Library DELETE ME
+$z-index--alert: 3; // // // / Library DELETE ME
 $z-index--loader: 5; // // /// Library DELETE ME
 $z-index--video-overlay: 5; // Library DELETE ME
-$z-index--btn-back-to-top: 5; // Library DELETE ME
-$z-index--alert: 6; // // // / Library DELETE ME
 $z-index--mouse-cursor: 10; // Library DELETE ME
 
 // Easing
