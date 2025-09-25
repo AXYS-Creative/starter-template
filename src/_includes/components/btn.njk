@@ -54,22 +54,18 @@
   {% endif %}
 >
   {% if icon_start %}
-    <span 
-      class="btn__icon-start mask-icon"
-      style="mask-image: url('{{icon_start}}');"
-      role="img"
-    ></span>
+    {% set icon_svg = ({ src: icon_start, class: 'btn__icon-start' }) %}
+    {% include "./icon-svg.njk" %}
   {% endif %}
+
   {% if text %}
     <span class="btn__text">{{ text }}</span>
   {% endif %}
   {% if icon_end or type == 'icon_end' %}
   <span class="btn__icon-group {{ icon_end_class }}">
-    <span 
-      class="btn__icon-end mask-icon"
-      style="mask-image: url('{{icon_end}}');"
-      role="img"
-    ></span>
+    {% set icon_svg = ({ src: icon_end, class: 'btn__icon-end'}) %}
+    {% include "./icon-svg.njk" %}
+
     {% if icon_circle %}
       <svg
         class="btn__icon-circle"

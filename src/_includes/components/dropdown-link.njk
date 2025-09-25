@@ -14,11 +14,8 @@
 
     <!-- prettier-ignore -->
     {% if dropdown_link.icon %}
-    <span
-      class="dropdown-link__trigger-icon mask-icon"
-      style="mask-image: url('{{ dropdown_link.icon }}')"
-      role="img"
-    ></span>
+      {% set icon_svg = ({ src: dropdown_link.icon, class: 'dropdown-link__trigger-icon' }) %}
+      {% include "./icon-svg.njk" %}
     {% endif %}
   </button>
   <div class="dropdown-link__accordion">

@@ -1,0 +1,15 @@
+<!-- prettier-ignore -->
+{% set src = icon_svg.src or '' %}
+{% set class = icon_svg.class or '' %}
+
+{% set icon_classes = '' %}
+
+{% if class %}
+  {% set icon_classes = class + ' mask-icon' %}
+{% endif %}
+
+<span
+  class="{{ icon_classes }}"
+  style="mask-image: url('{{ src }}');"
+  role="img"
+></span>

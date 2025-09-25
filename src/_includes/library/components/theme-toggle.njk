@@ -16,16 +16,18 @@
       checked
     />
     <span class="sr-only">System</span>
-    <span
-      class="theme-toggle__icon theme-toggle__icon--desktop"
-      style="mask-image: url('/static/img/library/icon-google-desktop.svg')"
-      role="img"
-    ></span>
-    <span
-      class="theme-toggle__icon theme-toggle__icon--mobile"
-      style="mask-image: url('/static/img/library/icon-google-mobile.svg')"
-      role="img"
-    ></span>
+    <!-- prettier-ignore -->
+    {% set icon_svg = ({ 
+      src: '/static/img/library/icon-google-desktop.svg', 
+      class: 'theme-toggle__icon theme-toggle__icon--desktop' 
+    }) %}
+    {% include "../../components/icon-svg.njk" %}
+    
+    {% set icon_svg = ({ 
+      src: '/static/img/library/icon-google-mobile.svg', 
+      class: 'theme-toggle__icon theme-toggle__icon--mobile' 
+    }) %}
+    {% include "../../components/icon-svg.njk" %}
   </label>
 
   <label for="theme-light" class="theme-toggle__option" title="Light theme">
@@ -38,11 +40,12 @@
       aria-label="Light theme"
     />
     <span class="sr-only">Light</span>
-    <span
-      class="theme-toggle__icon"
-      style="mask-image: url('/static/img/library/icon-google-sun.svg')"
-      role="img"
-    ></span>
+    <!-- prettier-ignore -->
+    {% set icon_svg = ({ 
+      src: '/static/img/library/icon-google-sun.svg', 
+      class: 'theme-toggle__icon' 
+    }) %}
+    {% include "../../components/icon-svg.njk" %}
   </label>
 
   <label for="theme-dark" class="theme-toggle__option" title="Dark theme">
@@ -55,10 +58,11 @@
       aria-label="Dark theme"
     />
     <span class="sr-only">Dark</span>
-    <span
-      class="theme-toggle__icon"
-      style="mask-image: url('/static/img/library/icon-google-moon.svg')"
-      role="img"
-    ></span>
+    <!-- prettier-ignore -->
+    {% set icon_svg = ({ 
+      src: '/static/img/library/icon-google-moon.svg', 
+      class: 'theme-toggle__icon' 
+    }) %}
+    {% include "../../components/icon-svg.njk" %}
   </label>
 </fieldset>

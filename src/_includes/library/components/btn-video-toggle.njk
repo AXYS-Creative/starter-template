@@ -23,16 +23,15 @@
   {{ attributes }}
   {{ data_placement }}
 >
-  <span
-    class="btn-video-toggle__icon btn-video-toggle__icon--playing"
-    style="mask-image: url('{{ icon_play }}')"
-    role="img"
-  >
-  </span>
-  <span
-    class="btn-video-toggle__icon btn-video-toggle__icon--paused"
-    style="mask-image: url('{{ icon_pause }}')"
-    role="img"
-  >
-  </span>
+  {% set icon_svg = ({ 
+    src: icon_play, 
+    class: 'btn-video-toggle__icon btn-video-toggle__icon--playing' 
+  }) %}
+  {% include "../../components/icon-svg.njk" %}
+
+  {% set icon_svg = ({ 
+    src: icon_pause, 
+    class: 'btn-video-toggle__icon btn-video-toggle__icon--paused' 
+  }) %}
+  {% include "../../components/icon-svg.njk" %}
 </button>

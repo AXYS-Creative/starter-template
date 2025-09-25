@@ -8625,6 +8625,12 @@ body:has(.tooltip-util) .mouse-cursor {
   z-index: -1;
   border-radius: inherit;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  inset: auto;
+  left: 50%;
+  bottom: 0;
+  translate: -50% 0;
+  width: 100vw;
+  height: 100%;
 }
 .tunnel__message-wrapper .tunnel__message {
   color: var(--color-font--primary);

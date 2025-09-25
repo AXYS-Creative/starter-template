@@ -3,13 +3,10 @@
 {% set badge_icon = badge.icon or '' %}
 
 <div class="badge">
+  <!-- prettier-ignore -->
   {% if badge_icon %}
-  <span
-    class="badge__icon mask-icon"
-    style="mask-image: url('{{ badge_icon }}');"
-    role="img"
-  >
-  </span>
+    {% set icon_svg = ({ src: badge_icon, class: 'badge__icon' }) %}
+    {% include "../../components/icon-svg.njk" %}
   {% endif %}
   <span class="badge__text">{{ badge_text }}</span>
 </div>

@@ -54,13 +54,13 @@
     <!-- prettier-ignore -->
     {% for panel in panel_data %}
     <div class="scroll-stack__panel scroll-stack__panel-{{ loop.index }}">
+      <!-- prettier-ignore -->
       {% if panel.icon %}
-      <span
-        class="scroll-stack__panel__icon mask-icon"
-        style="mask-image: url('{{ panel.icon }}')"
-        role="img"
-      ></span>
-      {% endif %} {% if panel.title %}
+        {% set icon_svg = ({ src: panel.icon, class: 'scroll-stack__panel__icon' }) %}
+        {% include "../../components/icon-svg.njk" %}
+      {% endif %} 
+      
+      {% if panel.title %}
       <h3 class="scroll-stack__panel__title h6">
         {{ panel.title }}
       </h3>

@@ -47,11 +47,10 @@
   aria-hidden="true"
   aria-live="polite"
   >
-  <span
-    style="mask-image: url({{icon_path}});"
-    class="alert__icon mask-icon"
-    role="img"
-  ></span>
+  
+  {% set icon_svg = ({ src: icon_path, class: 'alert__icon' }) %}
+  {% include "../../components/icon-svg.njk" %}
+
   <div class="alert-content">
     {% if title %}<strong class="alert-content__title">{{title}}</strong>{% endif %}
     {% if message %}<p class="alert-content__message">{{message | safe}}</p>{% endif %}

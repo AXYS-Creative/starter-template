@@ -13,12 +13,10 @@
     <!-- prettier-ignore -->
     {% if text %}
     <span class="tooltip__btn-text">{{ text }}</span>
+    <!-- prettier-ignore -->
     {% elif icon %}
-    <span
-      class="tooltip__btn-icon mask-icon"
-      style="mask-image: url('{{ icon }}');"
-      role="img"
-    ></span>
+      {% set icon_svg = ({ src: icon, class: 'tooltip__btn-icon' }) %}
+      {% include "../../components/icon-svg.njk" %}
     {% endif %}
   </button>
   <div

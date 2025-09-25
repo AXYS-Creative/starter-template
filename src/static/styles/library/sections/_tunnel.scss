@@ -37,7 +37,7 @@
   &__message-wrapper {
     @include width-clamp;
     @include section-padding;
-    @include gradient-backdrop;
+    @include gradient-backdrop($full-vw: true);
     position: absolute;
     bottom: 0;
     left: 50%;
