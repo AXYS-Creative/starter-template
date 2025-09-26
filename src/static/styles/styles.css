@@ -7762,7 +7762,9 @@ body:has(.tooltip-util) .mouse-cursor {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   gap: 8px;
+  padding: 2px;
   border: none;
 }
 .theme-toggle__option {
@@ -7770,10 +7772,10 @@ body:has(.tooltip-util) .mouse-cursor {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   padding: 6px;
-  opacity: 0.5;
-  border-radius: 50%;
+  border-radius: var(--radius--xs);
+  transition: 0.24s ease;
+  cursor: pointer;
 }
 .theme-toggle__option:hover {
   background: rgba(47, 79, 79, 0.25);
@@ -7781,12 +7783,16 @@ body:has(.tooltip-util) .mouse-cursor {
 .theme-toggle__option:has(input:focus-visible) {
   box-shadow: 0 0 0 1.5px #275dc5, 0 0 0 3px #fff;
 }
-.theme-toggle__option:has(input:checked) {
+.theme-toggle__option:has(input:checked) .theme-toggle__icon {
   opacity: 1;
+}
+.theme-toggle__option .theme-toggle__icon {
+  opacity: 0.5;
 }
 .theme-toggle__option input {
   position: absolute;
   opacity: 0;
+  cursor: pointer;
 }
 .theme-toggle__icon {
   -webkit-mask-size: contain;
@@ -7801,6 +7807,7 @@ body:has(.tooltip-util) .mouse-cursor {
   vertical-align: middle;
   background-color: var(--color-font--primary);
   width: 16px;
+  pointer-events: none;
 }
 .theme-toggle__icon--desktop {
   display: none;
@@ -7817,6 +7824,23 @@ body:has(.tooltip-util) .mouse-cursor {
   .theme-toggle__icon--mobile {
     display: block;
   }
+}
+.theme-toggle--multi {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: 4px;
+}
+.theme-toggle--multi .theme-toggle__option:hover {
+  background: none;
+}
+.theme-toggle--multi__slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: calc(100% - 4px);
+  background: rgba(47, 79, 79, 0.25);
+  border-radius: 2px;
+  transition: 0.24s ease;
+  z-index: -1;
 }
 
 .tooltip {

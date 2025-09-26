@@ -1,5 +1,13 @@
+<!-- prettier-ignore -->
+{% set use_multi_toggle = true %}
+
+{% set theme_toggle_class = '' %}
+{% if use_multi_toggle %}
+  {% set theme_toggle_class = 'theme-toggle--multi' %}
+{% endif %}
+
 <fieldset
-  class="theme-toggle"
+  class="theme-toggle {{ theme_toggle_class }} cursor-hide"
   role="radiogroup"
   aria-label="Select a display theme"
 >
@@ -65,4 +73,8 @@
     }) %}
     {% include "../../components/icon-svg.njk" %}
   </label>
+
+  {% if use_multi_toggle %}
+  <div class="theme-toggle--multi__slider" aria-hidden="true"></div>
+  {% endif %}
 </fieldset>
