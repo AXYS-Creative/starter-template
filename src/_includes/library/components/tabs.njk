@@ -1,7 +1,18 @@
+<!-- prettier-ignore -->
 {% set default_selected = '' %}
+{% set toggle_slider = 'solid' %}
 
-<div class="tabs tabs--component">
-  <div class="tabs__list" role="tablist">
+{% set tabs_class = '' %}
+{% if toggle_slider == 'solid' %}
+  {% set tabs_class = 'toggle-slider toggle-slider--solid' %}
+{% endif %}
+
+{% if toggle_slider == 'underline' %}
+  {% set theme_toggle_class = 'toggle-slider toggle-slider--underline' %}
+{% endif %}
+
+<div class="tabs tabs--component cursor-hide">
+  <div class="tabs-list {{ tabs_class }}" role="tablist">
     {% for item in tab_list %}
     <!-- prettier-ignore -->
     {% if loop.index == 0 %}
@@ -10,8 +21,8 @@
       {% set default_selected = false %}
     {% endif %}
     <button
-      class="tabs__btn tab-element-page"
-      id="tab-btn-{{ loop.index }}"
+      class="tabs-option tab-element-page"
+      id="tab-option-{{ loop.index }}"
       role="tab"
       aria-controls="tab-panel-{{ loop.index }}"
       aria-selected="{{ default_selected }}"
@@ -19,16 +30,21 @@
       Tab {{ loop.index }}
     </button>
     {% endfor %}
+
+    <!-- prettier-ignore -->
+    {% if toggle_slider %}
+    <div class="tabs-list-slider"></div>
+    {% endif %}
   </div>
 
-  <div class="tabs__content">
+  <div class="tabs-content">
     {% for item in tab_list %}
     <!-- prettier-ignore -->
     <div
-      class="tabs__panel"
+      class="tabs-panel"
       id="tab-panel-{{ loop.index }}"
       role="tabpanel"
-      aria-labelledby="tab-btn-{{ loop.index }}"
+      aria-labelledby="tab-option-{{ loop.index }}"
       {% if not loop.first %}hidden{% endif %}
     >
       Content for Tab {{ loop.index }}

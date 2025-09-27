@@ -26,3 +26,5 @@ import "./library/tabs.js";
 import "./library/theme-toggle.js";
 import "./library/video-bg.js";
 import "./library/video-overlay.js";
+
+import "./library/utils/toggle-slider.js";

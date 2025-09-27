@@ -1,9 +1,13 @@
 <!-- prettier-ignore -->
-{% set use_multi_toggle = true %}
+{% set toggle_slider = 'solid' %}
 
 {% set theme_toggle_class = '' %}
-{% if use_multi_toggle %}
-  {% set theme_toggle_class = 'theme-toggle--multi' %}
+{% if toggle_slider == 'solid' %}
+  {% set theme_toggle_class = 'toggle-slider toggle-slider--solid' %}
+{% endif %}
+
+{% if toggle_slider == 'underline' %}
+  {% set theme_toggle_class = 'toggle-slider toggle-slider--underline' %}
 {% endif %}
 
 <fieldset
@@ -74,7 +78,7 @@
     {% include "../../components/icon-svg.njk" %}
   </label>
 
-  {% if use_multi_toggle %}
-  <div class="theme-toggle--multi__slider" aria-hidden="true"></div>
+  {% if toggle_slider %}
+  <div class="toggle-slider" aria-hidden="true"></div>
   {% endif %}
 </fieldset>

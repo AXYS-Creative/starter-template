@@ -1,12 +1,12 @@
 document.querySelectorAll(".tabs").forEach((tabs) => {
-  const panels = tabs.querySelectorAll(".tabs__panel");
-  let btns = tabs.querySelectorAll(".tabs__btn");
-  let tabList = tabs.querySelector(".tabs__list");
+  const panels = tabs.querySelectorAll(".tabs-panel");
+  let btns = tabs.querySelectorAll(".tabs-option");
+  let tabList = tabs.querySelector(".tabs-list");
 
   // If no tablist/buttons exist, generate them
   if (!btns.length) {
     tabList = document.createElement("div");
-    tabList.className = "tabs__list";
+    tabList.className = "tabs-list toggle-slider toggle-slider--solid";
     tabList.setAttribute("role", "tablist");
     tabs.prepend(tabList);
 
@@ -18,14 +18,18 @@ document.querySelectorAll(".tabs").forEach((tabs) => {
       panel.setAttribute("role", "tabpanel");
 
       const btn = document.createElement("button");
-      btn.className = "tabs__btn tab-element-page"; // tabindex
+      btn.className = "tabs-option tab-element-page";
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-controls", id);
       btn.textContent = label;
       tabList.appendChild(btn);
     });
 
-    btns = tabList.querySelectorAll(".tabs__btn");
+    let toggleSlider = document.createElement("div");
+    toggleSlider.className = "toggle-slider__slider";
+    tabList.prepend(toggleSlider);
+
+    btns = tabList.querySelectorAll(".tabs-option");
   }
 
   // Activate tab helper
@@ -35,7 +39,7 @@ document.querySelectorAll(".tabs").forEach((tabs) => {
       const active = i === index;
       b.setAttribute("aria-selected", active);
       panel.hidden = !active;
-      b.classList.toggle("tabs__btn--active", active);
+      b.classList.toggle("tabs-option--active", active);
     });
   }
 

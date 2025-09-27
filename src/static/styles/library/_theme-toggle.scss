@@ -1,21 +1,14 @@
 .theme-toggle {
-  $toggle-padding: 2px;
-  $toggle-radius: 4px;
-  $toggle-radius--inner: calc($toggle-radius - $toggle-padding);
-
   @include row-center;
-  position: relative;
   gap: 8px;
-  padding: $toggle-padding;
-  border: none;
 
   &__option {
     position: relative;
     @include row-center;
     padding: 6px;
     border-radius: var(--radius--xs);
-    transition: $ease;
     cursor: pointer;
+    transition: $ease;
 
     &:hover {
       background: rgba(darkslategrey, 0.25);
@@ -43,7 +36,6 @@
   }
 
   &__icon {
-    @include mask-image();
     background-color: var(--color-font--primary);
     width: 16px;
     pointer-events: none;
@@ -51,7 +43,7 @@
     &--desktop {
       display: none;
 
-      // @include mq-mouse {
+      // @include mq-mouse
       @include mq-min(lg) {
         display: block;
       }
@@ -60,33 +52,18 @@
     &--mobile {
       display: none;
 
-      // @include mq-touch {
+      // @include mq-touch
       @include mq-max(lg) {
         display: block;
       }
     }
   }
 
-  // If using prop use_multi_toggle
-  &--multi {
-    border: var(--border-width) solid var(--color-border);
-    border-radius: $toggle-radius;
-
-    .theme-toggle__option {
-      &:hover {
-        background: none;
-      }
-    }
-
-    &__slider {
-      position: absolute;
-      top: $toggle-padding;
-      left: $toggle-padding;
-      height: calc(100% - $toggle-padding * 2);
-      background: rgba(darkslategrey, 0.25);
-      border-radius: $toggle-radius--inner;
-      transition: $ease;
-      z-index: -1;
-    }
+  &.toggle-slider--solid,
+  .toggle-slider {
+    --toggle-padding: 2px;
+    --toggle-radius: 4px;
+    --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
+    --option-padding: 4px; // btn size
   }
 }

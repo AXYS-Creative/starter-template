@@ -205,6 +205,10 @@ figure {
   font-size: 0; // Chrome's user agent stylesheet adds 1em padding-block-end
 }
 
+fieldset {
+  border: none;
+}
+
 hr {
   border: none;
   width: 100%;
@@ -267,5 +271,9 @@ code {
 
   @include mq-min(sm) {
     white-space: nowrap; // avoid lengthy code strings. Causes overflow scroll.
+  }
+
+  &.codearea {
+    display: inline-block;
   }
 }

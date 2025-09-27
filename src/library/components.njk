@@ -510,16 +510,15 @@ path: library/components
 
 <section class="tabs-section library-section">
   <h2 class="h5">[ Tabs - Util ]</h2>
-  <strong>Upcoming!</strong>
   <p>
     Intended for dynamic markup or custom components. Basically a plane that
     changes depending on the active tab.
   </p>
 
   <br /><br /><br /><br />
-  <div class="tabs tabs-util">
-    <div class="tabs__panels">
-      <div class="tabs__panel" data-tab-label="Overview" role="tabpanel">
+  <div class="tabs tabs--util cursor-hide">
+    <div class="tabs-content">
+      <div class="tabs-panel" data-tab-label="Tab Label 1" role="tabpanel">
         <h3 class="h6">Custom markup</h3>
         <p class="max-width-text">
           The tabs util allows for custom markup with minimal setup. The tab
@@ -528,8 +527,32 @@ path: library/components
         </p>
       </div>
 
-      <div class="tabs__panel" data-tab-label="Media" role="tabpanel" hidden>
+      <div
+        class="tabs-panel"
+        data-tab-label="Tab Label 2"
+        role="tabpanel"
+        hidden
+      >
+        <p>This tab has a video</p>
         <video src="/video.mp4" controls></video>
+      </div>
+
+      <div
+        class="tabs-panel"
+        data-tab-label="Tab Label 3"
+        role="tabpanel"
+        hidden
+      >
+        <h3 class="h6">This uses a component</h3>
+
+        <!-- prettier-ignore -->
+        {% set btn = ({
+          text: 'Button within tabs',
+          type: 'solid',
+          class: '',
+          attributes: ''
+        }) %}
+        {% include "../_includes/components/btn.njk" %}
       </div>
     </div>
   </div>

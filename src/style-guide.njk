@@ -355,8 +355,7 @@ title: Style Guide
   }) %}
   {% include './_includes/components/cta-group.njk' %}
 
-  <br />
-  <br />
+  <br /><br />
 
   <!-- prettier-ignore -->
   {% set btn_toggle_label = 'Autoplay:' %}
@@ -368,10 +367,52 @@ title: Style Guide
   }) %}
   {% include "./_includes/library/components/btn-toggle.njk" %}
 
-  <br />
+  <br /><br />
   <!-- prettier-ignore -->
   {% set play_btn_id = 'library-id-play-btn' %}
   {% include "./_includes/library/components/btn-video-toggle.njk" %}
+
+  <br /><br />
+  <h3 class="h6">Toggle Sliders (Util structure)</h3>
+  <br />
+  <p>Toggle sliders look for a structure similar to the one below:</p>
+  <br /><br />
+  <code class="codearea"
+    >&lt;div class="toggle-slider"&gt;
+    <br />
+    &nbsp; &lt;button class="*option*"&gt;&lt;/button&gt;
+    <br />
+    &nbsp; &lt;div class="*slider*"&gt;&lt;/div&gt;
+    <br />
+    &lt;/div&gt;
+  </code>
+  <br /><br />
+  <p>
+    It also works with labels and nested inputs, in the case of
+    <code>theme-toggle.njk</code>
+  </p>
+  <br />
+  <div class="cursor-hide">
+    <br /><br />
+    <div class="toggle-slider toggle-slider--solid">
+      <button class="option tab-element-page">Option 1</button>
+      <button class="option tab-element-page">Option 2</button>
+      <button class="option tab-element-page">Option 3</button>
+      <div class="slider"></div>
+    </div>
+  </div>
+
+  <br /><br />
+  <div class="cursor-hide">
+    <code>toggle-slider toggle-slider--underline</code>
+    <br /><br />
+    <div class="toggle-slider toggle-slider--underline">
+      <button class="option tab-element-page">Option 1</button>
+      <button class="option tab-element-page">Option 2</button>
+      <button class="option tab-element-page">Option 3</button>
+      <div class="slider"></div>
+    </div>
+  </div>
 </section>
 
 <section class="main-style-guide__section">

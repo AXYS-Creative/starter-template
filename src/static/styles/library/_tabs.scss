@@ -1,9 +1,13 @@
+// Unified for both component and utillity
+
 .tabs {
-  &__controls {
-    padding-block: var(--section-gap);
+  &-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  &__btn {
+  &-option {
     opacity: 0.5;
 
     &--active {
@@ -11,9 +15,7 @@
     }
   }
 
-  &__panel {
-    &--hidden {
-      display: none;
-    }
+  &-content {
+    margin-block-start: var(--spacing);
   }
 }

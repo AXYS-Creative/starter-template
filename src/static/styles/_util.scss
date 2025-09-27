@@ -119,6 +119,59 @@
     transition: $magnet;
   }
 
+  .toggle-slider {
+    --accent-color: var(--color-surface--1);
+    --toggle-padding: 4px;
+    --toggle-radius: 8px;
+    --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
+    --option-padding: 6px; // btn size
+
+    position: relative;
+    display: inline-block;
+
+    [class*="option"] {
+      padding: var(--option-padding);
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    [class*="slider"] {
+      background: var(--accent-color);
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      transition: $ease;
+    }
+
+    &--solid {
+      // --toggle-padding: 4px;
+      // --toggle-radius: 8px;
+
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--toggle-radius);
+      padding: var(--toggle-padding);
+
+      [class*="slider"] {
+        position: absolute;
+        top: var(--toggle-padding);
+        height: calc(100% - var(--toggle-padding) * 2);
+        border-radius: var(--toggle-radius--inner);
+      }
+    }
+
+    &--underline {
+      --accent-color: var(--color-brand--primary);
+
+      [class*="slider"] {
+        bottom: 0;
+        left: 0;
+        height: 2px;
+      }
+    }
+  }
+
   .icon-md {
     width: 20px;
     height: 20px;

@@ -408,6 +408,10 @@ figure {
   font-size: 0;
 }
 
+fieldset {
+  border: none;
+}
+
 hr {
   border: none;
   width: 100%;
@@ -467,6 +471,9 @@ code {
   code {
     white-space: nowrap;
   }
+}
+code.codearea {
+  display: inline-block;
 }
 
 .section-width {
@@ -676,6 +683,47 @@ code {
   .magnet {
     display: inline-flex;
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
+  .toggle-slider {
+    --accent-color: var(--color-surface--1);
+    --toggle-padding: 4px;
+    --toggle-radius: 8px;
+    --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
+    --option-padding: 6px;
+    position: relative;
+    display: inline-block;
+  }
+  .toggle-slider [class*=option] {
+    padding: var(--option-padding);
+  }
+  .toggle-slider [class*=option]:hover {
+    background: none;
+  }
+  .toggle-slider [class*=slider] {
+    background: var(--accent-color);
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+    transition: 0.24s ease;
+  }
+  .toggle-slider--solid {
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--toggle-radius);
+    padding: var(--toggle-padding);
+  }
+  .toggle-slider--solid [class*=slider] {
+    position: absolute;
+    top: var(--toggle-padding);
+    height: calc(100% - var(--toggle-padding) * 2);
+    border-radius: var(--toggle-radius--inner);
+  }
+  .toggle-slider--underline {
+    --accent-color: var(--color-brand--primary);
+  }
+  .toggle-slider--underline [class*=slider] {
+    bottom: 0;
+    left: 0;
+    height: 2px;
   }
   .icon-md {
     width: 20px;
@@ -7745,27 +7793,26 @@ body:has(.tooltip-util) .mouse-cursor {
   }
 }
 
-.tabs__controls {
-  padding-block: var(--section-gap);
+.tabs-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.tabs__btn {
+.tabs-option {
   opacity: 0.5;
 }
-.tabs__btn--active {
+.tabs-option--active {
   opacity: 1;
 }
-.tabs__panel--hidden {
-  display: none;
+.tabs-content {
+  margin-block-start: var(--spacing);
 }
 
 .theme-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   gap: 8px;
-  padding: 2px;
-  border: none;
 }
 .theme-toggle__option {
   position: relative;
@@ -7774,8 +7821,8 @@ body:has(.tooltip-util) .mouse-cursor {
   align-items: center;
   padding: 6px;
   border-radius: var(--radius--xs);
-  transition: 0.24s ease;
   cursor: pointer;
+  transition: 0.24s ease;
 }
 .theme-toggle__option:hover {
   background: rgba(47, 79, 79, 0.25);
@@ -7795,16 +7842,6 @@ body:has(.tooltip-util) .mouse-cursor {
   cursor: pointer;
 }
 .theme-toggle__icon {
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-          mask-position: center;
-  aspect-ratio: 1/1;
-  background: currentColor;
-  display: inline-block;
-  vertical-align: middle;
   background-color: var(--color-font--primary);
   width: 16px;
   pointer-events: none;
@@ -7825,22 +7862,12 @@ body:has(.tooltip-util) .mouse-cursor {
     display: block;
   }
 }
-.theme-toggle--multi {
-  border: var(--border-width) solid var(--color-border);
-  border-radius: 4px;
-}
-.theme-toggle--multi .theme-toggle__option:hover {
-  background: none;
-}
-.theme-toggle--multi__slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  height: calc(100% - 4px);
-  background: rgba(47, 79, 79, 0.25);
-  border-radius: 2px;
-  transition: 0.24s ease;
-  z-index: -1;
+.theme-toggle.toggle-slider--solid,
+.theme-toggle .toggle-slider {
+  --toggle-padding: 2px;
+  --toggle-radius: 4px;
+  --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
+  --option-padding: 4px;
 }
 
 .tooltip {
