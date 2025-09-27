@@ -1734,6 +1734,14 @@ code.codearea {
     align-items: flex-start;
     gap: 24px;
   }
+  .library-section-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    margin-block: var(--spacing);
+  }
   .library-section .text-fade code.gsap-animate,
   .library-section .text-scale code.gsap-animate {
     background: transparent;
@@ -1803,14 +1811,6 @@ code.codearea {
   .library-section .tilt-card-group .tilt-card--3d ol,
   .library-section .tilt-card-group .tilt-card--3d .cta-group {
     transition: 0.3s ease !important;
-  }
-  .library-section-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    margin-block: var(--spacing--lg);
   }
   .carousel-swiper-section,
   .text-fill-section {

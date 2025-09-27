@@ -343,6 +343,12 @@
     @include column-start;
     gap: 24px;
 
+    &-info {
+      @include column-start;
+      gap: 24px;
+      margin-block: var(--spacing);
+    }
+
     .text-fade,
     .text-scale {
       code.gsap-animate {
@@ -405,12 +411,6 @@
         }
       }
     }
-  }
-
-  .library-section-info {
-    @include column-start;
-    gap: 24px;
-    margin-block: var(--spacing--lg);
   }
 
   .carousel-swiper-section,

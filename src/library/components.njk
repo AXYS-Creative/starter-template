@@ -504,18 +504,19 @@ path: library/components
   </div>
 
   <!-- prettier-ignore -->
-  {% set tab_list = library.tabs.tabs %}
+  {% set tabs = library.tabs %}
   {% include "../_includes/library/components/tabs.njk" %}
 </section>
 
 <section class="tabs-section library-section">
-  <h2 class="h5">[ Tabs - Util ]</h2>
-  <p>
-    Intended for dynamic markup or custom components. Basically a plane that
-    changes depending on the active tab.
-  </p>
+  <div class="library-section-info">
+    <h2 class="h5">[ Tabs - Util ]</h2>
+    <p>
+      Intended for dynamic markup or custom components. Basically a plane that
+      changes depending on the active tab.
+    </p>
+  </div>
 
-  <br /><br /><br /><br />
   <div class="tabs tabs--util cursor-hide">
     <div class="tabs-content">
       <div class="tabs-panel" data-tab-label="Tab Label 1" role="tabpanel">

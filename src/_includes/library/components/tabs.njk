@@ -1,6 +1,8 @@
 <!-- prettier-ignore -->
 {% set default_selected = '' %}
-{% set toggle_slider = 'solid' %}
+
+{% set toggle_slider = tabs.toggle_slider or 'solid' %}
+{% set panels = tabs.panels or [] %}
 
 {% set tabs_class = '' %}
 {% if toggle_slider == 'solid' %}
@@ -8,12 +10,12 @@
 {% endif %}
 
 {% if toggle_slider == 'underline' %}
-  {% set theme_toggle_class = 'toggle-slider toggle-slider--underline' %}
+  {% set tabs_class = 'toggle-slider toggle-slider--underline' %}
 {% endif %}
 
 <div class="tabs tabs--component cursor-hide">
   <div class="tabs-list {{ tabs_class }}" role="tablist">
-    {% for item in tab_list %}
+    {% for panel in panels %}
     <!-- prettier-ignore -->
     {% if loop.index == 0 %}
       {% set default_selected = true %}
@@ -38,7 +40,7 @@
   </div>
 
   <div class="tabs-content">
-    {% for item in tab_list %}
+    {% for panel in panels %}
     <!-- prettier-ignore -->
     <div
       class="tabs-panel"

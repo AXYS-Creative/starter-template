@@ -1,4 +1,6 @@
-tabs:
+toggle_slider: underline
+
+panels:
   - title: Title 1
     desc: Description 1
     img: /static/img/library/img-sample-1.jpg
