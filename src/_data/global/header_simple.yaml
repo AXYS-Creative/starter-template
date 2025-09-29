@@ -1,6 +1,6 @@
 show_skip_to_content: true
-float: false
-glass: false
+float: true
+glass: true
 
 logo: true
 

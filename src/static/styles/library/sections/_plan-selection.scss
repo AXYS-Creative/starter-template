@@ -1,0 +1,35 @@
+.plan-selection {
+  @include column-center;
+  gap: var(--spacing);
+  margin-block: var(--spacing--xl);
+
+  &__toggle-wrapper {
+    position: relative;
+
+    .toggle-slider {
+      --accent-color: var(--color-brand--primary);
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      translate: calc(100% + 1ch) -50%;
+    }
+  }
+}
+
+.plan-options {
+  @include row-center;
+  gap: var(--spacing--sm);
+  margin-block-start: var(--spacing--lg);
+}
+
+.plan-option {
+  border: var(--border-width) solid var(--color-border);
+  @include column-center;
+  gap: var(--spacing);
+  padding: 24px;
+  border-radius: var(--radius--sm);
+  background: var(--color-surface--2);
+}

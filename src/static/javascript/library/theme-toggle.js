@@ -19,12 +19,23 @@ const setTheme = (theme) => {
 const saved = localStorage.getItem(storageKey) || "system";
 applyTheme(saved);
 
-document.querySelector(`#theme-${saved}`)?.setAttribute("checked", "");
+radios.forEach((radio) => {
+  const isSaved = radio.id === `theme-${saved}`;
+  radio.checked = isSaved;
+  if (isSaved) {
+    radio.setAttribute("checked", "");
+  } else {
+    radio.removeAttribute("checked");
+  }
+});
 
 radios.forEach((radio) => {
   radio.addEventListener("change", (e) => {
     if (e.target.checked) {
       setTheme(e.target.value);
+
+      radios.forEach((r) => r.removeAttribute("checked"));
+      e.target.setAttribute("checked", "");
     }
   });
 });

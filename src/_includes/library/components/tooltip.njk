@@ -4,23 +4,32 @@
 {% set icon = tooltip.icon or '/static/img/library/icon-google-info-circle.svg' %}
 {% set place = tooltip.place or 'top' %}
 {% set size = tooltip.size or 'md' %}
+{% set include_point = tooltip.include_point or false %}
+
+{% set tooltip_class = '' %}
+{% if include_point %}
+  {% set tooltip_class = 'tooltip--include-point' %}
+{% endif %}
 
 <!-- prettier-ignore -->
 {% set a11y_tab = a11y_tab or 'tab-element-page' %}
 
-<div class="tooltip">
+<div class="tooltip {{ tooltip_class }}">
   <button class="tooltip__btn {{a11y_tab or 'tab-element-page'}}">
-    <!-- prettier-ignore -->
     {% if text %}
     <span class="tooltip__btn-text">{{ text }}</span>
-    <!-- prettier-ignore -->
     {% elif icon %}
-      {% set icon_svg = ({ src: icon, class: 'tooltip__btn-icon' }) %}
-      {% include "../../components/icon-svg.njk" %}
+    <!-- prettier-ignore -->
+    {% set icon_svg = ({ src: icon, class: 'tooltip__btn-icon' }) %}
+    {% include "../../components/icon-svg.njk" %}
     {% endif %}
   </button>
   <div
-    class="tooltip__message {{ place }} tooltip__message--{{ size }}"
+    class="
+    tooltip__message 
+    tooltip__message--{{ place }} 
+    tooltip__message--{{ size }}
+    "
     aria-hidden="true"
     role="tooltip"
   >

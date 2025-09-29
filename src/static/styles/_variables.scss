@@ -90,7 +90,7 @@ $test-bg: rgba(navy, 0.75);
   --spacing--sm: 16px;
   --spacing: 24px;
   --spacing--lg: 48px;
-  --spacing--xl: 72px;
+  --spacing--xl: 96px;
 
   --section-gap--sm: 12px;
   --section-gap: 24px;
@@ -102,6 +102,8 @@ $test-bg: rgba(navy, 0.75);
   --radius--sm: 8px;
   --radius--xs: 4px;
   --radius--btn: var(--radius--xs);
+
+  --max-width--text: 620px;
 
   // header
   --header-children-height: 32px;

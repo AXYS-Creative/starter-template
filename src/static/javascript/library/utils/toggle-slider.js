@@ -7,11 +7,12 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   // Resolve default active option
   let activeOption =
     container.querySelector("input:checked")?.closest("[class*='option']") ||
-    container.querySelector(".is-active") ||
+    container.querySelector("[aria-selected='true']") ||
+    // look for the first option that's not hidden
+    Array.from(options).find((opt) => !opt.hasAttribute("hidden")) ||
     options[0];
 
   const moveSlider = (target) => {
-    // Always work on the wrapper, not the input
     const option = target?.closest("[class*='option']");
     if (!option) return;
     const { offsetLeft, offsetWidth } = option;
@@ -42,8 +43,8 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
       );
       if (input) input.checked = true; // sync input state if present
 
-      options.forEach((o) => o.classList.remove("is-active"));
-      option.classList.add("is-active");
+      options.forEach((o) => o.removeAttribute("aria-selected"));
+      option.setAttribute("aria-selected", "true");
       activeOption = option;
       moveSlider(activeOption);
     });
@@ -55,8 +56,8 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
     if (input) {
       input.addEventListener("change", () => {
         if (input.checked) {
-          options.forEach((o) => o.classList.remove("is-active"));
-          option.classList.add("is-active");
+          options.forEach((o) => o.removeAttribute("aria-selected"));
+          option.setAttribute("aria-selected", "true");
           activeOption = option;
           moveSlider(activeOption);
         }

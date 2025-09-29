@@ -514,11 +514,21 @@ path: library/components
     <p>
       Intended for unique markup across each panel, accepting custom markup.
     </p>
+    <strong>
+      Note: this uses the <code>data-toggle-slider</code> attribute to change
+      the control style. This also allows you to alter which tab is active by
+      leaving <code>hidden</code> off of that panel.
+    </strong>
   </div>
 
-  <div class="tabs tabs--util cursor-hide">
+  <div class="tabs tabs--util cursor-hide" data-toggle-slider="undefined">
     <div class="tabs-content">
-      <div class="tabs-panel" data-tab-label="Tab Label 1" role="tabpanel">
+      <div
+        class="tabs-panel"
+        data-tab-label="Tab Label 1"
+        role="tabpanel"
+        hidden
+      >
         <h3 class="h6">Custom markup</h3>
         <p class="max-width-text">
           The tabs util allows for custom markup with minimal setup. The tab
@@ -527,12 +537,7 @@ path: library/components
         </p>
       </div>
 
-      <div
-        class="tabs-panel"
-        data-tab-label="Tab Label 2"
-        role="tabpanel"
-        hidden
-      >
+      <div class="tabs-panel" data-tab-label="Tab Label 2" role="tabpanel">
         <p>This tab has a video</p>
         <video src="/video.mp4" controls></video>
       </div>
@@ -645,8 +650,8 @@ path: library/components
       image. This is the path to the image source.
     </li>
     <li>
-      <code>size</code> a string of either <code>sm | md | lg</code> to adjust
-      the tooltip message size. Defaults is <code>md</code>
+      <code>size</code> a string of either <code>xs | sm | md | lg</code> to
+      adjust the tooltip message size. Defaults is <code>md</code>
     </li>
     <li>
       <code>place</code> a string of either

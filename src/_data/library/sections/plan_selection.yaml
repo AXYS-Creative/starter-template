@@ -1,0 +1,47 @@
+title: "[ Plan Selection - Section ]"
+desc: Find the right plan for you and eliminate the hassle of inconsistent freelancers and expensive agencies. Let’s get started today.
+price_toggle: true
+
+plans:
+  - title: Designer
+    title_desc: Web design made simple
+    price_mo: $1,995
+    price_qt: $1,595
+    grand_total: $4,785
+    price_desc: Pause or cancel anytime
+    # desc: Perfect for small businesses and startups looking to establish a professional online presence.
+    divider: true
+    popular: false
+    features:
+      - "[%strong%]Unlimited Web Design[%strong%]"
+      - One request at a time
+      - 1-2 business day turnaround
+      - Access to Trello for management
+      - Unlimited revisions
+      - Pause or cancel anytime
+    cta_1:
+      text: Get Started
+      text_desc: Get started with the designer plan
+      url: /signup
+      new_tab: false
+  - title: Developer
+    title_desc: Web design made simple
+    price_mo: $2,995
+    price_qt: $2,395
+    grand_total: $7,185
+    price_desc: Pause or cancel anytime
+    # desc: Perfect for small businesses and startups looking to establish a professional online presence.
+    divider: true
+    popular: false
+    features:
+      - "[%strong%]Unlimited Web Design[%strong%]"
+      - One request at a time
+      - 1-2 business day turnaround
+      - Access to Trello for management
+      - Unlimited revisions
+      - Pause or cancel anytime
+    cta_1:
+      text: Get Started
+      text_desc: Get started with the designer plan
+      url: /signup
+      new_tab: false

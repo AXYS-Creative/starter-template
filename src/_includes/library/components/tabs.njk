@@ -1,27 +1,18 @@
 <!-- prettier-ignore -->
-{% set default_selected = '' %}
-
-{% set toggle_slider = tabs.toggle_slider or 'solid' %}
+{% set toggle_slider = tabs.toggle_slider | default('underline') %}
+{% set default_panel = tabs.default_panel or 1 %}
 {% set panels = tabs.panels or [] %}
 
 {% set tabs_class = '' %}
-{% if toggle_slider == 'solid' %}
-  {% set tabs_class = 'toggle-slider toggle-slider--solid' %}
-{% endif %}
-
-{% if toggle_slider == 'underline' %}
-  {% set tabs_class = 'toggle-slider toggle-slider--underline' %}
+{% if toggle_slider %}
+  {% set tabs_class = 'toggle-slider toggle-slider--'~toggle_slider~'' %}
 {% endif %}
 
 <div class="tabs tabs--component cursor-hide">
   <div class="tabs-list {{ tabs_class }}" role="tablist">
-    {% for panel in panels %}
     <!-- prettier-ignore -->
-    {% if loop.index == 0 %}
-      {% set default_selected = true %}
-    {% else %}
-      {% set default_selected = false %}
-    {% endif %}
+    {% for panel in panels %}
+    {% set default_selected = (loop.index == default_panel) %}
     <button
       class="tabs-option tab-element-page"
       id="tab-option-{{ loop.index }}"
@@ -40,16 +31,20 @@
   </div>
 
   <div class="tabs-content">
+    <!-- prettier-ignore -->
     {% for panel in panels %}
+    {% set default_selected = (loop.index == default_panel) %}
     <!-- prettier-ignore -->
     <div
       class="tabs-panel"
       id="tab-panel-{{ loop.index }}"
       role="tabpanel"
       aria-labelledby="tab-option-{{ loop.index }}"
-      {% if not loop.first %}hidden{% endif %}
+      {% if not default_selected %}hidden{% endif %}
     >
-      Content for Tab {{ loop.index }}
+      <h3 class="h6">{{panel.title}}</h3>
+      <p>{{panel.desc}}</p>
+      <!-- <img src="{{ panel.img }}" alt=""> -->
     </div>
     {% endfor %}
   </div>

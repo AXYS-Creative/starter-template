@@ -1,14 +1,14 @@
 $tooltip-font-size: 14px;
-$tooltip-undeline-offset: 4px;
+$tooltip-underline-offset: 0.5ch; // used in mixins.scss
+$tooltip-bubble-gap: 1ch;
+$tooltip-bubble-translate-distance: 12px;
 
 // Component (Static)
 .tooltip {
   $icon-size: 20px;
 
-  // border: $test;
   position: relative;
   display: inline-block;
-  // isolation: isolate;
 
   &__btn {
     padding: 0;
@@ -19,10 +19,9 @@ $tooltip-undeline-offset: 4px;
       + .tooltip__message {
         @include show-content;
         translate: 0 0;
-        // z-index: -1;
 
-        &.right,
-        &.left {
+        &--right,
+        &--left {
           translate: 0 -50%;
         }
       }
@@ -42,7 +41,7 @@ $tooltip-undeline-offset: 4px;
   }
 
   &__message {
-    $message-offset: calc(100% + 0.5ch);
+    $message-offset: calc(100% + $tooltip-bubble-gap);
 
     @include hide-content;
     position: absolute;
@@ -50,6 +49,7 @@ $tooltip-undeline-offset: 4px;
     background: var(--color-surface--1);
     padding: var(--padding-btn);
     border-radius: var(--radius--btn);
+    width: 100vw;
     z-index: 1;
     transition: $ease;
 
@@ -58,56 +58,117 @@ $tooltip-undeline-offset: 4px;
     }
 
     &--lg {
-      width: 48vw;
+      max-width: 650px;
     }
     &--md {
-      width: 24vw;
+      max-width: 420px;
     }
     &--sm {
-      width: 8vw;
-      min-width: 12ch;
+      max-width: 250px;
+    }
+    &--xs {
+      max-width: 140px;
     }
 
-    &.top {
+    &--top {
       bottom: $message-offset;
-      translate: 0 12px;
+      translate: 0 $tooltip-bubble-translate-distance;
 
       &:hover {
         translate: 0 0;
       }
-    }
 
-    &.right {
+      &::after {
+        bottom: 0;
+      }
+      &::before {
+        // helper for hovering message bubble (across gap)
+        margin-block-end: -$tooltip-bubble-gap;
+      }
+    }
+    &--right {
       left: $message-offset;
       top: 50%;
-      translate: -12px -50%;
+      translate: -$tooltip-bubble-translate-distance -50%;
 
       &:hover {
         translate: 0 -50%;
       }
-    }
 
-    &.bottom {
+      &::after {
+        top: 50%;
+        left: 0;
+        translate: 0 -50%;
+      }
+      &::before {
+        // helper for hovering message bubble (across gap)
+        margin-inline-start: -$tooltip-bubble-gap;
+      }
+    }
+    &--bottom {
       top: $message-offset;
-      translate: 0 -12px;
+      translate: 0px #{-$tooltip-bubble-translate-distance}; // interpolate so it's not 0 - 12px
 
       &:hover {
         translate: 0 0;
       }
-    }
 
-    &.left {
+      &::after {
+        top: 0;
+        left: 0;
+        translate: 50% 0;
+      }
+      &::before {
+        // helper for hovering message bubble (across gap)
+        margin-block-start: -$tooltip-bubble-gap;
+      }
+    }
+    &--left {
       right: $message-offset;
       top: -50%;
-      translate: 12px -50%;
+      translate: $tooltip-bubble-translate-distance -50%;
 
       &:hover {
         translate: 0 -50%;
       }
+
+      &::after {
+        top: 50%;
+        right: 0;
+        translate: 0 -50%;
+      }
+      &::before {
+        // helper for hovering message bubble (across gap)
+        margin-inline-end: -$tooltip-bubble-gap;
+      }
+    }
+
+    &::before {
+      // helper for hovering message bubble (across gap)
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
     }
 
     p {
       font-size: $tooltip-font-size;
+    }
+  }
+
+  &--include-point {
+    .tooltip__message::after {
+      // bubble point
+      content: "";
+      background: inherit;
+      position: absolute;
+      // top, bottom, left, right set with 'place' modifier
+      width: 24px;
+      height: 24px;
+      rotate: 45deg;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: -1;
     }
   }
 }
@@ -118,6 +179,7 @@ $tooltip-undeline-offset: 4px;
   cursor: help;
 }
 
+// Appended with mouse-cursor.njk
 .tooltip-util-message {
   @include hide-content;
   position: fixed;

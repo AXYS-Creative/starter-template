@@ -53,7 +53,7 @@ function cubicBezier(p0, p1, p2, p3) {
 export const btnBackToTop = document.querySelector(".btn-back-to-top"); // floating page button
 {
   const returnToTop = document.querySelectorAll(".back-to-top"),
-    logo = document.querySelector(".header-logo");
+    logo = document.querySelector(".site-header .site-logo");
 
   const customEase = cubicBezier(0.6, 0, 0.25, 1);
 
@@ -66,7 +66,6 @@ export const btnBackToTop = document.querySelector(".btn-back-to-top"); // float
         easing: customEase,
       });
 
-      // Restore focus for accessibility
       logo.focus({ preventScroll: true });
     });
   });
@@ -169,3 +168,4 @@ document.addEventListener("visibilitychange", () => {
     document.title = originalTitle;
   }
 });
+s;

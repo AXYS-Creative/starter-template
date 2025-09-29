@@ -15,9 +15,10 @@
 
   // }
 
-  // &__desc {
-
-  // }
+  &__desc {
+    max-width: var(--max-width--text);
+    text-align: center;
+  }
 
   &__group {
     display: flex;

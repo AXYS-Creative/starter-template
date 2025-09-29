@@ -1,4 +1,4 @@
-float: false
+float: true
 
 include_top: true
 has_logo: true

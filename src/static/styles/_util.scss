@@ -37,7 +37,7 @@
 
 .max-width-text {
   display: inline-block;
-  max-width: 620px;
+  max-width: var(--max-width--text);
 }
 
 .sr-only {
@@ -121,6 +121,7 @@
 
   .toggle-slider {
     --accent-color: var(--color-surface--1);
+    // --accent-color: var(--color-brand--primary);
     --toggle-padding: 4px;
     --toggle-radius: 8px;
     --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
@@ -129,11 +130,28 @@
     position: relative;
     display: inline-block;
 
+    &:active {
+      [class*="slider"] {
+        scale: 0.94;
+      }
+    }
+
     [class*="option"] {
       padding: var(--option-padding);
+      opacity: 0.5;
+      transition: $ease;
 
       &:hover {
         background: none;
+        opacity: 1;
+      }
+      &:active {
+        scale: 0.94;
+      }
+
+      &:has(input[checked]),
+      &[aria-selected="true"] {
+        opacity: 1;
       }
     }
 

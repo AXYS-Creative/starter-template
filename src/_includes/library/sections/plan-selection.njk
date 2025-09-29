@@ -1,0 +1,53 @@
+<!-- prettier-ignore -->
+{% set title = plan_selection.title | default('No title') %}
+{% set desc = plan_selection.desc | default('No description "desc" added currently.') %}
+{% set price_toggle = plan_selection.price_toggle or false %}
+
+<!-- prettier-ignore -->
+{% set plans = plan_selection.plans %}
+
+<!-- prettier-ignore -->
+<section class="plan-selection">
+  <h2>{{title}}</h2>
+  <p>{{desc}}</p>
+
+  {% if price_toggle %}
+  <div class="plan-selection__toggle-wrapper">
+    <div class="plan-selection__toggle toggle-slider toggle-slider--solid">
+      <button class="plan-selection__toggle-option" data-toggle="mo" aria-selected="true">Monthly</button>
+      <button class="plan-selection__toggle-option" data-toggle="qt">Quarterly</button>
+      <div class="plan-selection__toggle-slider"></div>
+    </div>
+    {% set tooltip = ({
+      message: 'Save 20% with quarterly billing!',
+      size: 'xs',
+      place: 'right',
+      include_point: true
+    }) %}
+    {% include "../components/tooltip.njk" %}
+  </div>
+  {% endif %}
+
+  <div class="plan-options">
+    {% for obj in plans %}
+      {% set plan = obj %}
+      {% set title = plan.title | default('No plan title') %}
+      {% set price_mo = plan.price_mo | default('No monthly price') %}
+      {% set price_qt = plan.price_qt | default('No quarterly price') %}
+  
+      {# price_toggle from parent #}
+      {% set price_swap = '' %}
+      {% if price_toggle and price_qt %}
+        {% set price_swap = 'data-price-swap="'~price_qt~'"' %}
+      {% endif %}
+  
+      <div class="plan-option">
+        <h3 class="plan-option__title h6">{{ title }}</h3>
+        <p class="plan-option__price" {{ price_swap }}>
+          {{ price_mo }}/mo
+        </p>
+      </div>
+  
+    {% endfor %}
+  </div>
+</section>

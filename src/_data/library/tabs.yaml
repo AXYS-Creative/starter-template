@@ -1,4 +1,5 @@
-toggle_slider: underline
+toggle_slider: null
+default_panel: 1
 
 panels:
   - title: Title 1

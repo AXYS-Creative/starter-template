@@ -82,6 +82,10 @@ path: library/sections
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
 <!-- prettier-ignore -->
+{% set plan_selection = library.sections.plan_selection %}
+{% include '../_includes/library/sections/plan-selection.njk' %}
+
+<!-- prettier-ignore -->
 {% set price_cards_data = library.price_cards %}
 {% include '../_includes/library/sections/price-cards.njk' %}
 

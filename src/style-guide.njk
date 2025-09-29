@@ -380,6 +380,8 @@ title: Style Guide
   <code class="codearea"
     >&lt;div class="toggle-slider"&gt;
     <br />
+    &nbsp; &lt;button class="*option*" aria-selected="true"&gt;&lt;/button&gt;
+    <br />
     &nbsp; &lt;button class="*option*"&gt;&lt;/button&gt;
     <br />
     &nbsp; &lt;div class="*slider*"&gt;&lt;/div&gt;
@@ -388,14 +390,17 @@ title: Style Guide
   </code>
   <br /><br />
   <p>
-    It also works with labels and nested inputs, in the case of
+    It also works with radios, labels and nested inputs, in the case of
     <code>theme-toggle.njk</code>
   </p>
+  <p>Note: used <code>aria-selected="true"</code> to set a default.</p>
   <br />
   <div class="cursor-hide">
     <br /><br />
     <div class="toggle-slider toggle-slider--solid">
-      <button class="option tab-element-page">Option 1</button>
+      <button class="option tab-element-page" aria-selected="true">
+        Option 1
+      </button>
       <button class="option tab-element-page">Option 2</button>
       <button class="option tab-element-page">Option 3</button>
       <div class="slider"></div>
@@ -409,7 +414,9 @@ title: Style Guide
     <div class="toggle-slider toggle-slider--underline">
       <button class="option tab-element-page">Option 1</button>
       <button class="option tab-element-page">Option 2</button>
-      <button class="option tab-element-page">Option 3</button>
+      <button class="option tab-element-page" aria-selected="true">
+        Option 3
+      </button>
       <div class="slider"></div>
     </div>
   </div>
