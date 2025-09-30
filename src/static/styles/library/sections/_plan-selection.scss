@@ -1,5 +1,7 @@
 .plan-selection {
+  @include section-padding;
   @include column-center;
+  text-align: center;
   gap: var(--spacing);
   margin-block: var(--spacing--xl);
 

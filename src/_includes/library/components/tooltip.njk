@@ -3,12 +3,19 @@
 {% set text = tooltip.text or '' %}
 {% set icon = tooltip.icon or '/static/img/library/icon-google-info-circle.svg' %}
 {% set place = tooltip.place or 'top' %}
+{% set place_sm = tooltip.place_sm or 'top' %}
 {% set size = tooltip.size or 'md' %}
 {% set include_point = tooltip.include_point or false %}
 
 {% set tooltip_class = '' %}
+{% if text %}
+  {% set tooltip_class = tooltip_class + ' tooltip--text' %}  
+{% elif icon %}
+  {% set tooltip_class = tooltip_class + ' tooltip--icon' %}  
+{% endif %}
+
 {% if include_point %}
-  {% set tooltip_class = 'tooltip--include-point' %}
+  {% set tooltip_class = tooltip_class + ' tooltip--include-point' %}
 {% endif %}
 
 <!-- prettier-ignore -->
@@ -27,7 +34,8 @@
   <div
     class="
     tooltip__message 
-    tooltip__message--{{ place }} 
+    tooltip__message--{{ place }}
+    tooltip__message--mobile-{{ place_sm }}
     tooltip__message--{{ size }}
     "
     aria-hidden="true"
