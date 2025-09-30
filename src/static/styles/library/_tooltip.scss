@@ -54,6 +54,27 @@ $bubble-point-size: 24px;
     }
   }
 
+  @mixin message-top-left {
+    bottom: $message-offset;
+    right: 0;
+    translate: $bubble-point-size $tooltip-bubble-translate-distance;
+    text-align: start;
+
+    &:hover {
+      translate: $bubble-point-size 0;
+    }
+
+    &::after {
+      bottom: 0;
+      right: $bubble-point-size;
+      translate: 0 0;
+    }
+    &::before {
+      // helper for hovering message bubble (across gap)
+      margin-block-end: -$tooltip-bubble-gap;
+    }
+  }
+
   @mixin message-bottom {
     top: $message-offset;
     left: 50%;
@@ -74,29 +95,88 @@ $bubble-point-size: 24px;
     }
   }
 
+  @mixin message-bottom-right {
+    top: $message-offset;
+    left: 0;
+    translate: -$bubble-point-size #{-$tooltip-bubble-translate-distance};
+    text-align: start;
+
+    &:hover {
+      translate: -$bubble-point-size 0;
+    }
+
+    &::after {
+      top: 0;
+      left: $bubble-point-size;
+      translate: 0 0;
+    }
+    &::before {
+      // helper for hovering message bubble (across gap)
+      margin-block-start: -$tooltip-bubble-gap;
+    }
+  }
+
+  @mixin message-bottom-left {
+    top: $message-offset;
+    right: 0;
+    translate: $bubble-point-size #{-$tooltip-bubble-translate-distance};
+    text-align: start;
+
+    &:hover {
+      translate: $bubble-point-size 0;
+    }
+
+    &::after {
+      top: 0;
+      right: $bubble-point-size;
+      translate: 0 0;
+    }
+    &::before {
+      // helper for hovering message bubble (across gap)
+      margin-block-start: -$tooltip-bubble-gap;
+    }
+  }
+
   &__btn {
     padding: 0;
     cursor: help;
 
-    &:hover,
-    &:focus {
-      + .tooltip__message {
-        @include show-content;
+    &:hover + .tooltip__message,
+    &:focus + .tooltip__message {
+      @include show-content;
 
-        &--top-right {
-          translate: -$bubble-point-size 0;
-        }
-
+      @include mq-min(md) {
         &--top,
         &--bottom {
           translate: -50% 0;
         }
-
+        &--top-right,
+        &--bottom-right {
+          translate: -$bubble-point-size 0;
+        }
+        &--top-left,
+        &--bottom-left {
+          translate: $bubble-point-size 0;
+        }
         &--right,
         &--left {
-          @include mq-min(md) {
-            translate: 0 -50%;
-          }
+          translate: 0 -50%;
+        }
+      }
+
+      @include mq-max(md) {
+        // Not including right or left on mobile since it will likely flow off the page
+        &--mobile-top,
+        &--mobile-bottom {
+          translate: -50% 0;
+        }
+        &--mobile-top-right,
+        &--mobile-bottom-right {
+          translate: -$bubble-point-size 0;
+        }
+        &--mobile-top-left,
+        &--mobile-bottom-left {
+          translate: $bubble-point-size 0;
         }
       }
     }
@@ -116,7 +196,6 @@ $bubble-point-size: 24px;
 
   &__message {
     @include hide-content;
-    // opacity: 0.2;
     position: absolute;
 
     background: var(--color-surface--1);
@@ -133,8 +212,17 @@ $bubble-point-size: 24px;
       &--top-right {
         @include message-top-right;
       }
+      &--top-left {
+        @include message-top-left;
+      }
       &--bottom {
         @include message-bottom;
+      }
+      &--bottom-right {
+        @include message-bottom-right;
+      }
+      &--bottom-left {
+        @include message-bottom-left;
       }
       &--right {
         left: $message-offset;
@@ -180,6 +268,18 @@ $bubble-point-size: 24px;
       }
       &--mobile-bottom {
         @include message-bottom;
+      }
+      &--mobile-top-right {
+        @include message-top-right;
+      }
+      &--mobile-top-left {
+        @include message-top-left;
+      }
+      &--mobile-bottom-right {
+        @include message-bottom-right;
+      }
+      &--mobile-bottom-left {
+        @include message-bottom-left;
       }
     }
 
@@ -233,7 +333,7 @@ $bubble-point-size: 24px;
       content: "";
       background: inherit;
       position: absolute;
-      // top, bottom, left, right set with 'place' modifier
+      // modifiers handle placement
       width: $bubble-point-size;
       height: $bubble-point-size;
       rotate: 45deg;

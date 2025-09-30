@@ -7897,15 +7897,29 @@ body:has(.tooltip-util) .mouse-cursor {
      -moz-user-select: auto;
           user-select: auto;
 }
-.tooltip__btn:hover + .tooltip__message--top-right, .tooltip__btn:focus + .tooltip__message--top-right {
-  translate: -24px 0;
-}
-.tooltip__btn:hover + .tooltip__message--top, .tooltip__btn:hover + .tooltip__message--bottom, .tooltip__btn:focus + .tooltip__message--top, .tooltip__btn:focus + .tooltip__message--bottom {
-  translate: -50% 0;
-}
 @media (min-width: 769px) {
+  .tooltip__btn:hover + .tooltip__message--top, .tooltip__btn:hover + .tooltip__message--bottom, .tooltip__btn:focus + .tooltip__message--top, .tooltip__btn:focus + .tooltip__message--bottom {
+    translate: -50% 0;
+  }
+  .tooltip__btn:hover + .tooltip__message--top-right, .tooltip__btn:hover + .tooltip__message--bottom-right, .tooltip__btn:focus + .tooltip__message--top-right, .tooltip__btn:focus + .tooltip__message--bottom-right {
+    translate: -24px 0;
+  }
+  .tooltip__btn:hover + .tooltip__message--top-left, .tooltip__btn:hover + .tooltip__message--bottom-left, .tooltip__btn:focus + .tooltip__message--top-left, .tooltip__btn:focus + .tooltip__message--bottom-left {
+    translate: 24px 0;
+  }
   .tooltip__btn:hover + .tooltip__message--right, .tooltip__btn:hover + .tooltip__message--left, .tooltip__btn:focus + .tooltip__message--right, .tooltip__btn:focus + .tooltip__message--left {
     translate: 0 -50%;
+  }
+}
+@media (max-width: 768px) {
+  .tooltip__btn:hover + .tooltip__message--mobile-top, .tooltip__btn:hover + .tooltip__message--mobile-bottom, .tooltip__btn:focus + .tooltip__message--mobile-top, .tooltip__btn:focus + .tooltip__message--mobile-bottom {
+    translate: -50% 0;
+  }
+  .tooltip__btn:hover + .tooltip__message--mobile-top-right, .tooltip__btn:hover + .tooltip__message--mobile-bottom-right, .tooltip__btn:focus + .tooltip__message--mobile-top-right, .tooltip__btn:focus + .tooltip__message--mobile-bottom-right {
+    translate: -24px 0;
+  }
+  .tooltip__btn:hover + .tooltip__message--mobile-top-left, .tooltip__btn:hover + .tooltip__message--mobile-bottom-left, .tooltip__btn:focus + .tooltip__message--mobile-top-left, .tooltip__btn:focus + .tooltip__message--mobile-bottom-left {
+    translate: 24px 0;
   }
 }
 .tooltip__btn-text {
@@ -7969,6 +7983,23 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top-right::before {
     margin-block-end: -1ch;
   }
+  .tooltip__message--top-left {
+    bottom: calc(100% + 1ch);
+    right: 0;
+    translate: 24px 12px;
+    text-align: start;
+  }
+  .tooltip__message--top-left:hover {
+    translate: 24px 0;
+  }
+  .tooltip__message--top-left::after {
+    bottom: 0;
+    right: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--top-left::before {
+    margin-block-end: -1ch;
+  }
   .tooltip__message--bottom {
     top: calc(100% + 1ch);
     left: 50%;
@@ -7983,6 +8014,40 @@ body:has(.tooltip-util) .mouse-cursor {
     translate: -50% 0;
   }
   .tooltip__message--bottom::before {
+    margin-block-start: -1ch;
+  }
+  .tooltip__message--bottom-right {
+    top: calc(100% + 1ch);
+    left: 0;
+    translate: -24px -12px;
+    text-align: start;
+  }
+  .tooltip__message--bottom-right:hover {
+    translate: -24px 0;
+  }
+  .tooltip__message--bottom-right::after {
+    top: 0;
+    left: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--bottom-right::before {
+    margin-block-start: -1ch;
+  }
+  .tooltip__message--bottom-left {
+    top: calc(100% + 1ch);
+    right: 0;
+    translate: 24px -12px;
+    text-align: start;
+  }
+  .tooltip__message--bottom-left:hover {
+    translate: 24px 0;
+  }
+  .tooltip__message--bottom-left::after {
+    top: 0;
+    right: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--bottom-left::before {
     margin-block-start: -1ch;
   }
   .tooltip__message--right {
@@ -8049,6 +8114,74 @@ body:has(.tooltip-util) .mouse-cursor {
     translate: -50% 0;
   }
   .tooltip__message--mobile-bottom::before {
+    margin-block-start: -1ch;
+  }
+  .tooltip__message--mobile-top-right {
+    bottom: calc(100% + 1ch);
+    left: 0;
+    translate: -24px 12px;
+    text-align: start;
+  }
+  .tooltip__message--mobile-top-right:hover {
+    translate: -24px 0;
+  }
+  .tooltip__message--mobile-top-right::after {
+    bottom: 0;
+    left: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--mobile-top-right::before {
+    margin-block-end: -1ch;
+  }
+  .tooltip__message--mobile-top-left {
+    bottom: calc(100% + 1ch);
+    right: 0;
+    translate: 24px 12px;
+    text-align: start;
+  }
+  .tooltip__message--mobile-top-left:hover {
+    translate: 24px 0;
+  }
+  .tooltip__message--mobile-top-left::after {
+    bottom: 0;
+    right: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--mobile-top-left::before {
+    margin-block-end: -1ch;
+  }
+  .tooltip__message--mobile-bottom-right {
+    top: calc(100% + 1ch);
+    left: 0;
+    translate: -24px -12px;
+    text-align: start;
+  }
+  .tooltip__message--mobile-bottom-right:hover {
+    translate: -24px 0;
+  }
+  .tooltip__message--mobile-bottom-right::after {
+    top: 0;
+    left: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--mobile-bottom-right::before {
+    margin-block-start: -1ch;
+  }
+  .tooltip__message--mobile-bottom-left {
+    top: calc(100% + 1ch);
+    right: 0;
+    translate: 24px -12px;
+    text-align: start;
+  }
+  .tooltip__message--mobile-bottom-left:hover {
+    translate: 24px 0;
+  }
+  .tooltip__message--mobile-bottom-left::after {
+    top: 0;
+    right: 24px;
+    translate: 0 0;
+  }
+  .tooltip__message--mobile-bottom-left::before {
     margin-block-start: -1ch;
   }
 }
