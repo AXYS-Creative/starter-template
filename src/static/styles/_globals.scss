@@ -269,7 +269,7 @@ code {
   padding: 4px 8px;
   border-radius: var(--radius--sm);
 
-  @include mq-min(sm) {
+  @include mq-min(md) {
     white-space: nowrap; // avoid lengthy code strings. Causes overflow scroll.
   }
 

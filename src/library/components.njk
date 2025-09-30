@@ -654,13 +654,21 @@ path: library/components
       adjust the tooltip message size. Defaults to <code>md</code>
     </li>
     <li>
-      <code>place</code> a string of either
-      <code>top | right | bottom | left</code> to position the tooltip bubble.
+      <code>place</code> a string to position the tooltip message bubble on non
+      mobile devices. Options include:
+      <code>
+        top | top-right | top-left | bottom | bottom-left | bottom-right | left
+        | right
+      </code>
       Defaults to <code>top</code>
-      <strong>
-        Note: 'right' and 'left' positions will move to 'top' or 'bottom' on
-        smaller screens.</strong
-      >
+    </li>
+    <li>
+      <code>place_sm</code> a string to position the tooltip message bubble on
+      mobile devices. Options include:
+      <code>
+        top | top-right | top-left | bottom | bottom-left | bottom-right
+      </code>
+      Defaults to <code>top</code>
     </li>
     <li>
       <code>include_point</code> A boolean to include the point on the message
