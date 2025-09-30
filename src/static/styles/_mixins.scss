@@ -683,10 +683,3 @@ $min-breakpoints: ();
     mask-composite: exclude;
   }
 }
-
-@mixin tooltip-text-decoration {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-color: var(--color-brand--secondary);
-  text-underline-offset: $tooltip-underline-offset;
-}

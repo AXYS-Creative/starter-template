@@ -7897,7 +7897,7 @@ body:has(.tooltip-util) .mouse-cursor {
      -moz-user-select: auto;
           user-select: auto;
 }
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .tooltip__btn:hover + .tooltip__message--top, .tooltip__btn:hover + .tooltip__message--bottom, .tooltip__btn:focus + .tooltip__message--top, .tooltip__btn:focus + .tooltip__message--bottom {
     translate: -50% 0;
   }
@@ -7911,7 +7911,7 @@ body:has(.tooltip-util) .mouse-cursor {
     translate: 0 -50%;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .tooltip__btn:hover + .tooltip__message--mobile-top, .tooltip__btn:hover + .tooltip__message--mobile-bottom, .tooltip__btn:focus + .tooltip__message--mobile-top, .tooltip__btn:focus + .tooltip__message--mobile-bottom {
     translate: -50% 0;
   }
@@ -7966,9 +7966,9 @@ body:has(.tooltip-util) .mouse-cursor {
 .tooltip__message p {
   font-size: 14px;
 }
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .tooltip__message--top {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     left: 50%;
     translate: -50% 12px;
     text-align: center;
@@ -7979,14 +7979,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top::after {
     bottom: 0;
     left: 50%;
-    translate: -50% 25%;
+    translate: -50% 40%;
     rotate: 135deg;
   }
   .tooltip__message--top::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--top-right {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     left: 0;
     translate: -4px 12px;
   }
@@ -7996,14 +7996,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top-right::after {
     bottom: 0;
     left: 8px;
-    translate: 0 25%;
+    translate: 0 40%;
     rotate: 135deg;
   }
   .tooltip__message--top-right::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--top-left {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     right: 0;
     translate: 4px 12px;
   }
@@ -8013,14 +8013,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top-left::after {
     bottom: 0;
     right: 8px;
-    translate: 0 25%;
+    translate: 0 40%;
     rotate: 135deg;
   }
   .tooltip__message--top-left::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--bottom {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     left: 50%;
     translate: -50% -12px;
     text-align: center;
@@ -8031,14 +8031,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom::after {
     top: 0;
     left: 50%;
-    translate: -50% -25%;
+    translate: -50% -40%;
     rotate: -45deg;
   }
   .tooltip__message--bottom::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
   .tooltip__message--bottom-right {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     left: 0;
     translate: -4px -12px;
   }
@@ -8048,14 +8048,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom-right::after {
     top: 0;
     left: 8px;
-    translate: 0 -25%;
+    translate: 0 -40%;
     rotate: -45deg;
   }
   .tooltip__message--bottom-right::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
   .tooltip__message--bottom-left {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     right: 0;
     translate: 4px -12px;
   }
@@ -8065,14 +8065,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom-left::after {
     top: 0;
     right: 8px;
-    translate: 0 -25%;
+    translate: 0 -40%;
     rotate: -45deg;
   }
   .tooltip__message--bottom-left::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
   .tooltip__message--right {
-    left: calc(100% + 1.5ch);
+    left: calc(100% + 12px);
     top: 50%;
     translate: -12px -50%;
   }
@@ -8082,14 +8082,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--right::after {
     top: 50%;
     left: 0;
-    translate: -25% -50%;
+    translate: -40% -50%;
     rotate: -135deg;
   }
   .tooltip__message--right::before {
-    margin-inline-start: -1.5ch;
+    margin-inline-start: -12px;
   }
   .tooltip__message--left {
-    right: calc(100% + 1.5ch);
+    right: calc(100% + 12px);
     top: 50%;
     translate: 12px -50%;
     text-align: center;
@@ -8100,16 +8100,16 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--left::after {
     top: 50%;
     right: 0;
-    translate: 25% -50%;
+    translate: 40% -50%;
     rotate: 45deg;
   }
   .tooltip__message--left::before {
-    margin-inline-end: -1.5ch;
+    margin-inline-end: -12px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .tooltip__message--mobile-top {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     left: 50%;
     translate: -50% 12px;
     text-align: center;
@@ -8120,14 +8120,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top::after {
     bottom: 0;
     left: 50%;
-    translate: -50% 25%;
+    translate: -50% 40%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--mobile-bottom {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     left: 50%;
     translate: -50% -12px;
     text-align: center;
@@ -8138,14 +8138,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom::after {
     top: 0;
     left: 50%;
-    translate: -50% -25%;
+    translate: -50% -40%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
   .tooltip__message--mobile-top-right {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     left: 0;
     translate: -4px 12px;
   }
@@ -8155,14 +8155,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top-right::after {
     bottom: 0;
     left: 8px;
-    translate: 0 25%;
+    translate: 0 40%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top-right::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--mobile-top-left {
-    bottom: calc(100% + 1.5ch);
+    bottom: calc(100% + 12px);
     right: 0;
     translate: 4px 12px;
   }
@@ -8172,14 +8172,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top-left::after {
     bottom: 0;
     right: 8px;
-    translate: 0 25%;
+    translate: 0 40%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top-left::before {
-    margin-block-end: -1.5ch;
+    margin-block-end: -12px;
   }
   .tooltip__message--mobile-bottom-right {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     left: 0;
     translate: -4px -12px;
   }
@@ -8189,14 +8189,14 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom-right::after {
     top: 0;
     left: 8px;
-    translate: 0 -25%;
+    translate: 0 -40%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom-right::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
   .tooltip__message--mobile-bottom-left {
-    top: calc(100% + 1.5ch);
+    top: calc(100% + 12px);
     right: 0;
     translate: 4px -12px;
   }
@@ -8206,15 +8206,20 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom-left::after {
     top: 0;
     right: 8px;
-    translate: 0 -25%;
+    translate: 0 -40%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom-left::before {
-    margin-block-start: -1.5ch;
+    margin-block-start: -12px;
   }
 }
 .tooltip__message--lg {
   max-width: 650px;
+}
+@media (max-width: 1024px) {
+  .tooltip__message--lg {
+    max-width: 450px;
+  }
 }
 @media (max-width: 768px) {
   .tooltip__message--lg {

@@ -1,9 +1,9 @@
 $message-font-size: 14px;
-$tooltip-underline-offset: 0.5ch; // used in mixins.scss
-$tooltip-void: 1.5ch; // gap between trigger and message bubble
+$tooltip-text-underline-offset: 0.5ch;
+$tooltip-void: 12px; // gap between trigger and message bubble
 $tooltip-bubble-translate-distance: 12px;
 
-$bubble-point-size: 16px;
+$bubble-point-size: 16px; // keep divisible by 4
 $bubble-point-size-half: $bubble-point-size / 2;
 $bubble-point-size-quart: $bubble-point-size-half / 2;
 
@@ -11,7 +11,17 @@ $point-rotate-bottom: 135deg;
 $point-rotate-top: -45deg;
 $point-rotate-left: -135deg;
 $point-rotate-right: 45deg;
-$point-shift: 25%; // 50% is the max
+$point-shift: 40%; // How much extends out, 50% is max
+$point-radius: 2px;
+
+$mq-swap: lg; // When to move right and left bubbles above or below
+
+@mixin tooltip-text-decoration {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-brand--secondary);
+  text-underline-offset: $tooltip-text-underline-offset;
+}
 
 // Component (fixed)
 .tooltip {
@@ -21,7 +31,6 @@ $point-shift: 25%; // 50% is the max
   position: relative;
   display: inline-block;
 
-  // Using mixins since 'right' and 'left' convert to 'top' or 'bottom' on mobile
   @mixin message-top {
     bottom: $message-offset;
     left: 50%;
@@ -158,7 +167,7 @@ $point-shift: 25%; // 50% is the max
     &:focus + .tooltip__message {
       @include show-content;
 
-      @include mq-min(md) {
+      @include mq-min($mq-swap) {
         &--top,
         &--bottom {
           translate: -50% 0;
@@ -177,7 +186,7 @@ $point-shift: 25%; // 50% is the max
         }
       }
 
-      @include mq-max(md) {
+      @include mq-max($mq-swap) {
         // Not including right or left on mobile since it will likely flow off the page
         &--mobile-top,
         &--mobile-bottom {
@@ -235,7 +244,7 @@ $point-shift: 25%; // 50% is the max
       font-size: $message-font-size;
     }
 
-    @include mq-min(md) {
+    @include mq-min($mq-swap) {
       &--top {
         @include message-top;
       }
@@ -296,7 +305,7 @@ $point-shift: 25%; // 50% is the max
       }
     }
 
-    @include mq-max(md) {
+    @include mq-max($mq-swap) {
       &--mobile-top {
         @include message-top;
       }
@@ -320,6 +329,9 @@ $point-shift: 25%; // 50% is the max
     &--lg {
       max-width: 650px;
 
+      @include mq-max(lg) {
+        max-width: 450px;
+      }
       @include mq-max(md) {
         max-width: 360px;
       }
@@ -356,7 +368,7 @@ $point-shift: 25%; // 50% is the max
       position: absolute;
       // modifiers handle placement
       pointer-events: none;
-      border-radius: 2px;
+      border-radius: $point-radius;
       z-index: -1;
     }
   }
