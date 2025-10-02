@@ -9,7 +9,7 @@
   {% if panel_copy %}
   <div class="scroll-stack__copy scroll-stack__copy--unpinned">
     {% if panel_copy.title %}
-    <h2 class="scroll-stack__copy-title h5">{{ panel_copy.title }}</h2>
+    <h2 class="scroll-stack__copy-title">{{ panel_copy.title }}</h2>
     {% endif %} {% if panel_copy.desc %}
     <p class="scroll-stack__copy-desc">{{ panel_copy.desc }}</p>
     {% endif %} {% if panel_copy.cta_1 %}
@@ -39,7 +39,7 @@
     {% if panel_copy %}
     <div class="scroll-stack__copy scroll-stack__copy--pinned">
       {% if panel_copy.title %}
-      <h2 class="scroll-stack__copy-title h5">{{ panel_copy.title }}</h2>
+      <h2 class="scroll-stack__copy-title">{{ panel_copy.title }}</h2>
       {% endif %} {% if panel_copy.desc %}
       <p class="scroll-stack__copy-desc">{{ panel_copy.desc }}</p>
       {% endif %} {% if panel_copy.cta_1 %}
@@ -61,7 +61,7 @@
       {% endif %} 
       
       {% if panel.title %}
-      <h3 class="scroll-stack__panel__title h6">
+      <h3 class="scroll-stack__panel__title">
         {{ panel.title }}
       </h3>
       {% endif %} {% if panel.desc %}

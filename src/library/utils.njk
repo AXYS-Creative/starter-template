@@ -12,7 +12,7 @@ path: library/utils
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
 <section class="cursor-target-section library-section">
-  <h2 class="h5">[ Cursor Target - Util ]</h2>
+  <h2 class="">[ Cursor Target - Util ]</h2>
   <strong>Requires custom mouse cursor*</strong>
   <p class="max-width-text">
     If using a mouse cursor, you can set up a <strong>trigger</strong> and
@@ -92,7 +92,7 @@ path: library/utils
 </section>
 
 <section class="glitch-text-section library-section">
-  <h2 class="h5">
+  <h2 class="">
     [
     <span class="glitch-scroll glitch-text">Glitch Text&nbsp-&nbsp</span>
     <span
@@ -105,7 +105,7 @@ path: library/utils
   <div>
     <p>
       Utilize GSAP's <code>text-scrambler</code> effect. While not required,
-      it’s recommended to use the class <code>glitch-text</code> to use a
+      it’s highly recommended to use a
     </p>
     <!-- prettier-ignore -->
     {% set tooltip = ({
@@ -116,10 +116,14 @@ path: library/utils
       include_point: true
     }) %} 
     {% include "../_includes/library/components/tooltip.njk" %}
-    <p>, which is helpful with preventing layout shift from width changes.</p>
+    <p>
+      , which is helpful with preventing layout shift from width changes. The
+      class <code>glitch-text</code> comes with a pre loaded mono-spaced font
+      along with other easy styles for all glitch related text.
+    </p>
   </div>
 
-  <h3 class="h6">Glitch Cycle</h3>
+  <h3 class="">Glitch Cycle</h3>
   <p>
     The glitch cycle uses the <code>glitch-cycle</code> class along with
     multiple <code>data</code> attributes to configure.
@@ -153,7 +157,7 @@ path: library/utils
 
   <br />
 
-  <h3 class="h6">Glitch Scroll</h3>
+  <h3 class="">Glitch Scroll</h3>
   <p>
     The class <code>glitch-scroll</code> will scramble the text when the element
     comes into view. Use the following data attributes to customize the
@@ -221,7 +225,7 @@ path: library/utils
 
   <br />
 
-  <h3 class="h6">Glitch Hover</h3>
+  <h3 class="">Glitch Hover</h3>
   <p>
     The class <code>glitch-hover</code> causes the text content (works with
     nested elements) to scramble on hover or focus. Comes with the following
@@ -295,14 +299,14 @@ path: library/utils
 </section>
 
 <section class="gradient-border-section library-section">
-  <h2 class="h5">[ Gradient border - Util ]</h2>
+  <h2 class="">[ Gradient border - Util ]</h2>
   <p>
     Gradient borders. Simple but confusing. Saw Okta doing this and wanted to
     see what it was about.
   </p>
 
   <div class="gradient-border">
-    <h3 class="h6">Gradient border</h3>
+    <h3 class="">Gradient border</h3>
     <p>
       Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
       Molestiae commodi veritatis totam harum accusamus quia sint aliquam quod
@@ -312,7 +316,7 @@ path: library/utils
 </section>
 
 <section class="gsap-animate-section library-section">
-  <h2 class="gsap-animate-section__title gsap-animate h5">
+  <h2 class="gsap-animate-section__title gsap-animate">
     [ GSAP animate - Util ]
   </h2>
   <strong class="gsap-animate-section__subtitle gsap-animate">
@@ -352,7 +356,7 @@ path: library/utils
 </section>
 
 <section class="tabs-section library-section">
-  <h2 class="h5">[ Tabs - Util ]</h2>
+  <h2 class="">[ Tabs - Util ]</h2>
   <strong>Upcoming!</strong>
   <p>
     Intended for dynamic markup or custom components. Basically a plane that
@@ -363,7 +367,7 @@ path: library/utils
   <div class="tabs tabs-util">
     <div class="tabs__panels">
       <div class="tabs__panel" data-tab-label="Overview" role="tabpanel">
-        <h3 class="h6">Custom markup</h3>
+        <h3 class="">Custom markup</h3>
         <p class="max-width-text">
           The tabs util allows for custom markup with minimal setup. The tab
           controls are generated via JavaScript, based on the
@@ -380,7 +384,7 @@ path: library/utils
 
 <!-- Text animations -->
 <section class="text-fade-section library-section">
-  <h2 class="h5 text-fade">[ Text Fade - Util ]</h2>
+  <h2 class="text-fade">[ Text Fade - Util ]</h2>
   <p class="text-fade" data-fade-duration="0.5">
     This uses GSAP's <strong>ScrollTrigger</strong> and
     <strong>SplitText</strong> plugins to fade in either words or characters.
@@ -459,7 +463,7 @@ path: library/utils
 </section>
 
 <section class="text-fill-section">
-  <h2 class="h5 text-fill">[ Text Fill - Util ]</h2>
+  <h2 class="text-fill">[ Text Fill - Util ]</h2>
   <br />
   <br />
   <strong class="text-fill" data-fill-scrub="false">
@@ -545,7 +549,7 @@ path: library/utils
 </section>
 
 <section class="text-scale-section library-section">
-  <h2 class="h5 text-scale">[ Text scale - Util ]</h2>
+  <h2 class="text-scale">[ Text scale - Util ]</h2>
   <p class="text-scale" data-scale-duration="0.5">
     This uses GSAP's <strong>ScrollTrigger</strong> and
     <strong>SplitText</strong> plugins to scale in either words or characters.
@@ -634,7 +638,7 @@ path: library/utils
 <!-- Text animations -->
 
 <section class="tilt-cards library-section cursor-hide">
-  <h2 class="h5">[ Tilt - Util ]</h2>
+  <h2 class="">[ Tilt - Util ]</h2>
 
   <strong>Requires additional script tag*</strong>
   <p>
@@ -720,7 +724,7 @@ path: library/utils
   </ul>
   <div class="tilt-card-group">
     <div class="tilt-card" data-tilt>
-      <h3 class="h6">Default</h3>
+      <h3 class="">Default</h3>
       <br />
       <p>No extra attributes other than <code>data-tilt</code></p>
       <!-- prettier-ignore -->
@@ -743,7 +747,7 @@ path: library/utils
       data-tilt-glare="true"
       data-tilt-max-glare="0.125"
     >
-      <h3 class="h6">Reversed</h3>
+      <h3 class="">Reversed</h3>
       <br />
       <p>
         This sublte reversed tilt effect not only includes a glare, but also has
@@ -779,7 +783,7 @@ path: library/utils
       data-tilt-reset="false"
       data-tilt-glare="true"
     >
-      <h3 class="h6">Dramatic</h3>
+      <h3 class="">Dramatic</h3>
       <br />
       <p>A bit stronger with the max-glare and the tilt doesn't reset.</p>
       {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
@@ -790,14 +794,14 @@ path: library/utils
 </section>
 
 <section class="tooltip-section library-section cursor-hide">
-  <h2 class="h5">[ Tooltip - Util or Component ]</h2>
+  <h2 class="">[ Tooltip - Util or Component ]</h2>
   <p>
     A tooltip can be added in two ways: as a utility class or a component. Each
     method comes with different pros and cons.
   </p>
   <br />
 
-  <h3 class="h6">Tooltip Util (follows mouse)</h3>
+  <h3 class="">Tooltip Util (follows mouse)</h3>
   <strong>
     Note: requires mouse-cursor.njk component.
     <br />
@@ -856,7 +860,7 @@ path: library/utils
   <br aria-hidden="true" />
   <br aria-hidden="true" />
 
-  <h3 class="h6">Tooltip Component (fixed)</h3>
+  <h3 class="">Tooltip Component (fixed)</h3>
   <p>
     The component variation <code>tooltip.njk</code> comes with the following
     config options:
@@ -904,7 +908,7 @@ path: library/utils
 </section>
 
 <section class="typing-section library-section">
-  <h2 class="h5">
+  <h2 class="">
     <span class="typing-scroll" data-typing-cursor="none"
       >[ Typing Text&nbsp;-&nbsp;</span
     >
@@ -919,7 +923,7 @@ path: library/utils
     &nbsp;]
   </h2>
 
-  <h3 class="h6">Typing Cycle</h3>
+  <h3 class="">Typing Cycle</h3>
   <p>
     The typing cycle effect mimics human typing in an endless loop. It uses the
     <code>typing-cycle</code> class along with multiple
@@ -985,7 +989,7 @@ path: library/utils
 
   <br />
 
-  <h3 class="h6">Typing Scroll</h3>
+  <h3 class="">Typing Scroll</h3>
   <p>
     The class <code>typing-scroll</code> will trigger the typing animation when
     the element comes into view. Comes with the following configs:
@@ -1027,7 +1031,7 @@ path: library/utils
 </section>
 
 <section class="video-bg-section library-section">
-  <h2 class="h5">[ Video-bg - Util ]</h2>
+  <h2 class="">[ Video-bg - Util ]</h2>
   <p>
     With minimal setup, you can add a video background to any section, container
     or element using the <code>video-bg</code> class and including the
@@ -1058,7 +1062,7 @@ path: library/utils
   <div class="video-bg-group">
     <div class="video-bg video-bg--sample-2 cursor-hide">
       <h3
-        class="text-fill h6"
+        class="text-fill"
         data-fill-start="top 92%"
         data-fill-end="bottom 86%"
       >
@@ -1087,7 +1091,7 @@ path: library/utils
     </div>
 
     <div class="video-bg video-bg--sample-3 cursor-hide" data-tilt>
-      <h3 class="glitch-scroll h4">Space</h3>
+      <h3 class="glitch-scroll">Space</h3>
       <p
         class="typing-scroll"
         data-typing-cursor="underscore"
@@ -1112,7 +1116,7 @@ path: library/utils
 </section>
 
 <section class="video-overlay-section library-section">
-  <h2 class="h5">[ Video Overlay - Util ]</h2>
+  <h2 class="">[ Video Overlay - Util ]</h2>
   <p>
     <strong>Note:</strong> While this is marked as a util due to the use of
     <code>video-toggle</code>, it requires the component

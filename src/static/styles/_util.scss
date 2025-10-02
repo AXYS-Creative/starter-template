@@ -158,8 +158,8 @@
         scale: 0.94;
       }
 
-      &:has(input[checked]),
-      &[aria-selected="true"] {
+      &.option-active,
+      &:has(input[checked]) {
         opacity: 1;
       }
     }

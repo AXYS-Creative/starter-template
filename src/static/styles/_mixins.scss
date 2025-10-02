@@ -110,59 +110,36 @@ $min-breakpoints: ();
 // FYI: Dropping below 12px results in a11y pentalty.
 //
 
-@mixin heading-text($size) {
+@mixin heading-font-styles($sz: 72px, $wt: 300, $lh: 1.1, $ls: -1px) {
   color: var(--color-font--primary);
   font-family: var(--font-family--heading);
-  font-size: $size;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -1px;
+  font-size: $sz;
+  font-weight: $wt;
+  line-height: $lh;
+  letter-spacing: $ls;
 }
 
 @mixin h1 {
-  @include heading-text(72px);
-
-  @include mq-max(xxl) {
-    font-size: max(48px, 4.8vw);
-  }
+  @include heading-font-styles($sz: 72px, $ls: -2px);
 }
 @mixin h2 {
-  @include heading-text(64px);
-
-  @include mq-max(xxl) {
-    font-size: max(44px, 4.4vw);
-  }
+  @include heading-font-styles(48px);
+  color: var(--color-brand--primary);
 }
 @mixin h3 {
-  @include heading-text(56px);
-
-  @include mq-max(xxl) {
-    font-size: max(40px, 4vw);
-  }
+  @include heading-font-styles(40px);
 }
 @mixin h4 {
-  @include heading-text(48px);
-
-  @include mq-max(xxl) {
-    font-size: max(36px, 3.6vw);
-  }
+  @include heading-font-styles(32px);
 }
 @mixin h5 {
-  @include heading-text(40px);
-
-  @include mq-max(xxl) {
-    font-size: max(32px, 3.2vw);
-  }
+  @include heading-font-styles(24px);
 }
 @mixin h6 {
-  @include heading-text(32px);
-
-  @include mq-max(xxl) {
-    font-size: max(28px, 2.8vw);
-  }
+  @include heading-font-styles(20px);
 }
 
-@mixin body-font-styles($size: md) {
+@mixin body-font-styles($sz: md, $wt: 400, $lh: 1.4, $ls: 0) {
   --font-size: 16px;
 
   color: var(--color-font--primary);
@@ -175,7 +152,7 @@ $min-breakpoints: ();
     --font-size: 14px;
   }
 
-  @if $size == lg {
+  @if $sz == lg {
     --font-size: 20px;
 
     line-height: 1.5;
@@ -185,7 +162,7 @@ $min-breakpoints: ();
     }
   }
 
-  @if $size == sm {
+  @if $sz == sm {
     --font-size: 14px;
   }
 }

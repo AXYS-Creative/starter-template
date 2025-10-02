@@ -16,31 +16,34 @@ const setTheme = (theme) => {
   applyTheme(theme);
 };
 
+// ---- Initialization ----
 const saved = localStorage.getItem(storageKey) || "system";
 applyTheme(saved);
 
+// Sync radio state to saved value
 radios.forEach((radio) => {
-  const isSaved = radio.id === `theme-${saved}`;
-  radio.checked = isSaved;
-  if (isSaved) {
-    radio.setAttribute("checked", "");
-  } else {
-    radio.removeAttribute("checked");
-  }
+  radio.checked = radio.value === saved;
 });
 
+// ---- Listeners ----
 radios.forEach((radio) => {
+  radio.addEventListener("click", (e) => {
+    // force checked on click
+    radios.forEach((r) => (r.checked = false));
+    e.target.checked = true;
+
+    setTheme(e.target.value);
+  });
+
+  // also handle change (keyboard/tabbing etc.)
   radio.addEventListener("change", (e) => {
     if (e.target.checked) {
       setTheme(e.target.value);
-
-      radios.forEach((r) => r.removeAttribute("checked"));
-      e.target.setAttribute("checked", "");
     }
   });
 });
 
-// Listen for system changes if system is selected
+// Listen for system preference changes if "system" is selected
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", (e) => {
@@ -49,13 +52,10 @@ window
     }
   });
 
-// Dyanic image source based on theme
-// Requires '.theme-img' util class and the 'data-light' & 'data-dark' attributes
+// ---- Theme-image swapping ----
 const swapThemeImages = () => {
   const theme = document.documentElement.getAttribute("data-theme");
-  const images = document.querySelectorAll("img.theme-img");
-
-  images.forEach((img) => {
+  document.querySelectorAll("img.theme-img").forEach((img) => {
     const newSrc = img.dataset[theme];
     if (newSrc && img.src !== newSrc) {
       img.src = newSrc;
