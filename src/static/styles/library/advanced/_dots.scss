@@ -7,10 +7,9 @@
   @include row-center;
   overflow: visible;
 
-  circle {
-    // fill: var(--color-font--primary);
-    // fill: var(--color-brand--primary);
-    fill: var(--color-brand--secondary);
-    // opacity: 0.5;
-  }
+  // controlled via props
+  // circle {
+  //   // fill: var(--color-font--primary);
+  //   // opacity: 0.5;
+  // }
 }

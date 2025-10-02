@@ -8392,9 +8392,6 @@ body:has(.tooltip-util) .mouse-cursor {
   align-items: center;
   overflow: visible;
 }
-.dots-flow circle {
-  fill: var(--color-brand--secondary);
-}
 
 .grid-flow-img-section {
   padding-inline: var(--body-padding);

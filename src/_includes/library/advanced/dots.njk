@@ -7,6 +7,7 @@
 {% set sensitivity = dots.sensitivity or 0.9 %}
 {% set distance = dots.distance or 100 %}
 {% set strength = dots.strength or 500 %}
+{% set color = dots.color or 'var(--color-font--primary)' %}
 {% set illuminate = dots.illuminate or false %}
 {% set grow = dots.grow or false %}
 
@@ -22,6 +23,7 @@
   data-dot-sensitivity="{{ sensitivity }}"
   data-dot-distance="{{ distance }}"
   data-dot-strength="{{ strength }}"
+  data-dot-color="{{ color }}"
   data-dot-illuminate="{{ illuminate }}"
   data-dot-grow="{{ grow }}"
 ></svg>

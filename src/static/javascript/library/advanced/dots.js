@@ -9,6 +9,7 @@ dotFields.forEach((comp) => {
     sensitivity: parseFloat(comp.dataset.dotSensitivity), // [0.9 - 0.99] recommended. 1 prevents restore
     distance: parseFloat(comp.dataset.dotDistance), // size of mouse radius (how many dots are affected)
     strength: parseFloat(comp.dataset.dotStrength),
+    color: comp.dataset.dotColor,
     illuminate: comp.dataset.dotIlluminate === "true", // Adjust opacity of dots within range
     grow: comp.dataset.dotGrow === "true", // Adjust scale of dots within range
   };
@@ -97,6 +98,11 @@ dotFields.forEach((comp) => {
       let intensity = 1 - dist / config.distance;
       intensity = Math.min(Math.max(intensity, 0), 1); // clamp 0–1
       intensity = minIntensity + intensity * (1 - minIntensity); // scale
+
+      // --- Dot color ---
+      if (config.color) {
+        dot.el.style.fill = config.color;
+      }
 
       // --- Illuminate effect ---
       if (config.illuminate) {
