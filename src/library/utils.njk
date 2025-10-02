@@ -93,17 +93,31 @@ path: library/utils
 
 <section class="glitch-text-section library-section">
   <h2 class="h5">
-    <span class="glitch-scroll">[ Glitch Text&nbsp-&nbsp</span>
-    <span class="glitch-cycle" data-glitch-cycle-words="Util, Class">
+    [
+    <span class="glitch-scroll glitch-text">Glitch Text&nbsp-&nbsp</span>
+    <span
+      class="glitch-cycle glitch-text"
+      data-glitch-cycle-words="Util, Class"
+    >
       Util </span
     >&nbsp;]
   </h2>
-  <p>
-    Utilize GSAP's <code>text-scrambler</code> effect! While not required, there
-    is a class: <code>glitch-text</code>, that clips the max width to the
-    content width to prevent overshooting. This could be used for other
-    variable/util needs.
-  </p>
+  <div>
+    <p>
+      Utilize GSAP's <code>text-scrambler</code> effect. While not required,
+      it’s recommended to use the class <code>glitch-text</code> to use a
+    </p>
+    <!-- prettier-ignore -->
+    {% set tooltip = ({
+      text: 'mono-spaced font',
+      message: 'A font where every character is the same width.',
+      size: 'sm',
+      place_sm: 'bottom-right',
+      include_point: true
+    }) %} 
+    {% include "../_includes/library/components/tooltip.njk" %}
+    <p>, which is helpful with preventing layout shift from width changes.</p>
+  </div>
 
   <h3 class="h6">Glitch Cycle</h3>
   <p>
@@ -128,7 +142,7 @@ path: library/utils
   <h6>
     Sample:
     <span
-      class="glitch-cycle"
+      class="glitch-cycle glitch-text"
       data-glitch-cycle-words="creative, responsive, accessible, innovative, engaging"
       data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
       data-glitch-cycle-interval="2000"
@@ -182,16 +196,16 @@ path: library/utils
       <code>false</code>
     </li>
   </ul>
-  <p class="glitch-scroll">
+  <p class="glitch-scroll glitch-text">
     This will glitch out as many times as you scroll into view. Default
     behavior.
   </p>
-  <p class="glitch-scroll" data-glitch-once="true">
+  <p class="glitch-scroll glitch-text" data-glitch-once="true">
     This will only glitch out once.
   </p>
   <p>
     <span
-      class="glitch-text glitch-scroll"
+      class="glitch-scroll glitch-text"
       data-glitch-trigger=".glitch-trigger-subtitle"
       data-glitch-end="bottom center"
     >
@@ -879,12 +893,13 @@ path: library/utils
 
   <div>
     <p>
-      Does this work inline? Yes,
-      <!-- prettier-ignore -->
-      {% set tooltip = library.tooltip.tooltip_3 %}
-      {% include "../_includes/library/components/tooltip.njk" %} 
-      then some text afterward.
+      Does this work inline? Yes, but don't nest within an inline tag like
+      <code>p</code> or <code>span</code>
     </p>
+    <!-- prettier-ignore -->
+    {% set tooltip = library.tooltip.tooltip_3 %}
+      {% include "../_includes/library/components/tooltip.njk" %}
+    <p>If you do, then the markup will be broken.</p>
   </div>
 </section>
 

@@ -63,8 +63,17 @@
   }
 
   .glitch-text {
-    max-width: var(--content-width); // Prevent overflow
+    font-family: "Space Mono", source-sans-pro, sans-serif;
+    letter-spacing: -1px;
+    // font-weight: 900;
+
     overflow: hidden;
+    // white-space: nowrap;
+    // transition: 0.3s ease;
+  }
+  .h5 .glitch-text,
+  .h6 .glitch-text {
+    letter-spacing: -3px;
   }
 
   .glitch-hover,

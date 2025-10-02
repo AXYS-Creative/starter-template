@@ -1,12 +1,19 @@
 .plan-selection {
   @include section-padding;
+  @include width-clamp;
   @include column-center;
+  position: relative;
   text-align: center;
   gap: var(--spacing);
   margin-block: var(--spacing--xl);
 
   &__toggle-wrapper {
     position: relative;
+
+    @include mq-max(lg) {
+      position: sticky;
+      top: var(--body-padding);
+    }
 
     .toggle-slider {
       --accent-color: var(--color-brand--primary);
@@ -22,16 +29,42 @@
 }
 
 .plan-options {
+  $card-gap: var(--spacing--sm);
+  $all-cards-gap: calc(var(--spacing--sm) * 2);
+
   @include row-center;
   gap: var(--spacing--sm);
   margin-block-start: var(--spacing--lg);
-}
+  width: 100%;
 
-.plan-option {
-  border: var(--border-width) solid var(--color-border);
-  @include column-center;
-  gap: var(--spacing);
-  padding: 24px;
-  border-radius: var(--radius--sm);
-  background: var(--color-surface--2);
+  @include mq-max(lg) {
+    flex-direction: column;
+  }
+
+  .plan-option {
+    @include column-center;
+    border: var(--border-width) solid var(--color-border);
+    gap: var(--spacing);
+    padding: var(--spacing--xl) var(--spacing);
+    border-radius: var(--radius--sm);
+    background: var(--color-surface--2);
+    width: 100%;
+
+    @include mq-min(lg) {
+      max-width: calc(33% - $all-cards-gap);
+    }
+
+    &__price {
+      display: inline-flex;
+      font-size: 24px;
+      // gap: 0.2ch;
+
+      &-cost {
+        // border: 1px dashed yellow;
+        // width: 5ch;
+        // overflow: hidden;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+  }
 }

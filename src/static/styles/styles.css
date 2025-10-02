@@ -632,8 +632,13 @@ code.codearea {
     width: 100%;
   }
   .glitch-text {
-    max-width: var(--content-width);
+    font-family: "Space Mono", source-sans-pro, sans-serif;
+    letter-spacing: -1px;
     overflow: hidden;
+  }
+  .h5 .glitch-text,
+  .h6 .glitch-text {
+    letter-spacing: -3px;
   }
   .glitch-hover,
   [class*=glitch-target__] {
@@ -5429,16 +5434,23 @@ code.codearea {
   font-display: block;
 }
 @font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/SpaceMono-Regular.ttf") format("trueType");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/SpaceMono-Bold.ttf") format("trueType");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
   font-family: "Satoshi";
   src: url("../fonts/Satoshi-Variable.woff2") format("woff2");
   font-weight: 100 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Satoshi-Black";
-  src: url("../fonts/Satoshi-Black.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
   font-display: swap;
 }
 .site-header {
@@ -8686,16 +8698,26 @@ body:has(.tooltip-util) .mouse-cursor {
 .plan-selection {
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding-double);
+  width: 100%;
+  max-width: 1512px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   text-align: center;
   gap: var(--spacing);
   margin-block: var(--spacing--xl);
 }
 .plan-selection__toggle-wrapper {
   position: relative;
+}
+@media (max-width: 1024px) {
+  .plan-selection__toggle-wrapper {
+    position: sticky;
+    top: var(--body-padding);
+  }
 }
 .plan-selection__toggle-wrapper .toggle-slider {
   --accent-color: var(--color-brand--primary);
@@ -8713,18 +8735,36 @@ body:has(.tooltip-util) .mouse-cursor {
   align-items: center;
   gap: var(--spacing--sm);
   margin-block-start: var(--spacing--lg);
+  width: 100%;
 }
-
-.plan-option {
-  border: var(--border-width) solid var(--color-border);
+@media (max-width: 1024px) {
+  .plan-options {
+    flex-direction: column;
+  }
+}
+.plan-options .plan-option {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: var(--border-width) solid var(--color-border);
   gap: var(--spacing);
-  padding: 24px;
+  padding: var(--spacing--xl) var(--spacing);
   border-radius: var(--radius--sm);
   background: var(--color-surface--2);
+  width: 100%;
+}
+@media (min-width: 1025px) {
+  .plan-options .plan-option {
+    max-width: calc(33% - var(--spacing--sm) * 2);
+  }
+}
+.plan-options .plan-option__price {
+  display: inline-flex;
+  font-size: 24px;
+}
+.plan-options .plan-option__price-cost {
+  font-variant-numeric: tabular-nums;
 }
 
 .scroll-horizontal {

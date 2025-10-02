@@ -315,15 +315,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Glitch Text (Uses gsap scrambleText) TODO: Consider making shared configs across glitch effects, e.g. data-glitch-chars could be used for all instances.
         {
           let alphaNumberic = "0123456789abcedfghijklmnopqrstuvwxyz";
-          const glitchTextElems = document.querySelectorAll(".glitch-text");
+          // const glitchTextElems = document.querySelectorAll(".glitch-text");
 
-          glitchTextElems.forEach((el) => {
-            setTimeout(() => {
-              // Helps with preventing inline shifting (center aligned text)
-              const width = el.offsetWidth;
-              el.style.width = `${width}px`;
-            }, 1000);
-          });
+          // glitchTextElems.forEach((el) => {
+          //   setTimeout(() => {
+          //     // Helps with preventing inline shifting (center aligned text)
+          //     const width = el.offsetWidth;
+          //     el.style.width = `${width}px`;
+          //   }, 1000);
+          // });
 
           // Scroll-based glitch
           document.querySelectorAll(".glitch-scroll").forEach((el) => {
@@ -507,6 +507,55 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             cycle();
           });
+
+          // Toggle-based glitch
+          {
+            const toggleBtns = document.querySelectorAll(
+              ".plan-selection__toggle-option"
+            );
+            const swapElems = document.querySelectorAll("[data-toggle-target]");
+
+            // store initial text
+            swapElems.forEach((el) => {
+              if (!el.dataset.toggleStart) {
+                el.dataset.toggleStart = el.textContent.trim();
+              }
+            });
+
+            const runGlitch = (el, newText) => {
+              if (!el) return;
+
+              el.textContent = newText;
+
+              gsap.to(el, {
+                scrambleText: {
+                  text: newText,
+                  chars: "0123456789#X%*",
+                  revealDelay: 0.125,
+                },
+                duration: 0.5,
+              });
+            };
+
+            toggleBtns.forEach((btn) => {
+              btn.addEventListener("click", () => {
+                toggleBtns.forEach((b) =>
+                  b.setAttribute("aria-selected", "false")
+                );
+                btn.setAttribute("aria-selected", "true");
+
+                const mode = btn.dataset.toggleOption; // "start" or "end"
+
+                swapElems.forEach((el) => {
+                  const newText =
+                    mode === "start"
+                      ? el.dataset.toggleStart
+                      : el.dataset.toggleEnd;
+                  if (newText) runGlitch(el, newText);
+                });
+              });
+            });
+          }
         }
 
         // Grid Fade (Utility)

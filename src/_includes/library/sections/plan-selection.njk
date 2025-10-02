@@ -8,14 +8,25 @@
 
 <!-- prettier-ignore -->
 <section class="plan-selection">
-  <h2>{{title}}</h2>
-  <p>{{desc}}</p>
+  <h2 class="plan-selection__title">{{title}}</h2>
+  <p class="plan-selection__desc">{{desc}}</p>
 
   {% if price_toggle %}
   <div class="plan-selection__toggle-wrapper">
     <div class="plan-selection__toggle toggle-slider toggle-slider--solid">
-      <button class="plan-selection__toggle-option" data-toggle="mo" aria-selected="true">Monthly</button>
-      <button class="plan-selection__toggle-option" data-toggle="qt">Quarterly</button>
+      <button 
+        class="plan-selection__toggle-option"
+        data-toggle-option="start"
+        aria-selected="true"
+      >
+        Monthly
+      </button>
+      <button 
+        class="plan-selection__toggle-option"
+        data-toggle-option="end"
+      >
+        Quarterly
+      </button>
       <div class="plan-selection__toggle-slider"></div>
     </div>
     {% set tooltip = ({
@@ -35,20 +46,66 @@
       {% set title = plan.title | default('No plan title') %}
       {% set price_mo = plan.price_mo | default('No monthly price') %}
       {% set price_qt = plan.price_qt | default('No quarterly price') %}
-  
-      {# price_toggle from parent #}
-      {% set price_swap = '' %}
-      {% if price_toggle and price_qt %}
-        {% set price_swap = 'data-price-swap="'~price_qt~'"' %}
-      {% endif %}
+      {% set grand_total = plan.grand_total | default('No grand total') %}
+      {% set savings_qt = plan.savings_qt | default('No grand savings') %}
   
       <div class="plan-option">
-        <h3 class="plan-option__title h6">{{ title }}</h3>
-        <p class="plan-option__price" {{ price_swap }}>
-          {{ price_mo }}/mo
+        <h3 class="plan-option__title h4">{{ title }}</h3>
+        
+        <p class="plan-option__price">
+          <span class="plan-option__price-currency">$</span>
+          <span 
+            class="plan-option__price-cost glitch-text"
+            data-toggle-target 
+            data-toggle-end="{{price_qt}}"
+            aria-live="polite"
+          >
+          {{ price_mo }}
+          </span>
+          <span class="plan-option__price-frequency">/month</span>
         </p>
+
+        <p class="plan-option__total glitch-text">
+          <span>$</span>
+          <span 
+            class="plan-option__total-swap" 
+            data-toggle-target 
+            data-toggle-end="{{ grand_total }}"
+            aria-live="polite"
+          >          
+            {{ price_mo }}
+          </span>
+          <span>Billed</span>
+          <span 
+            class="plan-option__total-frequency" 
+            data-toggle-target 
+            data-toggle-end="quarterly"
+          >          
+            monthly
+          </span>
+        </p>
+
+        <ul class="plan-option__perks">
+          {% for perk in plan.features %}
+            <li>{{perk}}</li>
+          {% endfor %}
+        </ul>
+
+        <p
+          class="plan-option__message glitch-text" 
+          data-toggle-target 
+          data-toggle-end="You’re saving {{ savings_qt }} quarterly!"
+          aria-live="polite"
+        >
+          Save 20% with quarterly billing!
+        </p>
+
+        {% set btn = ({
+          text: 'hello',
+          type: 'solid'
+        }) %}
+        {% include "../../components/btn.njk" %}
       </div>
-  
     {% endfor %}
   </div>
 </section>
