@@ -8,6 +8,7 @@
 
   &-option {
     opacity: 0.5;
+    border-bottom: 1px solid transparent;
 
     &--active,
     &[aria-selected="true"] {

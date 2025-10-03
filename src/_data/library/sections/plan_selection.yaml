@@ -11,8 +11,8 @@ plans:
     savings_qt: $1,195
     price_desc: Pause or cancel anytime
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    divider: true
-    popular: false
+    highlight: false
+    swap_theme: false
     features:
       - "[%strong%]Unlimited Web Design[%strong%]"
       - One request at a time
@@ -21,7 +21,7 @@ plans:
       - Unlimited revisions
       - Pause or cancel anytime
     cta_1:
-      text: Get Started
+      text: Subscribe to Designer
       text_desc: Get started with the designer plan
       url: /signup
       new_tab: false
@@ -33,8 +33,8 @@ plans:
     savings_qt: $1,795
     price_desc: Pause or cancel anytime
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    divider: true
-    popular: false
+    highlight: false
+    swap_theme: false
     features:
       - "[%strong%]Unlimited Web Design[%strong%]"
       - One request at a time
@@ -55,8 +55,8 @@ plans:
     savings_qt: $2,395
     price_desc: Pause or cancel anytime
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    divider: true
-    popular: false
+    highlight: true
+    swap_theme: true
     features:
       - "[%strong%]Unlimited Web Design[%strong%]"
       - One request at a time

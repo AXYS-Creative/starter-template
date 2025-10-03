@@ -6,29 +6,26 @@
 <!-- prettier-ignore -->
 {% set plans = plan_selection.plans %}
 
-<!-- prettier-ignore -->
 <section class="plan-selection">
-  <h2 class="plan-selection__title">{{title}}</h2>
-  <p class="plan-selection__desc">{{desc}}</p>
+  <h2 class="plan-selection__title">{{ title }}</h2>
+  <p class="plan-selection__desc">{{ desc }}</p>
 
   {% if price_toggle %}
   <div class="plan-selection__toggle-wrapper">
     <div class="plan-selection__toggle toggle-slider toggle-slider--solid">
-      <button 
+      <button
         class="plan-selection__toggle-option"
         data-toggle-option="start"
         aria-selected="true"
       >
         Monthly
       </button>
-      <button 
-        class="plan-selection__toggle-option"
-        data-toggle-option="end"
-      >
+      <button class="plan-selection__toggle-option" data-toggle-option="end">
         Quarterly
       </button>
       <div class="plan-selection__toggle-slider"></div>
     </div>
+    <!-- prettier-ignore -->
     {% set tooltip = ({
       message: 'Save 20% with quarterly billing!',
       size: 'xs',
@@ -41,69 +38,75 @@
   {% endif %}
 
   <div class="plan-options">
-    {% for obj in plans %}
-      {% set plan = obj %}
-      {% set title = plan.title | default('No plan title') %}
-      {% set price_mo = plan.price_mo | default('No monthly price') %}
-      {% set price_qt = plan.price_qt | default('No quarterly price') %}
-      {% set grand_total = plan.grand_total | default('No grand total') %}
-      {% set savings_qt = plan.savings_qt | default('No grand savings') %}
-  
-      <div class="plan-option">
-        <h3 class="plan-option__title h2">{{ title }}</h3>
-        
-        <p class="plan-option__price">
-          <span class="plan-option__price-currency">$</span>
-          <span 
-            class="plan-option__price-cost glitch-text"
-            data-toggle-target 
-            data-toggle-end="{{price_qt}}"
-            aria-live="polite"
-          >
-          {{ price_mo }}
-          </span>
-          <span class="plan-option__price-frequency">/month</span>
-        </p>
+    <!-- prettier-ignore -->
+    {% for plan in plans %}  
+    {% set swap_theme = '' %}
+    {% if plan.swap_theme %}
+      {% set swap_theme = 'plan-option--swap-theme' %}
+    {% endif %}
+    <div class="plan-option {{ swap_theme }}">
+      <h3 class="plan-option__title h2">{{ plan.title }}</h3>
 
-        <p class="plan-option__total glitch-text">
+      <div class="plan-option__price-group">
+        <div class="plan-option__line-group" aria-hidden="true">
+          <div class="plan-option__line"></div>
+          <div class="plan-option__price">
+            <span class="plan-option__price-currency">$</span>
+            <span
+              class="plan-option__price-cost glitch-text"
+              data-toggle-target
+              data-toggle-end="{{ plan.price_qt }}"
+              aria-live="polite"
+            >
+              {{ plan.price_mo }}
+            </span>
+            <span class="plan-option__price-frequency">/month</span>
+          </div>
+          <div class="plan-option__line"></div>
+        </div>
+
+        <p class="plan-option__total glitch-text" data-toggle-show="end">
           <span>$</span>
-          <span 
-            class="plan-option__total-swap" 
-            data-toggle-target 
-            data-toggle-end="{{ grand_total }}"
+          <span
+            class="plan-option__total-swap"
+            data-toggle-target
+            data-toggle-end="{{ plan.grand_total }}"
             aria-live="polite"
-          >{{ price_mo }}</span>
-          <span>Billed</span>
-          <span 
-            class="plan-option__total-frequency" 
-            data-toggle-target 
+            >{{ plan.price_mo }}</span
+          >
+          <span class="glitch-text">billed</span>
+          <span
+            class="plan-option__total-frequency glitch-text"
+            data-toggle-target
             data-toggle-end="quarterly"
-          >          
+          >
             monthly
           </span>
         </p>
-
-        <ul class="plan-option__perks">
-          {% for perk in plan.features %}
-            <li>{{perk}}</li>
-          {% endfor %}
-        </ul>
-
-        <p
-          class="plan-option__message glitch-text" 
-          data-toggle-target 
-          data-toggle-end="You’re saving {{ savings_qt }} quarterly!"
-          aria-live="polite"
-        >
-          Save 20% with quarterly billing!
-        </p>
-
-        {% set btn = ({
-          text: 'hello',
-          type: 'solid'
-        }) %}
-        {% include "../../components/btn.njk" %}
       </div>
+
+      <ul class="plan-option__perks">
+        {% for perk in plan.features %}
+        <li>{{ perk }}</li>
+        {% endfor %}
+      </ul>
+
+      <p
+        class="plan-option__message glitch-text"
+        data-toggle-target
+        data-toggle-end="You’re saving {{ plan.savings_qt }} quarterly!"
+        aria-live="polite"
+      >
+        Save 20% with quarterly billing!
+      </p>
+
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: plan.cta_1.text,
+        type: 'solid'
+      }) %}
+      {% include "../../components/btn.njk" %}
+    </div>
     {% endfor %}
   </div>
 </section>

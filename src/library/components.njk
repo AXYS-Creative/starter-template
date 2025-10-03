@@ -564,16 +564,21 @@ path: library/components
         <code>data-tab-label</code> to alter the labels for each panel
         control/button
       </li>
+      <li>
+        <strong>Step 4:</strong> Use the attribute <code>hidden</code> on all
+        panels except the one you want shown by default
+      </li>
     </ul>
     <p>
       <strong>Note:</strong>
-      this comes with the optional <code>data-toggle-slider</code> attribute to
-      change the control style (no needed extra utility class for this, handled
-      in tabs.js). This also allows you to alter which tab is active by leaving
-      <code>hidden</code> off of that panel.
+      this comes with the optional <code>data-toggle-slider=""</code> attribute
+      of either: <code>null | solid | underline</code>
+      to change the control style (no needed extra utility class for this,
+      handled with tabs and toggle-slider logic).
     </p>
   </div>
 
+  <!-- <div class="tabs cursor-hide" data-toggle-slider="solid"> -->
   <div class="tabs cursor-hide">
     <div class="tabs-content">
       <div class="tabs-panel" data-tab-label="Panel 1" role="tabpanel" hidden>
