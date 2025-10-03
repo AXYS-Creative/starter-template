@@ -50,7 +50,7 @@
       {% set savings_qt = plan.savings_qt | default('No grand savings') %}
   
       <div class="plan-option">
-        <h3 class="plan-option__title ">{{ title }}</h3>
+        <h3 class="plan-option__title h2">{{ title }}</h3>
         
         <p class="plan-option__price">
           <span class="plan-option__price-currency">$</span>
@@ -72,9 +72,7 @@
             data-toggle-target 
             data-toggle-end="{{ grand_total }}"
             aria-live="polite"
-          >          
-            {{ price_mo }}
-          </span>
+          >{{ price_mo }}</span>
           <span>Billed</span>
           <span 
             class="plan-option__total-frequency" 

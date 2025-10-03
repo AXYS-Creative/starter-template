@@ -55,15 +55,25 @@
     }
 
     &__price {
-      display: inline-flex;
       font-size: 24px;
-      // gap: 0.2ch;
+      display: inline-flex;
 
       &-cost {
         // border: 1px dashed yellow;
         // width: 5ch;
         // overflow: hidden;
         font-variant-numeric: tabular-nums;
+      }
+    }
+
+    &__total {
+      display: inline-flex;
+
+      &-swap {
+        margin-inline-end: 0.75ch;
+      }
+      &-frequency {
+        margin-inline-start: 0.75ch;
       }
     }
   }

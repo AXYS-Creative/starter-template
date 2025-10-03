@@ -9,12 +9,23 @@
   &-option {
     opacity: 0.5;
 
-    &--active {
+    &--active,
+    &[aria-selected="true"] {
+      // Be mindful to remove any styles here that might conflict with 'toggle-slider' styles
       opacity: 1;
+      text-transform: underline;
+      border-bottom: 1px solid currentColor;
     }
   }
 
   &-content {
     margin-block-start: var(--spacing);
+  }
+
+  &:has(.toggle-slider) {
+    // Remove any styles added above or override them here when using 'toggle-slider' styles
+    .tabs-option {
+      border: none;
+    }
   }
 }

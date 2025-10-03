@@ -63,17 +63,19 @@
   }
 
   .glitch-text {
-    font-family: "Space Mono", source-sans-pro, sans-serif;
-    letter-spacing: -1px;
-    // font-weight: 900;
+    font-family: "Geist Mono", source-sans-pro, sans-serif;
+    letter-spacing: -0.5px;
+    font-weight: 500;
 
     overflow: hidden;
     // white-space: nowrap;
-    // transition: 0.3s ease;
   }
-  .h5 .glitch-text,
-  .h6 .glitch-text {
-    letter-spacing: -3px;
+  h1 .glitch-text,
+  h2 .glitch-text,
+  h3 .glitch-text,
+  h4 .glitch-text {
+    letter-spacing: -2px;
+    font-weight: 300;
   }
 
   .glitch-hover,

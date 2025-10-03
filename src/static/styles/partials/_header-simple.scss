@@ -59,6 +59,7 @@
   &--scrolling-down {
     translate: 0 -100%;
 
+    // &:has(*:focus-visible) {
     &:focus-within {
       translate: 0 0;
     }

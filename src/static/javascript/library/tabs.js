@@ -31,7 +31,7 @@ document.querySelectorAll(".tabs").forEach((tabs) => {
       panel.setAttribute("role", "tabpanel");
 
       const btn = document.createElement("button");
-      btn.className = "tab-element-page";
+      btn.className = "tabs-option tab-element-page";
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-controls", id);
       btn.textContent = label;

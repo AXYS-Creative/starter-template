@@ -121,22 +121,48 @@ $min-breakpoints: ();
 
 @mixin h1 {
   @include heading-font-styles($sz: 72px, $ls: -2px);
+
+  @include mq-max(md) {
+    font-size: 56px;
+  }
 }
 @mixin h2 {
   @include heading-font-styles(48px);
   color: var(--color-brand--primary);
+
+  @include mq-max(md) {
+    font-size: 36px;
+  }
 }
 @mixin h3 {
   @include heading-font-styles(40px);
+
+  @include mq-max(md) {
+    font-size: 28px;
+  }
 }
 @mixin h4 {
   @include heading-font-styles(32px);
+
+  @include mq-max(md) {
+    font-size: 24px;
+  }
 }
 @mixin h5 {
   @include heading-font-styles(24px);
+  font-weight: 600;
+
+  @include mq-max(md) {
+    font-size: 20px;
+  }
 }
 @mixin h6 {
   @include heading-font-styles(20px);
+  font-weight: 600;
+
+  @include mq-max(md) {
+    font-size: 18px;
+  }
 }
 
 @mixin body-font-styles($sz: md, $wt: 400, $lh: 1.4, $ls: 0) {

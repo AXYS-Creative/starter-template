@@ -188,6 +188,12 @@ h1,
   line-height: 1.1;
   letter-spacing: -2px;
 }
+@media (max-width: 768px) {
+  h1,
+  .h1 {
+    font-size: 56px;
+  }
+}
 
 h2,
 .h2 {
@@ -199,6 +205,12 @@ h2,
   letter-spacing: -1px;
   color: var(--color-brand--primary);
 }
+@media (max-width: 768px) {
+  h2,
+  .h2 {
+    font-size: 36px;
+  }
+}
 
 h3,
 .h3 {
@@ -208,6 +220,12 @@ h3,
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+}
+@media (max-width: 768px) {
+  h3,
+  .h3 {
+    font-size: 28px;
+  }
 }
 
 h4,
@@ -219,6 +237,12 @@ h4,
   line-height: 1.1;
   letter-spacing: -1px;
 }
+@media (max-width: 768px) {
+  h4,
+  .h4 {
+    font-size: 24px;
+  }
+}
 
 h5,
 .h5 {
@@ -228,6 +252,13 @@ h5,
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  h5,
+  .h5 {
+    font-size: 20px;
+  }
 }
 
 h6,
@@ -238,6 +269,13 @@ h6,
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  h6,
+  .h6 {
+    font-size: 18px;
+  }
 }
 
 p {
@@ -419,8 +457,8 @@ hr {
   margin-block: 48px;
 }
 
-ul:has(code) li,
-ol:has(code) li {
+ul:has(code) code,
+ol:has(code) code {
   font-size: 14px;
 }
 
@@ -597,13 +635,17 @@ code.codearea {
     width: 100%;
   }
   .glitch-text {
-    font-family: "Space Mono", source-sans-pro, sans-serif;
-    letter-spacing: -1px;
+    font-family: "Geist Mono", source-sans-pro, sans-serif;
+    letter-spacing: -0.5px;
+    font-weight: 500;
     overflow: hidden;
   }
-  .h5 .glitch-text,
-  .h6 .glitch-text {
-    letter-spacing: -3px;
+  h1 .glitch-text,
+  h2 .glitch-text,
+  h3 .glitch-text,
+  h4 .glitch-text {
+    letter-spacing: -2px;
+    font-weight: 300;
   }
   .glitch-hover,
   [class*=glitch-target__] {
@@ -5399,24 +5441,11 @@ code.codearea {
   font-display: block;
 }
 @font-face {
-  font-family: "Space Mono";
-  src: url("../fonts/SpaceMono-Regular.ttf") format("trueType");
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-@font-face {
-  font-family: "Space Mono";
-  src: url("../fonts/SpaceMono-Bold.ttf") format("trueType");
-  font-weight: 700;
-  font-style: normal;
-  font-display: block;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("../fonts/Satoshi-Variable.woff2") format("woff2");
+  font-family: "Geist Mono";
+  src: url("../fonts/GeistMono-VariableFont_wght.ttf") format("trueType");
   font-weight: 100 900;
-  font-display: swap;
+  font-style: normal;
+  font-display: block;
 }
 .site-header {
   border-bottom: 1px solid var(--color-border);
@@ -5969,6 +5998,12 @@ code.codearea {
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .main-style-guide__section-heading {
+    font-size: 20px;
+  }
 }
 .main-style-guide__subgroup {
   display: flex;
@@ -5985,6 +6020,12 @@ code.codearea {
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .main-style-guide__subgroup-title {
+    font-size: 18px;
+  }
 }
 .main-style-guide .row-to-column {
   display: flex;
@@ -7106,6 +7147,11 @@ code.codearea {
   display: inline-flex;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .counter__value {
+    font-size: 24px;
+  }
+}
 .counter__value-digit {
   font-variant-numeric: tabular-nums;
 }
@@ -7216,6 +7262,11 @@ code.codearea {
   overflow: hidden;
   width: 100%;
   margin: auto;
+}
+@media (max-width: 768px) {
+  .marquee {
+    font-size: 36px;
+  }
 }
 .marquee-inner {
   display: flex;
@@ -7776,11 +7827,16 @@ body:has(.tooltip-util) .mouse-cursor {
 .tabs-option {
   opacity: 0.5;
 }
-.tabs-option--active {
+.tabs-option--active, .tabs-option[aria-selected=true] {
   opacity: 1;
+  text-transform: underline;
+  border-bottom: 1px solid currentColor;
 }
 .tabs-content {
   margin-block-start: var(--spacing);
+}
+.tabs:has(.toggle-slider) .tabs-option {
+  border: none;
 }
 
 .theme-toggle {
@@ -8703,11 +8759,20 @@ body:has(.tooltip-util) .mouse-cursor {
   }
 }
 .plan-options .plan-option__price {
-  display: inline-flex;
   font-size: 24px;
+  display: inline-flex;
 }
 .plan-options .plan-option__price-cost {
   font-variant-numeric: tabular-nums;
+}
+.plan-options .plan-option__total {
+  display: inline-flex;
+}
+.plan-options .plan-option__total-swap {
+  margin-inline-end: 0.75ch;
+}
+.plan-options .plan-option__total-frequency {
+  margin-inline-start: 0.75ch;
 }
 
 .scroll-horizontal {
@@ -9027,14 +9092,25 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 @media (max-width: 768px) {
   .tunnel__message-wrapper .tunnel__message {
+    font-size: 36px;
+  }
+}
+@media (max-width: 768px) {
+  .tunnel__message-wrapper .tunnel__message {
     color: var(--color-font--primary);
     font-family: var(--font-family--heading);
     font-size: 20px;
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -1px;
+    font-weight: 600;
     text-transform: uppercase;
     font-weight: 900;
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .tunnel__message-wrapper .tunnel__message {
+    font-size: 18px;
   }
 }
 .tunnel--extended {

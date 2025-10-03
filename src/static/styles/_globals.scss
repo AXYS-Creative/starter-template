@@ -256,7 +256,7 @@ hr {
 
 ul:has(code),
 ol:has(code) {
-  li {
+  code {
     font-size: 14px;
   }
 }

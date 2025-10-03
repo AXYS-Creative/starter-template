@@ -499,8 +499,24 @@ path: library/components
     <h2 class="">[ Tabs - Component ]</h2>
     <p>
       A simplified version of the util tabs. Used when the tab content structure
-      is identical across all tabs.
+      is identical across all tabs. Comes with the following properties:
     </p>
+    <ul class="classic-list">
+      <li>
+        <code>default_panel</code> A number representing the default active
+        panel when visiting the page. Defaults to 1
+      </li>
+      <li>
+        <code>toggle_slider</code> A string of either
+        <code>null | solid | underline</code> that overrides the default tab
+        control styles in place of the <code>toggle-slider</code> markup/styles.
+        Defaults to <code>null</code>
+      </li>
+      <li>
+        <code>panels</code> An array of objects representing your tabs
+        (configure the object as needed)
+      </li>
+    </ul>
   </div>
 
   <!-- prettier-ignore -->
@@ -512,23 +528,55 @@ path: library/components
   <div class="library-section-info">
     <h2 class="">[ Tabs - Util ]</h2>
     <p>
-      Intended for unique markup across each panel, accepting custom markup.
+      Intended when you need unique markup across each panel. The setup is
+      simple and allows custom markup. Here's a visual of the structure:
     </p>
-    <strong>
-      Note: this uses the <code>data-toggle-slider</code> attribute to change
-      the control style. This also allows you to alter which tab is active by
-      leaving <code>hidden</code> off of that panel.
-    </strong>
+    <code class="codearea"
+      >&lt;div class="tabs"&gt;
+      <br />
+      &nbsp; &lt;div class="tabs-content"&gt;
+      <br />
+      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 1"
+      role="tabpanel"&gt;&lt;/div&gt;
+      <br />
+      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 2"
+      role="tabpanel" hidden&gt;&lt;/div&gt;
+      <br />
+      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 3"
+      role="tabpanel" hidden&gt;&lt;/div&gt;
+      <br />
+      &nbsp; &lt;/div&gt;
+      <br />
+      &lt;/div&gt;
+    </code>
+    <ul>
+      <li>
+        <strong>Step 1:</strong> Have a parent/child div setup (or any valid
+        container) with the classes <code>tabs</code> and
+        <code>tabs-content</code>
+      </li>
+      <li>
+        <strong>Step 2:</strong> Add another div with the class
+        <code>tab-panel</code>for each tab panel you would like
+      </li>
+      <li>
+        <strong>Step 3:</strong> Use the attribute
+        <code>data-tab-label</code> to alter the labels for each panel
+        control/button
+      </li>
+    </ul>
+    <p>
+      <strong>Note:</strong>
+      this comes with the optional <code>data-toggle-slider</code> attribute to
+      change the control style (no needed extra utility class for this, handled
+      in tabs.js). This also allows you to alter which tab is active by leaving
+      <code>hidden</code> off of that panel.
+    </p>
   </div>
 
-  <div class="tabs tabs--util cursor-hide" data-toggle-slider="undefined">
+  <div class="tabs cursor-hide">
     <div class="tabs-content">
-      <div
-        class="tabs-panel"
-        data-tab-label="Tab Label 1"
-        role="tabpanel"
-        hidden
-      >
+      <div class="tabs-panel" data-tab-label="Panel 1" role="tabpanel" hidden>
         <h3 class="">Custom markup</h3>
         <p class="max-width-text">
           The tabs util allows for custom markup with minimal setup. The tab
@@ -537,17 +585,12 @@ path: library/components
         </p>
       </div>
 
-      <div class="tabs-panel" data-tab-label="Tab Label 2" role="tabpanel">
+      <div class="tabs-panel" data-tab-label="Panel 2" role="tabpanel">
         <p>This tab has a video</p>
         <video src="/video.mp4" controls></video>
       </div>
 
-      <div
-        class="tabs-panel"
-        data-tab-label="Tab Label 3"
-        role="tabpanel"
-        hidden
-      >
+      <div class="tabs-panel" data-tab-label="Panel 3" role="tabpanel" hidden>
         <h3 class="">This uses a component</h3>
 
         <!-- prettier-ignore -->
