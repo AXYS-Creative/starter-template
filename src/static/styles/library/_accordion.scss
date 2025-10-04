@@ -42,7 +42,7 @@
   }
 
   &-label {
-    @include body-font-styles(lg);
+    @include font-styles--body(lg);
     @include row-start(space-between);
     gap: 24px;
 
@@ -91,7 +91,7 @@
   }
 
   &-content {
-    @include body-font-styles;
+    @include font-styles--body;
     display: grid;
     grid-template-rows: 0fr;
     visibility: hidden;

@@ -96,7 +96,7 @@ body {
   z-index: $z-index--loader;
 
   &__text {
-    @include body-font-styles(lg);
+    @include font-styles--body(lg);
     color: var(--color-font--primary);
   }
 
@@ -145,11 +145,11 @@ input,
 textarea,
 label,
 li {
-  @include body-font-styles;
+  @include font-styles--body;
   text-decoration: none;
 
   &.body-lg {
-    @include body-font-styles(lg);
+    @include font-styles--body(lg);
   }
 }
 

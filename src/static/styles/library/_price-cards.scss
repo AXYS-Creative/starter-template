@@ -43,7 +43,7 @@
       @include row-center;
 
       &-desc {
-        @include body-font-styles;
+        @include font-styles--body;
         margin-block-start: 4px;
         margin-inline-start: 1ch;
       }
@@ -54,10 +54,10 @@
     // }
 
     &__price {
-      @include body-font-styles(lg);
+      @include font-styles--body(lg);
 
       &-desc {
-        @include body-font-styles(sm);
+        @include font-styles--body(sm);
         margin-block-start: 4px;
         margin-inline-start: 0.5ch;
         opacity: 0.75;

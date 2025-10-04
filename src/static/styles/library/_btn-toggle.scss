@@ -6,7 +6,7 @@
   gap: 0.5ch;
 
   &__label {
-    @include body-font-styles;
+    @include font-styles--body;
   }
 
   &__switch {

@@ -1,11 +1,18 @@
 .plan-selection {
-  @include section-padding;
-  @include width-clamp;
-  @include column-center;
   position: relative;
-  text-align: center;
-  gap: var(--spacing);
   margin-block: var(--spacing--xl);
+  overflow: hidden; // for scroll-snap (overflow)
+
+  &__inner {
+    @include width-clamp;
+    @include column-center;
+    text-align: center;
+    gap: var(--spacing);
+
+    @include mq-min(xl) {
+      @include section-padding; // padding moved for scroll-snap
+    }
+  }
 
   &__toggle-wrapper {
     position: relative;
@@ -27,9 +34,27 @@
     }
   }
 
+  // if quarterly is selected
   &:has([data-toggle-option="end"][aria-selected="true"]) {
     [data-toggle-show="end"] {
-      opacity: 1;
+      @include show-content;
+      opacity: 0.8;
+      translate: 0 0;
+      // scale: 1;
+    }
+
+    .plan-option {
+      &__price,
+      &__message {
+        color: var(--color-brand--tertiary);
+      }
+
+      &--primary {
+        .plan-option__price,
+        .plan-option__message {
+          filter: brightness(1.25);
+        }
+      }
     }
   }
 }
@@ -38,26 +63,46 @@
   $card-gap: var(--spacing--sm);
   $all-cards-gap: calc(var(--spacing--sm) * 2);
 
-  @include row-center;
+  @include row-stretch(start);
   gap: var(--spacing--sm);
   margin-block-start: var(--spacing--lg);
   width: 100%;
 
-  @include mq-max(lg) {
+  @include mq-max(xl) {
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+
+    // Scroll-snap requires a strange mix of padding and margin inline start.
+    padding-inline: var(--body-padding-double);
+    margin-inline-start: var(--body-padding-double);
+    padding-block-end: 24px; // room for scrollbar
+  }
+
+  @include mq-max(md) {
     flex-direction: column;
+    align-items: center;
   }
 
   .plan-option {
     @include column-center;
     border: var(--border-width) solid var(--color-border);
     gap: var(--spacing);
-    padding: var(--spacing--xl) var(--spacing);
+    padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
     border-radius: var(--radius--sm);
     background: var(--color-background);
     width: 100%;
 
-    @include mq-min(lg) {
-      max-width: calc(33% - $all-cards-gap);
+    @include mq-max(xl) {
+      min-width: 420px;
+      scroll-snap-align: start;
+    }
+
+    @include mq-max(md) {
+      max-width: 520px;
+    }
+
+    &__title {
+      color: var(--color-font--primary);
     }
 
     &__price-group {
@@ -65,34 +110,29 @@
     }
 
     [data-toggle-show="end"] {
-      opacity: 0;
-      transition: 0.5s ease;
+      @include hide-content;
+      translate: 0 8px;
+      // scale: 0.9;
+      transition: $ease;
     }
 
     &__line-group {
       @include row-center;
       gap: 1ch;
 
-      .plan-option__line {
-        width: 100%;
-        height: 1px;
-        background-image: linear-gradient(
-          90deg,
-          #efeeec00,
-          #efeeec 25% 75%,
-          #efeeec00
-        );
-        opacity: 0.2;
+      .plan-option__divider {
+        @include gradient-divider;
       }
     }
 
     &__price {
       font-size: 24px;
       display: inline-flex;
+      transition: $ease;
     }
 
     &__total {
-      @include body-font-styles(sm);
+      @include font-styles--body(sm);
       display: inline-flex;
 
       &-swap {
@@ -103,9 +143,44 @@
       }
     }
 
-    &--swap-theme {
-      background: initial;
-      // need way to invert theme even if the user changes preferences
+    &__perks {
+      @include column-start;
+      margin-block: var(--spacing) var(--spacing--lg);
+    }
+
+    &__message {
+      @include font-styles--body(sm);
+      @include font-styles--mono;
+    }
+
+    &--primary {
+      --color-font--primary: #{$black};
+
+      --color-btn-border: #{$white};
+      --color-btn-bg: #{$white};
+      --color-btn-text: #{$black};
+
+      --color-btn-border--hover: #{$white};
+      --color-btn-bg--hover: transparent;
+      --color-btn-text--hover: #{$white};
+
+      background: linear-gradient(
+        135deg,
+        $white -30%,
+        var(--color-brand--primary) 50%
+      );
+
+      *::selection {
+        background-color: rgba($white, 0.5);
+      }
+
+      .plan-option__divider {
+        @include gradient-divider($black);
+      }
+
+      .plan-option__price {
+        color: var(--color-font--primary);
+      }
     }
   }
 }

@@ -2,6 +2,7 @@
 // $brand-font--body: Avenir, Montserrat, Corbel, source-sans-pro, sans-serif; // If not using a 'Modern font stack' just have one fallback
 $brand-font--heading: "Funnel Display", source-sans-pro, sans-serif;
 $brand-font--body: "Funnel Display", source-sans-pro, sans-serif;
+$brand-font--mono: "Geist Mono", source-sans-pro, sans-serif;
 
 $black: #0a0a0a;
 $grey-dark: #313131;
@@ -15,7 +16,7 @@ $blue: #ada4e3;
 $green: #a4d1a2;
 $yellow: #fdfd96;
 
-$content-width: 1512px; // Be mindful of media query breakpoints with left/right spacing
+$content-width: 1440px; // Be mindful of media query (xxl), affects left/right spacing
 
 // Layering
 $z-index--nav: 3;
@@ -49,6 +50,7 @@ $test-bg: rgba(navy, 0.75);
 :root {
   --font-family--heading: #{$brand-font--heading};
   --font-family--body: #{$brand-font--body};
+  --font-family--mono: #{$brand-font--mono};
 
   --content-width: #{$content-width};
 
@@ -62,6 +64,7 @@ $test-bg: rgba(navy, 0.75);
   --color-brand--primary: #{$coral}; // Generally consistent across themes
   // --color-brand--on-primary: #{$white};
   --color-brand--secondary: #{$blue};
+  --color-brand--tertiary: #{$green};
 
   --color-font--error: #{$red};
 

@@ -7,7 +7,7 @@
 
 .form-feedback,
 .form-redirect {
-  @include body-font-styles;
+  @include font-styles--body;
   @include column-center;
   gap: 2em;
   width: min(100%, 768px);
