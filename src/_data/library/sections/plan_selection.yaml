@@ -13,16 +13,22 @@ plans:
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
     highlight: false
     # theme:
+    # noise:
     features:
       - "[%strong%]Unlimited Web Design[%strong%]"
       - One request at a time
       - Unlimited revisions
       - 1-2 business day turnaround
       - Pause or cancel anytime
-    cta_1:
-      text: Subscribe to Designer
-      text_desc: Get started with the designer plan
-      url: /signup
+    cta_monthly:
+      text: Subscribe
+      text_desc: Subscribe to the monthly designer plan
+      url: https://buy.stripe.com/bIYcNC5A5d1SaEoeV2
+      new_tab: false
+    cta_quarterly:
+      text: Subscribe
+      text_desc: Subscribe to the quarterly designer plan
+      url: https://buy.stripe.com/5kQ9AS1Hf6lSduOgzW8ww0a
       new_tab: false
   - title: Developer
     price_mo: 2,995
@@ -33,16 +39,22 @@ plans:
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
     highlight: false
     # theme:
+    # noise:
     features:
       - "[%strong%]Unlimited Web Development[%strong%]"
       - One request at a time
       - Unlimited revisions
       - 1-2 business day turnaround
       - Pause or cancel anytime
-    cta_1:
-      text: Subscribe to Developer
-      text_desc: Get started with the designer plan
-      url: /signup
+    cta_monthly:
+      text: Subscribe
+      text_desc: Subscribe to the monthly developer plan
+      url: https://buy.stripe.com/8wM7ti2nTd1S6o85kn
+      new_tab: false
+    cta_quarterly:
+      text: Subscribe
+      text_desc: Subscribe to the monthly developer plan
+      url: https://buy.stripe.com/7sY5kC1Hf4dK8aubfC8ww0b
       new_tab: false
   - title: Premium
     price_mo: 3,995
@@ -53,14 +65,20 @@ plans:
     # desc: Perfect for small businesses and startups looking to establish a professional online presence.
     highlight: true
     theme: "primary"
+    noise: "#fff"
     features:
       - "[%strong%]Unlimited Design + Development[%strong%]"
       - "[%strong%]Two request at a time[%strong%]"
       - Unlimited revisions
       - 1-2 business day turnaround
       - Pause or cancel anytime
-    cta_1:
-      text: Subscribe to Premium
-      text_desc: Get started with the designer plan
-      url: /signup
+    cta_monthly:
+      text: Subscribe
+      text_desc: Subscribe to the monthly premium plan
+      url: https://buy.stripe.com/7sIaFue6B9PG8wg6oq
+      new_tab: false
+    cta_quarterly:
+      text: Subscribe
+      text_desc: Subscribe to the quarterly premium plan
+      url: https://buy.stripe.com/5kQ9AS5Xv39GgH0erO8ww0c
       new_tab: false

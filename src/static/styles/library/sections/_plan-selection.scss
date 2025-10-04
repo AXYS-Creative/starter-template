@@ -1,7 +1,10 @@
 .plan-selection {
   position: relative;
   margin-block: var(--spacing--xl);
-  overflow: hidden; // for scroll-snap (overflow)
+
+  @include mq-min(md) {
+    overflow: hidden; // for scroll-snap (overflow)
+  }
 
   &__inner {
     @include width-clamp;
@@ -16,6 +19,12 @@
 
   &__toggle-wrapper {
     position: relative;
+    z-index: 1;
+    transition: $ease;
+
+    @include mq-max(md) {
+      translate: 0 100%;
+    }
 
     @include mq-max(lg) {
       position: sticky;
@@ -23,7 +32,11 @@
     }
 
     .toggle-slider {
+      --toggle-padding: 4px;
+      --toggle-radius: 8px;
+      --option-padding: var(--padding-btn);
       --accent-color: var(--color-brand--primary);
+      background-color: var(--color-background);
     }
 
     .tooltip {
@@ -31,6 +44,12 @@
       right: 0;
       top: 50%;
       translate: calc(100% + 1ch) -50%;
+    }
+
+    &--scrolling-down {
+      @include mq-max(md) {
+        translate: 0 0;
+      }
     }
   }
 
@@ -47,6 +66,13 @@
       &__price,
       &__message {
         color: var(--color-brand--tertiary);
+      }
+
+      &__cta--monthly {
+        display: none;
+      }
+      &__cta--quarterly {
+        display: block;
       }
 
       &--primary {
@@ -81,16 +107,20 @@
   @include mq-max(md) {
     flex-direction: column;
     align-items: center;
+    margin-inline-start: 0;
+    padding-inline: var(--body-padding);
   }
 
   .plan-option {
     @include column-center;
+    position: relative;
     border: var(--border-width) solid var(--color-border);
     gap: var(--spacing);
     padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
     border-radius: var(--radius--sm);
     background: var(--color-background);
     width: 100%;
+    overflow: hidden;
 
     @include mq-max(xl) {
       min-width: 420px;
@@ -98,6 +128,8 @@
     }
 
     @include mq-max(md) {
+      min-width: 0;
+      width: 100%;
       max-width: 520px;
     }
 
@@ -107,13 +139,13 @@
 
     &__price-group {
       align-self: stretch;
-    }
 
-    [data-toggle-show="end"] {
-      @include hide-content;
-      translate: 0 8px;
-      // scale: 0.9;
-      transition: $ease;
+      [data-toggle-show="end"] {
+        @include hide-content;
+        translate: 0 8px;
+        // scale: 0.9;
+        transition: $ease;
+      }
     }
 
     &__line-group {
@@ -153,6 +185,31 @@
       @include font-styles--mono;
     }
 
+    // &__cta--monthly {
+    //   display: block;
+    // }
+    &__cta--quarterly {
+      display: none;
+    }
+
+    .noise {
+      position: absolute;
+      top: 0;
+      opacity: 0.5;
+      // z-index: 0;
+      // pointer-events: none;
+    }
+
+    &:has(.noise) {
+      > * {
+        z-index: 1;
+      }
+
+      .noise {
+        z-index: 0;
+      }
+    }
+
     &--primary {
       --color-font--primary: #{$black};
 
@@ -166,8 +223,9 @@
 
       background: linear-gradient(
         135deg,
-        $white -30%,
-        var(--color-brand--primary) 50%
+        $white -50%,
+        var(--color-brand--primary) 30% 70%,
+        $white 150%
       );
 
       *::selection {

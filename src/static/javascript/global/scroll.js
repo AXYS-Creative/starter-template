@@ -8,7 +8,18 @@
 import { siteHeader } from "./header.js";
 import { btnBackToTop } from "../util.js";
 
+// Library (plan-selection.njk)
+const planSelectionToggle = document.querySelector(
+  ".plan-selection__toggle-wrapper"
+);
+
 let lastScrollY = 0;
+
+function isElementNearTop(el, offset = 16) {
+  if (!el) return false;
+  const rect = el.getBoundingClientRect();
+  return rect.top <= offset && rect.bottom > offset;
+}
 
 window.addEventListener("scroll", () => {
   const currentScrollY = window.scrollY;
@@ -29,8 +40,17 @@ window.addEventListener("scroll", () => {
 
   if (scrollingDown && awayFromTop) {
     siteHeader.classList.add("site-header--scrolling-down");
+    planSelectionToggle.classList.add(
+      "plan-selection__toggle-wrapper--scrolling-down"
+    );
   } else {
     siteHeader.classList.remove("site-header--scrolling-down");
+
+    if (isElementNearTop(planSelectionToggle, 32)) {
+      planSelectionToggle.classList.remove(
+        "plan-selection__toggle-wrapper--scrolling-down"
+      );
+    }
   }
 
   if (nearBottom) {

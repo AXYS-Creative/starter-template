@@ -137,6 +137,7 @@
     --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
     --option-padding: 6px; // btn size
 
+    isolation: isolate;
     position: relative;
     display: inline-block;
 
@@ -185,7 +186,7 @@
         position: absolute;
         top: var(--toggle-padding);
         height: calc(100% - var(--toggle-padding) * 2);
-        border-radius: var(--toggle-radius--inner);
+        border-radius: max(2px, var(--toggle-radius--inner));
       }
     }
 
