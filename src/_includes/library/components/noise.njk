@@ -10,6 +10,7 @@
   viewBox="0 0 700 700"
   width="700"
   height="700"
+  opacity="1"
 >
   <defs>
     <filter
@@ -35,8 +36,8 @@
         result="turbulence"
       ></feTurbulence>
       <feSpecularLighting
-        surfaceScale="20"
-        specularConstant="0.75"
+        surfaceScale="40"
+        specularConstant="0.4"
         specularExponent="20"
         lighting-color="{{ color }}"
         x="0%"
@@ -46,7 +47,7 @@
         in="turbulence"
         result="specularLighting"
       >
-        <feDistantLight azimuth="3" elevation="100"></feDistantLight>
+        <feDistantLight azimuth="3" elevation="114"></feDistantLight>
       </feSpecularLighting>
     </filter>
   </defs>

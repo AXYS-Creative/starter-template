@@ -103,10 +103,11 @@
           Save {{ discount_percentage }} with quarterly billing!
         </p>
 
-        <div class="plan-option__cta plan-option__cta--monthly">
+        <div class="plan-option__cta-wrapper plan-option__cta-wrapper--monthly">
           <!-- prettier-ignore -->
           {% set btn = ({
             text: plan.cta_monthly.text,
+            icon_end: '/static/img/library/icon-google-new-tab.svg',
             url: plan.cta_monthly.url,
             type: 'solid',
             class: 'btn--split-text',
@@ -115,10 +116,13 @@
           {% include "../../components/btn.njk" %}
         </div>
 
-        <div class="plan-option__cta plan-option__cta--quarterly">
+        <div
+          class="plan-option__cta-wrapper plan-option__cta-wrapper--quarterly"
+        >
           <!-- prettier-ignore -->
           {% set btn = ({
             text: plan.cta_quarterly.text,
+            icon_end: '/static/img/library/icon-google-new-tab.svg',
             url: plan.cta_quarterly.url,
             type: 'solid',
             class: 'btn--split-text',

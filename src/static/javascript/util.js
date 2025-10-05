@@ -71,6 +71,16 @@ export const btnBackToTop = document.querySelector(".btn-back-to-top"); // float
   });
 }
 
+// Browser Check
+export const isSafari = () => {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.includes("safari") && !ua.includes("chrome");
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (isSafari()) document.documentElement.dataset.browser = "safari";
+});
+
 // Dynamic update current year
 {
   const currentYear = new Date().getFullYear();
@@ -139,12 +149,6 @@ export const btnBackToTop = document.querySelector(".btn-back-to-top"); // float
     target.innerHTML = splitHTML;
   });
 }
-
-// Detect Safari Browser
-export const isSafari = () => {
-  let ua = navigator.userAgent.toLowerCase();
-  return ua.indexOf("safari") !== -1 && ua.indexOf("chrome") === -1;
-};
 
 // Polyfill for lvh, and svh. They all seemed to be dvh.
 const setViewportUnits = (() => {

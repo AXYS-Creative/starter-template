@@ -8000,7 +8000,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top::after {
     bottom: 0;
     left: 50%;
-    translate: -50% 40%;
+    translate: -50% 15%;
     rotate: 135deg;
   }
   .tooltip__message--top::before {
@@ -8017,7 +8017,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top-right::after {
     bottom: 0;
     left: 8px;
-    translate: 0 40%;
+    translate: 0 15%;
     rotate: 135deg;
   }
   .tooltip__message--top-right::before {
@@ -8034,7 +8034,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--top-left::after {
     bottom: 0;
     right: 8px;
-    translate: 0 40%;
+    translate: 0 15%;
     rotate: 135deg;
   }
   .tooltip__message--top-left::before {
@@ -8052,7 +8052,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom::after {
     top: 0;
     left: 50%;
-    translate: -50% -40%;
+    translate: -50% -15%;
     rotate: -45deg;
   }
   .tooltip__message--bottom::before {
@@ -8069,7 +8069,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom-right::after {
     top: 0;
     left: 8px;
-    translate: 0 -40%;
+    translate: 0 -15%;
     rotate: -45deg;
   }
   .tooltip__message--bottom-right::before {
@@ -8086,7 +8086,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--bottom-left::after {
     top: 0;
     right: 8px;
-    translate: 0 -40%;
+    translate: 0 -15%;
     rotate: -45deg;
   }
   .tooltip__message--bottom-left::before {
@@ -8103,7 +8103,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--right::after {
     top: 50%;
     left: 0;
-    translate: -40% -50%;
+    translate: -15% -50%;
     rotate: -135deg;
   }
   .tooltip__message--right::before {
@@ -8121,7 +8121,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--left::after {
     top: 50%;
     right: 0;
-    translate: 40% -50%;
+    translate: 15% -50%;
     rotate: 45deg;
   }
   .tooltip__message--left::before {
@@ -8141,7 +8141,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top::after {
     bottom: 0;
     left: 50%;
-    translate: -50% 40%;
+    translate: -50% 15%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top::before {
@@ -8159,7 +8159,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom::after {
     top: 0;
     left: 50%;
-    translate: -50% -40%;
+    translate: -50% -15%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom::before {
@@ -8176,7 +8176,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top-right::after {
     bottom: 0;
     left: 8px;
-    translate: 0 40%;
+    translate: 0 15%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top-right::before {
@@ -8193,7 +8193,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-top-left::after {
     bottom: 0;
     right: 8px;
-    translate: 0 40%;
+    translate: 0 15%;
     rotate: 135deg;
   }
   .tooltip__message--mobile-top-left::before {
@@ -8210,7 +8210,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom-right::after {
     top: 0;
     left: 8px;
-    translate: 0 -40%;
+    translate: 0 -15%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom-right::before {
@@ -8227,7 +8227,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .tooltip__message--mobile-bottom-left::after {
     top: 0;
     right: 8px;
-    translate: 0 -40%;
+    translate: 0 -15%;
     rotate: -45deg;
   }
   .tooltip__message--mobile-bottom-left::before {
@@ -8773,10 +8773,10 @@ body:has(.tooltip-util) .mouse-cursor {
 .plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__price, .plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__message {
   color: var(--color-brand--tertiary);
 }
-.plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__cta--monthly {
+.plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__cta-wrapper--monthly {
   display: none;
 }
-.plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__cta--quarterly {
+.plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option__cta-wrapper--quarterly {
   display: block;
 }
 .plan-selection:has([data-toggle-option=end][aria-selected=true]) .plan-option--primary .plan-option__price,
@@ -8834,6 +8834,11 @@ body:has(.tooltip-util) .mouse-cursor {
     min-width: 0;
     width: 100%;
     max-width: 520px;
+  }
+}
+@media (max-width: 480px) {
+  .plan-options .plan-option {
+    padding: var(--spacing--lg) var(--spacing) var(--spacing);
   }
 }
 .plan-options .plan-option__title {
@@ -8915,13 +8920,28 @@ body:has(.tooltip-util) .mouse-cursor {
     --font-size: 14px;
   }
 }
-.plan-options .plan-option__cta--quarterly {
+@media (max-width: 768px) {
+  .plan-options .plan-option__cta-wrapper {
+    align-self: stretch;
+  }
+  .plan-options .plan-option__cta-wrapper .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.plan-options .plan-option__cta-wrapper--quarterly {
   display: none;
 }
 .plan-options .plan-option .noise {
   position: absolute;
   top: 0;
-  opacity: 0.5;
+  opacity: 0.75;
+  pointer-events: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .plan-options .plan-option .noise {
+    opacity: 0.5;
+  }
 }
 .plan-options .plan-option:has(.noise) > * {
   z-index: 1;

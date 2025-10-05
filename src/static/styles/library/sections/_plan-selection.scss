@@ -68,10 +68,10 @@
         color: var(--color-brand--tertiary);
       }
 
-      &__cta--monthly {
+      &__cta-wrapper--monthly {
         display: none;
       }
-      &__cta--quarterly {
+      &__cta-wrapper--quarterly {
         display: block;
       }
 
@@ -122,15 +122,21 @@
     width: 100%;
     overflow: hidden;
 
-    @include mq-max(xl) {
-      min-width: 420px;
-      scroll-snap-align: start;
-    }
+    @media all {
+      @include mq-max(xl) {
+        min-width: 420px;
+        scroll-snap-align: start;
+      }
 
-    @include mq-max(md) {
-      min-width: 0;
-      width: 100%;
-      max-width: 520px;
+      @include mq-max(md) {
+        min-width: 0;
+        width: 100%;
+        max-width: 520px;
+      }
+
+      @include mq-max(sm) {
+        padding: var(--spacing--lg) var(--spacing) var(--spacing);
+      }
     }
 
     &__title {
@@ -185,19 +191,28 @@
       @include font-styles--mono;
     }
 
-    // &__cta--monthly {
-    //   display: block;
-    // }
-    &__cta--quarterly {
+    &__cta-wrapper {
+      @include mq-max(md) {
+        align-self: stretch;
+        .btn {
+          @include wide-btn;
+        }
+      }
+    }
+
+    &__cta-wrapper--quarterly {
       display: none;
     }
 
     .noise {
       position: absolute;
       top: 0;
-      opacity: 0.5;
-      // z-index: 0;
-      // pointer-events: none;
+      opacity: 0.75;
+      pointer-events: none;
+
+      @include mq-touch {
+        opacity: 0.5;
+      }
     }
 
     &:has(.noise) {
