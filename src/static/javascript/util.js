@@ -126,15 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!target) return;
 
-    const text = target.textContent;
+    const text = target.textContent.trim();
 
-    // Build split markup
+    // Add aria-label for screen readers
+    target.setAttribute("aria-label", text);
+
+    // Build split markup (visually hidden from screen readers)
     const splitHTML =
-      `<span class="btn--split-text__content">` +
+      `<span class="btn--split-text__content" aria-hidden="true">` +
       Array.from(text)
         .map((char) => {
           if (char === " ") {
-            return `<span class="letter-group space" aria-hidden="true"> </span>`;
+            return `<span class="letter-group space"> </span>`;
           }
           return `
             <span class="letter-group">

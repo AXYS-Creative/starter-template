@@ -59,7 +59,6 @@
                 class="plan-option__price-cost glitch-text"
                 data-toggle-target
                 data-toggle-end="{{ plan.price_qt }}"
-                aria-live="polite"
               >
                 {{ plan.price_mo }}
               </span>
@@ -74,7 +73,6 @@
               class="plan-option__total-swap"
               data-toggle-target
               data-toggle-end="{{ plan.grand_total }}"
-              aria-live="polite"
               >{{ plan.price_mo }}</span
             >
             <span class="glitch-text">billed</span>
@@ -106,7 +104,6 @@
           class="plan-option__message glitch-text"
           data-toggle-target
           data-toggle-end="You’re saving {{ plan.savings_qt }} quarterly!"
-          aria-live="polite"
         >
           Save {{ discount_percentage }} with quarterly billing!
         </p>
@@ -142,7 +139,8 @@
         <!-- prettier-ignore -->
         {% if plan.noise %}
         {% set noise = ({
-          color: plan.noise
+          id: plan.noise.id,
+          color: plan.noise.color
         }) %}
         {% include "../components/noise.njk" %}
         {% endif %}

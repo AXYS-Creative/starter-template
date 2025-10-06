@@ -1953,6 +1953,13 @@ code.codearea {
   .text-reveal .text-reveal__chars {
     display: inline-block;
   }
+  .text-reveal-list li {
+    display: inline-flex;
+    gap: 0.5ch;
+  }
+  .text-reveal-list code {
+    display: inline-flex;
+  }
   .text-scale .text-scale__words,
   .text-scale .text-scale__chars {
     display: inline-block;
@@ -8991,22 +8998,20 @@ body:has(.tooltip-util) .mouse-cursor {
 .plan-options .plan-option__cta-wrapper--quarterly {
   display: none;
 }
-.plan-options .plan-option .noise {
-  position: absolute;
-  top: 0;
-  opacity: 0.75;
-  pointer-events: none;
-}
-@media (hover: none) and (pointer: coarse) {
-  .plan-options .plan-option .noise {
-    opacity: 0.5;
-  }
-}
 .plan-options .plan-option:has(.noise) > * {
   z-index: 1;
 }
 .plan-options .plan-option:has(.noise) .noise {
+  position: absolute;
+  top: 0;
+  opacity: 0.75;
+  pointer-events: none;
   z-index: 0;
+}
+@media (hover: none) and (pointer: coarse) {
+  .plan-options .plan-option:has(.noise) .noise {
+    opacity: 0.5;
+  }
 }
 .plan-options .plan-option--primary {
   --color-font--primary: #0a0a0a;

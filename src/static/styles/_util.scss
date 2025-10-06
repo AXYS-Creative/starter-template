@@ -560,6 +560,15 @@
 
     // }
   }
+  .text-reveal-list {
+    li {
+      display: inline-flex;
+      gap: 0.5ch;
+    }
+    code {
+      display: inline-flex;
+    }
+  }
 
   .text-scale {
     .text-scale__words,

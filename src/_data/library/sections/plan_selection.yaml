@@ -60,7 +60,9 @@ plans:
     savings_qt: $2,395
     price_desc: Pause or cancel anytime
     theme: "primary"
-    noise: "#fff"
+    noise:
+      id: noise-plan-3
+      color: "#fff"
     features:
       - "[%strong%]Unlimited Design + Development[%strong%]"
       - "[%strong%]Two request at a time[%strong%]"

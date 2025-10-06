@@ -212,24 +212,21 @@
       display: none;
     }
 
-    .noise {
-      position: absolute;
-      top: 0;
-      opacity: 0.75;
-      pointer-events: none;
-
-      @include mq-touch {
-        opacity: 0.5;
-      }
-    }
-
     &:has(.noise) {
       > * {
         z-index: 1;
       }
 
       .noise {
+        position: absolute;
+        top: 0;
+        opacity: 0.75;
+        pointer-events: none;
         z-index: 0;
+
+        @include mq-touch {
+          opacity: 0.5;
+        }
       }
     }
 

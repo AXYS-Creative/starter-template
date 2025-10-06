@@ -365,7 +365,7 @@ path: library/utils
     Anytime you want to stagger a wrapper's descendant animations, you can use
     the utility class <code>gsap-stagger</code> on the parent. You can then add
     the class <code>gsap-stagger-child</code> to each child you would like to
-    stagger.This taps into the powers of GSAP's
+    stagger. This taps into the powers of GSAP's
     <code>scrollTrigger</code> plugin so when the elements comes into view,
     you'll be able to apply additional styles with the temporarys
     <code>gsap-stagger-animate</code> class.
@@ -626,11 +626,17 @@ path: library/utils
     You can use the <code class="gsap-animate">text-reveal</code> utility class
     with the following attributes:
   </p>
-  <ul class="classic-list">
+  <ul class="classic-list text-reveal-list">
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-type</code> A string that takes in
+      <code class="gsap-animate">data-reveal-type</code> A string of either
       <code class="gsap-animate">words | chars</code>. Defaults to
       <code class="gsap-animate">chars</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-from</code> A string of either
+      <code class="gsap-animate">bottom | top</code> to controls the animation
+      origin. Defaults to
+      <code class="gsap-animate">bottom</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-duration</code> A number to control
