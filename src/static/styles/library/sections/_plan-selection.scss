@@ -199,8 +199,9 @@
     }
 
     &__cta-wrapper {
-      @include mq-max(md) {
+      @include mq-max(sm) {
         align-self: stretch;
+
         .btn {
           @include wide-btn;
         }

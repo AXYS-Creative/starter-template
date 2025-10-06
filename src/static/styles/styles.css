@@ -8979,7 +8979,7 @@ body:has(.tooltip-util) .mouse-cursor {
     --font-size: 14px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .plan-options .plan-option__cta-wrapper {
     align-self: stretch;
   }

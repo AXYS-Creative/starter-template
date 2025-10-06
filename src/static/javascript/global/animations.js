@@ -1098,7 +1098,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
           revealElems.forEach((el) => {
             const revealType = el.dataset.revealType || "words"; // 'words' | 'chars'
-            const revealFrom = el.dataset.revealType || "bottom"; // 'bottom' | 'top'
+            const revealFrom = el.dataset.revealFrom || "bottom"; // 'bottom' | 'top'
             const revealDuration = parseFloat(el.dataset.revealDuration) || 0.2;
             const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
             const revealEase = el.dataset.revealEase || "linear";
