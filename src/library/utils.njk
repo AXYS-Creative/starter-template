@@ -323,7 +323,7 @@ path: library/utils
   <strong class="gsap-animate-section__subtitle gsap-animate">
     <sup>*</sup>Requires custom code/css to define the animation
   </strong>
-  <p class="gsap-animate-section__desc gsap-animate">
+  <p class="gsap-animate-section__desc gsap-animate max-width-text">
     With the utility class <code>gsap-animate</code>, you'll unlock the powers
     of GSAP's <code>scrollTrigger</code> plugin. When the element comes into
     view, you'll be able to apply additional styles with the temporary
@@ -357,13 +357,11 @@ path: library/utils
 </section>
 
 <section class="gsap-stagger-section library-section">
-  <h2 class="gsap-animate-section__title gsap-animate">
-    [ GSAP stagger - Util ]
-  </h2>
-  <strong class="gsap-animate-section__subtitle gsap-animate">
+  <h2>[ GSAP stagger - Util ]</h2>
+  <strong>
     <sup>*</sup>Requires custom code/css to define the animation
   </strong>
-  <p class="gsap-animate-section__desc gsap-animate">
+  <p>
     Anytime you want to stagger a wrapper's descendant animations, you can use
     the utility class <code>gsap-stagger</code> on the parent. You can then add
     the class <code>gsap-stagger-child</code> to each child you would like to
@@ -578,38 +576,50 @@ path: library/utils
 </section>
 
 <section class="text-reveal-section library-section">
-  <h2 class="text-reveal" data-reveal-type="chars">[ Text reveal - Util ]</h2>
-  <p class="text-reveal" data-reveal-duration="0.5">
+  <h2
+    class="text-reveal"
+    data-reveal-type="chars"
+    data-reveal-duration="0.32"
+    data-reveal-ease="back.out(2.5)"
+  >
+    [ Text reveal - Util ]
+  </h2>
+  <p class="text-reveal">
     This uses GSAP's <strong>ScrollTrigger</strong> and
     <strong>SplitText</strong> plugins to reveal in either words or characters.
-    This is position aware, meaning that the transform origin will determine the
-    words placement in the sentence.
   </p>
   <p
     class="text-reveal"
-    data-reveal-type="words"
-    data-reveal-duration="0.15"
+    data-reveal-duration="1"
+    data-reveal-ease="back.out(3)"
     data-reveal-scrub="true"
     data-reveal-end="bottom 75%"
     style="max-width: 750px"
   >
-    This paragraph will animate each word rather than each character. Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
-    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
-    sequi dignissimos dolores? Magni, nisi quae.
+    This paragraph will <strong>scrub</strong> through each word and
+    demonstrates that it works in a paragraph with multiple lines. Lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Error iste corrupti tempora
+    aspernatur, consequatur blanditiis, repellat, quibusdam perferendis sequi
+    dignissimos dolores? Magni, nisi quae.
   </p>
   <p
     class="text-reveal"
     data-reveal-type="chars"
     data-reveal-once="true"
-    data-reveal-duration="2"
+    data-reveal-duration="0.35"
+    data-reveal-ease="back.out(2)"
   >
-    This text should only reveal in the <strong>very first time!</strong> The
-    letter split should also take a bit longer than expected (2s), making use of
-    the data-fill-duration attribute.
+    This text will only reveal the <strong>very first time!</strong> The letter
+    split should also take a bit longer than expected (0.35s), making use of the
+    data-reveal-duration attribute.
   </p>
-  <p class="text-reveal" data-reveal-scrub="true" data-reveal-end="bottom 60%">
-    This text should scrub in a linear animation.
+  <p
+    class="text-reveal"
+    data-reveal-scrub="true"
+    data-reveal-end="bottom 60%"
+    data-reveal-from="top"
+  >
+    This text will reveal from the top, instead of from the bottom.
   </p>
   <br />
   <p class="text-reveal">
@@ -675,10 +685,10 @@ path: library/utils
     data-scale-end="bottom 75%"
     style="max-width: 750px"
   >
-    This paragraph will animate each word rather than each character. Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
-    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
-    sequi dignissimos dolores? Magni, nisi quae.
+    This paragraph will <strong>scrub</strong> animate each word rather than
+    each character. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Error iste corrupti tempora aspernatur, consequatur blanditiis, repellat,
+    quibusdam perferendis sequi dignissimos dolores? Magni, nisi quae.
   </p>
   <p
     class="text-scale"
@@ -689,15 +699,7 @@ path: library/utils
   >
     This text should only scale in the <strong>very first time!</strong> The
     letter split should also take a bit longer than expected (2s), making use of
-    the data-fill-duration attribute.
-  </p>
-  <p
-    class="text-scale"
-    data-scale-style="linear"
-    data-scale-scrub="true"
-    data-scale-end="bottom 60%"
-  >
-    This text should scrub in a linear animation.
+    the data-scale-duration attribute.
   </p>
   <br />
   <p class="text-scale">

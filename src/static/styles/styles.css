@@ -5547,6 +5547,15 @@ code.codearea {
 .site-header--scrolling-down:focus-within {
   translate: 0 0;
 }
+.site-header--scrolling-down:focus-within .dropdown-link:hover ul.dropdown-link__list,
+.site-header--scrolling-down:focus-within .dropdown-link:focus-within ul.dropdown-link__list {
+  pointer-events: all;
+  opacity: 1;
+}
+.site-header--scrolling-down .dropdown-link ul.dropdown-link__list {
+  pointer-events: none;
+  opacity: 0;
+}
 .site-header--links-center .menu-links {
   position: absolute;
   left: 50%;
@@ -8773,7 +8782,7 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .plan-selection__toggle-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transition: 0.24s ease;
 }
 @media (max-width: 768px) {

@@ -2,6 +2,7 @@ title: "[ Plan Selection - Section ]"
 desc: Find the right plan for you and eliminate the hassle of inconsistent freelancers and expensive agencies. Let’s get started today.
 price_toggle: true
 # discount_percentage: 20%
+# use 'aria-selected' to choose default option
 
 plans:
   - title: Designer

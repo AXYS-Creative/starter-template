@@ -62,6 +62,20 @@
     // &:has(*:focus-visible) {
     &:focus-within {
       translate: 0 0;
+
+      // If hovering the dropdown link list and scrolling down, it would still be visible, this fixes that
+      .dropdown-link:hover,
+      .dropdown-link:focus-within {
+        ul.dropdown-link__list {
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+    }
+
+    .dropdown-link ul.dropdown-link__list {
+      pointer-events: none;
+      opacity: 0;
     }
   }
 

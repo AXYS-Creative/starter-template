@@ -1097,10 +1097,11 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           const revealElems = document.querySelectorAll(".text-reveal");
 
           revealElems.forEach((el) => {
-            const revealType = el.dataset.revealType || "words"; // "chars" or "words"
-            const revealDuration =
-              parseFloat(el.dataset.revealDuration) || 0.25;
+            const revealType = el.dataset.revealType || "words"; // 'words' | 'chars'
+            const revealFrom = el.dataset.revealType || "bottom"; // 'bottom' | 'top'
+            const revealDuration = parseFloat(el.dataset.revealDuration) || 0.2;
             const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
+            const revealEase = el.dataset.revealEase || "linear";
             const revealScrub = el.dataset.revealScrub === "true"; // default false
             const revealOnce = !revealScrub && el.dataset.revealOnce === "true"; // only if scrub is false
             const revealStart = el.dataset.revealStart || "top 98%";
@@ -1149,12 +1150,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             tl.fromTo(
               targets,
-              { y: "100%" },
+              { y: revealFrom === "top" ? "-100%" : "100%" },
               {
                 y: "0",
                 duration: revealDuration,
                 stagger: revealStagger,
-                ease: "linear",
+                ease: revealEase,
               }
             );
           });
