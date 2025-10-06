@@ -3,8 +3,7 @@
   @include section-padding;
   overflow: hidden;
 
-  &:has(&__title),
-  &:has(&__desc) {
+  &:has(header) {
     .scroll-horizontal__container {
       height: 65%;
 
@@ -25,17 +24,18 @@
     }
   }
 
-  &__title {
+  &__header {
+    @include row-center(space-between);
+    gap: var(--spacing--lg);
     margin-block-end: var(--section-gap);
 
-    &:has(+ .scroll-horizontal__desc) {
-      margin-block-end: var(--section-gap--sm);
+    &-title {
+      flex-shrink: 0;
     }
-  }
 
-  &__desc {
-    display: block;
-    margin-block-end: var(--section-gap);
+    &-desc {
+      width: 50%;
+    }
   }
 
   &__container {

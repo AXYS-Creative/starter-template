@@ -12,7 +12,7 @@ path: library/components
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
 <section class="accordion-section section-width--thin">
-  <h2 class="" style="margin-bottom: 48px">[ Accordion - Component ]</h2>
+  <h2 style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <strong>
     Note, this section contains the utility class
     <code>section-width--thin</code> to add extra inline padding.
@@ -72,150 +72,8 @@ path: library/components
   {% include '../_includes/library/components/accordion.njk' %}
 </section>
 
-<section class="alert-section library-section">
-  <h2 class="">[ Alert - Component + Util ]</h2>
-
-  <p>
-    Alerts are tools used to display notifications and other helpful info to the
-    user. They can be used to display success, info, warning, or error content.
-    The <code>alert.njk</code> component used along side a utility class
-    <code>alert-trigger</code> on a button to fire the alert. Once you include
-    the alert.njk you have access to the following props on the alert object:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>id</code> a string value, unique identifier that will plug into the
-      <code>aria-controls</code> of the button that fires the alert.
-    </li>
-    <li>
-      <code>type</code> a string value of
-      <code>success | info | warning | error</code> that alters the icon and
-      color of the alert.
-    </li>
-    <li>
-      <code>title</code> a string value for the alert title. Recommended to keep
-      it short.
-    </li>
-    <li><code>message</code> a string value that accepts custom markup.</li>
-    <li>
-      <code>auto_close</code> an optional number (in ms) that controls if the
-      alert will automatically close. A falsey value will add a close button to
-      manually close the alert.
-    </li>
-    <li>
-      <code>left_border</code> an optional boolean that adds a left border to
-      the card. Defaults to <code>false</code>
-    </li>
-  </ul>
-
-  <p>Here's the setup for the <code>button</code> tag:</p>
-  <ul class="classic-list">
-    <li>
-      <code>alert-trigger</code> the utility class to signal this is an
-      alert-trigger.
-    </li>
-    <li>
-      <code>aria-controls</code> a string value that goes on the button that
-      matches the alert id.
-    </li>
-  </ul>
-
-  <div class="alert-section__group">
-    <!-- prettier-ignore -->
-    {% set alert = ({
-      id: 'sample-alert-1',
-      type: 'success',
-      title: 'Basic "success" Alert',
-      message: '',
-      auto_close: 1600
-    }) %}
-    {% set btn = ({
-      text: 'Success Alert',
-      type: 'solid',
-      class: 'alert-trigger',
-      attributes: 'aria-controls='~alert.id~''
-    }) %}
-    {%include "../_includes/components/btn.njk" %}
-    {%include "../_includes/library/components/alert.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set alert = ({
-      id: 'sample-alert-2',
-      type: 'info',
-      title: 'Basic "info" Alert',
-      message: 'A simple alert. This will close in 2.8 seconds',
-      auto_close: 2800,
-      timer: true,
-      left_border: false
-    }) %}
-    {% set btn = ({
-      text: 'Info Alert',
-      type: 'outline',
-      icon_end: '/static/img/library/icon-google-info-circle.svg',
-      class: 'alert-trigger',
-      attributes: 'aria-controls='~alert.id~''
-    }) %}
-    {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set alert = ({
-      id: 'sample-alert-3',
-      type: 'warning',
-      title: 'Basic "warning" Alert',
-      message: 'A warning alert with a left_border. This alert will auto close in 3.6 seconds.',
-      auto_close: 3600,
-      left_border: true,
-      timer: false,
-      link_1: {
-        text: 'Learn more',
-        url: 'https://www.axyscreative.com',
-        new_tab: true
-      }
-    }) %}
-    {% set btn = ({
-      text: 'Warning Alert',
-      type: 'text',
-      icon_end: '/static/img/library/icon-google-warning-triangle.svg',
-      class: 'alert-trigger',
-      attributes: 'aria-controls='~alert.id~''
-    }) %}
-    {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
-
-    <!-- prettier-ignore -->
-    {% set alert = ({
-      id: 'sample-alert-4',
-      type: 'error',
-      title: 'Basic "error" Alert',
-      message: 'An error alert. This alert doesn&rsquo;t have auto_close so you have to close it manually.',
-      auto_close: 0,
-      left_border: true,
-      link_1: {
-        text: 'Learn more',
-        url: 'https://www.axyscreative.com',
-        new_tab: true
-      },
-      link_2: {
-        text: 'Google it',
-        url: 'https://www.google.com',
-        new_tab: true
-      }
-    }) %}
-    {% set btn = ({
-      text: 'Error Alert',
-      type: 'underline',
-      icon_end: '/static/img/library/icon-google-x-octagon.svg',
-      class: 'alert-trigger',
-      attributes: 'aria-controls='~alert.id~''
-    }) %}
-    {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
-  </div>
-</section>
-
 <section class="carousel-swiper-section">
-  <h2 class="">[ Carousel 'Swiper' - Component ]</h2>
+  <h2>[ Carousel 'Swiper' - Component ]</h2>
 
   <!-- prettier-ignore -->
   {% set carousel_autoplay = library.carousel_swiper.autoplay %}
@@ -226,7 +84,7 @@ path: library/components
 </section>
 
 <section class="clipboard-copy-section library-section">
-  <h2 class="">[ Clipboard Copy - Component + Util ]</h2>
+  <h2>[ Clipboard Copy - Component + Util ]</h2>
   <p>
     Copy any string to the user’s clipboard using the clipboard-copy.njk
     component. This requires a few things:
@@ -303,7 +161,7 @@ path: library/components
 </section>
 
 <section class="counter-section library-section">
-  <h2 class="">[ Counter - Component ]</h2>
+  <h2>[ Counter - Component ]</h2>
 
   <p>
     The counter can be used to reflect stats and showcase data. It comes with a
@@ -354,7 +212,7 @@ path: library/components
 </section>
 
 <section class="form-section">
-  <h2 class="">[ Form Feedback - Component ]</h2>
+  <h2>[ Form Feedback - Component ]</h2>
   <strong>Note: Forms require additional setup in Netlify.</strong>
   <br />
   <br />
@@ -370,7 +228,7 @@ path: library/components
 </section>
 
 <section class="form-section">
-  <h2 class="">[ Form Redirect - Component ]</h2>
+  <h2>[ Form Redirect - Component ]</h2>
   <p>After submitting the form, the user is redirected to a new page.</p>
   <br />
   <br />
@@ -380,12 +238,12 @@ path: library/components
 </section>
 
 <section class="image-comparison-section library-section">
-  <h2 class="">[ Image Comparison - Component ]</h2>
+  <h2>[ Image Comparison - Component ]</h2>
   <p>Coming soon!</p>
 </section>
 
 <section class="tile-shuffle-section library-section">
-  <h2 class="">[ Image Shuffle - Component ]</h2>
+  <h2>[ Image Shuffle - Component ]</h2>
   <p>
     Traditionally used to show off a logos, but could be adapted to shuffle
     through any kind of content.
@@ -394,7 +252,7 @@ path: library/components
 
 <section class="marquee-section section-width--full">
   <div class="library-section-info section-width">
-    <h2 class="">[ Marquee - Component ]</h2>
+    <h2>[ Marquee - Component ]</h2>
     <p>
       Display content across the page using the marquee. Comes with the
       following configs:
@@ -443,7 +301,7 @@ path: library/components
       </li>
     </ul>
   </div>
-  <div class=""></div>
+  <div></div>
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_1 %}
   {% include '../_includes/library/components/marquee.njk' %}
@@ -472,7 +330,7 @@ path: library/components
 </section>
 
 <section class="solar-system-section library-section">
-  <h2 class="">[ Solar system - Component ]</h2>
+  <h2>[ Solar system - Component ]</h2>
 
   <p>
     A way to display badges and an image. Visit
@@ -494,128 +352,11 @@ path: library/components
   {% include "../_includes/library/components/solar-system.njk" %}
 </section>
 
-<section class="tabs-section library-section">
-  <div class="library-section-info">
-    <h2 class="">[ Tabs - Component ]</h2>
-    <p>
-      A simplified version of the util tabs. Used when the tab content structure
-      is identical across all tabs. Comes with the following properties:
-    </p>
-    <ul class="classic-list">
-      <li>
-        <code>default_panel</code> A number representing the default active
-        panel when visiting the page. Defaults to 1
-      </li>
-      <li>
-        <code>toggle_slider</code> A string of either
-        <code>null | solid | underline</code> that overrides the default tab
-        control styles in place of the <code>toggle-slider</code> markup/styles.
-        Defaults to <code>null</code>
-      </li>
-      <li>
-        <code>panels</code> An array of objects representing your tabs
-        (configure the object as needed)
-      </li>
-    </ul>
-  </div>
-
-  <!-- prettier-ignore -->
-  {% set tabs = library.tabs %}
-  {% include "../_includes/library/components/tabs.njk" %}
-</section>
-
-<section class="tabs-section library-section">
-  <div class="library-section-info">
-    <h2 class="">[ Tabs - Util ]</h2>
-    <p>
-      Intended when you need unique markup across each panel. The setup is
-      simple and allows custom markup. Here's a visual of the structure:
-    </p>
-    <code class="codearea"
-      >&lt;div class="tabs"&gt;
-      <br />
-      &nbsp; &lt;div class="tabs-content"&gt;
-      <br />
-      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 1"
-      role="tabpanel"&gt;&lt;/div&gt;
-      <br />
-      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 2"
-      role="tabpanel" hidden&gt;&lt;/div&gt;
-      <br />
-      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 3"
-      role="tabpanel" hidden&gt;&lt;/div&gt;
-      <br />
-      &nbsp; &lt;/div&gt;
-      <br />
-      &lt;/div&gt;
-    </code>
-    <ul>
-      <li>
-        <strong>Step 1:</strong> Have a parent/child div setup (or any valid
-        container) with the classes <code>tabs</code> and
-        <code>tabs-content</code>
-      </li>
-      <li>
-        <strong>Step 2:</strong> Add another div with the class
-        <code>tab-panel</code>for each tab panel you would like
-      </li>
-      <li>
-        <strong>Step 3:</strong> Use the attribute
-        <code>data-tab-label</code> to alter the labels for each panel
-        control/button
-      </li>
-      <li>
-        <strong>Step 4:</strong> Use the attribute <code>hidden</code> on all
-        panels except the one you want shown by default
-      </li>
-    </ul>
-    <p>
-      <strong>Note:</strong>
-      this comes with the optional <code>data-toggle-slider=""</code> attribute
-      of either: <code>null | solid | underline</code>
-      to change the control style (no needed extra utility class for this,
-      handled with tabs and toggle-slider logic).
-    </p>
-  </div>
-
-  <!-- <div class="tabs cursor-hide" data-toggle-slider="solid"> -->
-  <div class="tabs cursor-hide">
-    <div class="tabs-content">
-      <div class="tabs-panel" data-tab-label="Panel 1" role="tabpanel" hidden>
-        <h3 class="">Custom markup</h3>
-        <p class="max-width-text">
-          The tabs util allows for custom markup with minimal setup. The tab
-          controls are generated via JavaScript, based on the
-          <code>data-tab-label</code> attribute.
-        </p>
-      </div>
-
-      <div class="tabs-panel" data-tab-label="Panel 2" role="tabpanel">
-        <p>This tab has a video</p>
-        <video src="/video.mp4" controls></video>
-      </div>
-
-      <div class="tabs-panel" data-tab-label="Panel 3" role="tabpanel" hidden>
-        <h3 class="">This uses a component</h3>
-
-        <!-- prettier-ignore -->
-        {% set btn = ({
-          text: 'Button within tabs',
-          type: 'solid',
-          class: '',
-          attributes: ''
-        }) %}
-        {% include "../_includes/components/btn.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="testimonials-section library-section">
-  <h2 class="">[ Testimonials - Component ]</h2>
+  <h2>[ Testimonials - Component ]</h2>
   <p>Coming Soon!</p>
 
-  <h3 class="">Auto carousel</h3>
+  <h3>Auto carousel</h3>
   <p>
     Visit
     <a
@@ -630,7 +371,7 @@ path: library/components
 </section>
 
 <section class="theme-toggle-section library-section">
-  <h2 class="">[ Theme toggle - Component ]</h2>
+  <h2>[ Theme toggle - Component ]</h2>
 
   <strong>
     Because of input/label IDs, it’s recommended to only use one component per
@@ -670,177 +411,4 @@ path: library/components
     style="width: 250px"
     eleventy:ignore
   />
-</section>
-
-<section class="tooltip-section library-section cursor-hide">
-  <h2 class="">[ Tooltip - Component or Util ]</h2>
-  <p>
-    A tooltip can be added in two ways: as a component or a utility class. Each
-    method comes with different pros and cons.
-  </p>
-  <br />
-
-  <h3 class="">Tooltip Component (fixed)</h3>
-  <p>
-    The component variation <code>tooltip.njk</code> comes with the following
-    config options:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>message</code> a string, this is the text within the message bubble.
-    </li>
-    <li>
-      <code>text</code> an optional string that can be used as the tooltip
-      trigger (vs an icon).
-    </li>
-    <li>
-      <code>icon</code> an optional string used to override the default icon
-      image. This is the path to the image source.
-    </li>
-    <li>
-      <code>size</code> a string of either <code>xs | sm | md | lg</code> to
-      adjust the tooltip message size. Defaults to <code>md</code>
-    </li>
-    <li>
-      <code>place</code> a string to position the tooltip message bubble on non
-      mobile devices. Options include:
-      <code>
-        top | top-right | top-left | bottom | bottom-left | bottom-right | left
-        | right
-      </code>
-      Defaults to <code>top</code>
-    </li>
-    <li>
-      <code>place_sm</code> a string to position the tooltip message bubble on
-      mobile devices. Options include:
-      <code>
-        top | top-right | top-left | bottom | bottom-left | bottom-right
-      </code>
-      Defaults to <code>top</code>
-    </li>
-    <li>
-      <code>include_point</code> A boolean to include the point on the message
-      bubble. Defaults to <code>false</code>
-    </li>
-  </ul>
-
-  <!-- prettier-ignore -->
-  {% set tooltip = library.tooltip.tooltip_1 %} 
-  {% include "../_includes/library/components/tooltip.njk" %} 
-  
-  {% set tooltip = library.tooltip.tooltip_2 %} 
-  {% include "../_includes/library/components/tooltip.njk" %}
-
-  <div>
-    <p>
-      Does this work inline? {% set tooltip = library.tooltip.tooltip_3 %} {%
-      include "../_includes/library/components/tooltip.njk" %} then some text
-      afterward.
-    </p>
-  </div>
-
-  <br aria-hidden="true" />
-  <br aria-hidden="true" />
-  <h3 class="">Tooltip Util (follows mouse)</h3>
-  <strong>
-    Note: requires mouse-cursor.njk component.
-    <br />
-    Also, the tooltip doesn't display while the user is scrolling. With Lenis
-    this may cause a delay to see the tooltip.
-  </strong>
-  <p>
-    The tooltip can also be tagged on any element using the class
-    <code>tooltip-util</code> The configs are as follows:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>data-tooltip-message</code> A string, this is the value of the
-      message for the tooltip (perhaps see if this can take html).
-    </li>
-    <li>
-      <code>data-tooltip-min-width</code> A number, this applies a minimum width
-      to the message bubble.
-    </li>
-  </ul>
-
-  <p>
-    Tooltip util
-    <span
-      class="tooltip-util tab-element-page"
-      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
-      data-tooltip-min-width="212"
-      role="button"
-      tabindex="0"
-    >
-      used with inline text
-    </span>
-    . You’ll notice that the text bubble is
-    <span
-      class="tooltip-util tab-element-page"
-      data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
-      data-tooltip-min-width="250"
-      role="button"
-    >
-      directionally aware
-    </span>
-    and will reposition based on the mouse position in the viewport.
-  </p>
-  <img
-    class="tooltip-util icon-md tab-element-page"
-    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
-    data-tooltip-min-width="250"
-    src="/static/img/library/icon-google-info-circle.svg"
-    alt=""
-    role="button"
-    tabindex="0"
-    eleventy:ignore
-  />
-</section>
-
-<section class="video-overlay-section library-section">
-  <h2 class="">[ Video Overlay - Component ]</h2>
-  <p>
-    <strong>Note:</strong> While this is marked as a component due to the use of
-    <code>video-overlay.njk</code> at the base of your app (scoped per page), it
-    requires the class <code>video-toggle</code> to be read by the
-    <code>video-overlay.js</code> file. Lastly, it requires the data source for
-    the video file.
-    <em>Generally dropbox can host these. Then just copy the share link.</em>
-    The setup is simple:
-  </p>
-  <br />
-  <ol class="classic-list">
-    <li>
-      Ensure you have the <code>video-overlay.njk</code> component and
-      <code>video-overlay.js</code> file in your app.
-    </li>
-    <li>
-      Add the utility class of <code>video-toggle</code> to your button/trigger.
-    </li>
-    <li>
-      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
-      these video files.
-    </li>
-    <li>That's it!</li>
-  </ol>
-
-  <!-- prettier-ignore -->
-  {% set video_src = 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0' %}
-  {% set btn = ({
-    text: 'Toggle Video Overlay',
-    type: 'solid',
-    class: 'video-toggle glitch-hover',
-    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay"'
-   }) %}
-  {% include "../_includes/components/btn.njk" %}
-
-  <!-- prettier-ignore -->
-  {% set video_src = 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=nyb73zpa&dl=0' %}
-  {% set btn = ({
-    text: 'Toggle Second Video',
-    type: 'outline',
-    class: 'video-toggle btn--bg-slide btn--split-text',
-    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay" data-btn-slide="up" data-hover-alt'
-   }) %}
-  {% include "../_includes/components/btn.njk" %}
 </section>

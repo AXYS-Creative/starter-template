@@ -6,14 +6,16 @@
 
 <section class="scroll-horizontal">
   <div class="scroll-horizontal__pin">
-    {% if hs_title %}
-    <h2 class="scroll-horizontal__title">{{ hs_title }}</h2>
-    {% endif %}
+    <header class="scroll-horizontal__header">
+      {% if hs_title %}
+      <h2 class="scroll-horizontal__header-title">{{ hs_title }}</h2>
+      {% endif %}
 
-    <!-- prettier-ignore -->
-    {% if hs_desc %}
-    <p class="scroll-horizontal__desc">{{ hs_desc }}</p>
-    {% endif %}
+      <!-- prettier-ignore -->
+      {% if hs_desc %}
+      <p class="scroll-horizontal__header-desc">{{ hs_desc }}</p>
+      {% endif %}
+    </header>
 
     <div class="scroll-horizontal__container">
       <div class="scroll-horizontal__slider">
@@ -25,7 +27,7 @@
         >
           <img src="{{ item.src }}" alt="" />
           <figcaption>
-            <h3 class="">
+            <h3>
               {{ item.title }}
             </h3>
             <p>

@@ -118,9 +118,9 @@ path: library/utils
     }) %} 
     {% include "../_includes/library/components/tooltip.njk" %}
     <p>
-      , which is helpful with preventing layout shift from width changes. The
-      class <code>glitch-text</code> comes with a pre loaded mono-spaced font
-      along with other easy styles for all glitch related text.
+      , which helps prevent layout shift when the width changes. The class
+      <code>glitch-text</code> comes with a pre loaded mono-spaced font along
+      with other easy styles for all glitch related text.
     </p>
   </div>
 
@@ -268,7 +268,7 @@ path: library/utils
 
   <br />
 
-  <h3 class="h6 glitch-trigger-subtitle">Glitch Trigger/Target</h3>
+  <h3 class="glitch-trigger-subtitle">Glitch Trigger/Target</h3>
   <p>
     The class <code>glitch-trigger</code> will act as the hover/focus point to
     trigger the glitch elsewhere. This requires the
@@ -356,30 +356,58 @@ path: library/utils
   </ul>
 </section>
 
-<section class="tabs-section library-section">
-  <h2>[ Tabs - Util ]</h2>
-  <strong>Upcoming!</strong>
-  <p>
-    Intended for dynamic markup or custom components. Basically a plane that
-    changes depending on the active tab.
+<section class="gsap-stagger-section library-section">
+  <h2 class="gsap-animate-section__title gsap-animate">
+    [ GSAP stagger - Util ]
+  </h2>
+  <strong class="gsap-animate-section__subtitle gsap-animate">
+    <sup>*</sup>Requires custom code/css to define the animation
+  </strong>
+  <p class="gsap-animate-section__desc gsap-animate">
+    Anytime you want to stagger a wrapper's descendant animations, you can use
+    the utility class <code>gsap-stagger</code> on the parent. You can then add
+    the class <code>gsap-stagger-child</code> to each child you would like to
+    stagger.This taps into the powers of GSAP's
+    <code>scrollTrigger</code> plugin so when the elements comes into view,
+    you'll be able to apply additional styles with the temporarys
+    <code>gsap-stagger-animate</code> class.
   </p>
 
-  <br /><br /><br /><br />
-  <div class="tabs tabs-util">
-    <div class="tabs__panels">
-      <div class="tabs__panel" data-tab-label="Overview" role="tabpanel">
-        <h3>Custom markup</h3>
-        <p class="max-width-text">
-          The tabs util allows for custom markup with minimal setup. The tab
-          controls are generated via JavaScript, based on the
-          <code>data-tab-label</code> attribute.
-        </p>
-      </div>
+  <ul
+    class="classic-list gsap-stagger-list gsap-stagger"
+    data-stagger-delay="0.125"
+  >
+    <li class="gsap-stagger-child">
+      <code>data-gsap-once</code> Boolean, to toggle the animation only the
+      first time. Default is <code>false</code>.
+    </li>
+    <li class="gsap-stagger-child">
+      <code>data-gsap-trigger</code> String, the class or id (don't forget . or
+      #) of the element that triggers the effect. Default is the gsap-animate
+      element itself.
+    </li>
+    <li class="gsap-stagger-child">
+      <code>data-gsap-start</code> String, the parameters for scrollTrigger.
+      Default is <code>"top 98%"</code>
+    </li>
+    <li class="gsap-stagger-child">
+      <code>data-gsap-end</code> String, the parameters for scrollTrigger.
+      Default is <code>"bottom 2%"</code>
+    </li>
+    <li class="gsap-stagger-child">
+      <code>data-gsap-markers</code> Boolean, markers to help build/debug.
+      Default is
+      <code>false</code>
+    </li>
+  </ul>
 
-      <div class="tabs__panel" data-tab-label="Media" role="tabpanel" hidden>
-        <video src="/video.mp4" controls></video>
-      </div>
+  <div class="gsap-stagger-sample gsap-stagger" data-stagger-delay="0.05">
+    {% for item in range(0, 16) %}
+    <div class="gsap-stagger-sample__child gsap-stagger-child">
+      <h3 class="h5">Title {{ loop.index }}</h3>
     </div>
+    {% endfor %}
+    <div></div>
   </div>
 </section>
 
@@ -473,7 +501,7 @@ path: library/utils
   </strong>
   <br />
   <br />
-  <h3 class="h6 text-fill" data-fill-end="bottom 40%">
+  <h3 class="text-fill" data-fill-end="bottom 40%">
     Slow it down with 'bottom 20%'.....
   </h3>
   <br />
@@ -545,6 +573,88 @@ path: library/utils
     <li>
       <code>data-fill-markers</code> boolean, to toggle visual debugging
       markers. Defaults to <code>false</code>
+    </li>
+  </ul>
+</section>
+
+<section class="text-reveal-section library-section">
+  <h2 class="text-reveal" data-reveal-type="chars">[ Text reveal - Util ]</h2>
+  <p class="text-reveal" data-reveal-duration="0.5">
+    This uses GSAP's <strong>ScrollTrigger</strong> and
+    <strong>SplitText</strong> plugins to reveal in either words or characters.
+    This is position aware, meaning that the transform origin will determine the
+    words placement in the sentence.
+  </p>
+  <p
+    class="text-reveal"
+    data-reveal-type="words"
+    data-reveal-duration="0.15"
+    data-reveal-scrub="true"
+    data-reveal-end="bottom 75%"
+    style="max-width: 750px"
+  >
+    This paragraph will animate each word rather than each character. Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
+    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
+    sequi dignissimos dolores? Magni, nisi quae.
+  </p>
+  <p
+    class="text-reveal"
+    data-reveal-type="chars"
+    data-reveal-once="true"
+    data-reveal-duration="2"
+  >
+    This text should only reveal in the <strong>very first time!</strong> The
+    letter split should also take a bit longer than expected (2s), making use of
+    the data-fill-duration attribute.
+  </p>
+  <p class="text-reveal" data-reveal-scrub="true" data-reveal-end="bottom 60%">
+    This text should scrub in a linear animation.
+  </p>
+  <br />
+  <p class="text-reveal">
+    You can use the <code class="gsap-animate">text-reveal</code> utility class
+    with the following attributes:
+  </p>
+  <ul class="classic-list">
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-type</code> A string that takes in
+      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">chars</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-duration</code> A number to control
+      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-stagger</code> A number to control
+      stagger between each word or character. Defaults to
+      <code class="gsap-animate">0.05</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-once</code> A boolean to fire to
+      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-scrub</code> A boolean to scrub
+      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-start</code> A string to set the
+      start animation. Defaults to
+      <code class="gsap-animate">"top 98%"</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-end</code> A string to set the end
+      animation. Defaults to
+      <code class="gsap-animate">"bottom 2%"</code>
+    </li>
+    <li class="text-reveal">
+      <code class="gsap-animate">data-reveal-markers</code> A boolean to toggle
+      visual debugging markers.
+      <code class="gsap-animate">false</code>
     </li>
   </ul>
 </section>
@@ -794,120 +904,6 @@ path: library/utils
   </div>
 </section>
 
-<section class="tooltip-section library-section cursor-hide">
-  <h2>[ Tooltip - Util or Component ]</h2>
-  <p>
-    A tooltip can be added in two ways: as a utility class or a component. Each
-    method comes with different pros and cons.
-  </p>
-  <br />
-
-  <h3>Tooltip Util (follows mouse)</h3>
-  <strong>
-    Note: requires mouse-cursor.njk component.
-    <br />
-    Also, the tooltip doesn't display while the user is scrolling. With Lenis
-    this may cause a delay to see the tooltip.
-  </strong>
-  <p>
-    The tooltip can also be tagged on any element using the class
-    <code>tooltip-util</code> The configs are as follows:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>data-tooltip-message</code> A string, this is the value of the
-      message for the tooltip (perhaps see if this can take html).
-    </li>
-    <li>
-      <code>data-tooltip-min-width</code> A number, this applies a minimum width
-      to the message bubble.
-    </li>
-  </ul>
-
-  <p>
-    Tooltip util
-    <span
-      class="tooltip-util tab-element-page"
-      data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
-      data-tooltip-min-width="212"
-      role="button"
-      tabindex="0"
-    >
-      used with inline text
-    </span>
-    . You’ll notice that the text bubble is
-    <span
-      class="tooltip-util tab-element-page"
-      data-tooltip-message="This will help make sure the text bubble/message is in view. Pretty sweet!"
-      data-tooltip-min-width="250"
-      role="button"
-      tabindex="0"
-    >
-      directionally aware
-    </span>
-    and will reposition based on the mouse position in the viewport.
-  </p>
-  <img
-    class="tooltip-util icon-md tab-element-page"
-    data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
-    data-tooltip-min-width="250"
-    src="/static/img/library/icon-google-info-circle.svg"
-    alt=""
-    role="button"
-    tabindex="0"
-    eleventy:ignore
-  />
-
-  <br aria-hidden="true" />
-  <br aria-hidden="true" />
-
-  <h3>Tooltip Component (fixed)</h3>
-  <p>
-    The component variation <code>tooltip.njk</code> comes with the following
-    config options:
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>message</code> a string, this is the text within the message bubble.
-    </li>
-    <li>
-      <code>text</code> an optional string that can be used as the tooltip
-      trigger (vs an icon).
-    </li>
-    <li>
-      <code>icon</code> an optional string used to override the default icon
-      image. This is the path to the image source.
-    </li>
-    <li>
-      <code>size</code> a string of either <code>sm | md | lg</code> to adjust
-      the tooltip message size. Defaults is <code>md</code>
-    </li>
-    <li>
-      <code>place</code> a string of either
-      <code>top | right | bottom | left</code> to position the tooltip bubble.
-      Default is <code>top</code>
-    </li>
-  </ul>
-
-  <!-- prettier-ignore -->
-  {% set tooltip = library.tooltip.tooltip_1 %} 
-  {% include "../_includes/library/components/tooltip.njk" %} 
-
-  {% set tooltip = library.tooltip.tooltip_2 %} 
-  {% include "../_includes/library/components/tooltip.njk" %}
-
-  <div>
-    <p>
-      Does this work inline? Yes, but don't nest within an inline tag like
-      <code>p</code> or <code>span</code>
-    </p>
-    <!-- prettier-ignore -->
-    {% set tooltip = library.tooltip.tooltip_3 %}
-      {% include "../_includes/library/components/tooltip.njk" %}
-    <p>If you do, then the markup will be broken.</p>
-  </div>
-</section>
-
 <section class="typing-section library-section">
   <h2>
     <span class="typing-scroll" data-typing-cursor="none"
@@ -1029,137 +1025,4 @@ path: library/utils
     This will only type out once, the very first time it comes into view. Also
     has a delay of 3200ms.
   </p>
-</section>
-
-<section class="video-bg-section library-section">
-  <h2>[ Video-bg - Util ]</h2>
-  <p>
-    With minimal setup, you can add a video background to any section, container
-    or element using the <code>video-bg</code> class and including the
-    <code>video-bg.njk</code> partial at the bottom of your wrapper.
-  </p>
-  <strong>Configs currently in progress*</strong>
-
-  <br /><br /><br /><br />
-
-  <div class="video-bg video-bg--sample-1 cursor-hide">
-    <h3>Video Background</h3>
-    <p class="max-width-text text-balance text-center--md-up">
-      Minimal setup, maxiumum impact. Just add a class and tuck the component at
-      the bottom, then watch the magic!
-    </p>
-    <!-- prettier-ignore -->
-    {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com', new_tab: true } %}
-    {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com#faq', new_tab: true } %}
-    {% include "../_includes/components/cta-group.njk" %}
-
-    {% set video_bg = ({
-      src: 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0',
-      id: 'video-bg-1'
-    }) %}
-    {% include "../_includes/library/components/video-bg.njk" %}
-  </div>
-
-  <div class="video-bg-group">
-    <div class="video-bg video-bg--sample-2 cursor-hide">
-      <h3
-        class="text-fill"
-        data-fill-start="top 92%"
-        data-fill-end="bottom 86%"
-      >
-        2.0 Variant
-      </h3>
-      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
-        Shadow: top
-      </p>
-      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
-        Autoplay: false
-      </p>
-
-      <!-- prettier-ignore -->
-      {% set video_bg = ({
-        src: 'https://www.dropbox.com/scl/fi/x64lje5a8nm7fezjdallt/sample-video-3.mp4?rlkey=wsn6jcpn1t3f6qxpqn3n5zywx&st=43kgpnu2&dl=0',
-        id: 'video-bg-2',
-        autoplay: false,
-        shadow: 'top',
-        poster: 'https://www.dropbox.com/scl/fi/lqjw3dqkhiwn10gu42ber/sample-video-poster.png?rlkey=598hx6qc7hdfsq67wz59gab19&st=whjv4kl3&raw=1',
-        toggle: {
-          class: 'magnet magnet-strong',
-          placement: 'tr'
-        }
-      }) %}
-      {% include "../_includes/library/components/video-bg.njk" %}
-    </div>
-
-    <div class="video-bg video-bg--sample-3 cursor-hide" data-tilt>
-      <h3 class="glitch-scroll">Space</h3>
-      <p
-        class="typing-scroll"
-        data-typing-cursor="underscore"
-        data-typing-delay="500"
-      >
-        Simply remarkable
-      </p>
-
-      <!-- prettier-ignore -->
-      {% set video_bg = ({
-        src: 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=sh670ugo&dl=0',
-        id: 'video-bg-3',
-        shadow: null,
-        toggle: {
-          class: 'magnet magnet-strong',
-          placement: 'bl'
-        }
-      }) %}
-      {% include "../_includes/library/components/video-bg.njk" %}
-    </div>
-  </div>
-</section>
-
-<section class="video-overlay-section library-section">
-  <h2>[ Video Overlay - Util ]</h2>
-  <p>
-    <strong>Note:</strong> While this is marked as a util due to the use of
-    <code>video-toggle</code>, it requires the component
-    <code>video-overlay.njk</code> somewhere in your app, along with the
-    <code>video-overlay.js</code> file. Lastly, it requires the data source for
-    the video file.
-    <em>Generally dropbox can host these. Then just copy the share link.</em>
-    The setup is simple:
-  </p>
-  <br />
-  <ol class="classic-list">
-    <li>
-      Ensure you have the <code>video-overlay.njk</code> component and
-      <code>video-overlay.js</code> file in your app.
-    </li>
-    <li>
-      Add the utility class of <code>video-toggle</code> to your button/trigger.
-    </li>
-    <li>
-      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
-      these video files.
-    </li>
-    <li>That's it!</li>
-  </ol>
-
-  <!-- prettier-ignore -->
-  {% set video_src = 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0' %}
-  {% set btn = ({
-    text: 'Toggle Video Overlay',
-    type: 'solid',
-    class: 'video-toggle glitch-hover',
-    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay"'
-   }) %}
-  {% include "../_includes/components/btn.njk" %}
-
-  <!-- prettier-ignore -->
-  {% set video_src = 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=nyb73zpa&dl=0' %}
-  {% set btn = ({
-    text: 'Toggle Second Video',
-    type: 'outline',
-    class: 'video-toggle btn--bg-slide btn--split-text',
-    attributes: 'data-vid-src="'~video_src~'" aria-label="Toggle Video Overlay" aria-controls="video-overlay" data-btn-slide="up" data-hover-alt'
-   }) %}
-  {% include "../_includes/components/btn.njk" %}
 </section>

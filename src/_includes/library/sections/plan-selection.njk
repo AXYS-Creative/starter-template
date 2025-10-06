@@ -40,14 +40,14 @@
     </div>
     {% endif %}
 
-    <div class="plan-options">
+    <div class="plan-options gsap-stagger" data-stagger-delay="0.125">
       <!-- prettier-ignore -->
       {% for plan in plans %}  
       {% set theme = '' %}
       {% if plan.theme %}
         {% set theme = 'plan-option--'~plan.theme~'' %}
       {% endif %}
-      <div class="plan-option {{ theme }}">
+      <div class="plan-option {{ theme }} gsap-stagger-child">
         <h3 class="plan-option__title h2">{{ plan.title }}</h3>
 
         <div class="plan-option__price-group">
@@ -88,9 +88,17 @@
           </p>
         </div>
 
-        <ul class="plan-option__perks classic-list">
+        <ul class="plan-option__perks">
           {% for perk in plan.features %}
-          <li>{{ perk }}</li>
+          <li>
+            <!-- prettier-ignore -->
+            {% set icon_svg = ({
+              src: '/static/img/library/icon-google-check-circle.svg', 
+              class: 'theme-toggle__icon theme-toggle__icon--desktop' 
+            }) %}
+            {% include "../../components/icon-svg.njk" %}
+            <span>{{ perk }}</span>
+          </li>
           {% endfor %}
         </ul>
 

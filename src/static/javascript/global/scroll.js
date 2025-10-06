@@ -40,14 +40,14 @@ window.addEventListener("scroll", () => {
 
   if (scrollingDown && awayFromTop) {
     siteHeader.classList.add("site-header--scrolling-down");
-    planSelectionToggle.classList.add(
+    planSelectionToggle?.classList.add(
       "plan-selection__toggle-wrapper--scrolling-down"
     );
   } else {
     siteHeader.classList.remove("site-header--scrolling-down");
 
     if (isElementNearTop(planSelectionToggle, 32)) {
-      planSelectionToggle.classList.remove(
+      planSelectionToggle?.classList.remove(
         "plan-selection__toggle-wrapper--scrolling-down"
       );
     }

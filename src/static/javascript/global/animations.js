@@ -102,7 +102,54 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // GSAP SplitText (characters & words)
+        // GSAP Stagger util
+        {
+          const staggerGroups = document.querySelectorAll(".gsap-stagger");
+
+          staggerGroups.forEach((group) => {
+            const children = group.querySelectorAll(".gsap-stagger-child");
+            if (!children.length) return;
+
+            // Use css to control duration and initial delay (not stagger delay)
+            const staggerDelay = parseFloat(group.dataset.staggerDelay) || 0.1;
+            const staggerStart = group.dataset.staggerStart || "top 96%";
+            const staggerOnce = group.dataset.staggerOnce === "true";
+            const staggerMarkers = group.dataset.markers === "true";
+
+            const animateIn = () => {
+              children.forEach((child, i) => {
+                setTimeout(() => {
+                  child.classList.add("gsap-stagger-animate");
+                }, i * staggerDelay * 1000);
+              });
+            };
+
+            const animateOut = () => {
+              children.forEach((child) => {
+                child.classList.remove("gsap-stagger-animate");
+              });
+            };
+
+            ScrollTrigger.create({
+              trigger: group,
+              start: staggerStart,
+              markers: staggerMarkers,
+              onEnter: animateIn,
+              // Uncomment these if you want 'animation on leave/enter back'
+              // onEnterBack: () => {
+              //   if (!staggerOnce) animateIn();
+              // },
+              // onLeave: () => {
+              //   if (!staggerOnce) animateOut();
+              // },
+              onLeaveBack: () => {
+                if (!staggerOnce) animateOut();
+              },
+            });
+          });
+        }
+
+        // GSAP SplitText (characters & words) (Yo is this used?)
         {
           const splitCharacters = document.querySelectorAll(".split-chars");
           const splitWords = document.querySelectorAll(".split-words");
@@ -127,7 +174,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
       // Library - Lift any desired code blocks out, then delete from production
       {
-        // Page specific scrollTrigger fix
+        // Page specific scrollTrigger fix (delay refresh)
         if (document.querySelector(".main-library")) {
           window.addEventListener("load", () => {
             setTimeout(() => {
@@ -136,7 +183,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Counter (Default values are declared in .njk component)
+        // Counter component (Default values are declared in .njk component)
         {
           const counters = document.querySelectorAll(".counter");
 
@@ -645,7 +692,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           }
         }
 
-        // Marquee
+        // Marquee component
         {
           gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
             const marqueeInners =
@@ -1040,6 +1087,74 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 backgroundSize: "100%",
                 scrollTrigger,
                 ...(scrub ? {} : { duration: durationVal }),
+              }
+            );
+          });
+        }
+
+        // Text Reveal
+        {
+          const revealElems = document.querySelectorAll(".text-reveal");
+
+          revealElems.forEach((el) => {
+            const revealType = el.dataset.revealType || "words"; // "chars" or "words"
+            const revealDuration =
+              parseFloat(el.dataset.revealDuration) || 0.25;
+            const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
+            const revealScrub = el.dataset.revealScrub === "true"; // default false
+            const revealOnce = !revealScrub && el.dataset.revealOnce === "true"; // only if scrub is false
+            const revealStart = el.dataset.revealStart || "top 98%";
+            const revealEnd = el.dataset.revealEnd || "bottom 2%";
+            const revealMarkers = el.dataset.revealMarkers || false;
+
+            const split = new SplitText(el, {
+              type: revealType,
+              [`${revealType}Class`]: `text-reveal__${revealType}`,
+              tag: "span",
+            });
+
+            const targets = revealType === "words" ? split.words : split.chars;
+
+            targets.forEach((target) => {
+              const wrapper = document.createElement("span");
+              wrapper.classList.add("outer-span");
+              target.parentNode.insertBefore(wrapper, target);
+              wrapper.appendChild(target);
+            });
+
+            const scrollTriggerConfig = {
+              trigger: el,
+              start: revealStart,
+              end: revealEnd,
+              scrub: revealScrub || false,
+              markers: revealMarkers,
+            };
+
+            if (!revealScrub) {
+              scrollTriggerConfig.toggleActions = revealOnce
+                ? "play none none none"
+                : "play reset play reset";
+
+              scrollTriggerConfig.onEnter = () =>
+                el.classList.add("text-reveal--active");
+
+              scrollTriggerConfig.onLeaveBack = () => {
+                if (!revealOnce) el.classList.remove("text-reveal--active");
+              };
+
+              scrollTriggerConfig.once = revealOnce;
+            }
+
+            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+            tl.fromTo(
+              targets,
+              { y: "100%" },
+              {
+                y: "0",
+                duration: revealDuration,
+                stagger: revealStagger,
+                ease: "linear",
               }
             );
           });

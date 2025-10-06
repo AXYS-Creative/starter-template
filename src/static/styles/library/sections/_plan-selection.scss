@@ -183,7 +183,14 @@
 
     &__perks {
       @include column-start;
+      gap: 1ch;
       margin-block: var(--spacing) var(--spacing--lg);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.5ch;
+      }
     }
 
     &__message {
@@ -237,7 +244,7 @@
       --color-btn-text--hover: #{$white};
 
       background: linear-gradient(
-        135deg,
+        110deg,
         $white -50%,
         var(--color-brand--primary) 30% 70%,
         $white 150%
@@ -254,6 +261,17 @@
       .plan-option__price {
         color: var(--color-font--primary);
       }
+    }
+  }
+
+  .gsap-stagger-child {
+    opacity: 0;
+    translate: 0 96px;
+
+    &.gsap-stagger-animate {
+      opacity: 1;
+      translate: 0 0;
+      transition: 0.75s $cubic-ease-sudden;
     }
   }
 }

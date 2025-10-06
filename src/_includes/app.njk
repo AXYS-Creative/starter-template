@@ -45,13 +45,27 @@
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
-    {% if path == "home" or path == "library/utils" or path == "library/components" or path == "style-guide" %}
+    {% if 
+      path == "home" 
+      or path == "library/utils" 
+      or path == "library/components" 
+      or path == "library/combo" 
+      or path == "style-guide" 
+    %}
       {% include "./library/components/mouse-cursor.njk" %}
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if path == "library/utils" or path == "library/components" %}
+    {% if path == "library/combo" %}
       {% include "./library/components/video-overlay.njk" %}
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if 
+      path == "library/utils" 
+      or path == "library/components" 
+      or path == "library/combo" 
+    %}
       {% include "./library/components/btn-back-to-top.njk" %}
     {% endif %}
     

@@ -1,8 +1,8 @@
 <!-- prettier-ignore -->
 {% set id = video_bg.id or '' %}
 {% set src = video_bg.src or '' %}
-{% set poster = video_bg.poster or '' %}
 {% set autoplay = video_bg.autoplay | default(true) %}
+{% set poster = video_bg.poster or '' %}
 {% set shadow = video_bg.shadow | default('bottom') %}
 {% set toggle_class = video_bg.toggle.class or '' %}
 {% set toggle_attributes = video_bg.toggle.attributes or '' %}

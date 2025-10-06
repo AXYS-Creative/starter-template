@@ -5,10 +5,10 @@
 {% set title = alert.title | default('No title provided') %}
 {% set message = alert.message | default('No message provided') %}
 {% set auto_close = alert.auto_close or null %}
+{% set timer = alert.timer or false %}
 {% set link_1 = alert.link_1 or null %}
 {% set link_2 = alert.link_2 or null %}
 {% set left_border = alert.left_border or false %}
-{% set timer = alert.timer or false %}
 
 <!-- logic -->
 <!-- prettier-ignore -->

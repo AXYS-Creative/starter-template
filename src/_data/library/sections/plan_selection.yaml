@@ -10,8 +10,6 @@ plans:
     grand_total: 4,785
     savings_qt: $1,195
     price_desc: Pause or cancel anytime
-    # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    highlight: false
     # theme:
     # noise:
     features:
@@ -36,8 +34,6 @@ plans:
     grand_total: 7,185
     savings_qt: $1,795
     price_desc: Pause or cancel anytime
-    # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    highlight: false
     # theme:
     # noise:
     features:
@@ -62,8 +58,6 @@ plans:
     grand_total: 9,585
     savings_qt: $2,395
     price_desc: Pause or cancel anytime
-    # desc: Perfect for small businesses and startups looking to establish a professional online presence.
-    highlight: true
     theme: "primary"
     noise: "#fff"
     features:
