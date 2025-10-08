@@ -7,7 +7,7 @@ path: library/combo
 <!-- prettier-ignore -->
 {% set hero_simple = ({
   title: 'Combos',
-  desc: 'Content that comes as either a utililty class or a component. Also content that requires both a util and component.'
+  desc: 'Content available as either a utililty class or a component. Also content that requires both a util and component.'
  }) %}
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
@@ -167,7 +167,7 @@ path: library/combo
   <br />
 
   <div class="library-section-info">
-    <h3>Tabs Component</h3>
+    <h3>Tabs Component <em>(Cookie cutter panels)</em></h3>
     <p class="max-width-text">
       A simplified version of the tabs util. Use the component when the tab
       content shares the same structure across each panel. Comes with the
@@ -198,7 +198,7 @@ path: library/combo
   <br /><br />
 
   <div class="library-section-info">
-    <h3>Tabs Util</h3>
+    <h3>Tabs Util <em>(Custom panels)</em></h3>
     <p class="max-width-text">
       A more hands-on version of tabs. Intended when you need unique markup
       across each panel. The setup is straight forward — here's a visual of the
@@ -251,11 +251,11 @@ path: library/combo
     </p>
   </div>
 
-  <!-- <div class="tabs cursor-hide" data-toggle-slider="solid"> -->
-  <div class="tabs cursor-hide">
+  <div class="tabs cursor-hide" data-toggle-slider="underline">
+    <!-- <div class="tabs cursor-hide"> -->
     <div class="tabs-content">
       <div class="tabs-panel" data-tab-label="Panel 1" role="tabpanel" hidden>
-        <h3>Custom markup</h3>
+        <h4>Custom Markup (panel 1)</h4>
         <p class="max-width-text">
           The <code>tabs</code> util allows for custom markup with minimal
           setup. The tab controls are generated via JavaScript, based on the
@@ -265,7 +265,8 @@ path: library/combo
 
       <div class="tabs-panel" data-tab-label="Panel 2" role="tabpanel">
         <p>
-          You can control which tab is shown by default by removing the
+          Panel 2 — You can control which tab is shown by default by removing
+          the
           <code>hidden</code> attribute from that panel.
         </p>
         <br /><br />
@@ -300,7 +301,7 @@ path: library/combo
   </p>
   <br />
 
-  <h3>Tooltip Component (fixed)</h3>
+  <h3>Tooltip Component <em>(stationary)</em></h3>
   <p>
     The component variation <code>tooltip.njk</code> comes with the following
     config options:
@@ -332,10 +333,8 @@ path: library/combo
     </li>
     <li>
       <code>place_sm</code> a string to position the tooltip message bubble on
-      mobile devices. Options include:
-      <code>
-        top | top-right | top-left | bottom | bottom-left | bottom-right
-      </code>
+      mobile devices. <strong>Options are same as above, excluding:</strong>
+      <code> left | right </code>
       Defaults to <code>top</code>
     </li>
     <li>
@@ -361,7 +360,7 @@ path: library/combo
 
   <br aria-hidden="true" />
   <br aria-hidden="true" />
-  <h3>Tooltip Util (follows mouse)</h3>
+  <h3>Tooltip Util <em>(follows mouse)</em></h3>
   <strong>
     Note: requires mouse-cursor.njk component.
     <br />

@@ -393,9 +393,22 @@ title: Style Guide
     It also works with radios, labels and nested inputs, in the case of
     <code>theme-toggle.njk</code>
   </p>
-  <p>Note: used <code>aria-selected="true"</code> to set a default.</p>
+  <br />
+  <strong>
+    Note: used <code>aria-selected="true"</code> to set a default.
+  </strong>
   <br />
   <div class="cursor-hide">
+    <br /><br />
+    <strong class="max-width-text">
+      Extra Note about util vs data-toggle-slider attribute to change the style.
+    </strong>
+    <br />
+    <p>
+      Use extra utility class to modify slider styling when working directly on
+      a slider vs the tabs component (parent) for example. which has the
+      controls rendered via js.
+    </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--solid">
       <button class="option tab-element-page" aria-selected="true">
@@ -409,7 +422,10 @@ title: Style Guide
 
   <br /><br />
   <div class="cursor-hide">
-    <code>toggle-slider toggle-slider--underline</code>
+    <p>
+      The toggle slider comes with a second variation out of the box. You can
+      use this via the <code></code>
+    </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--underline">
       <button class="option tab-element-page">Option 1</button>

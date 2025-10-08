@@ -128,7 +128,10 @@ path: library/utils
   <br /><br />
   <p class="max-width-text">
     The most basic sample using a sentence.
-    <span class="cursor-content text-underline" data-cursor-icon>
+    <span
+      class="cursor-content cursor-content-section__sample text-underline"
+      data-cursor-icon
+    >
       Hover here to see the icon.
     </span>
     This is the simplest form to include an icon with the mouse cursor. Just add
@@ -676,15 +679,17 @@ path: library/utils
     dignissimos dolores? Magni, nisi quae.
   </p>
   <p
-    class="text-reveal"
+    class="text-reveal max-width-text"
     data-reveal-type="chars"
     data-reveal-once="true"
     data-reveal-duration="0.35"
+    data-reveal-stagger="0.0125"
     data-reveal-ease="back.out(2)"
   >
     This text will split by <code>chars</code> only the
     <strong>very first time!</strong> The duration will also be a bit longer
-    than expected (0.35s), making use of the data-reveal-duration attribute.
+    than expected, making use of the <code>data-reveal-duration</code> and
+    <code>data-reveal-stagger</code> attributes.
   </p>
   <p
     class="text-reveal"

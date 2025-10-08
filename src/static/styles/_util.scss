@@ -443,6 +443,10 @@
   }
 
   .cursor-content-section {
+    &__sample {
+      cursor: none;
+    }
+
     &__samples {
       width: 100%;
       display: flex;
@@ -456,6 +460,13 @@
       width: 20%;
       aspect-ratio: 1;
       background-color: var(--color-surface--1);
+      cursor: pointer;
+      transition: $ease;
+
+      &:active {
+        scale: 0.96;
+        user-select: none;
+      }
     }
   }
 

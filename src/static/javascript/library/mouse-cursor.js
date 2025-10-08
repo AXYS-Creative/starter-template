@@ -129,8 +129,8 @@ if (cursor) {
   // Cursor Content (message or icon)
   //
   {
-    const messageEl = cursor.querySelector(".mouse-cursor__message");
-    const iconEl = cursor.querySelector(".mouse-cursor__icon");
+    const messageEl = cursor.querySelector(".mouse-cursor__message"),
+      iconEl = cursor.querySelector(".mouse-cursor__icon");
 
     // Extract defaults once
     const defaultIconPath = iconEl.style.maskImage

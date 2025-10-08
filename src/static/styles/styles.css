@@ -1841,6 +1841,9 @@ code.codearea {
   .library-section .tilt-card-group .tilt-card--3d .cta-group {
     transition: 0.3s ease !important;
   }
+  .cursor-content-section__sample {
+    cursor: none;
+  }
   .cursor-content-section__samples {
     width: 100%;
     display: flex;
@@ -1855,6 +1858,14 @@ code.codearea {
     width: 20%;
     aspect-ratio: 1;
     background-color: var(--color-surface--1);
+    cursor: pointer;
+    transition: 0.24s ease;
+  }
+  .cursor-content-section .cursor-content-block-sample:active {
+    scale: 0.96;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
   }
   .carousel-swiper-section,
   .text-fill-section {
@@ -6065,20 +6076,6 @@ code.codearea {
   align-items: flex-start;
   gap: var(--spacing--sm);
   margin-block-end: var(--spacing--lg);
-}
-.main-style-guide__section-heading {
-  color: var(--color-font--primary);
-  font-family: var(--font-family--heading);
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  font-weight: 600;
-}
-@media (max-width: 768px) {
-  .main-style-guide__section-heading {
-    font-size: 20px;
-  }
 }
 .main-style-guide__subgroup {
   display: flex;

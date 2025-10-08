@@ -4,8 +4,6 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
 
   if (!options.length || !slider) return;
 
-  // Resolve default active option. Also consider any element with
-  // aria-selected="true" (for example a button inside an option)
   let activeOption =
     container.querySelector(".option-active") ||
     container.querySelector("input:checked")?.closest("[class*='option']") ||
@@ -16,17 +14,6 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   // Ensure it has the class at init
   options.forEach((o) => o.classList.remove("option-active"));
   activeOption.classList.add("option-active");
-
-  // const syncAriaSelected = (active) => {
-  //   const ariaElements = container.querySelectorAll("[aria-selected]");
-  //   ariaElements.forEach((el) => el.setAttribute("aria-selected", "false"));
-  //   if (!active) return;
-  //   const activeAria = active.querySelectorAll("[aria-selected]");
-  //   activeAria.forEach((el) => el.setAttribute("aria-selected", "true"));
-  // };
-
-  // // Sync initially
-  // syncAriaSelected(activeOption);
 
   const moveSlider = (target) => {
     const option = target?.closest("[class*='option']");
@@ -64,8 +51,6 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
 
       activeOption = option;
       moveSlider(activeOption);
-      // // Keep aria-selected attributes in sync when active changes via click
-      // syncAriaSelected(activeOption);
     });
 
     // If option has an input, listen for changes too
@@ -80,8 +65,6 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
 
           activeOption = option;
           moveSlider(activeOption);
-          // // Keep aria-selected attributes in sync when active changes via input
-          // syncAriaSelected(activeOption);
         }
       });
     }

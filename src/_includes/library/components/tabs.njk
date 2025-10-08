@@ -1,5 +1,5 @@
 <!-- prettier-ignore -->
-{% set toggle_slider = tabs.toggle_slider | default('underline') %}
+{% set toggle_slider = tabs.toggle_slider or null %}
 {% set default_panel = tabs.default_panel or 1 %}
 {% set panels = tabs.panels or [] %}
 
@@ -43,7 +43,6 @@
       {% if not default_selected %}hidden{% endif %}
     >
       <h4>{{panel.title}}</h4>
-      <p>hi</p>
       <p>{{panel.desc}}</p>
       <!-- <img src="{{ panel.img }}" alt=""> -->
     </div>
