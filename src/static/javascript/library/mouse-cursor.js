@@ -84,9 +84,11 @@ if (cursor) {
   });
 
   cursorHide.forEach((el) => {
-    el.addEventListener("mousemove", () => cursor.classList.add("cursor-hide"));
+    el.addEventListener("mousemove", () =>
+      cursor.classList.add("cursor-hidden")
+    );
     el.addEventListener("mouseleave", () =>
-      cursor.classList.remove("cursor-hide")
+      cursor.classList.remove("cursor-hidden")
     );
   });
 

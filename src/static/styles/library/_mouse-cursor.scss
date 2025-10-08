@@ -50,8 +50,8 @@
     }
   }
 
-  // Hidden with '.cursor-hide'
-  &.cursor-hide {
+  // Hide the mouse cursor with any element using the util 'cursor-hide'
+  &.cursor-hidden {
     div.mouse-cursor__shape {
       opacity: 0;
       width: 0px; // scale makes the border thick
@@ -59,14 +59,14 @@
     }
   }
 
-  // Use '.cursor-icon' class to reveal icon
+  // If using the '.cursor-content' class and 'data-cursor-icon' attibute, the icon is shown here
   &.show-icon {
     .mouse-cursor__icon {
       opacity: 1;
     }
   }
 
-  // modifier class added via 'data-cursor-class' attribute (with trigger)
+  // Library modifier classes added via 'data-cursor-class' attribute
   &.cta-2 {
     .mouse-cursor__shape {
       --size: 32px;

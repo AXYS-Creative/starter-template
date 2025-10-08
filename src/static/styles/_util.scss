@@ -526,12 +526,27 @@
       grid-template-columns: repeat(8, 1fr);
       gap: var(--spacing);
 
+      @include mq-max(xl) {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      @include mq-max(lg) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @include mq-max(md) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       &__child {
         @include row-center;
         background: var(--color-surface--1);
         padding: var(--spacing);
         border-radius: var(--radius--sm);
-        aspect-ratio: 1;
+
+        @include mq-min(md) {
+          aspect-ratio: 1;
+        }
 
         // animation
         opacity: 0;
@@ -591,6 +606,7 @@
   .text-reveal-list {
     li {
       display: inline-flex;
+      flex-wrap: wrap;
       gap: 0.5ch;
     }
     code {
