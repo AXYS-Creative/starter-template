@@ -25,7 +25,29 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    transition: $ease-opacity, $ease-size;
+    transition: background $ease, $ease-opacity, $ease-size;
+  }
+
+  &__message {
+    @include absolute-center;
+    text-align: center;
+  }
+
+  &__icon {
+    --icon-size: 2.5ch; // defaults to 'size sm'
+
+    @include absolute-center;
+    @include hide-content;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    transition: $ease, $ease-opacity, $ease-size;
+
+    &--md {
+      --icon-size: 4ch;
+    }
+    &--lg {
+      --icon-size: 6ch;
+    }
   }
 
   // Hidden with '.cursor-hide'
@@ -34,6 +56,13 @@
       opacity: 0;
       width: 0px; // scale makes the border thick
       height: 0px;
+    }
+  }
+
+  // Use '.cursor-icon' class to reveal icon
+  &.show-icon {
+    .mouse-cursor__icon {
+      opacity: 1;
     }
   }
 
@@ -69,6 +98,37 @@
       scale: 1 1 !important;
       opacity: 1;
       transition: 1s ease, opacity 1s 0.12s, scale 0s;
+    }
+  }
+
+  &.cursor-content-1 {
+    .mouse-cursor__shape {
+      --size: 96px;
+
+      background: var(--color-brand--primary);
+      border-color: var(--color-brand--primary);
+      opacity: 1;
+    }
+  }
+
+  &.cursor-content-2 {
+    .mouse-cursor__shape {
+      --size: 64px;
+
+      opacity: 1;
+    }
+  }
+
+  &.cursor-content-3 {
+    .mouse-cursor__shape {
+      --size: 80px;
+
+      opacity: 1;
+      background: var(--color-font--primary);
+    }
+
+    .mouse-cursor__message {
+      color: var(--color-background);
     }
   }
 }

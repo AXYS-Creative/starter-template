@@ -1841,6 +1841,21 @@ code.codearea {
   .library-section .tilt-card-group .tilt-card--3d .cta-group {
     transition: 0.3s ease !important;
   }
+  .cursor-content-section__samples {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 24px;
+  }
+  .cursor-content-section .cursor-content-block-sample {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius);
+    width: 20%;
+    aspect-ratio: 1;
+    background-color: var(--color-surface--1);
+  }
   .carousel-swiper-section,
   .text-fill-section {
     width: 100%;
@@ -7403,12 +7418,43 @@ code.codearea {
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  transition: opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
+  transition: background 0.24s ease, opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
+}
+.mouse-cursor__message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  text-align: center;
+}
+.mouse-cursor__icon {
+  --icon-size: 2.5ch;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  transition: 0.24s ease, opacity 0.24s ease 0s, width 0.5s ease, height 0.5s ease;
+}
+.mouse-cursor__icon--md {
+  --icon-size: 4ch;
+}
+.mouse-cursor__icon--lg {
+  --icon-size: 6ch;
 }
 .mouse-cursor.cursor-hide div.mouse-cursor__shape {
   opacity: 0;
   width: 0px;
   height: 0px;
+}
+.mouse-cursor.show-icon .mouse-cursor__icon {
+  opacity: 1;
 }
 .mouse-cursor.cta-2 .mouse-cursor__shape {
   --size: 32px;
@@ -7429,6 +7475,24 @@ code.codearea {
   scale: 1 1 !important;
   opacity: 1;
   transition: 1s ease, opacity 1s 0.12s, scale 0s;
+}
+.mouse-cursor.cursor-content-1 .mouse-cursor__shape {
+  --size: 96px;
+  background: var(--color-brand--primary);
+  border-color: var(--color-brand--primary);
+  opacity: 1;
+}
+.mouse-cursor.cursor-content-2 .mouse-cursor__shape {
+  --size: 64px;
+  opacity: 1;
+}
+.mouse-cursor.cursor-content-3 .mouse-cursor__shape {
+  --size: 80px;
+  opacity: 1;
+  background: var(--color-font--primary);
+}
+.mouse-cursor.cursor-content-3 .mouse-cursor__message {
+  color: var(--color-background);
 }
 
 body:has(.tooltip-util) .mouse-cursor {

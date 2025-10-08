@@ -13,11 +13,11 @@ path: library/utils
 
 <section class="cursor-target-section library-section">
   <h2>[ Cursor Target - Util ]</h2>
-  <strong>Requires custom mouse cursor*</strong>
+  <strong>* Requires mouse-cursor.njk *</strong>
   <p class="max-width-text">
     If using a mouse cursor, you can set up a <strong>trigger</strong> and
-    <strong>target</strong> to spice things up! The class
-    <code>cursor-trigger</code> goes on the trigger element along with the
+    <strong>target</strong> to detach the cursor from following the mouse. The
+    class <code>cursor-trigger</code> goes on the trigger element along with the
     required data attribute <code>data-cursor-target</code>.
   </p>
 
@@ -37,7 +37,7 @@ path: library/utils
     data-cursor-target="cursor-target__dot"
     data-cursor-class="dot-hover-active"
   >
-    Hover me — move cursor to dot
+    <strong>Hover me</strong> — move cursor to dot
   </p>
   <div class="cursor-target__dot">•</div>
 
@@ -47,7 +47,7 @@ path: library/utils
     data-cursor-class="star-icon"
     data-cursor-event="mousemove"
   >
-    Hover me — move cursor to star (inline with magnet effect)
+    <strong>Hover me</strong> — move cursor to star (inline with magnet effect)
     <span
       class="cursor-target__icon magnet magnet-strong"
       style="
@@ -68,27 +68,100 @@ path: library/utils
     data-cursor-target="cursor-target__dot"
     data-cursor-class="dot-hover-active"
   >
-    Hover me — move cursor to... the first dot? See note below for fix.
+    <strong>Hover me</strong> — move cursor to... the first dot? See note below
+    for fix.
   </p>
   <div class="cursor-target__dot">• &nbsp;&nbsp;(won't target)</div>
 
-  <p>
-    Note: If you have multiple elements (or components) with shared
-    trigger/target names, but want each instance to be unique from one another
-    you'll need to wrap each instance in a container with the class
+  <p class="max-width-text">
+    <strong>Note:</strong>
+    If you have multiple elements (or components) with shared trigger/target
+    names, you’ll likely want each instance to be isolated from the next. The
+    solution is to wrap each instance in a container with the class
     <code>cursor-pair</code> Otherwise only the first instance will work
     properly.
   </p>
   <p class="cursor-pair" data-cursor-target="cursor-target__square">
-    <span class="cursor-trigger">Hover me — move cursor to the square</span>
+    <span class="cursor-trigger">
+      <strong>Hover me</strong> — move cursor to the square
+    </span>
     &nbsp;&nbsp;
     <span class="cursor-target__square">◼︎</span>
   </p>
   <p class="cursor-pair" data-cursor-target="cursor-target__square">
-    <span class="cursor-trigger">Hover me — move cursor to the square</span>
+    <span class="cursor-trigger">
+      <strong>Hover me</strong> — move cursor to the square
+    </span>
     &nbsp;&nbsp;
     <span class="cursor-target__square">◼︎</span>
   </p>
+</section>
+
+<section class="cursor-content-section library-section">
+  <h2>[ Cursor Content - Util ]</h2>
+  <strong>* Requires mouse-cursor.njk *</strong>
+  <p class="max-width-text">
+    If using a mouse cursor, you can add content via the
+    <code>cursor-content</code> class and supported attributes. Content inclues
+    either a simple message or configurable svg-icon. You can also customize the
+    cursor's general styles via a custom class with the
+    <code>data-cursor-class</code> attribute.
+  </p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-cursor-message</code> A string, the message you want displayed
+      within the cursor. Default to an empty string.
+    </li>
+    <li>
+      <code>data-cursor-icon</code> A string, the path to the image file you
+      would like to use. A default can be set in
+      <code>mouse-cursor.njk</code> and you just leave the
+      <code>data-cursor-icon</code> attribute blank.
+    </li>
+    <li>
+      <code>data-cursor-class</code> A string that adds a custom modifier class
+      to the mouse cursor.
+    </li>
+  </ul>
+
+  <br /><br />
+  <p class="max-width-text">
+    The most basic sample using a sentence.
+    <span class="cursor-content text-underline" data-cursor-icon>
+      Hover here to see the icon.
+    </span>
+    This is the simplest form to include an icon with the mouse cursor. Just add
+    the class <code>cursor-content</code> and use the default icon via
+    <code>data-cursor-icon</code> which is provided in
+    <strong>mouse-cursor.njk</strong>.
+  </p>
+  <div class="cursor-content-section__samples">
+    <div
+      class="cursor-content cursor-content-block-sample"
+      data-cursor-icon="/static/img/library/icon-google-arrow-tr.svg"
+      data-cursor-icon-size="md"
+      data-cursor-class="cursor-content-1"
+    >
+      <p>"View project"</p>
+    </div>
+
+    <div
+      class="cursor-content cursor-content-block-sample"
+      data-cursor-icon="/static/img/library/icon-google-play.svg"
+      data-cursor-class="cursor-content-2"
+    >
+      <p>"Play Video"</p>
+    </div>
+
+    <div
+      class="cursor-content cursor-content-block-sample"
+      data-cursor-message="Visit site"
+      data-cursor-class="cursor-content-3"
+    >
+      <p>Hover me</p>
+    </div>
+  </div>
 </section>
 
 <section class="glitch-text-section library-section">

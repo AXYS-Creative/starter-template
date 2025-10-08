@@ -442,6 +442,23 @@
     }
   }
 
+  .cursor-content-section {
+    &__samples {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      gap: 24px;
+    }
+
+    .cursor-content-block-sample {
+      @include row-center;
+      border-radius: var(--radius);
+      width: 20%;
+      aspect-ratio: 1;
+      background-color: var(--color-surface--1);
+    }
+  }
+
   .carousel-swiper-section,
   .text-fill-section {
     @include width-clamp;

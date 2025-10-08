@@ -2,7 +2,9 @@ import { mqMouse, mqMaxMd, isSafari } from "../util.js";
 import { cubicBezier } from "../global/animations.js";
 
 const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
-const hideCursor = document.querySelectorAll(".cursor-hide");
+
+const cursorHide = document.querySelectorAll(".cursor-hide"),
+  cursorContent = document.querySelectorAll(".cursor-content");
 
 // commenting this line for tooltip util
 // if (cursor && mqMouse.matches) {
@@ -81,15 +83,17 @@ if (cursor) {
     moveCursorTo(e.clientX, e.clientY);
   });
 
-  hideCursor.forEach((el) => {
+  cursorHide.forEach((el) => {
     el.addEventListener("mousemove", () => cursor.classList.add("cursor-hide"));
     el.addEventListener("mouseleave", () =>
       cursor.classList.remove("cursor-hide")
     );
   });
 
+  //
   // Cursor target hover snap
-  (() => {
+  //
+  {
     const triggers = document.querySelectorAll("[data-cursor-target]");
 
     triggers.forEach((el) => {
@@ -119,7 +123,85 @@ if (cursor) {
         if (activeClass) cursor.classList.remove(activeClass);
       });
     });
-  })();
+  }
+
+  //
+  // Cursor Content (message or icon)
+  //
+  {
+    const messageEl = cursor.querySelector(".mouse-cursor__message");
+    const iconEl = cursor.querySelector(".mouse-cursor__icon");
+
+    // Extract defaults once
+    const defaultIconPath = iconEl.style.maskImage
+      .replace(/url\(['"]?(.*?)['"]?\)/, "$1")
+      .trim();
+    const defaultIconColor = "var(--color-font--primary)";
+    const defaultIconSize = "sm"; // sm | md | lg
+
+    let hideTimeout = null; // Track the timeout
+
+    const applySize = (size) => {
+      iconEl.classList.remove(
+        "mouse-cursor__icon--sm",
+        "mouse-cursor__icon--md",
+        "mouse-cursor__icon--lg"
+      );
+      iconEl.classList.add(`mouse-cursor__icon--${size}`);
+    };
+
+    // Elements that control the cursor (can display message or icon)
+    cursorContent.forEach((el) => {
+      const messageText = el.dataset.cursorMessage || "";
+      const iconPath = el.dataset.cursorIcon || "";
+      const iconColor = el.dataset.cursorIconColor || defaultIconColor;
+      const iconSize = el.dataset.cursorIconSize || defaultIconSize;
+      const customClass = el.dataset.cursorClass || "";
+
+      const hasMessage = Boolean(messageText);
+      const hasIcon = iconPath !== "" || el.hasAttribute("data-cursor-icon");
+
+      const showCursor = () => {
+        // Clear any pending hide timeout
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+          hideTimeout = null;
+        }
+
+        // Determine mode: message or icon
+        if (hasMessage) {
+          messageEl.textContent = messageText;
+          cursor.classList.add("show-message");
+        } else if (hasIcon) {
+          iconEl.style.maskImage = `url('${iconPath || defaultIconPath}')`;
+          iconEl.style.backgroundColor = iconColor;
+          applySize(iconSize);
+          cursor.classList.add("show-icon");
+        }
+
+        if (customClass) cursor.classList.add(customClass);
+      };
+
+      const hideCursor = () => {
+        messageEl.textContent = "";
+        cursor.classList.remove("show-message", "show-icon");
+
+        if (customClass) cursor.classList.remove(customClass);
+
+        iconEl.style.backgroundColor = defaultIconColor;
+        applySize(defaultIconSize);
+
+        // Store the timeout reference
+        hideTimeout = setTimeout(() => {
+          iconEl.style.maskImage = `url('${defaultIconPath}')`;
+          hideTimeout = null;
+        }, 200);
+      };
+
+      el.addEventListener("mouseleave", hideCursor);
+      el.addEventListener("mouseenter", showCursor); // Changed from mousemove
+    });
+  }
 
   //
   // Tooltip
