@@ -48,8 +48,10 @@ title: Style Guide
     <!-- prettier-ignore -->
     {% set tooltip = ({
       message: 'CMS friendly!',
-      size: 'sm',
-      place: 'right'
+      size: 'xs',
+      place: 'right',
+      place_sm: 'bottom-left',
+      include_point: true
     }) %}
     {% include "./_includes/library/components/tooltip.njk" %}
     <br /><br />
@@ -83,9 +85,9 @@ title: Style Guide
       Buttons <code>btn.njk</code> that keep styles consistent and easy to use.
       These handle both button and link behavior and come with the following
       types:
-      <code style="display: inline-block; margin-block: 12px 24px"
-        >solid | outline | text | icon-end | underline</code
-      >
+      <code style="display: inline-block; margin-block: 12px 24px">
+        solid | outline | text | icon-end | underline
+      </code>
     </p>
   </header>
 
@@ -292,9 +294,7 @@ title: Style Guide
   </p>
   <br /><br /><br />
   <p style="display: flex; align-items: center; gap: 0.5ch">
-    <a href="" class="glitch-text glitch-hover tab-element-page">
-      Glitch Button
-    </a>
+    <a href="" class="glitch-hover tab-element-page"> Glitch Button </a>
     <span>Class: <code>glitch-hover</code></span>
   </p>
   <br />

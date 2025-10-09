@@ -2,7 +2,7 @@
 // Media Queries
 //
 
-// Define base max breakpoints
+// Define base 'max' breakpoints ('min' are calculated based on these as well)
 $max-breakpoints: (
   xs: 360px,
   sm: 480px,
@@ -127,7 +127,7 @@ $min-breakpoints: ();
   }
 }
 @mixin h2 {
-  @include font-styles--heading(48px);
+  @include font-styles--heading($sz: 48px);
   color: var(--color-brand--primary);
 
   @include mq-max(md) {
@@ -135,21 +135,21 @@ $min-breakpoints: ();
   }
 }
 @mixin h3 {
-  @include font-styles--heading(40px);
+  @include font-styles--heading($sz: 40px);
 
   @include mq-max(md) {
     font-size: 28px;
   }
 }
 @mixin h4 {
-  @include font-styles--heading(32px);
+  @include font-styles--heading($sz: 32px);
 
   @include mq-max(md) {
     font-size: 24px;
   }
 }
 @mixin h5 {
-  @include font-styles--heading(24px);
+  @include font-styles--heading($sz: 24px);
   font-weight: 600;
 
   @include mq-max(md) {
@@ -157,7 +157,7 @@ $min-breakpoints: ();
   }
 }
 @mixin h6 {
-  @include font-styles--heading(20px);
+  @include font-styles--heading($sz: 20px);
   font-weight: 600;
 
   @include mq-max(md) {
@@ -206,17 +206,9 @@ $min-breakpoints: ();
   font-weight: inherit;
 }
 
-@mixin sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+//
+// Btn
+//
 
 @mixin btn-type--solid {
   border: var(--border-width--btn) solid var(--color-btn-border);
@@ -382,7 +374,7 @@ $min-breakpoints: ();
   margin-inline: 0;
 }
 
-@mixin ultra-wide($bg-color: $test-bg, $z-index: -1) {
+@mixin width-ultra-wide($bg-color: $test-bg, $z-index: -1) {
   &::before {
     content: "";
     isolation: isolate;
@@ -429,7 +421,7 @@ $min-breakpoints: ();
 @mixin left-spacing {
   left: var(--body-padding);
 
-  // This media query should be tied with the $content-width variable, using xxxl would stay at 1920px despite changing to 1512px or whatever
+  // Tying this media query to the $content-width variable, for better responsive compatability.
   @media (min-width: #{$content-width + 1}) {
     left: calc(50% - calc($content-width / 2) + var(--body-padding));
   }
@@ -438,6 +430,7 @@ $min-breakpoints: ();
 @mixin right-spacing {
   right: var(--body-padding);
 
+  // Tying this media query to the $content-width variable, for better responsive compatability.
   @media (min-width: #{$content-width + 1}) {
     right: calc(50% - calc($content-width / 2 - var(--body-padding)));
   }
@@ -499,7 +492,21 @@ $min-breakpoints: ();
   translate: -50% -50%;
 }
 
+//
 // Other
+//
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 @mixin hide-content {
   opacity: 0;
@@ -533,6 +540,50 @@ $min-breakpoints: ();
 //
 // Library // DELETE ME
 //
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@mixin outline-trace($width: 1px, $color: var(--color-brand--primary)) {
+  --animation-duration: 2s;
+
+  isolation: isolate;
+  position: relative;
+  border: none;
+  overflow: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: $color; /* Solid color background */
+    mask: conic-gradient(
+      from var(--angle),
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 25%,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    mask-composite: source-in;
+    z-index: -1;
+    box-shadow: inset 0 0 0 $width $color;
+    background: transparent;
+    transition: 0.3s ease;
+    animation: outline-trace var(--animation-duration) linear infinite;
+  }
+  @keyframes outline-trace {
+    to {
+      --angle: 360deg;
+    }
+  }
+}
 
 @mixin wide-btn {
   width: 100%;

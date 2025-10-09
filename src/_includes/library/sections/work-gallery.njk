@@ -1,0 +1,14 @@
+<!-- prettier-ignore -->
+{% set title = work_gallery.title | default('No title') %}
+{% set desc = work_gallery.desc | default('No desc') %}
+
+<section class="work-gallery">
+  <div class="work-gallery__inner">
+    <header class="work-gallery__header">
+      <h2 class="work-gallery__header-title">{{ title }}</h2>
+      <p class="work-gallery__header-desc">{{ desc }}</p>
+    </header>
+
+    <div class="work-gallery__layout"></div>
+  </div>
+</section>

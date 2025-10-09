@@ -110,14 +110,14 @@ path: library/utils
 
   <ul class="classic-list">
     <li>
-      <code>data-cursor-message</code> A string, the message you want displayed
-      within the cursor. Default to an empty string.
+      <code>data-cursor-message</code> An optional string, the message you want
+      displayed within the cursor. Default to an empty string.
     </li>
     <li>
-      <code>data-cursor-icon</code> A string, the path to the image file you
-      would like to use. A default can be set in
-      <code>mouse-cursor.njk</code> and you just leave the
-      <code>data-cursor-icon</code> attribute blank.
+      <code>data-cursor-icon</code> A string,
+      <strong>required if using an icon</strong>. Either leave blank (resorts to
+      fallback set in <code>mouse-cursor.njk</code>) or provide the path to the
+      image (svg) file you would like to use.
     </li>
     <li>
       <code>data-cursor-class</code> A string that adds a custom modifier class
@@ -126,18 +126,11 @@ path: library/utils
   </ul>
 
   <br /><br />
-  <p class="max-width-text">
-    The most basic sample using a sentence.
-    <span
-      class="cursor-content cursor-content-section__sample text-underline"
-      data-cursor-icon
-    >
-      Hover here to see the icon.
-    </span>
-    This is the simplest form to include an icon with the mouse cursor. Just add
-    the class <code>cursor-content</code> and use the default icon via
-    <code>data-cursor-icon</code> which is provided in
-    <strong>mouse-cursor.njk</strong>.
+  <p
+    class="cursor-content cursor-content-section__sample text-underline"
+    data-cursor-icon
+  >
+    Basic example on text.
   </p>
   <div class="cursor-content-section__samples">
     <div
@@ -165,6 +158,17 @@ path: library/utils
       <p>Hover me</p>
     </div>
   </div>
+</section>
+
+<section class="cursor-follow-section library-section">
+  <h2>[ Cursor Follow - Util ]</h2>
+  <strong>Coming soon!</strong>
+  <strong>* Requires mouse-cursor.njk *</strong>
+  <p class="max-width-text">
+    If using <code>mouse-cursor.njk</code> any specified element(s) on the page
+    can follow the mouse cursor. Most cases are triggered by hovering a specific
+    area.
+  </p>
 </section>
 
 <section class="glitch-text-section library-section">
@@ -483,6 +487,17 @@ path: library/utils
     {% endfor %}
     <div></div>
   </div>
+</section>
+
+<section class="outline-trace-section library-section">
+  <h2>[ Outline Trace - Util ]</h2>
+  <p>
+    Add an outline to any element, div or button, using the class
+    <code>outline-trace</code>. This helps to highlight important content.
+  </p>
+
+  <div class="outline-trace outline-trace-section__sample-1">Sample 1</div>
+  <div class="outline-trace-section__sample-2">Sample 2 Mixin</div>
 </section>
 
 <!-- Text animations -->

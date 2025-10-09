@@ -444,7 +444,12 @@
 
   .cursor-content-section {
     &__sample {
-      cursor: none;
+      transition: $ease;
+
+      &:hover {
+        cursor: none;
+        opacity: 0.5;
+      }
     }
 
     &__samples {
@@ -560,6 +565,31 @@
         }
       }
     }
+  }
+
+  .outline-trace-section {
+    &__sample-1 {
+      @include row-center;
+      width: 200px;
+      height: 320px;
+      border-radius: var(--radius--sm);
+    }
+    &__sample-2 {
+      @include outline-trace(
+        $width: 3px,
+        $color: var(--color-brand--secondary)
+      );
+      @include row-center;
+      text-align: center;
+      width: 128px;
+      height: 128px;
+      padding: 12px;
+      border-radius: 50%;
+      background: var(--color-surface--1);
+    }
+  }
+  .outline-trace {
+    @include outline-trace;
   }
 
   .text-fade {
