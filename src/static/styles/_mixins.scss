@@ -546,24 +546,22 @@ $min-breakpoints: ();
   initial-value: 0deg;
   inherits: false;
 }
-@mixin outline-trace($width: 1px, $color: var(--color-brand--primary)) {
+@mixin outline-trace {
   --animation-duration: 2s;
 
   isolation: isolate;
   position: relative;
   border: none;
-  overflow: hidden;
+  // overflow: hidden;
   transition: color 0.3s ease, background-color 0.3s ease;
 
   &::before {
+    @include absolute-center;
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    background: $color; /* Solid color background */
+    background: var(--trace-color); /* Solid color background */
     mask: conic-gradient(
       from var(--angle),
       rgba(0, 0, 0, 0) 0%,
@@ -573,10 +571,10 @@ $min-breakpoints: ();
     );
     mask-composite: source-in;
     z-index: -1;
-    box-shadow: inset 0 0 0 $width $color;
+    box-shadow: inset 0 0 0 var(--trace-width) var(--trace-color);
     background: transparent;
     transition: 0.3s ease;
-    animation: outline-trace var(--animation-duration) linear infinite;
+    // animation: outline-trace var(--animation-duration) linear infinite;
   }
   @keyframes outline-trace {
     to {

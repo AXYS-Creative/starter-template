@@ -156,6 +156,7 @@ if (cursor) {
     cursorContent.forEach((el) => {
       const messageText = el.dataset.cursorMessage || "";
       const iconPath = el.dataset.cursorIcon || "";
+      const iconPathSwap = el.dataset.cursorIconSwap || "";
       const iconColor = el.dataset.cursorIconColor || defaultIconColor;
       const iconSize = el.dataset.cursorIconSize || defaultIconSize;
       const customClass = el.dataset.cursorClass || "";
@@ -163,14 +164,15 @@ if (cursor) {
       const hasMessage = Boolean(messageText);
       const hasIcon = iconPath !== "" || el.hasAttribute("data-cursor-icon");
 
+      // Track state per element
+      let isSwapped = false;
+
       const showCursor = () => {
-        // Clear any pending hide timeout
         if (hideTimeout) {
           clearTimeout(hideTimeout);
           hideTimeout = null;
         }
 
-        // Determine mode: message or icon
         if (hasMessage) {
           messageEl.textContent = messageText;
           cursor.classList.add("show-message");
@@ -193,15 +195,23 @@ if (cursor) {
         iconEl.style.backgroundColor = defaultIconColor;
         applySize(defaultIconSize);
 
-        // Store the timeout reference
         hideTimeout = setTimeout(() => {
           iconEl.style.maskImage = `url('${defaultIconPath}')`;
           hideTimeout = null;
         }, 200);
       };
 
+      // Experimental icon swap
+      const swapIcon = () => {
+        if (!iconPathSwap) return; // skip if no swap defined
+        isSwapped = !isSwapped;
+        const newPath = isSwapped ? iconPathSwap : iconPath || defaultIconPath;
+        iconEl.style.maskImage = `url('${newPath}')`;
+      };
+
+      el.addEventListener("mouseenter", showCursor);
       el.addEventListener("mouseleave", hideCursor);
-      el.addEventListener("mouseenter", showCursor); // Changed from mousemove
+      el.addEventListener("click", swapIcon);
     });
   }
 

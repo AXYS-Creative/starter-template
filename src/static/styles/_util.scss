@@ -568,28 +568,64 @@
   }
 
   .outline-trace-section {
-    &__sample-1 {
-      @include row-center;
-      width: 200px;
-      height: 320px;
-      border-radius: var(--radius--sm);
-    }
-    &__sample-2 {
-      @include outline-trace(
-        $width: 3px,
-        $color: var(--color-brand--secondary)
-      );
-      @include row-center;
-      text-align: center;
-      width: 128px;
-      height: 128px;
-      padding: 12px;
-      border-radius: 50%;
-      background: var(--color-surface--1);
+    .outline-trace-samples {
+      @include row-start;
+      gap: var(--spacing--lg);
+
+      &__sample-1 {
+        @include row-center;
+        width: 200px;
+        height: 320px;
+        border-radius: var(--radius--sm);
+      }
+
+      &__sample-2 {
+        --trace-width: 2px;
+        --trace-color: var(--color-brand--secondary);
+
+        @include row-center;
+        text-align: center;
+        width: 128px;
+        height: 128px;
+        padding: 12px;
+        border-radius: 50%;
+        background: var(--color-surface--1);
+      }
     }
   }
   .outline-trace {
+    --trace-width: 1px; // Defaults using css vars (figured it would be better/simpler than calling the mixin each time with different arguments.
+    --trace-color: var(--color-brand--primary);
+
     @include outline-trace;
+
+    &[data-outline-trace-animate] {
+      &::before {
+        animation: outline-trace var(--animation-duration) linear infinite;
+      }
+    }
+
+    &[data-outline-trace-hover] {
+      --animation-duration: 1s;
+
+      isolation: auto;
+
+      &::before {
+        animation: outline-trace var(--animation-duration) linear infinite;
+        transition: 1s ease 0.25s;
+        z-index: -1;
+      }
+
+      @include desktop-hover {
+        --trace-width-doubled: calc(var(--trace-width) * 2);
+
+        &::before {
+          width: calc(100% + var(--trace-width-doubled));
+          height: calc(100% + var(--trace-width-doubled));
+          transition: 1s ease;
+        }
+      }
+    }
   }
 
   .text-fade {

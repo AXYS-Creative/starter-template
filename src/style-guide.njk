@@ -401,13 +401,24 @@ title: Style Guide
   <div class="cursor-hide">
     <br /><br />
     <strong class="max-width-text">
-      Extra Note about util vs data-toggle-slider attribute to change the style.
+      Extra Note about style/type changing!
     </strong>
+    <p>Toggle-slider styles can be changed in two ways:</p>
+    <li>
+      Either with a modifier class:
+      <code>class="toggle-slider toggle-slider--solid"</code>
+    </li>
+    <li>
+      Or using a data tag:
+      <code>class="toggle-slider" data-toggle-slider='solid'"</code>
+    </li>
     <br />
     <p>
-      Use extra utility class to modify slider styling when working directly on
-      a slider vs the tabs component (parent) for example. which has the
-      controls rendered via js.
+      When using the utility class, continue working with the modifier util to
+      change the toggle-slider style. When working with a component, such as the
+      tabs component or other util class such as tabs, we’ll use the attribute
+      <code>data-toggle-slider="underline"</code> since the parent renders
+      controls with js (parent) for example.
     </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--solid">
@@ -423,8 +434,9 @@ title: Style Guide
   <br /><br />
   <div class="cursor-hide">
     <p>
-      The toggle slider comes with a second variation out of the box. You can
-      use this via the <code></code>
+      The toggle slider comes with a second variation out of the box. Use the
+      modifier class <code>toggle-slider--underline</code> to change to this
+      style.
     </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--underline">
