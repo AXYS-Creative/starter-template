@@ -135,6 +135,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-border: #{$grey-light};
   --color-border-gradient: rgba(0, 0, 0, 0.5); // Library
+  --color-glass-frost: rgba(255, 255, 255, 0.25); // Library
 }
 
 @mixin dark-theme {
@@ -149,6 +150,7 @@ $test-bg: rgba(navy, 0.75);
 
   --color-border: #{$grey-dark};
   --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
+  --color-glass-frost: rgba(0, 0, 0, 0.25); // Library
 }
 
 html[data-theme="dark"] {

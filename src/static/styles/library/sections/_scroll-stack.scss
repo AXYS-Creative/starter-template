@@ -95,7 +95,7 @@
     position: absolute;
     // See component modifiers for placement
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius--sm);
     height: max($panel-height, 400px);
     width: calc(100% - var(--body-padding-double));
     padding: var(--body-padding);

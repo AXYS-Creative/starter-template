@@ -62,116 +62,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         }
       }
 
-      // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
-      {
-        // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
-        {
-          const gsapElems = document.querySelectorAll(".gsap-animate");
-
-          gsapElems.forEach((gsapElem) => {
-            const animOnce = gsapElem.dataset.gsapOnce === "true";
-            const animTrigger = gsapElem.dataset.gsapTrigger || gsapElem;
-            const animStart = gsapElem.dataset.gsapStart || "top 98%";
-            const animEnd = gsapElem.dataset.gsapEnd || "bottom 2%";
-            const animMarkers = gsapElem.dataset.gsapMarkers === "true";
-
-            if (animOnce) {
-              ScrollTrigger.create({
-                trigger: animTrigger,
-                start: animStart,
-                end: animEnd,
-                once: true,
-                onEnter: () => {
-                  gsapElem.classList.add("gsap-animated");
-                },
-                markers: animMarkers,
-              });
-            } else {
-              // Repeating animation
-              ScrollTrigger.create({
-                trigger: animTrigger,
-                start: animStart,
-                end: animEnd,
-                onEnter: () => gsapElem.classList.add("gsap-animated"),
-                onLeave: () => gsapElem.classList.remove("gsap-animated"),
-                onEnterBack: () => gsapElem.classList.add("gsap-animated"),
-                onLeaveBack: () => gsapElem.classList.remove("gsap-animated"),
-                markers: animMarkers,
-              });
-            }
-          });
-        }
-
-        // GSAP Stagger util
-        {
-          const staggerGroups = document.querySelectorAll(".gsap-stagger");
-
-          staggerGroups.forEach((group) => {
-            const children = group.querySelectorAll(".gsap-stagger-child");
-            if (!children.length) return;
-
-            // Use css to control duration and initial delay (not stagger delay)
-            const staggerDelay = parseFloat(group.dataset.staggerDelay) || 0.1;
-            const staggerStart = group.dataset.staggerStart || "top 96%";
-            const staggerOnce = group.dataset.staggerOnce === "true";
-            const staggerMarkers = group.dataset.markers === "true";
-
-            const animateIn = () => {
-              children.forEach((child, i) => {
-                setTimeout(() => {
-                  child.classList.add("gsap-stagger-animate");
-                }, i * staggerDelay * 1000);
-              });
-            };
-
-            const animateOut = () => {
-              children.forEach((child) => {
-                child.classList.remove("gsap-stagger-animate");
-              });
-            };
-
-            ScrollTrigger.create({
-              trigger: group,
-              start: staggerStart,
-              markers: staggerMarkers,
-              onEnter: animateIn,
-              // Uncomment these if you want 'animation on leave/enter back'
-              // onEnterBack: () => {
-              //   if (!staggerOnce) animateIn();
-              // },
-              // onLeave: () => {
-              //   if (!staggerOnce) animateOut();
-              // },
-              onLeaveBack: () => {
-                if (!staggerOnce) animateOut();
-              },
-            });
-          });
-        }
-
-        // GSAP SplitText (characters & words) (Yo is this used?)
-        {
-          const splitCharacters = document.querySelectorAll(".split-chars");
-          const splitWords = document.querySelectorAll(".split-words");
-
-          splitCharacters.forEach((el) => {
-            new SplitText(el, {
-              type: "chars",
-              charsClass: "split-chars__char++",
-              tag: "span",
-            });
-          });
-
-          splitWords.forEach((el) => {
-            new SplitText(el, {
-              type: "words",
-              wordsClass: "split-words__word++",
-              tag: "span",
-            });
-          });
-        }
-      }
-
       // Library - Lift any desired code blocks out, then delete from production
       {
         // Page specific scrollTrigger fix (delay refresh)
@@ -505,7 +395,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   text: originalText,
                   chars: "upperAndLowerCase",
                 },
-                duration: 1,
+                duration: 0.75,
                 revealDelay: 0.125,
               });
             };
@@ -1493,6 +1383,116 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               });
             });
           }
+        }
+      }
+
+      // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
+      {
+        // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
+        {
+          const gsapElems = document.querySelectorAll(".gsap-animate");
+
+          gsapElems.forEach((gsapElem) => {
+            const animOnce = gsapElem.dataset.gsapOnce === "true";
+            const animTrigger = gsapElem.dataset.gsapTrigger || gsapElem;
+            const animStart = gsapElem.dataset.gsapStart || "top 98%";
+            const animEnd = gsapElem.dataset.gsapEnd || "bottom 2%";
+            const animMarkers = gsapElem.dataset.gsapMarkers === "true";
+
+            if (animOnce) {
+              ScrollTrigger.create({
+                trigger: animTrigger,
+                start: animStart,
+                end: animEnd,
+                once: true,
+                onEnter: () => {
+                  gsapElem.classList.add("gsap-animated");
+                },
+                markers: animMarkers,
+              });
+            } else {
+              // Repeating animation
+              ScrollTrigger.create({
+                trigger: animTrigger,
+                start: animStart,
+                end: animEnd,
+                onEnter: () => gsapElem.classList.add("gsap-animated"),
+                onLeave: () => gsapElem.classList.remove("gsap-animated"),
+                onEnterBack: () => gsapElem.classList.add("gsap-animated"),
+                onLeaveBack: () => gsapElem.classList.remove("gsap-animated"),
+                markers: animMarkers,
+              });
+            }
+          });
+        }
+
+        // GSAP Stagger util
+        {
+          const staggerGroups = document.querySelectorAll(".gsap-stagger");
+
+          staggerGroups.forEach((group) => {
+            const children = group.querySelectorAll(".gsap-stagger-child");
+            if (!children.length) return;
+
+            // Use css to control duration and initial delay (not stagger delay)
+            const staggerDelay = parseFloat(group.dataset.staggerDelay) || 0.1;
+            const staggerStart = group.dataset.staggerStart || "top 96%";
+            const staggerOnce = group.dataset.staggerOnce === "true";
+            const staggerMarkers = group.dataset.markers === "true";
+
+            const animateIn = () => {
+              children.forEach((child, i) => {
+                setTimeout(() => {
+                  child.classList.add("gsap-stagger-animate");
+                }, i * staggerDelay * 1000);
+              });
+            };
+
+            const animateOut = () => {
+              children.forEach((child) => {
+                child.classList.remove("gsap-stagger-animate");
+              });
+            };
+
+            ScrollTrigger.create({
+              trigger: group,
+              start: staggerStart,
+              markers: staggerMarkers,
+              onEnter: animateIn,
+              // Uncomment these if you want 'animation on leave/enter back'
+              // onEnterBack: () => {
+              //   if (!staggerOnce) animateIn();
+              // },
+              // onLeave: () => {
+              //   if (!staggerOnce) animateOut();
+              // },
+              onLeaveBack: () => {
+                if (!staggerOnce) animateOut();
+              },
+            });
+          });
+        }
+
+        // GSAP SplitText (characters & words) (Yo is this used?)
+        {
+          const splitCharacters = document.querySelectorAll(".split-chars");
+          const splitWords = document.querySelectorAll(".split-words");
+
+          splitCharacters.forEach((el) => {
+            new SplitText(el, {
+              type: "chars",
+              charsClass: "split-chars__char++",
+              tag: "span",
+            });
+          });
+
+          splitWords.forEach((el) => {
+            new SplitText(el, {
+              type: "words",
+              wordsClass: "split-words__word++",
+              tag: "span",
+            });
+          });
         }
       }
     }

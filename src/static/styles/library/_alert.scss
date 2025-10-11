@@ -13,7 +13,7 @@
 
 .alert {
   --alert-spacing: var(--spacing--xs);
-  --icon-size: 24px;
+  --icon-size: 2ch;
 
   @include row-center;
   gap: var(--alert-spacing);

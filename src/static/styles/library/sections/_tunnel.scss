@@ -50,7 +50,7 @@
     // }
 
     .tunnel__message {
-      @include h2;
+      @include h1;
       @include text-fill;
       color: $white; // May not need theme swap
       text-transform: uppercase;

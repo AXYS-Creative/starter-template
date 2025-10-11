@@ -55,13 +55,27 @@
   &__slider {
     height: 100%;
     display: flex;
-    gap: 12px;
+    gap: var(--spacing);
   }
 
   &__figure {
     // Couldn't get aspect ratio to work
     @include column-start;
+    gap: var(--spacing--sm);
     width: min(25vw, 450px);
+
+    @include mq-motion-allow {
+      opacity: 0;
+      scale: 0.9;
+      filter: blur(4px);
+      transition: $ease-sudden;
+
+      &.gsap-stagger-animate {
+        opacity: 1;
+        scale: 1;
+        filter: blur(0);
+      }
+    }
 
     @include mq-max(xl) {
       width: 350px;
@@ -72,13 +86,24 @@
     }
 
     picture {
-      overflow: hidden;
       height: 100%;
+      border-radius: var(--radius--sm);
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
     }
 
-    img {
-      height: 100%;
-      width: auto;
+    &-caption {
+      @include row-center(start);
+      gap: var(--spacing--sm);
+      width: 100%;
+
+      h3 {
+        @include h5;
+      }
     }
 
     &--parallax {
@@ -88,8 +113,14 @@
     }
   }
 
-  &__message {
-    white-space: nowrap;
-    font-size: min(10vw, 128px);
+  &--message {
+    .scroll-horizontal__slider {
+      align-items: center;
+    }
+
+    .scroll-horizontal__message {
+      white-space: nowrap;
+      font-size: min(10vw, 128px);
+    }
   }
 }

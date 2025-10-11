@@ -5,29 +5,29 @@ desc: "This is a scroll horizontal component that can be used to alter the scrol
 
 # message: "Horizontal [%span.text-stroke%]scroll[%span%] message goes here!"
 imgs:
-  - title: Title 1 here
-    desc: Description 1 goes here
+  - title: Title 1
+    desc: Description 1
     src: /static/img/library/img-sample-1.jpg
-  - title: Title 2 here
-    desc: Description 2 goes here
+  - title: Title 2
+    desc: Description 2
     src: /static/img/library/img-sample-2.jpg
-  - title: Title 3 here
-    desc: Description 3 goes here
+  - title: Title 3
+    desc: Description 3
     src: /static/img/library/img-sample-3.jpg
-  - title: Title 4 here
-    desc: Description 4 goes here
+  - title: Title 4
+    desc: Description 4
     src: /static/img/library/img-sample-4.jpg
-  - title: Title 5 here
-    desc: Description 5 goes here
+  - title: Title 5
+    desc: Description 5
     src: /static/img/library/img-sample-5.jpg
-  - title: Title 6 here
-    desc: Description 6 goes here
+  - title: Title 6
+    desc: Description 6
     src: /static/img/library/img-sample-6.jpg
-  - title: Title 7 here
-    desc: Description 7 goes here
+  - title: Title 7
+    desc: Description 7
     src: /static/img/library/img-sample-7.jpg
-  - title: Title 8 here
-    desc: Description 8 goes here
+  - title: Title 8
+    desc: Description 8
     src: /static/img/library/img-sample-8.jpg
 
 img_parallax: true

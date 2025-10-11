@@ -1,46 +1,60 @@
 <!-- prettier-ignore -->
+{% set title = scroll_horizontal.title or '' %} 
+{% set desc = scroll_horizontal.desc or '' %}
+{% set message = scroll_horizontal.message or '' %}
+{% set imgs = scroll_horizontal.imgs or [] %}
+{% set img_parallax = scroll_horizontal.img_parallax or true %}
+
+{% set modifier_class = '' %} 
+{% if message %} 
+  {% set modifier_class = modifier_class + ' scroll-horizontal--message' %} 
+{% endif %}
+
 {% set img_parallax_class = '' %} 
-{% if hs_img_parallax %} 
+{% if img_parallax %} 
   {% set img_parallax_class = 'scroll-horizontal__figure--parallax' %} 
 {% endif %}
 
-<section class="scroll-horizontal">
+<section class="scroll-horizontal {{ modifier_class }}">
   <div class="scroll-horizontal__pin">
     <header class="scroll-horizontal__header">
-      {% if hs_title %}
-      <h2 class="scroll-horizontal__header-title">{{ hs_title }}</h2>
+      {% if title %}
+      <h2 class="scroll-horizontal__header-title">{{ title }}</h2>
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% if hs_desc %}
-      <p class="scroll-horizontal__header-desc">{{ hs_desc }}</p>
+      {% if desc %}
+      <p class="scroll-horizontal__header-desc">{{ desc }}</p>
       {% endif %}
     </header>
 
     <div class="scroll-horizontal__container">
-      <div class="scroll-horizontal__slider">
+      <div class="scroll-horizontal__slider gsap-stagger">
         <!-- prettier-ignore -->
-        {% if hs_imgs %} 
-          {% for item in hs_imgs %}
+        {% if imgs %} 
+          {% for img in imgs %}
         <figure
-          class="figure scroll-horizontal__figure {{ img_parallax_class }}"
+          class="figure scroll-horizontal__figure {{
+            img_parallax_class
+          }} gsap-stagger-child"
         >
-          <img src="{{ item.src }}" alt="" />
-          <figcaption>
+          <img src="{{ img.src }}" alt="" />
+          <figcaption class="scroll-horizontal__figure-caption">
             <h3>
-              {{ item.title }}
+              {{ img.title }}
             </h3>
-            <p>
-              {{ item.desc }}
-            </p>
+            •
+            <small>
+              {{ img.desc }}
+            </small>
           </figcaption>
         </figure>
         <!-- prettier-ignore -->
         {% endfor %} 
         {% endif %}
   
-        {% if hs_message %}
-        <h3 class="scroll-horizontal__message">{{ hs_message }}</h3>
+        {% if message %}
+        <h3 class="scroll-horizontal__message">{{ message }}</h3>
         {% endif %}
       </div>
     </div>
