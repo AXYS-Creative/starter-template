@@ -485,6 +485,13 @@ $min-breakpoints: ();
   align-items: flex-end;
 }
 
+@mixin column-stretch($justify-content: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify-content;
+  align-items: stretch;
+}
+
 @mixin absolute-center {
   position: absolute;
   top: 50%;

@@ -1,2 +1,29 @@
 title: Work Gallery
 desc: Optional description here
+grid_type: alternate # default | alternate
+
+items:
+  - title: Project 1
+    type: Development
+    img:
+      src: "/static/img/library/img-sample-1.jpg"
+      alt: ""
+    url: ""
+  - title: Project 2
+    type: Design + Development
+    img:
+      src: "/static/img/library/img-sample-2.jpg"
+      alt: ""
+    url: ""
+  - title: Project 3
+    type: Design + Development
+    img:
+      src: "/static/img/library/img-sample-3.jpg"
+      alt: ""
+    url: ""
+  - title: Project 4
+    type: Design + Development
+    img:
+      src: "/static/img/library/img-sample-4.jpg"
+      alt: ""
+    url: ""

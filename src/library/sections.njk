@@ -11,6 +11,10 @@ path: library/sections
  }) %}
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
+<!-- prettier-ignore -->
+{% set work_gallery = library.sections.work_gallery %}
+{% include '../_includes/library/sections/work-gallery.njk' %}
+
 <div class="section-width--thin">
   <h2>[ Carousel 'Hero' - Section ]</h2>
   <br />
@@ -80,10 +84,6 @@ path: library/sections
   }
 }) %}
 {% include '../_includes/library/sections/hero-simple.njk' %}
-
-<!-- prettier-ignore -->
-{% set work_gallery = library.sections.work_gallery %}
-{% include '../_includes/library/sections/work-gallery.njk' %}
 
 <!-- prettier-ignore -->
 {% set plan_selection = library.sections.plan_selection %}
