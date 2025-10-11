@@ -13,15 +13,27 @@
 
     <div class="work-gallery__layout work-gallery__layout--{{ grid_type }}">
       {% for item in items %}
-
-      <figure
-        class="work-gallery__figure cursor-content glitch-trigger glitch-pair"
-        data-cursor-icon="/static/img/library/icon-google-arrow-tr.svg"
-        data-cursor-icon-size="md"
-        data-cursor-class="cursor-content-1"
-        data-glitch-target="glitch-target__work-gallery-caption"
-      >
-        <img class="work-gallery__figure-img" src="{{ item.img.src }}" alt="" />
+      <figure class="work-gallery__figure glitch-pair">
+        <a
+          href="{{ item.url }}"
+          class="work-gallery__figure-link cursor-content glitch-trigger"
+          data-cursor-icon="/static/img/library/icon-google-arrow-tr.svg"
+          data-cursor-icon-size="md"
+          data-cursor-class="cursor-content-1"
+          data-glitch-target="glitch-target__work-gallery-caption"
+        >
+          <!-- prettier-ignore -->
+          {% set badge = ({
+            text: ''~item.year~'',
+            type: 'glass'
+          }) %}
+          {% include "../components/badge.njk" %}
+          <img
+            class="work-gallery__figure-img"
+            src="{{ item.img.src }}"
+            alt=""
+          />
+        </a>
         <figcaption class="work-gallery__figure-caption">
           <h3 class="work-gallery__figure-title">
             {{ item.title }}

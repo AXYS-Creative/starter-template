@@ -38,6 +38,7 @@ $cubic-ease-slow-finish: cubic-bezier(0.09, 0.9, 0.5, 1);
 
 $ease: 0.24s ease;
 $ease-c: 0.64s $cubic-ease;
+$ease-sudden: 0.64s $cubic-ease-sudden;
 
 // Library
 $magnet: transform 0.5s $cubic-ease;

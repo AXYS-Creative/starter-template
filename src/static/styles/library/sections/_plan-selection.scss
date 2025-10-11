@@ -269,7 +269,7 @@
     &.gsap-stagger-animate {
       opacity: 1;
       translate: 0 0;
-      transition: 0.75s $cubic-ease-sudden;
+      transition: $ease-sudden;
     }
   }
 }

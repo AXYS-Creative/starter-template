@@ -465,8 +465,27 @@ title: Style Guide
   <br />
   <!-- prettier-ignore -->
   {% set badge = ({
-    text: 'Sample Badge',
-    icon: '/static/img/library/icon-google-orbit.svg'
+    text: 'Basic Badge'
+  }) %}
+  {% include "./_includes/library/components/badge.njk" %}
+
+  <br /><br />
+
+  <!-- prettier-ignore -->
+  {% set badge = ({
+    text: 'Badge with icon',
+    icon: '/static/img/library/icon-google-orbit.svg',
+    type: 'outline'
+  }) %}
+  {% include "./_includes/library/components/badge.njk" %}
+
+  <br /><br />
+
+  <!-- prettier-ignore -->
+  {% set badge = ({
+    text: 'Badge with icon',
+    icon: '/static/img/library/icon-google-orbit.svg',
+    type: 'glass'
   }) %}
   {% include "./_includes/library/components/badge.njk" %}
 </section>
