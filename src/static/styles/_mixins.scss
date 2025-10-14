@@ -128,7 +128,7 @@ $min-breakpoints: ();
 }
 @mixin h2 {
   @include font-styles--heading($sz: 48px);
-  color: var(--color-brand--primary);
+  opacity: 0.75;
 
   @include mq-max(md) {
     font-size: 36px;
@@ -374,7 +374,7 @@ $min-breakpoints: ();
   margin-inline: 0;
 }
 
-@mixin width-ultra-wide($bg-color: $test-bg, $z-index: -1) {
+@mixin width-ultra-wide($z-index: -1) {
   &::before {
     content: "";
     isolation: isolate;
@@ -384,7 +384,7 @@ $min-breakpoints: ();
     translate: -50% 0;
     width: 100vw;
     height: 100%;
-    background-color: $bg-color;
+    background-color: var(--color-background);
     z-index: $z-index;
   }
 }

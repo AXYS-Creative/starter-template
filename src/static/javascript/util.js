@@ -162,17 +162,20 @@ const setViewportUnits = (() => {
   root.style.setProperty("--svh", `${innerHeight * 0.01}px`);
 })();
 
-// console.clear();
+console.clear();
 console.log("visit axyscreative.com for more info");
 
-// When the user changes tabs
-const originalTitle = document.title;
+//
+// Title change on tab move
+//
+{
+  const originalTitle = document.title;
 
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    document.title = "👋 Hey, come back!";
-  } else {
-    document.title = originalTitle;
-  }
-});
-s;
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      document.title = "👋 Hey, come back!";
+    } else {
+      document.title = originalTitle;
+    }
+  });
+}

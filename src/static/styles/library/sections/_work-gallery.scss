@@ -79,15 +79,17 @@
       filter: blur(2px);
       transition: $ease-sudden;
 
+      &:nth-of-type(even) {
+        @include mq-min(lg) {
+          transition-delay: 0.125s;
+        }
+      }
+
       &.gsap-animated {
         opacity: 1;
         scale: 1;
         filter: blur(0);
       }
-    }
-
-    &:nth-of-type(even) {
-      transition-delay: 0.125s;
     }
 
     &-link {

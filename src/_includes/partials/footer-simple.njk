@@ -1,22 +1,145 @@
-<footer class="site-footer footer-simple">
-  <div
-    class="tooltip-util"
-    data-tooltip-message="This sample won't work on the Library page, since there are two 'theme-toggle' components."
-  >
-    {% include "../library/theme-toggle.njk" %}
+<!-- prettier-ignore -->
+{% set a11y_tab = 'tab-element-page' %}
+{% set footer = global.footer_simple %}
+
+<!-- prettier-ignore -->
+{% set float = footer.float or false %}
+{% set include_top = footer.include_top | default(true) %}
+{% set has_logo = footer.has_logo or null %}
+{% set message = footer.message or '' %}
+{% set social_media = footer.social_media or null %}
+
+{% set linkset_1_title = footer.linkset_1_title or '' %}
+{% set linkset_1 = footer.linkset_1 or null %}
+{% set linkset_2_title = footer.linkset_2_title or '' %}
+{% set linkset_2 = footer.linkset_2 or null %}
+{% set linkset_3_title = footer.linkset_3_title or '' %}
+{% set linkset_3 = footer.linkset_3 or null %}
+
+{% set include_bottom = footer.include_bottom | default(true) %}
+{% set divider = footer.divider | default(true) %}
+{% set divider_width_full = footer.divider_width_full or false %}
+
+{% set return_to_top = footer.return_to_top or false %}
+{% set legal_links = footer.legal_links %}
+{% set theme_toggle = footer.theme_toggle %}
+{% set copyright = footer.copyright | default(
+  '©<span data-current-year></span>
+&nbsp;' + meta_data.site_name + '. All rights reserved' ) %}
+
+<!-- prettier-ignore -->
+{% set footer_class = '' %} 
+{% if float %} 
+  {% set footer_class = 'site-footer--float' %} 
+{% endif %}
+
+{% set footer_divider_class = '' %} 
+{%if divider_width_full%}
+  {% set footer_divider_class = 'site-footer__divider--width-full' %}
+{%endif%}
+
+<footer class="site-footer site-footer--simple {{ footer_class }}">
+  <div class="site-footer__inner">
+    {% if include_top %}
+    <div class="site-footer__top">
+      <div class="site-footer__top-left">
+        <!-- prettier-ignore -->
+        {% if has_logo %}
+            {% set logo = global.components.logo %}
+            {% include "../components/logo.njk" %}
+          {% endif %}
+    
+          {% if message %}
+        <p class="site-footer__top-message">{{ message }}</p>
+        {% endif %}
+
+        <!-- prettier-ignore -->
+        {% if social_media %}
+            {% include "../components/social-media.njk" %}
+          {% endif %}
+      </div>
+
+      <div class="site-footer__top-right">
+        <!-- prettier-ignore -->
+        {% if linkset_1 %}
+        <div class="site-footer__linkset-1">
+          {% if linkset_1_title %}
+          <strong>{{ linkset_1_title }}</strong>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% set links = linkset_1 %}
+            {% set menu_links_class = 'site-footer__primary-links' %}
+            {% include "../components/menu-links.njk" %}
+        </div>
+        {% endif %}
+
+        <!-- prettier-ignore -->
+        {% if linkset_2 %}
+        <div class="site-footer__linkset-2">
+          {% if linkset_2_title %}
+          <strong>{{ linkset_2_title }}</strong>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% set links = linkset_2 %}
+            {% set menu_links_class = '' %}
+            {% include "../components/menu-links.njk" %}
+        </div>
+        {% endif %}
+
+        <!-- prettier-ignore -->
+        {% if linkset_3 %}
+        <div class="site-footer__linkset-2">
+          {% if linkset_3_title %}
+          <strong>{{ linkset_3_title }}</strong>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% set links = linkset_3 %}
+            {% set menu_links_class = '' %}
+            {% include "../components/menu-links.njk" %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if divider %}
+    <hr class="site-footer__divider {{ footer_divider_class }}" />
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if include_bottom %}
+    <div class="site-footer__bottom">
+      <!-- prettier-ignore -->
+      {% if return_to_top %}
+        {% set btn = return_to_top %}
+        {% include "../components/btn.njk" %}
+      {% endif %}
+    
+      {% if copyright %}
+      <p class="site-footer__copyright">{{ copyright | safe }}</p>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if legal_links or theme_toggle %}
+      <div class="site-footer__bottom-group">
+        <!-- prettier-ignore -->
+        {% if legal_links %}
+            {% set links = legal_links %}
+            {% set menu_links_class = 'legal-links' %}
+            {% include "../components/menu-links.njk" %}
+          {% endif %}
+
+        <!-- prettier-ignore -->
+        {% if theme_toggle %}
+            {% include "../library/components/theme-toggle.njk" %}
+          {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
   </div>
-
-  <small class="copyright">
-    <span>&copy;<time data-current-year></time> {{ meta_data.site_name }}</span>
-    <span class="lg-up" aria-hidden="true">•</span>
-    <span class="lg-up">All Rights Reserved</span>
-  </small>
-
-  <a
-    href="https://axyscreative.com"
-    target="_blank"
-    class="axys-link classic-link tab-element-page"
-  >
-    Made by axys creative
-  </a>
 </footer>

@@ -1,0 +1,43 @@
+title: Become the [%br%] obvious choice.
+cta_1:
+  text: Get Started
+  text_desc: Get started with AXYS Creative
+  url: "https://axyscreative.com"
+  new_tab: true
+  # type:
+  # class: btn--split-text
+  attributes: "data-hover-alt"
+  # icon_end: /static/img/library/icon-google-chevron-right.svg
+  # icon_start: /static/img/library/icon-google-info-circle.svg
+
+message: A custom footer that reveals from behind the main content. It comes with a wide range of configuration options. A means of simplifying the build process.
+social_media: true
+
+include_bottom: true
+divider: true
+divider_width_full: false
+
+return_to_top:
+  text: "Return To Top"
+  url: "#"
+  class: "back-to-top"
+  type: underline
+  icon_end: /static/img/library/icon-google-chevron-up.svg
+
+# copyright: ""
+
+legal_links:
+  - text: Privacy Policy
+    url: "https://google.com"
+    type: underline
+    # class: "btn--split-text"
+  - text: Terms & Conditions
+    url: "https://google.com"
+    type: underline
+    # class: "btn--split-text"
+  # - text: Cookie Policy
+  #   url: "https://google.com"
+  #   type: underline
+  # class: "btn--split-text"
+
+theme_toggle: true

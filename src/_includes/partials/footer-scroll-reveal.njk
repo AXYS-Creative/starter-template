@@ -1,0 +1,59 @@
+<!-- prettier-ignore -->
+{% set footer = global.footer_scroll_reveal %}
+
+{% set title = footer.title or '' %}
+{% set cta_1 = footer.cta_1 or null %}
+{% set cta_2 = footer.cta_2 or null %}
+
+{% set message = footer.message or '' %}
+{% set copyright = footer.copyright | default(
+  '©<span data-current-year></span>
+&nbsp;' + meta_data.site_name + '. All rights reserved' ) %}
+
+<footer class="footer-scroll-reveal">
+  <div class="footer-scroll-reveal__inner">
+    <div class="footer-scroll-reveal__top-left">
+      <h2 class="footer-scroll-reveal__top-left-title">{{ title }}</h2>
+      {% include "../components/cta-group.njk" %}
+    </div>
+
+    <div class="footer-scroll-reveal__top-right">
+      <p class="footer-scroll-reveal__top-right-message">{{ message }}</p>
+
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'sales@samplebusiness.com',
+        url: 'https://axyscreative.com',
+        new_tab: true,
+        type: 'text',
+        class: 'footer-scroll-reveal__top-right-link'
+        }) %}
+      {% include "../components/btn.njk" %}
+    </div>
+
+    <div class="footer-scroll-reveal__bottom">
+      <div class="footer-scroll-reveal__bottom-left">
+        {% if copyright %}
+        <p class="site-footer__copyright">{{ copyright | safe }}</p>
+        {% endif %}
+      </div>
+
+      <div class="footer-scroll-reveal__bottom-right">
+        <p>
+          Made in collaboration with
+
+          <!-- prettier-ignore -->
+          {% set btn = ({
+            text: 'axys creative',
+            url: 'https://axyscreative.com',
+            new_tab: true,
+            type: 'underline'
+           }) %}
+          {% include "../components/btn.njk" %}
+        </p>
+
+        {% include "../components/social-media.njk" %}
+      </div>
+    </div>
+  </div>
+</footer>
