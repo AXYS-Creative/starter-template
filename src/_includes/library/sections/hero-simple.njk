@@ -9,15 +9,23 @@
 {% set glass = hero_simple.glass or false %}
 {% set class = hero_simple.class or '' %}
 
+{% set extra_content = hero_simple.extra_content or false %}
+
+{% set corner_imgs = hero_simple.corner_imgs or '' %}
+
 {% if float %}
   {% set class = class + ' hero-simple--float' %}
+{% endif %}
+
+{% if not extra_content %}
+  {% set class = class + ' hero-simple--text-only' %}
 {% endif %}
 
 <section class="hero-simple hero-simple--{{ direction }} {{ class }}">
   <div class="hero-simple__inner">
     <div class="hero-simple__inner-text">
       <!-- prettier-ignore -->
-      {% if title %}
+      {% if eyebrow %}
       <small class="hero-simple__eyebrow">{{ eyebrow }}</small>
       {% endif %}
 
@@ -38,7 +46,30 @@
     </div>
 
     {% if extra_content %}
-    <div class="hero-simple__inner-extra">Extra content here</div>
+    <div class="hero-simple__inner-extra">
+      <img
+        class="hero-simple__inner-extra__hero-img"
+        src="/static/img/library/graphic-storyset-1.svg"
+        alt=""
+      />
+    </div>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if corner_imgs and not extra_content %}
+    <div class="hero-simple__corner-imgs">
+      {% for img in corner_imgs %}
+      <img
+        class="
+        hero-simple__corner-imgs__img 
+        hero-simple__corner-imgs__img-{{ loop.index }}
+        gsap-animate
+        "
+        src="{{ img.src }}"
+        alt="{{ img.title }}"
+      />
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </section>

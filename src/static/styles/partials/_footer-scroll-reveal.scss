@@ -1,12 +1,6 @@
 body:has(.footer-scroll-reveal) > [class*="main"] {
   margin-block-end: var(--footer-height); // set via js
   background: var(--color-background);
-
-  > section {
-    @include width-ultra-wide;
-    position: relative;
-    z-index: 1;
-  }
 }
 
 .footer-scroll-reveal {

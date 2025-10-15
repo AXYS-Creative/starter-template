@@ -1,10 +1,9 @@
 .hero-simple {
-  @include full-viewport-section;
-
   &__inner {
     @include section-padding;
     @include width-clamp;
     @include column-center;
+    gap: var(--section-gap--lg);
     height: 100%;
 
     &-text,
@@ -33,14 +32,104 @@
     text-wrap: balance;
   }
 
+  // Content Modifiers
+
+  &:has(.hero-simple__corner-imgs) {
+    .hero-simple__inner {
+      position: relative;
+    }
+  }
+  &__corner-imgs {
+    $img-rotate: 5deg;
+    --img-offset-x: 15%;
+    --img-offset-y: 0;
+
+    @include absolute-center;
+    width: 100%;
+    // height: calc(100% - var(--header-height) * 2);
+    height: 80%;
+    // translate: -50% calc(-50% + var(--header-height));
+    pointer-events: none;
+
+    &__img {
+      position: absolute;
+      width: 148px;
+      aspect-ratio: 1 / 1.125;
+      border-radius: var(--radius--sm);
+      object-fit: cover;
+
+      @include mq-motion-allow {
+        opacity: 0;
+        scale: 0.5;
+
+        &.gsap-animated {
+          opacity: 1;
+          scale: 1;
+          transition: $ease-sudden 1s;
+        }
+      }
+
+      &-1 {
+        top: var(--img-offset-y);
+        left: var(--img-offset-x);
+        // rotate: $img-rotate;
+      }
+
+      &-2 {
+        top: var(--img-offset-y);
+        right: var(--img-offset-x);
+        rotate: $img-rotate;
+        scale: 0.8;
+
+        &.gsap-animated {
+          transition-delay: 1.12s;
+        }
+      }
+
+      &-3 {
+        bottom: var(--img-offset-y);
+        left: var(--img-offset-x);
+        rotate: -#{$img-rotate};
+        scale: 0.8;
+
+        &.gsap-animated {
+          transition-delay: 1.24s;
+        }
+      }
+
+      &-4 {
+        bottom: var(--img-offset-y);
+        right: var(--img-offset-x);
+        // rotate: $img-rotate;
+
+        &.gsap-animated {
+          transition-delay: 1.36s;
+        }
+      }
+    }
+  }
+
+  &--text-only {
+    @include full-viewport-section;
+  }
+
+  // Layout Modifiers
   &--row {
     .hero-simple__inner {
+      // border: $test;
+      flex-flow: row wrap;
       justify-content: flex-start;
 
       &-text {
         @include column-start;
       }
     }
+  }
+
+  &--column {
+    padding-block-start: calc(
+      var(--spacing--xl) + var(--header-height) + var(--promo-banner-height)
+    );
   }
 
   &--float {

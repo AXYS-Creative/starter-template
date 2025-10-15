@@ -3,6 +3,7 @@
   @include section-padding;
 }
 .section-width--thin {
+  @include width-clamp;
   @include section-padding(thin);
 }
 .section-width--full {
