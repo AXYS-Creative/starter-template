@@ -11,18 +11,10 @@ cta_1:
   # icon_start: /static/img/library/icon-google-info-circle.svg
 
 message: A custom footer that reveals from behind the main content. It comes with a wide range of configuration options. A means of simplifying the build process.
-social_media: true
-
-include_bottom: true
-divider: true
-divider_width_full: false
-
-return_to_top:
-  text: "Return To Top"
-  url: "#"
-  class: "back-to-top"
-  type: underline
-  icon_end: /static/img/library/icon-google-chevron-up.svg
+big_link:
+  text: sales@samplebusiness.com
+  text_desc: Get started with AXYS Creative
+  url: "mailto:sales@samplebusiness.com"
 
 # copyright: ""
 
@@ -40,4 +32,5 @@ legal_links:
   #   type: underline
   # class: "btn--split-text"
 
+social_media: false
 theme_toggle: true

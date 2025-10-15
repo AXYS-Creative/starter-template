@@ -1,6 +1,5 @@
-body:has(.footer-scroll-reveal) [class*="main"] {
+body:has(.footer-scroll-reveal) > [class*="main"] {
   margin-block-end: var(--footer-height); // set via js
-  z-index: 1;
   background: var(--color-background);
 
   > section {
@@ -14,7 +13,7 @@ body:has(.footer-scroll-reveal) [class*="main"] {
   --left-size: 40%;
   --right-size: 50%;
 
-  background: black;
+  background: var(--color-background-alt);
   position: fixed;
   bottom: 0;
   width: 100%;

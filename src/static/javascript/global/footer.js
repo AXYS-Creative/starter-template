@@ -12,18 +12,27 @@ if (footerScrollReveal) {
   const footerInner = footerScrollReveal.querySelector(
     ".footer-scroll-reveal__inner"
   );
-  const lastSection = document.querySelector('[class*="main-"] > *:last-child');
+  // Manually declare last section
+  const lastSection = document.querySelector(
+    '[class*="main-"] > .last-section'
+  );
+  // Should work in most cases
+  const lastSectionFallback = document.querySelector(
+    '[class*="main-"] > *:last-child'
+  );
 
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.from(footerInner, {
-    y: 420,
+    y: 320,
+    scale: 0.8,
     ease: "linear",
     scrollTrigger: {
-      trigger: lastSection,
+      trigger: lastSection || lastSectionFallback,
       start: "top bottom",
-      end: `bottom bottom-=${footerHeight}`, // Also read as "bottom calc(100% - footerHeight)"
+      end: `bottom bottom-=${footerHeight}`, // Also read as calc(100% - footerHeight)
       scrub: true,
+      // markers: true,
     },
   });
 }

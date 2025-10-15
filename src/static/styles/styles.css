@@ -56,7 +56,8 @@
 
 html[data-theme=dark] {
   --color-background: #0a0a0a;
-  --color-font--primary: #fefefe;
+  --color-background-alt: #000;
+  --color-font--primary: #fafafa;
   --color-font--secondary: #c0c0c0;
   --color-surface--1: #313131;
   --color-border: #313131;
@@ -65,11 +66,12 @@ html[data-theme=dark] {
 }
 
 html[data-theme=light] {
-  --color-background: #fefefe;
+  --color-background: #fafafa;
+  --color-background-alt: #fff;
   --color-font--primary: #0a0a0a;
   --color-font--secondary: #313131;
-  --color-surface--1: #f0f0f0;
-  --color-border: #f0f0f0;
+  --color-surface--1: #ebebeb;
+  --color-border: #ebebeb;
   --color-border-gradient: rgba(0, 0, 0, 0.5);
   --color-glass-frost: rgba(255, 255, 255, 0.25);
 }
@@ -436,6 +438,7 @@ hr {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
+  pointer-events: none;
 }
 @media (hover: hover) and (pointer: fine) {
   #grid-bg {
@@ -537,7 +540,7 @@ code.codearea {
 }
 @media (prefers-reduced-motion: no-preference) {
   .classic-link::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -572,7 +575,7 @@ code.codearea {
 }
 @media (prefers-reduced-motion: no-preference) {
   .classic-link:has(.btn__text) .btn__text::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 
@@ -1687,7 +1690,7 @@ code.codearea {
     inset: 0;
     background: var(--color-btn-bg);
     z-index: -1;
-    transition: 0.5s cubic-bezier(0.75, 0, 0.2, 1);
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
   .btn--underline {
     position: relative;
@@ -1715,7 +1718,7 @@ code.codearea {
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn--underline::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -1754,7 +1757,7 @@ code.codearea {
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn--underline:has(.btn__text) .btn__text::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media all {
@@ -6181,16 +6184,15 @@ code.codearea {
   padding: var(--footer-spacing-y) 0 0;
 }
 
-body:has(.footer-scroll-reveal) [class*=main] {
+body:has(.footer-scroll-reveal) > [class*=main] {
   margin-block-end: var(--footer-height);
-  z-index: 1;
   background: var(--color-background);
 }
-body:has(.footer-scroll-reveal) [class*=main] > section {
+body:has(.footer-scroll-reveal) > [class*=main] > section {
   position: relative;
   z-index: 1;
 }
-body:has(.footer-scroll-reveal) [class*=main] > section::before {
+body:has(.footer-scroll-reveal) > [class*=main] > section::before {
   content: "";
   isolation: isolate;
   position: absolute;
@@ -6206,7 +6208,7 @@ body:has(.footer-scroll-reveal) [class*=main] > section::before {
 .footer-scroll-reveal {
   --left-size: 40%;
   --right-size: 50%;
-  background: black;
+  background: var(--color-background-alt);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -6278,7 +6280,7 @@ body:has(.footer-scroll-reveal) [class*=main] > section::before {
 }
 @media (prefers-reduced-motion: no-preference) {
   .footer-scroll-reveal__top-right-link::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -6313,7 +6315,7 @@ body:has(.footer-scroll-reveal) [class*=main] > section::before {
 }
 @media (prefers-reduced-motion: no-preference) {
   .footer-scroll-reveal__top-right-link:has(.btn__text) .btn__text::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media (min-width: 1025px) {
@@ -6506,7 +6508,7 @@ body:has(.footer-scroll-reveal) [class*=main] > section::before {
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn-type--underline::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -6541,7 +6543,7 @@ body:has(.footer-scroll-reveal) [class*=main] > section::before {
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn-type--underline:has(.btn__text) .btn__text::before {
-    transition: 0.24s ease;
+    transition: 0.64s cubic-bezier(0.75, 0, 0.2, 1);
   }
 }
 .btn-type--text {
@@ -9303,7 +9305,7 @@ body:has(.tooltip-util) .mouse-cursor {
 .plan-options .plan-option__line-group .plan-option__divider {
   width: 100%;
   height: 1px;
-  background-image: linear-gradient(90deg, transparent, #fefefe 20% 80%, transparent);
+  background-image: linear-gradient(90deg, transparent, #fafafa 20% 80%, transparent);
   opacity: 0.25;
 }
 .plan-options .plan-option__price {
@@ -9393,19 +9395,19 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 .plan-options .plan-option--primary {
   --color-font--primary: #0a0a0a;
-  --color-btn-border: #fefefe;
-  --color-btn-bg: #fefefe;
+  --color-btn-border: #fafafa;
+  --color-btn-bg: #fafafa;
   --color-btn-text: #0a0a0a;
-  --color-btn-border--hover: #fefefe;
+  --color-btn-border--hover: #fafafa;
   --color-btn-bg--hover: transparent;
-  --color-btn-text--hover: #fefefe;
-  background: linear-gradient(110deg, #fefefe -50%, var(--color-brand--primary) 30% 70%, #fefefe 150%);
+  --color-btn-text--hover: #fafafa;
+  background: linear-gradient(110deg, #fafafa -50%, var(--color-brand--primary) 30% 70%, #fafafa 150%);
 }
 .plan-options .plan-option--primary *::-moz-selection {
-  background-color: rgba(254, 254, 254, 0.5);
+  background-color: rgba(250, 250, 250, 0.5);
 }
 .plan-options .plan-option--primary *::selection {
-  background-color: rgba(254, 254, 254, 0.5);
+  background-color: rgba(250, 250, 250, 0.5);
 }
 .plan-options .plan-option--primary .plan-option__divider {
   width: 100%;
@@ -9785,7 +9787,7 @@ body:has(.tooltip-util) .mouse-cursor {
   -webkit-background-clip: text;
   background-image: linear-gradient(currentColor, currentColor);
   -webkit-text-fill-color: rgba(125, 125, 125, 0.25);
-  color: #fefefe;
+  color: #fafafa;
   text-transform: uppercase;
   font-weight: 900;
   filter: drop-shadow(0 0 0 rgb(0, 0, 0));

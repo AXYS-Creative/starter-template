@@ -291,7 +291,7 @@ $min-breakpoints: ();
     background-color: currentColor;
 
     @include mq-motion-allow {
-      transition: $ease;
+      transition: $ease-sudden;
     }
   }
 
@@ -331,7 +331,7 @@ $min-breakpoints: ();
         background-color: currentColor;
 
         @include mq-motion-allow {
-          transition: $ease;
+          transition: $ease-sudden;
         }
       }
     }

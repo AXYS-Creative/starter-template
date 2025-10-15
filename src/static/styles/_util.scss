@@ -355,7 +355,7 @@
       inset: 0;
       background: var(--color-btn-bg);
       z-index: -1;
-      transition: 0.5s $cubic-ease-sudden;
+      transition: $ease-sudden;
     }
   }
 
