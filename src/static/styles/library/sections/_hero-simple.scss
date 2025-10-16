@@ -5,31 +5,35 @@
     @include column-center;
     gap: var(--section-gap--lg);
     height: 100%;
+  }
 
-    &-text,
-    &-extra {
-      flex: 1 1 auto;
+  &__text,
+  &__extra {
+    flex: 1 1 auto;
 
-      @include mq-min(md) {
-        max-width: 50%;
-      }
-    }
-
-    &-text {
-      @include column-center;
+    @include mq-min(md) {
+      max-width: 50%;
     }
   }
 
-  &__title {
-    margin-block-end: var(--spacing--sm);
-    text-align: center;
-  }
+  &__text {
+    @include column-center;
 
-  &__desc {
-    margin-block-end: var(--spacing--lg);
-    max-width: 750px;
-    text-align: center;
-    text-wrap: balance;
+    // &-eyebrow {
+
+    // }
+
+    &-title {
+      margin-block-end: var(--spacing--sm);
+      text-align: center;
+    }
+
+    &-desc {
+      margin-block-end: var(--spacing--lg);
+      max-width: 750px;
+      text-align: center;
+      text-wrap: balance;
+    }
   }
 
   // Content Modifiers
@@ -115,13 +119,28 @@
 
   // Layout Modifiers
   &--row {
+    // Really only a row on desktop, then just a column again
+    @include full-viewport-section;
+
     .hero-simple__inner {
-      // border: $test;
-      flex-flow: row wrap;
+      flex-flow: row;
       justify-content: flex-start;
 
-      &-text {
+      @include mq-max(lg) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .hero-simple__text {
+      @include mq-min(lg) {
         @include column-start;
+      }
+
+      &-title {
+        @include mq-min(lg) {
+          text-align: start;
+        }
       }
     }
   }

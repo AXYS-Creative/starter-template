@@ -23,20 +23,20 @@
 
 <section class="hero-simple hero-simple--{{ direction }} {{ class }}">
   <div class="hero-simple__inner">
-    <div class="hero-simple__inner-text">
+    <div class="hero-simple__text">
       <!-- prettier-ignore -->
       {% if eyebrow %}
-      <small class="hero-simple__eyebrow">{{ eyebrow }}</small>
+      <small class="hero-simple__text-eyebrow">{{ eyebrow }}</small>
       {% endif %}
 
       <!-- prettier-ignore -->
       {% if title %}
-      <h1 class="hero-simple__title">{{ title }}</h1>
+      <h1 class="hero-simple__text-title">{{ title }}</h1>
       {% endif %}
 
       <!-- prettier-ignore -->
       {% if desc %}
-      <p class="hero-simple__desc">{{ desc | safe }}</p>
+      <p class="hero-simple__text-desc">{{ desc | safe }}</p>
       {% endif %}
 
       <!-- prettier-ignore -->
@@ -46,12 +46,21 @@
     </div>
 
     {% if extra_content %}
-    <div class="hero-simple__inner-extra">
-      <img
-        class="hero-simple__inner-extra__hero-img"
+    <div class="hero-simple__extra">
+      <!-- <img
+        class="hero-simple__extra-hero-img"
         src="/static/img/library/graphic-storyset-1.svg"
         alt=""
-      />
+      /> -->
+
+      <lottie-player
+        class="hero-simple__extra-lottie"
+        src="/static/img/library/anim-1.json"
+        background="transparent"
+        speed="1"
+        loop
+        autoplay
+      ></lottie-player>
     </div>
     {% endif %}
 

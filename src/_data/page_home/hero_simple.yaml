@@ -1,5 +1,5 @@
 float: false
-direction: column # row | column
+direction: row # row | column (column is default, mobile first)
 
 eyebrow: // Optional eyebrow text
 title: Title goes [%span.text-italic%]here[%span%]
