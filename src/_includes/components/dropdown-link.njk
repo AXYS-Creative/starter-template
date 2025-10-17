@@ -7,8 +7,18 @@
 {% endif %}
 
 <div class="dropdown-link">
-  <button class="dropdown-link__trigger {{ a11y_tab }}" aria-expanded="false">
-    <span class="dropdown-link__trigger-text {{ dropdown_link.trigger_class }}">
+  <button
+    class="
+    dropdown-link__trigger 
+    {{ dropdown_link.trigger_class }} 
+    {{ a11y_tab }}
+    "
+    aria-expanded="false"
+  >
+    <!-- placing trigger_class on span as not to remove icon with split-text -->
+    <span
+      class="dropdown-link__trigger-text {{ dropdown_link.trigger_text_class }}"
+    >
       {{ dropdown_link.text or 'No text provided'}}
     </span>
 

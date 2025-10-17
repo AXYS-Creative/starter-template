@@ -1,5 +1,5 @@
 .dropdown-link {
-  $active-icon: scaleY(-1);
+  $icon-active: scaleY(-1);
 
   position: relative;
   cursor: pointer;
@@ -13,7 +13,7 @@
       }
 
       .dropdown-link__trigger-icon {
-        transform: $active-icon;
+        transform: $icon-active;
       }
 
       .dropdown-link__list {
@@ -26,7 +26,7 @@
   &:focus-within {
     .dropdown-link__trigger-icon {
       @include mq-min(lg) {
-        transform: $active-icon;
+        transform: $icon-active;
       }
     }
     .dropdown-link__list {
@@ -41,8 +41,8 @@
   &__trigger {
     --icon-size: 1em;
 
-    all: inherit;
     @include row-center;
+    color: var(--color-font--primary);
     gap: var(--gap-btn-icon);
     border-radius: var(--radius--btn);
 
@@ -51,6 +51,7 @@
     }
 
     &-icon {
+      background: currentColor;
       width: var(--icon-size);
       height: var(--icon-size);
       transition: $ease;

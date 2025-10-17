@@ -8,25 +8,41 @@
   {% set a11y_tab = 'tab-element-page' %}
 {% endif %}
 
+{% set mod_class = '' %}
+
+{% if toggle_slider %}
+  {% set mod_class = mod_class + " toggle-slider" %}
+{% endif %}
+
 {% if menu_links %}
 <menu
-  class="menu-links cursor-hide {{ menu_links_class }}"
+  class="
+    menu-links 
+    cursor-hide 
+    {{ menu_links_class }}
+    {{ mod_class }}
+  "
   aria-label="navigation links"
 >
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}
   {% if menu_link.inner_links %}
-  <li>
+  <li class="{%if toggle_slider%}menu-link__option{%endif%}">
     <!-- prettier-ignore -->
     {% set dropdown_link = menu_link %}
     {% include "./dropdown-link.njk" %}
   </li>
   {% else %}
-  <li>
+  <li class="{%if toggle_slider%}menu-link__option{%endif%}">
     <!-- prettier-ignore -->
     {% set btn = menu_link %}
     {% include "./btn.njk" %}
   </li>
   {% endif %} {% endfor %}
+
+  <!-- prettier-ignore -->
+  {% if toggle_slider %}
+  <li class="menu-links__slider"></li>
+  {% endif %}
 </menu>
 {% endif %}

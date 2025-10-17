@@ -294,6 +294,7 @@
     }
   }
 
+  .btn--bg-slide,
   a.btn--bg-slide,
   button.btn--bg-slide {
     position: relative;
@@ -358,6 +359,12 @@
       z-index: -1;
       transition: $ease-sudden;
     }
+  }
+
+  .btn--text,
+  a.btn--text,
+  button.btn--text {
+    @include btn-type--text;
   }
 
   .btn--underline {

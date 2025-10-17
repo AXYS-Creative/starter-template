@@ -1,7 +1,7 @@
 import { root, lenis } from "../util.js";
 
-export const siteHeader = document.querySelector(".site-header"),
-  headerLogoLink = document.querySelector(".site-header .site-logo-link"),
+export const siteHeader = document.querySelector("#site-header"),
+  headerLogoLink = document.querySelector("#site-header .site-logo-link"),
   menuBtn = document.querySelector(".site-nav-btn");
 
 const siteNav = document.querySelector(".site-nav");

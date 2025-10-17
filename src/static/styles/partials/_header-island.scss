@@ -1,16 +1,21 @@
-.header-simple {
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-background);
+.header-island {
+  --top-offset: 12px;
+
   position: fixed;
-  top: 0;
-  width: 100%;
+  top: var(--top-offset);
+  left: 50%;
+  translate: -50% 0;
+  background: var(--color-surface--1);
+  border: 1px solid rgba($grey, 0.25);
+  border-radius: var(--radius--sm);
+  width: min(100%, 720px);
   transition: $ease;
   z-index: $z-index--header;
 
   &__inner {
     @include width-clamp;
     @include row-center(space-between);
-    padding: 12px var(--body-padding);
+    padding: 16px var(--body-padding);
 
     position: relative;
   }
@@ -23,7 +28,7 @@
   // }
 
   .menu-links {
-    --links-gap: 36px;
+    --links-gap: 24px;
 
     @include row-center;
     gap: var(--links-gap);
@@ -31,14 +36,16 @@
     @include mq-max(lg) {
       display: none;
     }
-  }
 
-  &__cta-group {
-    @include row-center;
-    gap: 2ch;
+    // Library Slider
+    .menu-link__option {
+      opacity: 1;
+    }
 
-    @include mq-max(lg) {
-      display: none;
+    &__slider {
+      height: 132%;
+      background: #212121;
+      border-radius: 4px;
     }
   }
 
@@ -57,11 +64,11 @@
   // }
 
   &.site-header--scrolling-down {
-    translate: 0 -100%;
+    translate: -50% calc(-100% - var(--top-offset));
 
     // &:has(*:focus-visible) {
     &:focus-within {
-      translate: 0 0;
+      translate: -50% 0;
 
       // If hovering the dropdown link list and scrolling down, it would still be visible, this fixes that
       .dropdown-link:hover,
@@ -87,81 +94,22 @@
 
   // }
 
-  &--links-center {
-    .menu-links {
-      position: absolute;
-      left: 50%;
-      translate: -50% 0;
-    }
-  }
-
-  &--links-end {
-    .menu-links {
-      margin-inline: auto 24px;
-    }
-  }
-
-  &--links-start {
-    .menu-links {
-      margin-inline: 24px auto;
-    }
-  }
-
-  &--float {
-    --float-offset: var(--partial-float-offset);
-
-    border: var(--border-width) solid var(--color-border);
-    top: var(--float-offset);
-    width: calc(100% - (var(--float-offset) * 2));
-    border-radius: var(--radius--sm);
-    max-width: $content-width;
-
-    left: 50%;
-    translate: -50% 0;
-
-    @include mq-max(md) {
-      --float-offset: 8px;
-    }
-
-    &.site-header--scrolling-down {
-      translate: -50% calc(-100% - var(--float-offset));
-    }
-
-    &.site-header--promo-banner {
-      top: calc(var(--promo-banner-height) + var(--float-offset));
-    }
-
-    // Placing below to override all
-    &:focus-within {
-      translate: -50% 0;
-    }
-  }
-
   &--glass {
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+    background: rgba(50, 50, 50, 0.5);
     backdrop-filter: blur(8px);
   }
 
   &.site-header--promo-banner {
     // promo-banner-height var set in js. See promo-banner.js
-    top: var(--promo-banner-height);
+    top: calc(var(--top-offset) + var(--promo-banner-height));
 
     &.site-header--scrolling-down {
-      translate: 0 calc(-100% - var(--promo-banner-height));
-    }
-
-    &.site-header-simple--float {
-      &.site-header--scrolling-down {
-        translate: -50% calc(-100% - var(--promo-banner-height));
-      }
-
-      &:focus-within {
-        translate: -50% 0;
-      }
+      translate: -50% calc(-100% - var(--promo-banner-height));
     }
 
     &:focus-within {
-      translate: 0 0;
+      translate: -50% 0;
     }
   }
 
@@ -399,13 +347,13 @@
   }
 }
 
-.menu-links {
-  .menu-links__link {
-    @include mq-max(lg) {
-      font-size: 24px;
-    }
-    @include mq-max(sm) {
-      font-size: 20px;
-    }
-  }
-}
+// .menu-links {
+//   .menu-links__link {
+//     @include mq-max(lg) {
+//       font-size: 24px;
+//     }
+//     @include mq-max(sm) {
+//       font-size: 20px;
+//     }
+//   }
+// }
