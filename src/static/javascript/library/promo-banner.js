@@ -12,10 +12,12 @@ if (promoBanner) {
   if (initialHide > 0) {
     promoBanner.setAttribute("aria-hidden", true);
     promoBanner.setAttribute("tabindex", -1);
+    // root.style.setProperty("--promo-banner-height", "0");
 
     setTimeout(() => {
       promoBanner.setAttribute("aria-hidden", false);
       promoBanner.setAttribute("tabindex", 0);
+      // root.style.setProperty("--promo-banner-height", `${promoBannerHeight}px`);
       promoBanner.classList.add("promo-banner--reveal");
 
       // aria-live: re-assign text so it's treated as new
@@ -34,6 +36,7 @@ if (promoBanner) {
       promoBanner.classList.add("promo-banner--closed");
       promoBanner.setAttribute("aria-hidden", true);
       promoBanner.setAttribute("tabindex", -1);
+      // root.style.setProperty("--promo-banner-height", "0");
       siteHeader.classList.remove("site-header--promo-banner");
     });
   }

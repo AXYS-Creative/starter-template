@@ -120,7 +120,11 @@
   // Layout Modifiers
   &--row {
     // Really only a row on desktop, then just a column again
-    @include full-viewport-section;
+    margin-block-start: var(--header-height);
+
+    @include mq-min(lg) {
+      @include full-viewport-section; // optional
+    }
 
     .hero-simple__inner {
       flex-flow: row;
@@ -129,6 +133,7 @@
       @include mq-max(lg) {
         flex-direction: column;
         align-items: center;
+        padding-block-start: var(--spacing--xl);
       }
     }
 

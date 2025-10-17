@@ -9064,17 +9064,20 @@ body:has(.tooltip-util) .mouse-cursor {
     max-height: 950px;
   }
 }
-@media (min-width: 1441px) {
+.hero-simple--row {
+  margin-block-start: var(--header-height);
+}
+@media (min-width: 1025px) and (min-width: 1441px) {
   .hero-simple--row {
     height: clamp(750px, 100vh, 1250px);
   }
 }
-@media (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1440px) {
   .hero-simple--row {
     height: clamp(625px, 100vh, 1100px);
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 1025px) and (max-width: 768px) {
   .hero-simple--row {
     min-height: 500px;
     height: calc(var(--svh, 1vh) * 100);
@@ -9089,6 +9092,7 @@ body:has(.tooltip-util) .mouse-cursor {
   .hero-simple--row .hero-simple__inner {
     flex-direction: column;
     align-items: center;
+    padding-block-start: var(--spacing--xl);
   }
 }
 @media (min-width: 1025px) {
