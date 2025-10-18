@@ -59,6 +59,7 @@ $test-bg: rgba(navy, 0.75);
 
   --body-padding: 64px;
   --body-padding-double: calc(var(--body-padding) * 2);
+  --body-padding-half: calc(var(--body-padding) / 2);
 
   --border-width: 1px;
   --border-width--btn: 1px;

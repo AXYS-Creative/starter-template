@@ -22,7 +22,7 @@ body:has(.footer-scroll-reveal) {
     min-height: 100vh;
     // height: var(--document-height);
     height: calc(var(--document-height) + var(--header-height, 0));
-    width: 100%;
+    width: 100vw;
   }
 }
 

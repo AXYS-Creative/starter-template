@@ -24,21 +24,38 @@
   "
   aria-label="navigation links"
 >
+  <!-- handle's active page for links and nested dropdown links -->
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}
-  {% if menu_link.inner_links %}
-  <li class="{%if toggle_slider%}menu-link__option{%endif%}">
+  {% set is_active = (menu_link.path == path) %}
+  {% set has_children = menu_link.inner_links %}
+  {% set has_active_child = false %}
+
+  {# If there are inner_links, loop them to check for match #}
+  {% if has_children %}
+    {% for child in menu_link.inner_links %}
+      {% if child.path == path %} 
+        {% set has_active_child = true %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  <!-- prettier-ignore -->
+  <li
+    class="
+    {% if toggle_slider %}menu-link__option{% endif %} 
+    {% if is_active or has_active_child %} option-active{% endif %}
+    "
+  >
     <!-- prettier-ignore -->
-    {% set dropdown_link = menu_link %}
-    {% include "./dropdown-link.njk" %}
+    {% if has_children %} 
+    {% set dropdown_link = menu_link %} 
+      {% include "./dropdown-link.njk" %} 
+    {% else %} 
+      {% set btn = menu_link %} {% include"./btn.njk" %} 
+    {% endif %}
   </li>
-  {% else %}
-  <li class="{%if toggle_slider%}menu-link__option{%endif%}">
-    <!-- prettier-ignore -->
-    {% set btn = menu_link %}
-    {% include "./btn.njk" %}
-  </li>
-  {% endif %} {% endfor %}
+  {% endfor %}
 
   <!-- prettier-ignore -->
   {% if toggle_slider %}

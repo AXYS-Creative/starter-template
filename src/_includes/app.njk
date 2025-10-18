@@ -39,7 +39,10 @@
     <!-- prettier-ignore -->
     {% include "./partials/header-island.njk" %}
     
-    {% set promo_banner_data = library.promo_banner %}
+    {% if path == "home" %}
+      {% set promo_banner_data = library.promo_banner %}
+    {% endif %}
+
     {% include './library/components/promo-banner.njk' %}
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}

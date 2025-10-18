@@ -5,7 +5,7 @@ glass: false
 logo: true
 
 # menu-links.njk
-links:
+menu_links:
   - text: Home
     url: "/"
     new_tab: false

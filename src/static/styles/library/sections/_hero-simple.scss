@@ -150,11 +150,12 @@
     }
   }
 
-  &--column {
-    padding-block-start: calc(
-      var(--spacing--xl) + var(--header-height) + var(--promo-banner-height)
-    );
-  }
+  // &--column {
+  // margin-block-start: var(--header-height);
+  // padding-block-start: calc(
+  //   var(--spacing--xl) + var(--header-height) + var(--promo-banner-height)
+  // );
+  // }
 
   &--float {
     --float-offset: var(--partial-float-offset);

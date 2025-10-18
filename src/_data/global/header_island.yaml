@@ -4,9 +4,10 @@ glass: false
 logo: true
 
 # menu-links.njk
-links:
+menu_links:
   - text: Home
     url: "/"
+    path: "home"
     new_tab: false
     type: text
     class: menu-links__link
@@ -16,21 +17,25 @@ links:
     inner_links:
       - text: Utility Classes
         url: "/library/utils"
+        path: "library/utils"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-bolt.svg
       - text: Components
         url: "/library/components"
+        path: "library/components"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-blocks.svg
       - text: Combos
         url: "/library/combos"
+        path: "library/combos"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-orbit.svg
       - text: Sections
         url: "/library/sections"
+        path: "library/sections"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-dashboard.svg
@@ -51,6 +56,7 @@ links:
         icon_start: /static/img/library/icon-google-inventory.svg
   - text: Blog
     url: "/blog"
+    path: "archive-blog"
     new_tab: false
     type: text
     class: menu-links__link

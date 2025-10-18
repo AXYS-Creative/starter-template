@@ -1,5 +1,8 @@
-.header-island {
+:root {
   --top-offset: 12px;
+}
+
+.header-island {
   --padding-y: 8px;
 
   position: fixed;
@@ -9,16 +12,24 @@
   background: var(--color-surface--1);
   border: 1px solid rgba($grey, 0.25);
   border-radius: var(--radius--sm);
-  transition: $ease;
+  height: var(--header-height); // setting for transition (var declared in js)
+  transition: $ease, height $ease-c;
   z-index: $z-index--header;
+
+  @include mq-max(lg) {
+    width: calc(100% - var(--top-offset) * 2);
+  }
 
   &__inner {
     @include width-clamp;
     @include row-center(space-between);
+    position: relative;
     gap: 24px;
     padding: var(--padding-y) 4px var(--padding-y) 16px;
 
-    position: relative;
+    @include mq-max(lg) {
+      padding-inline: 12px;
+    }
   }
 
   // .site-logo {
@@ -29,7 +40,7 @@
   // }
 
   .menu-links {
-    --links-gap: 16px;
+    --links-gap: 4px;
 
     @include row-center;
     gap: var(--links-gap);
@@ -41,6 +52,7 @@
     // Library Slider
     .menu-link__option {
       opacity: 1;
+      padding-inline: 16px;
     }
 
     &__slider {
@@ -91,9 +103,9 @@
 
   // }
 
-  // &.site-header--nav-active {
-
-  // }
+  &.site-header--nav-active {
+    height: calc(100vh - var(--header-height));
+  }
 
   &--glass {
     border: 1px solid var(--color-border);
@@ -138,17 +150,25 @@
   }
 }
 
-.site-nav {
+.site-nav.nav-island {
+  $z-index--nav: 4;
+  // If not using a promo banner, feel free to delete the extra var within.
+  --nav-top-offset: calc(
+    var(--top-offset) + var(--header-height) + var(--promo-banner-height)
+  );
+
+  border: $test;
   @include hide-content;
   position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+  top: var(--nav-top-offset);
+  width: calc(100vw - var(--body-padding));
+  height: calc(100vh - var(--nav-top-offset));
+  height: calc(100dvh - var(--nav-top-offset));
+  margin-inline-start: var(--body-padding-half);
   overflow: auto;
   z-index: $z-index--nav;
 
-  transition: $ease, width 0s, height 0s;
+  transition: $ease 0s, width 0s, height $ease-c;
 
   @include mq-min(lg) {
     display: none;
@@ -160,7 +180,8 @@
 
     position: relative;
     max-width: $content-width;
-    height: 100dvh;
+    // height: 100dvh;
+    height: 100%;
     min-height: 768px;
     margin: 0 auto var(--body-padding);
     padding: var(--body-padding);
@@ -207,7 +228,9 @@
 
   &[aria-hidden="false"] {
     @include show-content;
-    background: var(--color-background);
+    background: none;
+
+    transition: $ease 0.2s, width 0s, height $ease-c;
   }
 }
 

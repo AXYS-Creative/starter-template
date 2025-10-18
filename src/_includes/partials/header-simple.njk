@@ -1,12 +1,13 @@
 <!-- prettier-ignore  -->
 {% set tab_nav = false %}
+{% set header = global.header_simple %}
+{% set header_class = 'header-simple' %}
 
 <!-- Props -->
 <!-- prettier-ignore  -->
-{% set header = global.header_simple %}
-{% set header_class = 'header-simple' %}
 {% set show_skip_to_content = header.show_skip_to_content or false %}
 {% set logo = header.logo or null %}
+{% set menu_links = header.menu_links or null %}
 {% set float = header.float or false %}
 {% set glass = header.glass or false %}
 {% set link_placement = header.link_placement or 'end' %}
@@ -42,7 +43,6 @@
       {% include "../components/logo.njk" %}
     {% endif %}
 
-    {% set links = header.links %}
     {% set menu_links_class = header_class + '__primary-links' %}
     {% include "../components/menu-links.njk" %}
 

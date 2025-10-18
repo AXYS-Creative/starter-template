@@ -7,7 +7,7 @@ const footerScrollReveal = document.querySelector(".footer-scroll-reveal");
 
 if (footerScrollReveal) {
   const footerHeight = footerScrollReveal.getBoundingClientRect().height;
-  const documentHeight = document.documentElement.scrollHeight;
+  const documentHeight = document.body.scrollHeight;
   root.style.setProperty("--footer-height", `${footerHeight}px`);
   root.style.setProperty("--document-height", `${documentHeight}px`);
 

@@ -22,13 +22,14 @@
     z-index: 2;
     transition: $ease;
 
-    @include mq-max(md) {
-      translate: 0 100%;
-    }
-
     @include mq-max(lg) {
       position: sticky;
       top: var(--body-padding);
+    }
+
+    @include mq-max(md) {
+      width: calc(80% - var(--body-padding-double));
+      translate: 0 100%;
     }
 
     .toggle-slider {
@@ -37,6 +38,19 @@
       --option-padding: var(--padding-btn);
       --accent-color: var(--color-brand--primary);
       background-color: var(--color-background);
+    }
+
+    .plan-selection__toggle {
+      background: var(--color-background);
+
+      @include mq-max(md) {
+        width: 100%;
+        display: flex;
+
+        &-option {
+          flex: 1;
+        }
+      }
     }
 
     .tooltip {
