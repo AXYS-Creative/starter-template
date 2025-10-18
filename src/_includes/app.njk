@@ -41,9 +41,9 @@
     
     {% if path == "home" %}
       {% set promo_banner_data = library.promo_banner %}
+      {% include './library/components/promo-banner.njk' %}
     {% endif %}
 
-    {% include './library/components/promo-banner.njk' %}
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}
     </main>

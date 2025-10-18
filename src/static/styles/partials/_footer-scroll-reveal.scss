@@ -8,7 +8,7 @@ body:has(.footer-scroll-reveal) {
   // Originally added for 'grid-bg' (z-indexing issues)
   main {
     position: relative;
-    z-index: 3; // gauge page content, this is for alerts over the scroll-to-top
+    z-index: 1; // gauge page content, this is for alerts over the scroll-to-top
   }
 
   #grid-bg {

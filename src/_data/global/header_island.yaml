@@ -41,11 +41,13 @@ menu_links:
         icon_start: /static/img/library/icon-google-dashboard.svg
       - text: Advanced
         url: "/library/advanced"
+        path: "library/advanced"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-target.svg
       - text: Style Guide
         url: "/style-guide"
+        path: "style-guide"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-palette.svg

@@ -8,6 +8,7 @@ logo: true
 menu_links:
   - text: Home
     url: "/"
+    path: "home"
     new_tab: false
     type: underline
     class: menu-links__link btn--split-text
@@ -17,31 +18,37 @@ menu_links:
     inner_links:
       - text: Utility Classes
         url: "/library/utils"
+        path: "library/utils"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-bolt.svg
       - text: Components
         url: "/library/components"
+        path: "library/components"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-blocks.svg
       - text: Combos
         url: "/library/combos"
+        path: "library/combos"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-orbit.svg
       - text: Sections
         url: "/library/sections"
+        path: "library/sections"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-dashboard.svg
       - text: Advanced
         url: "/library/advanced"
+        path: "library/advanced"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-target.svg
       - text: Style Guide
         url: "/style-guide"
+        path: "style-guide"
         new_tab: false
         type: text
         icon_start: /static/img/library/icon-google-palette.svg
@@ -52,6 +59,7 @@ menu_links:
         icon_start: /static/img/library/icon-google-inventory.svg
   - text: Blog
     url: "/blog"
+    path: "archive-blog"
     new_tab: false
     type: underline
     class: menu-links__link btn--split-text

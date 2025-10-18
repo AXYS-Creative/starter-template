@@ -1,7 +1,6 @@
 <!-- prettier-ignore -->
-{% set menu_links = links %}
-
 {% set a11y_tab = '' %}
+
 {% if tab_nav %}
   {% set a11y_tab = 'tab-element-nav' %}
 {% else %}
@@ -14,6 +13,7 @@
   {% set mod_class = mod_class + " toggle-slider" %}
 {% endif %}
 
+
 {% if menu_links %}
 <menu
   class="
@@ -24,14 +24,12 @@
   "
   aria-label="navigation links"
 >
-  <!-- handle's active page for links and nested dropdown links -->
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}
   {% set is_active = (menu_link.path == path) %}
   {% set has_children = menu_link.inner_links %}
   {% set has_active_child = false %}
 
-  {# If there are inner_links, loop them to check for match #}
   {% if has_children %}
     {% for child in menu_link.inner_links %}
       {% if child.path == path %} 
@@ -43,16 +41,18 @@
   <!-- prettier-ignore -->
   <li
     class="
+    menu-links__li
     {% if toggle_slider %}menu-link__option{% endif %} 
     {% if is_active or has_active_child %} option-active{% endif %}
     "
   >
     <!-- prettier-ignore -->
     {% if has_children %} 
-    {% set dropdown_link = menu_link %} 
+      {% set dropdown_link = menu_link %} 
       {% include "./dropdown-link.njk" %} 
     {% else %} 
-      {% set btn = menu_link %} {% include"./btn.njk" %} 
+      {% set btn = menu_link %} 
+      {% include "./btn.njk" %} 
     {% endif %}
   </li>
   {% endfor %}
