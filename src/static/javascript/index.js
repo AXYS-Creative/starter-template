@@ -7,7 +7,7 @@ import "./global/loader.js";
 import "./global/scroll.js";
 
 import "./library/advanced/dots.js";
-import "./library/advanced/bg-grid.js";
+import "./library/advanced/grid-bg.js";
 import "./library/advanced/grid-flow-img.js";
 
 import "./library/components/accordion.js";

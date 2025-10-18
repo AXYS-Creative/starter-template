@@ -20,9 +20,6 @@ if (document.getElementById("grid-bg")) {
   let height = window.innerHeight;
   canvas.width = width;
   canvas.height = height;
-  canvas.style.position = "fixed";
-  canvas.style.inset = 0;
-  canvas.style.zIndex = -1;
 
   let numRows = Math.ceil(height / CELL_SIZE);
   let numCols = Math.ceil(width / CELL_SIZE);

@@ -7,12 +7,14 @@ const footerScrollReveal = document.querySelector(".footer-scroll-reveal");
 
 if (footerScrollReveal) {
   const footerHeight = footerScrollReveal.getBoundingClientRect().height;
+  const documentHeight = document.documentElement.scrollHeight;
   root.style.setProperty("--footer-height", `${footerHeight}px`);
+  root.style.setProperty("--document-height", `${documentHeight}px`);
 
   const footerInner = footerScrollReveal.querySelector(
     ".footer-scroll-reveal__inner"
   );
-  // Manually declare last section
+  // Manually declared last section (you have to add the class to the last section)
   const lastSection = document.querySelector(
     '[class*="main-"] > .last-section'
   );

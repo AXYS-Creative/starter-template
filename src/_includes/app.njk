@@ -38,6 +38,9 @@
   <body>
     <!-- prettier-ignore -->
     {% include "./partials/header-island.njk" %}
+    
+    {% set promo_banner_data = library.promo_banner %}
+    {% include './library/components/promo-banner.njk' %}
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}
     </main>

@@ -620,7 +620,7 @@
 
       &::before {
         animation: outline-trace var(--animation-duration) linear infinite;
-        transition: 1s ease 0.25s;
+        transition: 1s ease 0.125s;
         z-index: -1;
       }
 

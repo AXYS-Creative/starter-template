@@ -1,5 +1,6 @@
 .header-island {
   --top-offset: 12px;
+  --padding-y: 8px;
 
   position: fixed;
   top: var(--top-offset);
@@ -8,14 +9,14 @@
   background: var(--color-surface--1);
   border: 1px solid rgba($grey, 0.25);
   border-radius: var(--radius--sm);
-  width: min(100%, 720px);
   transition: $ease;
   z-index: $z-index--header;
 
   &__inner {
     @include width-clamp;
     @include row-center(space-between);
-    padding: 16px var(--body-padding);
+    gap: 24px;
+    padding: var(--padding-y) 4px var(--padding-y) 16px;
 
     position: relative;
   }
@@ -28,7 +29,7 @@
   // }
 
   .menu-links {
-    --links-gap: 24px;
+    --links-gap: 16px;
 
     @include row-center;
     gap: var(--links-gap);
@@ -43,8 +44,8 @@
     }
 
     &__slider {
-      height: 132%;
-      background: #212121;
+      height: calc(100% + var(--padding-y));
+      background: var(--color-surface--2);
       border-radius: 4px;
     }
   }
