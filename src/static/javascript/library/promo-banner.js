@@ -1,5 +1,5 @@
 import { root } from "../util.js";
-import { siteHeader } from "../global/header.js";
+import { siteHeader, siteNav } from "../global/header.js";
 
 let promoBanner = document.querySelector(".promo-banner");
 
@@ -26,6 +26,7 @@ if (promoBanner) {
 
       // Modify header based on promo banner
       siteHeader.classList.add("site-header--promo-banner");
+      siteNav.classList.add("site-nav--promo-banner");
     }, initialHide);
   }
 
@@ -38,6 +39,7 @@ if (promoBanner) {
       promoBanner.setAttribute("tabindex", -1);
       // root.style.setProperty("--promo-banner-height", "0");
       siteHeader.classList.remove("site-header--promo-banner");
+      siteNav.classList.remove("site-nav--promo-banner");
     });
   }
 }

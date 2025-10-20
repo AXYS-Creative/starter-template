@@ -14,7 +14,17 @@
   '©<span data-current-year></span>
 &nbsp;' + meta_data.site_name + '. All rights reserved' ) %}
 
-<div class="footer-background-support" aria-hidden="true"></div>
+<!-- prettier-ignore -->
+{% set mod_class_bg_support = '' %}
+
+{% if path == "archive-blog" %}
+  {% set mod_class_bg_support = 'footer-background-support--shorter' %}
+{% endif %}
+
+<div
+  class="footer-background-support {{ mod_class_bg_support }}"
+  aria-hidden="true"
+></div>
 
 <footer class="footer-scroll-reveal">
   <div class="footer-scroll-reveal__inner">

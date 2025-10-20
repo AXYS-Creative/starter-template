@@ -1,5 +1,10 @@
 :root {
   --top-offset: 12px;
+  --nav-min-height: 640px;
+
+  @media (max-width: 480px) {
+    --nav-min-height: 520px;
+  }
 }
 
 .header-island {
@@ -9,10 +14,11 @@
   top: var(--top-offset);
   left: 50%;
   translate: -50% 0;
-  background: var(--color-surface--1);
+  background: var(--color-surface--2);
   border: 1px solid rgba($grey, 0.25);
   border-radius: var(--radius--sm);
-  height: var(--header-height); // setting for transition (var declared in js)
+  height: var(--header-height); // For transition property (var declared in js)
+  min-height: 0px; // For transition property
   transition: $ease, height $ease-c;
   z-index: $z-index--header;
 
@@ -57,7 +63,7 @@
 
     &__slider {
       height: calc(100% + var(--padding-y));
-      background: var(--color-surface--2);
+      background: var(--color-surface--1);
       border-radius: 4px;
     }
   }
@@ -104,7 +110,10 @@
   // }
 
   &.site-header--nav-active {
-    height: calc(100vh - var(--header-height));
+    @include mq-max(lg) {
+      height: calc(100vh - var(--top-offset));
+      min-height: var(--nav-min-height);
+    }
   }
 
   &--glass {
@@ -152,12 +161,8 @@
 
 .site-nav.nav-island {
   $z-index--nav: 4;
-  // If not using a promo banner, feel free to delete the extra var within.
-  --nav-top-offset: calc(
-    var(--top-offset) + var(--header-height) + var(--promo-banner-height)
-  );
+  --nav-top-offset: calc(var(--top-offset) + var(--header-height));
 
-  border: $test;
   @include hide-content;
   position: fixed;
   top: var(--nav-top-offset);
@@ -176,38 +181,34 @@
 
   .width-constraint {
     @include column-start;
-    gap: 48px;
+    gap: 136px;
 
     position: relative;
     max-width: $content-width;
-    // height: 100dvh;
     height: 100%;
-    min-height: 768px;
+    min-height: var(--nav-min-height);
     margin: 0 auto var(--body-padding);
-    padding: var(--body-padding);
+    padding: var(--body-padding) 12px;
 
-    @include mq-max(xxl) {
-      min-height: 640px;
-    }
-
-    @include mq-max(sm) {
-      min-height: 520px;
+    @include mq-max(md) {
+      gap: 48px;
     }
   }
 
   .menu-links {
     @include column-start;
     gap: 12px;
-    margin-block: max(40vh, 200px) auto;
+    margin-block: max(28vh, 200px) auto;
 
     @include mq-max(sm) {
       margin-block: 32vh auto;
     }
   }
 
-  &__footer {
+  .site-nav__footer {
     @include row-center(space-between);
     width: 100%;
+    margin-block-end: 24px;
 
     @include mq-max(md) {
       flex-direction: column;
@@ -231,6 +232,13 @@
     background: none;
 
     transition: $ease 0.2s, width 0s, height $ease-c;
+  }
+
+  // Library
+  &.site-nav--promo-banner {
+    --nav-top-offset: calc(
+      var(--top-offset) + var(--header-height) + var(--promo-banner-height)
+    );
   }
 }
 

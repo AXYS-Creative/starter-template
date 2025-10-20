@@ -67,7 +67,7 @@ menu_links:
     url: "https://axyscreative.com"
     new_tab: true
     type: text
-    class:
+    class: menu-links__link
     attributes: "data-hover-alt"
     # icon_end: /static/img/library/icon-google-chevron-right.svg
     # icon_start: /static/img/library/icon-google-info-circle.svg
@@ -77,7 +77,7 @@ menu_links:
     icon_end: ""
     new_tab: true
     type: text
-    class:
+    class: menu-links__link
 
 # mobile nav specific content
 lock_body_scroll: true # nav.njk Locks body scroll when nav is open

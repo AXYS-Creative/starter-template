@@ -2,9 +2,8 @@ import { root, lenis } from "../util.js";
 
 export const siteHeader = document.querySelector("#site-header"),
   headerLogoLink = document.querySelector("#site-header .site-logo-link"),
-  menuBtn = document.querySelector(".site-nav-btn");
-
-const siteNav = document.querySelector(".site-nav");
+  menuBtn = document.querySelector(".site-nav-btn"),
+  siteNav = document.querySelector(".site-nav");
 
 export const navLinks = document.querySelectorAll(".nav-link"),
   navFooterLinks = document.querySelectorAll(".nav-footer-link"),

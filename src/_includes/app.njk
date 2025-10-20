@@ -38,10 +38,10 @@
   <body>
     <!-- prettier-ignore -->
     {% include "./partials/header-island.njk" %}
+    {% set promo_banner_data = library.promo_banner %}
+    {% include './library/components/promo-banner.njk' %}
     
     {% if path == "home" %}
-      {% set promo_banner_data = library.promo_banner %}
-      {% include './library/components/promo-banner.njk' %}
     {% endif %}
 
     <main class="main-content main-{{ path | slugifyPath }}">
@@ -51,6 +51,12 @@
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
+    {% set scroll_progress = ({
+      type: 'height',
+      allow_click: true
+    }) %}
+    {% include "./library/components/scroll-progress.njk" %}
+     
     {% if 
       path == "home" 
       or path == "library/utils" 

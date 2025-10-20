@@ -12,6 +12,7 @@ import "./library/advanced/grid-flow-img.js";
 
 import "./library/components/accordion.js";
 import "./library/components/alert.js";
+import "./library/components/scroll-progress.js";
 import "./library/components/tooltip.js";
 
 import "./library/buttons.js";

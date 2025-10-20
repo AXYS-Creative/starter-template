@@ -1,0 +1,16 @@
+<!-- prettier-ignore -->
+{% set type = scroll_progress.type or 'width' %}
+{% set allow_click = scroll_progress.allow_click | default(true) %}
+
+{% set class_mod = "" %}
+{% if allow_click %}
+  {% set class_mod = class_mod + "scroll-progress--allow-click cursor-hide" %}
+{% endif %}
+
+<!-- prettier-ignore -->
+<div 
+  class="scroll-progress {{ class_mod }}" 
+  data-scroll-progress-type="{{ type }}"
+>
+  <div class="scroll-progress__bar" id="scroll-progress-bar"></div>
+</div>

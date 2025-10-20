@@ -16,13 +16,22 @@ body:has(.footer-scroll-reveal) {
   }
 
   .footer-background-support {
+    --magic-number-offset: 0px; // Some pages hugged the footer too mucn, not sure why.
+
     background: var(--color-background);
     position: absolute;
     top: 0;
     min-height: 100vh;
     // height: var(--document-height);
-    height: calc(var(--document-height) + var(--header-height, 0));
+    height: calc(
+      var(--document-height) + var(--header-height, 0) -
+        var(--magic-number-offset)
+    );
     width: 100vw;
+
+    &.footer-background-support--shorter {
+      --magic-number-offset: 48px; // Some pages hugged the footer too mucn, not sure why.
+    }
   }
 }
 
