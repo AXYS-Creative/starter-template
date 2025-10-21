@@ -30,3 +30,4 @@ import "./library/video-overlay.js";
 
 import "./library/utils/magnet.js";
 import "./library/utils/toggle-slider.js";
+import "./library/utils/velocity-push.js";

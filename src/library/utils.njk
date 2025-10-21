@@ -134,7 +134,7 @@ path: library/utils
   </p>
   <div class="cursor-content-section__samples">
     <div
-      class="cursor-content cursor-content-block-sample"
+      class="cursor-content library-block"
       data-cursor-icon="/static/img/library/icon-google-arrow-tr.svg"
       data-cursor-icon-size="md"
       data-cursor-class="cursor-content-1"
@@ -143,7 +143,7 @@ path: library/utils
     </div>
 
     <div
-      class="cursor-content cursor-content-block-sample"
+      class="cursor-content library-block"
       data-cursor-icon="/static/img/library/icon-google-play.svg"
       data-cursor-icon-swap="/static/img/library/icon-google-pause.svg"
       data-cursor-class="cursor-content-2"
@@ -152,7 +152,7 @@ path: library/utils
     </div>
 
     <div
-      class="cursor-content cursor-content-block-sample"
+      class="cursor-content library-block"
       data-cursor-message="Visit site"
       data-cursor-class="cursor-content-3"
     >
@@ -1139,4 +1139,57 @@ path: library/utils
     This will only type out once, the very first time it comes into view. Also
     has a delay of 3200ms.
   </p>
+</section>
+
+<section class="cursor-content-section library-section">
+  <h2>[ Velocity Push - Util ]</h2>
+  <strong>* Desktop Only *</strong>
+  <p class="max-width-text">
+    For desktop users, you can simulate a pushing effect for any element with
+    the class <code>velocity-push</code>. This comes with the following configs:
+  </p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-push-strength</code> A number, the sensitivity of the push
+      effect (how far the elements moves). Defaults to <code>10</code>
+    </li>
+    <li>
+      <code>data-push-restore</code> A number, this determintes how quickly the
+      element repositions itself. Defaults to <code>0.1</code>
+    </li>
+    <li>
+      <code>data-push-rotate-max</code> A number, the maxiumum rotation added to
+      the element. Use <code>0</code> to remove the effect. Defaults to
+      <code>25</code>
+    </li>
+  </ul>
+
+  <br /><br />
+  <p
+    class="velocity-push text-underline"
+    data-push-strength="5"
+    data-push-restore="0.05"
+    data-push-rotate-max="5"
+  >
+    Basic example on text.
+  </p>
+  <br /><br />
+  <div class="cursor-content-section__samples">
+    <div class="velocity-push library-block">
+      <p class="h6">Mouse over me!</p>
+    </div>
+
+    <figure class="velocity-push velocity-push--img">
+      <img src="/static/img/library/img-sample-1.jpg" alt="" />
+    </figure>
+
+    <!-- prettier-ignore -->
+    {% set btn = ({
+    text: 'Hover Me',
+    type: 'solid',
+    class: 'velocity-push align-self-center'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+  </div>
 </section>

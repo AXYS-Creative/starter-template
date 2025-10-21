@@ -48,6 +48,10 @@
 
 // Library
 @media all {
+  .align-self-center {
+    align-self: center;
+  }
+
   .pin-steps {
     @include hide-content;
     @include column-start;
@@ -450,6 +454,21 @@
     }
   }
 
+  .library-block {
+    @include row-center;
+    border-radius: var(--radius);
+    width: 20%;
+    aspect-ratio: 1;
+    background-color: var(--color-surface--1);
+    cursor: pointer;
+    transition: $ease-c;
+
+    &:active {
+      scale: 0.96;
+      user-select: none;
+    }
+  }
+
   .cursor-content-section {
     &__sample {
       transition: $ease;
@@ -465,21 +484,6 @@
       display: flex;
       flex-flow: row wrap;
       gap: 24px;
-    }
-
-    .cursor-content-block-sample {
-      @include row-center;
-      border-radius: var(--radius);
-      width: 20%;
-      aspect-ratio: 1;
-      background-color: var(--color-surface--1);
-      cursor: pointer;
-      transition: $ease;
-
-      &:active {
-        scale: 0.96;
-        user-select: none;
-      }
     }
   }
 
@@ -711,6 +715,24 @@
       }
       to {
         opacity: 0;
+      }
+    }
+  }
+
+  .velocity-push {
+    // display: inline-block; // ensure it can be transformed
+    transition: transform $ease-c;
+
+    // Library
+    &--img {
+      display: flex;
+      width: 20%;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        object-fit: cover;
       }
     }
   }
