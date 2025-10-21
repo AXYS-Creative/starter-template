@@ -5797,12 +5797,16 @@ code.codearea {
 }
 .header-island .menu-links .menu-link__option {
   opacity: 1;
-  padding-inline: 16px;
+  padding: 0;
 }
 .header-island .menu-links__slider {
   height: calc(100% + var(--padding-y));
   background: var(--color-surface--1);
   border-radius: 4px;
+}
+.header-island .menu-links .menu-links__link {
+  padding-inline: 16px;
+  padding: var(--option-padding) 12px;
 }
 .header-island .site-nav-btn-wrapper {
   display: none;
@@ -6642,6 +6646,11 @@ body:has(.footer-scroll-reveal) .footer-background-support {
 }
 body:has(.footer-scroll-reveal) .footer-background-support.footer-background-support--shorter {
   --magic-number-offset: 48px;
+}
+body:has(.footer-scroll-reveal) .footer-background-support.footer-background-support--components-page {
+  --magic-number-offset: calc(
+    var(--carousel-swiper-height) / 1.7
+  );
 }
 
 .footer-scroll-reveal {

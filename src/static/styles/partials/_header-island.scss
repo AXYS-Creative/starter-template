@@ -61,13 +61,18 @@
     // Library Slider
     .menu-link__option {
       opacity: 1;
-      padding-inline: 16px;
+      padding: 0;
     }
 
     &__slider {
       height: calc(100% + var(--padding-y));
       background: var(--color-surface--1);
       border-radius: 4px;
+    }
+
+    .menu-links__link {
+      padding-inline: 16px;
+      padding: var(--option-padding) 12px;
     }
   }
 

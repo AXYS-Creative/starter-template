@@ -32,6 +32,12 @@ body:has(.footer-scroll-reveal) {
     &.footer-background-support--shorter {
       --magic-number-offset: 48px; // Some pages hugged the footer too mucn, not sure why.
     }
+
+    &.footer-background-support--components-page {
+      --magic-number-offset: calc(
+        var(--carousel-swiper-height) / 1.7
+      ); // The carousel seems to be the culprit with height issues.
+    }
   }
 }
 
