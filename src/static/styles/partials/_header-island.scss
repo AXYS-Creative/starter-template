@@ -1,14 +1,15 @@
 :root {
+  --logo-size: 20px;
   --top-offset: 12px;
   --nav-min-height: 640px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     --nav-min-height: 520px;
   }
 }
 
 .header-island {
-  --padding-y: 8px;
+  --padding-y: 6px;
 
   position: fixed;
   top: var(--top-offset);
@@ -23,6 +24,8 @@
   z-index: $z-index--header;
 
   @include mq-max(lg) {
+    --padding-y: 8px;
+
     width: calc(100% - var(--top-offset) * 2);
   }
 
@@ -111,7 +114,7 @@
 
   &.site-header--nav-active {
     @include mq-max(lg) {
-      height: calc(100vh - var(--top-offset));
+      height: calc(100vh - var(--top-offset) * 2);
       min-height: var(--nav-min-height);
     }
   }
@@ -197,8 +200,8 @@
 
   .menu-links {
     @include column-start;
-    gap: 12px;
-    margin-block: max(28vh, 200px) auto;
+    gap: 0;
+    margin-block: max(20vh, 128px) auto;
 
     @include mq-max(sm) {
       margin-block: 32vh auto;

@@ -16,7 +16,7 @@ body:has(.footer-scroll-reveal) {
   }
 
   .footer-background-support {
-    --magic-number-offset: 0px; // Some pages hugged the footer too mucn, not sure why.
+    --magic-number-offset: 48px; // Optional — Add extra space for the footer
 
     background: var(--color-background);
     position: absolute;

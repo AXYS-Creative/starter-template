@@ -1,5 +1,5 @@
 float: false
-direction: row # row | column (column is default, mobile first)
+direction: column # row | column (column is default, mobile first)
 
 eyebrow: // Optional eyebrow text
 title: Title goes [%span.text-italic%]here[%span%]
@@ -21,7 +21,7 @@ cta_2:
   new_tab: true
   icon_end: /static/img/library/icon-google-chevron-right.svg
 
-extra_content: true
+extra_content: false # disables corner_imgs when false
 
 corner_imgs:
   - title: alt 1 here
@@ -29,6 +29,6 @@ corner_imgs:
   - title: alt 2 here
     src: /static/img/library/img-sample-2.jpg
   - title: alt 3 here
-    src: /static/img/library/img-sample-3.jpg
+    src: /static/img/library/img-sample-6.jpg
   - title: alt 4 here
-    src: /static/img/library/img-sample-4.jpg
+    src: /static/img/library/img-sample-12.jpg

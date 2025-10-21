@@ -68,15 +68,20 @@
     {% if corner_imgs and not extra_content %}
     <div class="hero-simple__corner-imgs">
       {% for img in corner_imgs %}
-      <img
+      <figure
         class="
-        hero-simple__corner-imgs__img 
-        hero-simple__corner-imgs__img-{{ loop.index }}
-        gsap-animate
+          hero-simple__corner-imgs__figure 
+          hero-simple__corner-imgs__figure-{{ loop.index }}
+          gsap-animate
         "
-        src="{{ img.src }}"
-        alt="{{ img.title }}"
-      />
+      >
+        <img
+          class="hero-simple__corner-imgs__figure-img velocity-push"
+          src="{{ img.src }}"
+          alt="{{ img.title }}"
+          data-push-strength="5"
+        />
+      </figure>
       {% endfor %}
     </div>
     {% endif %}
