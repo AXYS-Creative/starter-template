@@ -86,11 +86,11 @@
 
   // Modifiers
 
-  // &.site-header--away-from-top {
+  // &.watch-scroll--away-from-top {
 
   // }
 
-  &.site-header--scrolling-down {
+  &.watch-scroll--scrolling-down {
     translate: -50% calc(-100% - var(--top-offset));
 
     // &:has(*:focus-visible) {
@@ -113,7 +113,7 @@
     }
   }
 
-  // &.site-header--near-bottom {
+  // &.watch-scroll--near-bottom {
 
   // }
 
@@ -170,13 +170,14 @@
 .site-nav.nav-island {
   $z-index--nav: 4;
   --nav-top-offset: calc(var(--top-offset) + var(--header-height));
+  $avoid-overshooting: 1.26; // To help place nav links within header when expanded
 
   @include hide-content;
   position: fixed;
   top: var(--nav-top-offset);
   width: calc(100vw - var(--body-padding));
-  height: calc(100vh - var(--nav-top-offset));
-  height: calc(100dvh - var(--nav-top-offset));
+  height: calc(100vh - var(--nav-top-offset) * $avoid-overshooting);
+  height: calc(100dvh - var(--nav-top-offset) * $avoid-overshooting);
   margin-inline-start: var(--body-padding-half);
   overflow: auto;
   z-index: $z-index--nav;

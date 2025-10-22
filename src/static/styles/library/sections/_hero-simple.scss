@@ -65,6 +65,10 @@
       width: 148px;
       aspect-ratio: 1 / 1.125;
 
+      @include mq-max(md) {
+        width: 20vw;
+      }
+
       @include mq-motion-allow {
         opacity: 0;
         scale: 0.5;

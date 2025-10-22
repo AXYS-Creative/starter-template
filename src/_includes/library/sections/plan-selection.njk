@@ -14,7 +14,10 @@
     <p class="plan-selection__desc">{{ desc }}</p>
 
     {% if price_toggle %}
-    <div class="plan-selection__toggle-wrapper">
+    <div
+      class="plan-selection__toggle-wrapper watch-scroll"
+      data-scroll-when="near-top"
+    >
       <div class="plan-selection__toggle toggle-slider toggle-slider--solid">
         <button
           class="plan-selection__toggle-option"

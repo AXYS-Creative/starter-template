@@ -60,4 +60,12 @@ html:has(.scroll-progress) {
       width: 12px;
     }
   }
+
+  &.watch-scroll--idle {
+    opacity: 0.25;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

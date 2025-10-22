@@ -60,7 +60,7 @@
       translate: calc(100% + 1ch) -50%;
     }
 
-    &--scrolling-down {
+    &.watch-scroll--scrolling-down {
       @include mq-max(md) {
         translate: 0 0;
       }

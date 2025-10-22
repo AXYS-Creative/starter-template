@@ -1,8 +1,12 @@
+import { root } from "../util.js";
+
+const footer = document.getElementById("site-footer");
+
+root.style.setProperty("--footer-height", `${footer.offsetHeight}px`);
+
 //
 // footer-scroll-reveal.njk
 //
-import { root } from "../util.js";
-
 const footerScrollReveal = document.querySelector(".footer-scroll-reveal");
 
 if (footerScrollReveal) {

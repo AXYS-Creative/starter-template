@@ -38,11 +38,11 @@
   {% set footer_divider_class = 'site-footer__divider--width-full' %}
 {%endif%}
 
-<footer class="site-footer site-footer--simple {{ footer_class }}">
-  <div class="site-footer__inner">
+<footer class="footer-simple {{ footer_class }}" id="site-footer">
+  <div class="footer-simple__inner">
     {% if include_top %}
-    <div class="site-footer__top">
-      <div class="site-footer__top-left">
+    <div class="footer-simple__top">
+      <div class="footer-simple__top-left">
         <!-- prettier-ignore -->
         {% if has_logo %}
             {% set logo = global.components.logo %}
@@ -50,7 +50,7 @@
           {% endif %}
     
           {% if message %}
-        <p class="site-footer__top-message">{{ message }}</p>
+        <p class="footer-simple__top-message">{{ message }}</p>
         {% endif %}
 
         <!-- prettier-ignore -->
@@ -59,42 +59,42 @@
           {% endif %}
       </div>
 
-      <div class="site-footer__top-right">
+      <div class="footer-simple__top-right">
         <!-- prettier-ignore -->
         {% if linkset_1 %}
-        <div class="site-footer__linkset-1">
+        <div class="footer-simple__linkset-1">
           {% if linkset_1_title %}
           <strong>{{ linkset_1_title }}</strong>
           {% endif %}
 
           <!-- prettier-ignore -->
-          {% set links = linkset_1 %}
+          {% set menu_links = linkset_1 %}
           {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
 
         <!-- prettier-ignore -->
         {% if linkset_2 %}
-        <div class="site-footer__linkset-2">
+        <div class="footer-simple__linkset-2">
           {% if linkset_2_title %}
           <strong>{{ linkset_2_title }}</strong>
           {% endif %}
 
           <!-- prettier-ignore -->
-          {% set links = linkset_2 %}
+          {% set menu_links = linkset_2 %}
           {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
 
         <!-- prettier-ignore -->
         {% if linkset_3 %}
-        <div class="site-footer__linkset-2">
+        <div class="footer-simple__linkset-2">
           {% if linkset_3_title %}
           <strong>{{ linkset_3_title }}</strong>
           {% endif %}
 
           <!-- prettier-ignore -->
-          {% set links = linkset_3 %}
+          {% set menu_links = linkset_3 %}
           {% include "../components/menu-links.njk" %}
         </div>
         {% endif %}
@@ -104,12 +104,12 @@
 
     <!-- prettier-ignore -->
     {% if divider %}
-    <hr class="site-footer__divider {{ footer_divider_class }}" />
+    <hr class="footer-simple__divider {{ footer_divider_class }}" />
     {% endif %}
 
     <!-- prettier-ignore -->
     {% if include_bottom %}
-    <div class="site-footer__bottom">
+    <div class="footer-simple__bottom">
       <!-- prettier-ignore -->
       {% if return_to_top %}
         {% set btn = return_to_top %}
@@ -117,15 +117,15 @@
       {% endif %}
     
       {% if copyright %}
-      <p class="site-footer__copyright">{{ copyright | safe }}</p>
+      <p class="footer-simple__copyright">{{ copyright | safe }}</p>
       {% endif %}
 
       <!-- prettier-ignore -->
       {% if legal_links or theme_toggle %}
-      <div class="site-footer__bottom-group">
+      <div class="footer-simple__bottom-group">
         <!-- prettier-ignore -->
         {% if legal_links %}
-            {% set links = legal_links %}
+            {% set menu_links = legal_links %}
             {% set menu_links_class = 'legal-links' %}
             {% include "../components/menu-links.njk" %}
           {% endif %}

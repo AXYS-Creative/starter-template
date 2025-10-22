@@ -1,16 +1,16 @@
-.site-footer {
+.footer-simple {
   --footer-spacing-y: 48px;
 
   @include column-start;
 
-  &:has(.site-footer__top) {
+  &:has(.footer-simple__top) {
     border-block-start: var(--border-width) solid var(--color-border);
   }
 
-  &:has(.site-footer__divider) {
+  &:has(.footer-simple__divider) {
     position: relative;
 
-    .site-footer__divider {
+    .footer-simple__divider {
       position: absolute;
       left: 50%;
       translate: -50% 0;
@@ -75,9 +75,9 @@
       gap: 1ch;
     }
 
-    .site-footer__linkset-1,
-    .site-footer__linkset-2,
-    .site-footer__linkset-3 {
+    .footer-simple__linkset-1,
+    .footer-simple__linkset-2,
+    .footer-simple__linkset-3 {
       strong {
         color: var(--color-font--secondary);
         margin-block-end: 1ch;
@@ -101,14 +101,14 @@
       // Also update this version in 'float'
       position: relative;
 
-      .site-footer__copyright {
+      .footer-simple__copyright {
         @include mq-min(xl) {
           @include absolute-center;
         }
       }
     }
 
-    .site-footer__copyright {
+    .footer-simple__copyright {
       @include row-center;
 
       @include mq-max(lg) {
@@ -152,14 +152,14 @@
       --float-offset: 8px;
     }
 
-    &:not(:has(.site-footer__top)) {
-      .site-footer__bottom {
+    &:not(:has(.footer-simple__top)) {
+      .footer-simple__bottom {
         padding: 0;
       }
     }
 
-    &:has(.site-footer__divider) {
-      .site-footer__divider {
+    &:has(.footer-simple__divider) {
+      .footer-simple__divider {
         &--width-full {
           width: 100%;
         }
@@ -169,7 +169,7 @@
     &:has([class*="to-top"]) {
       position: relative;
 
-      .site-footer__copyright {
+      .footer-simple__copyright {
         @include mq-min(xl) {
           position: absolute;
           top: auto;
@@ -180,10 +180,10 @@
       }
     }
 
-    .site-footer__top {
+    .footer-simple__top {
       padding: 0 0 var(--footer-spacing-y);
     }
-    .site-footer__bottom {
+    .footer-simple__bottom {
       padding: var(--footer-spacing-y) 0 0;
     }
   }

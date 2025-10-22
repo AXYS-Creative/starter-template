@@ -11,12 +11,12 @@
     scale: 1;
   }
 
-  &--away-from-top {
+  &.watch-scroll--away-from-top {
     @include show-content;
     scale: 1;
   }
 
-  &--near-bottom {
+  &.watch-scroll--near-bottom {
     @include hide-content;
     scale: 0.25;
   }

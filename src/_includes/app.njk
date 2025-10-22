@@ -51,12 +51,22 @@
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
+    {% if 
+      path == "library/utils" 
+      or path == "library/components" 
+      or path == "library/combos" 
+    %}
+      {% include "./library/components/btn-back-to-top.njk" %}
+    {% endif %}
+
+    <!-- prettier-ignore -->
     {% set scroll_progress = ({
       type: 'height',
       allow_click: true
     }) %}
     {% include "./library/components/scroll-progress.njk" %}
-     
+
+    <!-- prettier-ignore  -->
     {% if 
       path == "home" 
       or path == "library/utils" 
@@ -71,15 +81,6 @@
     <!-- prettier-ignore -->
     {% if path == "library/combos" %}
       {% include "./library/components/video-overlay.njk" %}
-    {% endif %}
-
-    <!-- prettier-ignore -->
-    {% if 
-      path == "library/utils" 
-      or path == "library/components" 
-      or path == "library/combos" 
-    %}
-      {% include "./library/components/btn-back-to-top.njk" %}
     {% endif %}
     
     {% if path == "library/advanced" %}
