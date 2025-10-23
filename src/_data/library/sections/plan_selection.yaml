@@ -1,15 +1,18 @@
 title: "[ Plan Selection - Section ]"
 desc: Find the right plan for you and eliminate the hassle of inconsistent freelancers and expensive agencies. Let’s get started today.
 price_toggle: true
-# discount_percentage: 20%
+discount_percentage: 10%
 # use 'aria-selected' to choose default option
 
 plans:
   - title: Designer
     price_mo: 1,995
-    price_qt: 1,595
-    grand_total: 4,785
-    savings_qt: $1,195
+    # price_qt: 1,595
+    price_qt: 1,795
+    # grand_total: 4,785
+    grand_total: 5,385
+    # savings_qt: $1,200
+    savings_qt: $600
     price_desc: Pause or cancel anytime
     # theme:
     # noise:
@@ -31,9 +34,12 @@ plans:
       new_tab: false
   - title: Developer
     price_mo: 2,995
-    price_qt: 2,395
-    grand_total: 7,185
-    savings_qt: $1,795
+    # price_qt: 2,395
+    price_qt: 2,695
+    # grand_total: 7,185
+    grand_total: 8,085
+    # savings_qt: $1,800
+    savings_qt: $900
     price_desc: Pause or cancel anytime
     # theme:
     # noise:
@@ -55,9 +61,12 @@ plans:
       new_tab: false
   - title: Premium
     price_mo: 3,995
-    price_qt: 3,195
-    grand_total: 9,585
-    savings_qt: $2,395
+    # price_qt: 3,195
+    price_qt: 3,595
+    # grand_total: 9,585
+    grand_total: 10,785
+    # savings_qt: $2,400
+    savings_qt: $1,200
     price_desc: Pause or cancel anytime
     theme: "primary"
     noise:

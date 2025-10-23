@@ -1,6 +1,6 @@
 import { mqMouse, mqMotionAllow } from "../../util.js";
 
-if (mqMouse.matches && mqMotionAllow.matches) {
+if (mqMouse && mqMotionAllow) {
   document.querySelectorAll(".magnet").forEach((el) => {
     let mouseX = 0;
     let mouseY = 0;

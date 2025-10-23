@@ -53,10 +53,7 @@ function updateScrollState() {
 
     // --- Apply core scroll state classes
     el.classList.toggle("watch-scroll--away-from-top", awayFromTop);
-    el.classList.toggle(
-      "watch-scroll--scrolling-down",
-      scrollingDown && awayFromTop
-    );
+    el.classList.toggle("watch-scroll--scrolling-down", scrollingDown && awayFromTop);
     el.classList.toggle("watch-scroll--near-bottom", nearBottom);
     el.classList.remove("watch-scroll--idle");
 

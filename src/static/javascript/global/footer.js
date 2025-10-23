@@ -15,17 +15,12 @@ if (footerScrollReveal) {
   root.style.setProperty("--footer-height", `${footerHeight}px`);
   root.style.setProperty("--document-height", `${documentHeight}px`);
 
-  const footerInner = footerScrollReveal.querySelector(
-    ".footer-scroll-reveal__inner"
-  );
+  const footerInner = footerScrollReveal.querySelector(".footer-scroll-reveal__inner");
+
   // Manually declared last section (you have to add the class to the last section)
-  const lastSection = document.querySelector(
-    '[class*="main-"] > .last-section'
-  );
+  const lastSection = document.querySelector('[class*="main-"] > .last-section');
   // Should work in most cases
-  const lastSectionFallback = document.querySelector(
-    '[class*="main-"] > *:last-child'
-  );
+  const lastSectionFallback = document.querySelector('[class*="main-"] > *:last-child');
 
   gsap.registerPlugin(ScrollTrigger);
 

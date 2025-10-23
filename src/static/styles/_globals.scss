@@ -36,39 +36,6 @@ body {
     transition: background $ease; // Library, used for theme toggle
   }
 
-  // Loader styles, controlled by having a loader partial present in the html
-  &:has(.site-loader) {
-    $duration: 1s;
-    $delay: 0.2s;
-
-    .hero-simple {
-      h1,
-      p,
-      div {
-        opacity: 0;
-        transition: opacity $duration ease $delay;
-      }
-
-      p {
-        transition-delay: $delay + 0.1s;
-      }
-      div {
-        transition-delay: $delay + 0.2s;
-      }
-    }
-  }
-
-  // Loader complete styles
-  &:has(.load-complete) {
-    .hero-simple {
-      h1,
-      p,
-      div {
-        opacity: 1;
-      }
-    }
-  }
-
   // &:has(.promo-banner) {
   //   .site-header > * {
   //     transition: top $ease, opacity $ease; // for transition
@@ -82,28 +49,6 @@ body {
   display: block;
   width: var(--logo-size);
   height: var(--logo-size);
-}
-
-.site-loader {
-  @include row-center;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  translate: -50% 0;
-  width: 100vw;
-  height: 100dvh;
-  background: var(--color-background);
-  z-index: $z-index--loader;
-
-  &__text {
-    @include font-styles--body(lg);
-    color: var(--color-font--primary);
-  }
-
-  &.load-complete {
-    @include hide-content;
-    transition: 0.5s ease;
-  }
 }
 
 h1,

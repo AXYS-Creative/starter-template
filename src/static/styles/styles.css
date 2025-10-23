@@ -125,72 +125,12 @@ body {
     transition: background 0.24s ease;
   }
 }
-body:has(.site-loader) .hero-simple h1,
-body:has(.site-loader) .hero-simple p,
-body:has(.site-loader) .hero-simple div {
-  opacity: 0;
-  transition: opacity 1s ease 0.2s;
-}
-body:has(.site-loader) .hero-simple p {
-  transition-delay: 0.3s;
-}
-body:has(.site-loader) .hero-simple div {
-  transition-delay: 0.4s;
-}
-body:has(.load-complete) .hero-simple h1,
-body:has(.load-complete) .hero-simple p,
-body:has(.load-complete) .hero-simple div {
-  opacity: 1;
-}
 
 .site-logo {
   --logo-size: 20px;
   display: block;
   width: var(--logo-size);
   height: var(--logo-size);
-}
-
-.site-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  translate: -50% 0;
-  width: 100vw;
-  height: 100dvh;
-  background: var(--color-background);
-  z-index: 5;
-}
-.site-loader__text {
-  --font-size: 16px;
-  color: var(--color-font--primary);
-  font-family: var(--font-family--body);
-  font-size: var(--font-size);
-  font-weight: 400;
-  letter-spacing: -0.25px;
-  --font-size: 20px;
-  line-height: 1.5;
-  color: var(--color-font--primary);
-}
-@media (max-width: 768px) {
-  .site-loader__text {
-    --font-size: 14px;
-  }
-}
-@media (max-width: 480px) {
-  .site-loader__text {
-    --font-size: 18px;
-  }
-}
-.site-loader.load-complete {
-  opacity: 0;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  transition: 0.5s ease;
 }
 
 h1,
@@ -9330,6 +9270,71 @@ body:has(.tooltip-util) .mouse-cursor {
   height: auto;
 }
 
+body .hero-simple.home-hero h1,
+body .hero-simple.home-hero p,
+body .hero-simple.home-hero .cta-group {
+  opacity: 0;
+  translate: 0 48px;
+  scale: 0.75;
+}
+body[data-body-loading-complete] .hero-simple.home-hero h1,
+body[data-body-loading-complete] .hero-simple.home-hero p,
+body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition: translate 1s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s, opacity 1s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s, scale 1s cubic-bezier(0.18, 0.97, 0.47, 1) 0.36s;
+}
+body[data-body-loading-complete] .hero-simple.home-hero p {
+  transition-delay: 0.48s;
+}
+body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
+  transition-delay: 0.6s;
+}
+
+.site-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 100vw;
+  height: 100dvh;
+  background: var(--color-background);
+  z-index: 5;
+}
+.site-loader__text {
+  --font-size: 16px;
+  color: var(--color-font--primary);
+  font-family: var(--font-family--body);
+  font-size: var(--font-size);
+  font-weight: 400;
+  letter-spacing: -0.25px;
+  --font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-font--primary);
+}
+@media (max-width: 768px) {
+  .site-loader__text {
+    --font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .site-loader__text {
+    --font-size: 18px;
+  }
+}
+.site-loader.load-complete {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transition: 0.5s ease;
+}
+
 html:has(.scroll-progress) {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -9878,6 +9883,13 @@ html:has(.scroll-progress)::-webkit-scrollbar {
     padding-inline: var(--body-padding-double);
     margin-inline-start: var(--body-padding-double);
     padding-block-end: 24px;
+    scrollbar-color: var(--color-brand--primary) var(--color-surface--1);
+  }
+  .plan-options::-webkit-scrollbar-track {
+    background: var(--color-brand--primary);
+  }
+  .plan-options::-webkit-scrollbar-thumb {
+    background-color: var(--color-surface--1);
   }
 }
 @media (max-width: 768px) {
@@ -9951,6 +9963,9 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   font-size: 24px;
   display: inline-flex;
   transition: 0.24s ease;
+}
+.plan-options .plan-option__price-frequency {
+  white-space: nowrap;
 }
 .plan-options .plan-option__total {
   --font-size: 16px;

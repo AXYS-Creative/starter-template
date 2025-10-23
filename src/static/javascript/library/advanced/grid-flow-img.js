@@ -1,15 +1,14 @@
 import { mqMouse, mqMotionAllow } from "../../util.js";
 const flowImgs = document.querySelectorAll(".grid-flow-parent");
 
-if (mqMouse.matches && mqMotionAllow.matches) {
+if (mqMouse && mqMotionAllow) {
   const gridFlowEffect = (container) => {
     const img = container.querySelector(".grid-flow-img");
 
     // Configs from dataset
     let easeFactor = parseFloat(container.dataset.gridFlowEase) || 0.075;
     const gridSize = parseFloat(container.dataset.gridFlowGrid) || 20.0;
-    const intensityBase =
-      parseFloat(container.dataset.gridFlowIntensity) || 1.0;
+    const intensityBase = parseFloat(container.dataset.gridFlowIntensity) || 1.0;
     const range = parseFloat(container.dataset.gridFlowRange) || 0.3; // NEW: range of influence
 
     let scene, camera, renderer, planeMesh;
@@ -61,12 +60,7 @@ if (mqMouse.matches && mqMotionAllow.matches) {
     function initializeScene(texture) {
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(
-        80,
-        img.offsetWidth / img.offsetHeight,
-        0.01,
-        10
-      );
+      camera = new THREE.PerspectiveCamera(80, img.offsetWidth / img.offsetHeight, 0.01, 10);
       camera.position.z = 1;
 
       let shaderUniforms = {
@@ -134,19 +128,12 @@ if (mqMouse.matches && mqMotionAllow.matches) {
       mousePosition.x += (targetMousePosition.x - mousePosition.x) * easeFactor;
       mousePosition.y += (targetMousePosition.y - mousePosition.y) * easeFactor;
 
-      planeMesh.material.uniforms.u_mouse.value.set(
-        mousePosition.x,
-        1.0 - mousePosition.y
-      );
+      planeMesh.material.uniforms.u_mouse.value.set(mousePosition.x, 1.0 - mousePosition.y);
 
-      planeMesh.material.uniforms.u_prevMouse.value.set(
-        prevPosition.x,
-        1.0 - prevPosition.y
-      );
+      planeMesh.material.uniforms.u_prevMouse.value.set(prevPosition.x, 1.0 - prevPosition.y);
 
       aberrationIntensity = Math.max(0.0, aberrationIntensity - 0.05);
-      planeMesh.material.uniforms.u_aberrationIntensity.value =
-        aberrationIntensity;
+      planeMesh.material.uniforms.u_aberrationIntensity.value = aberrationIntensity;
 
       renderer.render(scene, camera);
     }
@@ -167,10 +154,8 @@ if (mqMouse.matches && mqMotionAllow.matches) {
 
     function handleMouseEnter(event) {
       let rect = container.getBoundingClientRect();
-      mousePosition.x = targetMousePosition.x =
-        (event.clientX - rect.left) / rect.width;
-      mousePosition.y = targetMousePosition.y =
-        (event.clientY - rect.top) / rect.height;
+      mousePosition.x = targetMousePosition.x = (event.clientX - rect.left) / rect.width;
+      mousePosition.y = targetMousePosition.y = (event.clientY - rect.top) / rect.height;
     }
 
     function handleMouseLeave() {

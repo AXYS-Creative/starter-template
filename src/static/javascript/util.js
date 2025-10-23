@@ -1,15 +1,11 @@
 export const root = document.documentElement; // See portfolio for examples
 
-export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)");
-export const mqMotionAllow = window.matchMedia(
-  "(prefers-reduced-motion: no-preference)"
-);
+export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+export const mqMotionAllow = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+export const mqNoMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
 export const mqMinLg = window.matchMedia("(min-width: 1025px)").matches;
 export const mqMaxMd = window.matchMedia("(max-width: 768px)").matches;
-export const mqNoMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
 
 // Remember to add 'data-lenis-prevent' to any that should scroll normally
 export const lenis = new Lenis({
@@ -20,8 +16,8 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
-// Cubic-bezier helper
-function cubicBezier(p0, p1, p2, p3) {
+// Cubic-bezier lenis helper
+export const cubicBezier = (p0, p1, p2, p3) => {
   // Polyfill-like implementation of bezier easing
   return (t) => {
     const cx = 3 * p0;
@@ -47,7 +43,7 @@ function cubicBezier(p0, p1, p2, p3) {
     }
     return bezierY(x);
   };
-}
+};
 
 // Back to top
 export const btnBackToTop = document.querySelector(".btn-back-to-top"); // floating page button
@@ -120,9 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 {
   document.querySelectorAll(".btn--split-text").forEach((el) => {
     // Decide what to target
-    const target = el.classList.contains("btn")
-      ? el.querySelector(".btn__text")
-      : el;
+    const target = el.classList.contains("btn") ? el.querySelector(".btn__text") : el;
 
     if (!target) return;
 

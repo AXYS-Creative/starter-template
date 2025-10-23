@@ -73,7 +73,6 @@
       @include show-content;
       opacity: 0.8;
       translate: 0 0;
-      // scale: 1;
     }
 
     .plan-option {
@@ -109,6 +108,9 @@
   width: 100%;
 
   @include mq-max(xl) {
+    $scroll-bar-color-track: var(--color-brand--primary);
+    $scroll-bar-color-thumb: var(--color-surface--1);
+
     overflow: auto;
     scroll-snap-type: x mandatory;
 
@@ -116,6 +118,14 @@
     padding-inline: var(--body-padding-double);
     margin-inline-start: var(--body-padding-double);
     padding-block-end: 24px; // room for scrollbar
+
+    scrollbar-color: $scroll-bar-color-track $scroll-bar-color-thumb;
+    &::-webkit-scrollbar-track {
+      background: $scroll-bar-color-track;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $scroll-bar-color-thumb;
+    }
   }
 
   @include mq-max(md) {
@@ -181,6 +191,10 @@
       font-size: 24px;
       display: inline-flex;
       transition: $ease;
+
+      &-frequency {
+        white-space: nowrap; // fixes issue on firefox
+      }
     }
 
     &__total {

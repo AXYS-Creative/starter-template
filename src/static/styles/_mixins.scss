@@ -739,11 +739,7 @@ $min-breakpoints: ();
   }
 }
 
-@mixin gradient-border(
-  $deg: 10deg,
-  $col-1: var(--color-border-gradient),
-  $col-2: transparent
-) {
+@mixin gradient-border($deg: 10deg, $col-1: var(--color-border-gradient), $col-2: transparent) {
   position: relative;
 
   &::before {

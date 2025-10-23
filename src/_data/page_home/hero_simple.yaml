@@ -1,3 +1,4 @@
+class: "home-hero"
 float: false
 direction: column # row | column (column is default, mobile first)
 

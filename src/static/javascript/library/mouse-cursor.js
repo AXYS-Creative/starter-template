@@ -7,7 +7,7 @@ const cursorHide = document.querySelectorAll(".cursor-hide"),
   cursorContent = document.querySelectorAll(".cursor-content");
 
 // commenting this line for tooltip util
-// if (cursor && mqMouse.matches) {
+// if (cursor && mqMouse) {
 if (cursor) {
   const isElastic = cursor.dataset.elastic === "true";
   const shape = cursor.querySelector(".mouse-cursor__shape");
@@ -56,10 +56,7 @@ if (cursor) {
     previousMouse.x = mouseX;
     previousMouse.y = mouseY;
 
-    const velocity = Math.min(
-      Math.sqrt(deltaX ** 2 + deltaY ** 2) * 4,
-      velocityClamp
-    );
+    const velocity = Math.min(Math.sqrt(deltaX ** 2 + deltaY ** 2) * 4, velocityClamp);
     const angle = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
     if (velocity > velocityThreshold) currentAngle = angle;
 
@@ -84,12 +81,8 @@ if (cursor) {
   });
 
   cursorHide.forEach((el) => {
-    el.addEventListener("mousemove", () =>
-      cursor.classList.add("cursor-hidden")
-    );
-    el.addEventListener("mouseleave", () =>
-      cursor.classList.remove("cursor-hidden")
-    );
+    el.addEventListener("mousemove", () => cursor.classList.add("cursor-hidden"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("cursor-hidden"));
   });
 
   //
@@ -135,9 +128,7 @@ if (cursor) {
       iconEl = cursor.querySelector(".mouse-cursor__icon");
 
     // Extract defaults once
-    const defaultIconPath = iconEl.style.maskImage
-      .replace(/url\(['"]?(.*?)['"]?\)/, "$1")
-      .trim();
+    const defaultIconPath = iconEl.style.maskImage.replace(/url\(['"]?(.*?)['"]?\)/, "$1").trim();
     const defaultIconColor = "var(--color-font--primary)";
     const defaultIconSize = "sm"; // sm | md | lg
 
@@ -246,8 +237,7 @@ if (cursor) {
       if (isTop && isLeft) tooltipMessage.classList.add("top-left");
       else if (isTop && isRight) tooltipMessage.classList.add("top-right");
       else if (isBottom && isLeft) tooltipMessage.classList.add("bottom-left");
-      else if (isBottom && isRight)
-        tooltipMessage.classList.add("bottom-right");
+      else if (isBottom && isRight) tooltipMessage.classList.add("bottom-right");
       else if (isTop) tooltipMessage.classList.add("top");
       else if (isBottom) tooltipMessage.classList.add("bottom");
       else if (isLeft) tooltipMessage.classList.add("left");

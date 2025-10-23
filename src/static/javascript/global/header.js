@@ -37,10 +37,7 @@ const toggleNav = () => {
 
   siteNav.setAttribute("aria-hidden", !isNavOpen);
   menuBtn.setAttribute("aria-expanded", isNavOpen);
-  menuBtn.setAttribute(
-    "aria-label",
-    isNavOpen ? "Close navigation menu" : "Open navigation menu"
-  );
+  menuBtn.setAttribute("aria-label", isNavOpen ? "Close navigation menu" : "Open navigation menu");
 
   if (isNavOpen && navScrollLock) {
     lenis.stop();

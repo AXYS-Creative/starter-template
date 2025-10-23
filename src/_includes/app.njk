@@ -17,11 +17,9 @@
     {% include "./meta/_meta-theme-script.njk" %}
 
     <!-- Stylesheets -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
+    <link rel="stylesheet" href="/static/styles/styles.css" type="text/css" />
+    <!-- Library DELETE ME -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Script Tags -->
     {% if path == "home" %}
@@ -59,13 +57,6 @@
       {% include "./library/components/btn-back-to-top.njk" %}
     {% endif %}
 
-    <!-- prettier-ignore -->
-    {% set scroll_progress = ({
-      type: 'height',
-      allow_click: true
-    }) %}
-    {% include "./library/components/scroll-progress.njk" %}
-
     <!-- prettier-ignore  -->
     {% if 
       path == "home" 
@@ -77,6 +68,18 @@
     %}
       {% include "./library/components/mouse-cursor.njk" %}
     {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if path == 'home' %}
+      {% include './partials/loader.njk' %}
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% set scroll_progress = ({
+      type: 'height',
+      allow_click: true
+    }) %}
+    {% include "./library/components/scroll-progress.njk" %}
 
     <!-- prettier-ignore -->
     {% if path == "library/combos" %}

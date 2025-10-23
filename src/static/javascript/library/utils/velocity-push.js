@@ -38,11 +38,7 @@ if (pushElems.length) {
 
       el.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
 
-      if (
-        Math.abs(offsetX) < 0.01 &&
-        Math.abs(offsetY) < 0.01 &&
-        Math.abs(rotate) < 0.01
-      ) {
+      if (Math.abs(offsetX) < 0.01 && Math.abs(offsetY) < 0.01 && Math.abs(rotate) < 0.01) {
         offsetX = offsetY = rotate = 0;
         el.style.transform = "";
         isAnimating = false;
@@ -79,10 +75,7 @@ if (pushElems.length) {
       offsetY = pushY;
 
       // Velocity magnitude (normalized)
-      const velocityMag = Math.min(
-        Math.sqrt(velocityX ** 2 + velocityY ** 2) / 30,
-        1
-      ); // scale 0–1 (30px/frame ≈ full strength)
+      const velocityMag = Math.min(Math.sqrt(velocityX ** 2 + velocityY ** 2) / 30, 1); // scale 0–1 (30px/frame ≈ full strength)
 
       // Rotation (blend position + velocity)
       if (maxRotate > 0) {
