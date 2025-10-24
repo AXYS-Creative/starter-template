@@ -156,9 +156,6 @@ const setViewportUnits = (() => {
   root.style.setProperty("--svh", `${innerHeight * 0.01}px`);
 })();
 
-console.clear();
-console.log("visit axyscreative.com for more info");
-
 //
 // Title change on tab move
 //
@@ -173,3 +170,6 @@ console.log("visit axyscreative.com for more info");
     }
   });
 }
+
+console.clear();
+console.log("visit axyscreative.com for more info");

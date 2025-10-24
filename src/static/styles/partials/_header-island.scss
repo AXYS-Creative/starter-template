@@ -3,8 +3,12 @@
   --top-offset: 12px;
   --nav-min-height: 640px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     --nav-min-height: 520px;
+  }
+
+  @media (max-width: 768px) {
+    --nav-min-height: 420px;
   }
 }
 
@@ -169,7 +173,7 @@
 
 .site-nav.nav-island {
   $z-index--nav: 4;
-  --nav-top-offset: calc(var(--top-offset) + var(--header-height));
+  --nav-top-offset: calc(var(--top-offset) * 2 + var(--header-height));
   $avoid-overshooting: 1.26; // To help place nav links within header when expanded
 
   @include hide-content;
@@ -190,7 +194,7 @@
 
   .width-constraint {
     @include column-start;
-    gap: 136px;
+    gap: 132px;
 
     position: relative;
     max-width: $content-width;
@@ -198,6 +202,10 @@
     min-height: var(--nav-min-height);
     margin: 0 auto var(--body-padding);
     padding: var(--body-padding) 12px;
+
+    @include mq-max(lg) {
+      gap: 96px;
+    }
 
     @include mq-max(md) {
       gap: 48px;
@@ -245,9 +253,7 @@
 
   // Library
   &.site-nav--promo-banner {
-    --nav-top-offset: calc(
-      var(--top-offset) + var(--header-height) + var(--promo-banner-height)
-    );
+    --nav-top-offset: calc(var(--top-offset) + var(--header-height) + var(--promo-banner-height));
   }
 }
 

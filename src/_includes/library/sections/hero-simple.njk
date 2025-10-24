@@ -26,7 +26,14 @@
     <div class="hero-simple__text">
       <!-- prettier-ignore -->
       {% if eyebrow %}
-      <small class="hero-simple__text-eyebrow">{{ eyebrow }}</small>
+      <small
+        class="hero-simple__text-eyebrow typing-scroll"
+        data-typing-once="true"
+        data-typing-speed="50"
+        data-typing-delay="800"
+        data-typing-cursor="underscore"
+        >{{ eyebrow }}</small
+      >
       {% endif %}
 
       <!-- prettier-ignore -->

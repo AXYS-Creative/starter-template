@@ -10,13 +10,14 @@ if (siteLoader) {
 // Use session storage for users that navigate away from the home page and then return (removes loader any future time unless revisting the page)
 if (sessionStorage.getItem("visitedSite") && siteLoader) {
   // User has visited before — remove loader immediately
+  siteLoader.style.display = "none";
   siteLoader.remove();
   document.body.removeAttribute("data-body-loading");
   document.body.setAttribute("data-body-loading-complete", "");
 } else if (siteLoader) {
   let pageLoaded = false;
   let timerDone = false;
-  const loadDuration = 0; // Seconds NOT Miliseconds
+  const loadDuration = 2.4; // Seconds NOT Miliseconds
 
   // Skip animations for reduced-motion users
   if (mqNoMotion) {
@@ -32,6 +33,7 @@ if (sessionStorage.getItem("visitedSite") && siteLoader) {
       siteLoader.setAttribute("aria-hidden", "true");
       document.body.removeAttribute("data-body-loading");
       document.body.setAttribute("data-body-loading-complete", "");
+      sessionStorage.setItem("visitedSite", "true");
     }
   };
 

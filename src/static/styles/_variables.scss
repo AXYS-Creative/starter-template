@@ -132,6 +132,7 @@ $test-bg: rgba(navy, 0.75);
   --color-background-alt: #fff;
   --color-font--primary: #{$black};
   --color-font--secondary: #{$grey-dark};
+  --color-font--tertiary: #{$grey-light};
 
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};
@@ -148,7 +149,8 @@ $test-bg: rgba(navy, 0.75);
   --color-background: #{$black};
   --color-background-alt: #000;
   --color-font--primary: #{$white};
-  --color-font--secondary: #{$grey};
+  --color-font--secondary: #{$grey-light};
+  --color-font--tertiary: #{$grey-dark};
 
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};

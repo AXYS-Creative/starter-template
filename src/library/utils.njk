@@ -16,19 +16,17 @@ path: library/utils
   <strong>* Requires mouse-cursor.njk *</strong>
   <p class="max-width-text">
     If using a mouse cursor, you can set up a <strong>trigger</strong> and
-    <strong>target</strong> to detach the cursor from following the mouse. The
-    class <code>cursor-trigger</code> goes on the trigger element along with the
-    required data attribute <code>data-cursor-target</code>.
+    <strong>target</strong> to detach the cursor from following the mouse. The class
+    <code>cursor-trigger</code> goes on the trigger element along with the required data attribute
+    <code>data-cursor-target</code>.
   </p>
 
   <ul class="classic-list">
     <li>
-      <code>data-cursor-target</code> A string that matches the unique class of
-      the target element.
+      <code>data-cursor-target</code> A string that matches the unique class of the target element.
     </li>
     <li>
-      <code>data-cursor-class</code> A string that adds a custom modifier class
-      to the mouse cursor.
+      <code>data-cursor-class</code> A string that adds a custom modifier class to the mouse cursor.
     </li>
   </ul>
 
@@ -68,30 +66,24 @@ path: library/utils
     data-cursor-target="cursor-target__dot"
     data-cursor-class="dot-hover-active"
   >
-    <strong>Hover me</strong> — move cursor to... the first dot? See note below
-    for fix.
+    <strong>Hover me</strong> — move cursor to... the first dot? See note below for fix.
   </p>
   <div class="cursor-target__dot">• &nbsp;&nbsp;(won't target)</div>
 
   <p class="max-width-text">
     <strong>Note:</strong>
-    If you have multiple elements (or components) with shared trigger/target
-    names, you’ll likely want each instance to be isolated from the next. The
-    solution is to wrap each instance in a container with the class
-    <code>cursor-pair</code> Otherwise only the first instance will work
-    properly.
+    If you have multiple elements (or components) with shared trigger/target names, you’ll likely
+    want each instance to be isolated from the next. The solution is to wrap each instance in a
+    container with the class
+    <code>cursor-pair</code> Otherwise only the first instance will work properly.
   </p>
   <p class="cursor-pair" data-cursor-target="cursor-target__square">
-    <span class="cursor-trigger">
-      <strong>Hover me</strong> — move cursor to the square
-    </span>
+    <span class="cursor-trigger"> <strong>Hover me</strong> — move cursor to the square </span>
     &nbsp;&nbsp;
     <span class="cursor-target__square">◼︎</span>
   </p>
   <p class="cursor-pair" data-cursor-target="cursor-target__square">
-    <span class="cursor-trigger">
-      <strong>Hover me</strong> — move cursor to the square
-    </span>
+    <span class="cursor-trigger"> <strong>Hover me</strong> — move cursor to the square </span>
     &nbsp;&nbsp;
     <span class="cursor-target__square">◼︎</span>
   </p>
@@ -102,34 +94,28 @@ path: library/utils
   <strong>* Requires mouse-cursor.njk *</strong>
   <p class="max-width-text">
     If using a mouse cursor, you can add content via the
-    <code>cursor-content</code> class and supported attributes. Content inclues
-    either a simple message or configurable svg-icon. You can also customize the
-    cursor's general styles via a custom class with the
-    <code>data-cursor-class</code> attribute.
+    <code>cursor-content</code> class and supported attributes. Content inclues either a simple
+    message or configurable svg-icon. You can also customize the cursor's general styles via a
+    custom class with the <code>data-cursor-class</code> attribute.
   </p>
 
   <ul class="classic-list">
     <li>
-      <code>data-cursor-message</code> An optional string, the message you want
-      displayed within the cursor. Default to an empty string.
+      <code>data-cursor-message</code> An optional string, the message you want displayed within the
+      cursor. Default to an empty string.
     </li>
     <li>
-      <code>data-cursor-icon</code> A string,
-      <strong>required if using an icon</strong>. Either leave blank (resorts to
-      fallback set in <code>mouse-cursor.njk</code>) or provide the path to the
-      image (svg) file you would like to use.
+      <code>data-cursor-icon</code> A string, <strong>required if using an icon</strong>. Either
+      leave blank (resorts to fallback set in <code>mouse-cursor.njk</code>) or provide the path to
+      the image (svg) file you would like to use.
     </li>
     <li>
-      <code>data-cursor-class</code> A string that adds a custom modifier class
-      to the mouse cursor.
+      <code>data-cursor-class</code> A string that adds a custom modifier class to the mouse cursor.
     </li>
   </ul>
 
   <br /><br />
-  <p
-    class="cursor-content cursor-content-section__sample text-underline"
-    data-cursor-icon
-  >
+  <p class="cursor-content cursor-content-section__sample text-underline" data-cursor-icon>
     Basic example on text.
   </p>
   <div class="cursor-content-section__samples">
@@ -166,9 +152,8 @@ path: library/utils
   <strong>Coming soon!</strong>
   <strong>* Requires mouse-cursor.njk *</strong>
   <p class="max-width-text">
-    If using <code>mouse-cursor.njk</code> any specified element(s) on the page
-    can follow the mouse cursor. Most cases are triggered by hovering a specific
-    area.
+    If using <code>mouse-cursor.njk</code> any specified element(s) on the page can follow the mouse
+    cursor. Most cases are triggered by hovering a specific area.
   </p>
 </section>
 
@@ -177,17 +162,13 @@ path: library/utils
     [
     <span class="glitch-scroll glitch-text">Glitch Text</span>
     -
-    <span
-      class="glitch-cycle glitch-text"
-      data-glitch-cycle-words="Util, Class"
-    >
-      Util </span
+    <span class="glitch-cycle glitch-text" data-glitch-cycle-words="Util, Class"> Util </span
     >&nbsp;]
   </h2>
   <div>
     <p>
-      Utilize GSAP's <code>text-scrambler</code> effect. While not required,
-      it’s highly recommended to use a
+      Utilize GSAP's <code>text-scrambler</code> effect. While not required, it’s highly recommended
+      to use a
     </p>
     <!-- prettier-ignore -->
     {% set tooltip = ({
@@ -200,29 +181,28 @@ path: library/utils
     {% include "../_includes/library/components/tooltip.njk" %}
     <p>
       , which helps prevent layout shift when the width changes. The class
-      <code>glitch-text</code> comes with a pre loaded mono-spaced font along
-      with other easy styles for all glitch related text.
+      <code>glitch-text</code> comes with a pre loaded mono-spaced font along with other easy styles
+      for all glitch related text.
     </p>
   </div>
 
   <h3>Glitch Cycle</h3>
   <p>
-    The glitch cycle uses the <code>glitch-cycle</code> class along with
-    multiple <code>data</code> attributes to configure.
+    The glitch cycle uses the <code>glitch-cycle</code> class along with multiple
+    <code>data</code> attributes to configure.
   </p>
   <ul class="classic-list">
     <li>
-      <code>data-glitch-cycle-words</code> A comma separated string of words to
-      that will appear in the cycle.
+      <code>data-glitch-cycle-words</code> A comma separated string of words to that will appear in
+      the cycle.
     </li>
     <li>
-      <code>data-glitch-cycle-colors</code> A comma separated string of colors
-      (any valid css property, including variables) to that will appear in the
-      cycle.
+      <code>data-glitch-cycle-colors</code> A comma separated string of colors (any valid css
+      property, including variables) to that will appear in the cycle.
     </li>
     <li>
-      <code>data-glitch-cycle-interval</code> A number, in ms that represents
-      the time between each word change.
+      <code>data-glitch-cycle-interval</code> A number, in ms that represents the time between each
+      word change.
     </li>
   </ul>
   <h4>
@@ -241,86 +221,74 @@ path: library/utils
 
   <h3>Glitch Scroll</h3>
   <p>
-    The class <code>glitch-scroll</code> will scramble the text when the element
-    comes into view. Use the following data attributes to customize the
-    experience:
+    The class <code>glitch-scroll</code> will scramble the text when the element comes into view.
+    Use the following data attributes to customize the experience:
   </p>
   <ul class="classic-list">
     <li>
-      <code>data-glitch-chars</code> String value determining scramle characters
-      shown. Default is <code>"upperAndLowerCase"</code>
+      <code>data-glitch-chars</code> String value determining scramle characters shown. Default is
+      <code>"upperAndLowerCase"</code>
     </li>
     <li>
-      <code>data-glitch-reveal-delay</code> Number, the delay of the scroll
-      animation. Default is <code>0.05</code>
+      <code>data-glitch-reveal-delay</code> Number, the delay of the scroll animation. Default is
+      <code>0.05</code>
     </li>
     <li>
-      <code>data-glitch-duration</code> Number, the duration of the glitch
-      animation. Default is <code>0.75</code>
+      <code>data-glitch-duration</code> Number, the duration of the glitch animation. Default is
+      <code>0.75</code>
     </li>
     <li>
-      <code>data-glitch-once</code> An optional boolean that will toggle the
-      effect to occur only the first time the element scrolls into view. Default
-      is <code>false</code>
+      <code>data-glitch-once</code> An optional boolean that will toggle the effect to occur only
+      the first time the element scrolls into view. Default is <code>false</code>
     </li>
     <li>
-      <code>data-glitch-trigger</code> String, the class or id (don't forget .
-      or #) of the element that triggers the effect. Default is the glitch
-      element itself.
+      <code>data-glitch-trigger</code> String, the class or id (don't forget . or #) of the element
+      that triggers the effect. Default is the glitch element itself.
     </li>
     <li>
-      <code>data-glitch-start</code> String, the parameters for scrollTrigger.
-      Default is <code>"top 98%"</code>
+      <code>data-glitch-start</code> String, the parameters for scrollTrigger. Default is
+      <code>"top 98%"</code>
     </li>
     <li>
-      <code>data-glitch-end</code> String, the parameters for scrollTrigger.
-      Default is <code>"bottom 2%"</code>
+      <code>data-glitch-end</code> String, the parameters for scrollTrigger. Default is
+      <code>"bottom 2%"</code>
     </li>
     <li>
-      <code>data-glitch-markers</code> Optional boolean, markers to help
-      build/debug. Default is
+      <code>data-glitch-markers</code> Optional boolean, markers to help build/debug. Default is
       <code>false</code>
     </li>
   </ul>
   <p class="glitch-scroll glitch-text">
-    This will glitch out as many times as you scroll into view. Default
-    behavior.
+    This will glitch out as many times as you scroll into view. Default behavior.
   </p>
-  <p class="glitch-scroll glitch-text" data-glitch-once="true">
-    This will only glitch out once.
-  </p>
+  <p class="glitch-scroll glitch-text" data-glitch-once="true">This will only glitch out once.</p>
   <p>
     <span
       class="glitch-scroll glitch-text"
       data-glitch-trigger=".glitch-trigger-subtitle"
       data-glitch-end="bottom center"
     >
-      This will glitch when the subtitle "Glitch Trigger/Target" comes into
-      view.
+      This will glitch when the subtitle "Glitch Trigger/Target" comes into view.
     </span>
     <br />
-    <span>
-      Great for pinned sections, just don't forget to add the '.' with the
-      classname!
-    </span>
+    <span> Great for pinned sections, just don't forget to add the '.' with the classname! </span>
   </p>
 
   <br />
 
   <h3>Glitch Hover</h3>
   <p>
-    The class <code>glitch-hover</code> causes the text content (works with
-    nested elements) to scramble on hover or focus. Comes with the following
-    configs:
+    The class <code>glitch-hover</code> causes the text content (works with nested elements) to
+    scramble on hover or focus. Comes with the following configs:
   </p>
   <ul class="classic-list">
     <li>
-      <code>data-glitch-new-text</code> A string that changes the glitch text to
-      a new message. Defaults to <code>null</code>
+      <code>data-glitch-new-text</code> A string that changes the glitch text to a new message.
+      Defaults to <code>null</code>
     </li>
     <li>
-      <code>data-glitch-out</code> A boolean that toggles if the animation
-      should also occur on mouseleave and blur. Defaults to <code>false</code>
+      <code>data-glitch-out</code> A boolean that toggles if the animation should also occur on
+      mouseleave and blur. Defaults to <code>false</code>
     </li>
   </ul>
   <!-- prettier-ignore -->
@@ -351,20 +319,19 @@ path: library/utils
 
   <h3 class="glitch-trigger-subtitle">Glitch Trigger/Target</h3>
   <p>
-    The class <code>glitch-trigger</code> will act as the hover/focus point to
-    trigger the glitch elsewhere. This requires the
-    <code>data-glitch-target="glitch-target__arbitrary"</code> which takes a
-    unique value that matches the class of the target. The target will then have
-    the class that matches <code>class="glitch-target__arbitrary"</code>
+    The class <code>glitch-trigger</code> will act as the hover/focus point to trigger the glitch
+    elsewhere. This requires the <code>data-glitch-target="glitch-target__arbitrary"</code> which
+    takes a unique value that matches the class of the target. The target will then have the class
+    that matches <code>class="glitch-target__arbitrary"</code>
   </p>
 
   <div class="glitch-pair">
     <p>
-      This one can get tricky with scaling e.g. using target glitch on a
-      component since there would be multiple triggers and targets with the same
-      value. A workaround is using a parent wrapper with the class
-      <code>glitch-pair</code> IF the elements are siblings in the markup rather
-      than nested (such as cta-2).
+      This one can get tricky with scaling e.g. using target glitch on a component since there would
+      be multiple triggers and targets with the same value. A workaround is using a parent wrapper
+      with the class
+      <code>glitch-pair</code> IF the elements are siblings in the markup rather than nested (such
+      as cta-2).
     </p>
     <br />
     <br />
@@ -383,55 +350,49 @@ path: library/utils
 <section class="gradient-border-section library-section">
   <h2>[ Gradient border - Util ]</h2>
   <p>
-    Gradient borders. Simple but confusing. Saw Okta doing this and wanted to
-    see what it was about.
+    Gradient borders. Simple but confusing. Saw Okta doing this and wanted to see what it was about.
   </p>
 
   <div class="gradient-border">
     <h3>Gradient border</h3>
     <p>
-      Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      Molestiae commodi veritatis totam harum accusamus quia sint aliquam quod
-      non, earum reiciendis, minus consequuntur dolores.
+      Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae commodi
+      veritatis totam harum accusamus quia sint aliquam quod non, earum reiciendis, minus
+      consequuntur dolores.
     </p>
   </div>
 </section>
 
 <section class="gsap-animate-section library-section">
-  <h2 class="gsap-animate-section__title gsap-animate">
-    [ GSAP animate - Util ]
-  </h2>
+  <h2 class="gsap-animate-section__title gsap-animate">[ GSAP animate - Util ]</h2>
   <strong class="gsap-animate-section__subtitle gsap-animate">
     <sup>*</sup>Requires custom code/css to define the animation
   </strong>
   <p class="gsap-animate-section__desc gsap-animate max-width-text">
-    With the utility class <code>gsap-animate</code>, you'll unlock the powers
-    of GSAP's <code>scrollTrigger</code> plugin. When the element comes into
-    view, you'll be able to apply additional styles with the temporary
-    <code>gsap-animated</code> class.
+    With the utility class <code>gsap-animate</code>, you'll unlock the powers of GSAP's
+    <code>scrollTrigger</code> plugin. When the element comes into view, you'll be able to apply
+    additional styles with the temporary <code>gsap-animated</code> class.
   </p>
 
   <ul class="classic-list">
     <li class="gsap-animate-section__li gsap-animate">
-      <code>data-gsap-once</code> Boolean, to toggle the animation only the
-      first time. Default is <code>false</code>.
+      <code>data-gsap-once</code> Boolean, to toggle the animation only the first time. Default is
+      <code>false</code>.
     </li>
     <li class="gsap-animate-section__li gsap-animate">
-      <code>data-gsap-trigger</code> String, the class or id (don't forget . or
-      #) of the element that triggers the effect. Default is the gsap-animate
-      element itself.
+      <code>data-gsap-trigger</code> String, the class or id (don't forget . or #) of the element
+      that triggers the effect. Default is the gsap-animate element itself.
     </li>
     <li class="gsap-animate-section__li gsap-animate">
-      <code>data-gsap-start</code> String, the parameters for scrollTrigger.
-      Default is <code>"top 98%"</code>
+      <code>data-gsap-start</code> String, the parameters for scrollTrigger. Default is
+      <code>"top 98%"</code>
     </li>
     <li class="gsap-animate-section__li gsap-animate">
-      <code>data-gsap-end</code> String, the parameters for scrollTrigger.
-      Default is <code>"bottom 2%"</code>
+      <code>data-gsap-end</code> String, the parameters for scrollTrigger. Default is
+      <code>"bottom 2%"</code>
     </li>
     <li class="gsap-animate-section__li gsap-animate">
-      <code>data-gsap-markers</code> Boolean, markers to help build/debug.
-      Default is
+      <code>data-gsap-markers</code> Boolean, markers to help build/debug. Default is
       <code>false</code>
     </li>
   </ul>
@@ -439,43 +400,34 @@ path: library/utils
 
 <section class="gsap-stagger-section library-section">
   <h2>[ GSAP stagger - Util ]</h2>
-  <strong>
-    <sup>*</sup>Requires custom code/css to define the animation
-  </strong>
+  <strong> <sup>*</sup>Requires custom code/css to define the animation </strong>
   <p>
-    Anytime you want to stagger a wrapper's descendant animations, you can use
-    the utility class <code>gsap-stagger</code> on the parent. You can then add
-    the class <code>gsap-stagger-child</code> to each child you would like to
-    stagger. This taps into the powers of GSAP's
-    <code>scrollTrigger</code> plugin so when the elements comes into view,
-    you'll be able to apply additional styles with the temporarys
-    <code>gsap-stagger-animate</code> class.
+    Anytime you want to stagger a wrapper's descendant animations, you can use the utility class
+    <code>gsap-stagger</code> on the parent. You can then add the class
+    <code>gsap-stagger-child</code> to each child you would like to stagger. This taps into the
+    powers of GSAP's <code>scrollTrigger</code> plugin so when the elements comes into view, you'll
+    be able to apply additional styles with the temporarys <code>gsap-stagger-animate</code> class.
   </p>
 
-  <ul
-    class="classic-list gsap-stagger-list gsap-stagger"
-    data-stagger-delay="0.125"
-  >
+  <ul class="classic-list gsap-stagger-list gsap-stagger" data-stagger-delay="0.125">
     <li class="gsap-stagger-child">
-      <code>data-gsap-once</code> Boolean, to toggle the animation only the
-      first time. Default is <code>false</code>.
+      <code>data-gsap-once</code> Boolean, to toggle the animation only the first time. Default is
+      <code>false</code>.
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-trigger</code> String, the class or id (don't forget . or
-      #) of the element that triggers the effect. Default is the gsap-animate
-      element itself.
+      <code>data-gsap-trigger</code> String, the class or id (don't forget . or #) of the element
+      that triggers the effect. Default is the gsap-animate element itself.
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-start</code> String, the parameters for scrollTrigger.
-      Default is <code>"top 98%"</code>
+      <code>data-gsap-start</code> String, the parameters for scrollTrigger. Default is
+      <code>"top 98%"</code>
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-end</code> String, the parameters for scrollTrigger.
-      Default is <code>"bottom 2%"</code>
+      <code>data-gsap-end</code> String, the parameters for scrollTrigger. Default is
+      <code>"bottom 2%"</code>
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-markers</code> Boolean, markers to help build/debug.
-      Default is
+      <code>data-gsap-markers</code> Boolean, markers to help build/debug. Default is
       <code>false</code>
     </li>
   </ul>
@@ -498,16 +450,10 @@ path: library/utils
   </p>
 
   <div class="outline-trace-samples">
-    <div
-      class="outline-trace outline-trace-samples__sample-1"
-      data-outline-trace-animate
-    >
+    <div class="outline-trace outline-trace-samples__sample-1" data-outline-trace-animate>
       Sample 1
     </div>
-    <div
-      class="outline-trace outline-trace-samples__sample-2"
-      data-outline-trace-hover
-    >
+    <div class="outline-trace outline-trace-samples__sample-2" data-outline-trace-hover>
       Sample 2
     </div>
   </div>
@@ -517,14 +463,13 @@ path: library/utils
 <section class="text-fade-section library-section">
   <h2 class="text-fade">[ Text Fade - Util ]</h2>
   <p class="text-fade" data-fade-duration="0.5">
-    This uses GSAP's <strong>ScrollTrigger</strong> and
-    <strong>SplitText</strong> plugins to fade in either words or characters.
+    This uses GSAP's <strong>ScrollTrigger</strong> and <strong>SplitText</strong> plugins to fade
+    in either words or characters.
   </p>
   <p class="text-fade" data-fade-type="words" data-fade-duration="0.5">
-    This paragraph will animate each word rather than each character. Lorem
-    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti
-    tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis
-    sequi dignissimos dolores? Magni, nisi quae.
+    This paragraph will animate each word rather than each character. Lorem ipsum dolor sit amet
+    consectetur adipisicing elit. Error iste corrupti tempora aspernatur, consequatur blanditiis,
+    repellat, quibusdam perferendis sequi dignissimos dolores? Magni, nisi quae.
   </p>
   <p
     class="text-fade"
@@ -533,22 +478,16 @@ path: library/utils
     data-fade-style="linear"
     data-fade-duration="2"
   >
-    This text should only fade in the <strong>very first time!</strong> The
-    letter split should also take a bit longer than expected (2s), making use of
-    the data-fill-duration attribute.
+    This text should only fade in the <strong>very first time!</strong> The letter split should also
+    take a bit longer than expected (2s), making use of the data-fill-duration attribute.
   </p>
-  <p
-    class="text-fade"
-    data-fade-style="linear"
-    data-fade-scrub="true"
-    data-fade-end="bottom 60%"
-  >
+  <p class="text-fade" data-fade-style="linear" data-fade-scrub="true" data-fade-end="bottom 60%">
     This text should scrub in a linear animation.
   </p>
   <br />
   <p class="text-fade">
-    You can use the <code class="gsap-animate">text-fade</code> utility class
-    with the following attributes:
+    You can use the <code class="gsap-animate">text-fade</code> utility class with the following
+    attributes:
   </p>
   <ul class="classic-list">
     <li class="text-fade">
@@ -562,32 +501,31 @@ path: library/utils
       <code class="gsap-animate">random</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      <code class="gsap-animate">data-fade-duration</code> A number to control the animation
+      duration. Defaults to <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">data-fade-once</code> A boolean to fire to animation only the first
+      time it comes into view. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub through the animation
+      rather than playing it. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-start</code> A string to set the
-      start animation. Defaults to
+      <code class="gsap-animate">data-fade-start</code> A string to set the start animation.
+      Defaults to
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-end</code> A string to set the end
-      animation. Defaults to
+      <code class="gsap-animate">data-fade-end</code> A string to set the end animation. Defaults to
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-fade">
-      <code class="gsap-animate">data-fade-markers</code> A boolean to toggle
-      visual debugging markers.
+      <code class="gsap-animate">data-fade-markers</code> A boolean to toggle visual debugging
+      markers.
       <code class="gsap-animate">false</code>
     </li>
   </ul>
@@ -598,26 +536,22 @@ path: library/utils
   <br />
   <br />
   <strong class="text-fill" data-fill-scrub="false">
-    Note: Both flexbox (element or parent) and position absolute can affect the
-    line by line animation <sup>*</sup>
+    Note: Both flexbox (element or parent) and position absolute can affect the line by line
+    animation <sup>*</sup>
   </strong>
   <br />
   <br />
-  <h3 class="text-fill" data-fill-end="bottom 40%">
-    Slow it down with 'bottom 20%'.....
-  </h3>
+  <h3 class="text-fill" data-fill-end="bottom 40%">Slow it down with 'bottom 20%'.....</h3>
   <br />
   <br />
   <p class="text-fill" data-fill-end="bottom 40%">
-    Use the <strong>'text-fill'</strong> utility class to get started with this
-    effect. <strong>Note</strong> there are some caveats such as flexbox parent
-    containers and different position absolute. Modify the speed with
-    <strong>'data-fill-end'</strong> This comes with aditional configs, one of
-    which detaches scrub and allows you to fire the animation once. Lorem ipsum
-    dolor, sit amet consectetur adipisicing elit. Non laudantium ad tempora
-    facilis tempore, enim earum molestiae iusto doloremque incidunt voluptatum,
-    dolorum, obcaecati sint officia cum quia. Itaque et, ad accusantium a
-    impedit, consectetur, magni debitis tenetur ab odio laborum!
+    Use the <strong>'text-fill'</strong> utility class to get started with this effect.
+    <strong>Note</strong> there are some caveats such as flexbox parent containers and different
+    position absolute. Modify the speed with <strong>'data-fill-end'</strong> This comes with
+    aditional configs, one of which detaches scrub and allows you to fire the animation once. Lorem
+    ipsum dolor, sit amet consectetur adipisicing elit. Non laudantium ad tempora facilis tempore,
+    enim earum molestiae iusto doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum
+    quia. Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab odio laborum!
   </p>
   <br />
   <br />
@@ -631,30 +565,27 @@ path: library/utils
     data-fill-markers="false"
   >
     This sample will only fire once with
-    <strong class="text-underline">data-fill-once="true"</strong>. It also
-    starts a little bit later with
-    <strong class="text-underline">data-fill-start="top 80%"</strong>. The
-    duration can also be altered with
-    <strong class="text-underline">data-fill-duration="NUMBER"</strong> Lorem
-    ipsum dolor, sit amet consectetur adipisicing elit. Non laudantium ad
-    tempora facilis tempore, enim earum molestiae iusto doloremque incidunt
-    voluptatum, dolorum, obcaecati sint officia cum quia. Itaque et, ad
-    accusantium a impedit, consectetur, magni debitis tenetur ab odio laborum!
+    <strong class="text-underline">data-fill-once="true"</strong>. It also starts a little bit later
+    with <strong class="text-underline">data-fill-start="top 80%"</strong>. The duration can also be
+    altered with <strong class="text-underline">data-fill-duration="NUMBER"</strong> Lorem ipsum
+    dolor, sit amet consectetur adipisicing elit. Non laudantium ad tempora facilis tempore, enim
+    earum molestiae iusto doloremque incidunt voluptatum, dolorum, obcaecati sint officia cum quia.
+    Itaque et, ad accusantium a impedit, consectetur, magni debitis tenetur ab odio laborum!
   </p>
   <br />
   <br />
   <ul class="classic-list">
     <li>Requires the util class <code>text-fill</code></li>
     <li>
-      <code>data-fill-start</code> An optional string that takes two percentage
-      values. The values represent the target element and the viewport, where 0%
-      is the top while 100% is the bottom. Default is
+      <code>data-fill-start</code> An optional string that takes two percentage values. The values
+      represent the target element and the viewport, where 0% is the top while 100% is the bottom.
+      Default is
       <code>"0% 90%"</code>
     </li>
     <li>
-      <code>data-fill-end</code> An optional string that takes two percentage
-      values. The values represent the target element and the viewport, where 0%
-      is the top while 100% is the bottom. Default is
+      <code>data-fill-end</code> An optional string that takes two percentage values. The values
+      represent the target element and the viewport, where 0% is the top while 100% is the bottom.
+      Default is
       <code>"100% 60%"</code>
     </li>
     <li>
@@ -662,21 +593,44 @@ path: library/utils
       <code>true</code>
     </li>
     <li>
-      <code>data-fill-duration</code> A number that represents the number of
-      seconds to complete the animation. <strong>Requires</strong>
-      <code>data-fill-scrub="false"</code>. Defaults to
+      <code>data-fill-duration</code> A number that represents the number of seconds to complete the
+      animation. <strong>Requires</strong> <code>data-fill-scrub="false"</code>. Defaults to
       <code>1</code>
     </li>
     <li>
-      <code>data-fill-once</code> boolean, to toggle multiple animations when
-      scrolling to the element. <strong>Requires</strong>
-      <code>data-fill-scrub="false"</code>. Defaults to <code>false</code>
+      <code>data-fill-once</code> boolean, to toggle multiple animations when scrolling to the
+      element. <strong>Requires</strong> <code>data-fill-scrub="false"</code>. Defaults to
+      <code>false</code>
     </li>
     <li>
-      <code>data-fill-markers</code> boolean, to toggle visual debugging
-      markers. Defaults to <code>false</code>
+      <code>data-fill-markers</code> boolean, to toggle visual debugging markers. Defaults to
+      <code>false</code>
     </li>
   </ul>
+</section>
+
+<section class="text-glare-section library-section cursor-hide">
+  <h2 class="text-glare">[ Text Glare - Util ]</h2>
+  <br /><br />
+  <p class="text-glare">Add a glare to your text.</p>
+
+  <br /><br />
+
+  <!-- <h3 class="h1 indent-first"> -->
+  <h3 class="text-glare h1" data-track-mouse>
+    Sample Glare Text <br />
+    Pretty Sweet Effect!
+  </h3>
+
+  <p class="text-glare h4 max-width-text" data-flashlight>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ut, quidem aliquid
+    veritatis ipsam dolor commodi consectetur accusantium exercitationem? Debitis, eum recusandae.
+    Veritatis reprehenderit sequi aperiam accusantium beatae soluta, aliquam quas deleniti maxime.
+    Aspernatur, error enim. Earum similique veniam tenetur amet quidem dignissimos suscipit numquam
+    eius laborum beatae! Enim rerum omnis harum, nisi sed qui debitis et, cum, laboriosam cumque
+    delectus nemo blanditiis maxime expedita facilis saepe eaque impedit obcaecati eveniet pariatur
+    quam voluptas!
+  </p>
 </section>
 
 <section class="text-reveal-section library-section">
@@ -689,8 +643,8 @@ path: library/utils
     [ Text reveal - Util ]
   </h2>
   <p class="text-reveal">
-    This uses GSAP's <strong>ScrollTrigger</strong> and
-    <strong>SplitText</strong> plugins to reveal in either words or characters.
+    This uses GSAP's <strong>ScrollTrigger</strong> and <strong>SplitText</strong> plugins to reveal
+    in either words or characters.
   </p>
   <p
     class="text-reveal"
@@ -700,10 +654,9 @@ path: library/utils
     data-reveal-end="bottom 75%"
     style="max-width: 750px"
   >
-    This paragraph will <strong>scrub</strong> through each word and
-    demonstrates that it works in a paragraph with multiple lines. Lorem ipsum
-    dolor sit amet consectetur adipisicing elit. Error iste corrupti tempora
-    aspernatur, consequatur blanditiis, repellat, quibusdam perferendis sequi
+    This paragraph will <strong>scrub</strong> through each word and demonstrates that it works in a
+    paragraph with multiple lines. Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+    iste corrupti tempora aspernatur, consequatur blanditiis, repellat, quibusdam perferendis sequi
     dignissimos dolores? Magni, nisi quae.
   </p>
   <p
@@ -714,10 +667,9 @@ path: library/utils
     data-reveal-stagger="0.0125"
     data-reveal-ease="back.out(2)"
   >
-    This text will split by <code>chars</code> only the
-    <strong>very first time!</strong> The duration will also be a bit longer
-    than expected, making use of the <code>data-reveal-duration</code> and
-    <code>data-reveal-stagger</code> attributes.
+    This text will split by <code>chars</code> only the <strong>very first time!</strong> The
+    duration will also be a bit longer than expected, making use of the
+    <code>data-reveal-duration</code> and <code>data-reveal-stagger</code> attributes.
   </p>
   <p
     class="text-reveal"
@@ -729,8 +681,8 @@ path: library/utils
   </p>
   <br />
   <p class="text-reveal">
-    You can use the <code class="gsap-animate">text-reveal</code> utility class
-    with the following attributes:
+    You can use the <code class="gsap-animate">text-reveal</code> utility class with the following
+    attributes:
   </p>
   <ul class="classic-list text-reveal-list">
     <li class="text-reveal">
@@ -740,42 +692,41 @@ path: library/utils
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-from</code> A string of either
-      <code class="gsap-animate">bottom | top</code> to controls the animation
-      origin. Defaults to
+      <code class="gsap-animate">bottom | top</code> to controls the animation origin. Defaults to
       <code class="gsap-animate">bottom</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      <code class="gsap-animate">data-reveal-duration</code> A number to control the animation
+      duration. Defaults to <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-stagger</code> A number to control
-      stagger between each word or character. Defaults to
+      <code class="gsap-animate">data-reveal-stagger</code> A number to control stagger between each
+      word or character. Defaults to
       <code class="gsap-animate">0.05</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">data-reveal-once</code> A boolean to fire to animation only the
+      first time it comes into view. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">data-reveal-scrub</code> A boolean to scrub through the animation
+      rather than playing it. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-start</code> A string to set the
-      start animation. Defaults to
+      <code class="gsap-animate">data-reveal-start</code> A string to set the start animation.
+      Defaults to
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-end</code> A string to set the end
-      animation. Defaults to
+      <code class="gsap-animate">data-reveal-end</code> A string to set the end animation. Defaults
+      to
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-reveal">
-      <code class="gsap-animate">data-reveal-markers</code> A boolean to toggle
-      visual debugging markers.
+      <code class="gsap-animate">data-reveal-markers</code> A boolean to toggle visual debugging
+      markers.
       <code class="gsap-animate">false</code>
     </li>
   </ul>
@@ -784,10 +735,9 @@ path: library/utils
 <section class="text-scale-section library-section">
   <h2 class="text-scale">[ Text scale - Util ]</h2>
   <p class="text-scale" data-scale-duration="0.5">
-    This uses GSAP's <strong>ScrollTrigger</strong> and
-    <strong>SplitText</strong> plugins to scale in either words or characters.
-    This is position aware, meaning that the transform origin will determine the
-    words placement in the sentence.
+    This uses GSAP's <strong>ScrollTrigger</strong> and <strong>SplitText</strong> plugins to scale
+    in either words or characters. This is position aware, meaning that the transform origin will
+    determine the words placement in the sentence.
   </p>
   <p
     class="text-scale"
@@ -797,10 +747,10 @@ path: library/utils
     data-scale-end="bottom 75%"
     style="max-width: 750px"
   >
-    This paragraph will <strong>scrub</strong> animate each word rather than
-    each character. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Error iste corrupti tempora aspernatur, consequatur blanditiis, repellat,
-    quibusdam perferendis sequi dignissimos dolores? Magni, nisi quae.
+    This paragraph will <strong>scrub</strong> animate each word rather than each character. Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Error iste corrupti tempora aspernatur,
+    consequatur blanditiis, repellat, quibusdam perferendis sequi dignissimos dolores? Magni, nisi
+    quae.
   </p>
   <p
     class="text-scale"
@@ -809,14 +759,13 @@ path: library/utils
     data-scale-style="linear"
     data-scale-duration="2"
   >
-    This text should only scale in the <strong>very first time!</strong> The
-    letter split should also take a bit longer than expected (2s), making use of
-    the data-scale-duration attribute.
+    This text should only scale in the <strong>very first time!</strong> The letter split should
+    also take a bit longer than expected (2s), making use of the data-scale-duration attribute.
   </p>
   <br />
   <p class="text-scale">
-    You can use the <code class="gsap-animate">text-scale</code> utility class
-    with the following attributes:
+    You can use the <code class="gsap-animate">text-scale</code> utility class with the following
+    attributes:
   </p>
   <ul class="classic-list">
     <li class="text-scale">
@@ -830,32 +779,32 @@ path: library/utils
       <code class="gsap-animate">random</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      <code class="gsap-animate">data-scale-duration</code> A number to control the animation
+      duration. Defaults to <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      <code class="gsap-animate">data-scale-once</code> A boolean to fire to animation only the
+      first time it comes into view. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      <code class="gsap-animate">data-scale-scrub</code> A boolean to scrub through the animation
+      rather than playing it. Defaults to
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-start</code> A string to set the
-      start animation. Defaults to
+      <code class="gsap-animate">data-scale-start</code> A string to set the start animation.
+      Defaults to
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-end</code> A string to set the end
-      animation. Defaults to
+      <code class="gsap-animate">data-scale-end</code> A string to set the end animation. Defaults
+      to
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-scale">
-      <code class="gsap-animate">data-scale-markers</code> A boolean to toggle
-      visual debugging markers.
+      <code class="gsap-animate">data-scale-markers</code> A boolean to toggle visual debugging
+      markers.
       <code class="gsap-animate">false</code>
     </li>
   </ul>
@@ -873,13 +822,12 @@ path: library/utils
       href="https://micku7zu.github.io/vanilla-tilt.js/"
       target="_blank"
       >vanilla tilt js library/cdn</a
-    >. Throw the <code>data-tilt</code> attribute on any element to activate.
-    Comes with the following configs:
+    >. Throw the <code>data-tilt</code> attribute on any element to activate. Comes with the
+    following configs:
   </p>
   <ul class="classic-list tilt-target__card">
     <li>
-      <code>data-tilt-reverse</code> boolean, Reverse the tilt direction.
-      Default is
+      <code>data-tilt-reverse</code> boolean, Reverse the tilt direction. Default is
       <code>false</code>
     </li>
     <li>
@@ -887,64 +835,57 @@ path: library/utils
       <code>35</code>
     </li>
     <li>
-      <code>data-tilt-startX</code> number, resting tilt along x-axis. Default
-      is
+      <code>data-tilt-startX</code> number, resting tilt along x-axis. Default is
       <code>0</code>
     </li>
     <li>
-      <code>data-tilt-startY</code> number, resting tilt along y-axis. Default
-      is
+      <code>data-tilt-startY</code> number, resting tilt along y-axis. Default is
       <code>0</code>
     </li>
     <li>
-      <code>data-tilt-perspective</code> number, lower value is more dramatic.
-      Default is
+      <code>data-tilt-perspective</code> number, lower value is more dramatic. Default is
       <code>1000</code>
     </li>
     <li>
-      <code>data-tilt-scale</code> number scale on hover (subtle pop effect).
-      Default is
+      <code>data-tilt-scale</code> number scale on hover (subtle pop effect). Default is
       <code>1</code>
     </li>
     <li>
-      <code>data-tilt-speed</code> number, speed of enter/exit transition.
-      Default is
+      <code>data-tilt-speed</code> number, speed of enter/exit transition. Default is
       <code>300</code>
     </li>
     <li>
-      <code>data-tilt-transition</code> boolean, set a transition on enter/exit.
-      Default is <code>true</code>
+      <code>data-tilt-transition</code> boolean, set a transition on enter/exit. Default is
+      <code>true</code>
     </li>
     <li>
       <code>data-tilt-axis</code> string, limit to only one axis. Takes
       <code>x | y | null</code> Default is <code>null</code>
     </li>
     <li>
-      <code>data-tilt-reset</code> boolean, toggle tilt reset on exit. Default
-      is
+      <code>data-tilt-reset</code> boolean, toggle tilt reset on exit. Default is
       <code>true</code>
     </li>
     <li>
-      <code>data-tilt-easing</code> string, easing value on enter/exit. Accepts
-      cubic-bezier curves. Default is <code>cubic-bezier(.03,.98,.52,.99)</code>
+      <code>data-tilt-easing</code> string, easing value on enter/exit. Accepts cubic-bezier curves.
+      Default is <code>cubic-bezier(.03,.98,.52,.99)</code>
     </li>
     <li>
       <code>data-tilt-glare</code> boolean, toggle glare effect. Default is
       <code>false</code>
     </li>
     <li>
-      <code>data-tilt-max-glare</code> number between 0 and 1 for opacity.
-      Default is
+      <code>data-tilt-max-glare</code> number between 0 and 1 for opacity. Default is
       <code>1</code>
     </li>
     <li>
-      <code>data-tilt-mouse-event-element</code> string, css class or link to
-      HTML elem that triggers tilt effect. Requires '.' on class. Default is
+      <code>data-tilt-mouse-event-element</code> string, css class or link to HTML elem that
+      triggers tilt effect. Requires '.' on class. Default is
       <code>null</code>
     </li>
     <li>
-      <code>data-tilt-gyroscope</code> boolean, to toggle on orientation
-      devices. Default is <code>true</code>
+      <code>data-tilt-gyroscope</code> boolean, to toggle on orientation devices. Default is
+      <code>true</code>
     </li>
   </ul>
   <div class="tilt-card-group">
@@ -975,26 +916,22 @@ path: library/utils
       <h3>Reversed</h3>
       <br />
       <p>
-        This sublte reversed tilt effect not only includes a glare, but also has
-        a different transition speed.
+        This sublte reversed tilt effect not only includes a glare, but also has a different
+        transition speed.
       </p>
       <br />
       <p>It also sets up the 3d/parallax effect:</p>
       <ol class="classic-list">
+        <li>Add <code>transform-style: preserve-3d</code> to the tilt element.</li>
+        <li>Add <code>transform: perspective(1000px);</code> to the tilt element.</li>
         <li>
-          Add <code>transform-style: preserve-3d</code> to the tilt element.
-        </li>
-        <li>
-          Add <code>transform: perspective(1000px);</code> to the tilt element.
-        </li>
-        <li>
-          Add <code>transform: translateZ(20px);</code> to the inner element(s)
-          that you want to pop.
+          Add <code>transform: translateZ(20px);</code> to the inner element(s) that you want to
+          pop.
         </li>
       </ol>
-      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
-      {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com' } %}
-      {% include "../_includes/components/cta-group.njk" %}
+      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %} {% set cta_2 = {
+      text: 'Visit FAQ', url: 'https://axyscreative.com' } %} {% include
+      "../_includes/components/cta-group.njk" %}
     </div>
     <div
       class="tilt-card"
@@ -1011,18 +948,16 @@ path: library/utils
       <h3>Dramatic</h3>
       <br />
       <p>A bit stronger with the max-glare and the tilt doesn't reset.</p>
-      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %}
-      {% set cta_2 = { text: 'Visit FAQ', url: 'https://axyscreative.com' } %}
-      {% include "../_includes/components/cta-group.njk" %}
+      {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com' } %} {% set cta_2 = {
+      text: 'Visit FAQ', url: 'https://axyscreative.com' } %} {% include
+      "../_includes/components/cta-group.njk" %}
     </div>
   </div>
 </section>
 
 <section class="typing-section library-section">
   <h2>
-    <span class="typing-scroll" data-typing-cursor="none"
-      >[ Typing Text&nbsp;-&nbsp;</span
-    >
+    <span class="typing-scroll" data-typing-cursor="none">[ Typing Text&nbsp;-&nbsp;</span>
     <span
       class="typing-cycle"
       data-typing-cycle-words="Util, Class, Block"
@@ -1037,40 +972,36 @@ path: library/utils
   <h3>Typing Cycle</h3>
   <p>
     The typing cycle effect mimics human typing in an endless loop. It uses the
-    <code>typing-cycle</code> class along with multiple
-    <code>data</code> attributes to configure.
+    <code>typing-cycle</code> class along with multiple <code>data</code> attributes to configure.
   </p>
   <ul class="classic-list">
     <li><code>data-typing-cycle-words</code> An array of strings.</li>
     <li>
-      <code>data-typing-cycle-colors</code> An array of strings. Takes any valid
-      css color value.
+      <code>data-typing-cycle-colors</code> An array of strings. Takes any valid css color value.
     </li>
     <li>
-      <code>data-typing-speed-in</code> A number (in ms) that controls the
-      typing speed. Default is <code>120</code>
+      <code>data-typing-speed-in</code> A number (in ms) that controls the typing speed. Default is
+      <code>120</code>
     </li>
     <li>
-      <code>data-typing-speed-out</code> A number (in ms) that controls the
-      deleting speed. Default is <code>50</code>
+      <code>data-typing-speed-out</code> A number (in ms) that controls the deleting speed. Default
+      is <code>50</code>
     </li>
     <li>
-      <code>data-typing-cycle-interval</code> A number (in ms) that controls the
-      interval between when the word finishes typing & when the word starts
-      deleting. Default is <code>2000</code>
+      <code>data-typing-cycle-interval</code> A number (in ms) that controls the interval between
+      when the word finishes typing & when the word starts deleting. Default is <code>2000</code>
     </li>
     <li>
-      <code>data-typing-delay</code> Optional number (in ms) representing the
-      initial delay of the animation. Default is <code>0</code>
+      <code>data-typing-delay</code> Optional number (in ms) representing the initial delay of the
+      animation. Default is <code>0</code>
     </li>
     <li>
-      <code>data-typing-cursor</code> A string of either
-      <code>caret | underscore | none</code> to alter the text cursor. Defaults
-      to <code>caret</code>
+      <code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to
+      alter the text cursor. Defaults to <code>caret</code>
     </li>
     <li>
-      <code>data-typing-on-scroll</code> Optional boolean, to start the cycle
-      when the element scrolls into view. Default is <code>false</code>
+      <code>data-typing-on-scroll</code> Optional boolean, to start the cycle when the element
+      scrolls into view. Default is <code>false</code>
     </li>
   </ul>
   <h4>
@@ -1102,27 +1033,26 @@ path: library/utils
 
   <h3>Typing Scroll</h3>
   <p>
-    The class <code>typing-scroll</code> will trigger the typing animation when
-    the element comes into view. Comes with the following configs:
+    The class <code>typing-scroll</code> will trigger the typing animation when the element comes
+    into view. Comes with the following configs:
   </p>
   <ul class="classic-list">
     <li>
-      <code>data-typing-once</code> A boolean to toggle if the animation should
-      fire each time the element scrolls into view. Default is
+      <code>data-typing-once</code> A boolean to toggle if the animation should fire each time the
+      element scrolls into view. Default is
       <code>false.</code>
     </li>
     <li>
-      <code>data-typing-speed</code> The number (in ms), representing the typing
-      speed. Default is <code>50</code>
+      <code>data-typing-speed</code> The number (in ms), representing the typing speed. Default is
+      <code>50</code>
     </li>
     <li>
-      <code>data-typing-delay</code> Optional number (in ms), representing the
-      initial delay of the animation. Default is <code>0</code>
+      <code>data-typing-delay</code> Optional number (in ms), representing the initial delay of the
+      animation. Default is <code>0</code>
     </li>
     <li>
-      <code>data-typing-cursor</code> A string of either
-      <code>caret | underscore | none</code> to alter the text cursor. Defaults
-      to <code>caret</code>
+      <code>data-typing-cursor</code> A string of either <code>caret | underscore | none</code> to
+      alter the text cursor. Defaults to <code>caret</code>
     </li>
   </ul>
 
@@ -1136,8 +1066,8 @@ path: library/utils
     data-typing-delay="3200"
     data-typing-cursor="underscore"
   >
-    This will only type out once, the very first time it comes into view. Also
-    has a delay of 3200ms.
+    This will only type out once, the very first time it comes into view. Also has a delay of
+    3200ms.
   </p>
 </section>
 
@@ -1145,22 +1075,22 @@ path: library/utils
   <h2>[ Velocity Push - Util ]</h2>
   <strong>* Desktop Only *</strong>
   <p class="max-width-text">
-    For desktop users, you can simulate a pushing effect for any element with
-    the class <code>velocity-push</code>. This comes with the following configs:
+    For desktop users, you can simulate a pushing effect for any element with the class
+    <code>velocity-push</code>. This comes with the following configs:
   </p>
 
   <ul class="classic-list">
     <li>
-      <code>data-push-strength</code> A number, the sensitivity of the push
-      effect (how far the elements moves). Defaults to <code>10</code>
+      <code>data-push-strength</code> A number, the sensitivity of the push effect (how far the
+      elements moves). Defaults to <code>10</code>
     </li>
     <li>
-      <code>data-push-restore</code> A number, this determintes how quickly the
-      element repositions itself. Defaults to <code>0.1</code>
+      <code>data-push-restore</code> A number, this determintes how quickly the element repositions
+      itself. Defaults to <code>0.1</code>
     </li>
     <li>
-      <code>data-push-rotate-max</code> A number, the maxiumum rotation added to
-      the element. Use <code>0</code> to remove the effect. Defaults to
+      <code>data-push-rotate-max</code> A number, the maxiumum rotation added to the element. Use
+      <code>0</code> to remove the effect. Defaults to
       <code>25</code>
     </li>
   </ul>

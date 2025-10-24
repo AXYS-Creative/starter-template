@@ -59,6 +59,10 @@
     // translate: -50% calc(-50% + var(--header-height));
     // pointer-events: none;
 
+    @include mq-max(lg) {
+      --img-offset-x: 5%;
+    }
+
     &__figure {
       display: flex;
       position: absolute;
@@ -177,8 +181,7 @@
 
     @include width-clamp;
     padding-block: calc(
-        var(--header-height) + var(--promo-banner-height) +
-          var(--float-offset-half)
+        var(--header-height) + var(--promo-banner-height) + var(--float-offset-half)
       )
       0;
 

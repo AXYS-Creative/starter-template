@@ -120,7 +120,7 @@ $min-breakpoints: ();
 }
 
 @mixin h1 {
-  @include font-styles--heading($sz: 72px, $ls: -2px);
+  @include font-styles--heading($ls: -2px);
 
   @include mq-max(md) {
     font-size: 56px;
@@ -709,6 +709,57 @@ $min-breakpoints: ();
 
   // filter: drop-shadow(0 0 1px grey); // optional for readability
   // background-size: 100%; // This value is how the effect works. Controlled by js.
+}
+
+@mixin text-gradient(
+  $deg: 45deg,
+  $col-1: var(--color-font--primary),
+  $col-2: var(--color-background),
+  $track-mouse: false,
+  $flashlight: false
+) {
+  display: inline; // for gradient line-wrap
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 1s ease;
+
+  @if $track-mouse {
+    background-image: radial-gradient(circle at var(--gradient-pos, center), $col-1, $col-2);
+  } @else {
+    background-image: linear-gradient($deg, $col-1, $col-2);
+  }
+
+  @if $flashlight {
+    background-image: radial-gradient(
+      circle at var(--gradient-pos, center),
+      $col-1 10%,
+      $col-2 50%
+    );
+  }
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@mixin text-gradient-animated(
+  $deg: 45deg,
+  $col-1: var(--color-font--primary),
+  $col-2: var(--color-background),
+  $duration: 3s
+) {
+  background: linear-gradient($deg, $col-1, $col-2);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move $duration linear infinite alternate;
 }
 
 // Helpful for text over images
