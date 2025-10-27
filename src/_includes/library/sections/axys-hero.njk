@@ -1,0 +1,12 @@
+<!-- prettier-ignore -->
+{% set title = hero.title or 'No title' %}
+{% set desc = hero.desc or 'No desc' %}
+
+<section class="axys-hero">
+  <div class="axys-hero__content">
+    <h1 class="axys-hero__title" data-track-mouse>{{ title | safe }}</h1>
+    {% if desc %}
+    <p class="axys-hero__desc">{{ desc | safe }}</p>
+    {% endif %}
+  </div>
+</section>

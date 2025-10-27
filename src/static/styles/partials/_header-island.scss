@@ -169,6 +169,33 @@
       display: none;
     }
   }
+
+  .toggle-slider {
+    // Consider maiing global? For all toggle-sliders that have a dropdown link
+    &:has(.dropdown-link:active) {
+      [class*="slider"] {
+        scale: 1;
+      }
+    }
+    &:has(.dropdown-link__trigger:active) {
+      .dropdown-link__trigger,
+      [class*="slider"] {
+        scale: 0.9;
+      }
+    }
+    [class*="option"]:has(.dropdown-link) {
+      &:active {
+        scale: 1;
+      }
+    }
+
+    .dropdown-link__list a,
+    .dropdown-link__list button {
+      &:active {
+        scale: 0.9;
+      }
+    }
+  }
 }
 
 .site-nav.nav-island {

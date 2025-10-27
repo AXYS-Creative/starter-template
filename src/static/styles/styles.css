@@ -5910,6 +5910,20 @@ code.codearea {
     display: none;
   }
 }
+.header-island .toggle-slider:has(.dropdown-link:active) [class*=slider] {
+  scale: 1;
+}
+.header-island .toggle-slider:has(.dropdown-link__trigger:active) .dropdown-link__trigger,
+.header-island .toggle-slider:has(.dropdown-link__trigger:active) [class*=slider] {
+  scale: 0.9;
+}
+.header-island .toggle-slider [class*=option]:has(.dropdown-link):active {
+  scale: 1;
+}
+.header-island .toggle-slider .dropdown-link__list a:active,
+.header-island .toggle-slider .dropdown-link__list button:active {
+  scale: 0.9;
+}
 
 .site-nav.nav-island {
   --nav-top-offset: calc(var(--top-offset) * 2 + var(--header-height));
