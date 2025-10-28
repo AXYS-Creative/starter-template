@@ -230,6 +230,10 @@
   }
 
   .btn--split-text {
+    // $transition: 0.48s $cubic-ease-back;
+    $transition: $ease-sudden;
+    $stagger: 0.02s;
+
     position: relative;
 
     @include mq-motion-allow {
@@ -244,7 +248,7 @@
 
         @for $i from 1 through 99 {
           &:nth-of-type(#{$i}) {
-            transition: translate 0.6s $cubic-ease $i * 0.02s;
+            transition: translate $transition $i * $stagger;
           }
         }
       }
@@ -294,7 +298,7 @@
         .letter-group {
           @for $i from 1 through 25 {
             &:nth-of-type(#{$i}) {
-              transition: translate 0.6s $cubic-ease $i * 0.02s;
+              transition: translate $transition $i * $stagger;
             }
           }
         }

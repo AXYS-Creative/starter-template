@@ -6,6 +6,7 @@ import "./global/header.js";
 import "./global/loader.js";
 import "./global/scroll.js";
 
+import "./library/advanced/bg-particle-waves.js";
 import "./library/advanced/dots.js";
 import "./library/advanced/grid-bg.js";
 import "./library/advanced/grid-flow-img.js";

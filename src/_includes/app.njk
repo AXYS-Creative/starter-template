@@ -35,7 +35,7 @@
   </head>
   <body>
     <!-- prettier-ignore -->
-    {% include "./partials/header-island.njk" %}
+    {% include "./partials/header-simple.njk" %}
     
     {% if path == "home" %}
       {% set promo_banner_data = library.promo_banner %}
@@ -45,7 +45,7 @@
     <main class="main-content main-{{ path | slugifyPath }}">
       {{ content | safe }}
     </main>
-    {%include "./partials/footer-scroll-reveal.njk" %}
+    {%include "./partials/footer-simple.njk" %}
 
     <!-- Library // CHANGE ME -->
     <!-- prettier-ignore -->
@@ -87,7 +87,7 @@
     {% endif %}
     
     {% if path == "library/advanced" %}
-    <canvas id="grid-bg"></canvas>
+    <!-- <canvas id="grid-bg"></canvas> -->
     {% endif %}
 
     <!-- prettier-ignore -->

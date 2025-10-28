@@ -52,11 +52,11 @@
 
   // Modifiers
 
-  // &.site-header--away-from-top {
+  // &.watch-scroll--away-from-top {
 
   // }
 
-  &.site-header--scrolling-down {
+  &.watch-scroll--scrolling-down {
     translate: 0 -100%;
 
     // &:has(*:focus-visible) {
@@ -79,7 +79,7 @@
     }
   }
 
-  // &.site-header--near-bottom {
+  // &.watch-scroll--near-bottom {
 
   // }
 

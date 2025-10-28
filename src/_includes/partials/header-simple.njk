@@ -30,6 +30,7 @@
   {{ header_class }}
   {{ header_class }}--links-{{ link_placement }}
   {{ header_mod_class }}
+  watch-scroll
   "
   id="site-header"
 >
@@ -61,9 +62,7 @@
 
     <!-- prettier-ignore -->
     {% if nav_btn %}
-    <div class="site-nav-btn-wrapper glitch-pair">
-      {% include "../components/nav-btn.njk" %}
-    </div>
+    <div class="site-nav-btn-wrapper glitch-pair">{% include "../components/nav-btn.njk" %}</div>
     {% endif %}
   </div>
 </header>
@@ -96,18 +95,14 @@
       <ul class="site-nav__footer-links">
         {% for link in nav_footer.links %}
         <li>
-          <a class="nav-footer-link classic-link tab-element-nav" href="/">{{
-            link.text
-          }}</a>
+          <a class="nav-footer-link classic-link tab-element-nav" href="/">{{ link.text }}</a>
         </li>
         {% endfor %}
 
         <!-- prettier-ignore -->
         {% if nav_footer.admin_login %}
         <li>
-          <a class="nav-footer-link classic-link tab-element-nav" href="/admin">
-            Admin Login
-          </a>
+          <a class="nav-footer-link classic-link tab-element-nav" href="/admin"> Admin Login </a>
         </li>
         {% endif %}
       </ul>

@@ -14,19 +14,39 @@ description:
 }) %}
 {% include '../_includes/library/sections/hero-simple.njk' %}
 
+<section class="bg-particle-waves">
+  <div class="bg-particle-waves__inner">
+    <h2>[ Particle waves ]</h2>
+    <small>
+      Use the <code>bg-particle-waves</code> class on the section, then include the canvas at the
+      bottom. <br class="md-up" />
+      Comes with a few handy configs.
+    </small>
+  </div>
+  <canvas
+    id="bg-particle-waves"
+    data-gap="0.5"
+    data-amount-x="120"
+    data-amount-y="120"
+    data-color="fff"
+    data-opacity="0.5"
+    data-speed="0.01"
+  ></canvas>
+</section>
+
 <!-- Mouse position seems affected by content placement -->
 <section class="dots-field">
   <h2>[ <span class="glitch-scroll">dots</span> ]</h2>
   <!-- prettier-ignore -->
   {% set dots = ({
-    width: '400',
+    width: '25%',
     height: '400'
    }) %}
   {% include "../_includes/library/advanced/dots.njk" %}
 
   <!-- prettier-ignore -->
   {% set dots = ({
-    width: '800',
+    width: '50%',
     height: '280',
     size: 5,
     gap: 16,
@@ -56,7 +76,7 @@ description:
 
   <!-- prettier-ignore -->
   {% set dots = ({
-    width: '600',
+    width: '40%',
     height: '420',
     size: 2,
     gap: 16,
@@ -80,14 +100,13 @@ description:
   <h2>Grid Background</h2>
   <p>
     A subtle and modern background effect. Just add
-    <code>&lt;canvas id="grid-bg"&gt;&lt;/canvas&gt;</code> at the bottom of
-    your app to get started.
+    <code>&lt;canvas id="grid-bg"&gt;&lt;/canvas&gt;</code> at the bottom of your app to get
+    started.
   </p>
   <p>
-    Out of the box this will follow the user's mouse cursor. It will also have
-    an interval that shows the grid in an animation of your choice. This is so
-    users without a mouse can still enjoy the effect. Current animation options
-    include:
+    Out of the box this will follow the user's mouse cursor. It will also have an interval that
+    shows the grid in an animation of your choice. This is so users without a mouse can still enjoy
+    the effect. Current animation options include:
   </p>
   <ul class="classic-list">
     <li><code>stack-top</code></li>
@@ -103,16 +122,14 @@ description:
     <li><code>diag-bl</code></li>
   </ul>
   <p>
-    You can also tack on the util class of <code>grid-show</code> to fade the
-    grid in (as you're currently seeing).
+    You can also tack on the util class of <code>grid-show</code> to fade the grid in (as you're
+    currently seeing).
   </p>
   <p>Fully configurable with:</p>
   <ul class="classic-list">
     <li><code>data-grid-enter</code> to handle the 'enter' animation.</li>
     <li><code>data-grid-exit</code> to handle the 'exit' animation.</li>
-    <li>
-      <code>data-stagger-interval</code> a number do alter the animation speed.
-    </li>
+    <li><code>data-stagger-interval</code> a number do alter the animation speed.</li>
   </ul>
 </section>
 
