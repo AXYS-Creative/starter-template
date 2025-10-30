@@ -89,7 +89,7 @@
   }
 
   &__panel {
-    // @include gradient-border;
+    @include gradient-border(45deg);
     @include column-start(flex-start);
     gap: var(--section-gap);
     position: absolute;
@@ -104,6 +104,7 @@
     // background: rgba($black, 0.75);
     // backdrop-filter: blur(4px);
     // transform-origin: bottom center;
+    overflow: hidden;
 
     @include mq-max(lg) {
       width: 100%;
@@ -150,11 +151,12 @@
 
   .pin-steps {
     top: var(--body-padding);
-    height: calc(100% - var(--body-padding));
+    height: calc(90% - var(--body-padding)); // Affects the duration
 
     // Panel linger options — May need to adjust the Stack Link highlight
     // gap: 320px; // all but last panel linger
-    padding-bottom: 320px; // Last panel linger
+    // padding-bottom: 320px; // Last panel linger
+    padding-block: 320px;
 
     .pin-step {
       scroll-margin-top: -24px;

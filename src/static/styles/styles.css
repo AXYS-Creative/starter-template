@@ -9484,57 +9484,6 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   opacity: 1;
 }
 
-.bg-particle-waves {
-  position: relative;
-  margin-block: -248px 248px;
-}
-@media (min-width: 1441px) {
-  .bg-particle-waves {
-    height: clamp(750px, 100vh, 1250px);
-  }
-}
-@media (max-width: 1440px) {
-  .bg-particle-waves {
-    height: clamp(625px, 100vh, 1100px);
-  }
-}
-@media (max-width: 768px) {
-  .bg-particle-waves {
-    min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
-    max-height: 950px;
-  }
-}
-.bg-particle-waves::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, var(--color-background) 0%, transparent 25%);
-  inset: auto;
-  left: 50%;
-  bottom: 0;
-  translate: -50% 0;
-  width: 100vw;
-  height: 100%;
-}
-.bg-particle-waves__inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--spacing);
-}
-.bg-particle-waves #bg-particle-waves {
-  position: absolute;
-  z-index: -1;
-}
-
 .dots-field {
   display: flex;
   flex-direction: column;
@@ -9548,6 +9497,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   overflow: visible;
+  pointer-events: none;
 }
 
 #grid-bg {
@@ -9613,6 +9563,64 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 .grid-flow-parent--greyscale > *:hover {
   filter: grayscale(0);
+}
+
+.bg-particle-waves {
+  position: relative;
+  margin-block: -320px 248px;
+}
+@media (min-width: 1441px) {
+  .bg-particle-waves {
+    height: clamp(750px, 100vh, 1250px);
+  }
+}
+@media (max-width: 1440px) {
+  .bg-particle-waves {
+    height: clamp(625px, 100vh, 1100px);
+  }
+}
+@media (max-width: 768px) {
+  .bg-particle-waves {
+    min-height: 500px;
+    height: calc(var(--svh, 1vh) * 100);
+    max-height: 950px;
+  }
+}
+.bg-particle-waves__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing);
+}
+
+.particle-waves-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.particle-waves-wrap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--color-background) 0%, transparent 50%);
+  z-index: 1;
+}
+.particle-waves-wrap .particle-waves {
+  display: block;
+  position: absolute;
+  width: var(--particle-width, 100%);
+  height: var(--particle-height, 60vh);
 }
 
 .hero-simple__inner {
@@ -10430,6 +10438,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   }
 }
 .scroll-stack__panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10443,6 +10452,20 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   padding: var(--body-padding);
   transform-origin: top center;
   background: var(--color-background);
+  overflow: hidden;
+}
+.scroll-stack__panel::before {
+  content: "";
+  border: 1px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, var(--color-border-gradient) 5%, transparent 75%) border-box;
+  mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
+  -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
 }
 @media (max-width: 1024px) {
   .scroll-stack__panel {
@@ -10474,8 +10497,8 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 .scroll-stack .pin-steps {
   top: var(--body-padding);
-  height: calc(100% - var(--body-padding));
-  padding-bottom: 320px;
+  height: calc(90% - var(--body-padding));
+  padding-block: 320px;
 }
 .scroll-stack .pin-steps .pin-step {
   scroll-margin-top: -24px;

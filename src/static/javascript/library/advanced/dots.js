@@ -51,10 +51,7 @@ dotFields.forEach((comp) => {
           velocity: { x: 0, y: 0 },
         };
 
-        dot.el = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "circle"
-        );
+        dot.el = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         dot.el.setAttribute("cx", anchorX);
         dot.el.setAttribute("cy", anchorY);
         dot.el.setAttribute("r", config.radius); // use radius directly

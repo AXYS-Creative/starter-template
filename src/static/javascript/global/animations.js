@@ -49,9 +49,9 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
     (context) => {
       let { maxSm, maxMd, maxLg, minMd } = context.conditions;
 
-      let bodyPadding = getComputedStyle(
-        document.documentElement
-      ).getPropertyValue("--body-padding");
+      let bodyPadding = getComputedStyle(document.documentElement).getPropertyValue(
+        "--body-padding"
+      );
 
       // Utility
       // Shuffle an array in place (used for grid-fade)
@@ -81,18 +81,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const valueWrapper = el.querySelector(".counter__value");
             const digitEl = el.querySelector(".counter__value-digit"); // stable hook
 
-            const prefixText =
-              el.querySelector(".counter__value-prefix")?.textContent ?? "";
-            const suffixText =
-              el.querySelector(".counter__value-suffix")?.textContent ?? "";
+            const prefixText = el.querySelector(".counter__value-prefix")?.textContent ?? "";
+            const suffixText = el.querySelector(".counter__value-suffix")?.textContent ?? "";
             const endValue = parseFloat(el.dataset.counterNumber);
-            const duration =
-              Math.max(0, parseInt(el.dataset.counterDuration, 10) || 0) / 1000;
+            const duration = Math.max(0, parseInt(el.dataset.counterDuration, 10) || 0) / 1000;
             const runOnce = el.dataset.counterOnce === "true";
             const comma = el.dataset.counterComma === "true";
-            const ticker = digitEl.classList.contains(
-              "counter__value-digit--ticker"
-            );
+            const ticker = digitEl.classList.contains("counter__value-digit--ticker");
 
             if (isNaN(endValue) || !digitEl) return;
 
@@ -106,9 +101,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   maximumFractionDigits: isWholeNumber ? 0 : 1,
                 });
               } else {
-                return isWholeNumber
-                  ? Math.round(num).toString()
-                  : num.toFixed(1);
+                return isWholeNumber ? Math.round(num).toString() : num.toFixed(1);
               }
             };
 
@@ -201,13 +194,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
 
             digitEl.querySelectorAll(".digit").forEach((digit) => {
-              const value =
-                parseInt(digit.getAttribute("data-counter-value"), 10) || 0;
-              tl.to(
-                digit.querySelector(".sequence"),
-                { yPercent: -(value * 10) },
-                0
-              );
+              const value = parseInt(digit.getAttribute("data-counter-value"), 10) || 0;
+              tl.to(digit.querySelector(".sequence"), { yPercent: -(value * 10) }, 0);
             });
 
             // stash for callbacks
@@ -266,8 +254,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           document.querySelectorAll(".glitch-scroll").forEach((el) => {
             const originalText = el.textContent;
             const chars = el.dataset.glitchChars || "upperAndLowerCase";
-            const revealDelay =
-              parseFloat(el.dataset.glitchRevealDelay) || 0.05;
+            const revealDelay = parseFloat(el.dataset.glitchRevealDelay) || 0.05;
             const duration = parseFloat(el.dataset.glitchDuration) || 0.75;
             const playOnceAttr = el.dataset.glitchOnce;
             const playOnce = playOnceAttr === "true"; // Default is false (repeat), only true if explicitly set
@@ -332,8 +319,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const newText = el.dataset.glitchNewText;
             const chars = el.dataset.glitchChars || "upperAndLowerCase";
             const duration = parseFloat(el.dataset.glitchDuration) || 0.5;
-            const revealDelay =
-              parseFloat(el.dataset.glitchRevealDelay) || 0.125;
+            const revealDelay = parseFloat(el.dataset.glitchRevealDelay) || 0.125;
             const glitchOut = el.dataset.glitchOut === "true"; // Default is false (hover in, hover out)
 
             // Prevent layout shift (measure width of target, not full button)
@@ -406,25 +392,17 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
           // Cycle-based glitch
           document.querySelectorAll(".glitch-cycle").forEach((el) => {
-            const words =
-              el.dataset.glitchCycleWords?.split(",").map((w) => w.trim()) ||
-              [];
-            const colorValues = el.dataset.glitchCycleColors
-              ?.split(",")
-              .map((c) => c.trim());
-            const hasColors =
-              Array.isArray(colorValues) && colorValues.length > 0;
+            const words = el.dataset.glitchCycleWords?.split(",").map((w) => w.trim()) || [];
+            const colorValues = el.dataset.glitchCycleColors?.split(",").map((c) => c.trim());
+            const hasColors = Array.isArray(colorValues) && colorValues.length > 0;
 
             let index = 0;
-            const glitchCycleInterval =
-              parseInt(el.dataset.glitchCycleInterval) || 2000;
+            const glitchCycleInterval = parseInt(el.dataset.glitchCycleInterval) || 2000;
 
             if (words.length === 0) return;
 
             const cycle = () => {
-              const color = hasColors
-                ? colorValues[index % colorValues.length]
-                : null;
+              const color = hasColors ? colorValues[index % colorValues.length] : null;
 
               gsap.to(el, {
                 scrambleText: {
@@ -447,9 +425,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
           // Toggle-based glitch
           {
-            const toggleBtns = document.querySelectorAll(
-              ".plan-selection__toggle-option"
-            );
+            const toggleBtns = document.querySelectorAll(".plan-selection__toggle-option");
             const swapElems = document.querySelectorAll("[data-toggle-target]");
 
             // store initial text
@@ -476,18 +452,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             toggleBtns.forEach((btn) => {
               btn.addEventListener("click", () => {
-                toggleBtns.forEach((b) =>
-                  b.setAttribute("aria-selected", "false")
-                );
+                toggleBtns.forEach((b) => b.setAttribute("aria-selected", "false"));
                 btn.setAttribute("aria-selected", "true");
 
                 const mode = btn.dataset.toggleOption; // "start" or "end"
 
                 swapElems.forEach((el) => {
-                  const newText =
-                    mode === "start"
-                      ? el.dataset.toggleStart
-                      : el.dataset.toggleEnd;
+                  const newText = mode === "start" ? el.dataset.toggleStart : el.dataset.toggleEnd;
                   if (newText) runGlitch(el, newText);
                 });
               });
@@ -585,26 +556,14 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Marquee component
         {
           gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
-            const marqueeInners =
-              marqueeBlock.querySelectorAll(".marquee-inner");
-            const velocity = parseFloat(
-              marqueeBlock.getAttribute("data-marquee-velocity")
-            );
-            const speedDefault = parseFloat(
-              marqueeBlock.getAttribute("data-marquee-speed")
-            );
-            const speedMd = parseFloat(
-              marqueeBlock.getAttribute("data-marquee-speed-md")
-            );
-            const speedSm = parseFloat(
-              marqueeBlock.getAttribute("data-marquee-speed-sm")
-            );
-            const scrubEnabled =
-              marqueeBlock.hasAttribute("data-marquee-scrub");
+            const marqueeInners = marqueeBlock.querySelectorAll(".marquee-inner");
+            const velocity = parseFloat(marqueeBlock.getAttribute("data-marquee-velocity"));
+            const speedDefault = parseFloat(marqueeBlock.getAttribute("data-marquee-speed"));
+            const speedMd = parseFloat(marqueeBlock.getAttribute("data-marquee-speed-md"));
+            const speedSm = parseFloat(marqueeBlock.getAttribute("data-marquee-speed-sm"));
+            const scrubEnabled = marqueeBlock.hasAttribute("data-marquee-scrub");
 
-            const scrollAlternate = marqueeBlock.hasAttribute(
-              "data-marquee-scroll-alternate"
-            );
+            const scrollAlternate = marqueeBlock.hasAttribute("data-marquee-scroll-alternate");
 
             let marqueeSpeed = maxSm ? speedSm : maxMd ? speedMd : speedDefault;
 
@@ -678,10 +637,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   );
 
                   // Toggle class based on scroll direction
-                  marqueeBlock.classList.toggle(
-                    "marquee--alternated",
-                    !isScrollingDown
-                  );
+                  marqueeBlock.classList.toggle("marquee--alternated", !isScrollingDown);
 
                   currentScroll = window.scrollY;
                 };
@@ -697,17 +653,20 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         // Parallax Util
         {
           document.querySelectorAll(".parallax").forEach((el) => {
-            const y = el.dataset.parallaxY || "15%";
-            const scrub = parseFloat(el.dataset.parallaxScrub) || 1;
+            const dataY = el.dataset.parallaxY || "15%";
+            const dataScrub = parseFloat(el.dataset.parallaxScrub) || 1;
+            const dataStart = el.dataset.parallaxStart || "top bottom";
+            const dataEnd = el.dataset.parallaxEnd || "bottom top";
 
             gsap.to(el, {
-              y,
+              y: dataY,
               ease: "none",
               scrollTrigger: {
                 trigger: el,
-                start: "top bottom",
-                end: "bottom top",
-                scrub,
+                start: dataStart,
+                end: dataEnd,
+                scrub: dataScrub,
+                // markers: true,
               },
             });
           });
@@ -715,17 +674,14 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Scroll Horizontal (pinned section)
         {
-          const scrollHorizontal =
-            document.querySelectorAll(".scroll-horizontal");
+          const scrollHorizontal = document.querySelectorAll(".scroll-horizontal");
 
           let scrollHorizontalScrub = maxSm ? 1 : 0.5;
 
           scrollHorizontal.forEach((el) => {
             let container = el.querySelector(".scroll-horizontal__container");
             let slider = el.querySelector(".scroll-horizontal__slider");
-            let imgs = el.querySelectorAll(
-              ".scroll-horizontal__figure--parallax img"
-            );
+            let imgs = el.querySelectorAll(".scroll-horizontal__figure--parallax img");
             const sliderWidth = slider.scrollWidth;
             const containerWidth = container.offsetWidth;
             const distanceToTranslate = sliderWidth - containerWidth;
@@ -780,8 +736,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Scroll Stack (Overlapping Panels) — Duration and Delays can be controls via pin-steps in _scroll-stack.scss
         {
-          const stackScrollSections =
-            document.querySelectorAll(".scroll-stack");
+          const stackScrollSections = document.querySelectorAll(".scroll-stack");
 
           let panelToTop = maxSm ? "96px" : "200px"; // Match with $panel-to-top in _scroll-stack.scss
           let panelScrub = 0.5;
@@ -789,9 +744,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           stackScrollSections.forEach((section) => {
             const panels = section.querySelectorAll(".scroll-stack__panel");
             const pinContainer = section.querySelector(".scroll-stack__pin");
-            const pinSteps = section.querySelectorAll(
-              ".scroll-stack__pin-step"
-            );
+            const pinSteps = section.querySelectorAll(".scroll-stack__pin-step");
 
             const duration = `${panels.length * 100}%`;
 
@@ -855,9 +808,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             // Link highlight
             if (document.querySelector(".scroll-stack__nav-link")) {
-              const stackLinks = document.querySelectorAll(
-                ".scroll-stack__nav-link"
-              );
+              const stackLinks = document.querySelectorAll(".scroll-stack__nav-link");
 
               pinSteps.forEach((marker, index) => {
                 const link = stackLinks[index];
@@ -911,8 +862,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 ? "play none none none"
                 : "play reset play reset";
 
-              scrollTriggerConfig.onEnter = () =>
-                el.classList.add("text-fade--active");
+              scrollTriggerConfig.onEnter = () => el.classList.add("text-fade--active");
 
               scrollTriggerConfig.onLeaveBack = () => {
                 if (!fadeOnce) el.classList.remove("text-fade--active");
@@ -963,9 +913,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               ...(scrub
                 ? { scrub }
                 : {
-                    toggleActions: once
-                      ? "play none none none"
-                      : "play reset play reset",
+                    toggleActions: once ? "play none none none" : "play reset play reset",
                   }),
               markers: markersVal,
             };
@@ -1026,8 +974,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 ? "play none none none"
                 : "play reset play reset";
 
-              scrollTriggerConfig.onEnter = () =>
-                el.classList.add("text-reveal--active");
+              scrollTriggerConfig.onEnter = () => el.classList.add("text-reveal--active");
 
               scrollTriggerConfig.onLeaveBack = () => {
                 if (!revealOnce) el.classList.remove("text-reveal--active");
@@ -1077,8 +1024,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const parentBox = el.getBoundingClientRect();
             targets.forEach((word) => {
               const box = word.getBoundingClientRect();
-              const centerX =
-                (box.left + box.width / 2 - parentBox.left) / parentBox.width;
+              const centerX = (box.left + box.width / 2 - parentBox.left) / parentBox.width;
 
               // Map 0–1 range to useful values for transform-origin
               // left edge = "0% 50%", right edge = "100% 50%", middle = "50% 50%"
@@ -1099,8 +1045,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 ? "play none none none"
                 : "play reset play reset";
 
-              scrollTriggerConfig.onEnter = () =>
-                el.classList.add("text-scale--active");
+              scrollTriggerConfig.onEnter = () => el.classList.add("text-scale--active");
 
               scrollTriggerConfig.onLeaveBack = () => {
                 if (!scaleOnce) el.classList.remove("text-scale--active");
@@ -1234,9 +1179,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           const typingCycleElems = document.querySelectorAll(".typing-cycle");
 
           typingCycleElems.forEach((el) => {
-            const words = el.dataset.typingCycleWords
-              .split(",")
-              .map((w) => w.trim());
+            const words = el.dataset.typingCycleWords.split(",").map((w) => w.trim());
             const colors = (el.dataset.typingCycleColors || "")
               .split(",")
               .map((c) => c.trim())
@@ -1244,8 +1187,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
             const speedIn = parseInt(el.dataset.typingSpeedIn, 10) || 120;
             const speedOut = parseInt(el.dataset.typingSpeedOut, 10) || 50;
-            const interval =
-              parseInt(el.dataset.typingCycleInterval, 10) || 2000;
+            const interval = parseInt(el.dataset.typingCycleInterval, 10) || 2000;
             const cursorType = el.dataset.typingCursor || "caret";
             const delay = parseInt(el.dataset.typingDelay, 10) || 0;
             const onScroll = el.dataset.typingOnScroll === "true";

@@ -16,22 +16,22 @@ description:
 
 <section class="bg-particle-waves">
   <div class="bg-particle-waves__inner">
-    <h2>[ Particle waves ]</h2>
+    <h2>[<span class="typing-scroll"> Particle waves </span>]</h2>
     <small>
       Use the <code>bg-particle-waves</code> class on the section, then include the canvas at the
       bottom. <br class="md-up" />
       Comes with a few handy configs.
     </small>
   </div>
-  <canvas
-    id="bg-particle-waves"
-    data-gap="0.5"
-    data-amount-x="120"
-    data-amount-y="120"
-    data-color="fff"
-    data-opacity="0.5"
-    data-speed="0.01"
-  ></canvas>
+
+  <!-- prettier-ignore -->
+  {% set particle_waves = ({
+    gap: 0.5,
+    color: 'var(--color-brand--secondary)',
+    opacity: 0.8,
+    speed: 0.01
+  }) %}
+  {% include "../_includes/library/advanced/particle-waves.njk" %}
 </section>
 
 <!-- Mouse position seems affected by content placement -->

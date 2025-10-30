@@ -1,0 +1,29 @@
+<!-- prettier-ignore -->
+{% set width = particle_waves.width or '40px' %}
+{% set height = particle_waves.height or '25px' %}
+{% set gap = particle_waves.gap or 0.5 %}
+{% set color = particle_waves.color or '#fff' %}
+{% set opacity = particle_waves.opacity or 0.5 %}
+{% set speed = particle_waves.speed or 0.01 %}
+
+<div
+  class="particle-waves-wrap parallax"
+  data-parallax-y="20%"
+  data-parallax-scrub="0.5"
+  style="
+    --particle-width: {{ width }}; 
+    --particle-height: {{ height }};
+  "
+>
+  <!-- For ::before shadow on div, can't add to canvas -->
+  <canvas
+    class="particle-waves"
+    id="particle-waves"
+    data-gap="{{ gap }}"
+    data-width="{{ width }}"
+    data-height="{{ height }}"
+    data-color="{{ color }}"
+    data-opacity="{{ opacity }}"
+    data-speed="{{ speed }}"
+  ></canvas>
+</div>

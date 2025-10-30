@@ -2,9 +2,7 @@
 {% set size = panel_configs.size or 'full'%}
 {% set placement = panel_configs.placement or 'center' %}
 
-<section
-  class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }}"
->
+<section class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }}">
   <!-- prettier-ignore -->
   {% if panel_copy %}
   <div class="scroll-stack__copy scroll-stack__copy--unpinned">

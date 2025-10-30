@@ -6,6 +6,7 @@
 .dots-flow {
   @include row-center;
   overflow: visible;
+  pointer-events: none;
 
   // controlled via props
   // circle {

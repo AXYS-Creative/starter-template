@@ -1,74 +1,50 @@
-if (document.getElementById("bg-particle-waves")) {
-  //
-  // Vertex Shader
-  //
+const particleWaveElements = document.getElementById("particle-waves");
+
+if (particleWaveElements) {
   const particleVertex = `
     attribute float scale;
     uniform float uTime;
-
     void main() {
       vec3 p = position;
       float s = scale;
-
-      // Wave motion
       p.y += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
       p.x += (sin(p.y + uTime) * 0.5);
       s += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
-
       vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
       gl_PointSize = s * 15.0 * (1.0 / -mvPosition.z);
       gl_Position = projectionMatrix * mvPosition;
     }
   `;
 
-  //
-  // Fragment Shader
-  //
   const particleFragment = `
     uniform vec3 uColor;
     uniform float uOpacity;
-
     void main() {
       gl_FragColor = vec4(uColor, uOpacity);
     }
   `;
 
-  //
-  // Default Configuration
-  //
-  const particleWavesDefaults = {
-    gap: 0.3, // distance between particles
-    amountX: 200, // grid density (x)
-    amountY: 200, // grid density (y)
-    speed: 0.05, // animation speed
-    color: "#ffffff", // particle color
-    opacity: 0.5, // transparency
-    size: 15.0, // base size of each point
-    cameraPos: { x: 0, y: 6, z: 5 },
-    antialias: true,
-    pixelRatio: window.devicePixelRatio,
-  };
-
-  //
-  // Utility: Linear Interpolation (optional use)
-  //
-  function lerp(start, end, amount) {
-    return (1 - amount) * start + amount * end;
+  // Convert CSS-style dimension into px number
+  function resolveSize(value, relativeTo = window.innerWidth, axis = "x") {
+    if (value.endsWith("px")) return parseFloat(value);
+    if (value.endsWith("%")) {
+      const percent = parseFloat(value) / 100;
+      return percent * (axis === "x" ? window.innerWidth : window.innerHeight);
+    }
+    if (value.endsWith("vw")) return (parseFloat(value) / 100) * window.innerWidth;
+    if (value.endsWith("vh")) return (parseFloat(value) / 100) * window.innerHeight;
+    return parseFloat(value); // fallback (plain number)
   }
 
-  //
-  // Main Class
-  //
   class ParticleWaves {
     constructor(config = {}) {
       this.config = {
-        canvas: document.getElementById("bg-particle-waves"),
+        canvas: particleWaveElements,
         winWidth: window.innerWidth,
         winHeight: window.innerHeight,
         aspectRatio: window.innerWidth / window.innerHeight,
         mouse: new THREE.Vector2(-10, -10),
-        ...particleWavesDefaults,
-        ...config, // merge user overrides
+        ...config,
       };
 
       this.onResize = this.onResize.bind(this);
@@ -80,17 +56,12 @@ if (document.getElementById("bg-particle-waves")) {
       this.initRenderer();
       this.initParticles();
       this.bindEvents();
-
       this.animate();
     }
 
-    //
-    // Scene Setup
-    //
     initCamera() {
-      const { aspectRatio, cameraPos } = this.config;
-      this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.01, 1000);
-      this.camera.position.set(cameraPos.x, cameraPos.y, cameraPos.z);
+      this.camera = new THREE.PerspectiveCamera(75, this.config.aspectRatio, 0.01, 1000);
+      this.camera.position.set(0, 6, 5);
     }
 
     initScene() {
@@ -98,22 +69,20 @@ if (document.getElementById("bg-particle-waves")) {
     }
 
     initRenderer() {
-      const { canvas, antialias, pixelRatio, winWidth, winHeight } = this.config;
-      this.renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias,
-        alpha: true,
-      });
-      this.renderer.setPixelRatio(pixelRatio);
+      const { canvas, winWidth, winHeight } = this.config;
+      this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(winWidth, winHeight);
     }
 
-    //
-    // Particle Grid Setup
-    //
     initParticles() {
-      const { gap, amountX, amountY, color, opacity } = this.config;
+      const { gap, color, opacity, widthPx, heightPx } = this.config;
+
+      // compute how many particles fit in the given dimensions
+      const amountX = Math.floor(widthPx / gap);
+      const amountY = Math.floor(heightPx / gap);
       const particleNum = amountX * amountY;
+
       const positions = new Float32Array(particleNum * 3);
       const scales = new Float32Array(particleNum);
 
@@ -149,9 +118,6 @@ if (document.getElementById("bg-particle-waves")) {
       this.scene.add(this.particles);
     }
 
-    //
-    // Animation Loop
-    //
     animate() {
       this.particleMaterial.uniforms.uTime.value += this.config.speed;
       requestAnimationFrame(this.animate);
@@ -163,9 +129,6 @@ if (document.getElementById("bg-particle-waves")) {
       this.renderer.render(this.scene, this.camera);
     }
 
-    //
-    // Events
-    //
     bindEvents() {
       window.addEventListener("resize", this.onResize);
       window.addEventListener("mousemove", this.onMouseMove, false);
@@ -173,7 +136,7 @@ if (document.getElementById("bg-particle-waves")) {
 
     onMouseMove(e) {
       this.config.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      this.config.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      this.config.mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
     }
 
     onResize() {
@@ -185,18 +148,29 @@ if (document.getElementById("bg-particle-waves")) {
     }
   }
 
-  //
-  // Init Function (reads from data attributes)
-  //
-  const el = document.getElementById("bg-particle-waves");
+  // Utility: resolve CSS variable or color string
+  function resolveCSSColor(value) {
+    if (!value) return "#ffffff";
+    if (value.startsWith("var(")) {
+      const varName = value.match(/var\(([^)]+)\)/)[1].trim();
+      const computed = getComputedStyle(document.documentElement).getPropertyValue(varName);
+      if (computed) return computed.trim();
+    }
+    return value;
+  }
+
+  // Build config from dataset
+  const el = particleWaveElements;
+  const widthPx = resolveSize(el.dataset.width, window.innerWidth, "x");
+  const heightPx = resolveSize(el.dataset.height, window.innerHeight, "y");
 
   const userConfig = {
-    gap: parseFloat(el.dataset.gap) || particleWavesDefaults.gap,
-    amountX: parseInt(el.dataset.amountX) || particleWavesDefaults.amountX,
-    amountY: parseInt(el.dataset.amountY) || particleWavesDefaults.amountY,
-    color: el.dataset.color || particleWavesDefaults.color,
-    opacity: parseFloat(el.dataset.opacity) || particleWavesDefaults.opacity,
-    speed: parseFloat(el.dataset.speed) || particleWavesDefaults.speed,
+    gap: parseFloat(el.dataset.gap),
+    widthPx,
+    heightPx,
+    color: resolveCSSColor(el.dataset.color),
+    opacity: parseFloat(el.dataset.opacity),
+    speed: parseFloat(el.dataset.speed),
   };
 
   new ParticleWaves(userConfig);
