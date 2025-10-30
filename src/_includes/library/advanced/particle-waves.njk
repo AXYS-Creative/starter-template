@@ -3,8 +3,9 @@
 {% set height = particle_waves.height or '25px' %}
 {% set gap = particle_waves.gap or 0.5 %}
 {% set color = particle_waves.color or '#fff' %}
-{% set opacity = particle_waves.opacity or 0.5 %}
+{% set opacity = particle_waves.opacity or 1 %}
 {% set speed = particle_waves.speed or 0.01 %}
+{% set follow_mouse = particle_waves.follow_mouse or 0 %}
 
 <div
   class="particle-waves-wrap parallax"
@@ -15,7 +16,6 @@
     --particle-height: {{ height }};
   "
 >
-  <!-- For ::before shadow on div, can't add to canvas -->
   <canvas
     class="particle-waves"
     id="particle-waves"
@@ -25,5 +25,6 @@
     data-color="{{ color }}"
     data-opacity="{{ opacity }}"
     data-speed="{{ speed }}"
+    data-follow-mouse="{{ follow_mouse }}"
   ></canvas>
 </div>

@@ -4,12 +4,22 @@ if (particleWaveElements) {
   const particleVertex = `
     attribute float scale;
     uniform float uTime;
+    uniform vec2 uMouse;
+
+    varying vec2 vPos;
+
     void main() {
       vec3 p = position;
       float s = scale;
+
+      // Base wave motion
       p.y += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
       p.x += (sin(p.y + uTime) * 0.5);
       s += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
+
+      // Pass position (XZ plane) to fragment shader
+      vPos = p.xz;
+
       vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
       gl_PointSize = s * 15.0 * (1.0 / -mvPosition.z);
       gl_Position = projectionMatrix * mvPosition;
@@ -19,8 +29,20 @@ if (particleWaveElements) {
   const particleFragment = `
     uniform vec3 uColor;
     uniform float uOpacity;
+    uniform vec2 uMouse;
+    uniform float uFollowRange;
+
+    varying vec2 vPos;
+
     void main() {
-      gl_FragColor = vec4(uColor, uOpacity);
+      // Only apply glow if range > 0
+      float range = uFollowRange;
+      float dist = distance(vPos, vec2(uMouse.x, -uMouse.y) * 20.0);
+
+      float glow = smoothstep(range, 0.0, dist);
+      float finalOpacity = mix(uOpacity, 1.0, glow);
+
+      gl_FragColor = vec4(uColor, finalOpacity);
     }
   `;
 
@@ -33,7 +55,25 @@ if (particleWaveElements) {
     }
     if (value.endsWith("vw")) return (parseFloat(value) / 100) * window.innerWidth;
     if (value.endsWith("vh")) return (parseFloat(value) / 100) * window.innerHeight;
-    return parseFloat(value); // fallback (plain number)
+    return parseFloat(value);
+  }
+
+  // Resolve CSS variable or color string
+  function resolveCSSColor(value) {
+    if (!value) return "#ffffff"; // fallback
+
+    // Check if it's a CSS variable
+    if (value.startsWith("var(")) {
+      const match = value.match(/var\(([^)]+)\)/);
+      if (match && match[1]) {
+        const varName = match[1].trim();
+        const computed = getComputedStyle(document.documentElement).getPropertyValue(varName);
+        if (computed) return computed.trim();
+      }
+    }
+
+    // Otherwise, return as-is (hex, rgb, hsl, etc.)
+    return value;
   }
 
   class ParticleWaves {
@@ -76,9 +116,8 @@ if (particleWaveElements) {
     }
 
     initParticles() {
-      const { gap, color, opacity, widthPx, heightPx } = this.config;
+      const { gap, color, opacity, widthPx, heightPx, followMouseRange } = this.config;
 
-      // compute how many particles fit in the given dimensions
       const amountX = Math.floor(widthPx / gap);
       const amountY = Math.floor(heightPx / gap);
       const particleNum = amountX * amountY;
@@ -111,6 +150,8 @@ if (particleWaveElements) {
           uTime: { value: 0 },
           uColor: { value: new THREE.Color(color) },
           uOpacity: { value: opacity },
+          uMouse: { value: new THREE.Vector2(0.0, 0.0) },
+          uFollowRange: { value: followMouseRange },
         },
       });
 
@@ -131,12 +172,26 @@ if (particleWaveElements) {
 
     bindEvents() {
       window.addEventListener("resize", this.onResize);
-      window.addEventListener("mousemove", this.onMouseMove, false);
+
+      // 👇 only add mouse listener if range > 0
+      if (this.config.followMouseRange > 0) {
+        window.addEventListener("mousemove", this.onMouseMove, false);
+      }
     }
 
     onMouseMove(e) {
-      this.config.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      this.config.mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
+      const rect = this.config.canvas.getBoundingClientRect();
+      const relX = e.clientX - rect.left;
+      const relY = e.clientY - rect.top;
+      const normX = relX / rect.width;
+      const normY = relY / rect.height;
+      const x = normX * 2 - 1;
+      const y = -(normY * 2 - 1);
+
+      this.config.mouse.x = THREE.MathUtils.lerp(this.config.mouse.x, x, 0.15);
+      this.config.mouse.y = THREE.MathUtils.lerp(this.config.mouse.y, y, 0.15);
+
+      this.particleMaterial.uniforms.uMouse.value.copy(this.config.mouse);
     }
 
     onResize() {
@@ -148,21 +203,10 @@ if (particleWaveElements) {
     }
   }
 
-  // Utility: resolve CSS variable or color string
-  function resolveCSSColor(value) {
-    if (!value) return "#ffffff";
-    if (value.startsWith("var(")) {
-      const varName = value.match(/var\(([^)]+)\)/)[1].trim();
-      const computed = getComputedStyle(document.documentElement).getPropertyValue(varName);
-      if (computed) return computed.trim();
-    }
-    return value;
-  }
-
-  // Build config from dataset
   const el = particleWaveElements;
   const widthPx = resolveSize(el.dataset.width, window.innerWidth, "x");
   const heightPx = resolveSize(el.dataset.height, window.innerHeight, "y");
+  const followMouseRange = parseFloat(el.dataset.followMouse) || 0;
 
   const userConfig = {
     gap: parseFloat(el.dataset.gap),
@@ -171,6 +215,7 @@ if (particleWaveElements) {
     color: resolveCSSColor(el.dataset.color),
     opacity: parseFloat(el.dataset.opacity),
     speed: parseFloat(el.dataset.speed),
+    followMouseRange, // 0 or emtpy value (set in njk) turns off mouse tracking (requires 'opacity' config below 1)
   };
 
   new ParticleWaves(userConfig);

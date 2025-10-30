@@ -26,10 +26,11 @@ description:
 
   <!-- prettier-ignore -->
   {% set particle_waves = ({
-    gap: 0.5,
+    gap: 0.4,
     color: 'var(--color-brand--secondary)',
-    opacity: 0.8,
-    speed: 0.01
+    opacity: 0.2,
+    follow_mouse: 20,
+    speed: 0.005
   }) %}
   {% include "../_includes/library/advanced/particle-waves.njk" %}
 </section>
