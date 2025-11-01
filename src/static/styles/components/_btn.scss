@@ -74,7 +74,7 @@
     height: var(--icon-size);
 
     @include mq-motion-allow {
-      transition: $ease;
+      transition: $ease, $magnet;
     }
   }
 

@@ -1,3 +1,4 @@
+import { mqMouse } from "../../util.js";
 const particleWaveElements = document.getElementById("particle-waves");
 
 if (particleWaveElements) {
@@ -173,8 +174,7 @@ if (particleWaveElements) {
     bindEvents() {
       window.addEventListener("resize", this.onResize);
 
-      // 👇 only add mouse listener if range > 0
-      if (this.config.followMouseRange > 0) {
+      if (this.config.followMouseRange > 0 && mqMouse) {
         window.addEventListener("mousemove", this.onMouseMove, false);
       }
     }
