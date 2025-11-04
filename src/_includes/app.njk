@@ -64,13 +64,14 @@
       or path == "library/components" 
       or path == "library/combos"
       or path == "library/sections" 
-      or path == "style-guide" 
+      or path == "style-guide"
+      or path == "playground" 
     %}
       {% include "./library/components/mouse-cursor.njk" %}
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if path == 'home' %}
+    {% if path == "home" or path == "playground" %}
       {% include './partials/loader.njk' %}
     {% endif %}
 

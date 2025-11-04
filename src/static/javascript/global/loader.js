@@ -1,4 +1,4 @@
-import { mqNoMotion } from "../util.js";
+import { mqNoMotion, globalConfig } from "../util.js";
 
 const siteLoader = document.getElementById("site-loader");
 
@@ -14,10 +14,13 @@ if (sessionStorage.getItem("visitedSite") && siteLoader) {
   siteLoader.remove();
   document.body.removeAttribute("data-body-loading");
   document.body.setAttribute("data-body-loading-complete", "");
+
+  // // Notify other areas of the app
+  // window.dispatchEvent(new CustomEvent("loader:complete"));
 } else if (siteLoader) {
   let pageLoaded = false;
   let timerDone = false;
-  const loadDuration = 2.4; // Seconds NOT Miliseconds
+  let loadDuration = globalConfig.loadDuration;
 
   // Skip animations for reduced-motion users
   if (mqNoMotion) {
@@ -34,6 +37,9 @@ if (sessionStorage.getItem("visitedSite") && siteLoader) {
       document.body.removeAttribute("data-body-loading");
       document.body.setAttribute("data-body-loading-complete", "");
       sessionStorage.setItem("visitedSite", "true");
+
+      // Notify other areas of the app
+      window.dispatchEvent(new CustomEvent("loader:complete"));
     }
   };
 

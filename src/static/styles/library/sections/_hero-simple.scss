@@ -132,7 +132,8 @@
   }
 
   &--text-only {
-    @include full-viewport-section;
+    @include full-viewport-section(true);
+    margin-block-start: var(--header-height);
   }
 
   // Layout Modifiers
@@ -141,7 +142,8 @@
     margin-block-start: var(--header-height);
 
     @include mq-min(lg) {
-      @include full-viewport-section; // optional
+      @include full-viewport-section(true); // optional
+      margin-block-start: var(--header-height); // optional
     }
 
     .hero-simple__inner {
@@ -168,12 +170,12 @@
     }
   }
 
-  // &--column {
-  // margin-block-start: var(--header-height);
-  // padding-block-start: calc(
-  //   var(--spacing--xl) + var(--header-height) + var(--promo-banner-height)
-  // );
-  // }
+  &--column {
+    margin-block-start: var(--header-height);
+    padding-block-start: calc(
+      var(--spacing--lg) + var(--header-height) + var(--promo-banner-height)
+    );
+  }
 
   &--float {
     --float-offset: var(--partial-float-offset);

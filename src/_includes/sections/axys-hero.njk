@@ -1,0 +1,90 @@
+<!-- prettier-ignore -->
+{% set dots_config = 1 %}
+
+{% if dots_config == 1 %}
+  {% set dots = ({
+    size: 1,
+    gap: 12,
+    restore: 0.75,
+    sensitivity: 0.95,
+    distance: 100,
+    strength: 150,
+    color: 'var(--color-brand--primary)',
+    illuminate: false,
+    grow: false
+  }) %}
+{% endif %}
+
+{% if dots_config == 2 %}
+  {% set dots = ({
+    size: 1,
+    gap: 12,
+    restore: 0.1,
+    sensitivity: 0.9,
+    distance: 500,
+    strength: 150,
+    color: 'var(--color-brand--primary)',
+    illuminate: true,
+    grow: true
+  }) %}
+{% endif %}
+
+<section class="axys-hero cursor-hide">
+  <div class="axys-hero__content">
+    <h1 class="axys-hero__title">
+      <span class="text-reveal">
+        <span
+          class="glitch-cycle"
+          data-glitch-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
+          data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
+          data-glitch-cycle-interval="2000"
+          data-typing-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
+          data-typing-delay="800"
+          data-typing-on-scroll="true"
+        >
+          Creative
+        </span>
+      </span>
+      <span
+        class="text-reveal"
+        data-reveal-type="words"
+        data-reveal-duration="1"
+        data-reveal-ease="back.out(1)"
+        data-reveal-scrub="false"
+        data-reveal-delay="0"
+        >web design +</span
+      >
+      <span>development</span>
+    </h1>
+    {% if desc %}
+    <p class="axys-hero__desc">
+      <span>Unlimited services</span>
+      <span>One basic subscription</span>
+    </p>
+    {% endif %}
+  </div>
+
+  <div class="axys-hero__background parallax" data-parallax-hero="true" data-parallax-scrub="0">
+    <div
+      class="axys-hero__layer-tilt"
+      data-tilt
+      data-tilt-reverse="true"
+      data-tilt-max="10"
+      data-tilt-startX="0"
+      data-tilt-startY="0"
+      data-tilt-perspective="2400"
+      data-tilt-speed="1250"
+      data-tilt-reset="false"
+    >
+      <div
+        class="axys-dots-logo velocity-push"
+        data-push-strength="1"
+        data-push-restore="0.025"
+        data-push-rotate-max="10"
+      >
+        <div class="axys-dots-logo__1">{% include "../library/advanced/dots.njk" %}</div>
+        <div class="axys-dots-logo__2">{% include "../library/advanced/dots.njk" %}</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,4 +1,13 @@
-import { root, mqNoMotion, mqMouse } from "../util.js";
+import { root, globalConfig, mqNoMotion, mqMouse } from "../util.js";
+import { headerHeight } from "../global/header.js";
+
+//
+// Adjust animation delays based on global loader.js
+//
+const getLoadState = () => ({
+  isLoading: document.body.hasAttribute("data-body-loading"),
+  isLoadComplete: document.body.hasAttribute("data-body-loading-complete"),
+});
 
 // Cubic Bézier easing function (for cross-browser compatible animations)
 export const cubicBezier = (p1x, p1y, p2x, p2y) => {
@@ -657,13 +666,14 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const dataScrub = parseFloat(el.dataset.parallaxScrub) || 1;
             const dataStart = el.dataset.parallaxStart || "top bottom";
             const dataEnd = el.dataset.parallaxEnd || "bottom top";
+            const dataHero = el.dataset.parallaxHero === "true";
 
             gsap.to(el, {
               y: dataY,
               ease: "none",
               scrollTrigger: {
                 trigger: el,
-                start: dataStart,
+                start: dataHero ? `top ${headerHeight}` : dataStart,
                 end: dataEnd,
                 scrub: dataScrub,
                 // markers: true,
@@ -938,6 +948,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const revealType = el.dataset.revealType || "words"; // 'words' | 'chars'
             const revealFrom = el.dataset.revealFrom || "bottom"; // 'bottom' | 'top'
             const revealDuration = parseFloat(el.dataset.revealDuration) || 0.2;
+            const revealDelay = parseFloat(el.dataset.revealDelay) || 0; // only if scrub is false
             const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
             const revealEase = el.dataset.revealEase || "linear";
             const revealScrub = el.dataset.revealScrub === "true"; // default false
@@ -965,7 +976,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               trigger: el,
               start: revealStart,
               end: revealEnd,
-              scrub: revealScrub || false,
+              scrub: revealScrub,
               markers: revealMarkers,
             };
 
@@ -973,17 +984,19 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               scrollTriggerConfig.toggleActions = revealOnce
                 ? "play none none none"
                 : "play reset play reset";
-
               scrollTriggerConfig.onEnter = () => el.classList.add("text-reveal--active");
-
               scrollTriggerConfig.onLeaveBack = () => {
                 if (!revealOnce) el.classList.remove("text-reveal--active");
               };
-
               scrollTriggerConfig.once = revealOnce;
             }
 
             const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+            // Adjust delay if page is still loading
+            const adjustedDelay = getLoadState().isLoading
+              ? revealDelay + globalConfig.loadDuration
+              : revealDelay;
 
             tl.fromTo(
               targets,
@@ -991,6 +1004,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               {
                 y: "0",
                 duration: revealDuration,
+                delay: adjustedDelay,
                 stagger: revealStagger,
                 ease: revealEase,
               }
@@ -1415,7 +1429,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // GSAP SplitText (characters & words) (Yo is this used?)
+        // GSAP SplitText (characters & words)
         {
           const splitCharacters = document.querySelectorAll(".split-chars");
           const splitWords = document.querySelectorAll(".split-words");
@@ -1462,4 +1476,17 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
   //     }, 500); // try 200–500ms if needed
   //   });
   // }
+
+  window.addEventListener("loader:complete", () => {
+    console.log("well there it is, the loader is done");
+    gsap.globalTimeline.getChildren().forEach((tl) => {
+      if (typeof tl.getChildren === "function") {
+        tl.getChildren(false, true, false).forEach((tween) => {
+          if (tween.vars && tween.vars.delay) tween.vars.delay = Math.min(tween.vars.delay, 1);
+        });
+      } else if (tl.vars && tl.vars.delay) {
+        tl.vars.delay = Math.min(tl.vars.delay, 1);
+      }
+    });
+  });
 }

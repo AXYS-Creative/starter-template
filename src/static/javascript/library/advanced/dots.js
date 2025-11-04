@@ -91,7 +91,7 @@ dotFields.forEach((comp) => {
       const dist = Math.max(Math.hypot(distX, distY), 1);
 
       // --- Shared intensity calculation ---
-      const minIntensity = 0.2; // floor for dim/grow effects
+      const minIntensity = 0.25; // floor for dim/grow effects
       let intensity = 1 - dist / config.distance;
       intensity = Math.min(Math.max(intensity, 0), 1); // clamp 0–1
       intensity = minIntensity + intensity * (1 - minIntensity); // scale

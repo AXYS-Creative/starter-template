@@ -22,14 +22,14 @@ cta_2:
   new_tab: true
   icon_end: /static/img/library/icon-google-chevron-right.svg
 
-extra_content: false # disables corner_imgs when false
+extra_content: true # disables corner_imgs when false
 
-corner_imgs:
-  - title: alt 1 here
-    src: /static/img/library/img-sample-1.jpg
-  - title: alt 2 here
-    src: /static/img/library/img-sample-2.jpg
-  - title: alt 3 here
-    src: /static/img/library/img-sample-6.jpg
-  - title: alt 4 here
-    src: /static/img/library/img-sample-12.jpg
+# corner_imgs:
+#   - title: alt 1 here
+#     src: /static/img/library/img-sample-1.jpg
+#   - title: alt 2 here
+#     src: /static/img/library/img-sample-2.jpg
+#   - title: alt 3 here
+#     src: /static/img/library/img-sample-6.jpg
+#   - title: alt 4 here
+#     src: /static/img/library/img-sample-12.jpg

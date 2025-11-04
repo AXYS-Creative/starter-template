@@ -1,9 +1,9 @@
 import "./util.js";
+import "./global/loader.js";
 
 import "./global/animations.js";
 import "./global/footer.js";
 import "./global/header.js";
-import "./global/loader.js";
 import "./global/scroll.js";
 
 import "./library/advanced/dots.js";

@@ -16,6 +16,11 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
+// Global config shared everywhere
+export const globalConfig = {
+  loadDuration: 4, // seconds
+};
+
 // Cubic-bezier lenis helper
 export const cubicBezier = (p0, p1, p2, p3) => {
   // Polyfill-like implementation of bezier easing

@@ -1,28 +1,31 @@
 <!-- prettier-ignore -->
-{% set size = panel_configs.size or 'full'%}
-{% set placement = panel_configs.placement or 'center' %}
+{% set nav = scroll_stack.nav %}
+{% set text_region = scroll_stack.text_region %} 
+{% set panels = scroll_stack.panels %}
+{% set size = scroll_stack.panel_configs.size or 'full'%}
+{% set placement = scroll_stack.panel_configs.placement or 'center' %}
 
 <section class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }}">
   <!-- prettier-ignore -->
-  {% if panel_copy %}
+  {% if text_region %}
   <div class="scroll-stack__copy scroll-stack__copy--unpinned">
-    {% if panel_copy.title %}
-    <h2 class="scroll-stack__copy-title">{{ panel_copy.title }}</h2>
-    {% endif %} {% if panel_copy.desc %}
-    <p class="scroll-stack__copy-desc">{{ panel_copy.desc }}</p>
-    {% endif %} {% if panel_copy.cta_1 %}
+    {% if text_region.title %}
+    <h2 class="scroll-stack__copy-title">{{ text_region.title }}</h2>
+    {% endif %} {% if text_region.desc %}
+    <p class="scroll-stack__copy-desc">{{ text_region.desc }}</p>
+    {% endif %} {% if text_region.cta_1 %}
     <!-- prettier-ignore -->
-    {% set cta_1 = panel_copy.cta_1 %}
-      {% set cta_2 = panel_copy.cta_2 %}
+    {% set cta_1 = text_region.cta_1 %}
+      {% set cta_2 = text_region.cta_2 %}
       {% include "../../components/cta-group.njk" %}
       {% endif %}
   </div>
   {% endif %}
 
   <div class="scroll-stack__pin">
-    {% if panel_nav %}
+    {% if nav %}
     <nav class="scroll-stack__nav">
-      {% for panel in panel_data %}
+      {% for panel in panels %}
       <a
         href="#scroll-stack__pin-step-{{ loop.index }}"
         class="scroll-stack__nav-link classic-link tab-element-page"
@@ -34,23 +37,23 @@
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if panel_copy %}
+    {% if text_region %}
     <div class="scroll-stack__copy scroll-stack__copy--pinned">
-      {% if panel_copy.title %}
-      <h2 class="scroll-stack__copy-title">{{ panel_copy.title }}</h2>
-      {% endif %} {% if panel_copy.desc %}
-      <p class="scroll-stack__copy-desc">{{ panel_copy.desc }}</p>
-      {% endif %} {% if panel_copy.cta_1 %}
+      {% if text_region.title %}
+      <h2 class="scroll-stack__copy-title">{{ text_region.title }}</h2>
+      {% endif %} {% if text_region.desc %}
+      <p class="scroll-stack__copy-desc">{{ text_region.desc }}</p>
+      {% endif %} {% if text_region.cta_1 %}
       <!-- prettier-ignore -->
-      {% set cta_1 = panel_copy.cta_1 %}
-      {% set cta_2 = panel_copy.cta_2 %}
+      {% set cta_1 = text_region.cta_1 %}
+      {% set cta_2 = text_region.cta_2 %}
       {% include "../../components/cta-group.njk" %}
       {% endif %}
     </div>
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% for panel in panel_data %}
+    {% for panel in panels %}
     <div class="scroll-stack__panel scroll-stack__panel-{{ loop.index }}">
       <!-- prettier-ignore -->
       {% if panel.icon %}
@@ -76,7 +79,7 @@
 
   <!-- prettier-ignore -->
   <div class="scroll-stack__pin-steps pin-steps" aria-hidden="true">
-    {% for step in panel_data %}
+    {% for step in panels %}
     <div 
       class="scroll-stack__pin-step scroll-stack__pin-step-{{ loop.index }} pin-step"
       id="scroll-stack__pin-step-{{ loop.index }}"

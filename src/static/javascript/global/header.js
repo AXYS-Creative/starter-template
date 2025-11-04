@@ -10,7 +10,7 @@ export const navLinks = document.querySelectorAll(".nav-link"),
   tabElementsPage = document.querySelectorAll(".tab-element-page"),
   tabElementsNav = document.querySelectorAll(".tab-element-nav");
 
-let headerHeight = siteHeader.offsetHeight;
+export let headerHeight = siteHeader.offsetHeight;
 root.style.setProperty("--header-height", `${headerHeight}px`);
 
 siteNav.setAttribute("tabIndex", "-1"); // Keep this, was able to tab the nav initially

@@ -7,9 +7,10 @@
   text-rendering: optimizeLegibility;
 
   &::selection {
-    background-color: rgba($coral, 0.5);
+    background-color: rgba($coral, 1);
 
-    color: var(--color-font--primary);
+    // color: var(--color-font--primary);
+    color: var(--color-background);
     stroke-width: 0;
   }
 
