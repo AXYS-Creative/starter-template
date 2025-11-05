@@ -9,6 +9,8 @@ const getLoadState = () => ({
   isLoadComplete: document.body.hasAttribute("data-body-loading-complete"),
 });
 
+const isLoading = getLoadState().isLoading;
+
 // Cubic Bézier easing function (for cross-browser compatible animations)
 export const cubicBezier = (p1x, p1y, p2x, p2y) => {
   // Example: const ease = cubicBezier(0.09, 0.9, 0.5, 1);
@@ -73,6 +75,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
       // Library - Lift any desired code blocks out, then delete from production
       {
+        // Track loader state
+        let loaderHasCompleted = false;
+
+        window.addEventListener("loader:complete", () => {
+          loaderHasCompleted = true;
+        });
+
         // Page specific scrollTrigger fix (delay refresh)
         if (document.querySelector(".main-library")) {
           window.addEventListener("load", () => {
@@ -945,14 +954,14 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           const revealElems = document.querySelectorAll(".text-reveal");
 
           revealElems.forEach((el) => {
-            const revealType = el.dataset.revealType || "words"; // 'words' | 'chars'
-            const revealFrom = el.dataset.revealFrom || "bottom"; // 'bottom' | 'top'
+            const revealType = el.dataset.revealType || "words";
+            const revealFrom = el.dataset.revealFrom || "bottom";
             const revealDuration = parseFloat(el.dataset.revealDuration) || 0.2;
-            const revealDelay = parseFloat(el.dataset.revealDelay) || 0; // only if scrub is false
+            const revealDelay = parseFloat(el.dataset.revealDelay) || 0;
             const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
-            const revealEase = el.dataset.revealEase || "linear";
-            const revealScrub = el.dataset.revealScrub === "true"; // default false
-            const revealOnce = !revealScrub && el.dataset.revealOnce === "true"; // only if scrub is false
+            const revealEase = el.dataset.revealEase || "back.out(1)";
+            const revealScrub = el.dataset.revealScrub === "true";
+            const revealOnce = !revealScrub && el.dataset.revealOnce === "true";
             const revealStart = el.dataset.revealStart || "top 98%";
             const revealEnd = el.dataset.revealEnd || "bottom 2%";
             const revealMarkers = el.dataset.revealMarkers || false;
@@ -972,43 +981,82 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               wrapper.appendChild(target);
             });
 
-            const scrollTriggerConfig = {
-              trigger: el,
-              start: revealStart,
-              end: revealEnd,
-              scrub: revealScrub,
-              markers: revealMarkers,
+            // Track state to support loader delay
+            let hasLeftViewportAfterLoad = false;
+            let currentTimeline = null;
+
+            // Function to create the timeline
+            const createTimeline = (useAdjustedDelay) => {
+              // Kill existing timeline if it exists
+              if (currentTimeline) {
+                currentTimeline.scrollTrigger?.kill();
+                currentTimeline.kill();
+              }
+
+              const scrollTriggerConfig = {
+                trigger: el,
+                start: revealStart,
+                end: revealEnd,
+                scrub: revealScrub,
+                markers: revealMarkers,
+              };
+
+              if (!revealScrub) {
+                scrollTriggerConfig.toggleActions = revealOnce
+                  ? "play none none none"
+                  : "play reset play reset";
+                scrollTriggerConfig.onEnter = () => {
+                  el.classList.add("text-reveal--active");
+                };
+                scrollTriggerConfig.onLeaveBack = () => {
+                  if (!revealOnce) el.classList.remove("text-reveal--active");
+                };
+                scrollTriggerConfig.once = revealOnce;
+              }
+
+              const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+              const finalDelay = useAdjustedDelay
+                ? revealDelay + globalConfig.loadDuration
+                : revealDelay;
+
+              console.log("Creating timeline with delay:", finalDelay);
+
+              tl.fromTo(
+                targets,
+                { y: revealFrom === "top" ? "-100%" : "100%" },
+                {
+                  y: "0",
+                  duration: revealDuration,
+                  delay: finalDelay,
+                  stagger: revealStagger,
+                  ease: revealEase,
+                }
+              );
+
+              currentTimeline = tl;
+              return tl;
             };
 
-            if (!revealScrub) {
-              scrollTriggerConfig.toggleActions = revealOnce
-                ? "play none none none"
-                : "play reset play reset";
-              scrollTriggerConfig.onEnter = () => el.classList.add("text-reveal--active");
-              scrollTriggerConfig.onLeaveBack = () => {
-                if (!revealOnce) el.classList.remove("text-reveal--active");
-              };
-              scrollTriggerConfig.once = revealOnce;
+            // Create initial timeline with adjusted delay if loading
+            createTimeline(isLoading && el.dataset.loaderAware !== undefined);
+
+            // Set up IntersectionObserver for loader-aware elements
+            if (el.dataset.loaderAware !== undefined) {
+              const observer = new IntersectionObserver(
+                (entries) => {
+                  entries.forEach((entry) => {
+                    if (!entry.isIntersecting && loaderHasCompleted && !hasLeftViewportAfterLoad) {
+                      hasLeftViewportAfterLoad = true;
+                      createTimeline(false); // Rebuild with original delay
+                      observer.disconnect(); // Only need this once
+                    }
+                  });
+                },
+                { threshold: 0 }
+              );
+              observer.observe(el);
             }
-
-            const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
-
-            // Adjust delay if page is still loading
-            const adjustedDelay = getLoadState().isLoading
-              ? revealDelay + globalConfig.loadDuration
-              : revealDelay;
-
-            tl.fromTo(
-              targets,
-              { y: revealFrom === "top" ? "-100%" : "100%" },
-              {
-                y: "0",
-                duration: revealDuration,
-                delay: adjustedDelay,
-                stagger: revealStagger,
-                ease: revealEase,
-              }
-            );
           });
         }
 
@@ -1340,6 +1388,20 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
           }
         }
+
+        // Listen for loader complete (outside the block)
+        window.addEventListener("loader:complete", () => {
+          loaderAwareTimelines.forEach(({ timeline, originalDelay }) => {
+            const tweens = timeline.getChildren();
+            tweens.forEach((tween) => {
+              if (tween.vars.delay !== undefined) {
+                tween.delay(originalDelay);
+              }
+            });
+            timeline.invalidate();
+          });
+          ScrollTrigger.refresh();
+        });
       }
 
       // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
@@ -1476,17 +1538,4 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
   //     }, 500); // try 200–500ms if needed
   //   });
   // }
-
-  window.addEventListener("loader:complete", () => {
-    console.log("well there it is, the loader is done");
-    gsap.globalTimeline.getChildren().forEach((tl) => {
-      if (typeof tl.getChildren === "function") {
-        tl.getChildren(false, true, false).forEach((tween) => {
-          if (tween.vars && tween.vars.delay) tween.vars.delay = Math.min(tween.vars.delay, 1);
-        });
-      } else if (tl.vars && tl.vars.delay) {
-        tl.vars.delay = Math.min(tl.vars.delay, 1);
-      }
-    });
-  });
 }
