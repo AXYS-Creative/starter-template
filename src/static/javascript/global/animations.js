@@ -72,16 +72,15 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           [array[i], array[j]] = [array[j], array[i]];
         }
       }
+      // Track loader state
+      let loaderHasCompleted = false;
+
+      window.addEventListener("loader:complete", () => {
+        loaderHasCompleted = true;
+      });
 
       // Library - Lift any desired code blocks out, then delete from production
       {
-        // Track loader state
-        let loaderHasCompleted = false;
-
-        window.addEventListener("loader:complete", () => {
-          loaderHasCompleted = true;
-        });
-
         // Page specific scrollTrigger fix (delay refresh)
         if (document.querySelector(".main-library")) {
           window.addEventListener("load", () => {
@@ -964,7 +963,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const revealOnce = !revealScrub && el.dataset.revealOnce === "true";
             const revealStart = el.dataset.revealStart || "top 98%";
             const revealEnd = el.dataset.revealEnd || "bottom 2%";
-            const revealMarkers = el.dataset.revealMarkers || false;
+            const revealMarkers = el.dataset.revealMarkers === "true";
 
             const split = new SplitText(el, {
               type: revealType,
@@ -1008,7 +1007,13 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 scrollTriggerConfig.onEnter = () => {
                   el.classList.add("text-reveal--active");
                 };
+                scrollTriggerConfig.onEnterBack = () => {
+                  el.classList.add("text-reveal--active");
+                };
                 scrollTriggerConfig.onLeaveBack = () => {
+                  if (!revealOnce) el.classList.remove("text-reveal--active");
+                };
+                scrollTriggerConfig.onLeave = () => {
                   if (!revealOnce) el.classList.remove("text-reveal--active");
                 };
                 scrollTriggerConfig.once = revealOnce;
@@ -1019,8 +1024,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               const finalDelay = useAdjustedDelay
                 ? revealDelay + globalConfig.loadDuration
                 : revealDelay;
-
-              console.log("Creating timeline with delay:", finalDelay);
 
               tl.fromTo(
                 targets,
@@ -1388,25 +1391,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
           }
         }
-
-        // Listen for loader complete (outside the block)
-        window.addEventListener("loader:complete", () => {
-          loaderAwareTimelines.forEach(({ timeline, originalDelay }) => {
-            const tweens = timeline.getChildren();
-            tweens.forEach((tween) => {
-              if (tween.vars.delay !== undefined) {
-                tween.delay(originalDelay);
-              }
-            });
-            timeline.invalidate();
-          });
-          ScrollTrigger.refresh();
-        });
       }
 
       // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
         // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
+
         {
           const gsapElems = document.querySelectorAll(".gsap-animate");
 
@@ -1416,30 +1406,93 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const animStart = gsapElem.dataset.gsapStart || "top 98%";
             const animEnd = gsapElem.dataset.gsapEnd || "bottom 2%";
             const animMarkers = gsapElem.dataset.gsapMarkers === "true";
+            const animDelay = parseFloat(gsapElem.dataset.gsapDelay) || 0;
 
-            if (animOnce) {
-              ScrollTrigger.create({
-                trigger: animTrigger,
-                start: animStart,
-                end: animEnd,
-                once: true,
-                onEnter: () => {
+            // Track state for loader-aware elements
+            let hasLeftViewportAfterLoad = false;
+            let currentScrollTrigger = null;
+            let pendingTimeout = null; // Track pending setTimeout
+
+            // Function to create the ScrollTrigger
+            const createScrollTrigger = (useAdjustedDelay) => {
+              // Clear any pending timeouts
+              if (pendingTimeout) {
+                clearTimeout(pendingTimeout);
+                pendingTimeout = null;
+              }
+
+              if (currentScrollTrigger) {
+                currentScrollTrigger.kill();
+              }
+
+              const finalDelay = useAdjustedDelay
+                ? animDelay + globalConfig.loadDuration
+                : animDelay;
+
+              // Create a wrapper function that applies delay
+              const addClassWithDelay = () => {
+                pendingTimeout = setTimeout(() => {
                   gsapElem.classList.add("gsap-animated");
+                  pendingTimeout = null;
+                }, finalDelay * 1000);
+              };
+
+              const removeClassImmediate = () => {
+                if (pendingTimeout) {
+                  clearTimeout(pendingTimeout);
+                  pendingTimeout = null;
+                }
+                gsapElem.classList.remove("gsap-animated");
+              };
+
+              if (animOnce) {
+                currentScrollTrigger = ScrollTrigger.create({
+                  trigger: animTrigger,
+                  start: animStart,
+                  end: animEnd,
+                  once: true,
+                  onEnter: addClassWithDelay,
+                  markers: animMarkers,
+                });
+              } else {
+                currentScrollTrigger = ScrollTrigger.create({
+                  trigger: animTrigger,
+                  start: animStart,
+                  end: animEnd,
+                  onEnter: addClassWithDelay,
+                  onLeave: removeClassImmediate,
+                  onEnterBack: addClassWithDelay,
+                  onLeaveBack: removeClassImmediate,
+                  markers: animMarkers,
+                });
+              }
+
+              return currentScrollTrigger;
+            };
+
+            // Handle animation with site "loading" delay
+            const isLoading = getLoadState().isLoading;
+            createScrollTrigger(isLoading && gsapElem.dataset.loaderAware !== undefined);
+
+            // Set up IntersectionObserver for loader-aware elements
+            if (gsapElem.dataset.loaderAware !== undefined) {
+              const observer = new IntersectionObserver(
+                (entries) => {
+                  entries.forEach((entry) => {
+                    if (!entry.isIntersecting && loaderHasCompleted && !hasLeftViewportAfterLoad) {
+                      hasLeftViewportAfterLoad = true;
+
+                      setTimeout(() => {
+                        createScrollTrigger(false);
+                      }, 100);
+
+                      observer.disconnect();
+                    }
+                  });
                 },
-                markers: animMarkers,
-              });
-            } else {
-              // Repeating animation
-              ScrollTrigger.create({
-                trigger: animTrigger,
-                start: animStart,
-                end: animEnd,
-                onEnter: () => gsapElem.classList.add("gsap-animated"),
-                onLeave: () => gsapElem.classList.remove("gsap-animated"),
-                onEnterBack: () => gsapElem.classList.add("gsap-animated"),
-                onLeaveBack: () => gsapElem.classList.remove("gsap-animated"),
-                markers: animMarkers,
-              });
+                { threshold: 0 }
+              );
+              observer.observe(gsapElem);
             }
           });
         }

@@ -7274,12 +7274,12 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
 }
 @media (min-width: 1513px) {
   .axys-hero {
-    height: clamp(750px, var(--section-height), 1250px);
+    height: clamp(750px, 100vh, 1250px);
   }
 }
 @media (max-width: 1512px) {
   .axys-hero {
-    height: clamp(625px, var(--section-height), 1100px);
+    height: clamp(625px, 100vh, 1100px);
   }
 }
 @media (max-width: 768px) {
@@ -7297,11 +7297,35 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
 .axys-hero__content {
   z-index: 1;
 }
+@media (prefers-reduced-motion: no-preference) {
+  .axys-hero .sample-text {
+    opacity: 0;
+  }
+  .axys-hero .sample-text.gsap-animated {
+    transition: 0.5s ease;
+    opacity: 1;
+  }
+}
 .axys-hero__title {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  width: 11ch;
+}
+.axys-hero__title .text-reveal {
+  line-height: 0.8;
+}
+.axys-hero__title .text-reveal .outer-span {
+  line-height: 1.2;
+}
+.axys-hero__title .text-reveal .text-reveal__words {
+  translate: 0 100%;
+  transition: 1s cubic-bezier(0.02, 1.14, 0.7, 1.24);
+}
+.axys-hero__title .text-reveal--active .text-reveal__words {
+  translate: 0 0;
 }
 .axys-hero__background {
   position: absolute;
@@ -9693,12 +9717,12 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 @media (min-width: 1513px) {
   .bg-particle-waves {
-    height: clamp(750px, var(--section-height), 1250px);
+    height: clamp(750px, 100vh, 1250px);
   }
 }
 @media (max-width: 1512px) {
   .bg-particle-waves {
-    height: clamp(625px, var(--section-height), 1100px);
+    height: clamp(625px, 100vh, 1100px);
   }
 }
 @media (max-width: 768px) {
@@ -9864,16 +9888,15 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 .hero-simple--text-only {
   --section-height: 100vh;
   --section-height: calc(100vh - var(--header-height));
-  margin-block-start: var(--header-height);
 }
 @media (min-width: 1513px) {
   .hero-simple--text-only {
-    height: clamp(750px, var(--section-height), 1250px);
+    height: clamp(750px, 100vh, 1250px);
   }
 }
 @media (max-width: 1512px) {
   .hero-simple--text-only {
-    height: clamp(625px, var(--section-height), 1100px);
+    height: clamp(625px, 100vh, 1100px);
   }
 }
 @media (max-width: 768px) {
@@ -9888,24 +9911,20 @@ html:has(.scroll-progress)::-webkit-scrollbar {
     height: calc(var(--svh, 1vh) * 100 - var(--header-height));
   }
 }
-.hero-simple--row {
-  margin-block-start: var(--header-height);
-}
 @media (min-width: 1025px) {
   .hero-simple--row {
     --section-height: 100vh;
     --section-height: calc(100vh - var(--header-height));
-    margin-block-start: var(--header-height);
   }
 }
 @media (min-width: 1025px) and (min-width: 1513px) {
   .hero-simple--row {
-    height: clamp(750px, var(--section-height), 1250px);
+    height: clamp(750px, 100vh, 1250px);
   }
 }
 @media (min-width: 1025px) and (max-width: 1512px) {
   .hero-simple--row {
-    height: clamp(625px, var(--section-height), 1100px);
+    height: clamp(625px, 100vh, 1100px);
   }
 }
 @media (min-width: 1025px) and (max-width: 768px) {
@@ -9945,7 +9964,6 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   }
 }
 .hero-simple--column {
-  margin-block-start: var(--header-height);
   padding-block-start: calc(var(--spacing--lg) + var(--header-height) + var(--promo-banner-height));
 }
 .hero-simple--float {
@@ -9973,12 +9991,12 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 @media (min-width: 1513px) {
   .carousel-hero {
-    height: clamp(750px, var(--section-height), 1250px);
+    height: clamp(750px, 100vh, 1250px);
   }
 }
 @media (max-width: 1512px) {
   .carousel-hero {
-    height: clamp(625px, var(--section-height), 1100px);
+    height: clamp(625px, 100vh, 1100px);
   }
 }
 @media (max-width: 768px) {

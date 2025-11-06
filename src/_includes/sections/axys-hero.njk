@@ -31,29 +31,36 @@
 
 <section class="axys-hero cursor-hide">
   <div class="axys-hero__content">
+    <span class="sample-text gsap-animate" data-loader-aware data-gsap-delay="0.5">
+      This is some sample text using gsap-animate
+    </span>
     <h1 class="axys-hero__title">
-      <span class="text-reveal">
-        <span
-          class="glitch-cycle"
-          data-glitch-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
-          data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
-          data-glitch-cycle-interval="2000"
-          data-typing-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
-          data-typing-delay="0"
-          data-typing-on-scroll="true"
-        >
-          Creative
-        </span>
-      </span>
       <span
         class="text-reveal"
-        data-loader-aware="true"
+        data-loader-aware
         data-reveal-duration="1"
         data-reveal-delay="0.2"
+        data-reveal-once="false"
       >
+        <span class="outer-span">
+          <span class="text-reveal__words">
+            <span
+              class="glitch-cycle"
+              data-glitch-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
+              data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
+              data-glitch-cycle-interval="2000"
+            >
+              Creative
+            </span>
+          </span>
+        </span>
+      </span>
+      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.4">
         web design +
       </span>
-      <span>development</span>
+      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.6">
+        development
+      </span>
     </h1>
     {% if desc %}
     <p class="axys-hero__desc">

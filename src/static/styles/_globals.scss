@@ -1,4 +1,5 @@
 * {
+  // border: $test;
   margin: 0;
   padding: 0;
   font-family: $brand-font--body;
@@ -32,6 +33,7 @@
 body {
   background: var(--color-background);
   color: var(--color-font--primary);
+  // padding-block-start: var(--header-height); // layout shift ... lame
 
   @include mq-motion-allow {
     transition: background $ease; // Library, used for theme toggle

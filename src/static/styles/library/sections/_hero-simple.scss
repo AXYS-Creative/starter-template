@@ -133,17 +133,17 @@
 
   &--text-only {
     @include full-viewport-section(true);
-    margin-block-start: var(--header-height);
+    // margin-block-start: var(--header-height);
   }
 
   // Layout Modifiers
   &--row {
     // Really only a row on desktop, then just a column again
-    margin-block-start: var(--header-height);
+    // margin-block-start: var(--header-height);
 
     @include mq-min(lg) {
       @include full-viewport-section(true); // optional
-      margin-block-start: var(--header-height); // optional
+      // margin-block-start: var(--header-height); // optional
     }
 
     .hero-simple__inner {
@@ -171,7 +171,7 @@
   }
 
   &--column {
-    margin-block-start: var(--header-height);
+    // margin-block-start: var(--header-height);
     padding-block-start: calc(
       var(--spacing--lg) + var(--header-height) + var(--promo-banner-height)
     );
