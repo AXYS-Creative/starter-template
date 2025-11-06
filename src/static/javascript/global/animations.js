@@ -32,8 +32,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
 // GSAP
 {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(ScrambleTextPlugin);
+  gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, CustomEase);
 
   let responsiveGsap = gsap.matchMedia();
 
@@ -49,6 +48,24 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
   let blackMarkers = createMarkers("black", 20);
   let coralMarkers = createMarkers("coral", 120);
   let navyMarkers = createMarkers("navy", 220);
+
+  // gsap ease converter
+  function cubicToCustomEase(name, bezierString) {
+    // Example input: "cubic-bezier(0.75, 0, 0.2, 1)"
+    const match = bezierString.match(/cubic-bezier\(([^)]+)\)/);
+    if (!match) {
+      console.warn(`Invalid cubic-bezier format: ${bezierString}`);
+      return "power1.out";
+    }
+
+    const [x1, y1, x2, y2] = match[1].split(",").map((v) => parseFloat(v.trim()));
+    const path = `M0,0 C${x1},${y1} ${x2},${y2} 1,1`;
+
+    return CustomEase.create(name, path);
+  }
+
+  // Convert any ease from _variables.scss
+  cubicToCustomEase("easeSudden", "cubic-bezier(0.75, 0, 0.2, 1)");
 
   responsiveGsap.add(
     {
@@ -958,7 +975,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const revealDuration = parseFloat(el.dataset.revealDuration) || 0.2;
             const revealDelay = parseFloat(el.dataset.revealDelay) || 0;
             const revealStagger = parseFloat(el.dataset.revealStagger) || 0.05;
-            const revealEase = el.dataset.revealEase || "back.out(1)";
+            const revealEase = el.dataset.revealEase || "easeSudden";
             const revealScrub = el.dataset.revealScrub === "true";
             const revealOnce = !revealScrub && el.dataset.revealOnce === "true";
             const revealStart = el.dataset.revealStart || "top 98%";

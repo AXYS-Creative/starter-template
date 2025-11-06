@@ -21,7 +21,7 @@ export const globalConfig = {
   loadDuration: 3.2, // global loader, in seconds (not ms)
 };
 
-// Cubic-bezier lenis helper
+// Cubic-bezier - Lenis helper
 export const cubicBezier = (p0, p1, p2, p3) => {
   // Polyfill-like implementation of bezier easing
   return (t) => {

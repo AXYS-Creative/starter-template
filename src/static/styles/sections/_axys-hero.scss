@@ -3,7 +3,7 @@
   @include full-viewport-section(true);
   @include row-center;
   @include section-padding;
-  margin-block-start: var(--header-height);
+  // margin-block-start: var(--header-height);
   position: relative;
 
   &__content {
@@ -22,9 +22,45 @@
   }
 
   &__title {
-    border: $test;
+    // border: $test;
     @include column-start;
     width: 11ch;
+
+    &-glitch {
+      line-height: 1.2;
+
+      @include mq-motion-allow {
+        .outer-span {
+          display: flex;
+          overflow: hidden;
+        }
+
+        .text-reveal__words {
+          translate: 0 100%;
+          transition: 1s $cubic-ease-sudden;
+        }
+
+        &.gsap-animated {
+          .text-reveal__words {
+            translate: 0 0;
+            transition: 1s $cubic-ease-sudden;
+          }
+        }
+      }
+    }
+
+    &-shift {
+      @include mq-motion-allow {
+        translate: 0 0;
+
+        &.gsap-animated {
+          @include mq-min(md) {
+            translate: 4ch 0;
+            transition: 0.8s $cubic-ease-sudden;
+          }
+        }
+      }
+    }
 
     .text-reveal {
       line-height: 0.8;

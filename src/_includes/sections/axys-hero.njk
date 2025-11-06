@@ -31,17 +31,8 @@
 
 <section class="axys-hero cursor-hide">
   <div class="axys-hero__content">
-    <span class="sample-text gsap-animate" data-loader-aware data-gsap-delay="0.5">
-      This is some sample text using gsap-animate
-    </span>
     <h1 class="axys-hero__title">
-      <span
-        class="text-reveal"
-        data-loader-aware
-        data-reveal-duration="1"
-        data-reveal-delay="0.2"
-        data-reveal-once="false"
-      >
+      <span class="axys-hero__title-glitch gsap-animate" data-loader-aware data-gsap-delay="0">
         <span class="outer-span">
           <span class="text-reveal__words">
             <span
@@ -55,10 +46,16 @@
           </span>
         </span>
       </span>
-      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.4">
+      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.2">
         web design +
       </span>
-      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.6">
+      <span
+        class="axys-hero__title-shift text-reveal gsap-animate"
+        data-loader-aware
+        data-reveal-duration="1"
+        data-reveal-delay="0.4"
+        data-gsap-delay="1.2"
+      >
         development
       </span>
     </h1>
