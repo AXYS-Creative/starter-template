@@ -1,0 +1,4 @@
+.faq-section {
+  @include section-padding;
+  @include width-clamp;
+}

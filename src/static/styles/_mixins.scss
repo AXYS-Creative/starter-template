@@ -818,7 +818,7 @@ $min-breakpoints: ();
   }
 }
 
-@mixin gradient-divider($color: $white) {
+@mixin gradient-divider($color: var(--color-font--primary)) {
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, transparent, $color 20% 80%, transparent);

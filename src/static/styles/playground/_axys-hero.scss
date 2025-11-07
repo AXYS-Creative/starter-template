@@ -6,6 +6,7 @@
   @include section-padding;
   // margin-block-start: var(--header-height);
   position: relative;
+  overflow: hidden; // for tilt, either make that smaller or keep this line
 
   &__content {
     z-index: 1;

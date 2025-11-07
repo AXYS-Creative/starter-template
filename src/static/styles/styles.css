@@ -40,7 +40,7 @@
   --radius--sm: 8px;
   --radius--xs: 4px;
   --radius--btn: var(--radius--xs);
-  --max-width--text: 620px;
+  --max-width--text: 650px;
   --header-children-height: 32px;
 }
 @media (max-width: 1512px) {
@@ -389,7 +389,7 @@ hr {
 hr.hr--gradient {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #fafafa 20% 80%, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-font--primary) 20% 80%, transparent);
   opacity: 0.25;
 }
 
@@ -593,11 +593,6 @@ code.codearea {
     align-self: center;
   }
   .pin-steps {
-    opacity: 0;
-    pointer-events: none;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7272,6 +7267,7 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding-double);
   position: relative;
+  overflow: hidden;
 }
 @media (min-width: 1513px) {
   .axys-hero {
@@ -7454,6 +7450,14 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
 }
 .axys-hero__background .axys-dots-logo__2 {
   translate: calc(-100% + var(--offset)) calc(var(--offset) * -1);
+}
+
+.faq-section {
+  padding-inline: var(--body-padding);
+  padding-block: var(--body-padding-double);
+  width: 100%;
+  max-width: 1364px;
+  margin-inline: auto;
 }
 
 .accordion {
@@ -10325,7 +10329,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 .plan-options .plan-option__line-group .plan-option__divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #fafafa 20% 80%, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-font--primary) 20% 80%, transparent);
   opacity: 0.25;
 }
 .plan-options .plan-option__price {
@@ -10714,7 +10718,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 .scroll-stack .pin-steps {
   top: var(--body-padding);
-  height: calc(90% - var(--body-padding));
+  height: calc(100% - var(--body-padding));
   padding-block: 320px;
 }
 .scroll-stack .pin-steps .pin-step {

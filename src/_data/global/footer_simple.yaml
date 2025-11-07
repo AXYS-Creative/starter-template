@@ -19,6 +19,10 @@ linkset_1:
     url: "/style-guide"
     new_tab: false
     type: underline
+  - text: Playground
+    url: "/playground"
+    new_tab: false
+    type: underline
   # - text: Library
   #   icon: "/static/img/library/icon-google-chevron-down.svg"
   #   trigger_class: btn--underline

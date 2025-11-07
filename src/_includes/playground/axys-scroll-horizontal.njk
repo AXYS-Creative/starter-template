@@ -52,7 +52,32 @@
         {% endif %}
   
         {% if message %}
-        <h3 class="scroll-horizontal__message">{{ message | safe }}</h3>
+        <h3 class="scroll-horizontal__message">
+          <span
+            class="hs-word-1 gsap-animate"
+            data-gsap-trigger="scroll-horizontal__pin-step-1"
+            data-gsap-markers="false"
+            >We</span
+          >
+          <span class="">are</span>
+          <span class="text-stroke">committed</span>
+          <span class="">to</span>
+          <span class="color--yellow split-chars sh-split-chars-1"> building </span>
+          <span class="text-stroke split-chars sh-split-chars-2"> enjoyable </span>
+          web
+          <span class="icons">
+            <span
+              class="pin-icon-mobile mask-icon"
+              style="mask-image: url('/static/img/icon-google-mobile.svg')"
+            ></span>
+            <span
+              class="pin-icon-desktop mask-icon"
+              style="mask-image: url('/static/img/icon-google-desktop.svg')"
+            ></span>
+          </span>
+          experiences
+          <span class="color--coral pin-spin__star">✦</span>
+        </h3>
         {% endif %}
       </div>
     </div>

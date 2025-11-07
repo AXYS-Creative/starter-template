@@ -1,0 +1,13 @@
+<!-- prettier-ignore -->
+{% set title = faq_section.title | default('No title') %}
+{% set desc = faq_section.desc | default('No desc') %}
+{% set accordion = faq_section.accordion or null %}
+
+<section class="faq-section">
+  <header class="faq-section__header">
+    <h2 class="faq-section__title text-glare">{{ title }}</h2>
+    <p class="faq-section__desc">{{ desc }}</p>
+  </header>
+
+  {% include '../library/components/accordion.njk' %}
+</section>

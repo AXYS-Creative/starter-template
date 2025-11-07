@@ -7,10 +7,10 @@
 <!-- prettier-ignore -->
 {% set plans = plan_selection.plans %}
 
-<section class="plan-selection">
+<section class="plan-selection cursor-hide">
   <div class="plan-selection__inner">
     <h2 class="plan-selection__title">{{ title }}</h2>
-    <p class="plan-selection__desc">{{ desc }}</p>
+    <p class="plan-selection__desc max-width-text">{{ desc }}</p>
 
     {% if price_toggle %}
     <div class="plan-selection__toggle-wrapper watch-scroll" data-scroll-when="near-top">

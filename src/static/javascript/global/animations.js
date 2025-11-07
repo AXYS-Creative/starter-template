@@ -771,12 +771,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
         // Scroll Stack (Overlapping Panels) — Duration and Delays can be controls via pin-steps in _scroll-stack.scss
         {
-          const stackScrollSections = document.querySelectorAll(".scroll-stack");
+          const scrollStackSections = document.querySelectorAll(".scroll-stack");
 
           let panelToTop = maxSm ? "96px" : "200px"; // Match with $panel-to-top in _scroll-stack.scss
           let panelScrub = 0.5;
 
-          stackScrollSections.forEach((section) => {
+          scrollStackSections.forEach((section) => {
             const panels = section.querySelectorAll(".scroll-stack__panel");
             const pinContainer = section.querySelector(".scroll-stack__pin");
             const pinSteps = section.querySelectorAll(".scroll-stack__pin-step");

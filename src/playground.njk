@@ -5,19 +5,31 @@ path: playground
 ---
 
 <!-- prettier-ignore -->
-{% include "./_includes/sections/axys-hero.njk" %}
+{% include "./_includes/playground/axys-hero.njk" %}
+
+<!-- prettier-ignore -->
+{% set scroll_horizontal = ({
+  title: '',
+  desc: '',
+  message: true
+}) %} 
+{% include './_includes/playground/axys-scroll-horizontal.njk' %}
 
 <!-- prettier-ignore -->
 {% set work_gallery = library.sections.work_gallery %}
 {% include "./_includes/library/sections/work-gallery.njk" %}
 
 <!-- prettier-ignore  -->
-{% set scroll_stack = library.scroll_stack %}
+{% set scroll_stack = playground.section_benefits %}
 {% include './_includes/library/sections/scroll-stack.njk' %}
 
 <!-- prettier-ignore -->
-{% set plan_selection = library.sections.plan_selection %}
+{% set plan_selection = playground.section_plans %}
 {% include './_includes/library/sections/plan-selection.njk' %}
+
+<!-- prettier-ignore -->
+{% set faq_section = playground.section_faq %}
+{% include './_includes/playground/axys-faq-section.njk' %}
 
 <!-- prettier-ignore -->
 {% set marquee = library.marquee.marquee_2 %}
