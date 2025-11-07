@@ -1,5 +1,5 @@
 <!-- prettier-ignore -->
-{% set dots_config = 1 %}
+{% set dots_config = 2 %}
 
 {% if dots_config == 1 %}
   {% set dots = ({
@@ -31,34 +31,60 @@
 
 <section class="axys-hero cursor-hide">
   <div class="axys-hero__content">
-    <h1 class="axys-hero__title">
-      <span class="axys-hero__title-glitch gsap-animate" data-loader-aware data-gsap-delay="0">
-        <span class="outer-span">
-          <span class="text-reveal__words">
-            <span
-              class="glitch-cycle"
-              data-glitch-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
-              data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
-              data-glitch-cycle-interval="2000"
-            >
-              Creative
+    <div class="axys-hero__content-title-group">
+      <small class="axys-hero__content-small">
+        <span
+          class="text-reveal"
+          data-reveal-type="lines"
+          data-reveal-duration="1.25"
+          data-reveal-delay="1.25"
+          data-loader-aware
+          >Unlimited services</span
+        >
+        <span
+          class="text-reveal"
+          data-reveal-type="lines"
+          data-reveal-duration="1.25"
+          data-reveal-delay="1.25"
+          data-reveal-from="top"
+          data-loader-aware
+          >One basic subscription</span
+        >
+      </small>
+      <h1 class="axys-hero__title">
+        <span class="axys-hero__title-glitch gsap-animate" data-loader-aware data-gsap-delay="0">
+          <span class="outer-span">
+            <span class="text-reveal__words">
+              <span
+                class="glitch-cycle"
+                data-glitch-cycle-words="Creative, Responsive, Accessible, Innovative, Engaging"
+                data-glitch-cycle-colors="#e48c66, #007bff, var(--color-font--primary), #c0c0c0, #007bff"
+                data-glitch-cycle-interval="2000"
+              >
+                Creative
+              </span>
             </span>
           </span>
         </span>
-      </span>
-      <span class="text-reveal" data-loader-aware data-reveal-duration="1" data-reveal-delay="0.2">
-        web design +
-      </span>
-      <span
-        class="axys-hero__title-shift text-reveal gsap-animate"
-        data-loader-aware
-        data-reveal-duration="1"
-        data-reveal-delay="0.4"
-        data-gsap-delay="1.2"
-      >
-        development
-      </span>
-    </h1>
+        <span
+          class="text-reveal"
+          data-loader-aware
+          data-reveal-duration="1"
+          data-reveal-delay="0.24"
+        >
+          web design +
+        </span>
+        <span
+          class="axys-hero__title-shift text-reveal gsap-animate"
+          data-loader-aware
+          data-reveal-duration="1"
+          data-reveal-delay="0.48"
+          data-gsap-delay="1.2"
+        >
+          development
+        </span>
+      </h1>
+    </div>
     {% if desc %}
     <p class="axys-hero__desc">
       <span>Unlimited services</span>
@@ -67,7 +93,7 @@
     {% endif %}
   </div>
 
-  <div class="axys-hero__background parallax" data-parallax-hero="true" data-parallax-scrub="0">
+  <div class="axys-hero__background">
     <div
       class="axys-hero__layer-tilt"
       data-tilt
@@ -80,13 +106,21 @@
       data-tilt-reset="false"
     >
       <div
-        class="axys-dots-logo velocity-push"
-        data-push-strength="1"
-        data-push-restore="0.025"
-        data-push-rotate-max="10"
+        class="axys-hero__logo-gsap-animate gsap-animate"
+        data-loader-aware
+        data-gsap-delay="0.36"
+        data-gsap-start="-120% top"
+        data-gsap-end="120% top"
       >
-        <div class="axys-dots-logo__1">{% include "../library/advanced/dots.njk" %}</div>
-        <div class="axys-dots-logo__2">{% include "../library/advanced/dots.njk" %}</div>
+        <div
+          class="axys-dots-logo velocity-push"
+          data-push-strength="0.75"
+          data-push-restore="0.02"
+          data-push-rotate-max="5"
+        >
+          <div class="axys-dots-logo__1">{% include "../library/advanced/dots.njk" %}</div>
+          <div class="axys-dots-logo__2">{% include "../library/advanced/dots.njk" %}</div>
+        </div>
       </div>
     </div>
   </div>

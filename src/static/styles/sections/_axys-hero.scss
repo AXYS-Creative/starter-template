@@ -1,4 +1,5 @@
 .axys-hero {
+  --shift-offset-x: 72px;
   // border: $test;
   @include full-viewport-section(true);
   @include row-center;
@@ -10,14 +11,12 @@
     z-index: 1;
   }
 
-  .sample-text {
-    @include mq-motion-allow {
-      opacity: 0;
+  &__content-small {
+    @include column-start;
 
-      &.gsap-animated {
-        transition: 0.5s ease;
-        opacity: 1;
-      }
+    @include mq-min(md) {
+      translate: calc(var(--shift-offset-x) * -1) 0;
+      padding-inline-start: 4px;
     }
   }
 
@@ -41,6 +40,13 @@
         }
 
         &.gsap-animated {
+          .outer-span {
+            @include mq-min(md) {
+              translate: calc(var(--shift-offset-x) * -1) 0;
+              transition: 1s $cubic-ease-sudden 0.64s;
+            }
+          }
+
           .text-reveal__words {
             translate: 0 0;
             transition: 1s $cubic-ease-sudden;
@@ -55,7 +61,7 @@
 
         &.gsap-animated {
           @include mq-min(md) {
-            translate: 4ch 0;
+            translate: var(--shift-offset-x) 0;
             transition: 0.8s $cubic-ease-sudden;
           }
         }
@@ -93,6 +99,19 @@
       height: 100%;
     }
 
+    .axys-hero__logo-gsap-animate {
+      min-height: 50vh;
+
+      @include mq-motion-allow {
+        opacity: 0;
+        transition: 1.5s ease;
+
+        &.gsap-animated {
+          opacity: 1;
+        }
+      }
+    }
+
     .axys-dots-logo {
       --dots-logo-size: 360px;
 
@@ -100,7 +119,7 @@
       width: var(--dots-logo-size);
       height: var(--dots-logo-size);
       // filter: blur(1px);
-      opacity: 0.5;
+      // opacity: 0.5;
 
       @media all {
         // @include mq-max(xxl) {

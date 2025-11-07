@@ -126,7 +126,7 @@ span {
 small {
   // FYI: Dropping below 12px results in a11y pentalty.
   font-family: $brand-font--body;
-  font-size: 13px;
+  font-size: 14px;
 
   @include mq-max(lg) {
     font-size: 12px;

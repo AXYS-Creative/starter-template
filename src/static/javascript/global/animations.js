@@ -988,7 +988,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               tag: "span",
             });
 
-            const targets = revealType === "words" ? split.words : split.chars;
+            const targets =
+              revealType === "lines"
+                ? split.lines
+                : revealType === "words"
+                ? split.words
+                : split.chars;
 
             targets.forEach((target) => {
               const wrapper = document.createElement("span");
