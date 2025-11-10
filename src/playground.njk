@@ -16,16 +16,16 @@ path: playground
 {% include './_includes/playground/axys-scroll-horizontal.njk' %}
 
 <!-- prettier-ignore -->
-{% set work_gallery = library.sections.work_gallery %}
-{% include "./_includes/library/sections/work-gallery.njk" %}
+{% set work_gallery = playground.section_work %}
+{% include "./_includes/playground/axys-work.njk" %}
 
 <!-- prettier-ignore  -->
-{% set scroll_stack = playground.section_benefits %}
-{% include './_includes/library/sections/scroll-stack.njk' %}
+{% set scroll_stack = playground.section_scroll_stack %}
+{% include './_includes/playground/axys-scroll-stack.njk' %}
 
 <!-- prettier-ignore -->
 {% set plan_selection = playground.section_plans %}
-{% include './_includes/library/sections/plan-selection.njk' %}
+{% include './_includes/playground/axys-plans.njk' %}
 
 <!-- prettier-ignore -->
 {% set faq_section = playground.section_faq %}

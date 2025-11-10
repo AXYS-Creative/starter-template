@@ -701,7 +701,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 start: dataHero ? `top ${headerHeight}` : dataStart,
                 end: dataEnd,
                 scrub: dataScrub,
-                // markers: true,
               },
             });
           });
@@ -781,14 +780,14 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const pinContainer = section.querySelector(".scroll-stack__pin");
             const pinSteps = section.querySelectorAll(".scroll-stack__pin-step");
 
-            const duration = `${panels.length * 100}%`;
+            const stackDuration = `${panels.length * 80}%`;
 
             // Pin the entire panel container
             gsap.to(pinContainer, {
               scrollTrigger: {
                 trigger: pinContainer,
                 start: `top ${bodyPadding}`,
-                end: duration,
+                end: stackDuration,
                 pin: true,
               },
             });
@@ -850,8 +849,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
                 ScrollTrigger.create({
                   trigger: marker,
-                  start: "-15% top",
-                  end: "85% top",
+                  start: "-30% top",
+                  end: "50% top",
                   onEnter: () => link.classList.add("active"),
                   onEnterBack: () => link.classList.add("active"),
                   onLeave: () => link.classList.remove("active"),
@@ -978,6 +977,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const revealEase = el.dataset.revealEase || "easeSudden";
             const revealScrub = el.dataset.revealScrub === "true";
             const revealOnce = !revealScrub && el.dataset.revealOnce === "true";
+            const revealTrigger = el.dataset.revealTrigger || el; // Requires . or #
             const revealStart = el.dataset.revealStart || "top 98%";
             const revealEnd = el.dataset.revealEnd || "bottom 2%";
             const revealMarkers = el.dataset.revealMarkers === "true";
@@ -1015,7 +1015,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               }
 
               const scrollTriggerConfig = {
-                trigger: el,
+                trigger: revealTrigger,
                 start: revealStart,
                 end: revealEnd,
                 scrub: revealScrub,
@@ -1095,6 +1095,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             const scaleDuration = parseFloat(el.dataset.scaleDuration) || 0.25;
             const scaleScrub = el.dataset.scaleScrub === "true";
             const scaleOnce = !scaleScrub && el.dataset.scaleOnce === "true";
+            const scaleTrigger = el.dataset.scaleTrigger || el; // Requires . or #
             const scaleStart = el.dataset.scaleStart || "top 98%";
             const scaleEnd = el.dataset.scaleEnd || "bottom 2%";
             const scaleMarkers = el.dataset.scaleMarkers || false;
@@ -1120,7 +1121,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             });
 
             const scrollTriggerConfig = {
-              trigger: el,
+              trigger: scaleTrigger,
               start: scaleStart,
               end: scaleEnd,
               scrub: scaleScrub || false,
@@ -1418,7 +1419,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
       // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
         // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
-
         {
           const gsapElems = document.querySelectorAll(".gsap-animate");
 

@@ -1,0 +1,216 @@
+.scroll-stack {
+  --panel-to-top: 200px; // Match with panelToTop in animation.js
+  $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
+
+  @include width-clamp;
+  @include section-padding;
+
+  position: relative;
+
+  @include mq-max(sm) {
+    --panel-to-top: 96px;
+  }
+
+  &:has(&__copy) {
+    .pin-step {
+      @include mq-max(md) {
+        margin-block-start: 320px; // rough height of copy on mobile, change per use case
+      }
+    }
+  }
+
+  // Optional nav
+  &__nav {
+    @include row-center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: calc(
+      var(--panel-to-top) / 2
+    ); // margin is choppy with scrolltrigger    padding-inline: var(--body-padding);
+
+    @include mq-max(sm) {
+      display: none;
+    }
+
+    &-link {
+      opacity: 0.5;
+
+      @include mq-max(md) {
+        font-size: 14px;
+      }
+
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+      }
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Optional section copy
+  &__copy {
+    @include column-start;
+
+    // &-title {
+
+    // }
+
+    &-desc {
+      margin-block-end: var(--spacing--lg);
+    }
+
+    &--pinned {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%; // Consider config for alignment?
+      // top: calc(var(--panel-to-top) + var(--body-padding));
+      // left: var(--body-padding);
+
+      @include mq-min(lg) {
+        max-width: 40%;
+      }
+
+      @include mq-max(lg) {
+        display: none;
+      }
+    }
+
+    &--unpinned {
+      display: none;
+
+      @include mq-max(lg) {
+        display: flex;
+      }
+    }
+  }
+
+  &__panel {
+    @include gradient-border(45deg);
+    @include column-start(flex-start);
+    gap: var(--section-gap);
+    position: absolute;
+    // See component modifiers for placement
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius--sm);
+    height: max($panel-height, 400px);
+    width: calc(100% - var(--body-padding-double));
+    padding: var(--body-padding);
+    transform-origin: top center;
+    background: var(--color-background);
+    // background: rgba($black, 0.75);
+    // backdrop-filter: blur(4px);
+    // transform-origin: bottom center;
+    overflow: hidden;
+
+    @include mq-max(lg) {
+      width: 100%;
+    }
+
+    &-1 {
+      top: var(
+        --panel-to-top
+      ) !important; // Strange specificity issue when I introduced the scroll-stack__copy?
+    }
+
+    &:nth-of-type(n + 2) {
+      top: 120%;
+    }
+
+    &__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-font--primary);
+    }
+
+    // &__title {
+
+    // }
+
+    // &__desc {
+
+    // }
+
+    .cta-group {
+      margin-top: auto;
+    }
+  }
+
+  .scroll-stack__pin {
+    // Need vh, can't use percentage since it's children are position absolute
+    height: calc(lvh(100) - var(--body-padding-double));
+    min-height: 500px;
+
+    @include mq-max(md) {
+      min-height: 350px;
+    }
+  }
+
+  .pin-steps {
+    top: var(--body-padding);
+    height: calc(100% - var(--body-padding)); // Affects the duration
+
+    // Panel linger options — May need to adjust the Stack Link highlight
+    // gap: 320px; // all but last panel linger
+    padding-bottom: 480px; // Last panel linger
+    // padding-block: 320px;
+
+    .pin-step {
+      scroll-margin-top: -24px;
+    }
+  }
+
+  // Modifiers
+  &--full {
+    .scroll-stack__copy--unpinned {
+      display: flex;
+    }
+
+    .scroll-stack__copy--pinned {
+      display: none;
+    }
+  }
+
+  &--half {
+    .scroll-stack__panel {
+      @include mq-min(lg) {
+        width: max(500px, 50%);
+      }
+    }
+  }
+
+  &--center {
+    .scroll-stack__panel {
+      left: 50%;
+      translate: -50% 0;
+    }
+
+    .scroll-stack__copy--pinned {
+      display: none;
+    }
+
+    .scroll-stack__copy--unpinned {
+      display: flex;
+    }
+  }
+
+  &--right {
+    .scroll-stack__panel {
+      // right: var(--body-padding);
+      right: 0;
+
+      @include mq-max(lg) {
+        right: 0;
+      }
+    }
+  }
+
+  &--left {
+    .scroll-stack__copy--pinned {
+      // right: var(--body-padding);
+      right: 0;
+    }
+  }
+}

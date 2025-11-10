@@ -126,6 +126,11 @@ $test-bg: rgba(navy, 0.75);
   }
 }
 
+// axys root
+:root {
+  --max-width--text: 450px;
+}
+
 // Theme Toggle
 @mixin light-theme {
   --color-background: #{$white};

@@ -1,0 +1,127 @@
+<!-- prettier-ignore -->
+{% set nav = scroll_stack.nav %}
+{% set text_region = scroll_stack.text_region %} 
+{% set panels = scroll_stack.panels %}
+{% set size = scroll_stack.panel_configs.size or 'full'%}
+{% set placement = scroll_stack.panel_configs.placement or 'center' %}
+
+<section class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }}">
+  <!-- prettier-ignore -->
+  {% if text_region %}
+  <div class="scroll-stack__copy scroll-stack__copy--unpinned">
+    {% if text_region.title %}
+    <h2 class="scroll-stack__copy-title gsap-animate shift-title" data-gsap-delay="0.5">
+      <span class="text-reveal" data-reveal-duration="1" data-reveal-type="chars">
+        {{ text_region.title }}
+      </span>
+    </h2>
+    {% endif %} {% if text_region.desc %}
+    <p
+      class="scroll-stack__copy-desc text-scale"
+      data-scale-duration="0.4"
+      data-scale-delay="0.125"
+    >
+      {{ text_region.desc }}
+    </p>
+    {% endif %} {% if text_region.cta_1 %}
+    <!-- prettier-ignore -->
+    {% set cta_1 = text_region.cta_1 %}
+      {% set cta_2 = text_region.cta_2 %}
+      {% include "../components/cta-group.njk" %}
+      {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="scroll-stack__pin">
+    {% if nav %}
+    <nav class="scroll-stack__nav">
+      {% for panel in panels %}
+      <a
+        href="#scroll-stack__pin-step-{{ loop.index }}"
+        class="scroll-stack__nav-link classic-link tab-element-page"
+      >
+        {{ panel.title }}
+      </a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if text_region %}
+    <div class="scroll-stack__copy scroll-stack__copy--pinned">
+      {% if text_region.title %}
+      <h2
+        class="scroll-stack__copy-title gsap-animate shift-title"
+        data-gsap-delay="0.75"
+        data-gsap-trigger=".scroll-stack"
+        data-gsap-start="top center"
+        data-gsap-end="bottom center"
+      >
+        <span
+          class="text-reveal"
+          data-reveal-duration="1"
+          data-reveal-type="chars"
+          data-reveal-trigger=".scroll-stack"
+          data-reveal-start="top center"
+          data-reveal-end="bottom center"
+        >
+          {{ text_region.title }}
+        </span>
+      </h2>
+      {% endif %} {% if text_region.desc %}
+      <p
+        class="scroll-stack__copy-desc text-scale"
+        data-scale-duration="0.4"
+        data-scale-delay="0.125"
+        data-scale-trigger=".scroll-stack"
+        data-scale-start="top center"
+        data-scale-end="bottom center"
+      >
+        {{ text_region.desc }}
+      </p>
+      {% endif %} {% if text_region.cta_1 %}
+      <!-- prettier-ignore -->
+      {% set cta_1 = text_region.cta_1 %}
+      {% set cta_2 = text_region.cta_2 %}
+      {% include "../components/cta-group.njk" %}
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% for panel in panels %}
+    <div class="scroll-stack__panel scroll-stack__panel-{{ loop.index }}">
+      <!-- prettier-ignore -->
+      {% if panel.icon %}
+        {% set icon_svg = ({ src: panel.icon, class: 'scroll-stack__panel__icon' }) %}
+        {% include "../components/icon-svg.njk" %}
+      {% endif %} 
+      
+      {% if panel.title %}
+      <h3 class="scroll-stack__panel__title">
+        {{ panel.title }}
+      </h3>
+      {% endif %} {% if panel.desc %}
+      <p class="scroll-stack__panel__desc">{{ panel.desc }}</p>
+      {% endif %} {% if panel.cta_1 %}
+      <!-- prettier-ignore -->
+      {% set cta_1 = panel.cta_1 %}
+      {% set cta_2 = null %}
+      {% include "../components/cta-group.njk" %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- prettier-ignore -->
+  <div class="scroll-stack__pin-steps pin-steps" aria-hidden="true">
+    {% for step in panels %}
+    <div 
+      class="scroll-stack__pin-step scroll-stack__pin-step-{{ loop.index }} pin-step"
+      id="scroll-stack__pin-step-{{ loop.index }}"
+    >
+    </div>
+    {% endfor %}
+    
+   </div>
+</section>

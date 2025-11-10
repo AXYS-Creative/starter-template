@@ -1,3 +1,18 @@
+// axyscreative.com utils
+
+.shift-title {
+  @include mq-motion-allow {
+    translate: 128px 0;
+
+    &.gsap-animated {
+      translate: 0 0;
+      transition: 1.25s $cubic-ease-sudden;
+    }
+  }
+}
+
+// base utils
+
 .section-width {
   @include width-clamp;
   @include section-padding;
@@ -53,7 +68,7 @@
   }
 
   .pin-steps {
-    // @include hide-content;
+    @include hide-content;
     @include column-start;
     position: absolute;
     top: 0;
