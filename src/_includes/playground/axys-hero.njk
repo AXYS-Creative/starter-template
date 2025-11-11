@@ -1,32 +1,61 @@
 <!-- prettier-ignore -->
-{% set dots_config = 2 %}
+{% set dots_config = 4 %}
+{% set dots_data = '' %}
 
 {% if dots_config == 1 %}
-  {% set dots = ({
-    size: 1,
-    gap: 12,
-    restore: 0.75,
-    sensitivity: 0.95,
-    distance: 100,
-    strength: 150,
-    color: 'var(--color-brand--primary)',
-    illuminate: false,
-    grow: false
-  }) %}
+  {% set dots_data = '
+    data-dot-size=0.2
+    data-dot-gap=2
+    data-dot-restore=0.75
+    data-dot-sensitivity=0.95
+    data-dot-distance=10
+    data-dot-strength=10
+    data-dot-color=var(--color-brand--primary)
+    data-dot-illuminate=false
+    data-dot-grow=false
+  ' %}
 {% endif %}
 
 {% if dots_config == 2 %}
-  {% set dots = ({
-    size: 1,
-    gap: 12,
-    restore: 0.1,
-    sensitivity: 0.9,
-    distance: 500,
-    strength: 150,
-    color: 'var(--color-brand--primary)',
-    illuminate: true,
-    grow: true
-  }) %}
+  {% set dots_data = '
+    data-dot-size=0.2
+    data-dot-gap=2.5
+    data-dot-restore=0.9
+    data-dot-sensitivity=0.9
+    data-dot-distance=20
+    data-dot-strength=1
+    data-dot-color=var(--color-brand--primary)
+    data-dot-illuminate=true
+    data-dot-grow=true
+  ' %}
+{% endif %}
+
+{% if dots_config == 3 %}
+  {% set dots_data = '
+    data-dot-size=0.1
+    data-dot-gap=2
+    data-dot-restore=0.9
+    data-dot-sensitivity=0.9
+    data-dot-distance=75
+    data-dot-strength=2
+    data-dot-color=var(--color-brand--primary)
+    data-dot-illuminate=true
+    data-dot-grow=true
+  ' %}
+{% endif %}
+
+{% if dots_config == 4 %}
+  {% set dots_data = '
+    data-dot-size=1.25
+    data-dot-gap=15
+    data-dot-restore=0.9
+    data-dot-sensitivity=0.9
+    data-dot-distance=100
+    data-dot-strength=50
+    data-dot-color=var(--color-brand--primary)
+    data-dot-illuminate=true
+    data-dot-grow=true
+  ' %}
 {% endif %}
 
 <section class="axys-hero">
@@ -123,8 +152,26 @@
           data-push-restore="0.02"
           data-push-rotate-max="5"
         >
-          <div class="axys-dots-logo__1">{% include "../library/advanced/dots.njk" %}</div>
-          <div class="axys-dots-logo__2">{% include "../library/advanced/dots.njk" %}</div>
+          <div class="axys-hero__logo-gsap-animate gsap-animate">
+            <!-- prettier-ignore -->
+            <svg style="display: none" class="axys-dots-logo dot-fill" {{dots_data}} width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z" fill="#F0F0F0" class="svg-elem-1"></path>
+              <path d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z" stroke="#F0F0F0" class="svg-elem-2"></path>
+            </svg>
+          </div>
+          <svg
+            class="axys-dots-logo dot-fill"
+            {{dots_data}}
+            width="384"
+            height="512"
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+              class="svg-elem-1"
+            ></path>
+          </svg>
         </div>
       </div>
     </div>

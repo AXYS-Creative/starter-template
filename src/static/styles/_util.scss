@@ -67,6 +67,10 @@
     align-self: center;
   }
 
+  .dot-fill {
+    overflow: visible;
+  }
+
   .pin-steps {
     @include hide-content;
     @include column-start;

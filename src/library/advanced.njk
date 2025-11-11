@@ -35,7 +35,6 @@ description:
   {% include "../_includes/library/advanced/particle-waves.njk" %}
 </section>
 
-<!-- Mouse position seems affected by content placement -->
 <section class="dots-field">
   <h2>[ <span class="glitch-scroll">dots</span> ]</h2>
   <!-- prettier-ignore -->
@@ -90,6 +89,65 @@ description:
     grow: true
    }) %}
    {% include "../_includes/library/advanced/dots.njk" %}
+</section>
+
+<section class="dots-fill library-section">
+  <h2 style="margin: auto">[ <span class="glitch-scroll">dots fill</span> ]</h2>
+  <p style="margin: auto">A utility class that goes on an <code>svg</code></p>
+  <br /><br />
+
+  <svg
+    style="width: 30vw; height: 30vw; margin: auto"
+    class="dot-fill"
+    data-dot-size="0.25"
+    data-dot-gap="3"
+    data-dot-restore="0.75"
+    data-dot-sensitivity="0.95"
+    data-dot-distance="20"
+    data-dot-strength="20"
+    data-dot-color="var(--color-brand--primary)"
+    data-dot-illuminate="false"
+    data-dot-grow="false"
+    width="80"
+    height="80"
+    viewBox="0 0 80 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z"
+      fill="#F0F0F0"
+      class="svg-elem-1"
+    ></path>
+    <path
+      d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z"
+      stroke="#F0F0F0"
+      class="svg-elem-2"
+    ></path>
+  </svg>
+
+  <svg
+    style="width: 30vw; height: 30vw; margin: auto"
+    class="dot-fill"
+    data-dot-size="1.25"
+    data-dot-gap="15"
+    data-dot-restore="0.9"
+    data-dot-sensitivity="0.9"
+    data-dot-distance="100"
+    data-dot-strength="50"
+    data-dot-color="var(--color-brand--primary)"
+    data-dot-illuminate="true"
+    data-dot-grow="true"
+    width="384"
+    height="512"
+    viewBox="0 0 384 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+      class="svg-elem-1"
+    ></path>
+  </svg>
 </section>
 
 <section

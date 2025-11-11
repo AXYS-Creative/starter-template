@@ -7,6 +7,7 @@ import "./global/footer.js";
 import "./global/scroll.js";
 
 import "./library/advanced/dots.js";
+import "./library/advanced/dots-custom-shape.js";
 import "./library/advanced/grid-bg.js";
 import "./library/advanced/grid-flow-img.js";
 import "./library/advanced/particle-waves.js";
