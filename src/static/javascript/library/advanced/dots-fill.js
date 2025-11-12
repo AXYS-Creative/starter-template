@@ -4,15 +4,15 @@ class DotFill {
 
     // Configuration from data attributes
     this.config = {
-      radius: parseFloat(svg.dataset.dotSize) || 3,
+      radius: parseFloat(svg.dataset.dotSize) || 1,
       gap: parseFloat(svg.dataset.dotGap) || 4,
       restore: parseFloat(svg.dataset.dotRestore) || 0.15,
       sensitivity: parseFloat(svg.dataset.dotSensitivity) || 0.95,
       distance: parseFloat(svg.dataset.dotDistance) || 100,
-      strength: parseFloat(svg.dataset.dotStrength) || 10,
+      strength: parseFloat(svg.dataset.dotStrength) || 25,
       color: this.resolveColor(svg.dataset.dotColor) || "#00ffff",
       illuminate: svg.dataset.dotIlluminate === "true",
-      grow: svg.dataset.dotGrow === "true",
+      grow: parseFloat(svg.dataset.dotGrow) || 0,
     };
 
     this.dots = [];
@@ -212,8 +212,8 @@ class DotFill {
       }
 
       // Grow effect
-      if (this.config.grow) {
-        dot.el.setAttribute("r", this.config.radius * (1 + intensity));
+      if (this.config.grow > 0) {
+        dot.el.setAttribute("r", this.config.radius * (1 + intensity * this.config.grow));
       }
 
       // Motion

@@ -7409,35 +7409,20 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
     opacity: 1;
   }
 }
-.axys-hero__background .axys-dots-logo {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
-  --dots-logo-size: 360px;
+.axys-hero__background .axys-dots-logo__push {
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: var(--dots-logo-size);
-  height: var(--dots-logo-size);
-  padding: 4px;
-}
-@media (max-width: 1512px) {
-  .axys-hero__background .axys-dots-logo {
-    --dots-logo-size: 550px;
-  }
-}
-@media (max-width: 1200px) {
-  .axys-hero__background .axys-dots-logo {
-    --dots-logo-size: 480px;
-  }
+  width: 40vw;
+  height: 40vw;
+  max-width: 750px;
+  max-height: 750px;
 }
 @media (max-width: 1024px) {
-  .axys-hero__background .axys-dots-logo {
-    --dots-logo-size: 350px;
-  }
-}
-@media (max-width: 768px) {
-  .axys-hero__background .axys-dots-logo {
-    --dots-logo-size: 280px;
+  .axys-hero__background .axys-dots-logo__push {
+    width: 60vw;
+    height: 60vw;
   }
 }
 

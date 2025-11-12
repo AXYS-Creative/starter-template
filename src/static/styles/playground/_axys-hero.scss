@@ -113,31 +113,19 @@
       }
     }
 
-    .axys-dots-logo {
-      border: $test;
-      --dots-logo-size: 360px;
-
+    .axys-dots-logo__push {
       @include absolute-center;
-      width: var(--dots-logo-size);
-      height: var(--dots-logo-size);
-      padding: 4px;
+
+      width: 40vw;
+      height: 40vw;
+      max-width: 750px;
+      max-height: 750px;
       // filter: blur(1px);
       // opacity: 0.5;
 
-      @media all {
-        // @include mq-max(xxl) {
-        @media (max-width: 1512px) {
-          --dots-logo-size: 550px;
-        }
-        @include mq-max(xl) {
-          --dots-logo-size: 480px;
-        }
-        @include mq-max(lg) {
-          --dots-logo-size: 350px;
-        }
-        @include mq-max(md) {
-          --dots-logo-size: 280px;
-        }
+      @include mq-max(lg) {
+        width: 60vw;
+        height: 60vw;
       }
     }
   }

@@ -1,60 +1,32 @@
 <!-- prettier-ignore -->
-{% set dots_config = 4 %}
+{% set dots_config = 1 %}
 {% set dots_data = '' %}
 
 {% if dots_config == 1 %}
   {% set dots_data = '
-    data-dot-size=0.2
+    data-dot-size=0.15
     data-dot-gap=2
     data-dot-restore=0.75
     data-dot-sensitivity=0.95
-    data-dot-distance=10
-    data-dot-strength=10
+    data-dot-distance=20
+    data-dot-strength=0.25
     data-dot-color=var(--color-brand--primary)
     data-dot-illuminate=false
-    data-dot-grow=false
+    data-dot-grow=2.5
   ' %}
 {% endif %}
 
 {% if dots_config == 2 %}
   {% set dots_data = '
     data-dot-size=0.2
-    data-dot-gap=2.5
-    data-dot-restore=0.9
-    data-dot-sensitivity=0.9
-    data-dot-distance=20
-    data-dot-strength=1
-    data-dot-color=var(--color-brand--primary)
-    data-dot-illuminate=true
-    data-dot-grow=true
-  ' %}
-{% endif %}
-
-{% if dots_config == 3 %}
-  {% set dots_data = '
-    data-dot-size=0.1
     data-dot-gap=2
     data-dot-restore=0.9
     data-dot-sensitivity=0.9
-    data-dot-distance=75
-    data-dot-strength=2
+    data-dot-distance=50
+    data-dot-strength=2.5
     data-dot-color=var(--color-brand--primary)
     data-dot-illuminate=true
-    data-dot-grow=true
-  ' %}
-{% endif %}
-
-{% if dots_config == 4 %}
-  {% set dots_data = '
-    data-dot-size=1.25
-    data-dot-gap=15
-    data-dot-restore=0.9
-    data-dot-sensitivity=0.9
-    data-dot-distance=100
-    data-dot-strength=50
-    data-dot-color=var(--color-brand--primary)
-    data-dot-illuminate=true
-    data-dot-grow=true
+    data-dot-grow=1
   ' %}
 {% endif %}
 
@@ -132,7 +104,7 @@
       class="axys-hero__layer-tilt"
       data-tilt
       data-tilt-reverse="true"
-      data-tilt-max="10"
+      data-tilt-max="12"
       data-tilt-startX="0"
       data-tilt-startY="0"
       data-tilt-perspective="2400"
@@ -147,31 +119,18 @@
         data-gsap-end="120% top"
       >
         <div
-          class="axys-dots-logo velocity-push"
+          class="axys-dots-logo__push velocity-push"
           data-push-strength="0.75"
           data-push-restore="0.02"
           data-push-rotate-max="5"
         >
           <div class="axys-hero__logo-gsap-animate gsap-animate">
             <!-- prettier-ignore -->
-            <svg style="display: none" class="axys-dots-logo dot-fill" {{dots_data}} width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z" fill="#F0F0F0" class="svg-elem-1"></path>
-              <path d="M79 1V43.5449H43.5459V79H1V36.4551H36.4541V1H79Z" stroke="#F0F0F0" class="svg-elem-2"></path>
+            <svg class="axys-dots-logo__svg dot-fill" {{dots_data}} viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <path d="M80 0V43.6367H43.6367V80H0V36.3633H36.3633V0H80Z"></path>
+              <path d="M80 0V43.6367H43.6367V80H0V36.3633H36.3633V0H80Z"></path>
             </svg>
           </div>
-          <svg
-            class="axys-dots-logo dot-fill"
-            {{dots_data}}
-            width="384"
-            height="512"
-            viewBox="0 0 384 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
-              class="svg-elem-1"
-            ></path>
-          </svg>
         </div>
       </div>
     </div>
