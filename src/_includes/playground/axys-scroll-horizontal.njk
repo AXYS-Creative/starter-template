@@ -17,6 +17,7 @@
 
 <section class="scroll-horizontal {{ modifier_class }}">
   <div class="scroll-horizontal__pin">
+    {% if title or desc %}
     <header class="scroll-horizontal__header">
       {% if title %}
       <h2 class="scroll-horizontal__header-title">{{ title }}</h2>
@@ -27,6 +28,7 @@
       <p class="scroll-horizontal__header-desc">{{ desc }}</p>
       {% endif %}
     </header>
+    {% endif %}
 
     <div class="scroll-horizontal__container">
       <div class="scroll-horizontal__slider gsap-stagger">

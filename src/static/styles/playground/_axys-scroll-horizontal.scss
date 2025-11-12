@@ -46,7 +46,7 @@
   }
 
   &__container {
-    // border: $test;
+    border: $test;
     display: flex;
     align-items: center;
     height: 80%; // Conditionally changes if there's a title or description.

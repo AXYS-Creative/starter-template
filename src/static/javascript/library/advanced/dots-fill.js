@@ -5,11 +5,11 @@ class DotFill {
     // Configuration from data attributes
     this.config = {
       radius: parseFloat(svg.dataset.dotSize) || 1,
-      gap: parseFloat(svg.dataset.dotGap) || 4,
+      gap: parseFloat(svg.dataset.dotGap) || 16,
       restore: parseFloat(svg.dataset.dotRestore) || 0.15,
       sensitivity: parseFloat(svg.dataset.dotSensitivity) || 0.95,
-      distance: parseFloat(svg.dataset.dotDistance) || 100,
-      strength: parseFloat(svg.dataset.dotStrength) || 25,
+      distance: parseFloat(svg.dataset.dotDistance) || 50,
+      strength: parseFloat(svg.dataset.dotStrength) || 10,
       color: this.resolveColor(svg.dataset.dotColor) || "#00ffff",
       illuminate: svg.dataset.dotIlluminate === "true",
       grow: parseFloat(svg.dataset.dotGrow) || 0,
@@ -126,28 +126,28 @@ class DotFill {
 
     // For circle
     if (shape.tagName === "circle") {
-      const cx = parseFloat(shape.getAttribute("cx"));
-      const cy = parseFloat(shape.getAttribute("cy"));
-      const r = parseFloat(shape.getAttribute("r"));
+      const cx = parseFloat(shape.getAttribute("cx")) || 0;
+      const cy = parseFloat(shape.getAttribute("cy")) || 0;
+      const r = parseFloat(shape.getAttribute("r")) || 0;
       const distance = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
       return distance <= r;
     }
 
     // For rect
     if (shape.tagName === "rect") {
-      const rx = parseFloat(shape.getAttribute("x"));
-      const ry = parseFloat(shape.getAttribute("y"));
-      const width = parseFloat(shape.getAttribute("width"));
-      const height = parseFloat(shape.getAttribute("height"));
+      const rx = parseFloat(shape.getAttribute("x")) || 0;
+      const ry = parseFloat(shape.getAttribute("y")) || 0;
+      const width = parseFloat(shape.getAttribute("width")) || 0;
+      const height = parseFloat(shape.getAttribute("height")) || 0;
       return x >= rx && x <= rx + width && y >= ry && y <= ry + height;
     }
 
     // For ellipse
     if (shape.tagName === "ellipse") {
-      const cx = parseFloat(shape.getAttribute("cx"));
-      const cy = parseFloat(shape.getAttribute("cy"));
-      const rx = parseFloat(shape.getAttribute("rx"));
-      const ry = parseFloat(shape.getAttribute("ry"));
+      const cx = parseFloat(shape.getAttribute("cx")) || 0;
+      const cy = parseFloat(shape.getAttribute("cy")) || 0;
+      const rx = parseFloat(shape.getAttribute("rx")) || 0;
+      const ry = parseFloat(shape.getAttribute("ry")) || 0;
       return (x - cx) ** 2 / rx ** 2 + (y - cy) ** 2 / ry ** 2 <= 1;
     }
 

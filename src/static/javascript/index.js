@@ -6,7 +6,6 @@ import "./global/header.js";
 import "./global/footer.js";
 import "./global/scroll.js";
 
-import "./library/advanced/dots.js";
 import "./library/advanced/dots-fill.js";
 import "./library/advanced/grid-bg.js";
 import "./library/advanced/grid-flow-img.js";
