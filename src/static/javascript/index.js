@@ -30,6 +30,7 @@ import "./library/video-bg.js";
 import "./library/video-overlay.js";
 
 import "./library/utils/magnet.js";
+import "./library/utils/text-curve.js";
 import "./library/utils/text-glare.js";
 import "./library/utils/toggle-slider.js";
 import "./library/utils/velocity-push.js";

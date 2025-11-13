@@ -421,6 +421,10 @@
       margin-block: var(--spacing);
     }
 
+    &--centered {
+      @include column-center;
+    }
+
     .text-fade,
     .text-scale {
       code.gsap-animate {
@@ -667,6 +671,29 @@
           height: calc(100% + var(--trace-width-doubled));
           transition: 1s ease;
         }
+      }
+    }
+  }
+
+  .text-curve {
+    @include font-styles--mono;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+
+    span {
+      @include absolute-center;
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    &--rotate {
+      animation: infinite-rotate 10s linear infinite;
+    }
+
+    @keyframes infinite-rotate {
+      to {
+        rotate: 360deg;
       }
     }
   }
