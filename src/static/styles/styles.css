@@ -7446,14 +7446,6 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   padding-block: var(--body-padding-double);
   overflow: hidden;
 }
-.scroll-horizontal:has(header) .scroll-horizontal__container {
-  height: 65%;
-}
-@media (max-width: 480px) {
-  .scroll-horizontal:has(header) .scroll-horizontal__container {
-    height: 50%;
-  }
-}
 .scroll-horizontal__pin {
   height: 100vh;
   min-height: 850px;
@@ -7487,10 +7479,10 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   }
 }
 .scroll-horizontal__container {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
+  --container-height: calc(100svh - calc(var(--header-height) + var(--body-padding-double)));
   display: flex;
   align-items: center;
-  height: 80%;
+  height: var(--container-height);
 }
 .scroll-horizontal__slider {
   height: 100%;

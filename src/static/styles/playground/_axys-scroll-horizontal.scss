@@ -3,16 +3,6 @@
   @include section-padding;
   overflow: hidden;
 
-  &:has(header) {
-    .scroll-horizontal__container {
-      height: 65%;
-
-      @include mq-max(sm) {
-        height: 50%;
-      }
-    }
-  }
-
   &__pin {
     height: 100vh;
     min-height: 850px;
@@ -46,10 +36,12 @@
   }
 
   &__container {
-    border: $test;
+    --container-height: calc(100svh - calc(var(--header-height) + var(--body-padding-double)));
+
+    // border: $test;
     display: flex;
     align-items: center;
-    height: 80%; // Conditionally changes if there's a title or description.
+    height: var(--container-height);
   }
 
   &__slider {

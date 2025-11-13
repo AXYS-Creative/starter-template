@@ -174,6 +174,15 @@ class DotFill {
       const distY = this.mouse.prevY - this.mouse.y;
       const dist = Math.hypot(distX, distY);
 
+      // Reset speed if distance is abnormally large (likely a scroll/jump)
+      if (dist > 200) {
+        this.mouse.speed = 0;
+        this.mouse.prevX = this.mouse.x;
+        this.mouse.prevY = this.mouse.y;
+        setTimeout(updateSpeed, 20);
+        return;
+      }
+
       this.mouse.speed += (dist - this.mouse.speed) * this.config.restore;
       if (this.mouse.speed < 0.001) this.mouse.speed = 0;
 
