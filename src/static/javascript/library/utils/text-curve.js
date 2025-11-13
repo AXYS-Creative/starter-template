@@ -2,10 +2,17 @@ class TextCurve {
   constructor(element) {
     this.element = element;
     this.text = element.textContent;
-    this.radius = parseFloat(element.dataset.curveRadius) || 500;
+    this.targetCurveAmount = parseFloat(element.dataset.curveRadius) || 0;
+    this.currentCurveAmount = this.targetCurveAmount;
     this.kerning = parseFloat(element.dataset.curveKerning) || 0;
     this.centered = element.hasAttribute("data-curve-centered");
+    this.mouseCurve = element.hasAttribute("data-curve-mouse");
+    this.isAnimating = false;
     this.init();
+
+    if (this.mouseCurve) {
+      this.setupMouseTracking();
+    }
   }
 
   init() {
@@ -27,6 +34,39 @@ class TextCurve {
     });
   }
 
+  setupMouseTracking() {
+    const maxDistance = 300;
+
+    const handleMouseMove = (e) => {
+      const rect = this.element.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const mouseY = e.clientY;
+      const distanceY = mouseY - centerY;
+
+      const normalizedDistance = Math.max(-1, Math.min(1, distanceY / maxDistance));
+
+      const interpolatedCurve = this.targetCurveAmount * normalizedDistance;
+
+      this.animateToCurve(interpolatedCurve);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+  }
+
+  animateToCurve(newCurve) {
+    this.currentCurveAmount = newCurve;
+
+    const spans = Array.from(this.element.querySelectorAll("span"));
+    requestAnimationFrame(() => {
+      this.positionCharacters(spans);
+    });
+  }
+
+  curveToRadius(curveAmount) {
+    if (curveAmount === 0) return 999999;
+    return 500 / Math.abs(curveAmount);
+  }
+
   positionCharacters(spans) {
     const charCount = spans.length;
 
@@ -39,8 +79,9 @@ class TextCurve {
       }
     });
 
+    const radius = this.curveToRadius(this.currentCurveAmount);
     const arcLength = totalWidth;
-    const angle = arcLength / Math.abs(this.radius);
+    const angle = arcLength / Math.abs(radius);
 
     const startAngle = -angle / 2;
 
@@ -50,21 +91,26 @@ class TextCurve {
       const charWidth = span.offsetWidth;
       const charCenter = currentArcPosition + charWidth / 2;
 
-      const charAngle = startAngle + charCenter / Math.abs(this.radius);
+      const charAngle = startAngle + charCenter / Math.abs(radius);
 
-      const x = Math.sin(charAngle) * Math.abs(this.radius);
-      const y = (Math.cos(charAngle) - 1) * Math.abs(this.radius);
+      const x = Math.sin(charAngle) * Math.abs(radius);
+      const y = (Math.cos(charAngle) - 1) * Math.abs(radius);
 
-      const finalY = this.radius > 0 ? y : -y;
+      const finalY = this.currentCurveAmount > 0 ? y : -y;
 
-      const rotation = this.radius > 0 ? -(charAngle * 180) / Math.PI : (charAngle * 180) / Math.PI;
+      const rotation =
+        this.currentCurveAmount > 0 ? -(charAngle * 180) / Math.PI : (charAngle * 180) / Math.PI;
 
       span.style.transform = `translate(${x}px, ${finalY}px) rotate(${rotation}deg)`;
+      span.style.transition = this.mouseCurve ? "transform 0.15s ease-out" : "none";
 
       currentArcPosition += charWidth + this.kerning;
     });
 
-    const maxHeight = Math.abs(this.radius) - Math.abs(this.radius) * Math.cos(angle / 2);
+    const targetRadius = this.curveToRadius(this.targetCurveAmount);
+    const maxHeight =
+      Math.abs(targetRadius) -
+      Math.abs(targetRadius) * Math.cos(arcLength / Math.abs(targetRadius) / 2);
 
     this.element.style.height = `${maxHeight + 50}px`;
 
@@ -73,7 +119,7 @@ class TextCurve {
       this.element.style.alignItems = "center";
       this.element.style.justifyContent = "center";
 
-      const verticalOffset = this.radius > 0 ? maxHeight / 2 : -maxHeight / 2;
+      const verticalOffset = this.currentCurveAmount > 0 ? maxHeight / 2 : -maxHeight / 2;
       spans.forEach((span) => {
         const currentTransform = span.style.transform;
         const match = currentTransform.match(/translate\(([^,]+),\s*([^)]+)\)/);
