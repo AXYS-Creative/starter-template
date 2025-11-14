@@ -106,9 +106,11 @@ plans:
 
 disclaimer:
   icon: /static/img/library/icon-google-shield-lock.svg
-  message: Payments securly processed through
+  message: Payments securely processed via
   link:
     text: Stripe
     url: https://stripe.com/
     type: underline
     new_tab: true
+    class: text-reveal gsap-animate
+    attributes: data-reveal-duration=1 data-reveal-stagger=0.0125 data-reveal-type=chars data-reveal-delay=0.5

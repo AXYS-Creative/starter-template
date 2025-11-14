@@ -89,7 +89,7 @@
         &.gsap-animated {
           @include mq-min(md) {
             translate: 0 0;
-            transition: 0.8s $cubic-ease-sudden 1s;
+            transition: 0.8s $cubic-ease-sudden 0.6s;
           }
 
           .cta-1 {

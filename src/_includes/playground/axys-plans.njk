@@ -157,11 +157,19 @@
     <p class="plan-selection__disclaimer">
       <!-- prettier-ignore -->
       {% if disclaimer.icon %}
-        {% set icon_svg = ({ src: disclaimer.icon, class: '', size: 'lg' }) %}
+        {% set icon_svg = ({ src: disclaimer.icon, class: 'gsap-animate', size: 'lg' }) %}
         {% include "../components/icon-svg.njk" %}
       {% endif %}
 
-      {{ disclaimer.message }}
+      <span
+        class="plan-selection__disclaimer-message text-reveal"
+        data-reveal-duration="1"
+        data-reveal-stagger="0.0125"
+        data-reveal-type="chars"
+        data-reveal-delay="0"
+      >
+        {{ disclaimer.message }}
+      </span>
 
       <!-- prettier-ignore -->
       {% set btn = disclaimer.link %} 

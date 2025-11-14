@@ -1,130 +1,130 @@
-.scroll-horizontal {
-  // @include width-clamp;
-  @include section-padding;
-  position: relative; // for pin steps
-  overflow: hidden;
+// .scroll-horizontal {
+//   // @include width-clamp;
+//   @include section-padding;
+//   position: relative; // for pin steps
+//   overflow: hidden;
 
-  &:has(header) {
-    .scroll-horizontal__container {
-      height: 75%;
+//   &:has(header) {
+//     .scroll-horizontal__container {
+//       height: 75%;
 
-      @include mq-max(md) {
-        height: 65%;
-      }
-    }
-  }
+//       @include mq-max(md) {
+//         height: 65%;
+//       }
+//     }
+//   }
 
-  &__pin {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--section-gap--lg);
-    height: calc(100vh - calc(var(--header-height) * 2));
-    min-height: 850px;
-    max-width: $content-width;
-    margin: auto;
+//   &__pin {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     gap: var(--section-gap--lg);
+//     height: calc(100vh - calc(var(--header-height) * 2));
+//     min-height: 850px;
+//     max-width: $content-width;
+//     margin: auto;
 
-    @include mq-max(xxl) {
-      min-height: 650px;
-    }
-  }
+//     @include mq-max(xxl) {
+//       min-height: 650px;
+//     }
+//   }
 
-  &__header {
-    @include row-center(space-between);
-    gap: var(--spacing--lg);
+//   &__header {
+//     @include row-center(space-between);
+//     gap: var(--spacing--lg);
 
-    @include mq-max(lg) {
-      flex-direction: column;
-      gap: var(--spacing--sm);
-    }
+//     @include mq-max(lg) {
+//       flex-direction: column;
+//       gap: var(--spacing--sm);
+//     }
 
-    &-title {
-      flex-shrink: 0;
-    }
+//     &-title {
+//       flex-shrink: 0;
+//     }
 
-    &-desc {
-      @include mq-min(lg) {
-        width: 50%;
-      }
-    }
-  }
+//     &-desc {
+//       @include mq-min(lg) {
+//         width: 50%;
+//       }
+//     }
+//   }
 
-  &__container {
-    // border: $test;
-    display: flex;
-    align-items: center;
-    height: 80%; // Conditionally changes if there's a title or description.
-  }
+//   &__container {
+//     // border: $test;
+//     display: flex;
+//     align-items: center;
+//     height: 80%; // Conditionally changes if there's a title or description.
+//   }
 
-  &__slider {
-    height: 100%;
-    display: flex;
-    gap: var(--spacing);
-  }
+//   &__slider {
+//     height: 100%;
+//     display: flex;
+//     gap: var(--spacing);
+//   }
 
-  &__figure {
-    // Couldn't get aspect ratio to work
-    @include column-start;
-    gap: var(--spacing--sm);
-    width: min(25vw, 450px);
+//   &__figure {
+//     // Couldn't get aspect ratio to work
+//     @include column-start;
+//     gap: var(--spacing--sm);
+//     width: min(25vw, 450px);
 
-    @include mq-motion-allow {
-      opacity: 0;
-      scale: 0.9;
-      filter: blur(4px);
-      transition: $ease-sudden;
+//     @include mq-motion-allow {
+//       opacity: 0;
+//       scale: 0.9;
+//       filter: blur(4px);
+//       transition: $ease-sudden;
 
-      &.gsap-stagger-animate {
-        opacity: 1;
-        scale: 1;
-        filter: blur(0);
-      }
-    }
+//       &.gsap-stagger-animate {
+//         opacity: 1;
+//         scale: 1;
+//         filter: blur(0);
+//       }
+//     }
 
-    @include mq-max(xl) {
-      width: 350px;
-    }
+//     @include mq-max(xl) {
+//       width: 350px;
+//     }
 
-    @include mq-max(sm) {
-      width: 250px;
-    }
+//     @include mq-max(sm) {
+//       width: 250px;
+//     }
 
-    picture {
-      height: 100%;
-      border-radius: var(--radius--sm);
-      overflow: hidden;
+//     picture {
+//       height: 100%;
+//       border-radius: var(--radius--sm);
+//       overflow: hidden;
 
-      img {
-        height: 100%;
-        width: auto;
-      }
-    }
+//       img {
+//         height: 100%;
+//         width: auto;
+//       }
+//     }
 
-    &-caption {
-      @include row-center(start);
-      gap: var(--spacing--sm);
-      width: 100%;
+//     &-caption {
+//       @include row-center(start);
+//       gap: var(--spacing--sm);
+//       width: 100%;
 
-      h3 {
-        @include h5;
-      }
-    }
+//       h3 {
+//         @include h5;
+//       }
+//     }
 
-    &--parallax {
-      picture {
-        justify-content: flex-end;
-      }
-    }
-  }
+//     &--parallax {
+//       picture {
+//         justify-content: flex-end;
+//       }
+//     }
+//   }
 
-  &--message {
-    .scroll-horizontal__slider {
-      align-items: center;
-    }
+//   &--message {
+//     .scroll-horizontal__slider {
+//       align-items: center;
+//     }
 
-    .scroll-horizontal__message {
-      white-space: nowrap;
-      font-size: min(10vw, 128px);
-    }
-  }
-}
+//     .scroll-horizontal__message {
+//       white-space: nowrap;
+//       font-size: min(10vw, 128px);
+//     }
+//   }
+// }
