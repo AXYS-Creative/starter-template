@@ -2,7 +2,7 @@ class TextCurve {
   constructor(element) {
     this.element = element;
     this.text = element.textContent;
-    this.targetCurveAmount = parseFloat(element.dataset.curveRadius) || 0;
+    this.targetCurveAmount = parseFloat(element.dataset.curveRadius) || 1;
     this.currentCurveAmount = this.targetCurveAmount;
     this.kerning = parseFloat(element.dataset.curveKerning) || 0;
     this.centered = element.hasAttribute("data-curve-centered");

@@ -4,122 +4,132 @@ const pushElems = document.querySelectorAll(".velocity-push");
 
 if (pushElems.length) {
   pushElems.forEach((el) => {
-    let strength = parseFloat(el.dataset.pushStrength) || 10;
-    let restore = parseFloat(el.dataset.pushRestore) || 0.1; // Higher = faster
-    let maxRotate = parseFloat(el.dataset.pushRotateMax) || 25; // 0 disables rotation
-
-    if (isSafari()) {
-      strength = strength / 2.5; // Reduce strength for Safari
-    }
-
-    let lastX = 0;
-    let lastY = 0;
-    let velocityX = 0;
-    let velocityY = 0;
-    let offsetX = 0;
-    let offsetY = 0;
-    let rotate = 0;
-    let isAnimating = false;
-
-    // Track global velocity
-    const updateVelocity = (e) => {
-      velocityX = e.clientX - lastX;
-      velocityY = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
+    // Configuration
+    const config = {
+      strength: parseFloat(el.dataset.pushStrength) || 10,
+      restore: parseFloat(el.dataset.pushRestore) || 0.1,
+      maxRotate: parseFloat(el.dataset.pushRotateMax) || 25,
     };
 
-    window.addEventListener("mousemove", updateVelocity);
+    if (isSafari()) {
+      config.strength /= 2.5;
+    }
 
+    // State
+    const state = {
+      lastX: 0,
+      lastY: 0,
+      velocityX: 0,
+      velocityY: 0,
+      offsetX: 0,
+      offsetY: 0,
+      rotate: 0,
+      isAnimating: false,
+    };
+
+    const VELOCITY_THRESHOLD = 0.01;
+    const VELOCITY_SCALE = 30; // px/frame for full strength
+
+    // Update global velocity
+    const updateVelocity = (e) => {
+      state.velocityX = e.clientX - state.lastX;
+      state.velocityY = e.clientY - state.lastY;
+      state.lastX = e.clientX;
+      state.lastY = e.clientY;
+    };
+
+    // Determine which edge cursor entered from
+    const getEntryEdge = (rect, clientX, clientY) => {
+      const relX = clientX - rect.left;
+      const relY = clientY - rect.top;
+      const distances = {
+        top: relY,
+        bottom: rect.height - relY,
+        left: relX,
+        right: rect.width - relX,
+      };
+
+      return Object.entries(distances).reduce(
+        (min, [edge, dist]) => (dist < min.dist ? { edge, dist } : min),
+        { edge: "top", dist: Infinity }
+      ).edge;
+    };
+
+    // Calculate rotation based on entry edge and position
+    const calculateRotation = (edge, relX, relY, w, h, velocityMag) => {
+      if (config.maxRotate === 0) return 0;
+
+      const edgeConfigs = {
+        top: { norm: relX / w, sign: 1 },
+        bottom: { norm: relX / w, sign: -1 },
+        left: { norm: relY / h, sign: -1 },
+        right: { norm: relY / h, sign: 1 },
+      };
+
+      const { norm, sign } = edgeConfigs[edge];
+      const direction = norm * 2 - 1; // Map 0→1 to -1→1
+      const baseRotate = direction * config.maxRotate * sign;
+
+      // Velocity only affects magnitude, not direction
+      return baseRotate * Math.max(velocityMag, 0.3); // Minimum 30% rotation even when slow
+    };
+
+    // Animation loop with easing
     const animate = () => {
-      offsetX += (0 - offsetX) * restore;
-      offsetY += (0 - offsetY) * restore;
-      rotate += (0 - rotate) * restore;
+      state.offsetX += (0 - state.offsetX) * config.restore;
+      state.offsetY += (0 - state.offsetY) * config.restore;
+      state.rotate += (0 - state.rotate) * config.restore;
 
-      el.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
+      el.style.transform = `translate(${state.offsetX}px, ${state.offsetY}px) rotate(${state.rotate}deg)`;
 
-      if (Math.abs(offsetX) < 0.01 && Math.abs(offsetY) < 0.01 && Math.abs(rotate) < 0.01) {
-        offsetX = offsetY = rotate = 0;
+      // Stop when movement is imperceptible
+      if (
+        Math.abs(state.offsetX) < VELOCITY_THRESHOLD &&
+        Math.abs(state.offsetY) < VELOCITY_THRESHOLD &&
+        Math.abs(state.rotate) < VELOCITY_THRESHOLD
+      ) {
+        state.offsetX = state.offsetY = state.rotate = 0;
         el.style.transform = "";
-        isAnimating = false;
+        state.isAnimating = false;
         return;
       }
 
       requestAnimationFrame(animate);
     };
 
+    const startAnimation = () => {
+      if (!state.isAnimating) {
+        state.isAnimating = true;
+        requestAnimationFrame(animate);
+      }
+    };
+
+    // Event handlers
     el.addEventListener("mouseenter", (e) => {
       const rect = el.getBoundingClientRect();
+      const edge = getEntryEdge(rect, e.clientX, e.clientY);
+
+      // Apply push based on velocity
+      state.offsetX = state.velocityX * config.strength;
+      state.offsetY = state.velocityY * config.strength;
+
+      // Calculate velocity magnitude (normalized 0-1)
+      const velocityMag = Math.min(
+        Math.sqrt(state.velocityX ** 2 + state.velocityY ** 2) / VELOCITY_SCALE,
+        1
+      );
+
+      // Apply rotation
       const relX = e.clientX - rect.left;
       const relY = e.clientY - rect.top;
-      const w = rect.width;
-      const h = rect.height;
+      state.rotate = calculateRotation(edge, relX, relY, rect.width, rect.height, velocityMag);
 
-      // Determine closest entry edge
-      const topDist = relY;
-      const bottomDist = h - relY;
-      const leftDist = relX;
-      const rightDist = w - relX;
-      const minDist = Math.min(topDist, bottomDist, leftDist, rightDist);
-
-      let edge = "top";
-      if (minDist === topDist) edge = "top";
-      else if (minDist === bottomDist) edge = "bottom";
-      else if (minDist === leftDist) edge = "left";
-      else if (minDist === rightDist) edge = "right";
-
-      // Push translation
-      const pushX = velocityX * strength;
-      const pushY = velocityY * strength;
-      offsetX = pushX;
-      offsetY = pushY;
-
-      // Velocity magnitude (normalized)
-      const velocityMag = Math.min(Math.sqrt(velocityX ** 2 + velocityY ** 2) / 30, 1); // scale 0–1 (30px/frame ≈ full strength)
-
-      // Rotation (blend position + velocity)
-      if (maxRotate > 0) {
-        let norm, dir, baseRotate;
-        switch (edge) {
-          case "top":
-            norm = relX / w; // 0 left → 1 right
-            dir = norm * 2 - 1; // -1 to 1
-            baseRotate = dir * maxRotate;
-            break;
-          case "bottom":
-            norm = relX / w;
-            dir = norm * 2 - 1;
-            baseRotate = -dir * maxRotate;
-            break;
-          case "left":
-            norm = relY / h;
-            dir = norm * 2 - 1;
-            baseRotate = -dir * maxRotate;
-            break;
-          case "right":
-            norm = relY / h;
-            dir = norm * 2 - 1;
-            baseRotate = dir * maxRotate;
-            break;
-        }
-
-        // Blend with velocity intensity
-        rotate = baseRotate * velocityMag;
-      }
-
-      el.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
-
-      if (!isAnimating) {
-        isAnimating = true;
-        requestAnimationFrame(animate);
-      }
+      el.style.transform = `translate(${state.offsetX}px, ${state.offsetY}px) rotate(${state.rotate}deg)`;
+      startAnimation();
     });
 
-    el.addEventListener("mouseleave", () => {
-      if (!isAnimating) {
-        isAnimating = true;
-        requestAnimationFrame(animate);
-      }
-    });
+    el.addEventListener("mouseleave", startAnimation);
+
+    window.addEventListener("mousemove", updateVelocity);
   });
 }

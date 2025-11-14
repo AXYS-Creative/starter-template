@@ -57,7 +57,7 @@
         <h3 class="scroll-horizontal__message">
           <span
             class="hs-word-1 gsap-animate"
-            data-gsap-trigger="scroll-horizontal__pin-step-1"
+            data-gsap-trigger=".scroll-horizontal__pin-step-1"
             data-gsap-markers="false"
             >We</span
           >
@@ -83,5 +83,14 @@
         {% endif %}
       </div>
     </div>
+  </div>
+
+  <div class="scroll-horizontal__pin-steps pin-steps" aria-hidden="true">
+    {% for i in range(0, 8) %}
+    <div
+      class="scroll-horizontal__pin-step scroll-horizontal__pin-step-{{ loop.index }} pin-step"
+      id="scroll-horizontal__pin-step-{{ loop.index }}"
+    ></div>
+    {% endfor %}
   </div>
 </section>

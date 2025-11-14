@@ -714,8 +714,10 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
           scrollHorizontal.forEach((el) => {
             let container = el.querySelector(".scroll-horizontal__container");
+            let pin = el.querySelector(".scroll-horizontal__pin");
             let slider = el.querySelector(".scroll-horizontal__slider");
             let imgs = el.querySelectorAll(".scroll-horizontal__figure--parallax img");
+
             const sliderWidth = slider.scrollWidth;
             const containerWidth = container.offsetWidth;
             const distanceToTranslate = sliderWidth - containerWidth;
@@ -723,10 +725,10 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             let duration = maxSm ? "+=150%" : "+=200%";
 
             // Actual Pinning
-            gsap.to(el, {
+            gsap.to(pin, {
               scrollTrigger: {
-                trigger: el,
-                start: "top top",
+                trigger: pin,
+                start: "center center",
                 end: duration,
                 pin: true,
               },
@@ -740,8 +742,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                 x: () => -distanceToTranslate,
                 ease: "none",
                 scrollTrigger: {
-                  trigger: el,
-                  start: "top top",
+                  trigger: pin,
+                  start: "center center",
                   end: duration,
                   scrub: scrollHorizontalScrub,
                 },
@@ -757,8 +759,8 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
                   x: "25%", // Adjust this value for more or less parallax effect
                   ease: "none",
                   scrollTrigger: {
-                    trigger: el,
-                    start: "top top",
+                    trigger: pin,
+                    start: "center center",
                     end: duration,
                     scrub: scrollHorizontalScrub,
                   },

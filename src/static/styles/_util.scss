@@ -72,7 +72,7 @@
   }
 
   .pin-steps {
-    @include hide-content;
+    // @include hide-content;
     @include column-start;
     position: absolute;
     top: 0;
@@ -676,7 +676,7 @@
   }
 
   .text-curve {
-    @include font-styles--mono;
+    // @include font-styles--mono;
     position: relative;
     display: inline-block;
     white-space: nowrap;
@@ -690,10 +690,19 @@
     &--rotate {
       animation: infinite-rotate 10s linear infinite;
     }
+    &--rotate-left {
+      animation: infinite-rotate-left 12s linear infinite;
+    }
 
     @keyframes infinite-rotate {
       to {
         rotate: 360deg;
+      }
+    }
+
+    @keyframes infinite-rotate-left {
+      to {
+        rotate: -360deg;
       }
     }
   }
