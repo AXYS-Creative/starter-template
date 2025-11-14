@@ -741,6 +741,9 @@ code.codearea {
     left: 0;
     height: 2px;
   }
+  .overflow-hidden {
+    overflow: hidden;
+  }
   .icon-md {
     width: 20px;
     height: 20px;
@@ -7174,7 +7177,7 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 24px;
+  gap: var(--spacing);
   flex-shrink: 0;
 }
 
@@ -7397,8 +7400,41 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
 }
 @media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
   .axys-hero__title-shift.gsap-animated {
-    translate: var(--shift-offset-x) 0;
+    translate: calc(var(--shift-offset-x) * -1) 0;
     transition: 0.8s cubic-bezier(0.75, 0, 0.2, 1);
+  }
+}
+.axys-hero__title-cta {
+  margin-block-start: var(--spacing);
+}
+.axys-hero__title-cta .overflow-hidden {
+  padding-inline-end: 12px;
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  .axys-hero__title-cta {
+    translate: calc(var(--shift-offset-x) * -1) 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .axys-hero__title-cta .cta-1,
+  .axys-hero__title-cta .cta-2 {
+    translate: 0 150%;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  .axys-hero__title-cta.gsap-animated {
+    translate: 0 0;
+    transition: 0.8s cubic-bezier(0.75, 0, 0.2, 1) 1s;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .axys-hero__title-cta.gsap-animated .cta-1 {
+    translate: 0 0;
+    transition: 0.24s ease, translate 1s cubic-bezier(0.75, 0, 0.2, 1);
+  }
+  .axys-hero__title-cta.gsap-animated .cta-2 {
+    translate: 0 0;
+    transition: 0.24s ease, translate 1s cubic-bezier(0.75, 0, 0.2, 1) 0.125s;
   }
 }
 .axys-hero__title .text-reveal {
@@ -7446,13 +7482,15 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   translate: -50% -50%;
   width: 40vw;
   height: 40vw;
-  max-width: 750px;
-  max-height: 750px;
+  max-width: 650px;
+  max-height: 650px;
+  filter: blur(7px);
 }
 @media (max-width: 1024px) {
   .axys-hero__background .axys-dots-logo__push {
-    width: 60vw;
-    height: 60vw;
+    width: 72vw;
+    height: 72vw;
+    filter: blur(3px);
   }
 }
 

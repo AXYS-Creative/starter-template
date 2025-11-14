@@ -8,6 +8,6 @@
 
 .cta-group {
   @include row-center(flex-start);
-  gap: 24px;
+  gap: var(--spacing);
   flex-shrink: 0;
 }

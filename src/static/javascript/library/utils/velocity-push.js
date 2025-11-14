@@ -25,6 +25,7 @@ if (pushElems.length) {
       offsetY: 0,
       rotate: 0,
       isAnimating: false,
+      isTracking: false, // Track whether we should calculate velocity
     };
 
     const VELOCITY_THRESHOLD = 0.01;
@@ -32,10 +33,22 @@ if (pushElems.length) {
 
     // Update global velocity
     const updateVelocity = (e) => {
-      state.velocityX = e.clientX - state.lastX;
-      state.velocityY = e.clientY - state.lastY;
+      if (state.isTracking) {
+        state.velocityX = e.clientX - state.lastX;
+        state.velocityY = e.clientY - state.lastY;
+      } else {
+        // First movement after scroll or page load - reset velocity
+        state.velocityX = 0;
+        state.velocityY = 0;
+        state.isTracking = true;
+      }
       state.lastX = e.clientX;
       state.lastY = e.clientY;
+    };
+
+    // Reset tracking on scroll to prevent stale velocity
+    const resetTracking = () => {
+      state.isTracking = false;
     };
 
     // Determine which edge cursor entered from
@@ -70,8 +83,8 @@ if (pushElems.length) {
       const direction = norm * 2 - 1; // Map 0→1 to -1→1
       const baseRotate = direction * config.maxRotate * sign;
 
-      // Velocity only affects magnitude, not direction
-      return baseRotate * Math.max(velocityMag, 0.3); // Minimum 30% rotation even when slow
+      // Velocity affects magnitude, direction stays consistent
+      return baseRotate * velocityMag;
     };
 
     // Animation loop with easing
@@ -131,5 +144,6 @@ if (pushElems.length) {
     el.addEventListener("mouseleave", startAnimation);
 
     window.addEventListener("mousemove", updateVelocity);
+    window.addEventListener("scroll", resetTracking, { passive: true });
   });
 }

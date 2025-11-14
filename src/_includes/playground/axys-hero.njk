@@ -1,4 +1,7 @@
 <!-- prettier-ignore -->
+{% set cta_1 = axys_hero.cta_1 or null %}
+{% set cta_2 = axys_hero.cta_2 or null %}
+
 {% set dots_config = 2 %}
 {% set dots_data = '' %}
 
@@ -91,12 +94,19 @@
         </span>
       </h1>
     </div>
-    {% if desc %}
-    <p class="axys-hero__desc">
-      <span>Unlimited services</span>
-      <span>One basic subscription</span>
-    </p>
-    {% endif %}
+
+    <!-- prettier-ignore -->
+    <div class="axys-hero__title-cta cta-group gsap-animate" data-gsap-delay="1.2" data-loader-aware>
+      <div class="overflow-hidden magnet magnet-wide-btn">
+        {% set btn = cta_1 %}
+        {% include "../components/btn.njk" %}
+      </div>
+      
+      <div class="overflow-hidden">
+        {% set btn = cta_2 %}
+        {% include "../components/btn.njk" %}
+      </div>
+    </div>
   </div>
 
   <div class="axys-hero__background">

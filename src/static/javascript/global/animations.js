@@ -89,12 +89,16 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           [array[i], array[j]] = [array[j], array[i]];
         }
       }
+
       // Track loader state
       let loaderHasCompleted = false;
-
       window.addEventListener("loader:complete", () => {
         loaderHasCompleted = true;
       });
+
+      // axys scroll-horizontal
+      {
+      }
 
       // Library - Lift any desired code blocks out, then delete from production
       {
