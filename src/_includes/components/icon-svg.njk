@@ -2,12 +2,20 @@
 {% set src = icon_svg.src or '' %}
 {% set class = icon_svg.class or '' %}
 {% set label = icon_svg.label or '' %}
+{% set size = icon_svg.size or '' %}
 
-{% set icon_classes = (class ~ ' mask-icon') | trim %}
+{% set icon_classes = (class ~ ' icon-svg') | trim %}
+
+{% set size_map = {
+  'sm': 'icon-svg--sm',
+  'lg': 'icon-svg--lg'
+} %}
+
+{% set size_class = size_map[size] or '' %}
 
 <!-- prettier-ignore -->
 <span
-  class="{{ icon_classes }}"
+  class="{{ icon_classes }} {{ size_class }}"
   style="mask-image: url('{{ src }}');"
   {% if label %}
     role="img"

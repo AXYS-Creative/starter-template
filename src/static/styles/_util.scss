@@ -2,11 +2,13 @@
 
 .shift-title {
   @include mq-motion-allow {
-    translate: 128px 0;
+    @include mq-min(sm) {
+      translate: 128px 0;
 
-    &.gsap-animated {
-      translate: 0 0;
-      transition: 1.25s $cubic-ease-sudden;
+      &.gsap-animated {
+        translate: 0 0;
+        transition: 1.25s $cubic-ease-sudden;
+      }
     }
   }
 }
@@ -45,13 +47,6 @@
   }
 }
 
-.mask-icon {
-  @include mask-image();
-
-  width: 1em;
-  height: 1em;
-}
-
 .max-width-text {
   display: inline-block;
   max-width: var(--max-width--text);
@@ -72,7 +67,7 @@
   }
 
   .pin-steps {
-    // @include hide-content;
+    @include hide-content;
     @include column-start;
     position: absolute;
     top: 0;

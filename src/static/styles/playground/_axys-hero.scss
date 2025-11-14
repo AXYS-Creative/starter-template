@@ -164,6 +164,12 @@
         height: 72vw;
         filter: blur(3px);
       }
+
+      @include mq-max(sm) {
+        // width: 72vw;
+        // height: 72vw;
+        filter: blur(1px);
+      }
     }
   }
 }

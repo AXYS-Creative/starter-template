@@ -67,6 +67,11 @@
     }
   }
 
+  &__disclaimer {
+    // color: var(--color-font--secondary);
+    color: $green;
+  }
+
   // if quarterly is selected
   &:has([data-toggle-option="end"][aria-selected="true"]) {
     [data-toggle-show="end"] {

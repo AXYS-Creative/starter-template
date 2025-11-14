@@ -31,31 +31,3 @@ items:
       src: "/static/img/library/img-sample-4.jpg"
       alt: ""
     url: ""
-  - title: Project 5
-    type: Development
-    year: 2024
-    img:
-      src: "/static/img/library/img-sample-5.jpg"
-      alt: ""
-    url: ""
-  - title: Project 6
-    type: Design + Development
-    year: 2024
-    img:
-      src: "/static/img/library/img-sample-6.jpg"
-      alt: ""
-    url: ""
-  - title: Project 7
-    type: Design
-    year: 2024
-    img:
-      src: "/static/img/library/img-sample-7.jpg"
-      alt: ""
-    url: ""
-  - title: Project 8
-    type: Development
-    year: 2024
-    img:
-      src: "/static/img/library/img-sample-8.jpg"
-      alt: ""
-    url: ""

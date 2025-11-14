@@ -52,6 +52,11 @@
   :root {
     --body-padding: 24px;
     --section-gap--lg: 24px;
+    --spacing--xs: 4px;
+    --spacing--sm: 8px;
+    --spacing: 12px;
+    --spacing--lg: 24px;
+    --spacing--xl: 48px;
   }
 }
 
@@ -456,7 +461,7 @@ code.codearea {
   padding: 12px 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (min-width: 481px) {
   .shift-title {
     translate: 128px 0;
   }
@@ -570,21 +575,6 @@ code.codearea {
   list-style-type: circle;
 }
 
-.mask-icon {
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-          mask-position: center;
-  aspect-ratio: 1/1;
-  background: currentColor;
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-}
-
 .max-width-text {
   display: inline-block;
   max-width: var(--max-width--text);
@@ -610,6 +600,11 @@ code.codearea {
     overflow: visible;
   }
   .pin-steps {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7277,6 +7272,29 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   white-space: nowrap;
 }
 
+.icon-svg {
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  aspect-ratio: 1/1;
+  background: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+}
+.icon-svg--lg {
+  width: 1.25em;
+  height: 1.25em;
+}
+.icon-svg--sm {
+  width: 0.75em;
+  height: 0.75em;
+}
+
 .social-media-links {
   display: flex;
   gap: 16px;
@@ -7491,6 +7509,11 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
     width: 72vw;
     height: 72vw;
     filter: blur(3px);
+  }
+}
+@media (max-width: 480px) {
+  .axys-hero__background .axys-dots-logo__push {
+    filter: blur(1px);
   }
 }
 
@@ -10894,6 +10917,9 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   .plan-selection__toggle-wrapper.watch-scroll--scrolling-down {
     translate: 0 0;
   }
+}
+.plan-selection__disclaimer {
+  color: #a4d1a2;
 }
 .plan-selection:has([data-toggle-option=end][aria-selected=true]) [data-toggle-show=end] {
   opacity: 1;

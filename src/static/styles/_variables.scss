@@ -123,6 +123,12 @@ $test-bg: rgba(navy, 0.75);
   @media (max-width: 1024px) {
     --body-padding: 24px;
     --section-gap--lg: 24px;
+
+    --spacing--xs: 4px;
+    --spacing--sm: 8px;
+    --spacing: 12px;
+    --spacing--lg: 24px;
+    --spacing--xl: 48px;
   }
 }
 
