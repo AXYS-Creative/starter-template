@@ -13,7 +13,7 @@ menu_links:
     size: sm
     class: menu-links__link
   - text: Library
-    icon: "/static/img/library/icon-google-chevron-down.svg"
+    icon: "/static/img/icon-google-chevron-down.svg"
     trigger_class: menu-links__link btn--text btn-size--sm
     inner_links:
       - text: Utility Classes
@@ -22,48 +22,48 @@ menu_links:
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-bolt.svg
+        icon_start: /static/img/icon-google-bolt.svg
       - text: Components
         url: "/library/components"
         path: "library/components"
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-blocks.svg
+        icon_start: /static/img/icon-google-blocks.svg
       - text: Combos
         url: "/library/combos"
         path: "library/combos"
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-orbit.svg
+        icon_start: /static/img/icon-google-orbit.svg
       - text: Sections
         url: "/library/sections"
         path: "library/sections"
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-dashboard.svg
+        icon_start: /static/img/icon-google-dashboard.svg
       - text: Advanced
         url: "/library/advanced"
         path: "library/advanced"
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-target.svg
+        icon_start: /static/img/icon-google-target.svg
       - text: Style Guide
         url: "/style-guide"
         path: "style-guide"
         new_tab: false
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-palette.svg
+        icon_start: /static/img/icon-google-palette.svg
       - text: Tokens
         url: "https://axyscreative.com/tokens"
         new_tab: true
         type: text
         size: sm
-        icon_start: /static/img/library/icon-google-inventory.svg
+        icon_start: /static/img/icon-google-inventory.svg
   - text: Blog
     url: "/blog"
     path: "archive-blog"
@@ -79,8 +79,8 @@ menu_links:
     size: sm
     class: menu-links__link
     attributes: "data-hover-alt"
-    # icon_end: /static/img/library/icon-google-chevron-right.svg
-    # icon_start: /static/img/library/icon-google-info-circle.svg
+    # icon_end: /static/img/icon-google-chevron-right.svg
+    # icon_start: /static/img/icon-google-info-circle.svg
   - text: Log In
     # text_desc:
     url: /admin

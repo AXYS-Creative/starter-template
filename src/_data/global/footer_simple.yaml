@@ -19,12 +19,8 @@ linkset_1:
     url: "/style-guide"
     new_tab: false
     type: underline
-  - text: Playground
-    url: "/playground"
-    new_tab: false
-    type: underline
   # - text: Library
-  #   icon: "/static/img/library/icon-google-chevron-down.svg"
+  #   icon: "/static/img/icon-google-chevron-down.svg"
   #   trigger_class: btn--underline
   #   inner_links:
   #     - text: Components
@@ -78,7 +74,7 @@ return_to_top:
   url: "#"
   class: "back-to-top"
   type: underline
-  icon_end: /static/img/library/icon-google-chevron-up.svg
+  icon_end: /static/img/icon-google-chevron-up.svg
 
 # copyright: ""
 

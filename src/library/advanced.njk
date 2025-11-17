@@ -12,7 +12,7 @@ description:
   title: 'Advanced',
   desc: 'More complex components, advanced js, webGL, spline, svg shaders, etc.'
 }) %}
-{% include '../_includes/library/sections/hero-simple.njk' %}
+{% include '../_includes/sections/hero-simple.njk' %}
 
 <section class="bg-particle-waves">
   <div class="bg-particle-waves__inner">
@@ -32,7 +32,7 @@ description:
     follow_mouse: 25,
     speed: 0.0025
   }) %}
-  {% include "../_includes/library/advanced/particle-waves.njk" %}
+  {% include "../_includes/components/particle-waves.njk" %}
 </section>
 
 <section class="dots-fill library-section">
@@ -163,6 +163,10 @@ description:
   </svg>
 </section>
 
+<!-- prettier-ignore -->
+{% set marquee = library.marquee.marquee_2 %}
+{% include '../_includes/components/marquee.njk' %}
+
 <section
   class="grid-show"
   data-grid-enter="ripple-out"
@@ -210,14 +214,14 @@ description:
 
   <!-- prettier-ignore -->
   {% set grid_flow_img = ({
-    src: '/static/img/library/img-sample-hd.jpg',
+    src: '/static/img/img-sample-hd.jpg',
     alt: ''
   }) %}
-  {% include '../_includes/library/advanced/grid-flow-img.njk' %}
+  {% include '../_includes/components/grid-flow-img.njk' %}
 
   <!-- prettier-ignore -->
   {% set grid_flow_img = ({
-    src: '/static/img/library/img-sample-8.jpg',
+    src: '/static/img/img-sample-8.jpg',
     alt: 'Scenery of Reach',
     width: 350,
     height: 600,
@@ -230,11 +234,11 @@ description:
     range: 0.5,
     intensity: 1
   }) %}
-  {% include '../_includes/library/advanced/grid-flow-img.njk' %}
+  {% include '../_includes/components/grid-flow-img.njk' %}
 
   <!-- prettier-ignore -->
   {% set grid_flow_img = ({
-    src: '/static/img/library/landscape-2.webp',
+    src: '/static/img/landscape-2.webp',
     alt: '',
     size: 'md',
     lazy_load: false,
@@ -244,7 +248,7 @@ description:
     range: 0.2,
     intensity: 1.5
   }) %}
-  {% include '../_includes/library/advanced/grid-flow-img.njk' %}
+  {% include '../_includes/components/grid-flow-img.njk' %}
 </section>
 
 <section class="spline-section library-section">
@@ -257,7 +261,7 @@ description:
 <section class="video-scrub-section last-section">
   <video
     class="video-scrub"
-    src="/static/img/library/vid-sample.mp4"
+    src="/static/img/vid-sample.mp4"
     preload="auto"
     muted
     playsinline

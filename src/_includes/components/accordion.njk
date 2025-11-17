@@ -1,0 +1,45 @@
+<!-- prettier-ignore -->
+{% set id = accordion.id or 1 %}
+{% set icon = accordion.icon or '' %}
+{% set plus = accordion.plus or false %}
+{% set single_open = accordion.single_open or false %}
+{% set items = accordion.items or null %}
+
+<div class="accordion" data-single-open="{{ single_open }}">
+  {% for item in items %}
+  <!-- prettier-ignore -->
+  <button
+    class="accordion-btn tab-element-page"
+    {%if item.content_start%}
+      id="content-start"
+    {%endif%}
+    aria-expanded="false"
+    aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
+  >
+    <div class="accordion-label">
+      <span class="accordion-label__title">{{ item.title }}</span>
+
+      {% if icon %}
+        {% set icon_svg = ({ src: icon, class: 'accordion-label__icon' }) %}
+        {% include "./icon-svg.njk" %}
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if plus %}
+      <span class="accordion-label__plus" aria-hidden="true">
+        <span class="accordion-label__plus-line"></span>
+        <span class="accordion-label__plus-line"></span>
+      </span>
+      {% endif %}
+    </div>
+    <div
+      class="accordion-content"
+      id="accordion-{{ id }}-item-{{ loop.index }}"
+    >
+      <div class="accordion-content__inner">
+        <p class="accordion-content__message">{{ item.content | safe }}</p>
+      </div>
+    </div>
+  </button>
+  {% endfor %}
+</div>

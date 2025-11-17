@@ -1,9 +1,0 @@
-.faq-section {
-  @include section-padding;
-  @include width-clamp;
-
-  &__header {
-    @include column-start;
-    gap: var(--spacing);
-  }
-}

@@ -1,10 +1,10 @@
 # CMS Starter Template
 
-Collection of UI components and utility classes. To get started pick what you need from the library and then be sure to delete the following:
+Collection of UI utility classes, components, combos, sections, and partials. To get started pick what you need from the library and then be sure to delete the following:
 
-1. **JS library directory**
+1. **Unwanted JS files**
 2. **JS `animations.js` library blocks**
-3. **CSS library directory**
+3. **Unwanted CSS files**
 4. **CSS `utility.scss` library block**
 5. **`_data` library directory**
 6. **`_includes` library directory**
@@ -44,3 +44,5 @@ Collection of UI components and utility classes. To get started pick what you ne
 - Tilt
 - Tooltip
 - Typing Text
+
+site.json is used for sitemap.xml

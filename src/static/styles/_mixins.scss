@@ -183,7 +183,7 @@ $min-breakpoints: ();
 
     line-height: 1.5;
 
-    @include mq-max(sm) {
+    @include mq-max(md) {
       --font-size: 18px;
     }
   }

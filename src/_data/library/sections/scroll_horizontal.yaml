@@ -7,27 +7,27 @@ desc: "This is a scroll horizontal component that can be used to alter the scrol
 imgs:
   - title: Title 1
     desc: Description 1
-    src: /static/img/library/img-sample-1.jpg
+    src: /static/img/img-sample-1.jpg
   - title: Title 2
     desc: Description 2
-    src: /static/img/library/img-sample-2.jpg
+    src: /static/img/img-sample-2.jpg
   - title: Title 3
     desc: Description 3
-    src: /static/img/library/img-sample-3.jpg
+    src: /static/img/img-sample-3.jpg
   - title: Title 4
     desc: Description 4
-    src: /static/img/library/img-sample-4.jpg
+    src: /static/img/img-sample-4.jpg
   - title: Title 5
     desc: Description 5
-    src: /static/img/library/img-sample-5.jpg
+    src: /static/img/img-sample-5.jpg
   - title: Title 6
     desc: Description 6
-    src: /static/img/library/img-sample-6.jpg
+    src: /static/img/img-sample-6.jpg
   - title: Title 7
     desc: Description 7
-    src: /static/img/library/img-sample-7.jpg
+    src: /static/img/img-sample-7.jpg
   - title: Title 8
     desc: Description 8
-    src: /static/img/library/img-sample-8.jpg
+    src: /static/img/img-sample-8.jpg
 
 img_parallax: true

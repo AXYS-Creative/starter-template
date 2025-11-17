@@ -13,23 +13,23 @@ cta_1:
   text_desc: Visit our component library
   url: /library/components
   new_tab: false
-  # icon_start: /static/img/library/icon-google-copy.svg
-  # icon_end: /static/img/library/icon-google-chevron-right.svg
+  # icon_start: /static/img/icon-google-copy.svg
+  # icon_end: /static/img/icon-google-chevron-right.svg
 cta_2:
   text: Get Started
   text_desc: Get started with AXYS Creative
   url: https://axyscreative.com/
   new_tab: true
-  icon_end: /static/img/library/icon-google-chevron-right.svg
+  icon_end: /static/img/icon-google-chevron-right.svg
 
 extra_content: true # disables corner_imgs when false
 
 # corner_imgs:
 #   - title: alt 1 here
-#     src: /static/img/library/img-sample-1.jpg
+#     src: /static/img/img-sample-1.jpg
 #   - title: alt 2 here
-#     src: /static/img/library/img-sample-2.jpg
+#     src: /static/img/img-sample-2.jpg
 #   - title: alt 3 here
-#     src: /static/img/library/img-sample-6.jpg
+#     src: /static/img/img-sample-6.jpg
 #   - title: alt 4 here
-#     src: /static/img/library/img-sample-12.jpg
+#     src: /static/img/img-sample-12.jpg

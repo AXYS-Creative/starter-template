@@ -9,17 +9,16 @@ path: library/combos
   title: 'Combos',
   desc: 'Content available as either a utililty class or a component. Also content that requires both a util and component.'
  }) %}
-{% include '../_includes/library/sections/hero-simple.njk' %}
+{% include '../_includes/sections/hero-simple.njk' %}
 
 <section class="alert-section library-section">
   <h2>[ Alert - Combo ]</h2>
 
   <p>
-    Display a quick notification and other helpful info to the user. Alerts can
-    be altered to fit your needs, but come out of the box with the following
-    states: <code>success | info | warning | error </code>. The
-    <code>alert.njk</code> component is used along side the utility class
-    <code>alert-trigger</code> on a button to fire the alert.
+    Display a quick notification and other helpful info to the user. Alerts can be altered to fit
+    your needs, but come out of the box with the following states:
+    <code>success | info | warning | error </code>. The <code>alert.njk</code> component is used
+    along side the utility class <code>alert-trigger</code> on a button to fire the alert.
   </p>
   <p>The <code>alert.njk</code> component comes with the following props:</p>
   <ul class="classic-list">
@@ -28,39 +27,30 @@ path: library/combos
       <code>aria-controls</code> of the button that fires the alert.
     </li>
     <li>
-      <code>type</code> a string value of
-      <code>success | info | warning | error</code> that alters the icon and
-      color of the alert.
+      <code>type</code> a string value of <code>success | info | warning | error</code> that alters
+      the icon and color of the alert.
     </li>
-    <li>
-      <code>title</code> a string value for the alert title. Recommended to keep
-      it short.
-    </li>
+    <li><code>title</code> a string value for the alert title. Recommended to keep it short.</li>
     <li><code>message</code> a string value that accepts custom markup.</li>
     <li>
-      <code>auto_close</code> an optional number (in ms) that controls if the
-      alert will automatically close. A falsey value will add a close button to
-      manually close the alert.
+      <code>auto_close</code> an optional number (in ms) that controls if the alert will
+      automatically close. A falsey value will add a close button to manually close the alert.
     </li>
     <li>
-      <code>timer</code> A boolean to toggle a visual timer (bar) when the alert
-      will close. <strong>Requres auto_close: true</strong>
+      <code>timer</code> A boolean to toggle a visual timer (bar) when the alert will close.
+      <strong>Requres auto_close: true</strong>
     </li>
     <li>
-      <code>left_border</code> an optional boolean that adds a left border to
-      the card. Defaults to <code>false</code>
+      <code>left_border</code> an optional boolean that adds a left border to the card. Defaults to
+      <code>false</code>
     </li>
   </ul>
 
   <p>Here's the setup for the <code>button</code> tag:</p>
   <ul class="classic-list">
+    <li><code>alert-trigger</code> the utility class to signal this is an alert-trigger.</li>
     <li>
-      <code>alert-trigger</code> the utility class to signal this is an
-      alert-trigger.
-    </li>
-    <li>
-      <code>aria-controls</code> a string value that goes on the button that
-      matches the alert id.
+      <code>aria-controls</code> a string value that goes on the button that matches the alert id.
     </li>
   </ul>
 
@@ -80,7 +70,7 @@ path: library/combos
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {%include "../_includes/library/components/alert.njk" %}
+    {%include "../_includes/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -95,12 +85,12 @@ path: library/combos
     {% set btn = ({
       text: 'Info Alert',
       type: 'outline',
-      icon_end: '/static/img/library/icon-google-info-circle.svg',
+      icon_end: '/static/img/icon-google-info-circle.svg',
       class: 'alert-trigger',
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
+    {% include "../_includes/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -120,12 +110,12 @@ path: library/combos
     {% set btn = ({
       text: 'Warning Alert',
       type: 'text',
-      icon_end: '/static/img/library/icon-google-warning-triangle.svg',
+      icon_end: '/static/img/icon-google-warning-triangle.svg',
       class: 'alert-trigger',
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
+    {% include "../_includes/components/alert.njk" %}
 
     <!-- prettier-ignore -->
     {% set alert = ({
@@ -149,60 +139,57 @@ path: library/combos
     {% set btn = ({
       text: 'Error Alert',
       type: 'underline',
-      icon_end: '/static/img/library/icon-google-x-octagon.svg',
+      icon_end: '/static/img/icon-google-x-octagon.svg',
       class: 'alert-trigger',
       attributes: 'aria-controls='~alert.id~''
     }) %}
     {%include "../_includes/components/btn.njk" %}
-    {% include "../_includes/library/components/alert.njk" %}
+    {% include "../_includes/components/alert.njk" %}
   </div>
 </section>
 
 <section class="tabs-section library-section">
   <h2>[ Tabs - Variety ]</h2>
   <p>
-    Tabs can be added in two ways: as a component or a utility class. Each
-    method comes with different pros and cons.
+    Tabs can be added in two ways: as a component or a utility class. Each method comes with
+    different pros and cons.
   </p>
   <br />
 
   <div class="library-section-info">
     <h3>Tabs Component <em>(Cookie cutter panels)</em></h3>
     <p class="max-width-text">
-      A simplified version of the tabs util. Use the component when the tab
-      content shares the same structure across each panel. Comes with the
-      following properties:
+      A simplified version of the tabs util. Use the component when the tab content shares the same
+      structure across each panel. Comes with the following properties:
     </p>
     <ul class="classic-list">
       <li>
-        <code>default_panel</code> A number representing the default active
-        panel when visiting the page. Defaults to 1
+        <code>default_panel</code> A number representing the default active panel when visiting the
+        page. Defaults to 1
       </li>
       <li>
-        <code>toggle_slider</code> A string of either
-        <code>null | solid | underline</code> that overrides the default tab
-        control styles in place of the <code>toggle-slider</code> markup/styles.
-        Defaults to <code>null</code>
+        <code>toggle_slider</code> A string of either <code>null | solid | underline</code> that
+        overrides the default tab control styles in place of the
+        <code>toggle-slider</code> markup/styles. Defaults to <code>null</code>
       </li>
       <li>
-        <code>panels</code> An array of objects representing your tabs
-        (configure the object as needed)
+        <code>panels</code> An array of objects representing your tabs (configure the object as
+        needed)
       </li>
     </ul>
   </div>
 
   <!-- prettier-ignore -->
   {% set tabs = library.tabs %}
-  {% include "../_includes/library/components/tabs.njk" %}
+  {% include "../_includes/components/tabs.njk" %}
 
   <br /><br />
 
   <div class="library-section-info">
     <h3>Tabs Util <em>(Custom panels)</em></h3>
     <p class="max-width-text">
-      A more hands-on version of tabs. Intended when you need unique markup
-      across each panel. The setup is straight forward — here's a visual of the
-      structure:
+      A more hands-on version of tabs. Intended when you need unique markup across each panel. The
+      setup is straight forward — here's a visual of the structure:
     </p>
     <code class="codearea"
       >&lt;div class="tabs"&gt;
@@ -212,11 +199,11 @@ path: library/combos
       &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 1"
       role="tabpanel"&gt;&lt;/div&gt;
       <br />
-      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 2"
-      role="tabpanel" hidden&gt;&lt;/div&gt;
+      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 2" role="tabpanel"
+      hidden&gt;&lt;/div&gt;
       <br />
-      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 3"
-      role="tabpanel" hidden&gt;&lt;/div&gt;
+      &nbsp;&nbsp;&nbsp; &lt;div class="tabs-panel" data-tab-label="label 3" role="tabpanel"
+      hidden&gt;&lt;/div&gt;
       <br />
       &nbsp; &lt;/div&gt;
       <br />
@@ -224,30 +211,29 @@ path: library/combos
     </code>
     <ul>
       <li>
-        <strong>Step 1:</strong> Have a parent/child div setup (or any valid
-        container) with the classes <code>tabs</code> and
+        <strong>Step 1:</strong> Have a parent/child div setup (or any valid container) with the
+        classes <code>tabs</code> and
         <code>tabs-content</code>
       </li>
       <li>
-        <strong>Step 2:</strong> Add a div with the class
-        <code>tab-panel</code>for each tab panel you would like
+        <strong>Step 2:</strong> Add a div with the class <code>tab-panel</code>for each tab panel
+        you would like
       </li>
       <li>
-        <strong>Step 3:</strong> Use the attribute
-        <code>data-tab-label</code> to alter the labels for each panel
-        control/button
+        <strong>Step 3:</strong> Use the attribute <code>data-tab-label</code> to alter the labels
+        for each panel control/button
       </li>
       <li>
-        <strong>Step 4:</strong> Use the attribute <code>hidden</code> on all
-        panels except the one you want shown by default
+        <strong>Step 4:</strong> Use the attribute <code>hidden</code> on all panels except the one
+        you want shown by default
       </li>
     </ul>
     <p class="max-width-text">
       <strong>Note:</strong>
-      this comes with the optional <code>data-toggle-slider=""</code> attribute
-      of either: <code>null | solid | underline</code> to change the control
-      style (no needed extra utility class for this, handled with tabs and
-      toggle-slider logic). <strong>Requires toggle-slider.js</strong>
+      this comes with the optional <code>data-toggle-slider=""</code> attribute of either:
+      <code>null | solid | underline</code> to change the control style (no needed extra utility
+      class for this, handled with tabs and toggle-slider logic).
+      <strong>Requires toggle-slider.js</strong>
     </p>
   </div>
 
@@ -257,31 +243,26 @@ path: library/combos
       <div class="tabs-panel" data-tab-label="Panel 1" role="tabpanel" hidden>
         <h4>Custom Markup (panel 1)</h4>
         <p class="max-width-text">
-          The <code>tabs</code> util allows for custom markup with minimal
-          setup. The tab controls are generated via JavaScript, based on the
-          <code>data-tab-label</code> attribute provided for each panel.
+          The <code>tabs</code> util allows for custom markup with minimal setup. The tab controls
+          are generated via JavaScript, based on the <code>data-tab-label</code> attribute provided
+          for each panel.
         </p>
       </div>
 
       <div class="tabs-panel" data-tab-label="Panel 2" role="tabpanel">
         <p>
-          Panel 2 — You can control which tab is shown by default by removing
-          the
+          Panel 2 — You can control which tab is shown by default by removing the
           <code>hidden</code> attribute from that panel.
         </p>
         <br /><br />
-        <video
-          style="width: 320px"
-          src="/static/img/library/vid-sample.mp4"
-          controls
-        ></video>
+        <video style="width: 320px" src="/static/img/vid-sample.mp4" controls></video>
       </div>
 
       <div class="tabs-panel" data-tab-label="Panel 3" role="tabpanel" hidden>
         <h3 class="h6">Panel 3</h3>
         <p>
-          The utility version also allows custom components as children of the
-          the panel. Custom markup
+          The utility version also allows custom components as children of the the panel. Custom
+          markup
         </p>
         <br /><br />
         <!-- prettier-ignore -->
@@ -300,65 +281,55 @@ path: library/combos
 <section class="tooltip-section library-section cursor-hide">
   <h2>[ Tooltip - Variety ]</h2>
   <p>
-    A tooltip can be added in two ways: as a component or a utility class. Each
-    method comes with different pros and cons.
+    A tooltip can be added in two ways: as a component or a utility class. Each method comes with
+    different pros and cons.
   </p>
   <br />
 
   <h3>Tooltip Component <em>(stationary)</em></h3>
-  <p>
-    The component variation <code>tooltip.njk</code> comes with the following
-    config options:
-  </p>
+  <p>The component variation <code>tooltip.njk</code> comes with the following config options:</p>
   <ul class="classic-list">
+    <li><code>message</code> a string, this is the text within the message bubble.</li>
     <li>
-      <code>message</code> a string, this is the text within the message bubble.
+      <code>text</code> an optional string that can be used as the tooltip trigger (vs an icon).
     </li>
     <li>
-      <code>text</code> an optional string that can be used as the tooltip
-      trigger (vs an icon).
+      <code>icon</code> an optional string used to override the default icon image. This is the path
+      to the image source.
     </li>
     <li>
-      <code>icon</code> an optional string used to override the default icon
-      image. This is the path to the image source.
+      <code>size</code> a string of either <code>xs | sm | md | lg</code> to adjust the tooltip
+      message size. Defaults to <code>md</code>
     </li>
     <li>
-      <code>size</code> a string of either <code>xs | sm | md | lg</code> to
-      adjust the tooltip message size. Defaults to <code>md</code>
-    </li>
-    <li>
-      <code>place</code> a string to position the tooltip message bubble on non
-      mobile devices. Options include:
-      <code>
-        top | top-right | top-left | bottom | bottom-left | bottom-right | left
-        | right
-      </code>
+      <code>place</code> a string to position the tooltip message bubble on non mobile devices.
+      Options include:
+      <code> top | top-right | top-left | bottom | bottom-left | bottom-right | left | right </code>
       Defaults to <code>top</code>
     </li>
     <li>
-      <code>place_sm</code> a string to position the tooltip message bubble on
-      mobile devices. <strong>Options are same as above, excluding:</strong>
+      <code>place_sm</code> a string to position the tooltip message bubble on mobile devices.
+      <strong>Options are same as above, excluding:</strong>
       <code> left | right </code>
       Defaults to <code>top</code>
     </li>
     <li>
-      <code>include_point</code> A boolean to include the point on the message
-      bubble. Defaults to <code>false</code>
+      <code>include_point</code> A boolean to include the point on the message bubble. Defaults to
+      <code>false</code>
     </li>
   </ul>
 
   <!-- prettier-ignore -->
   {% set tooltip = library.tooltip.tooltip_1 %} 
-  {% include "../_includes/library/components/tooltip.njk" %} 
+  {% include "../_includes/components/tooltip.njk" %} 
   
   {% set tooltip = library.tooltip.tooltip_2 %} 
-  {% include "../_includes/library/components/tooltip.njk" %}
+  {% include "../_includes/components/tooltip.njk" %}
 
   <div>
     <p>
-      Does this work inline? {% set tooltip = library.tooltip.tooltip_3 %} {%
-      include "../_includes/library/components/tooltip.njk" %} then some text
-      afterward.
+      Does this work inline? {% set tooltip = library.tooltip.tooltip_3 %} {% include
+      "../_includes/components/tooltip.njk" %} then some text afterward.
     </p>
   </div>
 
@@ -368,8 +339,8 @@ path: library/combos
   <strong>
     Note: requires mouse-cursor.njk component.
     <br />
-    Also, the tooltip doesn't display while the user is scrolling. With Lenis
-    this may cause a delay to see the tooltip.
+    Also, the tooltip doesn't display while the user is scrolling. With Lenis this may cause a delay
+    to see the tooltip.
   </strong>
   <p>
     The tooltip can also be tagged on any element using the class
@@ -377,12 +348,12 @@ path: library/combos
   </p>
   <ul class="classic-list">
     <li>
-      <code>data-tooltip-message</code> A string, this is the value of the
-      message for the tooltip (perhaps see if this can take html).
+      <code>data-tooltip-message</code> A string, this is the value of the message for the tooltip
+      (perhaps see if this can take html).
     </li>
     <li>
-      <code>data-tooltip-min-width</code> A number, this applies a minimum width
-      to the message bubble.
+      <code>data-tooltip-min-width</code> A number, this applies a minimum width to the message
+      bubble.
     </li>
   </ul>
 
@@ -406,14 +377,13 @@ path: library/combos
     >
       edge aware
     </span>
-    meaning it will reposition itself if it’s too close to the edge of the
-    screen.
+    meaning it will reposition itself if it’s too close to the edge of the screen.
   </p>
   <img
     class="tooltip-util icon-md tab-element-page"
     data-tooltip-message="What happens when you have a really long description? Does it mess things up pretty badly or does it still work? I’m curious how this will turn out."
     data-tooltip-min-width="250"
-    src="/static/img/library/icon-google-info-circle.svg"
+    src="/static/img/icon-google-info-circle.svg"
     alt=""
     role="button"
     tabindex="0"
@@ -424,9 +394,9 @@ path: library/combos
 <section class="video-bg-section library-section">
   <h2>[ Video-bg - Combo ]</h2>
   <p class="max-width-text">
-    With minimal setup, you can add a video background to any section, container
-    or element using the <code>video-bg</code> class and including the
-    <code>video-bg.njk</code> partial at the bottom of your wrapper.
+    With minimal setup, you can add a video background to any section, container or element using
+    the <code>video-bg</code> class and including the <code>video-bg.njk</code> partial at the
+    bottom of your wrapper.
   </p>
   <p>Here's a visual of the structure:</p>
   <code class="codearea">
@@ -446,23 +416,23 @@ path: library/combos
     <li><code>src</code> A string, the url to the video file</li>
     <li><code>id</code> A string, the unique identifier per instance</li>
     <li>
-      <code>toggle</code> An object with properties such as
-      <code>placement</code>, and any custom <code>class</code> and
+      <code>toggle</code> An object with properties such as <code>placement</code>, and any custom
+      <code>class</code> and
       <code>attributes</code>
     </li>
     <li>
-      <code>shadow</code> A string of either: <code>top | bottom</code> that
-      adds a shadow over the video to help provide contrast for text. Defaults
-      to <code>bottom</code>. Use an empty string to remove.
+      <code>shadow</code> A string of either: <code>top | bottom</code> that adds a shadow over the
+      video to help provide contrast for text. Defaults to <code>bottom</code>. Use an empty string
+      to remove.
     </li>
     <li>
-      <code>autoplay</code> (experimental) A boolean to toggle the video’s
-      autoplay by default. Defaults to <code>true</code>
+      <code>autoplay</code> (experimental) A boolean to toggle the video’s autoplay by default.
+      Defaults to <code>true</code>
       <strong>Strange behavior on mobile</strong>
     </li>
     <li>
-      <code>poster</code> (experimental) A string, the file path to the image
-      poster shown if the video uses <code>autoplay: false</code>
+      <code>poster</code> (experimental) A string, the file path to the image poster shown if the
+      video uses <code>autoplay: false</code>
       <strong>Strange behavior on mobile</strong>
     </li>
   </ul>
@@ -470,8 +440,8 @@ path: library/combos
   <div class="video-bg video-bg--sample-1 cursor-hide">
     <h3>Video Background</h3>
     <p class="max-width-text text-balance text-center--md-up">
-      Minimal setup, maxiumum impact. Just add a class and tuck the component at
-      the bottom, then watch the magic!
+      Minimal setup, maxiumum impact. Just add a class and tuck the component at the bottom, then
+      watch the magic!
     </p>
     <!-- prettier-ignore -->
     {% set cta_1 = { text: 'Get started', url: 'https://axyscreative.com', new_tab: true } %}
@@ -482,24 +452,14 @@ path: library/combos
       src: 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0',
       id: 'video-bg-1'
     }) %}
-    {% include "../_includes/library/components/video-bg.njk" %}
+    {% include "../_includes/components/video-bg.njk" %}
   </div>
 
   <div class="video-bg-group">
     <div class="video-bg video-bg--sample-2 cursor-hide">
-      <h3
-        class="text-fill"
-        data-fill-start="top 92%"
-        data-fill-end="bottom 86%"
-      >
-        2.0 Variant
-      </h3>
-      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
-        Shadow: top
-      </p>
-      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">
-        Autoplay: false
-      </p>
+      <h3 class="text-fill" data-fill-start="top 92%" data-fill-end="bottom 86%">2.0 Variant</h3>
+      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">Shadow: top</p>
+      <p class="text-fill" data-fill-start="top 96%" data-fill-end="bottom 92%">Autoplay: false</p>
 
       <!-- prettier-ignore -->
       {% set video_bg = ({
@@ -513,16 +473,12 @@ path: library/combos
           placement: 'tr'
         }
       }) %}
-      {% include "../_includes/library/components/video-bg.njk" %}
+      {% include "../_includes/components/video-bg.njk" %}
     </div>
 
     <div class="video-bg video-bg--sample-3 cursor-hide" data-tilt>
       <h3 class="glitch-scroll">Space</h3>
-      <p
-        class="typing-scroll"
-        data-typing-cursor="underscore"
-        data-typing-delay="500"
-      >
+      <p class="typing-scroll" data-typing-cursor="underscore" data-typing-delay="500">
         Simply remarkable
       </p>
 
@@ -536,7 +492,7 @@ path: library/combos
           placement: 'bl'
         }
       }) %}
-      {% include "../_includes/library/components/video-bg.njk" %}
+      {% include "../_includes/components/video-bg.njk" %}
     </div>
   </div>
 </section>
@@ -549,12 +505,9 @@ path: library/combos
       Ensure you have the <code>video-overlay.njk</code> component and
       <code>video-overlay.js</code> file in your app.
     </li>
+    <li>Add the utility class of <code>video-toggle</code> to your button/trigger.</li>
     <li>
-      Add the utility class of <code>video-toggle</code> to your button/trigger.
-    </li>
-    <li>
-      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host
-      these video files.
+      Provide the data- tag <code>data-vid-src</code> generally Dropbox can host these video files.
     </li>
     <li>That's it!</li>
   </ol>

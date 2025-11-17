@@ -1,7 +1,7 @@
 ---
 title: Post Three
 description: Description Here
-poster: /static/img/library/landscape-3.webp
+poster: /static/img/landscape-3.webp
 author: Author Here
 date: 2020-09-03
 tags:

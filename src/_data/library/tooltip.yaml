@@ -1,7 +1,7 @@
 tooltip_1:
   message: Sample message for tooltip 1. This is using the default props, but uses (size="sm").
   # text:  # Optional message that triggers the tooltip
-  # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
+  # icon: /static/img/icon-google-info.svg # Optional icon that triggers the tooltip
   size: sm
   place: top-right
   place_sm: top-right
@@ -10,7 +10,7 @@ tooltip_1:
 tooltip_2:
   message: Tooltip 2 message. This uses the 'text' prop for the trigger. It also uses (place="right") to position the text bubble to the right side of the trigger.
   text: Use 'text' to trigger
-  # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
+  # icon: /static/img/icon-google-info.svg # Optional icon that triggers the tooltip
   # size: sm
   place: right
   place_sm: bottom-right
@@ -19,7 +19,7 @@ tooltip_2:
 tooltip_3:
   message: Sample message for tooltip 3. This is the lengthy text example. Crazy how much text we can have here. Will it still work through? That is the right question to ask in cases like this. Hopefully we can cover all the edge cases to make this component solid and reusable for future projects that I’ll take on. This uses (size="lg") and (place="bottom").
   text: Trigger the tooltip here
-  # icon: /static/img/library/icon-google-info.svg # Optional icon that triggers the tooltip
+  # icon: /static/img/icon-google-info.svg # Optional icon that triggers the tooltip
   size: lg
   place: bottom-right
   place_sm: bottom

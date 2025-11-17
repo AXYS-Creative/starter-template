@@ -18,8 +18,11 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/styles/styles.css" type="text/css" />
+
     <!-- Library DELETE ME -->
+    {% if path == "library/components" %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {% endif %}
 
     <!-- Script Tags -->
     {% if path == "home" %}
@@ -39,7 +42,7 @@
     
     {% if path == "home" %}
       {% set promo_banner_data = library.promo_banner %}
-      {% include './library/components/promo-banner.njk' %}
+      {% include './components/promo-banner.njk' %}
     {% endif %}
 
     <main class="main-content main-{{ path | slugifyPath }}">
@@ -54,7 +57,7 @@
       or path == "library/components" 
       or path == "library/combos" 
     %}
-      {% include "./library/components/btn-back-to-top.njk" %}
+      {% include "./components/btn-back-to-top.njk" %}
     {% endif %}
 
     <!-- prettier-ignore  -->
@@ -65,13 +68,12 @@
       or path == "library/combos"
       or path == "library/sections" 
       or path == "style-guide"
-      or path == "playground" 
     %}
-      {% include "./library/components/mouse-cursor.njk" %}
+      {% include "./components/mouse-cursor.njk" %}
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if path == "home" or path == "playground" %}
+    {% if path == "home" %}
       {% include './partials/loader.njk' %}
     {% endif %}
 
@@ -80,11 +82,11 @@
       type: 'height',
       allow_click: true
     }) %}
-    {% include "./library/components/scroll-progress.njk" %}
+    {% include "./components/scroll-progress.njk" %}
 
     <!-- prettier-ignore -->
     {% if path == "library/combos" %}
-      {% include "./library/components/video-overlay.njk" %}
+      {% include "./components/video-overlay.njk" %}
     {% endif %}
     
     {% if path == "library/advanced" %}

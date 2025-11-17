@@ -14,7 +14,7 @@ marquee_2:
   # imgs:
   count: 2
   scroll_alternate: true
-  velocity: 5
+  velocity: 20
   speed: 60
   speed_md: 30
   speed_sm: 25
@@ -23,17 +23,17 @@ marquee_2:
 marquee_3:
   # text:
   imgs:
-    - src: /static/img/library/img-sample-1.jpg
+    - src: /static/img/img-sample-1.jpg
       alt: "Sample Image 1"
-    - src: /static/img/library/img-sample-2.jpg
+    - src: /static/img/img-sample-2.jpg
       alt: "Sample Image 2"
-    - src: /static/img/library/img-sample-3.jpg
+    - src: /static/img/img-sample-3.jpg
       alt: "Sample Image 3"
-    - src: /static/img/library/img-sample-4.jpg
+    - src: /static/img/img-sample-4.jpg
       alt: "Sample Image 4"
-    - src: /static/img/library/img-sample-5.jpg
+    - src: /static/img/img-sample-5.jpg
       alt: "Sample Image 5"
-    - src: /static/img/library/img-sample-6.jpg
+    - src: /static/img/img-sample-6.jpg
       alt: "Sample Image 6"
   count: 2
   scroll_alternate: true

@@ -12,7 +12,7 @@ title: Style Guide
   desc: 'A place to view common styles and guidelines.',
   direction: 'column'
 }) %}
-{% include './_includes/library/sections/hero-simple.njk' %}
+{% include './_includes/sections/hero-simple.njk' %}
 
 <section class="main-style-guide__section">
   <h1>Heading I</h1>
@@ -23,26 +23,23 @@ title: Style Guide
   <h6>Heading VI</h6>
   <br /><br /><br /><br /><br />
   <p class="max-width-text">
-    This is a paragraph. It uses the <code>font-styles--body</code> mixin.
-    Responsive range from 18px (lg), 16px (md), to 14px (sm). Lorem ipsum dolor
-    sit amet, consectetur adipisicing elit. Quasi, quod.
+    This is a paragraph. It uses the <code>font-styles--body</code> mixin. Responsive range from
+    18px (lg), 16px (md), to 14px (sm). Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Quasi, quod.
   </p>
 
   <br /><br />
   <p class="max-width-text indent-first">
-    This is a paragraph includes the util <code>indent-first</code>. This will
-    indent only the first line of the paragraph. It also uses the css property
-    <code>text-align: justify</code> to help reach the edges of the container
-    nicely.
+    This is a paragraph includes the util <code>indent-first</code>. This will indent only the first
+    line of the paragraph. It also uses the css property <code>text-align: justify</code> to help
+    reach the edges of the container nicely.
   </p>
 
   <br /><br /><br /><br /><br />
   <div>
     <strong>This is strong text</strong>
     <br /><br />
-    <p class="text-bold">
-      This is bold text via global util <code>text-bold</code>
-    </p>
+    <p class="text-bold">This is bold text via global util <code>text-bold</code></p>
     &nbsp;
 
     <!-- prettier-ignore -->
@@ -53,18 +50,16 @@ title: Style Guide
       place_sm: 'bottom-left',
       include_point: true
     }) %}
-    {% include "./_includes/library/components/tooltip.njk" %}
+    {% include "./_includes/components/tooltip.njk" %}
     <br /><br />
   </div>
   <div>
     <em>This is emphasized text</em>
-    <p class="text-italic">
-      This is italic text (CMS Friendly, use '.text-italic')
-    </p>
+    <p class="text-italic">This is italic text (CMS Friendly, use '.text-italic')</p>
   </div>
   <small
-    >This is small text. Lorem ipsum dolor sit amet consectetur adipisicing
-    elit. Asperiores sequi repudiandae corporis.</small
+    >This is small text. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sequi
+    repudiandae corporis.</small
   >
   <code>This is a code block</code>
 
@@ -82,9 +77,8 @@ title: Style Guide
   <header class="main-style-guide__section-header">
     <h2 class="main-style-guide__section-heading">[ Buttons ]</h2>
     <p>
-      Buttons <code>btn.njk</code> that keep styles consistent and easy to use.
-      These handle both button and link behavior and come with the following
-      types:
+      Buttons <code>btn.njk</code> that keep styles consistent and easy to use. These handle both
+      button and link behavior and come with the following types:
       <code style="display: inline-block; margin-block: 12px 24px">
         solid | outline | text | icon-end | underline
       </code>
@@ -107,7 +101,7 @@ title: Style Guide
         type: 'solid',
         size: 'sm',
         class: 'btn--bg-slide',
-        icon_start: '/static/img/library/icon-google-orbit.svg'
+        icon_start: '/static/img/icon-google-orbit.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
 
@@ -118,7 +112,7 @@ title: Style Guide
         new_tab: false,
         type: 'solid',
         class: 'magnet magnet-wide-btn btn--underline glitch-hover cursor-hide',
-        icon_end: '/static/img/library/icon-google-new-tab.svg',
+        icon_end: '/static/img/icon-google-new-tab.svg',
         attributes: 'data-glitch-new-text="Let’s do this!"'
       }) %}
       {% include './_includes/components/btn.njk' %}
@@ -151,7 +145,7 @@ title: Style Guide
         new_tab: false,
         type: 'outline',
         class: 'btn--split-text cursor-trigger cursor-pair',
-        icon_end: '/static/img/library/icon-google-chevron-right.svg',
+        icon_end: '/static/img/icon-google-chevron-right.svg',
         icon_end_class: 'sample-link-icon',
         attributes: 'data-cursor-target=sample-link-icon data-cursor-class=cta-2'
       }) %}
@@ -178,7 +172,7 @@ title: Style Guide
         new_tab: true,
         type: 'text',
         class: 'glitch-hover',
-        icon_end: '/static/img/library/icon-google-new-tab.svg'
+        icon_end: '/static/img/icon-google-new-tab.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
     </div>
@@ -203,7 +197,7 @@ title: Style Guide
         new_tab: false,
         type: 'icon-end',
         class: 'cursor-hide',
-        icon_end: '/static/img/library/icon-google-chevron-right.svg',
+        icon_end: '/static/img/icon-google-chevron-right.svg',
         icon_end_class: 'magnet magnet-strong',
         icon_circle: true
       }) %}
@@ -216,7 +210,7 @@ title: Style Guide
         new_tab: false,
         type: 'icon-end',
         class: 'btn--underline',
-        icon_end: '/static/img/library/icon-google-chevron-right.svg'
+        icon_end: '/static/img/icon-google-chevron-right.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
     </div>
@@ -241,7 +235,7 @@ title: Style Guide
         new_tab: true,
         type: 'underline',
         class: 'btn--split-text magnet magnet-wide-btn',
-        icon_end: '/static/img/library/icon-google-warning-triangle.svg'
+        icon_end: '/static/img/icon-google-warning-triangle.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
     </div>
@@ -254,7 +248,7 @@ title: Style Guide
       {% set btn = ({
         text_desc: 'This is an icon button',
         type: 'solid',
-        icon_end: '/static/img/library/icon-google-check.svg'
+        icon_end: '/static/img/icon-google-check.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
 
@@ -263,7 +257,7 @@ title: Style Guide
         text_desc: 'This is an icon button',
         type: 'outline',
         size: 'sm',
-        icon_end: '/static/img/library/icon-google-x-lg.svg',
+        icon_end: '/static/img/icon-google-x-lg.svg',
         class: 'btn--bg-slide'
       }) %}
       {% include './_includes/components/btn.njk' %}
@@ -272,7 +266,7 @@ title: Style Guide
       {% set btn = ({
         text_desc: 'This is an icon button',
         type: 'text',
-        icon_end: '/static/img/library/icon-google-check-circle.svg'
+        icon_end: '/static/img/icon-google-check-circle.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
 
@@ -280,7 +274,7 @@ title: Style Guide
       {% set btn = ({
         text_desc: 'This is an icon button',
         type: 'underline',
-        icon_end: '/static/img/library/icon-google-chevron-right.svg'
+        icon_end: '/static/img/icon-google-chevron-right.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
     </div>
@@ -289,9 +283,7 @@ title: Style Guide
   <br /><br />
   <h3>Utility snippets</h3>
   <br />
-  <p>
-    You (and admin) can make use of utility classes to achieve special effects.
-  </p>
+  <p>You (and admin) can make use of utility classes to achieve special effects.</p>
   <br /><br /><br />
   <p style="display: flex; align-items: center; gap: 0.5ch">
     <a href="" class="glitch-hover tab-element-page"> Glitch Button </a>
@@ -320,13 +312,10 @@ title: Style Guide
   </p>
   <br /><br />
   <p>
-    <a href="" class="btn--split-text tab-element-page" data-hover-alt>
-      Split Text Button Alt
-    </a>
+    <a href="" class="btn--split-text tab-element-page" data-hover-alt> Split Text Button Alt </a>
     &nbsp;
     <span>
-      Class: <code>btn--split-text</code> Attribute:
-      <code>data-hover-alt</code> (only animates in)
+      Class: <code>btn--split-text</code> Attribute: <code>data-hover-alt</code> (only animates in)
     </span>
   </p>
   <br /><br />
@@ -350,7 +339,7 @@ title: Style Guide
   {% set cta_2 = ({
     text: 'Secondary CTA',
     url: 'https://axyscreative.com',
-    icon: '/static/img/library/icon-google-chevron-right.svg',
+    icon: '/static/img/icon-google-chevron-right.svg',
     new_tab: true
   }) %}
   {% include './_includes/components/cta-group.njk' %}
@@ -365,12 +354,12 @@ title: Style Guide
     label_true: 'On',
     label_false: 'Off'
   }) %}
-  {% include "./_includes/library/components/btn-toggle.njk" %}
+  {% include "./_includes/components/btn-toggle.njk" %}
 
   <br /><br />
   <!-- prettier-ignore -->
   {% set play_btn_id = 'library-id-play-btn' %}
-  {% include "./_includes/library/components/btn-video-toggle.njk" %}
+  {% include "./_includes/components/btn-video-toggle.njk" %}
 
   <br /><br />
   <h3>Toggle Sliders (Util structure)</h3>
@@ -395,15 +384,13 @@ title: Style Guide
   </p>
   <br />
   <strong>
-    Note: used <code>aria-selected="true"</code> or
-    <code>class="option-active"</code> to set a default.
+    Note: used <code>aria-selected="true"</code> or <code>class="option-active"</code> to set a
+    default.
   </strong>
   <br />
   <div class="cursor-hide">
     <br /><br />
-    <strong class="max-width-text">
-      Extra Note about style/type changing!
-    </strong>
+    <strong class="max-width-text"> Extra Note about style/type changing! </strong>
     <p>Toggle-slider styles can be changed in two ways:</p>
     <li>
       Either with a modifier class:
@@ -415,17 +402,15 @@ title: Style Guide
     </li>
     <br />
     <p>
-      When using the utility class, continue working with the modifier util to
-      change the toggle-slider style. When working with a component, such as the
-      tabs component or other util class such as tabs, we’ll use the attribute
-      <code>data-toggle-slider="underline"</code> since the parent renders
-      controls with js (parent) for example.
+      When using the utility class, continue working with the modifier util to change the
+      toggle-slider style. When working with a component, such as the tabs component or other util
+      class such as tabs, we’ll use the attribute
+      <code>data-toggle-slider="underline"</code> since the parent renders controls with js (parent)
+      for example.
     </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--solid">
-      <button class="option tab-element-page" aria-selected="true">
-        Option 1
-      </button>
+      <button class="option tab-element-page" aria-selected="true">Option 1</button>
       <button class="option tab-element-page">Option 2</button>
       <button class="option tab-element-page">Option 3</button>
       <div class="slider"></div>
@@ -435,17 +420,14 @@ title: Style Guide
   <br /><br />
   <div class="cursor-hide">
     <p>
-      The toggle slider comes with a second variation out of the box. Use the
-      modifier class <code>toggle-slider--underline</code> to change to this
-      style.
+      The toggle slider comes with a second variation out of the box. Use the modifier class
+      <code>toggle-slider--underline</code> to change to this style.
     </p>
     <br /><br />
     <div class="toggle-slider toggle-slider--underline">
       <button class="option tab-element-page">Option 1</button>
       <button class="option tab-element-page">Option 2</button>
-      <button class="option tab-element-page" aria-selected="true">
-        Option 3
-      </button>
+      <button class="option tab-element-page" aria-selected="true">Option 3</button>
       <div class="slider"></div>
     </div>
   </div>
@@ -455,8 +437,8 @@ title: Style Guide
   <header class="main-style-guide__section-header">
     <h2 class="main-style-guide__section-heading">[ Badge ]</h2>
     <p>
-      Badge <code>badge.njk</code> that keep styles consistent and easy to use.
-      These come with the following types:
+      Badge <code>badge.njk</code> that keep styles consistent and easy to use. These come with the
+      following types:
       <code style="display: inline-block; margin-block: 12px 24px">
         solid | outline | text | icon-end | underline
       </code>
@@ -468,25 +450,25 @@ title: Style Guide
   {% set badge = ({
     text: 'Basic Badge'
   }) %}
-  {% include "./_includes/library/components/badge.njk" %}
+  {% include "./_includes/components/badge.njk" %}
 
   <br /><br />
 
   <!-- prettier-ignore -->
   {% set badge = ({
     text: 'Badge with icon',
-    icon: '/static/img/library/icon-google-orbit.svg',
+    icon: '/static/img/icon-google-orbit.svg',
     type: 'outline'
   }) %}
-  {% include "./_includes/library/components/badge.njk" %}
+  {% include "./_includes/components/badge.njk" %}
 
   <br /><br />
 
   <!-- prettier-ignore -->
   {% set badge = ({
     text: 'Badge with icon',
-    icon: '/static/img/library/icon-google-orbit.svg',
+    icon: '/static/img/icon-google-orbit.svg',
     type: 'glass'
   }) %}
-  {% include "./_includes/library/components/badge.njk" %}
+  {% include "./_includes/components/badge.njk" %}
 </section>

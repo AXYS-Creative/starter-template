@@ -9,40 +9,35 @@ path: library/components
   title: 'Components',
   desc: 'A collection of reusable common components to help simplify your built and speed things up.'
  }) %}
-{% include '../_includes/library/sections/hero-simple.njk' %}
+{% include '../_includes/sections/hero-simple.njk' %}
 
 <section class="accordion-section section-width--thin">
   <h2 style="margin-bottom: 48px">[ Accordion - Component ]</h2>
   <p>
-    Accordions can be used to tuck away lengthy info. They’re often used for FAQ
-    sections. The <code>accordion.njk</code> component comes with the following
-    configs:
+    Accordions can be used to tuck away lengthy info. They’re often used for FAQ sections. The
+    <code>accordion.njk</code> component comes with the following configs:
   </p>
   <br />
   <br />
 
   <ul class="classic-list">
+    <li><code>id</code> a string, unique identifier if there’s more than one accordion</li>
     <li>
-      <code>id</code> a string, unique identifier if there’s more than one
-      accordion
+      <code>icon</code> an optional string, the path to the icon used for the accordion arrow.
+      Default is an empty string (no icon)
     </li>
     <li>
-      <code>icon</code> an optional string, the path to the icon used for the
-      accordion arrow. Default is an empty string (no icon)
+      <code>plus</code> a boolean to use a plus sign (html markup) instad of an icon. Defaults to
+      <code>false</code>
     </li>
     <li>
-      <code>plus</code> a boolean to use a plus sign (html markup) instad of an
-      icon. Defaults to <code>false</code>
+      <code>single_open</code> a boolean to only allow one accordion open at a time. Defaults to
+      <code>false</code>
     </li>
     <li>
-      <code>single_open</code> a boolean to only allow one accordion open at a
-      time. Defaults to <code>false</code>
-    </li>
-    <li>
-      <code>items</code> an object that takes in <code>title</code> and
-      <code>content</code> both of which are strings (content is 'safe' for
-      markup) — used for the accordion title and message within. You also have
-      access to <code>content_start</code> if using
+      <code>items</code> an object that takes in <code>title</code> and <code>content</code> both of
+      which are strings (content is 'safe' for markup) — used for the accordion title and message
+      within. You also have access to <code>content_start</code> if using
       <code>skip-to-content</code> util in the header.
     </li>
   </ul>
@@ -51,21 +46,18 @@ path: library/components
   <br />
 
   <p style="display: block; margin-bottom: 64px">
-    Accordion with <code>icon</code> config and <code>single_open</code> set to
-    true.
+    Accordion with <code>icon</code> config and <code>single_open</code> set to true.
   </p>
   <!-- prettier-ignore -->
   {% set accordion = library.accordion.accordion_1 %}
-  {% include '../_includes/library/components/accordion.njk' %}
+  {% include '../_includes/components/accordion.njk' %}
 
   <br /><br /><br /><br />
 
-  <p style="display: block; margin-bottom: 64px">
-    Accordion with <code>plus</code> config
-  </p>
+  <p style="display: block; margin-bottom: 64px">Accordion with <code>plus</code> config</p>
   <!-- prettier-ignore -->
   {% set accordion = library.accordion.accordion_2 %}
-  {% include '../_includes/library/components/accordion.njk' %}
+  {% include '../_includes/components/accordion.njk' %}
 </section>
 
 <section class="carousel-swiper-section">
@@ -77,36 +69,34 @@ path: library/components
   {% set carousel_controls = library.carousel_swiper.controls %}
   {% set carousel_pagination = library.carousel_swiper.pagination %}
   {% set carousel_slides = library.carousel_swiper.slides %}
-  {% include '../_includes/library/components/carousel-swiper.njk' %}
+  {% include '../_includes/components/carousel-swiper.njk' %}
 </section>
 
 <section class="clipboard-copy-section library-section">
   <h2>[ Clipboard Copy - Component + Util ]</h2>
   <p>
-    Copy any string to the user’s clipboard using the clipboard-copy.njk
-    component. This requires a few things:
+    Copy any string to the user’s clipboard using the clipboard-copy.njk component. This requires a
+    few things:
   </p>
   <ul class="classic-list">
     <li>
-      <code>id</code> a string value for the unique component id. This will also
-      be passed to the html element target.
+      <code>id</code> a string value for the unique component id. This will also be passed to the
+      html element target.
     </li>
     <li>
-      <code>copy_message</code> a string value for the text that will be copied
-      to the clipboard. Note: this accepts markup (toggle 'safe' filter in
-      component to turn off)
+      <code>copy_message</code> a string value for the text that will be copied to the clipboard.
+      Note: this accepts markup (toggle 'safe' filter in component to turn off)
     </li>
     <li>
-      <code>button_text</code> an optional string to change the copy button
-      text. Defaults to 'Copy'
+      <code>button_text</code> an optional string to change the copy button text. Defaults to 'Copy'
     </li>
     <li>
-      <code>button_text_active</code> an optional string to change the copy
-      button text when clicked. Defaults to 'Copied!'
+      <code>button_text_active</code> an optional string to change the copy button text when
+      clicked. Defaults to 'Copied!'
     </li>
     <li>
-      <code>icon</code> optional string, the file path to the icon shown on the
-      button. Default icon provided. Use <code>null</code> to remove the icon.
+      <code>icon</code> optional string, the file path to the icon shown on the button. Default icon
+      provided. Use <code>null</code> to remove the icon.
     </li>
   </ul>
 
@@ -116,10 +106,8 @@ path: library/components
   <!-- prettier-ignore -->
   {% set a11y_tab = 'tab-element-page' %}
   {% set clipboard_copy = ({id: 'clipboard-copy-1'}) %}
-  {% include "../_includes/library/components/clipboard-copy.njk" %}
-  <p id="{{ clipboard_copy.id }}">
-    Copy this message by clicking the button above!
-  </p>
+  {% include "../_includes/components/clipboard-copy.njk" %}
+  <p id="{{ clipboard_copy.id }}">Copy this message by clicking the button above!</p>
 
   <br />
   <h6>Copying CMS tokens</h6>
@@ -130,7 +118,7 @@ path: library/components
     btn_text_active: 'Token Copied!',
     icon: null
   }) %}
-  {% include "../_includes/library/components/clipboard-copy.njk" %}
+  {% include "../_includes/components/clipboard-copy.njk" %}
   <p id="{{ clipboard_copy.id }}">&lbrack;%br%&rbrack;</p>
 
   <br />
@@ -150,40 +138,34 @@ path: library/components
     auto_close: 5600,
     timer: true
   }) %}
-  {% include "../_includes/library/components/clipboard-copy.njk" %}
-  <p id="{{ clipboard_copy.id }}">
-    Sample text three — This will copy to the clipboard.
-  </p>
-  {% include "../_includes/library/components/alert.njk" %}
+  {% include "../_includes/components/clipboard-copy.njk" %}
+  <p id="{{ clipboard_copy.id }}">Sample text three — This will copy to the clipboard.</p>
+  {% include "../_includes/components/alert.njk" %}
 </section>
 
 <section class="counter-section library-section">
   <h2>[ Counter - Component ]</h2>
 
   <p>
-    The counter can be used to reflect stats and showcase data. It comes with a
-    wide range of configs.
+    The counter can be used to reflect stats and showcase data. It comes with a wide range of
+    configs.
   </p>
   <ul class="classic-list">
     <li><code>digit</code> the numeric value you're counting to.</li>
     <li>
-      <code>comma</code> a boolean to toggle the comma every thousand. Defaults
-      to <code>false</code>
+      <code>comma</code> a boolean to toggle the comma every thousand. Defaults to
+      <code>false</code>
     </li>
-    <li>
-      <code>prefix</code> an optional string at the start of the digit e.g. $
-    </li>
-    <li>
-      <code>suffix</code> an optional string at the end of the digit e.g. M
-    </li>
+    <li><code>prefix</code> an optional string at the start of the digit e.g. $</li>
+    <li><code>suffix</code> an optional string at the end of the digit e.g. M</li>
     <li><code>label</code> a string describing what the stat measures</li>
     <li>
-      <code>duration</code> a number (in ms) for the count to complete the
-      animation. Defaults to <code>2400</code>
+      <code>duration</code> a number (in ms) for the count to complete the animation. Defaults to
+      <code>2400</code>
     </li>
     <li>
-      <code>once</code> a boolean for whether or not this should animate each
-      time it comes into view. Defaults to <code>false</code>
+      <code>once</code> a boolean for whether or not this should animate each time it comes into
+      view. Defaults to <code>false</code>
     </li>
     <li>
       <code>ticker</code> a boolean to alter the display animation. Defaults to
@@ -195,16 +177,16 @@ path: library/components
   <div class="counter-section__group">
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_1 %} 
-    {% include "../_includes/library/components/counter.njk" %}
+    {% include "../_includes/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_2 %} 
-    {% include "../_includes/library/components/counter.njk" %}
+    {% include "../_includes/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_3 %} 
-    {% include "../_includes/library/components/counter.njk" %}
+    {% include "../_includes/components/counter.njk" %}
     <!-- prettier-ignore -->
     {% set counter_data = library.counter.counter_4 %} 
-    {% include "../_includes/library/components/counter.njk" %}
+    {% include "../_includes/components/counter.njk" %}
   </div>
 </section>
 
@@ -214,14 +196,13 @@ path: library/components
   <br />
   <br />
   <p>
-    After submitting the form, the user sees a temporary feedback message.
-    Either success or error.
+    After submitting the form, the user sees a temporary feedback message. Either success or error.
   </p>
   <br />
   <br />
   <!-- prettier-ignore -->
   {% set form_data = library.form_contact.form_data %}
-  {% include "../_includes/library/components/form-feedback.njk" %}
+  {% include "../_includes/components/form-feedback.njk" %}
 </section>
 
 <section class="form-section">
@@ -231,7 +212,7 @@ path: library/components
   <br />
   <!-- prettier-ignore -->
   {% set form_data = library.form_redirect.form_data %}
-  {% include "../_includes/library/components/form-redirect.njk" %}
+  {% include "../_includes/components/form-redirect.njk" %}
 </section>
 
 <section class="image-comparison-section library-section">
@@ -242,66 +223,61 @@ path: library/components
 <section class="tile-shuffle-section library-section">
   <h2>[ Image Shuffle - Component ]</h2>
   <p>
-    Traditionally used to show off a logos, but could be adapted to shuffle
-    through any kind of content.
+    Traditionally used to show off a logos, but could be adapted to shuffle through any kind of
+    content.
   </p>
 </section>
 
 <section class="marquee-section section-width--full">
   <div class="library-section-info section-width">
     <h2>[ Marquee - Component ]</h2>
-    <p>
-      Display content across the page using the marquee. Comes with the
-      following configs:
-    </p>
+    <p>Display content across the page using the marquee. Comes with the following configs:</p>
     <ul class="classic-list">
       <li>
-        <code>text</code> Accepts a string value and will display the message
-        passed in. (Not recommneded to use with <code>imgs</code>)
+        <code>text</code> Accepts a string value and will display the message passed in. (Not
+        recommneded to use with <code>imgs</code>)
       </li>
       <li>
-        <code>imgs</code> Accepts an array of images (taking src and alt props).
-        (Not recommneded to use with <code>text</code>)
+        <code>imgs</code> Accepts an array of images (taking src and alt props). (Not recommneded to
+        use with <code>text</code>)
       </li>
       <li>
-        <code>count</code> The number of marquee elements stacked on top of one
-        another. Defaults to <code>1</code>
+        <code>count</code> The number of marquee elements stacked on top of one another. Defaults to
+        <code>1</code>
       </li>
       <li>
-        <code>scroll-alternate</code> A boolean, alternate the marquee animation
-        direction based on the user's scroll direction. Defaults to
-        <code>false</code>. Also adds the modifier class
+        <code>scroll-alternate</code> A boolean, alternate the marquee animation direction based on
+        the user's scroll direction. Defaults to <code>false</code>. Also adds the modifier class
         <code>marquee--alternate</code>.
       </li>
       <li>
-        <code>velocity</code> A number that adjusts how dramatic the translate
-        is (also used with <code>scrub</code>). Default is <code>0</code> (which
-        removes the velocity and works nicely with
-        <code>scroll_alternate: false</code> ).
+        <code>velocity</code> A number that adjusts how dramatic the translate is (also used with
+        <code>scrub</code>). Default is <code>0</code> (which removes the velocity and works nicely
+        with <code>scroll_alternate: false</code> ).
       </li>
       <li>
-        <code>scrub</code> A boolean that disabled the auto scrolling/panning
-        and instead hooks up the scroll to the user's scroll position. Requires
-        <code>velocity</code> and defaults to <code>false</code>
+        <code>scrub</code> A boolean that disabled the auto scrolling/panning and instead hooks up
+        the scroll to the user's scroll position. Requires <code>velocity</code> and defaults to
+        <code>false</code>
       </li>
       <li>
-        <code>speed</code> A number representing the animation speed above
-        769px. Defaults to <code>28</code>
+        <code>speed</code> A number representing the animation speed above 769px. Defaults to
+        <code>28</code>
       </li>
       <li>
-        <code>speed-md</code> A number representing the animation speed below
-        768px. Defaults to <code>24</code>
+        <code>speed-md</code> A number representing the animation speed below 768px. Defaults to
+        <code>24</code>
       </li>
       <li>
-        <code>speed-sm</code> A number representing the animation speed below
-        480px. Defaults to <code>20</code>
+        <code>speed-sm</code> A number representing the animation speed below 480px. Defaults to
+        <code>20</code>
       </li>
     </ul>
   </div>
   <div></div>
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_1 %}
-  {% include '../_includes/library/components/marquee.njk' %}
+  {% include '../_includes/components/marquee.njk' %}
   <br /><br /><br /><br />
   <div class="section-width" style="padding-block: 0">
     [ This marquee is the simplest form of the marquee component ]
@@ -309,16 +285,15 @@ path: library/components
   <br /><br /><br /><br /><br /><br />
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_2 %}
-  {% include '../_includes/library/components/marquee.njk' %}
+  {% include '../_includes/components/marquee.njk' %}
   <br /><br /><br /><br />
   <div class="section-width" style="padding-block: 0">
-    [ This is a double marquee that changes direction based on scroll direction
-    ]
+    [ This is a double marquee that changes direction based on scroll direction ]
   </div>
   <br /><br /><br /><br /><br /><br />
   <!-- prettier-ignore -->
   {% set marquee = library.marquee.marquee_3 %}
-  {% include '../_includes/library/components/marquee.njk' %}
+  {% include '../_includes/components/marquee.njk' %}
   <br />
   <br />
   <div class="section-width" style="padding-block: 0">
@@ -331,11 +306,7 @@ path: library/components
 
   <p>
     A way to display badges and an image. Visit
-    <a
-      class="classic-link tab-element-page"
-      href="https://www.delphi.ai/"
-      target="_blank"
-    >
+    <a class="classic-link tab-element-page" href="https://www.delphi.ai/" target="_blank">
       https://www.delphi.ai/
     </a>
     to see the sample.
@@ -346,7 +317,7 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set orbit_data = library.solar_system %} 
-  {% include "../_includes/library/components/solar-system.njk" %}
+  {% include "../_includes/components/solar-system.njk" %}
 </section>
 
 <section class="testimonials-section library-section">
@@ -356,11 +327,7 @@ path: library/components
   <h3>Auto carousel</h3>
   <p>
     Visit
-    <a
-      class="classic-link tab-element-page"
-      href="https://www.delphi.ai/"
-      target="_blank"
-    >
+    <a class="classic-link tab-element-page" href="https://www.delphi.ai/" target="_blank">
       https://www.delphi.ai/
     </a>
     to see the sample.
@@ -371,22 +338,17 @@ path: library/components
   <h2>[ Theme toggle - Component ]</h2>
 
   <strong>
-    Because of input/label IDs, it’s recommended to only use one component per
-    page.
+    Because of input/label IDs, it’s recommended to only use one component per page.
   </strong>
 
-  <p>
-    Make use of css variables to handle dynamic color for text, links, buttons
-    and backgrounds.
-  </p>
+  <p>Make use of css variables to handle dynamic color for text, links, buttons and backgrounds.</p>
   <p>Be sure to include the <code>theme-toggle.js</code> file</p>
 
-  {% include "../_includes/library/components/theme-toggle.njk" %}
+  {% include "../_includes/components/theme-toggle.njk" %}
 
   <p>
     You can also have a dynamic image source based on the theme with the
-    <code>theme-img</code> class! Then use the following attributes to set up
-    the source path.
+    <code>theme-img</code> class! Then use the following attributes to set up the source path.
   </p>
   <ul class="classic-list">
     <li><code>data-light</code> The path to the image shown in light mode.</li>
@@ -400,9 +362,9 @@ path: library/components
 
   <img
     class="theme-img"
-    src="/static/img/library/img-sample-light.png"
-    data-light="/static/img/library/img-sample-light.png"
-    data-dark="/static/img/library/img-sample-dark.png"
+    src="/static/img/img-sample-light.png"
+    data-light="/static/img/img-sample-light.png"
+    data-dark="/static/img/img-sample-dark.png"
     alt="light dark image"
     width="250"
     style="width: 250px"

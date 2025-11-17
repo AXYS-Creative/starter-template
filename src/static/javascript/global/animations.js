@@ -96,10 +96,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
         loaderHasCompleted = true;
       });
 
-      // axys scroll-horizontal
-      {
-      }
-
       // Library - Lift any desired code blocks out, then delete from production
       {
         // Page specific scrollTrigger fix (delay refresh)
@@ -1424,6 +1420,36 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
 
       // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
+        // GSAP SplitText utility
+        {
+          const splitTextElements = document.querySelectorAll(".split-text");
+
+          splitTextElements.forEach((el) => {
+            const splitType = el.dataset.splitType || "words"; // e.g. "words", "chars", "lines", "words,chars"
+            const customClass = el.dataset.splitClass || "";
+
+            const types = splitType.split(",").map((t) => t.trim());
+            const config = {
+              type: splitType, // SplitText accepts "words,chars" etc.
+              tag: "span",
+            };
+
+            if (types.includes("chars")) {
+              config.charsClass = `split-text__char++ ${customClass}`;
+            }
+
+            if (types.includes("words")) {
+              config.wordsClass = `split-text__word++ ${customClass}`;
+            }
+
+            if (types.includes("lines")) {
+              config.linesClass = `split-text__line++ ${customClass}`;
+            }
+
+            new SplitText(el, config);
+          });
+        }
+
         // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
         {
           const gsapElems = document.querySelectorAll(".gsap-animate");
@@ -1568,28 +1594,6 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               onLeaveBack: () => {
                 if (!staggerOnce) animateOut();
               },
-            });
-          });
-        }
-
-        // GSAP SplitText (characters & words)
-        {
-          const splitCharacters = document.querySelectorAll(".split-chars");
-          const splitWords = document.querySelectorAll(".split-words");
-
-          splitCharacters.forEach((el) => {
-            new SplitText(el, {
-              type: "chars",
-              charsClass: "split-chars__char++",
-              tag: "span",
-            });
-          });
-
-          splitWords.forEach((el) => {
-            new SplitText(el, {
-              type: "words",
-              wordsClass: "split-words__word++",
-              tag: "span",
             });
           });
         }

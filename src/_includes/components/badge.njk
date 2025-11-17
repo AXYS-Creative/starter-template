@@ -1,0 +1,13 @@
+<!-- prettier-ignore -->
+{% set badge_text = badge.text or 'No Text Provided' %}
+{% set badge_icon = badge.icon or '' %}
+{% set badge_type = badge.type or 'solid' %}
+
+<span class="badge badge-type--{{ badge_type }}">
+  <!-- prettier-ignore -->
+  {% if badge_icon %}
+    {% set icon_svg = ({ src: badge_icon, class: 'badge__icon' }) %}
+    {% include "./icon-svg.njk" %}
+  {% endif %}
+  <span class="badge__text">{{ badge_text }}</span>
+</span>

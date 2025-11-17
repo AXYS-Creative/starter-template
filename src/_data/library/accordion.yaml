@@ -1,6 +1,6 @@
 accordion_1:
   id: 1 # used if there are multiple accordions
-  icon: /static/img/library/icon-google-chevron-down.svg
+  icon: /static/img/icon-google-chevron-down.svg
   plus: false
   single_open: true
   items:

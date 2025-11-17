@@ -165,17 +165,17 @@ const setViewportUnits = (() => {
 //
 // Title change on tab move
 //
-{
-  const originalTitle = document.title;
+// {
+//   const originalTitle = document.title;
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      document.title = "👋 Hey, come back!";
-    } else {
-      document.title = originalTitle;
-    }
-  });
-}
+//   document.addEventListener("visibilitychange", () => {
+//     if (document.hidden) {
+//       document.title = "👋 Hey, come back!";
+//     } else {
+//       document.title = originalTitle;
+//     }
+//   });
+// }
 
 console.clear();
 console.log("visit axyscreative.com for more info");

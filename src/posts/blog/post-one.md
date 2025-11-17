@@ -1,14 +1,14 @@
 ---
 title: Post One
 description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus enim soluta aliquid.
-poster: /static/img/library/landscape-1.webp
+poster: /static/img/landscape-1.webp
 author: Author Here
 date: 2020-09-01
 tags:
   - left
   - center
   - right
-cover_image: /static/img/library/landscape-1.webp
+cover_image: /static/img/landscape-1.webp
 ---
 
 # This is a Heading h1

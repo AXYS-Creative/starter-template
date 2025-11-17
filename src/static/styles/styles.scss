@@ -1,81 +1,67 @@
 // // // // // Base
 // prettier-ignore
 @import "variables",
- "functions",
- "mixins",
- "globals",
- "util",
- "fonts",
- "animations";
+  "functions",
+  "mixins",
+  "globals",
+  "util",
+  "fonts",
+  "animations";
+
+// // // // // Components
+// prettier-ignore
+@import "./components/accordion",
+  "./components/alert",
+  "./components/badge",
+  "./components/btn", 
+  "./components/btn-back-to-top",
+  "./components/btn-toggle",
+  "./components/btn-video-toggle",
+  "./components/carousel-swiper",
+  "./components/contact-form",
+  "./components/counter",
+  "./components/cta-group",
+  "./components/dropdown-link",
+  "./components/grid-bg",
+  "./components/grid-flow-img",
+  "./components/icon-svg",
+  "./components/loader",
+  "./components/marquee",
+  "./components/mouse-cursor",
+  "./components/particle-waves",
+  "./components/price-cards",
+  "./components/promo-banner",
+  "./components/scroll-progress",
+  "./components/social-media",
+  "./components/solar-system",
+  "./components/tabs",
+  "./components/theme-toggle",
+  "./components/tooltip",
+  "./components/video-bg",
+  "./components/video-overlay",
+  "./components/video-scrub";
+
+// // // // // Sections
+// prettier-ignore
+@import "./sections/hero-simple",
+  "./sections/carousel-hero",
+  "./sections/plan-selection",
+  "./sections/scroll-horizontal",
+  "./sections/scroll-stack",
+  "./sections/tunnel",
+  "./sections/work-gallery";
 
 // // // // // Partials
 // prettier-ignore
 @import "./partials/header-island",
- "./partials/header-simple",
- "./partials/footer-simple",
- "./partials/footer-scroll-reveal";
+  "./partials/header-simple",
+  "./partials/footer-simple",
+  "./partials/footer-scroll-reveal";
 
 // // // // // Pages
 // prettier-ignore
 @import "./pages/home",
- "./pages/style-guide",
- "./pages/404";
-
-// // // // // Components
-// prettier-ignore
-@import "./components/btn", 
- "./components/cta-group",
- "./components/dropdown-link",
- "./components/icon-svg",
- "./components/social-media";
-
-// // // // // Sections
-// prettier-ignore
-@import "./playground/axys-hero",
- "./playground/axys-section-faq",
- "./playground/axys-scroll-horizontal",
- "./playground/axys-scroll-stack",
- "./playground/axys-work";
-
-// // // // // Library // DELETE ME CHANGE ME after pulling files
-// prettier-ignore
-@import "./library/accordion",
- "./library/alert",
- "./library/blog-archive",
- "./library/blog-post",
- "./library/btn-back-to-top",
- "./library/btn-video-toggle",
- "./library/btn-toggle",
- "./library/carousel-swiper",
- "./library/contact-form",
- "./library/counter",
- "./library/marquee",
- "./library/mouse-cursor",
- "./library/badge",
- "./library/price-cards",
- "./library/promo-banner",
- "./library/solar-system",
- "./library/tabs",
- "./library/theme-toggle",
- "./library/tooltip",
- "./library/video-bg",
- "./library/video-overlay",
- "./library/video-scrub";
-
-// prettier-ignore
-@import "./library/components/loader", 
-"./library/components/scroll-progress";
-
-// prettier-ignore
-@import "./library/advanced/grid-bg",
- "./library/advanced/grid-flow-img",
- "./library/advanced/particle-waves";
-
-// prettier-ignore
-@import "./library/sections/hero-simple",
- "./library/sections/carousel-hero",
- "./library/sections/plan-selection",
- "./library/sections/scroll-horizontal",
- "./library/sections/scroll-stack",
- "./library/sections/tunnel",
- "./library/sections/work-gallery";
+  "./pages/style-guide",
+  "./pages/blog-archive",
+  "./pages/blog-post",
+  "./pages/404";
