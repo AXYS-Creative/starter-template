@@ -177,8 +177,9 @@ html[data-theme="light"] {
   @include light-theme;
 }
 
+// Library
 :root {
-  --partial-float-offset: 24px;
+  --partial-float-offset: 24px; // header/footer float
 
   --carousel-snap-gap: 24px;
 }

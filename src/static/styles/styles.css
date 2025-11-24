@@ -312,7 +312,7 @@ li.body-lg {
     --font-size: 14px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   p.body-lg,
   a.body-lg,
   button.body-lg,
@@ -582,7 +582,7 @@ code.codearea {
   .align-self-center {
     align-self: center;
   }
-  .dot-fill {
+  .dots-fill {
     overflow: visible;
   }
   .pin-steps {
@@ -5817,7 +5817,7 @@ code.codearea {
     --font-size: 14px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .accordion-label {
     --font-size: 18px;
   }
@@ -6839,6 +6839,13 @@ code.codearea {
   flex-shrink: 0;
 }
 
+.dots-fill {
+  overflow: visible;
+}
+.dots-fill circle {
+  fill: currentColor;
+}
+
 .dropdown-link {
   position: relative;
   cursor: pointer;
@@ -7074,7 +7081,7 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
     --font-size: 14px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .site-loader__text {
     --font-size: 18px;
   }
@@ -7407,7 +7414,7 @@ body:has(.tooltip-util) .mouse-cursor {
     --font-size: 14px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .price-cards .price-card__price {
     --font-size: 18px;
   }

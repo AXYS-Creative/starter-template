@@ -35,14 +35,14 @@ description:
   {% include "../_includes/components/particle-waves.njk" %}
 </section>
 
-<section class="dots-fill library-section">
+<section class="dots-fill-section library-section">
   <h2 style="margin: auto">[ <span class="glitch-scroll">dots fill</span> ]</h2>
   <p style="margin: auto">A utility class that goes on an <code>svg</code></p>
   <br /><br />
 
   <svg
     style="margin: auto"
-    class="dot-fill dots-basic-rectangle"
+    class="dots-fill dots-basic-rectangle"
     data-dot-size="2"
     data-dot-gap="32"
     data-dot-restore="1"
@@ -64,13 +64,13 @@ description:
       height: 30vw; 
       margin: auto;
     "
-    class="dot-fill dots-axys-glyph"
+    class="dots-fill dots-axys-glyph"
     data-dot-size="0.5"
     data-dot-gap="4"
-    data-dot-restore="0.75"
-    data-dot-sensitivity="0.95"
-    data-dot-distance="50"
-    data-dot-strength="20"
+    data-dot-restore="0.5"
+    data-dot-sensitivity="0.9"
+    data-dot-distance="25"
+    data-dot-strength="10"
     data-dot-color="var(--color-brand--primary)"
     data-dot-illuminate="false"
     data-dot-grow="0"
@@ -91,7 +91,7 @@ description:
       height: 30vw; 
       margin: auto;
     "
-    class="dot-fill dots-play-icon"
+    class="dots-fill dots-play-icon"
     data-dot-size="2"
     data-dot-gap="16"
     data-dot-restore="0.9"
@@ -100,7 +100,7 @@ description:
     data-dot-strength="50"
     data-dot-color="var(--color-brand--primary)"
     data-dot-illuminate="true"
-    data-dot-grow="2"
+    data-dot-grow="3"
     width="384"
     height="512"
     viewBox="0 0 384 512"
@@ -110,7 +110,7 @@ description:
   </svg>
 
   <svg
-    class="dot-fill dots-axys-logo-full"
+    class="dots-fill dots-axys-logo-full"
     data-dot-size="0.5"
     data-dot-gap="4"
     data-dot-distance="180"
@@ -162,10 +162,6 @@ description:
     <path d="M0 36.6037V80.24H43.6364V43.8763H80V0.24H36.3636V36.6037H0Z"></path>
   </svg>
 </section>
-
-<!-- prettier-ignore -->
-{% set marquee = library.marquee.marquee_2 %}
-{% include '../_includes/components/marquee.njk' %}
 
 <section
   class="grid-show"

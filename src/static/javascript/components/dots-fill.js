@@ -36,6 +36,10 @@ class DotFill {
   }
 
   init() {
+    // Set the color on the SVG element so circles can inherit it
+    if (this.config.color) {
+      this.svg.style.color = this.config.color;
+    }
     this.updateBounds();
     this.createDots();
     this.bindEvents();
@@ -61,7 +65,7 @@ class DotFill {
     if (shapes.length === 0) return;
 
     // Clear existing dots
-    this.svg.querySelectorAll(".dot-fill-dot").forEach((dot) => dot.remove());
+    this.svg.querySelectorAll(".dots-fill-dot").forEach((dot) => dot.remove());
     this.dots = [];
 
     // Get the combined bounding box of all shapes in viewBox coordinates
@@ -101,8 +105,8 @@ class DotFill {
           dot.el.setAttribute("cx", x);
           dot.el.setAttribute("cy", y);
           dot.el.setAttribute("r", this.config.radius);
-          dot.el.setAttribute("fill", this.config.color);
-          dot.el.classList.add("dot-fill-dot");
+          // Remove individual fill attribute - use CSS class instead
+          dot.el.classList.add("dots-fill-dot");
 
           this.svg.appendChild(dot.el);
           this.dots.push(dot);
@@ -196,15 +200,14 @@ class DotFill {
   }
 
   tick() {
+    // Calculate mouse position in SVG coordinates once per frame
+    const viewBox = this.svg.viewBox.baseVal;
+    const scaleX = viewBox.width / this.svgBounds.width;
+    const scaleY = viewBox.height / this.svgBounds.height;
+    const mouseXInSVG = (this.mouse.x - this.svgBounds.x) * scaleX + viewBox.x;
+    const mouseYInSVG = (this.mouse.y - this.svgBounds.y) * scaleY + viewBox.y;
+
     this.dots.forEach((dot) => {
-      // Convert mouse page coordinates to SVG viewBox coordinates
-      const viewBox = this.svg.viewBox.baseVal;
-      const scaleX = viewBox.width / this.svgBounds.width;
-      const scaleY = viewBox.height / this.svgBounds.height;
-
-      const mouseXInSVG = (this.mouse.x - this.svgBounds.x) * scaleX + viewBox.x;
-      const mouseYInSVG = (this.mouse.y - this.svgBounds.y) * scaleY + viewBox.y;
-
       const distX = mouseXInSVG - dot.position.x;
       const distY = mouseYInSVG - dot.position.y;
       const dist = Math.max(Math.hypot(distX, distY), 1);
@@ -259,9 +262,9 @@ class DotFill {
   }
 }
 
-// Initialize all dot-fill SVGs
+// Initialize all dots-fill SVGs
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".dot-fill").forEach((svg) => {
+  document.querySelectorAll(".dots-fill").forEach((svg) => {
     const dotFill = new DotFill(svg);
     dotFill.init();
   });

@@ -14,7 +14,7 @@ marquee_2:
   # imgs:
   count: 2
   scroll_alternate: true
-  velocity: 20
+  velocity: 5
   speed: 60
   speed_md: 30
   speed_sm: 25
