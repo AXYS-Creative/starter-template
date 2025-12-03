@@ -19,8 +19,12 @@
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus-visible {
-    -webkit-text-fill-color: var(--color-font--primary);
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset;
+    -webkit-text-fill-color: var(--color-font--primary); // Text color
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset; // "Background" color
+
+    + .label {
+      opacity: 0; // Hide any labels positioned over the input field
+    }
   }
 
   // This hides the default buttons on input type="number"

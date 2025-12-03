@@ -1450,7 +1450,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
           });
         }
 
-        // Animate any element with the class 'gsap-animate' using the 'gsap-animated' companion class. Comes with different data attributes for customization.
+        // GSAP Animate util - Loader edition
         {
           const gsapElems = document.querySelectorAll(".gsap-animate");
 
@@ -1550,6 +1550,44 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
             }
           });
         }
+
+        // GSAP Animate util - Standard edition
+        // {
+        //   const gsapElems = document.querySelectorAll(".gsap-animate");
+
+        //   gsapElems.forEach((gsapElem) => {
+        //     const animOnce = gsapElem.dataset.gsapOnce === "true";
+        //     const animTrigger = gsapElem.dataset.gsapTrigger || gsapElem;
+        //     const animStart = gsapElem.dataset.gsapStart || "top 98%";
+        //     const animEnd = gsapElem.dataset.gsapEnd || "bottom 2%";
+        //     const animMarkers = gsapElem.dataset.gsapMarkers === "true";
+
+        //     if (animOnce) {
+        //       ScrollTrigger.create({
+        //         trigger: animTrigger,
+        //         start: animStart,
+        //         end: animEnd,
+        //         once: true,
+        //         onEnter: () => {
+        //           gsapElem.classList.add("gsap-animated");
+        //         },
+        //         markers: animMarkers,
+        //       });
+        //     } else {
+        //       // Repeating animation
+        //       ScrollTrigger.create({
+        //         trigger: animTrigger,
+        //         start: animStart,
+        //         end: animEnd,
+        //         onEnter: () => gsapElem.classList.add("gsap-animated"),
+        //         onLeave: () => gsapElem.classList.remove("gsap-animated"),
+        //         onEnterBack: () => gsapElem.classList.add("gsap-animated"),
+        //         onLeaveBack: () => gsapElem.classList.remove("gsap-animated"),
+        //         markers: animMarkers,
+        //       });
+        //     }
+        //   });
+        // }
 
         // GSAP Stagger util
         {

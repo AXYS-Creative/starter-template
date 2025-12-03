@@ -1,16 +1,16 @@
 .icon-svg {
+  --icon-size: 1em;
+
   @include mask-image();
 
-  width: 1em;
-  height: 1em;
+  width: var(--icon-size);
+  height: var(--icon-size);
 
   &--lg {
-    width: 1.25em;
-    height: 1.25em;
+    --icon-size: 1.25em;
   }
 
   &--sm {
-    width: 0.75em;
-    height: 0.75em;
+    --icon-size: 0.75em;
   }
 }

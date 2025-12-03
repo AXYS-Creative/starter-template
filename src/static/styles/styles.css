@@ -126,6 +126,9 @@ html[data-theme=light] {
   -webkit-text-fill-color: var(--color-font--primary);
   -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset;
 }
+*:-webkit-autofill + .label, *:-webkit-autofill:hover + .label, *:-webkit-autofill:focus-visible + .label {
+  opacity: 0;
+}
 * input::-webkit-outer-spin-button,
 * input::-webkit-inner-spin-button {
   display: none;
@@ -5891,6 +5894,28 @@ code.codearea {
   overflow: hidden;
 }
 
+.icon-svg {
+  --icon-size: 1em;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  aspect-ratio: 1/1;
+  background: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+.icon-svg--lg {
+  --icon-size: 1.25em;
+}
+.icon-svg--sm {
+  --icon-size: 0.75em;
+}
+
 .alert-section__group {
   display: flex;
   justify-content: flex-start;
@@ -7005,29 +7030,6 @@ code.codearea {
 }
 .grid-flow-parent--greyscale > *:hover {
   filter: grayscale(0);
-}
-
-.icon-svg {
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-          mask-position: center;
-  aspect-ratio: 1/1;
-  background: currentColor;
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-}
-.icon-svg--lg {
-  width: 1.25em;
-  height: 1.25em;
-}
-.icon-svg--sm {
-  width: 0.75em;
-  height: 0.75em;
 }
 
 body .hero-simple.home-hero h1,

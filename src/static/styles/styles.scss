@@ -11,6 +11,7 @@
 // // // // // Components
 // prettier-ignore
 @import "./components/accordion",
+  "./components/icon-svg", // close to top
   "./components/alert",
   "./components/badge",
   "./components/btn", 
@@ -25,7 +26,6 @@
   "./components/dropdown-link",
   "./components/grid-bg",
   "./components/grid-flow-img",
-  "./components/icon-svg",
   "./components/loader",
   "./components/marquee",
   "./components/mouse-cursor",
