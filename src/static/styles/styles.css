@@ -585,10 +585,39 @@ code.codearea {
   .align-self-center {
     align-self: center;
   }
+  .border-ray-trace {
+    position: relative;
+    background: var(--color-background);
+    border-radius: 12px;
+    overflow: visible;
+  }
+  .border-ray-trace::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, transparent 0%, var(--hero-color--primary) 100%);
+    z-index: -1;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  .border-ray-trace::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-background);
+    z-index: -1;
+  }
   .dots-fill {
     overflow: visible;
   }
   .pin-steps {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8811,18 +8840,14 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   width: 100%;
   max-width: 1364px;
   margin-inline: auto;
+  padding-inline: var(--body-padding);
+  padding-block: var(--body-padding-double);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   gap: var(--spacing);
-}
-@media (min-width: 1201px) {
-  .plan-selection__inner {
-    padding-inline: var(--body-padding);
-    padding-block: var(--body-padding-double);
-  }
 }
 .plan-selection__toggle-wrapper {
   position: relative;
@@ -8946,9 +8971,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   .plan-options {
     overflow: auto;
     scroll-snap-type: x mandatory;
-    padding-inline: var(--body-padding-double);
-    margin-inline-start: var(--body-padding-double);
-    padding-block-end: 24px;
+    padding-block: 12px 24px;
     scrollbar-color: var(--color-brand--primary) var(--color-surface--1);
   }
   .plan-options::-webkit-scrollbar-track {
@@ -8966,13 +8989,15 @@ html:has(.scroll-progress)::-webkit-scrollbar {
     padding-inline: var(--body-padding);
   }
 }
+.plan-options .border-ray-trace {
+  width: 100%;
+}
 .plan-options .plan-option {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  border: var(--border-width) solid var(--color-border);
   gap: var(--spacing);
   padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
   border-radius: var(--radius--sm);
@@ -9064,6 +9089,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   margin-block: var(--spacing) var(--spacing--lg);
 }
 .plan-options .plan-option__perks li {
+  text-align: start;
   display: flex;
   align-items: center;
   gap: 0.5ch;

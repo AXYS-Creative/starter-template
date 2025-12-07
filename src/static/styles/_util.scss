@@ -47,12 +47,39 @@
     align-self: center;
   }
 
+  .border-ray-trace {
+    position: relative;
+    background: var(--color-background);
+    border-radius: 12px;
+    overflow: visible;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, transparent 0%, var(--hero-color--primary) 100%);
+      z-index: -1;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--color-background);
+      z-index: -1;
+    }
+  }
+
   .dots-fill {
     overflow: visible;
   }
 
   .pin-steps {
-    // @include hide-content;
+    @include hide-content;
     @include column-start;
     position: absolute;
     top: 0;

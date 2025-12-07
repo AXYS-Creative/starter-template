@@ -16,6 +16,97 @@ export const lenis = new Lenis({
 // Library DELETE ME
 //
 
+// Color converter for data- props that take a color
+// color-utils.js - Reusable color parsing utility
+
+export const ColorUtils = (() => {
+  // Cache to avoid recreating temp elements
+  let tempEl = null;
+
+  function getTempElement() {
+    if (!tempEl) {
+      tempEl = document.createElement("div");
+      tempEl.style.display = "none";
+      document.body.appendChild(tempEl);
+    }
+    return tempEl;
+  }
+
+  /**
+   * Parse any valid CSS color value to RGB object
+   * @param {string} colorString - Any valid CSS color (named, hex, rgb, hsl, var(), etc.)
+   * @param {HTMLElement} element - Element for resolving CSS variables (optional)
+   * @returns {{r: number, g: number, b: number}|null} RGB object or null if invalid
+   */
+  function parseColor(colorString, element = null) {
+    if (!colorString) return null;
+
+    // Handle CSS variables
+    if (colorString.startsWith("var(")) {
+      const varName = colorString.match(/var\((--[^,)]+)/)?.[1];
+      if (varName && element) {
+        const computedStyle = getComputedStyle(element);
+        colorString = computedStyle.getPropertyValue(varName).trim();
+      }
+    }
+
+    // Use browser to parse any valid CSS color
+    const temp = getTempElement();
+    temp.style.color = colorString;
+
+    const computedColor = getComputedStyle(temp).color;
+
+    // Parse the computed rgb/rgba value
+    const rgbMatch = computedColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (rgbMatch) {
+      return {
+        r: parseInt(rgbMatch[1]),
+        g: parseInt(rgbMatch[2]),
+        b: parseInt(rgbMatch[3]),
+      };
+    }
+
+    return null;
+  }
+
+  /**
+   * Convert RGB object to rgba() string
+   * @param {{r: number, g: number, b: number}} color - RGB color object
+   * @param {number} alpha - Alpha value (0-1)
+   * @returns {string} rgba() string
+   */
+  function toRgbaString(color, alpha = 1) {
+    return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+  }
+
+  /**
+   * Convert RGB object to hex string
+   * @param {{r: number, g: number, b: number}} color - RGB color object
+   * @returns {string} hex color string
+   */
+  function toHex(color) {
+    const toHexByte = (n) => n.toString(16).padStart(2, "0");
+    return `#${toHexByte(color.r)}${toHexByte(color.g)}${toHexByte(color.b)}`;
+  }
+
+  /**
+   * Cleanup temp element (call on page unload if needed)
+   */
+  function cleanup() {
+    if (tempEl && tempEl.parentNode) {
+      tempEl.parentNode.removeChild(tempEl);
+      tempEl = null;
+    }
+  }
+
+  return {
+    parseColor,
+    toRgbaString,
+    toHex,
+    cleanup,
+  };
+})();
+
 // Global config shared everywhere
 export const globalConfig = {
   // loadDuration: 3.2, // global loader, in seconds (not ms)

@@ -8,13 +8,10 @@
 
   &__inner {
     @include width-clamp;
+    @include section-padding;
     @include column-center;
     text-align: center;
     gap: var(--spacing);
-
-    @include mq-min(xl) {
-      @include section-padding; // padding moved for scroll-snap
-    }
   }
 
   &__toggle-wrapper {
@@ -157,16 +154,14 @@
   width: 100%;
 
   @include mq-max(xl) {
+    // border: $test;
     $scroll-bar-color-track: var(--color-brand--primary);
     $scroll-bar-color-thumb: var(--color-surface--1);
 
     overflow: auto;
     scroll-snap-type: x mandatory;
-
-    // Scroll-snap requires a strange mix of padding and margin inline start.
-    padding-inline: var(--body-padding-double);
-    margin-inline-start: var(--body-padding-double);
-    padding-block-end: 24px; // room for scrollbar
+    padding-block: 12px 24px; // room for scrollbar
+    // scroll-padding: 24px; // not working?
 
     scrollbar-color: $scroll-bar-color-track $scroll-bar-color-thumb;
     &::-webkit-scrollbar-track {
@@ -184,10 +179,13 @@
     padding-inline: var(--body-padding);
   }
 
+  .border-ray-trace {
+    width: 100%;
+  }
   .plan-option {
     @include column-center;
     position: relative;
-    border: var(--border-width) solid var(--color-border);
+    // border: var(--border-width) solid var(--color-border);
     gap: var(--spacing);
     padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
     border-radius: var(--radius--sm);
@@ -264,6 +262,7 @@
       margin-block: var(--spacing) var(--spacing--lg);
 
       li {
+        text-align: start;
         display: flex;
         align-items: center;
         gap: 0.5ch;

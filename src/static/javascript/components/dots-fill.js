@@ -125,20 +125,13 @@ class DotFill {
             velocity: { x: 0, y: 0 },
             lastOpacity: 1,
             lastRadius: this.config.radius,
-            translateX: 0, // Track translation for GPU
-            translateY: 0,
           };
 
           dot.el = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-          // Position at anchor point (0,0 relative)
           dot.el.setAttribute("cx", x);
           dot.el.setAttribute("cy", y);
           dot.el.setAttribute("r", this.config.radius);
           dot.el.classList.add("dots-fill-dot");
-
-          // Enable GPU acceleration via CSS transforms
-          dot.el.style.willChange = "transform, opacity";
-          dot.el.style.transform = "translate(0, 0)";
 
           fragment.appendChild(dot.el);
           this.dots.push(dot);
@@ -305,18 +298,9 @@ class DotFill {
       dot.smooth.x += (dot.position.x - dot.smooth.x) * 0.1;
       dot.smooth.y += (dot.position.y - dot.smooth.y) * 0.1;
 
-      // GPU-accelerated position updates via CSS transform
-      const newTranslateX = dot.smooth.x - dot.anchor.x;
-      const newTranslateY = dot.smooth.y - dot.anchor.y;
-
-      // Only update transform if position changed (avoid redundant GPU commands)
-      const translateDiff =
-        Math.abs(newTranslateX - dot.translateX) + Math.abs(newTranslateY - dot.translateY);
-      if (translateDiff > 0.01) {
-        dot.el.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
-        dot.translateX = newTranslateX;
-        dot.translateY = newTranslateY;
-      }
+      // Always update position (these are the main animation)
+      dot.el.setAttribute("cx", dot.smooth.x);
+      dot.el.setAttribute("cy", dot.smooth.y);
     });
 
     this.animationFrame = requestAnimationFrame(() => this.tick());
