@@ -6233,6 +6233,38 @@ code.codearea {
     color: var(--color-link--hover);
   }
 }
+.btn-type--primary {
+  border: var(--border-width--btn) solid var(--color-btn-border);
+  border-radius: var(--radius--btn);
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  padding: var(--padding-btn);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-type--primary {
+    transition: all 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-type--primary:hover, .btn-type--primary:focus-visible {
+    border-color: var(--color-btn-border--hover);
+    background: var(--color-btn-bg--hover);
+    color: var(--color-btn-text--hover);
+  }
+}
+.btn-type--secondary {
+  color: var(--color-link);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-type--secondary {
+    transition: 0.24s ease;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-type--secondary:hover, .btn-type--secondary:focus-visible {
+    color: var(--color-link--hover);
+  }
+}
 .btn-size--sm {
   --font-size: 13px;
   --padding-btn: var(--padding-btn--sm);
@@ -6569,12 +6601,7 @@ code.codearea {
     display: none;
   }
 }
-.swiper .swiper-button-prev__img,
-.swiper .swiper-button-next__img {
-  width: 20px;
-  aspect-ratio: 1;
-}
-.swiper .swiper-button-prev__img {
+.swiper .swiper-button-prev__icon {
   rotate: 180deg;
 }
 

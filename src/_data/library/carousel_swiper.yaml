@@ -6,7 +6,7 @@ autoplay:
 controls:
   prev_text: Prev
   next_text: Next
-  btn_img: /static/img/icon-google-right-chevron.svg
+  btn_icon: /static/img/icon-google-chevron-right.svg
 
 pagination: progressbar # [progressbar, bullets]
 

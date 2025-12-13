@@ -1,12 +1,20 @@
-{% if carousel_slides %}
+<!-- prettier-ignore -->
+{% set a11y_tab = 'tab-element-page' %}
+
+{% set autoplay = carousel_swiper.autoplay %}
+{% set controls = carousel_swiper.controls %}
+{% set pagination = carousel_swiper.pagination %}
+{% set slides = carousel_swiper.slides %}
+
+{% if slides %}
 <div
   class="swiper mySwiper carousel-swiper"
-  data-autoplay-enabled="{{ carousel_autoplay.enabled }}"
-  data-autoplay-interval="{{ carousel_autoplay.interval }}"
-  data-pagination="{{ carousel_pagination }}"
+  data-autoplay-enabled="{{ autoplay.enabled }}"
+  data-autoplay-interval="{{ autoplay.interval }}"
+  data-pagination="{{ pagination }}"
 >
   <div class="swiper-wrapper tab-element-page">
-    {% for slide in carousel_slides %}
+    {% for slide in slides %}
     <div class="swiper-slide">
       <img src="{{ slide.img }}" alt="{{ slide.title }}" />
     </div>
@@ -14,39 +22,28 @@
   </div>
 
   <div class="swiper-controls">
-    <button class="cta-1 swiper-button-prev tab-element-page">
-      {% if carousel_controls.btn_img %}
-      <img
-        class="swiper-button-prev__img"
-        src="{{ carousel_controls.btn_img }}"
-        alt=""
-        eleventy:ignore
-      />
-      {% endif %}
-
-      <!-- prettier-ignore -->
-      {% if carousel_controls.prev_text %}
-      {{ carousel_controls.prev_text }}
-      {% endif %}
-    </button>
-    <button class="cta-1 swiper-button-next tab-element-page">
-      {% if carousel_controls.next_text %}
-      {{ carousel_controls.next_text }}
-      {% endif %}
-
-      <!-- prettier-ignore -->
-      {% if carousel_controls.btn_img %}
-      <img
-        class="swiper-button-next__img"
-        src="{{ carousel_controls.btn_img }}"
-        alt=""
-        eleventy:ignore
-      />
-      {% endif %}
-    </button>
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: controls.prev_text,
+      type: 'primary',
+      class: 'swiper-button-prev',
+      icon_start: controls.btn_icon,
+      icon_start_class: 'swiper-button-prev__icon'
+     }) %}
+     {% include "./btn.njk" %}
 
     <!-- prettier-ignore -->
-    {% if carousel_pagination %}
+    {% set btn = ({
+      text: controls.next_text,
+      type: 'primary',
+      class: 'swiper-button-next',
+      icon_end: controls.btn_icon,
+      icon_end_class: 'swiper-button-next__icon'
+     }) %}
+     {% include "./btn.njk" %}
+
+    <!-- prettier-ignore -->
+    {% if pagination %}
     <div class="swiper-pagination"></div>
     {% endif %}
   </div>

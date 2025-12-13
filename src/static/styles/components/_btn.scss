@@ -37,6 +37,15 @@
   &-type--text {
     @include btn-type--text;
   }
+
+  &-type--primary {
+    // For production sites, role based vs declarative
+    @include btn-type--solid;
+  }
+  &-type--secondary {
+    // For production sites, role based vs declarative
+    @include btn-type--text;
+  }
   // End Types
 
   // BTN_SIZE
