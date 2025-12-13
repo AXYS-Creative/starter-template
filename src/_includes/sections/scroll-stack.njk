@@ -54,7 +54,7 @@
 
     <!-- prettier-ignore -->
     {% for panel in panels %}
-    <div class="scroll-stack__panel scroll-stack__panel-{{ loop.index }}">
+    <div class="border-ray-trace scroll-stack__panel scroll-stack__panel-{{ loop.index }}">
       <!-- prettier-ignore -->
       {% if panel.icon %}
         {% set icon_svg = ({ src: panel.icon, class: 'scroll-stack__panel__icon' }) %}

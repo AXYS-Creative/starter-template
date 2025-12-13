@@ -142,15 +142,11 @@
     padding: var(--footer-spacing-y) var(--body-padding);
 
     position: absolute;
-    margin-block: var(--float-offset);
+    margin-block: 0 var(--float-offset);
     left: 50%;
     translate: -50% 0;
     width: calc(100% - var(--float-offset) * 2);
     max-width: $content-width;
-
-    @include mq-max(md) {
-      --float-offset: 8px;
-    }
 
     &:not(:has(.footer-simple__top)) {
       .footer-simple__bottom {

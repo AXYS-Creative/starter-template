@@ -30,12 +30,12 @@
 <!-- prettier-ignore -->
 {% set footer_class = '' %} 
 {% if float %} 
-  {% set footer_class = 'site-footer--float' %} 
+  {% set footer_class = 'footer-simple--float' %} 
 {% endif %}
 
 {% set footer_divider_class = '' %} 
 {%if divider_width_full%}
-  {% set footer_divider_class = 'site-footer__divider--width-full' %}
+  {% set footer_divider_class = 'footer-simple__divider--width-full' %}
 {%endif%}
 
 <footer class="footer-simple {{ footer_class }}" id="site-footer">
@@ -103,7 +103,7 @@
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if divider %}
+    {% if divider and include_bottom %}
     <hr class="footer-simple__divider {{ footer_divider_class }}" />
     {% endif %}
 

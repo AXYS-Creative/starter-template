@@ -1,5 +1,5 @@
 class: "home-hero"
-float: false
+float: true
 direction: column # row | column (column is default, mobile first)
 
 eyebrow: // Optional eyebrow text
@@ -22,7 +22,7 @@ cta_2:
   new_tab: true
   icon_end: /static/img/icon-google-chevron-right.svg
 
-extra_content: true # disables corner_imgs when false
+extra_content: false # disables corner_imgs when true
 
 # corner_imgs:
 #   - title: alt 1 here

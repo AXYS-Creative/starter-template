@@ -18,11 +18,11 @@
 {% set header_mod_class = '' %}
 
 {% if float %}
-  {% set header_mod_class = header_mod_class + " '~header_class~'--float" %}
+  {% set header_mod_class = header_mod_class + " " + header_class + "--float" %}
 {% endif %}
 
 {% if glass %}
-  {% set header_mod_class = header_mod_class + " '~header_class~'--glass" %}
+  {% set header_mod_class = header_mod_class + " " + header_class + "--glass" %}
 {% endif %}
 
 <header

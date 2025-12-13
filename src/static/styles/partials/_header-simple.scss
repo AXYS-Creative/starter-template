@@ -83,7 +83,7 @@
 
   // }
 
-  // &.site-header--nav-active {
+  // &.header-simple--nav-active {
 
   // }
 
@@ -119,21 +119,16 @@
     left: 50%;
     translate: -50% 0;
 
-    @include mq-max(md) {
-      --float-offset: 8px;
-    }
-
-    &.site-header--scrolling-down {
+    &.watch-scroll--scrolling-down {
       translate: -50% calc(-100% - var(--float-offset));
+
+      &:focus-within {
+        translate: -50% 0;
+      }
     }
 
     &.site-header--promo-banner {
       top: calc(var(--promo-banner-height) + var(--float-offset));
-    }
-
-    // Placing below to override all
-    &:focus-within {
-      translate: -50% 0;
     }
   }
 
@@ -146,12 +141,12 @@
     // promo-banner-height var set in js. See promo-banner.js
     top: var(--promo-banner-height);
 
-    &.site-header--scrolling-down {
+    &.watch-scroll--scrolling-down {
       translate: 0 calc(-100% - var(--promo-banner-height));
     }
 
-    &.site-header-simple--float {
-      &.site-header--scrolling-down {
+    &.header-simple--float {
+      &.watch-scroll--scrolling-down {
         translate: -50% calc(-100% - var(--promo-banner-height));
       }
 

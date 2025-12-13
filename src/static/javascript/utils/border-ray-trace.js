@@ -31,7 +31,7 @@ function updateElementCache() {
 
     // Use ColorUtils to parse the color
     const customColor = el.getAttribute("data-border-ray-trace-color");
-    const primaryColor = ColorUtils.parseColor(customColor, el) || { r: 102, g: 126, b: 234 };
+    const primaryColor = ColorUtils.parseColor(customColor, el) || { r: 255, g: 255, b: 255 };
 
     rayTraceData.set(el, {
       style,

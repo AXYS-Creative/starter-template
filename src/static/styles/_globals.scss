@@ -39,15 +39,19 @@ body {
   color: var(--color-font--primary);
   // padding-block-start: var(--header-height); // layout shift ... lame
 
+  // prettier-ignore
   @include mq-motion-allow {
-    transition: background $ease; // Library, used for theme toggle
+    transition: background $ease, // Library, used for theme toggle
+      padding $ease; // library, used for promo-banner
   }
 
-  // &:has(.promo-banner) {
-  //   .site-header > * {
-  //     transition: top $ease, opacity $ease; // for transition
-  //   }
-  // }
+  &:has(.promo-banner--reveal) {
+    padding-block-start: var(--promo-banner-height);
+
+    // .site-header > * {
+    //   transition: top $ease, opacity $ease; // for transition
+    // }
+  }
 }
 
 .site-logo {

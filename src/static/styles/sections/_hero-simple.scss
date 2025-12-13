@@ -1,4 +1,6 @@
 .hero-simple {
+  // border: $test;
+
   &__inner {
     @include section-padding;
     @include width-clamp;
@@ -170,22 +172,21 @@
     }
   }
 
-  &--column {
-    // margin-block-start: var(--header-height);
-    padding-block-start: calc(
-      var(--spacing--lg) + var(--header-height) + var(--promo-banner-height)
-    );
-  }
+  // &--column {
+  // margin-block-start: var(--header-height);
+  // padding-block-start: calc(
+  //   var(--spacing--lg) + var(--header-height) + var(--promo-banner-height)
+  // );
+  // }
 
   &--float {
     --float-offset: var(--partial-float-offset);
     --float-offset-half: calc(var(--float-offset) / 2);
+    --float-offset-double: calc(var(--float-offset) * 2);
 
     @include width-clamp;
-    padding-block: calc(
-        var(--header-height) + var(--promo-banner-height) + var(--float-offset-half)
-      )
-      0;
+    padding-block: calc(var(--header-height) + var(--float-offset-double))
+      var(--partial-float-offset);
 
     @include mq-max(xxl) {
       padding-inline: var(--float-offset);

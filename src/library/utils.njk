@@ -147,16 +147,6 @@ path: library/utils
   </div>
 </section>
 
-<section class="cursor-follow-section library-section">
-  <h2>[ Cursor Follow - Util ]</h2>
-  <strong>Coming soon!</strong>
-  <strong>* Requires mouse-cursor.njk *</strong>
-  <p class="max-width-text">
-    If using <code>mouse-cursor.njk</code> any specified element(s) on the page can follow the mouse
-    cursor. Most cases are triggered by hovering a specific area.
-  </p>
-</section>
-
 <section class="glitch-text-section library-section">
   <h2>
     [
@@ -348,18 +338,49 @@ path: library/utils
 </section>
 
 <section class="gradient-border-section library-section">
-  <h2>[ Gradient border - Util ]</h2>
-  <p>
-    Gradient borders. Simple but confusing. Saw Okta doing this and wanted to see what it was about.
+  <h2>[ Gradient Border - Util ]</h2>
+  <strong> Note: This utility uses the <code>::before</code> pseudo element.</strong>
+  <p class="max-width-text">
+    The <code>gradient-border</code> class offers a wide range of use cases. Such as a static
+    gradient border, one that can animates passively or on user interaction, and another that
+    follows the mouse (ray tracing).
   </p>
+  <br /><br />
 
-  <div class="gradient-border">
-    <h3>Gradient border</h3>
-    <p>
-      Wow so cool! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae commodi
-      veritatis totam harum accusamus quia sint aliquam quod non, earum reiciendis, minus
-      consequuntur dolores.
-    </p>
+  <h3 class="h5">Most basic examples</h3>
+  <em>These two containers have a static gradient borders.</em>
+  <div class="library-boxes">
+    <div class="gradient-border library-box">Default <br />gradient border</div>
+    <div
+      class="gradient-border library-box"
+      data-gradient-border-color="yellow"
+      data-gradient-border-angle="135deg"
+      data-gradient-border-follow-mouse
+    >
+      Configured <br />gradient border
+    </div>
+  </div>
+  <br /><br />
+
+  <h3 class="h5">Animated examples</h3>
+  <em>These two containers have animated gradient borders.</em>
+  <div class="library-boxes">
+    <div class="gradient-border library-box">Passive animation</div>
+    <div
+      class="gradient-border library-box"
+      data-gradient-border-color="red"
+      data-gradient-border-angle="135deg"
+    >
+      Event animation
+    </div>
+  </div>
+  <br /><br />
+
+  <h3 class="h5">Ray tracing examples</h3>
+  <em>These two containers should have animated border gradients.</em>
+  <div class="library-boxes">
+    <div class="border-ray-trace library-box">Follow mouse</div>
+    <div class="border-ray-trace library-box">Somewhat 'Ray tracing'</div>
   </div>
 </section>
 

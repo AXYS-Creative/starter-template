@@ -18,7 +18,7 @@ $blue: #ada4e3;
 $green: #a4d1a2;
 $yellow: #fdfd96;
 
-$content-width: 1364px;
+$content-width: 1364px; // make sure to update the xxl media query too
 
 // Layering
 $z-index--nav: 3;
@@ -116,7 +116,7 @@ $test-bg: rgba(navy, 0.75);
   // header
   --header-children-height: 32px;
 
-  @media (max-width: 1512px) {
+  @media (max-width: #{$content-width}) {
     --body-padding: 48px;
   }
 
@@ -179,7 +179,11 @@ html[data-theme="light"] {
 
 // Library
 :root {
-  --partial-float-offset: 24px; // header/footer float
+  --partial-float-offset: 16px; // header, footer, hero float
 
   --carousel-snap-gap: 24px;
+
+  @media (max-width: 768px) {
+    --partial-float-offset: 12px; // header, footer, hero float
+  }
 }
