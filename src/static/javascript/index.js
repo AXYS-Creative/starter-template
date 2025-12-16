@@ -27,7 +27,7 @@ import "./components/tooltip.js";
 import "./components/video-bg.js";
 import "./components/video-overlay.js";
 
-import "./utils/border-ray-trace.js";
+import "./utils/gradient-border.js";
 import "./utils/magnet.js";
 import "./utils/text-curve.js";
 import "./utils/text-glare.js";

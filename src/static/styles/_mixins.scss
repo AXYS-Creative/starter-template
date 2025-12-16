@@ -558,48 +558,6 @@ $min-breakpoints: ();
 // Library // DELETE ME
 //
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-@mixin outline-trace {
-  --animation-duration: 2s;
-
-  isolation: isolate;
-  position: relative;
-  border: none;
-  // overflow: hidden;
-  transition: color 0.3s ease, background-color 0.3s ease;
-
-  &::before {
-    @include absolute-center;
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: var(--trace-color); /* Solid color background */
-    mask: conic-gradient(
-      from var(--angle),
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 25%,
-      rgba(0, 0, 0, 1) 75%,
-      rgba(0, 0, 0, 1) 100%
-    );
-    mask-composite: source-in;
-    z-index: -1;
-    box-shadow: inset 0 0 0 var(--trace-width) var(--trace-color);
-    background: transparent;
-    transition: 0.3s ease;
-    // animation: outline-trace var(--animation-duration) linear infinite;
-  }
-  @keyframes outline-trace {
-    to {
-      --angle: 360deg;
-    }
-  }
-}
-
 @mixin card-styles {
   border: var(--card-border);
   border-radius: var(--card-border-radius);
@@ -806,21 +764,91 @@ $min-breakpoints: ();
   }
 }
 
-@mixin gradient-border($deg: 10deg, $col-1: var(--color-border-gradient), $col-2: transparent) {
+@mixin gradient-border(
+  $width: var(--gradient-border-width),
+  $deg: var(--gradient-border-angle),
+  $col-1: var(--gradient-border-color),
+  $col-2: transparent,
+  $start: var(--gradient-border-start, 20%),
+  $end: var(--gradient-border-end, 80%)
+) {
   position: relative;
 
   &::before {
     content: "";
-    border: 1px solid transparent;
-    border-radius: inherit;
-    pointer-events: none;
     position: absolute;
     inset: 0;
-    background: linear-gradient($deg, $col-1 5%, $col-2 75%) border-box;
+    border: $width solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient($deg, $col-1 $start, $col-2 $end) border-box;
     mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
+  }
+}
+
+@property --gradient-border-animate-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@mixin gradient-border-animate(
+  $width: var(--gradient-border-width, 1px),
+  $col-1: var(--gradient-border-color),
+  $duration: var(--gradient-border-anim-duration, 2.5s),
+  $start: var(--gradient-border-start, 25%),
+  $end: var(--gradient-border-end, 75%)
+) {
+  isolation: isolate;
+  position: relative;
+  border: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &::before {
+    // content: "";
+    @include absolute-center;
+    width: 100%;
+    height: 100%;
+    background: $col-1; /* Solid color background */
+    mask: conic-gradient(
+      from var(--gradient-border-animate-angle),
+      rgba(0, 0, 0, 0) $start,
+      rgba(0, 0, 0, 1) $end
+    );
+    mask-composite: source-in;
+    z-index: -1;
+    box-shadow: inset 0 0 0 $width $col-1;
+    background: transparent;
+    transition: 0.3s ease;
+    animation: gradient-border-animate $duration linear infinite;
+  }
+  @keyframes gradient-border-animate {
+    to {
+      --gradient-border-animate-angle: 360deg;
+    }
+  }
+}
+
+@mixin gradient-border-ray-trace(
+  $width: var(--gradient-border-width, 1px),
+  $col-1: var(--gradient-border-color)
+) {
+  // position: relative; // shared from base mixin above... might be good to hold on to these though (if used individually)
+  // overflow: visible;
+
+  &::before {
+    // content: "";
+    // position: absolute;
+    inset: calc(var(--gradient-border-width) * -1);
+    // border-radius: inherit;
+    background: linear-gradient(135deg, transparent 50%, $col-1 100%);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+
+    mask: none;
+    border: transparent;
   }
 }
 

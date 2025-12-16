@@ -103,9 +103,9 @@
 
   &.cursor-content-1 {
     .mouse-cursor__shape {
-      --size: 96px;
+      --size: 64px;
 
-      background: var(--color-brand--primary);
+      background: linear-gradient(135deg, var(--color-brand--primary), var(--color-font--primary));
       border-color: var(--color-brand--primary);
       opacity: 1;
     }
@@ -113,7 +113,7 @@
 
   &.cursor-content-2 {
     .mouse-cursor__shape {
-      --size: 64px;
+      --size: 56px;
 
       opacity: 1;
     }

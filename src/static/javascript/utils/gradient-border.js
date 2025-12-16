@@ -1,6 +1,6 @@
 import { ColorUtils } from "../util.js";
 
-const rayTraceElems = document.querySelectorAll(".border-ray-trace");
+const rayTraceElems = document.querySelectorAll("[data-gradient-border-ray-trace]");
 const rayTraceData = new Map();
 
 let maxDistance = Math.sqrt(Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2));
@@ -17,20 +17,20 @@ window.addEventListener("resize", () => {
 function updateElementCache() {
   rayTraceElems.forEach((el, index) => {
     if (!el.id) {
-      el.id = `border-ray-trace-${index}`;
+      el.id = `gradient-border-ray-trace-${index}`;
     }
 
     let style = rayTraceData.get(el)?.style;
     if (!style) {
       style = document.createElement("style");
-      style.id = `border-ray-trace-style-${index}`;
+      style.id = `gradient-border-ray-trace-style-${index}`;
       document.head.appendChild(style);
     }
 
     const rect = el.getBoundingClientRect();
 
     // Use ColorUtils to parse the color
-    const customColor = el.getAttribute("data-border-ray-trace-color");
+    const customColor = el.getAttribute("data-gradient-border-color");
     const primaryColor = ColorUtils.parseColor(customColor, el) || { r: 255, g: 255, b: 255 };
 
     rayTraceData.set(el, {

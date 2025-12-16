@@ -98,85 +98,63 @@
 
   .gradient-border {
     @include gradient-border;
-  }
 
-  // [data-gradient-border-animate]
-  .outline-trace-section {
-    .outline-trace-samples {
-      @include row-start;
-      gap: var(--spacing--lg);
-
-      &__sample-1 {
-        @include row-center;
-        width: 200px;
-        height: 320px;
-        border-radius: var(--radius--sm);
-      }
-
-      &__sample-2 {
-        --trace-width: 2px;
-        --trace-color: var(--color-brand--secondary);
-
-        @include row-center;
-        text-align: center;
-        width: 128px;
-        height: 128px;
-        padding: 12px;
-        border-radius: 50%;
-        background: var(--color-surface--1);
-      }
-    }
-  }
-  .outline-trace {
-    --trace-width: 1px; // Defaults using css vars (figured it would be better/simpler than calling the mixin each time with different arguments.
-    --trace-color: var(--color-brand--primary);
-
-    @include outline-trace;
-
-    &[data-outline-trace-animate] {
-      &::before {
-        animation: outline-trace var(--animation-duration) linear infinite;
-      }
+    // Configs
+    &[data-gradient-border-length="short"] {
+      --gradient-border-start: 0%;
+      --gradient-border-end: 25%;
     }
 
-    &[data-outline-trace-hover] {
-      --animation-duration: 1s;
+    &[data-gradient-border-length="long"] {
+      --gradient-border-start: 0%;
+      --gradient-border-end: 150%;
+    }
 
-      isolation: auto;
+    // Alternate Conventions
+    &[data-gradient-border-animate] {
+      --gradient-border-width: 3px;
 
-      &::before {
-        animation: outline-trace var(--animation-duration) linear infinite;
-        transition: 1s ease 0.125s;
-        z-index: -1;
-      }
+      @include gradient-border-animate;
+      // transition: transform $ease-c;
+      transition: $ease-c;
 
-      @include desktop-hover {
-        --trace-width-doubled: calc(var(--trace-width) * 2);
+      &[data-gradient-border-animate="hover"] {
+        isolation: auto;
 
         &::before {
-          width: calc(100% + var(--trace-width-doubled));
-          height: calc(100% + var(--trace-width-doubled));
-          transition: 1s ease;
+          transition: 1s ease 0.125s; // reveal / hide
+          z-index: -1;
+        }
+
+        @include desktop-hover {
+          --gradient-border-width-doubled: calc(var(--gradient-border-width) * 2);
+
+          &::before {
+            width: calc(100% + var(--gradient-border-width-doubled));
+            height: calc(100% + var(--gradient-border-width-doubled));
+            transition: 1s ease;
+          }
+        }
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 0.5px #275dc5, 0 0 0 1px #fff;
         }
       }
+
+      &[data-gradient-border-length="short"] {
+        --gradient-border-start: 75%;
+        --gradient-border-end: 100%;
+      }
+
+      &[data-gradient-border-length="long"] {
+        --gradient-border-start: 0%;
+        --gradient-border-end: 25%;
+      }
     }
-  }
 
-  // [data-gradient-border-follow-mouse]
-  .border-ray-trace {
-    --gradient-border-width: 1px;
-
-    position: relative;
-    overflow: visible;
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: calc(var(--gradient-border-width) * -1);
-      border-radius: inherit;
-      background: linear-gradient(135deg, transparent 50%, var(--hero-color--primary) 100%);
-      z-index: -1;
-      transition: opacity 0.3s ease;
+    &[data-gradient-border-ray-trace] {
+      @include gradient-border-ray-trace;
     }
   }
 
@@ -568,6 +546,7 @@
     width: max(180px, 20%);
     aspect-ratio: 1;
     background-color: var(--color-surface--1);
+    text-align: center;
     cursor: pointer;
     transition: $ease-c;
 
@@ -829,7 +808,8 @@
     // Library
     &--img {
       display: flex;
-      width: 20%;
+      width: max(180px, 20%);
+      aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
 

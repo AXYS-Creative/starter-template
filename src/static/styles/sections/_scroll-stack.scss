@@ -89,16 +89,13 @@
   }
 
   &__panel {
-    @include gradient-border(45deg);
+    @include card-styles;
     @include column-start(flex-start);
     gap: var(--section-gap);
-    position: absolute;
+    position: absolute !important; // if using gradient-border
     // See component modifiers for placement
-    // border: 1px solid var(--color-border);
-    border-radius: var(--radius--sm);
     height: max($panel-height, 400px);
     width: calc(100% - var(--body-padding-double));
-    padding: var(--body-padding);
     transform-origin: top center;
     background: var(--color-background);
     // background: rgba($black, 0.75);

@@ -44,71 +44,71 @@
       {% if plan.theme %}
         {% set theme = 'plan-option--'~plan.theme~'' %}
       {% endif %}
-      <div class="border-ray-trace gsap-stagger-child" data-border-ray-trace-color="white">
-        <div class="plan-option {{ theme }}">
-          <h3 class="plan-option__title h2">{{ plan.title }}</h3>
 
-          <div class="plan-option__price-group">
-            <div class="plan-option__line-group" aria-hidden="true">
-              <hr class="plan-option__divider" aria-hidden="true" />
-              <div class="plan-option__price">
-                <span class="plan-option__price-currency">$</span>
-                <span
-                  class="plan-option__price-cost glitch-text"
-                  data-toggle-target
-                  data-toggle-end="{{ plan.price_qt }}"
-                >
-                  {{ plan.price_mo }}
-                </span>
-                <span class="plan-option__price-frequency">/month</span>
-              </div>
-              <hr class="plan-option__divider" aria-hidden="true" />
-            </div>
+      <div class="plan-option {{ theme }} gsap-stagger-child">
+        <h3 class="plan-option__title h2">{{ plan.title }}</h3>
 
-            <p class="plan-option__total glitch-text" data-toggle-show="end">
-              <span>$</span>
+        <div class="plan-option__price-group">
+          <div class="plan-option__line-group" aria-hidden="true">
+            <hr class="plan-option__divider" aria-hidden="true" />
+            <div class="plan-option__price">
+              <span class="plan-option__price-currency">$</span>
               <span
-                class="plan-option__total-swap"
+                class="plan-option__price-cost glitch-text"
                 data-toggle-target
-                data-toggle-end="{{ plan.grand_total }}"
-                >{{ plan.price_mo }}</span
+                data-toggle-end="{{ plan.price_qt }}"
               >
-              <span class="glitch-text">billed</span>
-              <span
-                class="plan-option__total-frequency glitch-text"
-                data-toggle-target
-                data-toggle-end="quarterly"
-              >
-                monthly
+                {{ plan.price_mo }}
               </span>
-            </p>
+              <span class="plan-option__price-frequency">/month</span>
+            </div>
+            <hr class="plan-option__divider" aria-hidden="true" />
           </div>
 
-          <ul class="plan-option__perks">
-            {% for perk in plan.features %}
-            <li>
-              <!-- prettier-ignore -->
-              {% set icon_svg = ({
+          <p class="plan-option__total glitch-text" data-toggle-show="end">
+            <span>$</span>
+            <span
+              class="plan-option__total-swap"
+              data-toggle-target
+              data-toggle-end="{{ plan.grand_total }}"
+              >{{ plan.price_mo }}</span
+            >
+            <span class="glitch-text">billed</span>
+            <span
+              class="plan-option__total-frequency glitch-text"
+              data-toggle-target
+              data-toggle-end="quarterly"
+            >
+              monthly
+            </span>
+          </p>
+        </div>
+
+        <ul class="plan-option__perks">
+          {% for perk in plan.features %}
+          <li>
+            <!-- prettier-ignore -->
+            {% set icon_svg = ({
               src: '/static/img/icon-google-check-circle.svg', 
               class: '' 
             }) %}
             {% include "../components/icon-svg.njk" %}
-              <span>{{ perk }}</span>
-            </li>
-            {% endfor %}
-          </ul>
+            <span>{{ perk }}</span>
+          </li>
+          {% endfor %}
+        </ul>
 
-          <p
-            class="plan-option__message glitch-text"
-            data-toggle-target
-            data-toggle-end="You’re saving {{ plan.savings_qt }} quarterly!"
-          >
-            Save {{ discount_percentage }} with quarterly billing!
-          </p>
+        <p
+          class="plan-option__message glitch-text"
+          data-toggle-target
+          data-toggle-end="You’re saving {{ plan.savings_qt }} quarterly!"
+        >
+          Save {{ discount_percentage }} with quarterly billing!
+        </p>
 
-          <div class="plan-option__cta-wrapper plan-option__cta-wrapper--monthly">
-            <!-- prettier-ignore -->
-            {% set btn = ({
+        <div class="plan-option__cta-wrapper plan-option__cta-wrapper--monthly">
+          <!-- prettier-ignore -->
+          {% set btn = ({
             text: plan.cta_monthly.text,
             icon_end: '/static/img/icon-google-new-tab.svg',
             url: plan.cta_monthly.url,
@@ -117,11 +117,11 @@
             attributes: 'data-hover-alt'
           }) %}
           {% include "../components/btn.njk" %}
-          </div>
+        </div>
 
-          <div class="plan-option__cta-wrapper plan-option__cta-wrapper--quarterly">
-            <!-- prettier-ignore -->
-            {% set btn = ({
+        <div class="plan-option__cta-wrapper plan-option__cta-wrapper--quarterly">
+          <!-- prettier-ignore -->
+          {% set btn = ({
             text: plan.cta_quarterly.text,
             icon_end: '/static/img/icon-google-new-tab.svg',
             url: plan.cta_quarterly.url,
@@ -130,18 +130,18 @@
             attributes: 'data-hover-alt'
           }) %}
           {% include "../components/btn.njk" %}
-          </div>
+        </div>
 
-          <!-- prettier-ignore -->
-          {% if plan.noise %}
+        <!-- prettier-ignore -->
+        {% if plan.noise %}
         {% set noise = ({
           id: plan.noise.id,
           color: plan.noise.color
         }) %}
         {% include "../components/noise.njk" %}
         {% endif %}
-        </div>
       </div>
+
       {% endfor %}
     </div>
   </div>

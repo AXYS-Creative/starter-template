@@ -120,16 +120,16 @@ path: library/utils
   </p>
   <div class="cursor-content-section__samples">
     <div
-      class="cursor-content library-block"
+      class="cursor-content library-box"
       data-cursor-icon="/static/img/icon-google-arrow-tr.svg"
-      data-cursor-icon-size="md"
+      data-cursor-icon-size="sm"
       data-cursor-class="cursor-content-1"
     >
       <p>"View project"</p>
     </div>
 
     <div
-      class="cursor-content library-block"
+      class="cursor-content library-box"
       data-cursor-icon="/static/img/icon-google-play.svg"
       data-cursor-icon-swap="/static/img/icon-google-pause.svg"
       data-cursor-class="cursor-content-2"
@@ -138,7 +138,7 @@ path: library/utils
     </div>
 
     <div
-      class="cursor-content library-block"
+      class="cursor-content library-box"
       data-cursor-message="Visit site"
       data-cursor-class="cursor-content-3"
     >
@@ -343,19 +343,40 @@ path: library/utils
   <p class="max-width-text">
     The <code>gradient-border</code> class offers a wide range of use cases. Such as a static
     gradient border, one that can animates passively or on user interaction, and another that
-    follows the mouse (ray tracing).
+    follows the mouse (ray tracing). The configs are mainly done via inline styles and tapping into
+    the css variables:
   </p>
+
+  <ul class="classic-list">
+    <li><code>--gradient-border-width</code></li>
+    <li><code>--gradient-border-color</code></li>
+    <li><code>--gradient-border-angle</code></li>
+  </ul>
+
+  <br /><br />
+  <p>But there are a handful of useful data attributes as well.</p>
   <br /><br />
 
   <h3 class="h5">Most basic examples</h3>
-  <em>These two containers have a static gradient borders.</em>
+  <em>These containers have a static gradient borders.</em>
   <div class="library-boxes">
     <div class="gradient-border library-box">Default <br />gradient border</div>
     <div
       class="gradient-border library-box"
-      data-gradient-border-color="yellow"
-      data-gradient-border-angle="135deg"
-      data-gradient-border-follow-mouse
+      style="--gradient-border-angle: 215deg; --gradient-border-color: yellow"
+      data-gradient-border-length="short"
+    >
+      Configured <br />gradient border
+    </div>
+    <div
+      class="gradient-border library-box"
+      style="
+        --gradient-border-angle: 90deg;
+        --gradient-border-color: slateblue;
+        --gradient-border-width: 3px;
+        border-radius: 0;
+      "
+      data-gradient-border-length="long"
     >
       Configured <br />gradient border
     </div>
@@ -363,24 +384,60 @@ path: library/utils
   <br /><br />
 
   <h3 class="h5">Animated examples</h3>
-  <em>These two containers have animated gradient borders.</em>
+  <em>These containers have animated gradient borders.</em>
   <div class="library-boxes">
-    <div class="gradient-border library-box">Passive animation</div>
+    <div class="gradient-border library-box" data-gradient-border-animate>Passive animation</div>
     <div
       class="gradient-border library-box"
-      data-gradient-border-color="red"
-      data-gradient-border-angle="135deg"
+      data-gradient-border-animate
+      data-gradient-border-length="short"
+      style="
+        --gradient-border-width: 3px;
+        --gradient-border-color: var(--color-brand--primary);
+        --gradient-border-anim-duration: 4s;
+        border-radius: 0;
+      "
     >
-      Event animation
+      Configured Example
     </div>
+    <button
+      class="gradient-border library-box"
+      data-gradient-border-animate="hover"
+      data-gradient-border-length="long"
+      style="
+        --gradient-border-width: 3px;
+        --gradient-border-color: var(--color-brand--tertiary);
+        --gradient-border-anim-duration: 2.8s;
+        border-radius: 50%;
+      "
+    >
+      Event animation (Hover me)
+    </button>
   </div>
   <br /><br />
 
   <h3 class="h5">Ray tracing examples</h3>
-  <em>These two containers should have animated border gradients.</em>
+  <em>These containers have animated border gradients based on the mouse position.</em>
   <div class="library-boxes">
-    <div class="border-ray-trace library-box">Follow mouse</div>
-    <div class="border-ray-trace library-box">Somewhat 'Ray tracing'</div>
+    <div class="gradient-border library-box" data-gradient-border-ray-trace>Follow mouse</div>
+    <div class="gradient-border library-box" data-gradient-border-ray-trace>
+      Somewhat 'Ray tracing'
+    </div>
+    <div
+      class="gradient-border library-box"
+      data-gradient-border-ray-trace
+      style="border-radius: 50%"
+    >
+      OMG so it’s good
+    </div>
+    <div
+      class="gradient-border library-box"
+      data-gradient-border-ray-trace
+      data-gradient-border-color="yellow"
+      style="--gradient-border-color: yellow; border-radius: 0"
+    >
+      Pretty cool
+    </div>
   </div>
 </section>
 
@@ -460,23 +517,6 @@ path: library/utils
     </div>
     {% endfor %}
     <div></div>
-  </div>
-</section>
-
-<section class="outline-trace-section library-section">
-  <h2>[ Outline Trace - Util ]</h2>
-  <p>
-    Add an outline trace to any element, div or button, using the class
-    <code>outline-trace</code>.
-  </p>
-
-  <div class="outline-trace-samples">
-    <div class="outline-trace outline-trace-samples__sample-1" data-outline-trace-animate>
-      Sample 1
-    </div>
-    <div class="outline-trace outline-trace-samples__sample-2" data-outline-trace-hover>
-      Sample 2
-    </div>
   </div>
 </section>
 
@@ -1152,7 +1192,7 @@ path: library/utils
   </p>
   <br /><br />
   <div class="cursor-content-section__samples">
-    <div class="velocity-push library-block">
+    <div class="velocity-push library-box">
       <p class="h6">Mouse over me!</p>
     </div>
 

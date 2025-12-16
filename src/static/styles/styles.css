@@ -24,8 +24,8 @@
   --color-btn-border--hover: var(--color-brand--primary);
   --color-link: var(--color-brand--primary);
   --color-link--hover: var(--color-font--primary);
-  --gap-btn-icon: 0.5ch;
   --color-badge: var(--color-brand--primary);
+  --gap-btn-icon: 0.5ch;
   --padding-btn: 8px 16px;
   --padding-btn-icon: 8px;
   --padding-btn--sm: 6px 12px;
@@ -72,7 +72,7 @@ html[data-theme=dark] {
   --color-surface--1: #313131;
   --color-surface--2: #212121;
   --color-border: #313131;
-  --color-border-gradient: rgba(255, 255, 255, 0.5);
+  --gradient-border-color: rgba(255, 255, 255, 0.5);
   --color-glass-frost: rgba(0, 0, 0, 0.25);
 }
 
@@ -85,13 +85,15 @@ html[data-theme=light] {
   --color-surface--1: #e0e0e0;
   --color-surface--2: #e7e7e7;
   --color-border: #e0e0e0;
-  --color-border-gradient: rgba(0, 0, 0, 0.5);
+  --gradient-border-color: rgba(0, 0, 0, 0.5);
   --color-glass-frost: rgba(255, 255, 255, 0.25);
 }
 
 :root {
   --partial-float-offset: 16px;
   --carousel-snap-gap: 24px;
+  --gradient-border-angle: 135deg;
+  --gradient-border-width: 1px;
 }
 @media (max-width: 768px) {
   :root {
@@ -99,11 +101,6 @@ html[data-theme=light] {
   }
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
 @keyframes gradient-move {
   0% {
     background-position: 0% 50%;
@@ -111,6 +108,11 @@ html[data-theme=light] {
   100% {
     background-position: 100% 50%;
   }
+}
+@property --gradient-border-animate-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 * {
   margin: 0;
@@ -646,114 +648,95 @@ code.codearea {
   }
   .gradient-border::before {
     content: "";
-    border: 1px solid transparent;
-    border-radius: inherit;
-    pointer-events: none;
     position: absolute;
     inset: 0;
-    background: linear-gradient(10deg, var(--color-border-gradient) 5%, transparent 75%) border-box;
+    border: var(--gradient-border-width) solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(var(--gradient-border-angle), var(--gradient-border-color) var(--gradient-border-start, 20%), transparent var(--gradient-border-end, 80%)) border-box;
     mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
   }
-  .outline-trace-section .outline-trace-samples {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: var(--spacing--lg);
+  .gradient-border[data-gradient-border-length=short] {
+    --gradient-border-start: 0%;
+    --gradient-border-end: 25%;
   }
-  .outline-trace-section .outline-trace-samples__sample-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 320px;
-    border-radius: var(--radius--sm);
+  .gradient-border[data-gradient-border-length=long] {
+    --gradient-border-start: 0%;
+    --gradient-border-end: 150%;
   }
-  .outline-trace-section .outline-trace-samples__sample-2 {
-    --trace-width: 2px;
-    --trace-color: var(--color-brand--secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 128px;
-    height: 128px;
-    padding: 12px;
-    border-radius: 50%;
-    background: var(--color-surface--1);
-  }
-  .outline-trace {
-    --trace-width: 1px;
-    --trace-color: var(--color-brand--primary);
-    --animation-duration: 2s;
+  .gradient-border[data-gradient-border-animate] {
+    --gradient-border-width: 3px;
     isolation: isolate;
     position: relative;
     border: none;
     transition: color 0.3s ease, background-color 0.3s ease;
+    transition: 0.64s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
-  .outline-trace::before {
+  .gradient-border[data-gradient-border-animate]::before {
     position: absolute;
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    content: "";
     width: 100%;
     height: 100%;
-    border-radius: inherit;
-    background: var(--trace-color); /* Solid color background */
-    -webkit-mask: conic-gradient(from var(--angle), rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 100%);
-            mask: conic-gradient(from var(--angle), rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 100%);
+    background: var(--gradient-border-color); /* Solid color background */
+    -webkit-mask: conic-gradient(from var(--gradient-border-animate-angle), rgba(0, 0, 0, 0) var(--gradient-border-start, 25%), rgb(0, 0, 0) var(--gradient-border-end, 75%));
+            mask: conic-gradient(from var(--gradient-border-animate-angle), rgba(0, 0, 0, 0) var(--gradient-border-start, 25%), rgb(0, 0, 0) var(--gradient-border-end, 75%));
     -webkit-mask-composite: source-in;
             mask-composite: source-in;
     z-index: -1;
-    box-shadow: inset 0 0 0 var(--trace-width) var(--trace-color);
+    box-shadow: inset 0 0 0 var(--gradient-border-width, 1px) var(--gradient-border-color);
     background: transparent;
     transition: 0.3s ease;
+    animation: gradient-border-animate var(--gradient-border-anim-duration, 2.5s) linear infinite;
   }
-  @keyframes outline-trace {
+  @keyframes gradient-border-animate {
     to {
-      --angle: 360deg;
+      --gradient-border-animate-angle: 360deg;
     }
   }
-  .outline-trace[data-outline-trace-animate]::before {
-    animation: outline-trace var(--animation-duration) linear infinite;
-  }
-  .outline-trace[data-outline-trace-hover] {
-    --animation-duration: 1s;
+  .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover] {
     isolation: auto;
   }
-  .outline-trace[data-outline-trace-hover]::before {
-    animation: outline-trace var(--animation-duration) linear infinite;
+  .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]::before {
     transition: 1s ease 0.125s;
     z-index: -1;
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .outline-trace[data-outline-trace-hover]:hover, .outline-trace[data-outline-trace-hover]:focus-visible {
-    --trace-width-doubled: calc(var(--trace-width) * 2);
+  .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:hover, .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:focus-visible {
+    --gradient-border-width-doubled: calc(var(--gradient-border-width) * 2);
   }
-  .outline-trace[data-outline-trace-hover]:hover::before, .outline-trace[data-outline-trace-hover]:focus-visible::before {
-    width: calc(100% + var(--trace-width-doubled));
-    height: calc(100% + var(--trace-width-doubled));
+  .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:hover::before, .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:focus-visible::before {
+    width: calc(100% + var(--gradient-border-width-doubled));
+    height: calc(100% + var(--gradient-border-width-doubled));
     transition: 1s ease;
   }
 }
 @media all {
-  .border-ray-trace {
-    --gradient-border-width: 1px;
-    position: relative;
-    overflow: visible;
+  .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.5px #275dc5, 0 0 0 1px #fff;
   }
-  .border-ray-trace::before {
-    content: "";
-    position: absolute;
+  .gradient-border[data-gradient-border-animate][data-gradient-border-length=short] {
+    --gradient-border-start: 75%;
+    --gradient-border-end: 100%;
+  }
+  .gradient-border[data-gradient-border-animate][data-gradient-border-length=long] {
+    --gradient-border-start: 0%;
+    --gradient-border-end: 25%;
+  }
+  .gradient-border[data-gradient-border-ray-trace]::before {
     inset: calc(var(--gradient-border-width) * -1);
-    border-radius: inherit;
-    background: linear-gradient(135deg, transparent 50%, var(--hero-color--primary) 100%);
+    background: linear-gradient(135deg, transparent 50%, var(--gradient-border-color) 100%);
     z-index: -1;
     transition: opacity 0.3s ease;
+    -webkit-mask: none;
+            mask: none;
+    border: transparent;
   }
   .grid-fade {
     position: relative;
@@ -2018,6 +2001,7 @@ code.codearea {
     width: max(180px, 20%);
     aspect-ratio: 1;
     background-color: var(--color-surface--1);
+    text-align: center;
     cursor: pointer;
     transition: 0.64s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
@@ -2280,7 +2264,8 @@ code.codearea {
   }
   .velocity-push--img {
     display: flex;
-    width: 20%;
+    width: max(180px, 20%);
+    aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -2302,12 +2287,12 @@ code.codearea {
   }
   .video-bg-section .video-bg--sample-1::before {
     content: "";
-    border: 1px solid transparent;
-    border-radius: inherit;
-    pointer-events: none;
     position: absolute;
     inset: 0;
-    background: linear-gradient(130deg, var(--color-border-gradient) 5%, transparent 75%) border-box;
+    border: 130deg solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(var(--gradient-border-angle), var(--gradient-border-color) var(--gradient-border-start, 20%), transparent var(--gradient-border-end, 80%)) border-box;
     mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
     -webkit-mask-composite: destination-out;
@@ -7350,13 +7335,13 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
   transition: 1s ease, opacity 1s 0.12s, scale 0s;
 }
 .mouse-cursor.cursor-content-1 .mouse-cursor__shape {
-  --size: 96px;
-  background: var(--color-brand--primary);
+  --size: 64px;
+  background: linear-gradient(135deg, var(--color-brand--primary), var(--color-font--primary));
   border-color: var(--color-brand--primary);
   opacity: 1;
 }
 .mouse-cursor.cursor-content-2 .mouse-cursor__shape {
-  --size: 64px;
+  --size: 56px;
   opacity: 1;
 }
 .mouse-cursor.cursor-content-3 .mouse-cursor__shape {
@@ -9062,6 +9047,9 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   width: 100%;
 }
 .plan-options .plan-option {
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9069,7 +9057,6 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   position: relative;
   gap: var(--spacing);
   padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
-  border-radius: var(--radius--sm);
   background: var(--color-background);
   width: 100%;
   overflow: hidden;
@@ -9451,33 +9438,20 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   }
 }
 .scroll-stack__panel {
-  position: relative;
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: var(--section-gap);
-  position: absolute;
-  border-radius: var(--radius--sm);
+  position: absolute !important;
   height: max(var(--svh, 1vh) * 100 - var(--panel-to-top) * 2, 400px);
   width: calc(100% - var(--body-padding-double));
-  padding: var(--body-padding);
   transform-origin: top center;
   background: var(--color-background);
   overflow: hidden;
-}
-.scroll-stack__panel::before {
-  content: "";
-  border: 1px solid transparent;
-  border-radius: inherit;
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, var(--color-border-gradient) 5%, transparent 75%) border-box;
-  mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
-  -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
 }
 @media (max-width: 1024px) {
   .scroll-stack__panel {

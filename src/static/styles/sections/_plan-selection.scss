@@ -183,12 +183,11 @@
     width: 100%;
   }
   .plan-option {
+    @include card-styles;
     @include column-center;
     position: relative;
-    // border: var(--border-width) solid var(--color-border);
     gap: var(--spacing);
     padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
-    border-radius: var(--radius--sm);
     background: var(--color-background);
     width: 100%;
     overflow: hidden;

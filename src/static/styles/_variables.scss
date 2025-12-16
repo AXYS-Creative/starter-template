@@ -89,9 +89,9 @@ $test-bg: rgba(navy, 0.75);
   --color-link: var(--color-brand--primary);
   --color-link--hover: var(--color-font--primary);
 
-  --gap-btn-icon: 0.5ch;
-
   --color-badge: var(--color-brand--primary);
+
+  --gap-btn-icon: 0.5ch;
 
   --padding-btn: 8px 16px;
   --padding-btn-icon: 8px;
@@ -151,7 +151,7 @@ $test-bg: rgba(navy, 0.75);
   --color-surface--2: #{$grey-lighter};
 
   --color-border: #{$grey-light};
-  --color-border-gradient: rgba(0, 0, 0, 0.5); // Library
+  --gradient-border-color: rgba(0, 0, 0, 0.5); // Library
   --color-glass-frost: rgba(255, 255, 255, 0.25); // Library
 }
 
@@ -169,7 +169,7 @@ $test-bg: rgba(navy, 0.75);
   --color-surface--2: #{$grey-darker};
 
   --color-border: #{$grey-dark};
-  --color-border-gradient: rgba(255, 255, 255, 0.5); // Library
+  --gradient-border-color: rgba(255, 255, 255, 0.5); // Library
   --color-glass-frost: rgba(0, 0, 0, 0.25); // Library
 }
 
@@ -186,6 +186,9 @@ html[data-theme="light"] {
   --partial-float-offset: 16px; // header, footer, hero float
 
   --carousel-snap-gap: 24px;
+
+  --gradient-border-angle: 135deg;
+  --gradient-border-width: 1px;
 
   @media (max-width: 768px) {
     --partial-float-offset: 12px; // header, footer, hero float
