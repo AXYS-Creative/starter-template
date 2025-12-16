@@ -13,6 +13,9 @@
   --color-brand--secondary: #ada4e3;
   --color-brand--tertiary: #a4d1a2;
   --color-font--error: #dc143c;
+  --card-border: var(--border-width) solid var(--color-border);
+  --card-border-radius: var(--radius--sm);
+  --card-padding: var(--body-padding);
   --color-btn-bg: var(--color-brand--primary);
   --color-btn-bg--hover: transparent;
   --color-btn-text: var(--color-font--primary);
@@ -2040,7 +2043,6 @@ code.codearea {
     flex-flow: row wrap;
     gap: 24px;
   }
-  .carousel-swiper-section,
   .text-fill-section {
     width: 100%;
     max-width: 1364px;
@@ -6253,17 +6255,25 @@ code.codearea {
   }
 }
 .btn-type--secondary {
-  color: var(--color-link);
+  border: var(--border-width--btn) solid var(--color-btn-border);
+  border-radius: var(--radius--btn);
+  color: var(--color-btn-text);
+  padding: var(--padding-btn);
 }
 @media (prefers-reduced-motion: no-preference) {
   .btn-type--secondary {
-    transition: 0.24s ease;
+    transition: 0.24s ease, transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
   }
 }
 @media (hover: hover) and (pointer: fine) {
   .btn-type--secondary:hover, .btn-type--secondary:focus-visible {
-    color: var(--color-link--hover);
+    color: var(--color-btn-text--hover);
+    scale: 0.96;
   }
+}
+.btn-type--secondary .btn__text {
+  color: inherit;
+  overflow: hidden;
 }
 .btn-size--sm {
   --font-size: 13px;
@@ -6557,6 +6567,7 @@ code.codearea {
   --swiper-navigation-color: var(--color-font--primary);
   --swiper-pagination-color: var(--color-brand--primary);
   --swiper-pagination-bullet-inactive-color: var(--color-brand--primary);
+  --swiper-wrapper-transition-timing-function: cubic-bezier(0.18, 0.97, 0.47, 1);
   margin-block: var(--section-gap);
   padding-block: var(--body-padding);
 }
@@ -6577,19 +6588,25 @@ code.codearea {
 }
 .swiper .swiper-controls {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   position: relative;
   gap: 12px;
   height: 4lh;
 }
+.swiper .swiper-controls__arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing--sm);
+}
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
   position: static;
   width: auto;
+  height: auto;
   margin: 0;
-  padding: 0 8px;
-  display: flex;
+  aspect-ratio: 1;
 }
 .swiper .swiper-button-prev::after,
 .swiper .swiper-button-next::after {
@@ -6603,6 +6620,19 @@ code.codearea {
 }
 .swiper .swiper-button-prev__icon {
   rotate: 180deg;
+}
+
+div.carousel-swiper-sample-2 {
+  padding-inline: var(--body-padding);
+}
+div.carousel-swiper-sample-2 .swiper-slide {
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-section {

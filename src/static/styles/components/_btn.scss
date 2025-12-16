@@ -44,7 +44,7 @@
   }
   &-type--secondary {
     // For production sites, role based vs declarative
-    @include btn-type--text;
+    @include btn-type--outline;
   }
   // End Types
 

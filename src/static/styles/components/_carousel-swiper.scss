@@ -3,6 +3,7 @@
   --swiper-navigation-color: var(--color-font--primary);
   --swiper-pagination-color: var(--color-brand--primary);
   --swiper-pagination-bullet-inactive-color: var(--color-brand--primary);
+  --swiper-wrapper-transition-timing-function: #{$cubic-ease};
 
   margin-block: var(--section-gap);
   padding-block: var(--body-padding);
@@ -30,20 +31,25 @@
   }
 
   .swiper-controls {
-    @include row-center(flex-end);
+    @include row-center;
     position: relative;
     gap: 12px;
     height: 4lh;
+
+    &__arrows {
+      @include row-center;
+      gap: var(--spacing--sm);
+    }
   }
 
   .swiper-button-prev,
   .swiper-button-next {
-    // pulling styles from external stylesheet
+    // Resetting styles from CDN stylesheet
     position: static;
     width: auto;
+    height: auto;
     margin: 0;
-    padding: 0 8px;
-    display: flex;
+    aspect-ratio: 1;
 
     // Hides default arrows
     &::after {
@@ -59,15 +65,25 @@
     // }
   }
   .swiper-button-prev__icon {
-    // right: 64px;
-    // bottom: 0;
     rotate: 180deg;
   }
 
   // .swiper-button-next {
-  //   top: auto;
-  //   left: auto;
-  //   right: 0;
-  //   bottom: 0;
+
   // }
+}
+
+// Library
+// .carousel-swiper-sample-1 {
+//   border: $test;
+// }
+
+div.carousel-swiper-sample-2 {
+  // border: $test;
+  padding-inline: var(--body-padding);
+
+  .swiper-slide {
+    @include card-styles;
+    @include column-center;
+  }
 }

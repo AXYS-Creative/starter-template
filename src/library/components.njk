@@ -61,11 +61,27 @@ path: library/components
 </section>
 
 <section class="carousel-swiper-section">
-  <!-- breaks footer-scroll-reveal? -->
-  <h2>[ Carousel 'Swiper' - Component ]</h2>
+  <!-- Carousel Swiper doesn't work with 'footer-scroll-reveal.njk'? -->
+  <div class="section-width">
+    <h2>[ Carousel 'Swiper' - Component ]</h2>
+    <br /><br />
+    <p>
+      The Swiper Carousel uses a CDN from Swiper.js. They offer a wide range of easy to use configs
+      for quick startup.
+    </p>
+
+    <br /><br /><br /><br />
+    <h3 class="h6">Basic example</h3>
+    <!-- prettier-ignore -->
+    {% set carousel_swiper = library.carousel_swiper.carousel_1 %}
+    {% include '../_includes/components/carousel-swiper.njk' %}
+
+    <br /><br /><br /><br />
+    <h3 class="h6">Configured example</h3>
+  </div>
 
   <!-- prettier-ignore -->
-  {% set carousel_swiper = library.carousel_swiper %}
+  {% set carousel_swiper = library.carousel_swiper.carousel_2 %}
   {% include '../_includes/components/carousel-swiper.njk' %}
 </section>
 
@@ -98,7 +114,7 @@ path: library/components
   </ul>
 
   <br />
-  <h6>Most basic clipboard-copy usage</h6>
+  <h3 class="h6">Most basic clipboard-copy usage</h3>
   {% set alert = null %}
   <!-- prettier-ignore -->
   {% set a11y_tab = 'tab-element-page' %}
@@ -107,7 +123,7 @@ path: library/components
   <p id="{{ clipboard_copy.id }}">Copy this message by clicking the button above!</p>
 
   <br />
-  <h6>Copying CMS tokens</h6>
+  <h3 class="h6">Copying CMS tokens</h3>
   <!-- prettier-ignore -->
   {% set clipboard_copy = ({
     id: 'clipboard-copy-2',
@@ -119,7 +135,7 @@ path: library/components
   <p id="{{ clipboard_copy.id }}">&lbrack;%br%&rbrack;</p>
 
   <br />
-  <h6>Hooked up to alert.njk</h6>
+  <h3 class="h6">Hooked up to alert.njk</h3>
   <!-- prettier-ignore -->
   {% set clipboard_copy = ({
     id: 'clipboard-copy-3',
@@ -359,9 +375,9 @@ path: library/components
 
   <img
     class="theme-img"
-    src="/static/img/img-sample-light.png"
-    data-light="/static/img/img-sample-light.png"
-    data-dark="/static/img/img-sample-dark.png"
+    src="/static/img/img-sample-theme-light.png"
+    data-light="/static/img/img-sample-theme-light.png"
+    data-dark="/static/img/img-sample-theme-dark.png"
     alt="light dark image"
     width="250"
     style="width: 250px"

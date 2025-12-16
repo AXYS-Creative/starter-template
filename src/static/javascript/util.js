@@ -143,9 +143,9 @@ export const cubicBezier = (p0, p1, p2, p3) => {
 };
 
 // Back to top
-export const btnBackToTop = document.querySelector(".btn-back-to-top"); // floating page button
 {
-  const returnToTop = document.querySelectorAll(".back-to-top"),
+  // Any element with the class 'back-to-top' will take you to the top (logo is the default target)
+  const returnToTop = document.querySelectorAll("[class*=back-to-top]"),
     logo = document.querySelector(".site-header .site-logo");
 
   const customEase = cubicBezier(0.6, 0, 0.25, 1);

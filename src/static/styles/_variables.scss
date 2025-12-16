@@ -73,6 +73,10 @@ $test-bg: rgba(navy, 0.75);
 
   --color-font--error: #{$red};
 
+  --card-border: var(--border-width) solid var(--color-border);
+  --card-border-radius: var(--radius--sm);
+  --card-padding: var(--body-padding);
+
   // --color-border: #{$grey-light};
 
   --color-btn-bg: var(--color-brand--primary);

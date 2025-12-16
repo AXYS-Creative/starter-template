@@ -600,6 +600,12 @@ $min-breakpoints: ();
   }
 }
 
+@mixin card-styles {
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+}
+
 @mixin wide-btn {
   width: 100%;
   justify-content: center;
