@@ -731,7 +731,7 @@ code.codearea {
   }
   .gradient-border[data-gradient-border-ray-trace]::before {
     inset: calc(var(--gradient-border-width) * -1);
-    background: linear-gradient(135deg, transparent 50%, var(--gradient-border-color) 100%);
+    background: radial-gradient(circle at var(--gradient-x, 50%) var(--gradient-y, 50%), rgba(var(--gradient-border-color-rgb, 255, 255, 255), var(--gradient-opacity, 0.5)) 0%, rgba(var(--gradient-border-color-rgb, 255, 255, 255), calc(var(--gradient-opacity, 0.5) * 0.2)) 100%);
     z-index: -1;
     transition: opacity 0.3s ease;
     -webkit-mask: none;

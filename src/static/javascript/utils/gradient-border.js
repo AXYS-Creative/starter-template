@@ -15,26 +15,14 @@ window.addEventListener("resize", () => {
 });
 
 function updateElementCache() {
-  rayTraceElems.forEach((el, index) => {
-    if (!el.id) {
-      el.id = `gradient-border-ray-trace-${index}`;
-    }
-
-    let style = rayTraceData.get(el)?.style;
-    if (!style) {
-      style = document.createElement("style");
-      style.id = `gradient-border-ray-trace-style-${index}`;
-      document.head.appendChild(style);
-    }
-
+  rayTraceElems.forEach((el) => {
     const rect = el.getBoundingClientRect();
 
-    // Use ColorUtils to parse the color
-    const customColor = el.getAttribute("data-gradient-border-color");
-    const primaryColor = ColorUtils.parseColor(customColor, el) || { r: 255, g: 255, b: 255 };
+    // Parse the color using ColorUtils (handles any CSS color format)
+    const colorValue = getComputedStyle(el).getPropertyValue("--gradient-border-color").trim();
+    const primaryColor = ColorUtils.parseColor(colorValue, el) || { r: 255, g: 255, b: 255 };
 
     rayTraceData.set(el, {
-      style,
       rect,
       centerX: rect.left + rect.width / 2,
       centerY: rect.top + rect.height / 2,
@@ -55,27 +43,25 @@ let rafId = null;
 
 function updateBorders() {
   rayTraceData.forEach((data, el) => {
-    const { style, centerX, centerY, width, height, left, top, primaryColor } = data;
+    const { centerX, centerY, width, height, left, top, primaryColor } = data;
 
     const localX = ((mouseX - left) / width) * 100;
     const localY = ((mouseY - top) / height) * 100;
 
     const distance = Math.sqrt(Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2));
-
     const normalizedDistance = Math.min(distance / maxDistance, 1);
     const intensity = 1 - normalizedDistance;
     const opacity = 0.3 + intensity * 0.7;
 
-    // Use ColorUtils.toRgbaString for cleaner gradient generation
-    const gradient = `radial-gradient(circle at ${localX}% ${localY}%, ${ColorUtils.toRgbaString(
-      primaryColor,
-      opacity
-    )} 0%, ${ColorUtils.toRgbaString(primaryColor, opacity * 0.7)} 30%, ${ColorUtils.toRgbaString(
-      primaryColor,
-      opacity * 0.4
-    )} 60%, ${ColorUtils.toRgbaString(primaryColor, opacity * 0.2)} 100%)`;
-
-    style.textContent = `#${el.id}::before { background: ${gradient} !important; }`;
+    // Set CSS custom properties
+    el.style.setProperty("--gradient-x", `${localX}%`);
+    el.style.setProperty("--gradient-y", `${localY}%`);
+    el.style.setProperty("--gradient-opacity", opacity);
+    // Use a SEPARATE variable for RGB values
+    el.style.setProperty(
+      "--gradient-border-color-rgb",
+      `${primaryColor.r}, ${primaryColor.g}, ${primaryColor.b}`
+    );
   });
 
   rafId = null;
