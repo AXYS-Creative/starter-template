@@ -152,7 +152,9 @@ path: library/components
     timer: true
   }) %}
   {% include "../_includes/components/clipboard-copy.njk" %}
-  <p id="{{ clipboard_copy.id }}">Sample text three — This will copy to the clipboard.</p>
+  <p id="{{ clipboard_copy.id }}" data-copy-value="sup nigga">
+    Sample text three — This will copy to the clipboard.
+  </p>
   {% include "../_includes/components/alert.njk" %}
 </section>
 

@@ -10562,9 +10562,6 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 .header-simple--float.watch-scroll--scrolling-down:focus-within {
   translate: -50% 0;
 }
-.header-simple--float.site-header--promo-banner {
-  top: calc(var(--promo-banner-height) + var(--float-offset));
-}
 .header-simple--glass {
   background: rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(8px);
@@ -10575,6 +10572,9 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 .header-simple.site-header--promo-banner.watch-scroll--scrolling-down {
   translate: 0 calc(-100% - var(--promo-banner-height));
+}
+.header-simple.site-header--promo-banner.header-simple--float {
+  top: calc(var(--promo-banner-height) + var(--float-offset));
 }
 .header-simple.site-header--promo-banner.header-simple--float.watch-scroll--scrolling-down {
   translate: -50% calc(-100% - var(--promo-banner-height));

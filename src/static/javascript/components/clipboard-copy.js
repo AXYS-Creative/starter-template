@@ -10,7 +10,7 @@ clipboardCopyBtns.forEach((btn) => {
     const btnTextSwapTime = parseInt(btn.dataset.btnTextSwapTime, 10);
 
     if (target) {
-      const targetText = target.innerText || target.textContent;
+      const targetText = target.dataset.copyValue || target.innerText || target.textContent;
 
       navigator.clipboard.writeText(targetText);
       btnTextEl.textContent = btnTextActive;
