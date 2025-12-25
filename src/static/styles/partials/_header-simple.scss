@@ -126,10 +126,6 @@
         translate: -50% 0;
       }
     }
-
-    &.site-header--promo-banner {
-      top: calc(var(--promo-banner-height) + var(--float-offset));
-    }
   }
 
   &--glass {
@@ -146,6 +142,8 @@
     }
 
     &.header-simple--float {
+      top: calc(var(--promo-banner-height) + var(--float-offset));
+
       &.watch-scroll--scrolling-down {
         translate: -50% calc(-100% - var(--promo-banner-height));
       }
