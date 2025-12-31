@@ -1,5 +1,5 @@
 import { mqMouse, mqMaxMd, isSafari } from "../util.js";
-import { cubicBezier } from "../global/animations.js";
+import { cubicBezier } from "../util.js";
 
 const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
 

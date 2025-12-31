@@ -113,8 +113,27 @@ export const globalConfig = {
   loadDuration: 0, // global loader, in seconds (not ms)
 };
 
+// Cubic Bézier easing function (for cross-browser compatible animations)
+export const cubicBezier = (p1x, p1y, p2x, p2y) => {
+  // Example: const ease = cubicBezier(0.09, 0.9, 0.5, 1);
+  return function (t) {
+    t = Math.max(0, Math.min(1, t));
+
+    const t2 = t * t;
+    const t3 = t2 * t;
+    const mt = 1 - t;
+    const mt2 = mt * mt;
+    const mt3 = mt2 * mt;
+
+    const x = 3 * mt2 * t * p1x + 3 * mt * t2 * p2x + t3;
+    const y = 3 * mt2 * t * p1y + 3 * mt * t2 * p2y + t3;
+
+    return y;
+  };
+};
+
 // Cubic-bezier - Lenis helper
-export const cubicBezier = (p0, p1, p2, p3) => {
+export const cubicBezierLenis = (p0, p1, p2, p3) => {
   // Polyfill-like implementation of bezier easing
   return (t) => {
     const cx = 3 * p0;
@@ -148,7 +167,7 @@ export const cubicBezier = (p0, p1, p2, p3) => {
   const returnToTop = document.querySelectorAll("[class*=back-to-top]"),
     logo = document.querySelector(".site-header .site-logo");
 
-  const customEase = cubicBezier(0.6, 0, 0.25, 1);
+  const customEase = cubicBezierLenis(0.6, 0, 0.25, 1);
 
   returnToTop.forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -268,5 +287,5 @@ const setViewportUnits = (() => {
 //   });
 // }
 
-console.clear();
+// console.clear();
 console.log("visit axyscreative.com for more info");

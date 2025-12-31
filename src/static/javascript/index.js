@@ -31,9 +31,17 @@ import "./components/video-overlay.js";
 
 import "./utils/glitch-text.js";
 import "./utils/gradient-border.js";
+import "./utils/grid-fade.js";
 import "./utils/magnet.js";
 import "./utils/parallax.js";
+import "./utils/text-animations.js";
 import "./utils/text-curve.js";
 import "./utils/text-glare.js";
 import "./utils/toggle-slider.js";
 import "./utils/velocity-push.js";
+
+import "./sections/scroll-horizontal.js"; // Pinned sections at the top
+import "./sections/scroll-stack.js"; // Pinned sections at the top
+import "./sections/tunnel.js";
+
+import "./utils/gsap.js"; // gsap-animate and gsap-stagger after (in case pinned section)
