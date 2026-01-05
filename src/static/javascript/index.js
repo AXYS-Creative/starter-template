@@ -6,6 +6,10 @@ import "./global/header.js";
 import "./global/footer.js";
 import "./global/scroll.js";
 
+import "./sections/scroll-horizontal.js"; // Pinned Section (be mindful of JS import placement)
+import "./sections/scroll-stack.js"; // Pinned Section (be mindful of JS import placement)
+import "./sections/tunnel.js";
+
 import "./components/accordion.js";
 import "./components/alert.js";
 import "./components/buttons.js";
@@ -18,6 +22,7 @@ import "./components/form-feedback.js";
 import "./components/form-redirect.js";
 import "./components/grid-bg.js";
 import "./components/grid-flow-img.js";
+import "./components/marquee-curve.js";
 import "./components/marquee.js";
 import "./components/mouse-cursor.js";
 import "./components/particle-waves.js";
@@ -32,6 +37,7 @@ import "./components/video-overlay.js";
 import "./utils/glitch-text.js";
 import "./utils/gradient-border.js";
 import "./utils/grid-fade.js";
+import "./utils/gsap.js"; // Be mindful of placement against pinned content/sections
 import "./utils/magnet.js";
 import "./utils/parallax.js";
 import "./utils/text-animations.js";
@@ -39,9 +45,3 @@ import "./utils/text-curve.js";
 import "./utils/text-glare.js";
 import "./utils/toggle-slider.js";
 import "./utils/velocity-push.js";
-
-import "./sections/scroll-horizontal.js"; // Pinned sections at the top
-import "./sections/scroll-stack.js"; // Pinned sections at the top
-import "./sections/tunnel.js";
-
-import "./utils/gsap.js"; // gsap-animate and gsap-stagger after (in case pinned section)

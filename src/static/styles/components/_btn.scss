@@ -103,4 +103,12 @@
       }
     }
   }
+
+  // Utility for an inline text link (inline-flex not creating gap in words)
+  &.gap-start {
+    margin-inline: 0.5ch;
+  }
+  &.gap-end {
+    margin-inline-end: 0.5ch;
+  }
 }

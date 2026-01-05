@@ -1,0 +1,55 @@
+.marquee-curve {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &__track {
+    position: relative;
+    width: 200%; // Double width for seamless loop
+    height: 600px; // Default height, can be customized
+  }
+
+  &__path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0; // Hidden, only used for path calculations
+  }
+
+  &__curve {
+    fill: none;
+    stroke: transparent;
+  }
+
+  &__content {
+    @include h5;
+    @include font-styles--mono;
+    text-transform: uppercase;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    white-space: nowrap;
+    will-change: transform;
+
+    &--clone {
+      left: 50%;
+    }
+  }
+
+  &__original {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

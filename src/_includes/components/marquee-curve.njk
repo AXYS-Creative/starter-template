@@ -1,0 +1,27 @@
+<!-- prettier-ignore -->
+{% set text = marquee_curve.text | default('No value passed') %}
+{% set curve = marquee_curve.curve | default('cubic-bezier(0.33, 0.50, 0.67, 0.50)') %}
+{% set spacing = marquee_curve.spacing | default('1') %}
+{% set reverse = marquee_curve.reverse | default(true) %}
+
+<div
+  class="marquee-curve text-mono"
+  data-curve="{{ curve }}"
+  data-spacing="{{ spacing }}"
+  data-reverse="{{ reverse }}"
+>
+  <div class="marquee-curve__track">
+    <svg class="marquee-curve__path" preserveAspectRatio="none">
+      <path class="marquee-curve__curve" />
+    </svg>
+    <div class="marquee-curve__content" aria-hidden="true">
+      {{ text | safe }}
+    </div>
+    <div class="marquee-curve__content marquee-curve__content--clone" aria-hidden="true">
+      {{ text | safe }}
+    </div>
+  </div>
+  <div class="marquee-curve__original" role="marquee">
+    {{ text | safe }}
+  </div>
+</div>

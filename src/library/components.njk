@@ -316,6 +316,50 @@ path: library/components
   </div>
 </section>
 
+<section class="marquee-curve-section section-width--full">
+  <div class="library-section-info section-width">
+    <h2>[ Marquee Curve - Component ]</h2>
+    <p>
+      A traditional marquee component that can follow a custom path. Visit
+
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'axys tools',
+        url: 'https://axyscreative-dev.netlify.app/tools/',
+        new_tab: true,
+        type: 'underline',
+        class: 'gap-end'
+      }) %}
+      {% include "../_includes/components/btn.njk" %}
+
+      to customize the path it will follow!
+    </p>
+    <div>
+      <p>While not required, it’s highly recommended to use a</p>
+      <!-- prettier-ignore -->
+      {% set tooltip = ({
+        text: 'mono-spaced font',
+        message: 'A font where every character is the same width.',
+        size: 'sm',
+        place: 'bottom',
+        place_sm: 'bottom-right',
+        include_point: true
+      }) %} 
+      {% include "../_includes/components/tooltip.njk" %}
+    </div>
+  </div>
+
+  <!-- prettier-ignore -->
+  {% set marquee_curve = ({ 
+    text: "Marquee with a twist (literally) using the marquee curve component! Recommended to use a mono spaced font! • ",
+    curve: 'cubic-bezier(0.73, 0.09, 0.72, 1.00)', 
+    spacing: '1', 
+    reverse: true 
+  }) %} 
+    
+    {% include "../_includes/components/marquee-curve.njk" %}
+</section>
+
 <section class="solar-system-section library-section">
   <h2>[ Solar system - Component ]</h2>
 

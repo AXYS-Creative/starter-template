@@ -353,9 +353,23 @@ path: library/utils
     <li><code>--gradient-border-angle</code></li>
   </ul>
 
-  <br /><br />
-  <p>But there are a handful of useful data attributes as well.</p>
-  <br /><br />
+  <br />
+  <p>There are a handful of useful data attributes as well.</p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-gradient-border-length</code> An enum of <code>short | long</code> that controls
+      the length of the border. The default is <code>null</code> (in between these lengths).
+    </li>
+    <li>
+      <code>data-gradient-border-animate</code> which by itself indicates an indefinite gradient
+      animation. If set to <code>hover</code>, it will animate on hover.
+    </li>
+    <li>
+      <code> data-gradient-border-ray-trace</code> If added, it will animate the border based on
+      mouse position.
+    </li>
+  </ul>
 
   <h3 class="h5">Most basic examples</h3>
   <em>These containers have a static gradient borders.</em>
