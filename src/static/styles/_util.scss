@@ -735,7 +735,11 @@
     }
 
     &[data-flashlight] {
-      @include text-gradient($track-mouse: true, $flashlight: true);
+      @include text-gradient(
+        $track-mouse: true,
+        $flashlight: true,
+        $col-2: var(--color-surface--2)
+      );
     }
   }
 

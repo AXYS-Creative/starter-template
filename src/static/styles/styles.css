@@ -2207,8 +2207,8 @@ code.codearea {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: 1s ease;
-    background-image: radial-gradient(circle at var(--gradient-pos, center), var(--color-font--primary), var(--color-background));
-    background-image: radial-gradient(circle at var(--gradient-pos, center), var(--color-font--primary) 10%, var(--color-background) 50%);
+    background-image: radial-gradient(circle at var(--gradient-pos, center), var(--color-font--primary), var(--color-surface--2));
+    background-image: radial-gradient(circle at var(--gradient-pos, center), var(--color-font--primary) 10%, var(--color-surface--2) 50%);
   }
   .text-gradient {
     display: inline;
