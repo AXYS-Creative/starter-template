@@ -342,7 +342,7 @@ path: library/components
         message: 'A font where every character is the same width.',
         size: 'sm',
         place: 'bottom',
-        place_sm: 'bottom-right',
+        place_sm: 'bottom-left',
         include_point: true
       }) %} 
       {% include "../_includes/components/tooltip.njk" %}
@@ -351,8 +351,8 @@ path: library/components
 
   <!-- prettier-ignore -->
   {% set marquee_curve = ({ 
-    text: "Marquee with a twist (literally) using the marquee curve component! Recommended to use a mono spaced font! • ",
-    curve: 'cubic-bezier(0.73, 0.09, 0.72, 1.00)', 
+    text: "Marquee with a twist (literally) using the marquee curve component! Recommended to use a mono spaced font! Marquee with a twist (literally) using the marquee curve component! Recommended to use a mono spaced font!",
+    curve: 'cubic-bezier(0.20, 1.00, 0.00, 0.04)',
     spacing: '1', 
     reverse: true 
   }) %} 

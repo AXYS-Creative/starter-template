@@ -1,6 +1,6 @@
 <!-- prettier-ignore -->
 {% set text = marquee_curve.text | default('No value passed') %}
-{% set curve = marquee_curve.curve | default('cubic-bezier(0.33, 0.50, 0.67, 0.50)') %}
+{% set curve = marquee_curve.curve | default('cubic-bezier(0.55, 1.00, 0.66, 0.22)') %}
 {% set spacing = marquee_curve.spacing | default('1') %}
 {% set reverse = marquee_curve.reverse | default(true) %}
 
@@ -9,6 +9,8 @@
   data-curve="{{ curve }}"
   data-spacing="{{ spacing }}"
   data-reverse="{{ reverse }}"
+  data-tracking="1"
+  data-min-spacing-factor="1.1"
 >
   <div class="marquee-curve__track">
     <svg class="marquee-curve__path" preserveAspectRatio="none">

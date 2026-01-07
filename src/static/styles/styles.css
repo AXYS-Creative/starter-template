@@ -7195,8 +7195,7 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
 }
 .marquee-curve__track {
   position: relative;
-  width: 200%;
-  height: 600px;
+  height: 450px;
 }
 .marquee-curve__path {
   position: absolute;
@@ -7214,11 +7213,11 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
 .marquee-curve__content {
   color: var(--color-font--primary);
   font-family: var(--font-family--heading);
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -1px;
-  font-weight: 600;
+  opacity: 0.75;
   font-family: var(--font-family--mono);
   letter-spacing: -0.5px;
   font-weight: 400;
@@ -7226,13 +7225,12 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
   white-space: nowrap;
   will-change: transform;
 }
 @media (max-width: 768px) {
   .marquee-curve__content {
-    font-size: 20px;
+    font-size: 36px;
   }
 }
 .marquee-curve__content--clone {

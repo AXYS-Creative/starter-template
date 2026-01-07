@@ -5,8 +5,7 @@
 
   &__track {
     position: relative;
-    width: 200%; // Double width for seamless loop
-    height: 600px; // Default height, can be customized
+    height: 450px; // Default height, can be customized
   }
 
   &__path {
@@ -25,14 +24,14 @@
   }
 
   &__content {
-    @include h5;
+    @include h2;
     @include font-styles--mono;
     text-transform: uppercase;
 
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    // width: 50%;
     white-space: nowrap;
     will-change: transform;
 

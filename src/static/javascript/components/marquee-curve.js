@@ -60,11 +60,16 @@ class MarqueeCurve {
   }
 
   init() {
-    // Build once layout has settled
     requestAnimationFrame(() => {
       this.rebuildAll();
       this.setupResize();
+      this.setupResizeObserver();
       this.setupVisibilityHandling();
+
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(() => this.rebuildAll());
+      }
+
       this.animate(performance.now());
     });
   }
@@ -81,6 +86,17 @@ class MarqueeCurve {
       },
       { passive: true }
     );
+  }
+
+  setupResizeObserver() {
+    if (!("ResizeObserver" in window)) return;
+
+    this._ro = new ResizeObserver(() => {
+      if (this._resizeRaf) cancelAnimationFrame(this._resizeRaf);
+      this._resizeRaf = requestAnimationFrame(() => this.rebuildAll());
+    });
+
+    this._ro.observe(this.track);
   }
 
   setupVisibilityHandling() {
@@ -102,15 +118,49 @@ class MarqueeCurve {
   }
 
   rebuildAll() {
-    this.createCurvePath();
+    // Need a content node to measure font size (monospace glyph width)
+    const firstContent = this.contents[0];
+    const rawText = (firstContent?.textContent || "").trim();
+    if (!rawText) return;
+
+    // Monospace width (px) and derived spacing
+    const monoW = this.getMonoCharWidthFromContent(firstContent);
+
+    // Conservative multiplier to avoid collisions on curves
+    const K = 1.25;
+
+    // Your data-spacing can remain a multiplier; if you want "spacing=1" to mean
+    // "natural mono spacing", keep it in the formula:
+    const charSpacing = Math.max(1, monoW * K * this.spacing);
+
+    // How much arc-length the text wants (px-ish)
+    const charsCount = Array.from(rawText).length;
+    const runLength = charsCount * charSpacing;
+
+    // Minimum width should at least cover the visible container so you don't shrink on desktop
+    const minWidth = this.element.getBoundingClientRect().width;
+
+    // This is the key: make the curve long enough for the string (plus a small buffer)
+    const buffer = monoW * 8; // ~8 chars of padding
+    const curveWidth = Math.ceil(Math.max(minWidth, runLength + buffer));
+
+    // Apply geometry so track/content/svg match this curve width
+    this.applyGeometry(curveWidth);
+
+    // Now build curve based on that width and current height
+    this.createCurvePath(curveWidth);
+
     if (!this.pathLength) return;
 
-    this.positionTextOnCurve(); // builds DOM + caches spans/offsets
-    this.buildPathLookupTable(); // expensive once, cheap thereafter
+    // Place text using our charSpacing (so it remains stable and non-overlapping)
+    this.positionTextOnCurve(charSpacing);
+
+    // LUT rebuild
+    this.buildPathLookupTable();
   }
 
-  createCurvePath() {
-    const width = this.track.offsetWidth / 2;
+  createCurvePath(curveWidth) {
+    const width = curveWidth; // <-- explicit
     const height = this.track.offsetHeight;
 
     if (!width || !height) return;
@@ -127,7 +177,6 @@ class MarqueeCurve {
     const cp1X = width * x1;
     const cp2X = width * x2;
 
-    // Map y control points around midline (0.5 is center)
     const midY = height / 2;
     const amp = height / 2;
 
@@ -137,11 +186,40 @@ class MarqueeCurve {
     const pathData = `M ${startX},${startY} C ${cp1X},${cp1Y} ${cp2X},${cp2Y} ${endX},${endY}`;
     this.path.setAttribute("d", pathData);
 
-    // Cache length
     this.pathLength = this.path.getTotalLength();
   }
 
-  positionTextOnCurve() {
+  getMonoCharWidthFromContent(content) {
+    const probe = document.createElement("span");
+    probe.textContent = "M";
+    probe.style.position = "absolute";
+    probe.style.visibility = "hidden";
+    probe.style.whiteSpace = "pre";
+    probe.style.pointerEvents = "none";
+    content.appendChild(probe);
+    const w = probe.getBoundingClientRect().width;
+    probe.remove();
+    return w || 0;
+  }
+
+  // Sets track/svg/content widths so the curve is long enough for the text.
+  // This prevents modulo-wrap overlap.
+  applyGeometry(curveWidthPx) {
+    // Track is 2× so we have room for original + clone
+    this.track.style.width = `${curveWidthPx * 2}px`;
+
+    // SVG should match curve width in CSS px so getPointAtLength coordinates
+    // align with what you're translating spans to.
+    this.svg.style.width = `${curveWidthPx}px`;
+
+    // Each content run occupies exactly one curve width
+    this.contents.forEach((content, i) => {
+      content.style.width = `${curveWidthPx}px`;
+      content.style.left = `${i * curveWidthPx}px`; // 0 for first, curveWidth for clone
+    });
+  }
+
+  positionTextOnCurve(charSpacing) {
     this.contentRuns = [];
 
     for (let contentIndex = 0; contentIndex < this.contents.length; contentIndex++) {
@@ -149,43 +227,33 @@ class MarqueeCurve {
       const text = (content.textContent || "").trim();
       if (!text) continue;
 
-      const chars = Array.from(text); // handles unicode better than split("")
+      const chars = Array.from(text);
       content.textContent = "";
 
       const fragment = document.createDocumentFragment();
-
-      // Your original intent:
-      // pathLength / chars.length gives "natural" distribution, then scaled by spacing.
-      // Keep the behavior but clamp pathological cases.
-      const perChar = this.pathLength / Math.max(chars.length, 1);
-      const charSpacing = perChar * this.spacing;
-
       const spans = new Array(chars.length);
       const offsets = new Float32Array(chars.length);
 
       for (let i = 0; i < chars.length; i++) {
         const span = document.createElement("span");
         span.textContent = chars[i];
-
-        // Set once; avoid touching these every frame
         span.style.position = "absolute";
         span.style.transformOrigin = "center center";
         span.style.willChange = "transform";
-
-        const off = i * charSpacing;
-
         spans[i] = span;
-        offsets[i] = off;
-
+        offsets[i] = i * charSpacing;
         fragment.appendChild(span);
       }
 
       content.appendChild(fragment);
 
+      // IMPORTANT: offset clone by curve width, not path length.
+      // Because we geometry-sized the curve, curve width == one full run region.
+      // We can use pathLength here too, but curveWidth-based layout is what prevents stacking.
       this.contentRuns.push({
         spans,
         offsets,
-        baseOffset: contentIndex * this.pathLength,
+        baseOffset: contentIndex * this.pathLength, // safe now because path is long enough
       });
     }
   }
@@ -306,11 +374,14 @@ class MarqueeCurve {
     if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
     this.animationFrame = null;
 
-    window.removeEventListener("resize", this._onResize);
-
     if (this._io) {
       this._io.disconnect();
       this._io = null;
+    }
+
+    if (this._ro) {
+      this._ro.disconnect();
+      this._ro = null;
     }
   }
 }
