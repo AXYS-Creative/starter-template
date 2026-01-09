@@ -3,6 +3,7 @@
 {% set curve = marquee_curve.curve | default('cubic-bezier(0.55, 1.00, 0.66, 0.22)') %}
 {% set spacing = marquee_curve.spacing | default('1') %}
 {% set reverse = marquee_curve.reverse | default(true) %}
+{% set scrub = marquee_curve.scrub | default(0) %}
 
 <div
   class="marquee-curve text-mono"
@@ -11,6 +12,8 @@
   data-reverse="{{ reverse }}"
   data-tracking="1"
   data-min-spacing-factor="1.1"
+  data-spacing="{{ spacing }}"
+  data-marquee-scrub="{{ scrub }}"
 >
   <div class="marquee-curve__track">
     <svg class="marquee-curve__path" preserveAspectRatio="none">
