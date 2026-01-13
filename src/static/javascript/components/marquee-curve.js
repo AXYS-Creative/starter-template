@@ -9,7 +9,7 @@ class MarqueeCurve {
     const curveString = element.dataset.curve || "";
     this.curveData = this.parseCurve(curveString);
     this.spacing = Number.parseFloat(element.dataset.spacing || "1");
-    this.reverse = element.dataset.reverse === "true";
+    this.reverse = element.dataset.reverse !== "true";
 
     // Scrub intensity:
     // - attribute absent => intensity 0 (autoplay only)
@@ -47,9 +47,9 @@ class MarqueeCurve {
     // - data-marquee-scrub           (empty string)
     // - data-marquee-scrub="0.5"
     // - absent
-    if (!this.element.hasAttribute("data-marquee-scrub")) return 0;
+    if (!this.element.hasAttribute("data-scrub")) return 0;
 
-    const raw = this.element.getAttribute("data-marquee-scrub");
+    const raw = this.element.getAttribute("data-scrub");
 
     // If present but empty, treat as full scrub
     if (raw === "" || raw === null) return 1;
