@@ -27,11 +27,14 @@
       site-nav-btn__icon--{{ symbol }} 
       site-nav-btn__icon--{{ shape }}
       magnet
-      magnet-strong
       glitch-trigger
       cursor-target__menu-btn
     "
     data-glitch-target="glitch-target__menu-btn"
+    data-magnet-x="1"
+    data-magnet-y="1"
+    data-magnet-return-duration="350"
+    data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
   >
     {% if symbol == 'burger' %} {% for i in range(0, 2) %}
     <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>

@@ -13,10 +13,14 @@
     <a
       href="{{ link.url }}"
       target="_blank"
-      class="social-media-link magnet magnet-strong cursor-trigger {{a11y_tab}}"
+      class="social-media-link magnet cursor-trigger {{a11y_tab}}"
       aria-label="{{ link.title }}"
       data-cursor-target="social-media-link"
       data-cursor-class="cursor-social-media"
+      data-magnet-x="1"
+      data-magnet-y="1"
+      data-magnet-return-duration="350"
+      data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
     >
       <span
         class="social-media-link__img"

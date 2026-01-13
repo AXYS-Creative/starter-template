@@ -111,9 +111,9 @@ title: Style Guide
         url: '/',
         new_tab: false,
         type: 'solid',
-        class: 'magnet magnet-wide-btn btn--underline glitch-hover cursor-hide',
+        class: 'magnet btn--underline glitch-hover cursor-hide',
         icon_end: '/static/img/icon-google-new-tab.svg',
-        attributes: 'data-glitch-new-text="Let’s do this!"'
+        attributes: 'data-glitch-new-text="Let’s do this!" data-magnet-x=0.25 data-magnet-y=0.75'
       }) %}
       {% include './_includes/components/btn.njk' %}
     </div>
@@ -198,7 +198,8 @@ title: Style Guide
         type: 'icon-end',
         class: 'cursor-hide',
         icon_end: '/static/img/icon-google-chevron-right.svg',
-        icon_end_class: 'magnet magnet-strong',
+        icon_end_class: 'magnet',
+        icon_end_attributes: 'data-magnet-x=1 data-magnet-y=1',
         icon_circle: true
       }) %}
       {% include './_includes/components/btn.njk' %}
@@ -234,7 +235,8 @@ title: Style Guide
         url: '/',
         new_tab: true,
         type: 'underline',
-        class: 'btn--split-text magnet magnet-wide-btn',
+        class: 'btn--split-text magnet',
+        attributes: 'data-magnet-x=0.25 data-magnet-y=0.75',
         icon_end: '/static/img/icon-google-warning-triangle.svg'
       }) %}
       {% include './_includes/components/btn.njk' %}
@@ -291,8 +293,9 @@ title: Style Guide
   </p>
   <br />
   <p>
-    <a href="" class="magnet magnet-wide-btn tab-element-page">Magnet Button</a>
-    <span>Class: <code>magnet magnet-wide-btn</code></span>
+    <a href="" class="magnet tab-element-page">Magnet Button</a>
+    <span>Class: <code>magnet</code></span>
+    <span>Attributes: <code>data-magnet-x=0.25 data-magnet-y=0.75</code></span>
   </p>
   <br /><br />
   <button class="btn-type--solid btn--bg-slide">Bg Slide Button (solid)</button>

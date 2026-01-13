@@ -5,7 +5,7 @@
 {% set btn_text_swap_time = clipboard_copy.btn_text_swap_time or 2000 %}
 {% set icon = clipboard_copy.icon | default('../../static/img/icon-google-copy.svg') %}
 
-{% set clipboard_class = 'clipboard-copy-btn magnet magnet-wide-btn cursor-hide' %}
+{% set clipboard_class = 'clipboard-copy-btn magnet cursor-hide' %}
 
 {% if btn_text_swap_time %}
   {% set data_text_swap_time = 'data-btn-text-swap-time="'~btn_text_swap_time~'"' %}
@@ -29,6 +29,7 @@
     data-btn-text-active="'~btn_text_active~'" 
     '~aria_controls~'
     '~data_text_swap_time~'
+    data-magnet-x=0.5 data-magnet-y=1
   '
  }) %}
 {% include "./btn.njk" %}

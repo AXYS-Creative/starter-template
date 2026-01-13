@@ -10,6 +10,8 @@ export const mqMaxMd = window.matchMedia("(max-width: 768px)").matches;
 // Remember to add 'data-lenis-prevent' to any that should scroll normally
 export const lenis = new Lenis({
   autoRaf: true,
+  lerp: 0.06, // default ≈ 0.1
+  duration: 1, // seconds
 });
 
 //

@@ -47,7 +47,9 @@ path: library/utils
   >
     <strong>Hover me</strong> — move cursor to star (inline with magnet effect)
     <span
-      class="cursor-target__icon magnet magnet-strong"
+      class="cursor-target__icon magnet"
+      data-magnet-x="1"
+      data-magnet-y="1"
       style="
         display: inline-flex;
         justify-content: center;
@@ -530,6 +532,70 @@ path: library/utils
     </div>
     {% endfor %}
     <div></div>
+  </div>
+</section>
+
+<section class="magnet-section library-section">
+  <h2>[ Magnet – Util ]</h2>
+
+  <p class="max-width-text">
+    The magnet utility applies a cursor-following “tug” effect to any element with the
+    <code>magnet</code> class. While hovered, the element tracks the pointer relative to its center
+    and continues responding until the pointer leaves the element. These are some available
+    configurations you can apply with data attributes:
+  </p>
+
+  <ul class="classic-list">
+    <li><code>data-magnet-x</code> — Horizontal pull strength (default: <code>0.5</code>)</li>
+    <li><code>data-magnet-y</code> — Vertical pull strength (default: <code>0.5</code>)</li>
+    <li>
+      <code>data-magnet-follow-ease</code> — JS follow smoothing (0–1, default: <code>1</code>)
+    </li>
+    <li>
+      <code>data-magnet-return-duration</code> — Ease-back duration in ms (default:
+      <code>220</code>)
+    </li>
+    <li>
+      <code>data-magnet-return-ease</code> — Named easing or custom
+      <code>cubic-bezier(x1,y1,x2,y2)</code>
+    </li>
+  </ul>
+
+  <br /><br />
+
+  <!-- prettier-ignore -->
+  {% set btn = ({
+    text: 'Magnet Button',
+    type: 'solid',
+    class: 'magnet',
+    attributes: 'data-magnet-x=0.5 data-magnet-y=1.25 data-magnet-return-duration=350 data-magnet-return-ease=cubic-bezier(0,1.64,.63,1.92)'
+  }) %}
+  {% include "../_includes/components/btn.njk" %}
+
+  <br /><br />
+
+  <div class="library-boxes">
+    <div class="library-box magnet">Default Magnet</div>
+
+    <div
+      class="library-box magnet"
+      data-magnet-x="0.25"
+      data-magnet-y="0.25"
+      data-magnet-return-duration="500"
+      data-magnet-return-ease="cubic-bezier(0.16, 1, 0.3, 1)"
+    >
+      Subtle / Weak Magnet
+    </div>
+
+    <div
+      class="library-box magnet"
+      data-magnet-x="0.75"
+      data-magnet-y="0.75"
+      data-magnet-return-duration="350"
+      data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
+    >
+      Strong Magnet
+    </div>
   </div>
 </section>
 
@@ -1219,10 +1285,10 @@ path: library/utils
 
     <!-- prettier-ignore -->
     {% set btn = ({
-    text: 'Hover Me',
-    type: 'solid',
-    class: 'velocity-push align-self-center'
-   }) %}
-  {% include "../_includes/components/btn.njk" %}
+      text: 'Hover Me',
+      type: 'solid',
+      class: 'velocity-push align-self-center'
+    }) %}
+    {% include "../_includes/components/btn.njk" %}
   </div>
 </section>

@@ -12,6 +12,7 @@
 {% set icon_start_class = btn.icon_start_class or '' %}
 {% set icon_end = btn.icon_end or '' %}
 {% set icon_end_class = btn.icon_end_class or '' %}
+{% set icon_end_attributes = btn.icon_end_attributes or '' %}
 {% set icon_circle = btn.icon_circle or false %}
 
 <!-- prettier-ignore -->
@@ -61,7 +62,7 @@
     <span class="btn__text">{{ text }}</span>
   {% endif %}
   {% if icon_end or type == 'icon_end' %}
-  <span class="btn__icon-group {{ icon_end_class }}">
+  <span class="btn__icon-group {{ icon_end_class }}" {{icon_end_attributes}}>
     {% set icon_svg = ({ src: icon_end, class: 'btn__icon-end'}) %}
     {% include "./icon-svg.njk" %}
 
