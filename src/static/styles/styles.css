@@ -7487,6 +7487,14 @@ body:has(.tooltip-util) .mouse-cursor {
   height: var(--particle-height, 60vh);
 }
 
+.bg-particle-waves .gsap-animate {
+  background: transparent;
+}
+.bg-particle-waves .gsap-animate.gsap-animated {
+  background: var(--color-surface--1);
+  transition: 0.24s ease 1s;
+}
+
 .price-cards__inner {
   padding-inline: var(--body-padding);
   padding-block: var(--body-padding-double);

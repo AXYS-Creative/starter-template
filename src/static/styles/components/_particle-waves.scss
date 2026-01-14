@@ -34,3 +34,13 @@
     height: var(--particle-height, 60vh);
   }
 }
+
+// Library
+.bg-particle-waves .gsap-animate {
+  background: transparent;
+
+  &.gsap-animated {
+    background: var(--color-surface--1);
+    transition: $ease 1s;
+  }
+}

@@ -10,16 +10,22 @@ description:
 <!-- prettier-ignore -->
 {% set hero_simple = ({
   title: 'Advanced',
-  desc: 'More complex components, advanced js, webGL, spline, svg shaders, etc.'
+  desc: 'More complex components, advanced js, webGL, spline, svg shaders, etc.',
+  class: ''
 }) %}
 {% include '../_includes/sections/hero-simple.njk' %}
 
-<section class="bg-particle-waves">
+<section class="bg-particle-waves grid-bg-hide">
   <div class="bg-particle-waves__inner">
     <h2>[<span class="typing-scroll"> Particle waves </span>]</h2>
-    <small>
-      Use the <code>bg-particle-waves</code> class on the section, then include the canvas at the
-      bottom. <br class="md-up" />
+    <small
+      class="text-scale"
+      data-scale-scrub="true"
+      data-scale-start="top 90%"
+      data-scale-end="bottom 65%"
+    >
+      Use the <code class="gsap-animate">bg-particle-waves</code> class on the section, then include
+      the canvas at the bottom. <br class="md-up" />
       Comes with a few handy configs.
     </small>
   </div>
@@ -42,7 +48,7 @@ description:
 
   <svg
     style="margin: auto"
-    class="dots-fill dots-basic-rectangle"
+    class="dots-fill dots-basic-rectangle grid-bg-disable"
     data-dot-size="2"
     data-dot-gap="32"
     data-dot-restore="1"
@@ -64,7 +70,7 @@ description:
       height: 30vw; 
       margin: auto;
     "
-    class="dots-fill dots-axys-glyph"
+    class="dots-fill dots-axys-glyph grid-bg-disable"
     data-dot-size="0.5"
     data-dot-gap="4"
     data-dot-restore="0.5"
@@ -85,32 +91,29 @@ description:
   </svg>
 
   <!-- prettier-ignore -->
-  <svg
-    style="
-      width: 30vw;
-      height: 30vw; 
-      margin: auto;
-    "
-    class="dots-fill dots-play-icon"
+  <svg 
+    style="width: 36vw; height: 36vw; margin: auto"
+    class="dots-fill dots-infinity-icon grid-bg-disable"
     data-dot-size="2"
     data-dot-gap="16"
-    data-dot-restore="0.9"
+    data-dot-restore="1"
     data-dot-sensitivity="0.1"
-    data-dot-distance="100"
-    data-dot-strength="50"
+    data-dot-distance="250"
+    data-dot-strength="200"
     data-dot-color="var(--color-brand--primary)"
     data-dot-illuminate="true"
-    data-dot-grow="3"
-    width="384"
-    height="512"
-    viewBox="0 0 384 512"
-    xmlns="http://www.w3.org/2000/svg"
+    data-dot-grow="3" 
+    width="24px" 
+    height="24px" 
+    viewBox="0 -960 960 960" 
+    fill="#e3e3e3"
+    xmlns="http://www.w3.org/2000/svg" 
   >
-    <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path>
+    <path d="M220-260q-92 0-156-64T0-480q0-92 64-156t156-64q37 0 71 13t61 37l68 62-60 54-62-56q-16-14-36-22t-42-8q-58 0-99 41t-41 99q0 58 41 99t99 41q22 0 42-8t36-22l310-280q27-24 61-37t71-13q92 0 156 64t64 156q0 92-64 156t-156 64q-37 0-71-13t-61-37l-68-62 60-54 62 56q16 14 36 22t42 8q58 0 99-41t41-99q0-58-41-99t-99-41q-22 0-42 8t-36 22L352-310q-27 24-61 37t-71 13Z"/>
   </svg>
 
   <svg
-    class="dots-fill dots-axys-logo-full"
+    class="dots-fill dots-axys-logo-full grid-bg-disable"
     data-dot-size="0.5"
     data-dot-gap="4"
     data-dot-distance="180"
@@ -202,6 +205,11 @@ description:
     <li><code>data-grid-enter</code> to handle the 'enter' animation.</li>
     <li><code>data-grid-exit</code> to handle the 'exit' animation.</li>
     <li><code>data-stagger-interval</code> a number do alter the animation speed.</li>
+  </ul>
+  <p>You can with the util class or you can disable the mouse event with the util class</p>
+  <ul class="classic-list">
+    <li><code>grid-bg-disable</code> disable mouse tracking, the interval will still show.</li>
+    <li><code>grid-bg-hide</code> hide the grid completetly, including the interval.</li>
   </ul>
 </section>
 
