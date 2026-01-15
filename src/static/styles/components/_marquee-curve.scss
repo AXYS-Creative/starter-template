@@ -15,12 +15,28 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    opacity: 0; // Hidden, only used for path calculations
+    // opacity: 0; // Hidden, only used for path calculations
   }
 
   &__curve {
     fill: none;
     stroke: transparent;
+  }
+
+  &__band-border,
+  &__band-bg {
+    fill: none;
+    vector-effect: non-scaling-stroke; // keeps stroke widths stable across scaling
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+  }
+
+  &__band-border {
+    stroke: var(--marquee-band-border, rgba(255, 255, 255, 0.1));
+  }
+
+  &__band-bg {
+    stroke: var(--marquee-band-bg, #434343);
   }
 
   &__content {
@@ -33,7 +49,7 @@
     left: 0;
     // width: 50%;
     white-space: nowrap;
-    will-change: transform;
+    z-index: 1;
 
     &--clone {
       left: 50%;

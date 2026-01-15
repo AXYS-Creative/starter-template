@@ -5,6 +5,8 @@ class MarqueeCurve {
     this.contents = Array.from(element.querySelectorAll(".marquee-curve__content"));
     this.svg = element.querySelector(".marquee-curve__path");
     this.path = element.querySelector(".marquee-curve__curve");
+    this.bandBorderPath = element.querySelector(".marquee-curve__band-border");
+    this.bandBgPath = element.querySelector(".marquee-curve__band-bg");
 
     const curveString = element.dataset.curve || "";
     this.curveData = this.parseCurve(curveString);
@@ -43,21 +45,15 @@ class MarqueeCurve {
   }
 
   parseScrubIntensity() {
-    // Attribute might be present as:
-    // - data-marquee-scrub           (empty string)
-    // - data-marquee-scrub="0.5"
-    // - absent
-    if (!this.element.hasAttribute("data-scrub")) return 0;
+    if (!this.element.hasAttribute("data-marquee-scrub")) return 0;
 
-    const raw = this.element.getAttribute("data-scrub");
+    const raw = this.element.getAttribute("data-marquee-scrub");
 
-    // If present but empty, treat as full scrub
     if (raw === "" || raw === null) return 1;
 
     const n = Number.parseFloat(raw);
     if (!Number.isFinite(n)) return 1;
 
-    // Clamp 0..1
     return Math.max(0, Math.min(1, n));
   }
 
@@ -75,6 +71,20 @@ class MarqueeCurve {
       y1: Number.parseFloat(matches[2]),
       x2: Number.parseFloat(matches[3]),
       y2: Number.parseFloat(matches[4]),
+    };
+  }
+
+  getBandConfig() {
+    const h = Number.parseFloat(this.element.dataset.bandHeight || "120"); // px
+    const borderW = Number.parseFloat(this.element.dataset.bandBorderWidth || "1"); // px
+    const bg = this.element.dataset.bandBg || "#111";
+    const border = this.element.dataset.bandBorder || "rgba(255,255,255,0.2)";
+
+    return {
+      height: Math.max(0, h),
+      borderW: Math.max(0, borderW),
+      bg,
+      border,
     };
   }
 
@@ -233,8 +243,28 @@ class MarqueeCurve {
 
     const pathData = `M ${startX},${startY} C ${cp1X},${cp1Y} ${cp2X},${cp2Y} ${endX},${endY}`;
     this.path.setAttribute("d", pathData);
-
     this.pathLength = this.path.getTotalLength();
+
+    const { height: bandH, borderW, bg, border } = this.getBandConfig();
+
+    // Apply same curve to band paths
+    if (this.bandBorderPath) this.bandBorderPath.setAttribute("d", pathData);
+    if (this.bandBgPath) this.bandBgPath.setAttribute("d", pathData);
+
+    // Stroke widths: border path is the full thickness,
+    // bg path is slightly thinner so the border shows on both edges
+    const borderStrokeW = bandH;
+    const bgStrokeW = Math.max(0, bandH - borderW * 2);
+
+    if (this.bandBorderPath) {
+      this.bandBorderPath.style.stroke = border;
+      this.bandBorderPath.style.strokeWidth = `${borderStrokeW}`;
+    }
+
+    if (this.bandBgPath) {
+      this.bandBgPath.style.stroke = bg;
+      this.bandBgPath.style.strokeWidth = `${bgStrokeW}`;
+    }
   }
 
   getMonoCharWidthFromContent(content) {

@@ -60,6 +60,10 @@ linkset_3:
     url: "https://axyscreative.com/tokens"
     new_tab: true
     type: underline
+  - text: Tools
+    url: "https://axyscreative-dev.netlify.app/tools"
+    new_tab: true
+    type: underline
   - text: Client Login
     url: "https://billing.stripe.com/p/login/bIYcNw7NXeQDchi000"
     new_tab: true

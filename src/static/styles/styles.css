@@ -7204,11 +7204,22 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0;
 }
 .marquee-curve__curve {
   fill: none;
   stroke: transparent;
+}
+.marquee-curve__band-border, .marquee-curve__band-bg {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+.marquee-curve__band-border {
+  stroke: var(--marquee-band-border, rgba(255, 255, 255, 0.1));
+}
+.marquee-curve__band-bg {
+  stroke: var(--marquee-band-bg, #434343);
 }
 .marquee-curve__content {
   color: var(--color-font--primary);
@@ -7226,7 +7237,7 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
   top: 0;
   left: 0;
   white-space: nowrap;
-  will-change: transform;
+  z-index: 1;
 }
 @media (max-width: 768px) {
   .marquee-curve__content {

@@ -4,6 +4,9 @@
 {% set spacing = marquee_curve.spacing | default('1') %}
 {% set reverse = marquee_curve.reverse | default(false) %}
 {% set scrub = marquee_curve.scrub | default(0) %}
+{% set band_height = marquee_curve.band_height | default(0) %}
+{% set band_color_bg = marquee_curve.band_color_bg | default('var(--color-brand--primary)') %}
+{% set band_color_border = marquee_curve.band_color_border | default('var(--color-border)') %}
 
 <div
   class="marquee-curve text-mono"
@@ -11,20 +14,23 @@
   data-spacing="{{ spacing }}"
   data-reverse="{{ reverse }}"
   data-spacing="{{ spacing }}"
-  data-scrub="{{ scrub }}"
+  data-marquee-scrub="{{ scrub }}"
+  data-band-height="{{ band_height }}"
+  data-band-bg="{{ band_color }}"
+  data-band-border="{{ band_color_border }}"
 >
   <div class="marquee-curve__track">
-    <svg class="marquee-curve__path" preserveAspectRatio="none">
-      <path class="marquee-curve__curve" />
+    <svg class="marquee-curve__path" preserveAspectRatio="none" aria-hidden="true">
+      <path class="marquee-curve__band-border"></path>
+      <path class="marquee-curve__band-bg"></path>
+      <path class="marquee-curve__curve"></path>
     </svg>
+
     <div class="marquee-curve__content" aria-hidden="true">
-      {{ text }}
+      {{ text | safe }}
     </div>
     <div class="marquee-curve__content marquee-curve__content--clone" aria-hidden="true">
-      {{ text }}
+      {{ text | safe }}
     </div>
-  </div>
-  <div class="marquee-curve__original" role="marquee">
-    {{ text }}
   </div>
 </div>
