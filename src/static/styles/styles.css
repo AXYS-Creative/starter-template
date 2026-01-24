@@ -6603,12 +6603,6 @@ code.codearea {
 .swiper .swiper-button-next::after {
   display: none;
 }
-@media (max-width: 768px) {
-  .swiper .swiper-button-prev,
-  .swiper .swiper-button-next {
-    display: none;
-  }
-}
 .swiper .swiper-button-prev__icon {
   rotate: 180deg;
 }
