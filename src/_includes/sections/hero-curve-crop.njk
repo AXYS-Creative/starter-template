@@ -1,0 +1,12 @@
+<!-- prettier-ignore -->
+{% set title = hero_curve_crop.title | default('No title provided') %}
+{% set curve_crop_text = hero_curve_crop.text | default('No text provided') %}
+
+<section class="hero-curve-crop">
+  <div class="hero-curve-crop__inner">
+    <h1 class="hero-curve-crop__title">{{ title }}</h1>
+
+    {% set curve_crop_text = curved-text %}
+    {% include "../components/text-curve-crop.njk" %}
+  </div>
+</section>

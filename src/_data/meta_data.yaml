@@ -18,7 +18,7 @@ page_details:
     title: Home | Business Name
     description: Home page description
     crawl_page: true
-    og_image: "/static/img/og-image-alt.png"
+    og_image: "/static/img/og-image.png"
   - path: blog
     label: Blog
     title: Blog | Business Name

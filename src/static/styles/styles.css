@@ -8045,6 +8045,10 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   border: none;
 }
 
+.text-curve-crop {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
+}
+
 .theme-toggle {
   display: flex;
   justify-content: center;
