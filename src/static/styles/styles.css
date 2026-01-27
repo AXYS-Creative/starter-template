@@ -25,6 +25,7 @@
   --color-link: var(--color-brand--primary);
   --color-link--hover: var(--color-font--primary);
   --color-badge: var(--color-brand--primary);
+  --color-overlay: rgba(0, 0, 0, 0.25);
   --gap-btn-icon: 0.5ch;
   --padding-btn: 8px 16px;
   --padding-btn-icon: 8px;
@@ -8046,7 +8047,74 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 
 .text-curve-crop {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
+  --crop-color: var(--color-background);
+  --corner-size: 1;
+  --border-radius: var(--radius--lg);
+  --padding: 48px;
+  position: absolute;
+  background: var(--crop-color);
+  padding: var(--padding);
+}
+@media (max-width: 1024px) {
+  .text-curve-crop {
+    --padding: 24px;
+  }
+}
+.text-curve-crop__corner {
+  position: absolute;
+  width: calc(var(--border-radius) * var(--corner-size));
+  height: calc(var(--border-radius) * var(--corner-size));
+  background-image: radial-gradient(circle at 100% 100%, transparent calc(var(--border-radius) * var(--corner-size)), var(--crop-color) calc(var(--border-radius) * var(--corner-size)));
+}
+.text-curve-crop--bottom-right {
+  bottom: 0;
+  right: 0;
+  border-radius: var(--border-radius) 0 0 0;
+}
+.text-curve-crop--bottom-right .text-curve-crop__corner {
+  rotate: 180deg;
+}
+.text-curve-crop--bottom-right .text-curve-crop__corner--top {
+  bottom: 100%;
+  right: 0;
+}
+.text-curve-crop--bottom-right .text-curve-crop__corner--bottom {
+  bottom: 0;
+  right: 100%;
+}
+.text-curve-crop--bottom-left {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 var(--border-radius) 0 0;
+}
+.text-curve-crop--bottom-left .text-curve-crop__corner {
+  rotate: -90deg;
+}
+.text-curve-crop--bottom-left .text-curve-crop__corner--top {
+  bottom: 100%;
+  left: 0;
+}
+.text-curve-crop--bottom-left .text-curve-crop__corner--bottom {
+  bottom: 0;
+  left: 100%;
+}
+.text-curve-crop--bottom-center {
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.text-curve-crop--bottom-center .text-curve-crop__corner {
+  rotate: -90deg;
+}
+.text-curve-crop--bottom-center .text-curve-crop__corner--top {
+  bottom: 0;
+  right: 100%;
+  rotate: 180deg;
+}
+.text-curve-crop--bottom-center .text-curve-crop__corner--bottom {
+  bottom: 0;
+  left: 100%;
 }
 
 .theme-toggle {
@@ -8855,6 +8923,56 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 .hero-simple--float .hero-simple__inner {
   border: 1px solid var(--color-border);
   border-radius: var(--radius--sm);
+}
+
+.hero-curve-crop {
+  width: 100%;
+  max-width: 1364px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--header-height));
+  min-height: 750px;
+  width: calc(100% - var(--body-padding-double));
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius--lg);
+}
+.hero-curve-crop__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--spacing--lg);
+  height: 100%;
+  width: 100%;
+}
+.hero-curve-crop__bg-img, .hero-curve-crop > picture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -2;
+  height: 100%;
+}
+.hero-curve-crop__bg-img img, .hero-curve-crop > picture img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero-curve-crop__dim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-overlay);
+  z-index: -1;
+}
+.hero-curve-crop .text-curve-crop {
+  max-width: 80%;
 }
 
 .carousel-hero {

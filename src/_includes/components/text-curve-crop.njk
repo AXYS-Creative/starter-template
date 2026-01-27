@@ -1,5 +1,16 @@
-<div class="text-curve-crop">
-  <h2 class="text-curve-crop__title">Title goes here</h2>
-  <div class="text-curve-crop__corner text-curve-crop__corner--top" aria-hidden="true"></div>
-  <div class="text-curve-crop__corner text-curve-crop__corner--bottom" aria-hidden="true"></div>
+<!-- prettier-ignore -->
+{% set crop_text = text_curve_crop.text | default('No text provided') %} 
+{% set crop_placement = text_curve_crop.placement or 'bottom-right' %}
+
+<div class="text-curve-crop text-curve-crop--{{ crop_placement }}">
+  <small><em>text_crop.placement:</em> <code>{{crop_placement}}</code></small>
+  <h2 class="text-curve-crop__title">{{ crop_text }}</h2>
+  <div
+    class="text-curve-crop__corner text-curve-crop__corner--top"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="text-curve-crop__corner text-curve-crop__corner--bottom"
+    aria-hidden="true"
+  ></div>
 </div>

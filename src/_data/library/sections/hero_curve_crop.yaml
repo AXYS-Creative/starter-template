@@ -1,0 +1,7 @@
+title: "Hero Curve Crop"
+desc: ""
+bg_img: "/static/img/img-sample-12.jpg"
+
+text_crop:
+  text: "A Rather Curvy Crop"
+  placement: "bottom-right"

@@ -1,12 +1,19 @@
 <!-- prettier-ignore -->
 {% set title = hero_curve_crop.title | default('No title provided') %}
-{% set curve_crop_text = hero_curve_crop.text | default('No text provided') %}
+{% set text_crop = hero_curve_crop.text_crop %}
+{% set bg_img = hero_curve_crop.bg_img | default(null) %}
 
 <section class="hero-curve-crop">
   <div class="hero-curve-crop__inner">
-    <h1 class="hero-curve-crop__title">{{ title }}</h1>
+    <div class="hero-curve-crop__content">
+      <h1 class="hero-curve-crop__title">{{ title }}</h1>
+    </div>
 
-    {% set curve_crop_text = curved-text %}
+    <!-- prettier-ignore -->
+    {% set text_curve_crop = text_crop %}
     {% include "../components/text-curve-crop.njk" %}
   </div>
+
+  <img class="hero-curve-crop__bg-img" src="{{ bg_img }}" alt="" />
+  <div class="hero-curve-crop__dim"></div>
 </section>

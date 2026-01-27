@@ -1,3 +1,90 @@
 .text-curve-crop {
-  border: $test;
+  --crop-color: var(--color-background);
+  --corner-size: 1;
+  --border-radius: var(--radius--lg);
+  --padding: 48px;
+
+  position: absolute;
+  background: var(--crop-color);
+  padding: var(--padding);
+
+  @include mq-max("lg") {
+    --padding: 24px;
+  }
+
+  &__corner {
+    position: absolute;
+    width: calc(var(--border-radius) * var(--corner-size));
+    height: calc(var(--border-radius) * var(--corner-size));
+    background-image: radial-gradient(
+      circle at 100% 100%,
+      transparent calc(var(--border-radius) * var(--corner-size)),
+      var(--crop-color) calc((var(--border-radius) * var(--corner-size)))
+    );
+  }
+
+  // Modifiers
+
+  &--bottom-right {
+    bottom: 0;
+    right: 0;
+    border-radius: var(--border-radius) 0 0 0;
+
+    .text-curve-crop__corner {
+      rotate: 180deg;
+
+      &--top {
+        bottom: 100%;
+        right: 0;
+      }
+
+      &--bottom {
+        bottom: 0;
+        right: 100%;
+      }
+    }
+  }
+
+  &--bottom-left {
+    bottom: 0;
+    left: 0;
+    border-radius: 0 var(--border-radius) 0 0;
+
+    .text-curve-crop__corner {
+      rotate: -90deg;
+
+      &--top {
+        bottom: 100%;
+        left: 0;
+      }
+
+      &--bottom {
+        bottom: 0;
+        left: 100%;
+      }
+    }
+  }
+
+  &--bottom-center {
+    // text-align: center;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    .text-curve-crop__corner {
+      rotate: -90deg;
+
+      &--top {
+        bottom: 0;
+        right: 100%;
+        rotate: 180deg;
+      }
+
+      &--bottom {
+        bottom: 0;
+        left: 100%;
+      }
+    }
+  }
 }

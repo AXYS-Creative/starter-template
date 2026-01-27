@@ -14,21 +14,25 @@ path: library/sections
 <div class="section-width--thin">
   <h2>[ Carousel 'Hero' - Section ]</h2>
   <br />
-  <p>Also adding the utility class <code>grid-fade</code> along with it’s associated configs:</p>
+  <p>
+    Also adding the utility class <code>grid-fade</code> along with it’s
+    associated configs:
+  </p>
   <br />
   <br />
   <ul class="classic-list">
     <li>
-      <code>data-grid-fade</code> string of either <code>in-out | in</code> depending on scroll
-      preference. Default is
+      <code>data-grid-fade</code> string of either
+      <code>in-out | in</code> depending on scroll preference. Default is
       <code>in</code>
     </li>
     <li>
-      <code>data-grid-tile-size</code> string of either <code>small | medium | large</code> Default
-      is <code>medium</code>
+      <code>data-grid-tile-size</code> string of either
+      <code>small | medium | large</code> Default is <code>medium</code>
     </li>
     <li>
-      <code>data-grid-fade-random</code> boolean to toggle the animation style. Default is
+      <code>data-grid-fade-random</code> boolean to toggle the animation style.
+      Default is
       <code>true</code>
     </li>
   </ul>
@@ -49,14 +53,16 @@ path: library/sections
   <h2>[ Hero Simple - Section ]</h2>
   <br />
   <p>
-    A basic hero section which includes a title, description, and a cta-group. Comes with the
-    following configs:
+    A basic hero section which includes a title, description, and a cta-group.
+    Comes with the following configs:
   </p>
   <br />
   <br />
   <ul class="classic-list">
     <li><code>title</code> A string for the section title</li>
-    <li><code>desc</code> A string (accepts custom markup) for the description</li>
+    <li>
+      <code>desc</code> A string (accepts custom markup) for the description
+    </li>
     <li><code>cta_1</code> Any valide <code>btn.njk</code> prop</li>
     <li><code>cta_2</code> Any valide <code>btn.njk</code> prop</li>
     <li><code>class</code> A string for the section's custom class</li>
@@ -75,6 +81,10 @@ path: library/sections
   }
 }) %}
 {% include '../_includes/sections/hero-simple.njk' %}
+
+<!-- prettier-ignore -->
+{% set hero_curve_crop = library.sections.hero_curve_crop %}
+{% include '../_includes/sections/hero-curve-crop.njk' %}
 
 <!-- prettier-ignore -->
 {% set plan_selection = library.sections.plan_selection %}

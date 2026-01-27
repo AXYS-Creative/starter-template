@@ -219,7 +219,9 @@ $min-breakpoints: ();
 
   @include mq-motion-allow {
     // transition: $ease;
-    transition: all $ease, $magnet;
+    transition:
+      all $ease,
+      $magnet;
   }
 
   @include desktop-hover {
@@ -277,7 +279,9 @@ $min-breakpoints: ();
 
   @include mq-motion-allow {
     // transition: $ease;
-    transition: all $ease, $magnet;
+    transition:
+      all $ease,
+      $magnet;
   }
 
   &::before {
@@ -537,7 +541,9 @@ $min-breakpoints: ();
 }
 
 @mixin a11y-focus {
-  box-shadow: 0 0 0 1.5px #275dc5, 0 0 0 3px #fff;
+  box-shadow:
+    0 0 0 1.5px #275dc5,
+    0 0 0 3px #fff;
 }
 
 @mixin mask-image($url: null, $color: currentColor) {
@@ -700,7 +706,11 @@ $min-breakpoints: ();
   transition: 1s ease;
 
   @if $track-mouse {
-    background-image: radial-gradient(circle at var(--gradient-pos, center), $col-1, $col-2);
+    background-image: radial-gradient(
+      circle at var(--gradient-pos, center),
+      $col-1,
+      $col-2
+    );
   } @else {
     background-image: linear-gradient($deg, $col-1, $col-2);
   }
@@ -782,8 +792,12 @@ $min-breakpoints: ();
     border-radius: inherit;
     pointer-events: none;
     background: linear-gradient($deg, $col-1 $start, $col-2 $end) border-box;
-    mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
-    -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#000);
+    mask:
+      linear-gradient(#fff) padding-box,
+      linear-gradient(#000);
+    -webkit-mask:
+      linear-gradient(#fff) padding-box,
+      linear-gradient(#000);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
   }
@@ -804,7 +818,9 @@ $min-breakpoints: ();
   isolation: isolate;
   position: relative;
   border: none;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
 
   &::before {
     // content: "";
@@ -845,7 +861,11 @@ $min-breakpoints: ();
     inset: calc(var(--gradient-border-width) * -1);
     background: radial-gradient(
       circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-      rgba(var(--gradient-border-color-rgb, 255, 255, 255), var(--gradient-opacity, 0.5)) 0%,
+      rgba(
+          var(--gradient-border-color-rgb, 255, 255, 255),
+          var(--gradient-opacity, 0.5)
+        )
+        0%,
       rgba(
           var(--gradient-border-color-rgb, 255, 255, 255),
           calc(var(--gradient-opacity, 0.5) * 0.2)
