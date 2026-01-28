@@ -1,7 +1,21 @@
 title: "Hero Curve Crop"
 desc: ""
-bg_img: "/static/img/img-sample-12.jpg"
+bg_img: "/static/img/img-sample-9.jpg"
 
 text_crop:
-  text: "A Rather Curvy Crop"
-  placement: "bottom-right"
+  text: "Text Curve Crop - Component"
+  placement: "top-right"
+
+cta_1:
+  text: Visit Library
+  text_desc: Visit our component library
+  url: /library/components
+  new_tab: false
+  # icon_start: /static/img/icon-google-copy.svg
+  # icon_end: /static/img/icon-google-chevron-right.svg
+cta_2:
+  text: Get Started
+  text_desc: Get started with AXYS Creative
+  url: https://axyscreative.com/
+  new_tab: true
+  icon_end: /static/img/icon-google-chevron-right.svg

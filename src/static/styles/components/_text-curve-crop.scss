@@ -2,15 +2,11 @@
   --crop-color: var(--color-background);
   --corner-size: 1;
   --border-radius: var(--radius--lg);
-  --padding: 48px;
+  --padding: var(--crop-padding); // Used in hero-curve-crop section
 
   position: absolute;
   background: var(--crop-color);
   padding: var(--padding);
-
-  @include mq-max("lg") {
-    --padding: 24px;
-  }
 
   &__corner {
     position: absolute;
@@ -83,6 +79,47 @@
 
       &--bottom {
         bottom: 0;
+        left: 100%;
+      }
+    }
+  }
+
+  &--top-right {
+    top: 0;
+    right: 0;
+    border-radius: 0 0 0 var(--border-radius);
+
+    .text-curve-crop__corner {
+      rotate: 90deg;
+
+      &--top {
+        top: 100%;
+        right: 0;
+      }
+
+      &--bottom {
+        top: 0;
+        right: 100%;
+      }
+    }
+  }
+
+  &--top-center {
+    // text-align: center;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+    .text-curve-crop__corner {
+      &--top {
+        top: 0;
+        right: 100%;
+        rotate: 90deg;
+      }
+
+      &--bottom {
+        top: 0;
         left: 100%;
       }
     }

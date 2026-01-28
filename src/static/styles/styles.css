@@ -8050,15 +8050,10 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   --crop-color: var(--color-background);
   --corner-size: 1;
   --border-radius: var(--radius--lg);
-  --padding: 48px;
+  --padding: var(--crop-padding);
   position: absolute;
   background: var(--crop-color);
   padding: var(--padding);
-}
-@media (max-width: 1024px) {
-  .text-curve-crop {
-    --padding: 24px;
-  }
 }
 .text-curve-crop__corner {
   position: absolute;
@@ -8114,6 +8109,37 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 .text-curve-crop--bottom-center .text-curve-crop__corner--bottom {
   bottom: 0;
+  left: 100%;
+}
+.text-curve-crop--top-right {
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0 var(--border-radius);
+}
+.text-curve-crop--top-right .text-curve-crop__corner {
+  rotate: 90deg;
+}
+.text-curve-crop--top-right .text-curve-crop__corner--top {
+  top: 100%;
+  right: 0;
+}
+.text-curve-crop--top-right .text-curve-crop__corner--bottom {
+  top: 0;
+  right: 100%;
+}
+.text-curve-crop--top-center {
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+.text-curve-crop--top-center .text-curve-crop__corner--top {
+  top: 0;
+  right: 100%;
+  rotate: 90deg;
+}
+.text-curve-crop--top-center .text-curve-crop__corner--bottom {
+  top: 0;
   left: 100%;
 }
 
@@ -8926,6 +8952,7 @@ html:has(.scroll-progress)::-webkit-scrollbar {
 }
 
 .hero-curve-crop {
+  --crop-padding: 48px;
   width: 100%;
   max-width: 1364px;
   margin-inline: auto;
@@ -8939,14 +8966,26 @@ html:has(.scroll-progress)::-webkit-scrollbar {
   overflow: hidden;
   border-radius: var(--radius--lg);
 }
+@media (max-width: 1024px) {
+  .hero-curve-crop {
+    --crop-padding: 24px;
+  }
+}
 .hero-curve-crop__inner {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: var(--spacing--lg);
+  padding: var(--crop-padding);
   height: 100%;
   width: 100%;
+}
+.hero-curve-crop__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing);
 }
 .hero-curve-crop__bg-img, .hero-curve-crop > picture {
   position: absolute;

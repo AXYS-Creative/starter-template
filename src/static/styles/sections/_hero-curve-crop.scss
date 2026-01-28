@@ -1,4 +1,6 @@
 .hero-curve-crop {
+  --crop-padding: 48px; // to be shared with the nested text-curve-crop component
+
   // @include full-viewport-section(true);
   @include width-clamp;
   @include row-center;
@@ -10,16 +12,21 @@
   overflow: hidden;
   border-radius: var(--radius--lg);
 
+  @include mq-max("lg") {
+    --crop-padding: 24px;
+  }
+
   &__inner {
     @include column-start(center);
-    padding: var(--spacing--lg);
+    padding: var(--crop-padding);
     height: 100%;
     width: 100%;
   }
 
-  // &__content {
-  //   border: $test;
-  // }
+  &__content {
+    @include column-start(center);
+    gap: var(--spacing);
+  }
 
   &__bg-img,
   & > picture {

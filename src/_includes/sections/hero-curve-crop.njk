@@ -2,11 +2,18 @@
 {% set title = hero_curve_crop.title | default('No title provided') %}
 {% set text_crop = hero_curve_crop.text_crop %}
 {% set bg_img = hero_curve_crop.bg_img | default(null) %}
+{% set cta_1 = hero_curve_crop.cta_1 or null %}
+{% set cta_2 = hero_curve_crop.cta_2 or null %}
 
 <section class="hero-curve-crop">
   <div class="hero-curve-crop__inner">
     <div class="hero-curve-crop__content">
       <h1 class="hero-curve-crop__title">{{ title }}</h1>
+
+      <!-- prettier-ignore -->
+      {% set content_start = true %}
+      {% include "../components/cta-group.njk" %}
+      {% set content_start = false %}
     </div>
 
     <!-- prettier-ignore -->
