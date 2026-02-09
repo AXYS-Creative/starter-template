@@ -24,10 +24,24 @@ description:
       data-scale-start="top 90%"
       data-scale-end="bottom 65%"
     >
-      Use the <code class="gsap-animate">bg-particle-waves</code> class on the section, then include
-      the canvas at the bottom. <br class="md-up" />
+      Use the <code class="gsap-animate">bg-particle-waves</code> class on the
+      section, then include the canvas at the bottom. <br class="md-up" />
       Comes with a few handy configs.
     </small>
+    <p>
+      Inspired by
+
+      <!-- prettier-ignore -->
+      {% set btn = ({
+        text: 'Userback.com',
+        text_desc: '',
+        url: 'https://userback.tomorrow-happens.studio/',
+        new_tab: true,
+        type: 'underline',
+        class: ''
+      }) %}
+      {% include '../_includes/components/btn.njk' %}
+    </p>
   </div>
 
   <!-- prettier-ignore -->
@@ -43,7 +57,33 @@ description:
 
 <section class="dots-fill-section library-section">
   <h2 style="margin: auto">[ <span class="glitch-scroll">dots fill</span> ]</h2>
-  <p style="margin: auto">A utility class that goes on an <code>svg</code></p>
+  <p style="margin: auto" class="max-width-text">
+    A utility class that goes on an <code>svg</code>, this converts the
+    <code>fill</code> value into an array of dots. Comes with a handful of
+    configs to alter the experience:
+  </p>
+  <ul style="margin: auto" class="classic-list max-width-text">
+    <li>
+      <code>data-dot-size</code> A number, the size of each dot in pixels.
+    </li>
+    <li><code>data-dot-gap</code> A number, the gap between dots in pixels</li>
+    <li>
+      <code>data-dot-restore</code> A number, how much to restore the dots when
+      not being interacted with (0-1)
+    </li>
+    <li>
+      <code>data-dot-sensitivity</code> A number, sensitivity of mouse
+      interaction (0-1)
+    </li>
+    <li>
+      <code>data-dot-distance</code> A number, distance in pixels that dots are
+      affected by mouse interaction
+    </li>
+    <li>
+      <code>data-dot-strength</code> A number, strength of mouse interaction
+      (0-500)
+    </li>
+  </ul>
   <br /><br />
 
   <svg
@@ -162,7 +202,9 @@ description:
     <path
       d="M693.99 67.2C688.923 67.2 684.497 66.1867 680.71 64.16C676.977 62.08 674.097 59.1467 672.07 55.36C670.043 51.5733 669.03 47.1467 669.03 42.08C669.03 37.0133 670.017 32.64 671.99 28.96C674.017 25.2267 676.87 22.3467 680.55 20.32C684.23 18.2933 688.577 17.28 693.59 17.28C698.39 17.28 702.523 18.24 705.99 20.16C709.457 22.0267 712.123 24.72 713.99 28.24C715.91 31.7067 716.87 35.84 716.87 40.64V44.64H679.43C679.857 49.0133 681.323 52.4 683.83 54.8C686.337 57.1467 689.697 58.32 693.91 58.32C697.003 58.32 699.537 57.7333 701.51 56.56C703.483 55.3867 704.843 53.6267 705.59 51.28H716.63C715.457 56.2933 712.87 60.2133 708.87 63.04C704.923 65.8133 699.963 67.2 693.99 67.2ZM679.75 37.04H706.47C706.043 33.52 704.71 30.8267 702.47 28.96C700.23 27.04 697.27 26.08 693.59 26.08C689.91 26.08 686.87 27.04 684.47 28.96C682.07 30.8267 680.497 33.52 679.75 37.04Z"
     ></path>
-    <path d="M0 36.6037V80.24H43.6364V43.8763H80V0.24H36.3636V36.6037H0Z"></path>
+    <path
+      d="M0 36.6037V80.24H43.6364V43.8763H80V0.24H36.3636V36.6037H0Z"
+    ></path>
   </svg>
 </section>
 
@@ -175,13 +217,14 @@ description:
   <h2>Grid Background</h2>
   <p>
     A subtle and modern background effect. Just add
-    <code>&lt;canvas id="grid-bg"&gt;&lt;/canvas&gt;</code> at the bottom of your app to get
-    started.
+    <code>&lt;canvas id="grid-bg"&gt;&lt;/canvas&gt;</code> at the bottom of
+    your app to get started.
   </p>
   <p>
-    Out of the box this will follow the user's mouse cursor. It will also have an interval that
-    shows the grid in an animation of your choice. This is so users without a mouse can still enjoy
-    the effect. Current animation options include:
+    Out of the box this will follow the user's mouse cursor. It will also have
+    an interval that shows the grid in an animation of your choice. This is so
+    users without a mouse can still enjoy the effect. Current animation options
+    include:
   </p>
   <ul class="classic-list">
     <li><code>stack-top</code></li>
@@ -197,19 +240,30 @@ description:
     <li><code>diag-bl</code></li>
   </ul>
   <p>
-    You can also tack on the util class of <code>grid-show</code> to fade the grid in (as you're
-    currently seeing).
+    You can also tack on the util class of <code>grid-show</code> to fade the
+    grid in (as you're currently seeing).
   </p>
   <p>Fully configurable with:</p>
   <ul class="classic-list">
     <li><code>data-grid-enter</code> to handle the 'enter' animation.</li>
     <li><code>data-grid-exit</code> to handle the 'exit' animation.</li>
-    <li><code>data-stagger-interval</code> a number do alter the animation speed.</li>
+    <li>
+      <code>data-stagger-interval</code> a number do alter the animation speed.
+    </li>
   </ul>
-  <p>You can with the util class or you can disable the mouse event with the util class</p>
+  <p>
+    You can with the util class or you can disable the mouse event with the util
+    class
+  </p>
   <ul class="classic-list">
-    <li><code>grid-bg-disable</code> disable mouse tracking, the interval will still show.</li>
-    <li><code>grid-bg-hide</code> hide the grid completetly, including the interval.</li>
+    <li>
+      <code>grid-bg-disable</code> disable mouse tracking, the interval will
+      still show.
+    </li>
+    <li>
+      <code>grid-bg-hide</code> hide the grid completetly, including the
+      interval.
+    </li>
   </ul>
 </section>
 
@@ -257,6 +311,7 @@ description:
 
 <section class="spline-section library-section">
   <h2>[ Spline ]</h2>
+  <p>Coming sometime in 2026.</p>
 
   <canvas id="spline-canvas"></canvas>
   <!-- https://prod.spline.design/d7HscHvJYQfAtvcZ/scene.splinecode -->

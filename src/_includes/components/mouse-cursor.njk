@@ -1,4 +1,21 @@
-<div style="opacity: 0" class="mouse-cursor" aria-hidden="true" data-elastic="true">
+<!-- prettier-ignore -->
+{% set elastic = mouse_cursor.elastic or false %}
+{% set tilt = mouse_cursor.tilt or false %}
+{% set tilt_max = mouse_cursor.tilt_max or 25 %}
+{% set tilt_reverse = mouse_cursor.tilt_reverse or true %}
+
+<!-- prettier-ignore -->
+<div
+  style="opacity: 0"
+  class="mouse-cursor"
+  aria-hidden="true"
+  data-elastic="{{elastic}}"
+  data-tilt="{{tilt}}"
+  data-tilt-max="{{tilt_max}}"
+  {% if tilt_reverse %}
+    data-tilt-reverse
+  {% endif %}
+>
   <div class="mouse-cursor__shape"></div>
 
   <!-- Components/utils that use the mouse-cursor logic (to reduce duplicate code) DELETE ME - IF NOT USED -->

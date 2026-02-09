@@ -6,10 +6,10 @@
 
   &:has(header) {
     .scroll-horizontal__container {
-      height: 75%;
+      height: 64%;
 
       @include mq-max(md) {
-        height: 65%;
+        height: 56%;
       }
     }
   }

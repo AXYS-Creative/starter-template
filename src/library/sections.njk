@@ -49,29 +49,10 @@ path: library/sections
   {% include "../_includes/sections/carousel-hero.njk" %}
 </div>
 
-<div class="section-hero-simple section-width--thin" style="margin-top: 428px">
-  <h2>[ Hero Simple - Section ]</h2>
-  <br />
-  <p>
-    A basic hero section which includes a title, description, and a cta-group.
-    Comes with the following configs:
-  </p>
-  <br />
-  <br />
-  <ul class="classic-list">
-    <li><code>title</code> A string for the section title</li>
-    <li>
-      <code>desc</code> A string (accepts custom markup) for the description
-    </li>
-    <li><code>cta_1</code> Any valide <code>btn.njk</code> prop</li>
-    <li><code>cta_2</code> Any valide <code>btn.njk</code> prop</li>
-    <li><code>class</code> A string for the section's custom class</li>
-  </ul>
-</div>
 <!-- prettier-ignore -->
 {% set hero_simple = ({
-  title: 'Section Title here',
-  desc: 'Section desc (description) here.',
+  title: '[ Hero Simple - Section ]',
+  desc: 'A basic hero section which includes a title, description, and a cta-group.',
   class: 'sample-class',
   cta_1: {
     text: 'Get Started'

@@ -91,7 +91,8 @@ $test-bg: rgba(navy, 0.75);
 
   --color-badge: var(--color-brand--primary);
 
-  --color-overlay: rgba(0, 0, 0, 0.5);
+  --overlay-opacity: 0.125;
+  --overlay-color: #{$black};
 
   --gap-btn-icon: 0.5ch;
 

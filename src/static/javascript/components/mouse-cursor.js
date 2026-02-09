@@ -6,10 +6,12 @@ const cursor = document.querySelector(".mouse-cursor, .mouse-cursor--elastic");
 const cursorHide = document.querySelectorAll(".cursor-hide"),
   cursorContent = document.querySelectorAll(".cursor-content");
 
-// commenting this line for tooltip util
+// commenting this line for tooltip util, remove in project if not using tooltips
 // if (cursor && mqMouse) {
 if (cursor) {
   const isElastic = cursor.dataset.elastic === "true";
+  const hasTilt = cursor.dataset.tilt === "true";
+  const tiltReverse = cursor.hasAttribute("data-tilt-reverse");
   const shape = cursor.querySelector(".mouse-cursor__shape");
 
   let followMouse = true;
@@ -34,6 +36,65 @@ if (cursor) {
   const velocityThreshold = 20;
   const elasticSpeed = isSafari() ? 0.125 : 0.075;
 
+  //
+  // Tilt (velocity-based rotate that eases back to 0 when idle)
+  //
+  const tiltMax = Number.parseFloat(cursor.dataset.tiltMax);
+  const tiltVelocityMax = Number.parseFloat(
+    cursor.dataset.tiltVelocityMax || "1800",
+  );
+  const tiltInSpeed = Number.parseFloat(cursor.dataset.tiltInSpeed || "0.12");
+  const tiltOutSpeed = Number.parseFloat(cursor.dataset.tiltOutSpeed || "0.12");
+  const tiltIdleMs = Number.parseFloat(cursor.dataset.tiltIdleMs || "90");
+  const tiltEpsilon = 0.001;
+
+  const tiltDirection = tiltReverse ? -1 : 1;
+
+  let currentTilt = 0;
+  let targetTilt = 0;
+
+  let lastTiltTs = performance.now();
+  let lastMoveTs = performance.now();
+  let prevTiltMouseX = 0;
+  let prevTiltMouseY = 0;
+
+  const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+
+  const updateTilt = () => {
+    if (!hasTilt) return;
+
+    const now = performance.now();
+    const dt = Math.max((now - lastTiltTs) / 1000, 1 / 240);
+    lastTiltTs = now;
+
+    const dx = mouseX - prevTiltMouseX;
+    const dy = mouseY - prevTiltMouseY;
+
+    if (Math.abs(dx) > 0.01 || Math.abs(dy) > 0.01) lastMoveTs = now;
+
+    prevTiltMouseX = mouseX;
+    prevTiltMouseY = mouseY;
+
+    const speedPxPerSec = Math.sqrt(dx * dx + dy * dy) / dt;
+    const normalized = clamp(speedPxPerSec / tiltVelocityMax, 0, 1);
+
+    const idle = now - lastMoveTs > tiltIdleMs;
+
+    if (idle) {
+      targetTilt = 0;
+    } else {
+      const dir = dx === 0 ? 0 : Math.sign(dx) * tiltDirection;
+      targetTilt = dir * normalized * tiltMax;
+    }
+
+    const speed = targetTilt === 0 ? tiltOutSpeed : tiltInSpeed;
+    currentTilt += (targetTilt - currentTilt) * speed;
+
+    if (Math.abs(currentTilt) < tiltEpsilon) currentTilt = 0;
+
+    cursor.style.rotate = `${currentTilt}deg`;
+  };
+
   // Helper to instantly jump target
   const moveCursorTo = (x, y) => {
     startX = cursorX;
@@ -56,7 +117,10 @@ if (cursor) {
     previousMouse.x = mouseX;
     previousMouse.y = mouseY;
 
-    const velocity = Math.min(Math.sqrt(deltaX ** 2 + deltaY ** 2) * 4, velocityClamp);
+    const velocity = Math.min(
+      Math.sqrt(deltaX ** 2 + deltaY ** 2) * 4,
+      velocityClamp,
+    );
     const angle = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
     if (velocity > velocityThreshold) currentAngle = angle;
 
@@ -69,6 +133,9 @@ if (cursor) {
     }
 
     cursor.style.translate = `calc(${cursorX}px - 50%) calc(${cursorY}px - 50%)`;
+
+    updateTilt();
+
     requestAnimationFrame(animate);
   };
 
@@ -81,8 +148,12 @@ if (cursor) {
   });
 
   cursorHide.forEach((el) => {
-    el.addEventListener("mousemove", () => cursor.classList.add("cursor-hidden"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("cursor-hidden"));
+    el.addEventListener("mousemove", () =>
+      cursor.classList.add("cursor-hidden"),
+    );
+    el.addEventListener("mouseleave", () =>
+      cursor.classList.remove("cursor-hidden"),
+    );
   });
 
   //
@@ -127,23 +198,23 @@ if (cursor) {
     const messageEl = cursor.querySelector(".mouse-cursor__message"),
       iconEl = cursor.querySelector(".mouse-cursor__icon");
 
-    // Extract defaults once
-    const defaultIconPath = iconEl.style.maskImage.replace(/url\(['"]?(.*?)['"]?\)/, "$1").trim();
+    const defaultIconPath = iconEl.style.maskImage
+      .replace(/url\(['"]?(.*?)['"]?\)/, "$1")
+      .trim();
     const defaultIconColor = "var(--color-font--primary)";
-    const defaultIconSize = "sm"; // sm | md | lg
+    const defaultIconSize = "sm";
 
-    let hideTimeout = null; // Track the timeout
+    let hideTimeout = null;
 
     const applySize = (size) => {
       iconEl.classList.remove(
         "mouse-cursor__icon--sm",
         "mouse-cursor__icon--md",
-        "mouse-cursor__icon--lg"
+        "mouse-cursor__icon--lg",
       );
       iconEl.classList.add(`mouse-cursor__icon--${size}`);
     };
 
-    // Elements that control the cursor (can display message or icon)
     cursorContent.forEach((el) => {
       const messageText = el.dataset.cursorMessage || "";
       const iconPath = el.dataset.cursorIcon || "";
@@ -155,7 +226,6 @@ if (cursor) {
       const hasMessage = Boolean(messageText);
       const hasIcon = iconPath !== "" || el.hasAttribute("data-cursor-icon");
 
-      // Track state per element
       let isSwapped = false;
 
       const showCursor = () => {
@@ -192,9 +262,8 @@ if (cursor) {
         }, 200);
       };
 
-      // Experimental icon swap
       const swapIcon = () => {
-        if (!iconPathSwap) return; // skip if no swap defined
+        if (!iconPathSwap) return;
         isSwapped = !isSwapped;
         const newPath = isSwapped ? iconPathSwap : iconPath || defaultIconPath;
         iconEl.style.maskImage = `url('${newPath}')`;
@@ -224,7 +293,7 @@ if (cursor) {
         "top-right",
         "bottom-left",
         "bottom-right",
-        "center"
+        "center",
       );
 
       const vw = window.innerWidth;
@@ -237,7 +306,8 @@ if (cursor) {
       if (isTop && isLeft) tooltipMessage.classList.add("top-left");
       else if (isTop && isRight) tooltipMessage.classList.add("top-right");
       else if (isBottom && isLeft) tooltipMessage.classList.add("bottom-left");
-      else if (isBottom && isRight) tooltipMessage.classList.add("bottom-right");
+      else if (isBottom && isRight)
+        tooltipMessage.classList.add("bottom-right");
       else if (isTop) tooltipMessage.classList.add("top");
       else if (isBottom) tooltipMessage.classList.add("bottom");
       else if (isLeft) tooltipMessage.classList.add("left");

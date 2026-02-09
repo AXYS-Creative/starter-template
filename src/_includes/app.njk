@@ -72,6 +72,10 @@
       or path == "library/sections" 
       or path == "style-guide"
     %}
+      {% set mouse_cursor = ({
+        elastic: true,
+        tilt: true
+      }) %}
       {% include "./components/mouse-cursor.njk" %}
     {% endif %}
 
