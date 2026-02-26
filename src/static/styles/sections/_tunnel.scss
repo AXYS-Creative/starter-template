@@ -73,6 +73,13 @@
     }
   }
 
+  // This css isn't used for 'centered' tunnels
+  &--reversed {
+    // Updating starting points
+    --clip-width: 100vw;
+    // --clip-corner-radius: 0;
+  }
+
   // below 'extneded' for specificity
   &--centered {
     --clip-width: 72vw;
@@ -84,7 +91,7 @@
     .tunnel-centered--pin {
       @include column-center;
       height: 100vh;
-      width: 100%;
+      width: 100vw;
     }
 
     .tunnel-clip {

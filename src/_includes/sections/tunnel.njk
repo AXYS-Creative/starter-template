@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 {% set extended = tunnel.extended or false %}
 {% set centered = tunnel.centered or false %}
+{% set reversed = tunnel.reversed or false %}
 {% set img_src = tunnel.img.src or '' %}
 {% set img_alt = tunnel.img.alt or '' %}
 {% set vid_src = tunnel.vid.src or '' %}
@@ -16,6 +17,10 @@
 
 {% if centered %}
   {% set class_modifier = class_modifier + ' tunnel--centered' %}
+{% endif %}
+
+{% if reversed %}
+  {% set class_modifier = class_modifier + ' tunnel--reversed' %}
 {% endif %}
 
 <section class="tunnel {{ class_modifier }}">
@@ -60,5 +65,10 @@
       {{ message }}
     </p>
   </div>
+  {% endif %}
+
+  <!-- prettier-ignore -->
+  {% if tunnel_marquee %}
+  <h2>Marquee will go here</h2>
   {% endif %}
 </section>
