@@ -37,6 +37,7 @@
   --spacing: 24px;
   --spacing--lg: 48px;
   --spacing--xl: 96px;
+  --gap-heading-paragraph: 12px;
   --section-gap--sm: 12px;
   --section-gap: 24px;
   --section-gap--lg: 64px;
@@ -178,7 +179,7 @@ h1,
 @media (max-width: 768px) {
   h1,
   .h1 {
-    font-size: 56px;
+    font-size: 48px;
   }
 }
 
@@ -211,7 +212,7 @@ h3,
 @media (max-width: 768px) {
   h3,
   .h3 {
-    font-size: 28px;
+    font-size: 32px;
   }
 }
 
@@ -9338,7 +9339,6 @@ html:has(.scroll-progress) {
     flex-direction: column;
     align-items: center;
     margin-inline-start: 0;
-    padding-inline: var(--body-padding);
   }
 }
 .plan-options .border-ray-trace {
@@ -9354,7 +9354,7 @@ html:has(.scroll-progress) {
   align-items: center;
   position: relative;
   gap: var(--spacing);
-  padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
+  padding: 80px 24px 40px;
   background: var(--color-background);
   width: 100%;
   overflow: hidden;
@@ -9374,7 +9374,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 480px) {
   .plan-options .plan-option {
-    padding: var(--spacing--lg) var(--spacing) var(--spacing);
+    padding: 64px 12px 32px;
   }
 }
 .plan-options .plan-option__title {
@@ -9472,7 +9472,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 480px) {
   .plan-options .plan-option__cta-wrapper {
-    align-self: stretch;
+    margin-block-start: 48px;
   }
   .plan-options .plan-option__cta-wrapper .btn {
     width: 100%;
@@ -9895,7 +9895,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 768px) {
   .tunnel__message-wrapper .tunnel__message {
-    font-size: 56px;
+    font-size: 48px;
   }
 }
 .tunnel__message-wrapper .tunnel__message {

@@ -106,7 +106,9 @@
         &.gsap-animated {
           .btn__text::before {
             opacity: 1;
-            transition: $ease-sudden, opacity 0.8s $cubic-ease 1s;
+            transition:
+              $ease-sudden,
+              opacity 0.8s $cubic-ease 1s;
           }
         }
       }
@@ -176,7 +178,7 @@
     flex-direction: column;
     align-items: center;
     margin-inline-start: 0;
-    padding-inline: var(--body-padding);
+    // padding-inline: var(--body-padding);
   }
 
   .border-ray-trace {
@@ -187,7 +189,7 @@
     @include column-center;
     position: relative;
     gap: var(--spacing);
-    padding: var(--spacing--xl) var(--spacing) var(--spacing--lg);
+    padding: 80px 24px 40px;
     background: var(--color-background);
     width: 100%;
     overflow: hidden;
@@ -205,7 +207,7 @@
       }
 
       @include mq-max(sm) {
-        padding: var(--spacing--lg) var(--spacing) var(--spacing);
+        padding: 64px 12px 32px;
       }
     }
 
@@ -275,7 +277,8 @@
 
     &__cta-wrapper {
       @include mq-max(sm) {
-        align-self: stretch;
+        margin-block-start: 48px;
+        // align-self: stretch;
 
         .btn {
           @include wide-btn;

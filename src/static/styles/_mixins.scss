@@ -123,7 +123,7 @@ $min-breakpoints: ();
   @include font-styles--heading($ls: -2px);
 
   @include mq-max(md) {
-    font-size: 56px;
+    font-size: 48px;
   }
 }
 @mixin h2 {
@@ -138,7 +138,7 @@ $min-breakpoints: ();
   @include font-styles--heading($sz: 40px);
 
   @include mq-max(md) {
-    font-size: 28px;
+    font-size: 32px;
   }
 }
 @mixin h4 {
