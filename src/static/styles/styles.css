@@ -733,7 +733,9 @@ code.codearea {
 }
 @media (hover: hover) and (pointer: fine) {
   .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:hover, .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:focus-visible {
-    --gradient-border-width-doubled: calc(var(--gradient-border-width) * 2);
+    --gradient-border-width-doubled: calc(
+      var(--gradient-border-width) * 2
+    );
   }
   .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:hover::before, .gradient-border[data-gradient-border-animate][data-gradient-border-animate=hover]:focus-visible::before {
     width: calc(100% + var(--gradient-border-width-doubled));
@@ -9789,7 +9791,7 @@ html:has(.scroll-progress) {
   padding-block: 320px;
 }
 .scroll-stack .pin-steps .pin-step {
-  scroll-margin-top: -24px;
+  scroll-margin-top: calc(var(--lvh, 1vh) * 30);
 }
 .scroll-stack--full .scroll-stack__copy--unpinned {
   display: flex;

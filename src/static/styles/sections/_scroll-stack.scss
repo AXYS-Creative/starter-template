@@ -148,7 +148,7 @@
 
   .pin-steps {
     top: var(--body-padding);
-    height: calc(100% - var(--body-padding)); // Affects the duration
+    height: calc(100% - var(--body-padding)); // See js to update duration
 
     // Panel linger options — May need to adjust the Stack Link highlight
     // gap: 320px; // all but last panel linger
@@ -156,7 +156,8 @@
     padding-block: 320px;
 
     .pin-step {
-      scroll-margin-top: -24px;
+      scroll-margin-top: lvh(30);
+      // scroll-margin-top: 180px;
     }
   }
 

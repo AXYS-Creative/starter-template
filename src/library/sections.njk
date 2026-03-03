@@ -100,6 +100,23 @@ path: library/sections
 
 <br /><br /><br />
 <br /><br /><br />
+
+<!-- prettier-ignore -->
+{% set tunnel = ({
+  reversed: true,
+  parallax: {
+    offset: '75%'
+  },
+  img: {
+    src: '/static/img/img-sample-2.jpg',
+    alt: ''
+  },
+  message: null
+}) %}
+{% include '../_includes/sections/tunnel.njk' %}
+
+<br /><br /><br />
+<br /><br /><br />
 <!-- prettier-ignore -->
 {% set tunnel = ({
   centered: true,
@@ -119,24 +136,6 @@ path: library/sections
   reversed: true,
   img: {
     src: '/static/img/img-sample-4.jpg',
-    alt: ''
-  },
-  message: null
-}) %}
-{% include '../_includes/sections/tunnel.njk' %}
-
-<br /><br /><br />
-<br /><br /><br />
-
-<!-- prettier-ignore -->
-{% set tunnel = ({
-  centered: false,
-  reversed: true,
-  parallax: {
-    offset: '75%'
-  },
-  img: {
-    src: '/static/img/img-sample-2.jpg',
     alt: ''
   },
   message: null

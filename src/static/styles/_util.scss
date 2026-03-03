@@ -52,7 +52,7 @@
   }
 
   .pin-steps {
-    @include hide-content;
+    @include hide-content; // Hide/show markers
     @include column-start;
     position: absolute;
     top: 0;
@@ -127,7 +127,9 @@
         }
 
         @include desktop-hover {
-          --gradient-border-width-doubled: calc(var(--gradient-border-width) * 2);
+          --gradient-border-width-doubled: calc(
+            var(--gradient-border-width) * 2
+          );
 
           &::before {
             width: calc(100% + var(--gradient-border-width-doubled));
@@ -138,7 +140,9 @@
 
         &:focus-visible {
           outline: none;
-          box-shadow: 0 0 0 0.5px #275dc5, 0 0 0 1px #fff;
+          box-shadow:
+            0 0 0 0.5px #275dc5,
+            0 0 0 1px #fff;
         }
       }
 
@@ -377,7 +381,9 @@
     overflow: hidden;
 
     @include desktop-hover {
-      transition: $ease 0.125s, $magnet; // Edge case not used with component (doesn't have .btn__text)
+      transition:
+        $ease 0.125s,
+        $magnet; // Edge case not used with component (doesn't have .btn__text)
 
       .btn__text,
       .btn__icon-group,
@@ -728,7 +734,10 @@
   }
 
   .text-glare {
-    @include text-gradient($col-1: var(--color-font--primary), $col-2: var(--color-font--tertiary));
+    @include text-gradient(
+      $col-1: var(--color-font--primary),
+      $col-2: var(--color-font--tertiary)
+    );
 
     &[data-track-mouse] {
       @include text-gradient($track-mouse: true);
