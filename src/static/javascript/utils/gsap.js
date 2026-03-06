@@ -78,9 +78,12 @@ responsiveGsap.add(
 
         const animateIn = () => {
           children.forEach((child, i) => {
-            setTimeout(() => {
-              child.classList.add("gsap-stagger-animate");
-            }, i * staggerDelay * 1000);
+            setTimeout(
+              () => {
+                child.classList.add("gsap-stagger-animate");
+              },
+              i * staggerDelay * 1000,
+            );
           });
         };
 
@@ -108,47 +111,16 @@ responsiveGsap.add(
         });
       });
     }
-
-    // // GSAP SplitText utility (Is this even used?)
-    // {
-    //   const splitTextElements = document.querySelectorAll(".split-text");
-
-    //   splitTextElements.forEach((el) => {
-    //     const splitType = el.dataset.splitType || "words"; // e.g. "words", "chars", "lines", "words,chars"
-    //     const customClass = el.dataset.splitClass || "";
-
-    //     const types = splitType.split(",").map((t) => t.trim());
-    //     const config = {
-    //       type: splitType, // SplitText accepts "words,chars" etc.
-    //       tag: "span",
-    //     };
-
-    //     if (types.includes("chars")) {
-    //       config.charsClass = `split-text__char++ ${customClass}`;
-    //     }
-
-    //     if (types.includes("words")) {
-    //       config.wordsClass = `split-text__word++ ${customClass}`;
-    //     }
-
-    //     if (types.includes("lines")) {
-    //       config.linesClass = `split-text__line++ ${customClass}`;
-    //     }
-
-    //     new SplitText(el, config);
-    //   });
-    // }
-  }
+  },
 );
 
-// Refresh ScrollTrigger after a brief page load. This allows images to use lazy loading and content to generate from 11ty
 window.addEventListener("load", () => {
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     ScrollTrigger.refresh();
-  }, 500); // try 200–500ms if needed
+  });
 });
 
-// Greater than 520 so it doesn't refresh on  mobile(dvh)
+// Greater than 520 so it doesn't refresh on mobile (dvh)
 if (window.innerWidth > 520 && mqMouse) {
   window.addEventListener("resize", () => {
     ScrollTrigger.refresh();

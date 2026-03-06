@@ -26,6 +26,7 @@ responsiveGsap.add(
         const panels = section.querySelectorAll(".scroll-stack__panel");
         const pinContainer = section.querySelector(".scroll-stack__pin");
         const pinSteps = section.querySelectorAll(".scroll-stack__pin-step");
+        const sectionHasNav = section.classList.contains("scroll-stack--nav");
 
         const stackDuration = `${panels.length * 50}%`;
 
@@ -33,8 +34,8 @@ responsiveGsap.add(
         gsap.to(pinContainer, {
           scrollTrigger: {
             trigger: pinContainer,
-            start: `top ${bodyPadding}`,
-            end: stackDuration,
+            start: () => `top ${sectionHasNav ? bodyPadding : "0"}`,
+            end: () => stackDuration,
             pin: true,
           },
         });
@@ -63,7 +64,7 @@ responsiveGsap.add(
               ease: "none",
               scrollTrigger: {
                 trigger: triggerStep,
-                start: `${scaleStart}% bottom`,
+                start: () => `${scaleStart}% bottom`,
                 end: endPoint,
                 scrub: panelScrub,
               },
@@ -81,7 +82,7 @@ responsiveGsap.add(
               ease: "none",
               scrollTrigger: {
                 trigger: triggerStep,
-                start: `${startPoint} bottom`,
+                start: () => `${startPoint} bottom`,
                 end: endPoint,
                 scrub: panelScrub,
               },

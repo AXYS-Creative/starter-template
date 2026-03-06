@@ -5,7 +5,14 @@
 {% set size = scroll_stack.panel_configs.size or 'full'%}
 {% set placement = scroll_stack.panel_configs.placement or 'center' %}
 
-<section class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }}">
+{% set custom_class = '' %}
+{% if nav %}
+  {% set custom_class = custom_class + ' scroll-stack--nav' %}
+{% endif %}
+
+<section
+  class="scroll-stack scroll-stack--{{ size }} scroll-stack--{{ placement }} {{ custom_class }}"
+>
   <!-- prettier-ignore -->
   {% if text_region %}
   <div class="scroll-stack__copy scroll-stack__copy--unpinned">
@@ -62,9 +69,7 @@
       {% endif %} 
       
       {% if panel.title %}
-      <h3 class="scroll-stack__panel__title">
-        {{ panel.title }}
-      </h3>
+      <h3 class="scroll-stack__panel__title">{{ panel.title }}</h3>
       {% endif %} {% if panel.desc %}
       <p class="scroll-stack__panel__desc">{{ panel.desc }}</p>
       {% endif %} {% if panel.cta_1 %}

@@ -6,8 +6,8 @@ import "./global/header.js";
 import "./global/footer.js";
 import "./global/scroll.js";
 
-import "./sections/scroll-horizontal.js"; // Pinned Section (be mindful of JS import placement)
-import "./sections/scroll-stack.js"; // Pinned Section (be mindful of JS import placement)
+import "./sections/scroll-horizontal.js"; // Pinned Section (be mindful of import placement)
+import "./sections/scroll-stack.js"; // Pinned Section (be mindful of import placement)
 import "./sections/tunnel.js";
 
 import "./components/accordion.js";
@@ -37,7 +37,7 @@ import "./components/video-overlay.js";
 import "./utils/glitch-text.js";
 import "./utils/gradient-border.js";
 import "./utils/grid-fade.js";
-import "./utils/gsap.js"; // Be mindful of placement against pinned content/sections
+import "./utils/gsap.js"; // Be mindful of import placement against pinned content/sections
 import "./utils/magnet.js";
 import "./utils/parallax.js";
 import "./utils/text-animations.js";

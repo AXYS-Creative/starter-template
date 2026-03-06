@@ -13,7 +13,10 @@
 
     <div class="work-gallery__layout work-gallery__layout--{{ grid_type }}">
       {% for item in items %}
-      <figure class="work-gallery__figure glitch-pair gsap-animate">
+      <figure
+        class="work-gallery__figure glitch-pair gsap-animate"
+        data-gsap-markers="false"
+      >
         <a
           href="{{ item.url }}"
           class="work-gallery__figure-link cursor-content glitch-trigger"
@@ -28,13 +31,17 @@
             type: 'glass'
           }) %}
           {% include "../components/badge.njk" %}
-          <img class="work-gallery__figure-img" src="{{ item.img.src }}" alt="" />
+          <img
+            class="work-gallery__figure-img"
+            src="{{ item.img.src }}"
+            alt=""
+          />
         </a>
         <figcaption class="work-gallery__figure-caption">
-          <h3 class="work-gallery__figure-title">
-            {{ item.title }}
-          </h3>
-          <p class="work-gallery__figure-type glitch-target__work-gallery-caption glitch-text">
+          <h3 class="work-gallery__figure-title">{{ item.title }}</h3>
+          <p
+            class="work-gallery__figure-type glitch-target__work-gallery-caption glitch-text"
+          >
             {{ item.type }}
           </p>
         </figcaption>

@@ -192,7 +192,10 @@
   overflow: auto;
   z-index: $z-index--nav;
 
-  transition: $ease, width 0s, height 0s;
+  transition:
+    $ease,
+    width 0s,
+    height 0s;
 
   @include mq-min(lg) {
     display: none;
