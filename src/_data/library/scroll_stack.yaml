@@ -1,6 +1,6 @@
 nav: true # based on each panel in 'panels' below
 text_region:
-  title: "[ Scroll Stack -[%br%] Section ]"
+  title: "[ Scroll Stack -[%br%] Section ] DO NOT USE — CONTAINS BUG"
   desc: "The Scroll Stack section is a great way to show perks and benefits to a user in a unique way. Intended for two or more panels."
   cta_1:
     text: View Plans

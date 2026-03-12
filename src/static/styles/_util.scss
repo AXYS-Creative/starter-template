@@ -52,7 +52,7 @@
   }
 
   .pin-steps {
-    // @include hide-content; // Hide/show markers
+    @include hide-content; // Hide/show markers
     @include column-start;
     position: absolute;
     top: 0;

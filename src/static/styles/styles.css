@@ -625,6 +625,11 @@ code.codearea {
     overflow: visible;
   }
   .pin-steps {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9661,7 +9666,6 @@ html:has(.scroll-progress) {
 }
 
 .scroll-stack {
-  border: 2px dashed rgba(255, 255, 0, 0.75);
   --panel-to-top: 200px;
   width: 100%;
   max-width: 1364px;

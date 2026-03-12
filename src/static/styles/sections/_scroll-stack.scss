@@ -1,5 +1,4 @@
 .scroll-stack {
-  border: $test;
   --panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
 
