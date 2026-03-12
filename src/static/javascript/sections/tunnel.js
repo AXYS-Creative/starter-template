@@ -84,7 +84,7 @@ document.querySelectorAll(".tunnel").forEach((el) => {
     // Special treatment for non centered reversed tunnels (fourth example)
     gsap.to(tunnelMedia, {
       y: offset,
-      rotate: "-1deg",
+      // rotate: "-1deg",
       filter: "brightness(0.75)",
       ease: "none",
       scrollTrigger: {
@@ -98,7 +98,7 @@ document.querySelectorAll(".tunnel").forEach((el) => {
     // Default for the rest
     gsap.from(tunnelMedia, {
       y: offset,
-      rotate: "-1deg",
+      // rotate: "-1deg",
       filter: "brightness(0.75)",
       ease: "none",
       scrollTrigger: {

@@ -625,11 +625,6 @@ code.codearea {
     overflow: visible;
   }
   .pin-steps {
-    opacity: 0;
-    pointer-events: none;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9666,6 +9661,7 @@ html:has(.scroll-progress) {
 }
 
 .scroll-stack {
+  border: 2px dashed rgba(255, 255, 0, 0.75);
   --panel-to-top: 200px;
   width: 100%;
   max-width: 1364px;
@@ -9975,7 +9971,6 @@ html:has(.scroll-progress) {
   height: 90vh;
   width: 100vw;
   z-index: -1;
-  rotate: -1deg;
   filter: brightness(0.75);
 }
 
@@ -10875,7 +10870,7 @@ html:has(.scroll-progress) {
   translate: -50% 0;
 }
 .header-simple--glass {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
 }
 .header-simple.site-header--promo-banner {

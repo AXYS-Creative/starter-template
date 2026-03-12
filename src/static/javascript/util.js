@@ -1,8 +1,14 @@
 export const root = document.documentElement; // See portfolio for examples
 
-export const mqMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-export const mqMotionAllow = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-export const mqNoMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+export const mqMouse = window.matchMedia(
+  "(hover: hover) and (pointer: fine)",
+).matches;
+export const mqMotionAllow = window.matchMedia(
+  "(prefers-reduced-motion: no-preference)",
+).matches;
+export const mqNoMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
 export const mqMaxLg = window.matchMedia("(max-width: 1024px)").matches;
 export const mqMinLg = window.matchMedia("(min-width: 1025px)").matches;
 export const mqMaxMd = window.matchMedia("(max-width: 768px)").matches;
@@ -234,7 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
 {
   document.querySelectorAll(".btn--split-text").forEach((el) => {
     // Decide what to target
-    const target = el.classList.contains("btn") ? el.querySelector(".btn__text") : el;
+    const target = el.classList.contains("btn")
+      ? el.querySelector(".btn__text")
+      : el;
 
     if (!target) return;
 

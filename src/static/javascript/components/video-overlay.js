@@ -38,7 +38,7 @@ export const openVideoOverlay = (src) => {
   videoPlayer.setAttribute("tabindex", "0");
   videoCloseBtn.setAttribute("tabindex", "0");
   nonVideoOverlayTabElements.forEach((el) =>
-    el?.setAttribute("tabindex", "-1")
+    el?.setAttribute("tabindex", "-1"),
   );
 
   lenis.stop();

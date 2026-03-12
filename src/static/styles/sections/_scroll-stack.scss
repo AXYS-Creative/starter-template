@@ -1,4 +1,5 @@
 .scroll-stack {
+  border: $test;
   --panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
 
@@ -26,7 +27,8 @@
     gap: 16px;
     padding-top: calc(
       var(--panel-to-top) / 2
-    ); // margin is choppy with scrolltrigger    padding-inline: var(--body-padding);
+    ); // 'margin' is choppy with scrolltrigger
+    // padding-inline: var(--body-padding);
 
     @include mq-max(sm) {
       display: none;

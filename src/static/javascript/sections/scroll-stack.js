@@ -1,3 +1,5 @@
+// This component needs reworked. Has a bug that breaks the scrollTrigger start/end for content that comes below.
+
 import { navyMarkers } from "../utils/gsap.js";
 
 let responsiveGsap = gsap.matchMedia();
