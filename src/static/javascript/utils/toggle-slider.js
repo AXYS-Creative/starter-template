@@ -1,3 +1,7 @@
+/* 
+Make sure to also pull in the 'toggle-slider' class css from utils.scss'
+**/
+
 document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   const options = container.querySelectorAll("[class*='option']");
   const slider = container.querySelector("[class*='slider']");
@@ -42,7 +46,7 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   options.forEach((option) => {
     option.addEventListener("click", () => {
       const input = option.querySelector(
-        "input[type=radio], input[type=checkbox]"
+        "input[type=radio], input[type=checkbox]",
       );
       if (input) input.checked = true; // sync input state if present
 
@@ -55,7 +59,7 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
 
     // If option has an input, listen for changes too
     const input = option.querySelector(
-      "input[type=radio], input[type=checkbox]"
+      "input[type=radio], input[type=checkbox]",
     );
     if (input) {
       input.addEventListener("change", () => {

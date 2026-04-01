@@ -3,6 +3,10 @@ layout: app
 path: blog-post
 ---
 
+<!-- prettier-ignore -->
+{% set blog_data = value %}
+{% include "./sections/blog-hero.njk" %}
+
 <section class="hero">
   <h1>{{title}}</h1>
   <p>Blog post</p>

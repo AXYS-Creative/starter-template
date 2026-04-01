@@ -7,7 +7,7 @@ import "./global/footer.js";
 import "./global/scroll.js";
 
 import "./sections/scroll-horizontal.js"; // Pinned Section (be mindful of import placement)
-import "./sections/scroll-stack.js"; // Pinned Section (be mindful of import placement)
+// import "./sections/scroll-stack.js"; // Pinned Section (be mindful of import placement) // Bug around scrollTrigger
 import "./sections/tunnel.js";
 
 import "./components/accordion.js";

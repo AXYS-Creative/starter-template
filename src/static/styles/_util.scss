@@ -199,8 +199,10 @@
     // --accent-color: var(--color-brand--primary);
     --toggle-padding: 4px;
     --toggle-radius: 8px;
+    // --toggle-radius: var(--radius--btn);
     --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
     --option-padding: 6px; // btn size
+    // --option-padding: var(--padding-btn, 6px); // btn size
 
     isolation: isolate;
     position: relative;
@@ -214,6 +216,7 @@
 
     [class*="option"] {
       padding: var(--option-padding);
+      border-radius: var(--toggle-radius);
       opacity: 0.5;
       transition: $ease;
 
