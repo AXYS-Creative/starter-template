@@ -7,12 +7,13 @@
 
 <!-- Title / Description / Robots -->
 <!-- NOTE: the middle ternary is to allow post titles to override the meta_data collection title -->
+<!-- you can delete the middle elif if the site doesn't have any posts -->
 <!-- prettier-ignore -->
 <title>
   {% if pageMeta.title %}
     {{ pageMeta.title }}
   {% elif title %}
-    {{ title }}
+    {{ title }} | Blog Post
   {% else %}
     {{ defaults.title }}
   {% endif %}
