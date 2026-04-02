@@ -6,7 +6,17 @@
 <meta name="author" content="{{ meta_data.author }}" />
 
 <!-- Title / Description / Robots -->
-<title>{{ pageMeta.title or defaults.title }}</title>
+<!-- NOTE: the middle ternary is to allow post titles to override the meta_data collection title -->
+<!-- prettier-ignore -->
+<title>
+  {% if pageMeta.title %}
+    {{ pageMeta.title }}
+  {% elif title %}
+    {{ title }}
+  {% else %}
+    {{ defaults.title }}
+  {% endif %}
+</title>
 <meta
   name="description"
   content="{{ pageMeta.description or defaults.description }}"

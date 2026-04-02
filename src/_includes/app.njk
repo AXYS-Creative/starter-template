@@ -6,7 +6,7 @@
     
     {% set pageMeta = null %}
     {% for meta in meta_data.page_details %}
-      {% if '/' + meta.path in page.url %}
+      {% if ('/' + meta.path + '/') == page.url or ('/' + meta.path) == page.url %}
         {% set pageMeta = meta %}
       {% endif %}
     {% endfor %}
