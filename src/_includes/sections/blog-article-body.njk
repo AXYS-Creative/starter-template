@@ -6,6 +6,8 @@
     <nav>This is the side nav</nav>
     {% endif %}
 
-    <article>{{ blog_article_body.content | safe }}</article>
+    <article class="blog-article-body__article">
+      {{ blog_article_body.content | safe }}
+    </article>
   </div>
 </section>

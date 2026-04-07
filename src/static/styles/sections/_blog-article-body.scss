@@ -5,6 +5,32 @@
     @include section-padding;
     @include width-clamp;
     @include column-start;
+    padding-block-start: 0;
     gap: var(--section-gap--lg);
+  }
+
+  &__article {
+    // No access to custom classes from markdown
+
+    h2,
+    h3,
+    h4 {
+      margin-block-end: var(--gap-heading-paragraph);
+    }
+
+    p {
+      margin-block-end: var(--gap-paragraph-paragraph);
+
+      // Any titles that follow a paragraph have space above
+      &:has(+ h2),
+      &:has(+ h3),
+      &:has(+ h4) {
+        & + h2,
+        & + h3,
+        & + h4 {
+          margin-block-start: var(--gap-heading-paragraph);
+        }
+      }
+    }
   }
 }

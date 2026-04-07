@@ -41,7 +41,7 @@
 
   &__info {
     @include column-start(start);
-    gap: var(--space-between-paragraphs);
+    gap: var(--gap-paragraph-paragraph);
     flex: 1;
     padding: var(--spacing);
   }

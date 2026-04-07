@@ -32,13 +32,13 @@
   --padding-btn-icon: 8px;
   --padding-btn--sm: 6px 12px;
   --padding-btn-icon--sm: 4px;
-  --space-between-paragraphs: 12px;
+  --gap-heading-paragraph: 16px;
+  --gap-paragraph-paragraph: 12px;
   --spacing--xs: 8px;
   --spacing--sm: 16px;
   --spacing: 24px;
   --spacing--lg: 48px;
   --spacing--xl: 96px;
-  --gap-heading-paragraph: 12px;
   --section-gap--sm: 12px;
   --section-gap: 24px;
   --section-gap--lg: 48px;
@@ -8868,7 +8868,19 @@ html:has(.scroll-progress) {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  padding-block-start: 0;
   gap: var(--section-gap--lg);
+}
+.blog-article-body__article h2,
+.blog-article-body__article h3,
+.blog-article-body__article h4 {
+  margin-block-end: var(--gap-heading-paragraph);
+}
+.blog-article-body__article p {
+  margin-block-end: var(--gap-paragraph-paragraph);
+}
+.blog-article-body__article p:has(+ h2) + h2, .blog-article-body__article p:has(+ h2) + h3, .blog-article-body__article p:has(+ h2) + h4, .blog-article-body__article p:has(+ h3) + h2, .blog-article-body__article p:has(+ h3) + h3, .blog-article-body__article p:has(+ h3) + h4, .blog-article-body__article p:has(+ h4) + h2, .blog-article-body__article p:has(+ h4) + h3, .blog-article-body__article p:has(+ h4) + h4 {
+  margin-block-start: var(--gap-heading-paragraph);
 }
 
 .hero-simple__inner {
@@ -11681,7 +11693,7 @@ body:has(.footer-scroll-reveal) .footer-background-support.footer-background-sup
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
-  gap: var(--space-between-paragraphs);
+  gap: var(--gap-paragraph-paragraph);
   flex: 1;
   padding: var(--spacing);
 }
