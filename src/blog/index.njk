@@ -6,33 +6,33 @@ layout: archive-blog
 
 <!-- prettier-ignore -->
 {% for post in postslist | reverse %}
-<article class="blog-article">
-  <figure class="blog-article__img">
-    <img class="parallax" src="{{ post.data.poster }}" alt="" />
-  </figure>
-  <h2 class="h3 blog-article__title">
-    <!-- prettier-ignore -->
-    <a
-      class="h3 classic-link"
-      {% if loop.first %}
-        id="content-start"
-      {% endif %}
-      href="{{ post.url | url }}"
-    >
-      <!-- prettier-ignore -->
-      {{ post.data.title or 'Untitled' }}
-    </a>
-  </h2>
-  <p class="blog-article__date">
-    <time>
-      {{ post.date | readableDate }} by
-      <a>{{ post.data.author }}</a>
-    </time>
-  </p>
-  {% if post.data.description %}
-  <p class="blog-article__details">{{ post.data.description }}</p>
+<!-- prettier-ignore -->
+<a 
+  class="blog-preview {% if loop.first %}blog-preview--first{% endif %}" 
+  href="{{ post.url | url }}"
+  {% if loop.first %}
+    id="content-start"
   {% endif %}
+>
+  <figure class="blog-preview__figure">
+    <img 
+      class="parallax" 
+      src="{{ post.data.poster }}" alt="" 
+      data-parallax-scrub="0.5"
+    />
+  </figure>
 
-  <a class="classic-link" href="{{ post.url | url }}"> Read more → </a>
-</article>
+  <div class="blog-preview__info">
+    <h2 class="blog-preview__title">{{ post.data.title or 'Untitled' }}</h2>
+  
+    <time class="blog-preview__date">
+      {{ post.date | readableDate }}
+    </time>
+    <p>by {{ post.data.author }}</p>
+  
+    {% if post.data.description %}
+    <p class="blog-preview__details">{{ post.data.description }}</p>
+    {% endif %}
+  </div>
+</a>
 {% endfor %}

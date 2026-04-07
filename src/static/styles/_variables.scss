@@ -5,11 +5,11 @@ $brand-font--body: "Funnel Display", source-sans-pro, sans-serif;
 $brand-font--mono: "Geist Mono", source-sans-pro, sans-serif;
 
 $black: #0a0a0a;
-$grey-darker: #212121;
-$grey-dark: #313131;
+$grey-darker: #1a1a1a;
+$grey-dark: #292929;
 $grey: #c0c0c0;
-$grey-light: #e0e0e0;
-$grey-lighter: #e7e7e7;
+$grey-light: #ececec;
+$grey-lighter: #f1f1f1;
 $white: #fafafa;
 
 $coral: #e48c66;
@@ -18,7 +18,7 @@ $blue: #ada4e3;
 $green: #a4d1a2;
 $yellow: #fdfd96;
 
-$content-width: 1364px; // make sure to update the xxl media query too
+$content-width: 1320px; // make sure to update the xxl media query too
 
 // Layering
 $z-index--nav: 3;
@@ -101,6 +101,8 @@ $test-bg: rgba(navy, 0.75);
   --padding-btn--sm: 6px 12px;
   --padding-btn-icon--sm: 4px;
 
+  --space-between-paragraphs: 12px;
+
   --spacing--xs: 8px;
   --spacing--sm: 16px;
   --spacing: 24px;
@@ -111,7 +113,8 @@ $test-bg: rgba(navy, 0.75);
 
   --section-gap--sm: 12px;
   --section-gap: 24px;
-  --section-gap--lg: 64px;
+  --section-gap--lg: 48px;
+  --section-gap--xl: 64px;
 
   // Consider radius vars for outter/inner based on spacing (padding)
   --radius: 16px;
@@ -131,7 +134,9 @@ $test-bg: rgba(navy, 0.75);
 
   @media (max-width: 1024px) {
     --body-padding: 24px;
+
     --section-gap--lg: 24px;
+    --section-gap--xl: 48px;
 
     --spacing--xs: 4px;
     --spacing--sm: 8px;
@@ -152,8 +157,8 @@ $test-bg: rgba(navy, 0.75);
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};
 
-  --color-surface--1: #{$grey-light};
-  --color-surface--2: #{$grey-lighter};
+  --color-surface--1: #{$grey-lighter};
+  --color-surface--2: #{$grey-light};
 
   --color-border: #{$grey-light};
   --gradient-border-color: rgba(0, 0, 0, 0.5); // Library
@@ -170,8 +175,8 @@ $test-bg: rgba(navy, 0.75);
   // --color-link: #{$grey-light};
   // --color-link--hover: #{$white};
 
-  --color-surface--1: #{$grey-dark};
-  --color-surface--2: #{$grey-darker};
+  --color-surface--1: #{$grey-darker};
+  --color-surface--2: #{$grey-dark};
 
   --color-border: #{$grey-dark};
   --gradient-border-color: rgba(255, 255, 255, 0.5); // Library

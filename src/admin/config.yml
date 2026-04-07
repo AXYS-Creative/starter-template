@@ -90,9 +90,9 @@ collections:
       - widget: select
         label: tags
         name: tags
-        multiple: true
-        create: true
-        options: [Tags, created, from, config.yml]
+        multiple: false
+        create: false
+        options: [Press Release, Update, Best Practices, Announcement, Event]
       - label: Cover Image # Only seems to work with .md collections
         name: cover_image
         widget: "image"
