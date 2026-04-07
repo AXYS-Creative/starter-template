@@ -1,13 +1,11 @@
 ---
-title: Post One
-description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus enim soluta aliquid.
+title: Getting started with axys creative
+description: A simple guide to working with Aaron as we collaborate to build a
+  stunning website for you!
 poster: /static/img/landscape-1.webp
-author: Author Here
+author: Aaron Garcia
 date: 2020-09-01
-tags:
-  - left
-  - center
-  - right
+tags: Best Practices
 cover_image: /static/img/landscape-1.webp
 ---
 
