@@ -10,8 +10,6 @@ tags:
   - right
 ---
 
-# This is a Heading h1
-
 ## This is a Heading h2
 
 ###### This is a Heading h6
@@ -32,7 +30,6 @@ _You **can** combine them_
 
 - Item 1
 - Item 2
-
   - Item 2a
   - Item 2b
 
@@ -41,7 +38,6 @@ _You **can** combine them_
 1. Item 1
 2. Item 2
 3. Item 3
-
    1. Item 3a
    2. Item 3b
 

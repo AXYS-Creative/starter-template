@@ -22,7 +22,7 @@ page_details:
   - path: blog
     label: Blog
     title: Blog | Business Name
-    description: Blog description
+    description: Blog archive description here
     crawl_page: true
   - path: library/components
     label: Components

@@ -4,24 +4,12 @@ path: blog-post
 ---
 
 <!-- prettier-ignore -->
-{% set blog_data = value %}
-{% include "./sections/blog-hero.njk" %}
+{% include "./sections/blog-article-hero.njk" %}
 
-<section class="hero">
-  <h1>{{title}}</h1>
-  <p>Blog post</p>
-</section>
-
-<section class="blog-post">
-  <div>
-    <p>
-      <time>
-        {{ date | readableDate }} by
-        <a>{{ author }}</a>
-      </time>
-    </p>
-  </div>
-
-  <!-- from src > posts > blog > blog.json -->
-  <article>{{ content | safe }}</article>
-</section>
+<!-- from src > posts > blog > blog.json -->
+<!-- prettier-ignore -->
+{% set blog_article_body = ({
+  content: content,
+  side_nav: false
+}) %}
+{% include "./sections/blog-article-body.njk" %}

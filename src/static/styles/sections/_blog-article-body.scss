@@ -1,0 +1,10 @@
+.blog-article-body {
+  // border: $test;
+
+  &__inner {
+    @include section-padding;
+    @include width-clamp;
+    @include column-start;
+    gap: var(--section-gap--lg);
+  }
+}

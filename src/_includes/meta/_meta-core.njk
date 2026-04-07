@@ -18,10 +18,10 @@
     {{ defaults.title }}
   {% endif %}
 </title>
-<meta
-  name="description"
-  content="{{ pageMeta.description or defaults.description }}"
-/>
+
+<!-- prettier-ignore -->
+{% set meta_description = pageMeta.description if pageMeta.description else (description if description else defaults.description) %}
+<meta name="description" content="{{ meta_description }}" />
 <meta
   name="robots"
   content="{{ 'index, follow' if pageMeta.crawl_page is not defined or pageMeta.crawl_page else 'noindex, nofollow' }}"

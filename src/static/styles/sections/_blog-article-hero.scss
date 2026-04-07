@@ -1,0 +1,46 @@
+.blog-article-hero {
+  // border: $test;
+  @include full-viewport-section;
+
+  &__inner {
+    @include section-padding;
+    @include width-clamp;
+    @include column-start;
+    gap: var(--section-gap--lg);
+    height: 100%;
+  }
+
+  &__title {
+    max-width: 650px;
+  }
+
+  &__desc {
+    max-width: 720px;
+  }
+
+  &__text,
+  &__extra {
+    flex: 1 1 auto;
+
+    @include mq-min(md) {
+      max-width: 50%;
+    }
+  }
+
+  &__text {
+    @include column-center;
+
+    // &-eyebrow {
+
+    // }
+
+    &-desc {
+      margin-block-end: var(--spacing--lg);
+      max-width: 750px;
+      text-align: center;
+      text-wrap: balance;
+    }
+  }
+
+  // Content Modifiers
+}
