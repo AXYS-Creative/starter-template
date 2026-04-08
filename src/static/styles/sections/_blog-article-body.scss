@@ -32,5 +32,14 @@
         }
       }
     }
+
+    ul,
+    ol {
+      @include classic-list;
+    }
+
+    a {
+      @include btn-type--underline;
+    }
   }
 }

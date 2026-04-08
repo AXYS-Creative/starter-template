@@ -1,7 +1,24 @@
 <section class="blog-article-hero">
   <div class="blog-article-hero__inner">
-    <h1 class="blog-article-hero__title">{{ title }}</h1>
+    <div>
+      <small class="blog-article-hero__tagline">
+        {{ date | readableDate }} by <a>{{ author }}</a>
+      </small>
+      <h1 class="blog-article-hero__title">{{ title }}</h1>
+    </div>
     <p class="blog-article-hero__desc">{{ description }}</p>
-    <p>Published on {{ date | readableDate }} by <a>{{ author }}</a></p>
+    <figure class="blog-article-hero__figure">
+      <div class="parallax-wrap">
+        <img
+          class="blog-article-hero__figure-img parallax"
+          src="{{ cover_image }}"
+          alt=""
+          data-parallax-start="top center"
+          data-parallax-end="80% top"
+          data-parallax-markers="false"
+        />
+      </div>
+      <figcaption>Photo by <a href="">Sample here</a></figcaption>
+    </figure>
   </div>
 </section>

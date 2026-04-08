@@ -1,16 +1,16 @@
-site_name: "Sample Business"
+site_name: Sample Business
 url: "https://starter-template-cms.netlify.app" # CHANGE ME #Ensure no end slash
 author: Sample Author
 contact_email: info@sample.com
 theme_color: "#000000"
-favicon_light_theme: "/static/img/favicon-dark.svg"
-favicon_dark_theme: "/static/img/favicon-light.svg"
+favicon_light_theme: /static/img/favicon-dark.svg
+favicon_dark_theme: /static/img/favicon-light.svg
 
 defaults:
-  title: "Sample Business | Motto Here"
-  description: "Open Graph Description Here"
+  title: Sample Business | Motto Here
+  description: Open Graph Description Here
   crawl_page: true
-  og_image: "/static/img/og-image.png"
+  og_image: /static/img/og-image.png
 
 page_details:
   - path: ""
@@ -21,7 +21,7 @@ page_details:
     og_image: "/static/img/og-image.png"
   - path: blog
     label: Blog
-    title: Blog | Business Name
+    title: Blog Archive | Business Name
     description: Blog archive description here
     crawl_page: true
   - path: library/components

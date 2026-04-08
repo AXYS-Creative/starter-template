@@ -192,6 +192,10 @@ $min-breakpoints: ();
     --font-size: 14px;
     opacity: 0.75;
   }
+
+  a {
+    @include inherit-font;
+  }
 }
 
 @mixin font-styles--mono {
@@ -204,6 +208,26 @@ $min-breakpoints: ();
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+}
+
+@mixin classic-list {
+  @include column-start;
+  gap: 0.5ch;
+
+  li {
+    margin-inline: 1.8ch;
+    text-align: start;
+  }
+
+  &:is(ul) {
+    li {
+      list-style-type: circle;
+    }
+  }
+
+  // &:is(ol) {
+  //   list-style-position: inside;
+  // }
 }
 
 //

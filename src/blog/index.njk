@@ -17,7 +17,7 @@ layout: archive-blog
   <figure class="blog-preview__figure">
     <img 
       class="parallax" 
-      src="{{ post.data.poster }}" alt="" 
+      src="{{ post.data.cover_image }}" alt="" 
       data-parallax-scrub="0.5"
     />
   </figure>
@@ -25,10 +25,11 @@ layout: archive-blog
   <div class="blog-preview__info">
     <h2 class="blog-preview__title">{{ post.data.title or 'Untitled' }}</h2>
   
-    <time class="blog-preview__date">
-      {{ post.date | readableDate }}
-    </time>
-    <p>by {{ post.data.author }}</p>
+    <p>
+      <time class="blog-preview__date">{{ post.date | readableDate }}</time>
+      <span>by {{ post.data.author }}</span>
+    </p>
+    
   
     {% if post.data.description %}
     <p class="blog-preview__details">{{ post.data.description }}</p>

@@ -1,13 +1,19 @@
 .blog-article-hero {
   // border: $test;
-  @include full-viewport-section;
+  // @include full-viewport-section;
 
   &__inner {
     @include section-padding;
     @include width-clamp;
     @include column-start;
     gap: var(--section-gap--lg);
+    padding-block-start: 32vh;
     height: 100%;
+  }
+
+  &__tagline {
+    display: block;
+    margin-block-end: var(--gap-figure-caption);
   }
 
   &__title {
@@ -16,6 +22,28 @@
 
   &__desc {
     max-width: 720px;
+  }
+
+  &__figure {
+    @include column-end;
+    gap: var(--gap-figure-caption);
+
+    .parallax-wrap {
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 2 / 1;
+    }
+
+    &-img {
+      // aspect-ratio: 2 / 1;
+      border-radius: var(--radius);
+      object-fit: cover;
+    }
+
+    figcaption {
+      @include font-styles--body(sm);
+      font-style: italic;
+    }
   }
 
   &__text,

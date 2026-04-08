@@ -1,9 +1,9 @@
 ---
 title: Post Two
-description: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non debitis, nostrum fugit expedita veritatis ducimus inventore porro veniam voluptas in temporibus obcaecati, ab odio praesentium eos mollitia maxime?
-poster: /static/img/landscape-2.webp
+description: Description Here
+cover_image: /static/img/landscape-2.webp
 author: Author Here
-date: 2020-09-01
+date: 2020-09-03
 tags:
   - left
   - center

@@ -17,19 +17,7 @@
 }
 
 .classic-list {
-  @include column-start;
-  gap: 0.5ch;
-
-  li {
-    margin-inline: 1.8ch;
-    text-align: start;
-  }
-
-  &:is(ul) {
-    li {
-      list-style-type: circle;
-    }
-  }
+  @include classic-list;
 }
 
 .max-width-text {
