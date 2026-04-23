@@ -236,30 +236,9 @@ path: library/combos
     id="{{ clipboard_copy.id }}"
     data-copy-value="Value copied from the data attribute!"
   >
-    Sample text three — This will copy to the clipboard.
+    Sample text three — This WON'T copy becuase we're using a data attribute.
   </p>
   {% include "../_includes/components/alert.njk" %}
-</section>
-
-<section class="magnet-field-section library-section">
-  <h2>[ Magnet Field - Combo ]</h2>
-  <strong>Upcoming 2026</strong>
-  <p>
-    Declare a boundary for children elements to attract to the mouse cursor.
-    Commonly used for video play buttons.
-  </p>
-  <ul class="classic-list">
-    <li>
-      <code>id</code> a string value for the unique component id. This will also
-      be passed to the html element target.
-    </li>
-  </ul>
-
-  <br />
-  <h3 class="h6">Basic sample</h3>
-  <div class="magnet-field-sample-1 magnet-field">
-    <div class="magnet-field__child"></div>
-  </div>
 </section>
 
 <section class="tabs-section library-section">
@@ -498,6 +477,7 @@ path: library/combos
       class="tooltip-util tab-element-page"
       data-tooltip-message="Recommended to use with keyboard accessible elements. Check resources to see if buttons are appropriate for this."
       data-tooltip-min-width="212"
+      data-cursor-tilt
       role="button"
       tabindex="0"
     >

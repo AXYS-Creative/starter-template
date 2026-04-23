@@ -35,6 +35,22 @@
     align-self: center;
   }
 
+  .cursor-field-sample-1 {
+    @include row-center;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+    width: 100%;
+    min-height: 420px;
+
+    &__child {
+      @include row-center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: var(--border-width) solid var(--color-border);
+    }
+  }
+
   .dots-fill {
     overflow: visible;
   }
