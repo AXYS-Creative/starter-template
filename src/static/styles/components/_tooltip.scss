@@ -1,11 +1,15 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+@use "sass:math";
+
 $message-font-size: 14px;
 $tooltip-text-underline-offset: 0.5ch;
 $tooltip-void: 12px; // gap between trigger and message bubble
 $tooltip-bubble-translate-distance: 12px;
 
 $bubble-point-size: 16px; // keep divisible by 4
-$bubble-point-size-half: $bubble-point-size / 2;
-$bubble-point-size-quart: $bubble-point-size-half / 2;
+$bubble-point-size-half: math.div($bubble-point-size, 2);
+$bubble-point-size-quart: math.div($bubble-point-size-half, 2);
 
 $point-rotate-bottom: 135deg;
 $point-rotate-top: -45deg;
@@ -165,9 +169,9 @@ $mq-swap: lg; // When to move right and left bubbles above or below
 
     &:hover + .tooltip__message,
     &:focus + .tooltip__message {
-      @include show-content;
+      @include mixins.show-content;
 
-      @include mq-min($mq-swap) {
+      @include mixins.mq-min($mq-swap) {
         &--top,
         &--bottom {
           translate: -50% 0;
@@ -186,7 +190,7 @@ $mq-swap: lg; // When to move right and left bubbles above or below
         }
       }
 
-      @include mq-max($mq-swap) {
+      @include mixins.mq-max($mq-swap) {
         // Not including right or left on mobile since it will likely flow off the page
         &--mobile-top,
         &--mobile-bottom {
@@ -217,7 +221,7 @@ $mq-swap: lg; // When to move right and left bubbles above or below
   }
 
   &__message {
-    @include hide-content;
+    @include mixins.hide-content;
     position: absolute;
 
     background: var(--color-surface--1);
@@ -226,10 +230,10 @@ $mq-swap: lg; // When to move right and left bubbles above or below
     width: 100vw;
     text-align: start;
     z-index: 1;
-    transition: $ease;
+    transition: vars.$ease;
 
     &:hover {
-      @include show-content;
+      @include mixins.show-content;
     }
 
     &::before {
@@ -244,7 +248,7 @@ $mq-swap: lg; // When to move right and left bubbles above or below
       font-size: $message-font-size;
     }
 
-    @include mq-min($mq-swap) {
+    @include mixins.mq-min($mq-swap) {
       &--top {
         @include message-top;
       }
@@ -305,7 +309,7 @@ $mq-swap: lg; // When to move right and left bubbles above or below
       }
     }
 
-    @include mq-max($mq-swap) {
+    @include mixins.mq-max($mq-swap) {
       &--mobile-top {
         @include message-top;
       }
@@ -329,23 +333,23 @@ $mq-swap: lg; // When to move right and left bubbles above or below
     &--lg {
       max-width: 650px;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         max-width: 450px;
       }
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         max-width: 360px;
       }
-      @include mq-max(sm) {
+      @include mixins.mq-max(sm) {
         max-width: 250px;
       }
     }
     &--md {
       max-width: 420px;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         max-width: 360px;
       }
-      @include mq-max(sm) {
+      @include mixins.mq-max(sm) {
         max-width: 250px;
       }
     }
@@ -382,14 +386,14 @@ $mq-swap: lg; // When to move right and left bubbles above or below
 
 // Appended with mouse-cursor.njk
 .tooltip-util-message {
-  @include hide-content;
+  @include mixins.hide-content;
   position: fixed;
   top: 0;
   background: var(--color-surface--1);
   border-radius: var(--radius--btn);
   padding: var(--padding-btn);
   font-size: $message-font-size;
-  transition: $ease;
+  transition: vars.$ease;
 
   &.active {
     opacity: 1;

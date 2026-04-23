@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .solar-system {
   --top-padding: 8em;
   // border: $test;
@@ -9,13 +12,13 @@
   overflow: hidden;
   width: 100%;
 
-  @include mq-max(lg) {
+  @include mixins.mq-max(lg) {
     font-size: 14px;
     padding: var(--top-padding) 0 0;
   }
 
   .orbit {
-    @include row-center;
+    @include mixins.row-center;
     position: relative;
     border: 1px solid var(--color-border);
     aspect-ratio: 1;
@@ -23,7 +26,7 @@
     margin: auto;
 
     &-badge {
-      @include row-center;
+      @include mixins.row-center;
       border: 3px solid var(--color-background);
       gap: 8px;
       font-size: 1em;
@@ -319,13 +322,13 @@
   }
 
   .orbit-image {
-    @include absolute-center;
+    @include mixins.absolute-center;
     aspect-ratio: 1;
     object-fit: cover;
     width: 12em;
     border-radius: 50%;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       top: calc(50% + var(--top-padding) / 2);
     }
   }

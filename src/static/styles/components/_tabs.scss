@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 // Unified for both component and utillity
 .tabs {
   &-list {
@@ -10,7 +13,7 @@
     opacity: 0.5;
     border-bottom: 1px solid transparent;
 
-    @include desktop-hover {
+    @include mixins.desktop-hover {
       opacity: 0.75;
     }
 

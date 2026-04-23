@@ -1,13 +1,15 @@
+@use "../base/mixins";
+
 .cta-1 {
-  @include btn-type--solid;
+  @include mixins.btn-type--solid;
 }
 
 .cta-2 {
-  @include btn-type--icon-end;
+  @include mixins.btn-type--icon-end;
 }
 
 .cta-group {
-  @include row-center(flex-start);
+  @include mixins.row-center(flex-start);
   gap: var(--spacing);
   flex-shrink: 0;
 }

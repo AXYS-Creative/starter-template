@@ -1,13 +1,15 @@
+@use "../base/mixins";
+
 .price-cards {
   &__inner {
-    @include section-padding;
-    @include width-clamp;
-    @include column-center;
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.column-center;
     gap: var(--section-gap);
   }
 
   &__text-group {
-    @include column-center;
+    @include mixins.column-center;
     gap: var(--spacing--sm);
   }
 
@@ -27,23 +29,23 @@
     margin-block-start: var(--spacing);
     width: 100%;
 
-    @include mq-max(xl) {
+    @include mixins.mq-max(xl) {
       flex-direction: column;
     }
   }
 
   .price-card {
-    @include column-start(flex-start);
+    @include mixins.column-start(flex-start);
     background: var(--color-surface--1);
     padding: var(--section-gap);
     flex: 1;
     border-radius: var(--radius--sm);
 
     &__title {
-      @include row-center;
+      @include mixins.row-center;
 
       &-desc {
-        @include font-styles--body;
+        @include mixins.font-styles--body;
         margin-block-start: 4px;
         margin-inline-start: 1ch;
       }
@@ -54,10 +56,10 @@
     // }
 
     &__price {
-      @include font-styles--body(lg);
+      @include mixins.font-styles--body(lg);
 
       &-desc {
-        @include font-styles--body(sm);
+        @include mixins.font-styles--body(sm);
         margin-block-start: 4px;
         margin-inline-start: 0.5ch;
         opacity: 0.75;

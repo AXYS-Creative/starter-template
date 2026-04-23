@@ -1,16 +1,19 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .btn-toggle {
   $switch-width: 64px;
   $switch-padding: 4px;
 
-  @include row-center;
+  @include mixins.row-center;
   gap: 0.5ch;
 
   &__label {
-    @include font-styles--body;
+    @include mixins.font-styles--body;
   }
 
   &__switch {
-    @include row-center(space-around);
+    @include mixins.row-center(space-around);
     position: relative;
     padding-inline: $switch-padding;
     width: $switch-width;
@@ -24,8 +27,8 @@
       font-weight: 700;
       font-size: 12px;
 
-      @include mq-motion-allow {
-        transition: $ease;
+      @include mixins.mq-motion-allow {
+        transition: vars.$ease;
       }
     }
 
@@ -46,10 +49,10 @@
       aspect-ratio: 1;
       border-radius: 50%;
       background: var(--color-background);
-      border: 1px solid $grey;
+      border: 1px solid vars.$grey;
 
-      @include mq-motion-allow {
-        transition: $ease;
+      @include mixins.mq-motion-allow {
+        transition: vars.$ease;
       }
     }
   }

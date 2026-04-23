@@ -1,23 +1,26 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .btn-back-to-top {
-  @include hide-content;
-  @include right-spacing;
+  @include mixins.hide-content;
+  @include mixins.right-spacing;
   position: fixed;
   bottom: var(--body-padding);
   scale: 0.25;
-  z-index: $z-index--btn-back-to-top;
+  z-index: vars.$z-index--btn-back-to-top;
 
   &:focus-visible {
-    @include show-content;
+    @include mixins.show-content;
     scale: 1;
   }
 
   &.watch-scroll--away-from-top {
-    @include show-content;
+    @include mixins.show-content;
     scale: 1;
   }
 
   &.watch-scroll--near-bottom {
-    @include hide-content;
+    @include mixins.hide-content;
     scale: 0.25;
   }
 }

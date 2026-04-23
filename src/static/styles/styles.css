@@ -835,7 +835,7 @@ code.codearea {
     --option-padding: 6px;
     isolation: isolate;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
   }
   .toggle-slider:active [class*=slider] {
     scale: 0.94;
@@ -7543,7 +7543,7 @@ body:has(.tooltip-util) .mouse-cursor {
 @media (max-width: 768px) {
   .bg-particle-waves {
     min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
+    height: svh(100);
     max-height: 950px;
   }
 }
@@ -9162,7 +9162,7 @@ html:has(.scroll-progress) {
 @media (max-width: 768px) {
   .hero-simple--text-only {
     min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
+    height: svh(100);
     max-height: 950px;
   }
 }
@@ -9171,7 +9171,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 768px) {
   .hero-simple--text-only {
-    height: calc(var(--svh, 1vh) * 100 - var(--header-height));
+    height: calc(svh(100) - var(--header-height));
   }
 }
 @media (min-width: 1025px) {
@@ -9193,13 +9193,13 @@ html:has(.scroll-progress) {
 @media (min-width: 1025px) and (max-width: 768px) {
   .hero-simple--row {
     min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
+    height: svh(100);
     max-height: 950px;
   }
 }
 @media (min-width: 1025px) and (max-width: 768px) {
   .hero-simple--row {
-    height: calc(var(--svh, 1vh) * 100 - var(--header-height));
+    height: calc(svh(100) - var(--header-height));
   }
 }
 .hero-simple--row .hero-simple__inner {
@@ -9324,7 +9324,7 @@ html:has(.scroll-progress) {
 @media (max-width: 768px) {
   .carousel-hero {
     min-height: 500px;
-    height: calc(var(--svh, 1vh) * 100);
+    height: svh(100);
     max-height: 950px;
   }
 }
@@ -9986,7 +9986,7 @@ html:has(.scroll-progress) {
   align-items: flex-start;
   gap: var(--section-gap);
   position: absolute !important;
-  height: max(var(--svh, 1vh) * 100 - var(--panel-to-top) * 2, 400px);
+  height: max(svh(100) - var(--panel-to-top) * 2, 400px);
   width: calc(100% - var(--body-padding-double));
   transform-origin: top center;
   background: var(--color-background);
@@ -10012,7 +10012,7 @@ html:has(.scroll-progress) {
   margin-top: auto;
 }
 .scroll-stack .scroll-stack__pin {
-  height: calc(var(--lvh, 1vh) * 100 - var(--body-padding-double));
+  height: calc(lvh(100) - var(--body-padding-double));
   min-height: 500px;
 }
 @media (max-width: 768px) {
@@ -10026,7 +10026,7 @@ html:has(.scroll-progress) {
   padding-block: 320px;
 }
 .scroll-stack .pin-steps .pin-step {
-  scroll-margin-top: calc(var(--lvh, 1vh) * 30);
+  scroll-margin-top: lvh(30);
 }
 .scroll-stack--full .scroll-stack__copy--unpinned {
   display: flex;
@@ -10910,7 +10910,9 @@ html:has(.scroll-progress) {
   transition: 0.24s ease 0.2s, width 0s, height 0.64s cubic-bezier(0.18, 0.97, 0.47, 1);
 }
 .site-nav.nav-island.site-nav--promo-banner {
-  --nav-top-offset: calc(var(--top-offset) + var(--header-height) + var(--promo-banner-height));
+  --nav-top-offset: calc(
+    var(--top-offset) + var(--header-height) + var(--promo-banner-height)
+  );
 }
 
 .site-nav-btn {

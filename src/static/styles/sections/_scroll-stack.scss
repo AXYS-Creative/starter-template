@@ -1,19 +1,22 @@
+@use "../base/mixins";
+// @use "../base/variables" as vars;
+
 .scroll-stack {
   --panel-to-top: 200px; // Match with panelToTop in animation.js
   $panel-height: calc(svh(100) - var(--panel-to-top) * 2);
 
-  @include width-clamp;
-  @include section-padding;
+  @include mixins.width-clamp;
+  @include mixins.section-padding;
 
   position: relative;
 
-  @include mq-max(sm) {
+  @include mixins.mq-max(sm) {
     --panel-to-top: 96px;
   }
 
   &:has(&__copy) {
     .pin-step {
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         margin-block-start: 320px; // rough height of copy on mobile, change per use case
       }
     }
@@ -21,7 +24,7 @@
 
   // Optional nav
   &__nav {
-    @include row-center;
+    @include mixins.row-center;
     flex-wrap: wrap;
     gap: 16px;
     padding-top: calc(
@@ -29,14 +32,14 @@
     ); // 'margin' is choppy with scrolltrigger
     // padding-inline: var(--body-padding);
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       display: none;
     }
 
     &-link {
       opacity: 0.5;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         font-size: 14px;
       }
 
@@ -53,7 +56,7 @@
 
   // Optional section copy
   &__copy {
-    @include column-start;
+    @include mixins.column-start;
     gap: var(--section-gap);
 
     // &-title {
@@ -71,11 +74,11 @@
       // top: calc(var(--panel-to-top) + var(--body-padding));
       // left: var(--body-padding);
 
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         max-width: 40%;
       }
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         display: none;
       }
     }
@@ -83,15 +86,15 @@
     &--unpinned {
       display: none;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         display: flex;
       }
     }
   }
 
   &__panel {
-    @include card-styles;
-    @include column-start(flex-start);
+    @include mixins.card-styles;
+    @include mixins.column-start(flex-start);
     gap: var(--section-gap);
     position: absolute !important; // if using gradient-border
     // See component modifiers for placement
@@ -99,12 +102,12 @@
     width: calc(100% - var(--body-padding-double));
     transform-origin: top center;
     background: var(--color-background);
-    // background: rgba($black, 0.75);
+    // background: rgba(vars.$black, 0.75);
     // backdrop-filter: blur(4px);
     // transform-origin: bottom center;
     overflow: hidden;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       width: 100%;
     }
 
@@ -142,7 +145,7 @@
     height: calc(lvh(100) - var(--body-padding-double));
     min-height: 500px;
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       min-height: 350px;
     }
   }
@@ -175,7 +178,7 @@
 
   &--half {
     .scroll-stack__panel {
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         width: max(500px, 50%);
       }
     }
@@ -201,7 +204,7 @@
       // right: var(--body-padding);
       right: 0;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         right: 0;
       }
     }

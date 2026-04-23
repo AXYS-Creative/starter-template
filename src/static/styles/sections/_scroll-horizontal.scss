@@ -1,6 +1,9 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .scroll-horizontal {
-  // @include width-clamp;
-  @include section-padding;
+  // @include mixins.width-clamp;
+  @include mixins.section-padding;
   position: relative; // for pin steps
   overflow: hidden;
 
@@ -8,7 +11,7 @@
     .scroll-horizontal__container {
       height: 64%;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         height: 56%;
       }
     }
@@ -21,19 +24,19 @@
     gap: var(--section-gap--lg);
     height: calc(100vh - calc(var(--header-height) * 2));
     min-height: 850px;
-    max-width: $content-width;
+    max-width: vars.$content-width;
     margin: auto;
 
-    @include mq-max(xxl) {
+    @include mixins.mq-max(xxl) {
       min-height: 650px;
     }
   }
 
   &__header {
-    @include row-center(space-between);
+    @include mixins.row-center(space-between);
     gap: var(--spacing--lg);
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       flex-direction: column;
       gap: var(--spacing--sm);
     }
@@ -43,14 +46,14 @@
     }
 
     &-desc {
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         width: 50%;
       }
     }
   }
 
   &__container {
-    // border: $test;
+    // border: vars.$test;
     display: flex;
     align-items: center;
     height: 80%; // Conditionally changes if there's a title or description.
@@ -64,15 +67,15 @@
 
   &__figure {
     // Couldn't get aspect ratio to work
-    @include column-start;
+    @include mixins.column-start;
     gap: var(--spacing--sm);
     width: min(25vw, 450px);
 
-    @include mq-motion-allow {
+    @include mixins.mq-motion-allow {
       opacity: 0;
       scale: 0.9;
       filter: blur(4px);
-      transition: $ease-sudden;
+      transition: vars.$ease-sudden;
 
       &.gsap-stagger-animate {
         opacity: 1;
@@ -81,11 +84,11 @@
       }
     }
 
-    @include mq-max(xl) {
+    @include mixins.mq-max(xl) {
       width: 350px;
     }
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       width: 250px;
     }
 
@@ -101,12 +104,12 @@
     }
 
     &-caption {
-      @include row-center(start);
+      @include mixins.row-center(start);
       gap: var(--spacing--sm);
       width: 100%;
 
       h3 {
-        @include h5;
+        @include mixins.h5;
       }
     }
 

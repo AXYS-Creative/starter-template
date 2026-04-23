@@ -1,3 +1,5 @@
+@use "../base/variables" as vars;
+
 html:has(.scroll-progress) {
   &::-webkit-scrollbar {
     width: 0px;
@@ -14,7 +16,7 @@ html:has(.scroll-progress) {
   background: var(--color-surface--1);
   overflow: hidden;
   pointer-events: none;
-  z-index: $z-index--scroll-progress;
+  z-index: vars.$z-index--scroll-progress;
 
   &__bar {
     background: var(--color-brand--primary);
@@ -50,7 +52,7 @@ html:has(.scroll-progress) {
   &--allow-click {
     cursor: pointer;
     pointer-events: all;
-    transition: 0.5s $cubic-ease-sudden-back-strong;
+    transition: 0.5s vars.$cubic-ease-sudden-back-strong;
 
     &[data-scroll-progress-type="width"]:hover {
       height: 12px;

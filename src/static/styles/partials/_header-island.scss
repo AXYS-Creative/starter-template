@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 :root {
   --logo-size: 20px;
   --top-offset: 12px;
@@ -20,27 +23,29 @@
   left: 50%;
   translate: -50% 0;
   background: var(--color-surface--2);
-  border: 1px solid rgba($grey, 0.25);
+  border: 1px solid rgba(vars.$grey, 0.25);
   border-radius: var(--radius--sm);
   height: var(--header-height); // For transition property (var declared in js)
   min-height: 0px; // For transition property
-  transition: $ease, height $ease-c;
-  z-index: $z-index--header;
+  transition:
+    vars.$ease,
+    height vars.$ease-c;
+  z-index: vars.$z-index--header;
 
-  @include mq-max(lg) {
+  @include mixins.mq-max(lg) {
     --padding-y: 8px;
 
     width: calc(100% - var(--top-offset) * 2);
   }
 
   &__inner {
-    @include width-clamp;
-    @include row-center(space-between);
+    @include mixins.width-clamp;
+    @include mixins.row-center(space-between);
     position: relative;
     gap: 24px;
     padding: var(--padding-y) 4px var(--padding-y) 16px;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       padding-inline: 12px;
     }
   }
@@ -55,10 +60,10 @@
   .menu-links {
     --links-gap: 4px;
 
-    @include row-center;
+    @include mixins.row-center;
     gap: var(--links-gap);
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       display: none;
     }
 
@@ -83,7 +88,7 @@
   .site-nav-btn-wrapper {
     display: none;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       display: block;
     }
   }
@@ -122,7 +127,7 @@
   // }
 
   &.site-header--nav-active {
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       height: calc(100vh - var(--top-offset) * 2);
       min-height: var(--nav-min-height);
     }
@@ -149,8 +154,8 @@
 
   // Library
   .skip-to-content {
-    @include btn-type--outline;
-    @include hide-content;
+    @include mixins.btn-type--outline;
+    @include mixins.hide-content;
     position: absolute;
     top: 100%;
     left: -20%;
@@ -161,11 +166,11 @@
     transition: 0.5s ease;
 
     &:focus {
-      @include show-content;
+      @include mixins.show-content;
       left: 0;
     }
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       display: none;
     }
   }
@@ -203,7 +208,7 @@
   --nav-top-offset: calc(var(--top-offset) * 2 + var(--header-height));
   $avoid-overshooting: 1.26; // To help place nav links within header when expanded
 
-  @include hide-content;
+  @include mixins.hide-content;
   position: fixed;
   top: var(--nav-top-offset);
   width: calc(100vw - var(--body-padding));
@@ -213,58 +218,61 @@
   overflow: auto;
   z-index: $z-index--nav;
 
-  transition: $ease 0s, width 0s, height $ease-c;
+  transition:
+    vars.$ease 0s,
+    width 0s,
+    height vars.$ease-c;
 
-  @include mq-min(lg) {
+  @include mixins.mq-min(lg) {
     display: none;
   }
 
   .width-constraint {
-    @include column-start;
+    @include mixins.column-start;
     gap: 132px;
 
     position: relative;
-    max-width: $content-width;
+    max-width: vars.$content-width;
     height: 100%;
     min-height: var(--nav-min-height);
     margin: 0 auto var(--body-padding);
     padding: var(--body-padding) 12px;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       gap: 96px;
     }
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       gap: 48px;
     }
   }
 
   .menu-links {
-    @include column-start;
+    @include mixins.column-start;
     gap: 0;
     margin-block: max(20vh, 128px) auto;
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       margin-block: 32vh auto;
     }
   }
 
   .site-nav__footer {
-    @include row-center(space-between);
+    @include mixins.row-center(space-between);
     width: 100%;
     margin-block-end: 24px;
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       flex-direction: column;
       align-items: flex-start;
       gap: var(--section-gap);
     }
 
     &-links {
-      @include row-center;
+      @include mixins.row-center;
       gap: 1ch;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -272,26 +280,31 @@
   }
 
   &[aria-hidden="false"] {
-    @include show-content;
+    @include mixins.show-content;
     background: none;
 
-    transition: $ease 0.2s, width 0s, height $ease-c;
+    transition:
+      vars.$ease 0.2s,
+      width 0s,
+      height vars.$ease-c;
   }
 
   // Library
   &.site-nav--promo-banner {
-    --nav-top-offset: calc(var(--top-offset) + var(--header-height) + var(--promo-banner-height));
+    --nav-top-offset: calc(
+      var(--top-offset) + var(--header-height) + var(--promo-banner-height)
+    );
   }
 }
 
 .site-nav-btn {
   $nav-btn-text-shift-hover: 16px;
 
-  @include row-center;
+  @include mixins.row-center;
   gap: 12px; // between text and icon
-  transition: $ease, $magnet;
+  transition: vars.$ease, vars.$magnet;
 
-  @include desktop-hover {
+  @include mixins.desktop-hover {
     .site-nav-btn__text {
       margin-inline-end: $nav-btn-text-shift-hover;
     }
@@ -309,12 +322,12 @@
 
   &__text {
     color: var(--color-font--primary);
-    transition: $ease;
+    transition: vars.$ease;
   }
 
   .site-nav-btn__icon {
     aspect-ratio: 1;
-    transition: $ease, $magnet;
+    transition: vars.$ease, vars.$magnet;
 
     &--burger {
       $stroke-offset: 3px;
@@ -325,11 +338,11 @@
       width: 20px;
 
       .site-nav-btn__stroke {
-        @include absolute-center;
+        @include mixins.absolute-center;
 
         width: $stroke-width;
         height: $stroke-height;
-        transition: $ease;
+        transition: vars.$ease;
 
         &.stroke-1 {
           translate: -50% calc(-50% - $stroke-offset);
@@ -353,7 +366,7 @@
         width: $stroke-size;
         height: $stroke-size;
 
-        transition: $ease;
+        transition: vars.$ease;
       }
     }
 
@@ -365,7 +378,7 @@
       width: 24px;
 
       .site-nav-btn__stroke {
-        @include absolute-center;
+        @include mixins.absolute-center;
 
         width: $stroke-size;
         height: $stroke-size;
@@ -391,7 +404,7 @@
 
   &__stroke {
     background: var(--color-font--primary);
-    transition: $ease;
+    transition: vars.$ease;
   }
 
   &[aria-expanded="true"] {
@@ -423,10 +436,10 @@
 
 // .menu-links {
 //   .menu-links__link {
-//     @include mq-max(lg) {
+//     @include mixins.mq-max(lg) {
 //       font-size: 24px;
 //     }
-//     @include mq-max(sm) {
+//     @include mixins.mq-max(sm) {
 //       font-size: 20px;
 //     }
 //   }

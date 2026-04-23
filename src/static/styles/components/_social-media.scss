@@ -1,15 +1,18 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .social-media-links {
   display: flex;
   gap: 16px;
 
-  @include mq-max(md) {
+  @include mixins.mq-max(md) {
     gap: 12px;
   }
 
   .social-media-link {
     --link-size: 24px;
 
-    @include row-center;
+    @include mixins.row-center;
     width: var(--link-size);
     height: var(--link-size);
     overflow: hidden;
@@ -29,7 +32,9 @@
     }
 
     &.magnet {
-      transition: 0.25s ease, $magnet;
+      transition:
+        0.25s ease,
+        vars.$magnet;
     }
   }
 }

@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 body:has(.footer-scroll-reveal) {
   & > [class*="main"] {
     margin-block-end: var(--footer-height); // set via js
@@ -23,7 +26,10 @@ body:has(.footer-scroll-reveal) {
     top: 0;
     min-height: 100vh;
     // height: var(--document-height);
-    height: calc(var(--document-height) + var(--header-height, 0) - var(--magic-number-offset));
+    height: calc(
+      var(--document-height) +
+        var(--header-height, 0) - var(--magic-number-offset)
+    );
     width: 100vw;
 
     &.footer-background-support--shorter {
@@ -49,26 +55,26 @@ body:has(.footer-scroll-reveal) {
   z-index: -1;
 
   &__inner {
-    @include width-clamp;
-    // @include section-padding;
+    @include mixins.width-clamp;
+    // @include mixins.section-padding;
     padding: var(--body-padding);
     display: flex;
     flex-wrap: wrap;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       gap: var(--spacing--lg);
     }
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       padding-block: var(--body-padding-double);
     }
   }
 
   &__top-left {
-    @include column-start;
+    @include mixins.column-start;
     gap: var(--spacing--lg);
 
-    @include mq-min(lg) {
+    @include mixins.mq-min(lg) {
       margin-inline-end: auto;
       width: var(--left-size);
     }
@@ -79,10 +85,10 @@ body:has(.footer-scroll-reveal) {
   }
 
   &__top-right {
-    @include column-start(space-between);
+    @include mixins.column-start(space-between);
     gap: var(--spacing--lg);
 
-    @include mq-min(lg) {
+    @include mixins.mq-min(lg) {
       width: var(--right-size);
     }
 
@@ -91,27 +97,27 @@ body:has(.footer-scroll-reveal) {
     // }
 
     &-link {
-      @include btn-type--underline;
+      @include mixins.btn-type--underline;
 
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         font-size: min(3.2vw, 50px);
       }
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         font-size: min(6.4vw, 36px);
       }
     }
   }
 
   &__bottom {
-    @include row-center(space-between);
+    @include mixins.row-center(space-between);
     width: 100%;
 
-    @include mq-min(lg) {
+    @include mixins.mq-min(lg) {
       margin-block-start: var(--spacing--xl);
     }
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       flex-flow: column-reverse wrap;
       align-items: start;
       gap: var(--spacing);
@@ -122,12 +128,12 @@ body:has(.footer-scroll-reveal) {
     }
 
     &-right {
-      @include row-center(space-between);
+      @include mixins.row-center(space-between);
 
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         width: var(--right-size);
       }
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         flex-direction: column-reverse;
         align-items: start;
         gap: var(--spacing);

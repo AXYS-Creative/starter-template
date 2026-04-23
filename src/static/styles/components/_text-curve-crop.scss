@@ -1,3 +1,6 @@
+// @use "../mixins";
+// @use "../variables" as vars;
+
 .text-curve-crop {
   --crop-color: var(--color-background);
   --corner-size: 1;

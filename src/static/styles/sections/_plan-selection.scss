@@ -1,15 +1,18 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .plan-selection {
   position: relative;
   margin-block: var(--spacing--xl);
 
-  @include mq-min(md) {
+  @include mixins.mq-min(md) {
     overflow: hidden; // for scroll-snap (overflow)
   }
 
   &__inner {
-    @include width-clamp;
-    @include section-padding;
-    @include column-center;
+    @include mixins.width-clamp;
+    @include mixins.section-padding;
+    @include mixins.column-center;
     text-align: center;
     gap: var(--spacing);
   }
@@ -17,14 +20,14 @@
   &__toggle-wrapper {
     position: relative;
     z-index: 2;
-    transition: $ease;
+    transition: vars.$ease;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       position: sticky;
       top: var(--body-padding);
     }
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       width: calc(80% - var(--body-padding-double));
       translate: 0 100%;
     }
@@ -40,7 +43,7 @@
     .plan-selection__toggle {
       background: var(--color-background);
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         width: 100%;
         display: flex;
 
@@ -58,16 +61,16 @@
     }
 
     &.watch-scroll--scrolling-down {
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         translate: 0 0;
       }
     }
   }
 
   &__disclaimer {
-    @include font-styles--mono;
+    @include mixins.font-styles--mono;
     // color: var(--color-font--secondary);
-    color: $green;
+    color: vars.$green;
     margin-block-start: var(--spacing);
 
     // If using text-reveal
@@ -78,14 +81,14 @@
     .icon-svg {
       translate: 0 -1px;
 
-      @include mq-motion-allow {
+      @include mixins.mq-motion-allow {
         opacity: 0;
         scale: 0.5;
 
         &.gsap-animated {
           opacity: 1;
           scale: 1;
-          transition: 0.8s $cubic-ease 0.5s;
+          transition: 0.8s vars.$cubic-ease 0.5s;
         }
       }
     }
@@ -98,7 +101,7 @@
       font-family: inherit;
       line-height: 1; // If using text-reveal
 
-      @include mq-motion-allow {
+      @include mixins.mq-motion-allow {
         .btn__text::before {
           opacity: 0;
         }
@@ -107,8 +110,8 @@
           .btn__text::before {
             opacity: 1;
             transition:
-              $ease-sudden,
-              opacity 0.8s $cubic-ease 1s;
+              vars.$ease-sudden,
+              opacity 0.8s vars.$cubic-ease 1s;
           }
         }
       }
@@ -118,7 +121,7 @@
   // if quarterly is selected
   &:has([data-toggle-option="end"][aria-selected="true"]) {
     [data-toggle-show="end"] {
-      @include show-content;
+      @include mixins.show-content;
       opacity: 0.8;
       translate: 0 0;
     }
@@ -150,12 +153,12 @@
   $card-gap: var(--spacing--sm);
   $all-cards-gap: calc(var(--spacing--sm) * 2);
 
-  @include row-stretch(start);
+  @include mixins.row-stretch(start);
   gap: var(--spacing--sm);
   margin-block-start: var(--spacing--lg);
   width: 100%;
 
-  @include mq-max(xl) {
+  @include mixins.mq-max(xl) {
     // border: $test;
     $scroll-bar-color-track: var(--color-brand--primary);
     $scroll-bar-color-thumb: var(--color-surface--1);
@@ -174,7 +177,7 @@
     }
   }
 
-  @include mq-max(md) {
+  @include mixins.mq-max(md) {
     flex-direction: column;
     align-items: center;
     margin-inline-start: 0;
@@ -185,8 +188,8 @@
     width: 100%;
   }
   .plan-option {
-    @include card-styles;
-    @include column-center;
+    @include mixins.card-styles;
+    @include mixins.column-center;
     position: relative;
     gap: var(--spacing);
     padding: 80px 24px 40px;
@@ -195,18 +198,18 @@
     overflow: hidden;
 
     @media all {
-      @include mq-max(xl) {
+      @include mixins.mq-max(xl) {
         min-width: 420px;
         scroll-snap-align: start;
       }
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         min-width: 0;
         width: 100%;
         max-width: 520px;
       }
 
-      @include mq-max(sm) {
+      @include mixins.mq-max(sm) {
         padding: 64px 12px 32px;
       }
     }
@@ -219,26 +222,26 @@
       align-self: stretch;
 
       [data-toggle-show="end"] {
-        @include hide-content;
+        @include mixins.hide-content;
         translate: 0 8px;
         // scale: 0.9;
-        transition: $ease;
+        transition: vars.$ease;
       }
     }
 
     &__line-group {
-      @include row-center;
+      @include mixins.row-center;
       gap: 1ch;
 
       .plan-option__divider {
-        @include gradient-divider;
+        @include mixins.gradient-divider;
       }
     }
 
     &__price {
       font-size: 24px;
       display: inline-flex;
-      transition: $ease;
+      transition: vars.$ease;
 
       &-frequency {
         white-space: nowrap; // fixes issue on firefox
@@ -246,7 +249,7 @@
     }
 
     &__total {
-      @include font-styles--body(sm);
+      @include mixins.font-styles--body(sm);
       display: inline-flex;
 
       &-swap {
@@ -258,7 +261,7 @@
     }
 
     &__perks {
-      @include column-start;
+      @include mixins.column-start;
       gap: 1ch;
       margin-block: var(--spacing) var(--spacing--lg);
 
@@ -271,17 +274,17 @@
     }
 
     &__message {
-      @include font-styles--body(sm);
-      @include font-styles--mono;
+      @include mixins.font-styles--body(sm);
+      @include mixins.font-styles--mono;
     }
 
     &__cta-wrapper {
-      @include mq-max(sm) {
+      @include mixins.mq-max(sm) {
         margin-block-start: 48px;
         // align-self: stretch;
 
         .btn {
-          @include wide-btn;
+          @include mixins.wide-btn;
         }
       }
     }
@@ -302,36 +305,36 @@
         pointer-events: none;
         z-index: 0;
 
-        @include mq-touch {
+        @include mixins.mq-touch {
           opacity: 0.5;
         }
       }
     }
 
     &--primary {
-      --color-font--primary: #{$black};
+      --color-font--primary: #{vars.$black};
 
-      --color-btn-border: #{$white};
-      --color-btn-bg: #{$white};
-      --color-btn-text: #{$black};
+      --color-btn-border: #{vars.$white};
+      --color-btn-bg: #{vars.$white};
+      --color-btn-text: #{vars.$black};
 
-      --color-btn-border--hover: #{$white};
+      --color-btn-border--hover: #{vars.$white};
       --color-btn-bg--hover: transparent;
-      --color-btn-text--hover: #{$white};
+      --color-btn-text--hover: #{vars.$white};
 
       background: linear-gradient(
         110deg,
-        $white -50%,
+        vars.$white -50%,
         var(--color-brand--primary) 30% 70%,
-        $white 150%
+        vars.$white 150%
       );
 
       *::selection {
-        background-color: rgba($white, 0.5);
+        background-color: rgba(vars.$white, 0.5);
       }
 
       .plan-option__divider {
-        @include gradient-divider($black);
+        @include mixins.gradient-divider(vars.$black);
       }
 
       .plan-option__price {
@@ -347,7 +350,7 @@
     &.gsap-stagger-animate {
       opacity: 1;
       translate: 0 0;
-      transition: $ease-sudden;
+      transition: vars.$ease-sudden;
     }
   }
 }

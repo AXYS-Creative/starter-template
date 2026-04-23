@@ -1,10 +1,13 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .dropdown-link {
   $icon-active: scaleY(-1);
 
   position: relative;
   cursor: pointer;
 
-  @include mq-max(lg) {
+  @include mixins.mq-max(lg) {
     &:has([aria-expanded="true"]) {
       .dropdown-link__accordion {
         grid-template-rows: 1fr;
@@ -25,12 +28,12 @@
   &:hover,
   &:focus-within {
     .dropdown-link__trigger-icon {
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         transform: $icon-active;
       }
     }
     .dropdown-link__list {
-      @include mq-min(lg) {
+      @include mixins.mq-min(lg) {
         translate: 0 0;
         opacity: 1;
         pointer-events: all;
@@ -41,45 +44,45 @@
   &__trigger {
     --icon-size: 1em;
 
-    @include row-center;
+    @include mixins.row-center;
     color: var(--color-font--primary);
     gap: var(--gap-btn-icon);
     border-radius: var(--radius--btn);
 
     &:focus-visible {
-      @include a11y-focus;
+      @include mixins.a11y-focus;
     }
 
     &-icon {
       background: currentColor;
       width: var(--icon-size);
       height: var(--icon-size);
-      transition: $ease;
+      transition: vars.$ease;
     }
   }
 
   &__accordion {
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       display: grid;
       grid-template-rows: 0fr;
       visibility: hidden;
-      transition: $ease;
+      transition: vars.$ease;
     }
   }
 
   &__list {
-    @include column-start;
+    @include mixins.column-start;
     gap: 8px;
     background: var(--color-surface--1);
     border-radius: var(--radius--xs);
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       padding-inline: 12px;
       overflow: hidden;
-      transition: $ease;
+      transition: vars.$ease;
     }
 
-    @include mq-min(lg) {
+    @include mixins.mq-min(lg) {
       --top-offset: 12px;
 
       padding: 16px;
@@ -89,7 +92,7 @@
       pointer-events: none;
       opacity: 0;
       translate: 0 16px;
-      transition: $ease;
+      transition: vars.$ease;
 
       // Bridge for hovering. The gap caused the menu to hide.
       &::before {

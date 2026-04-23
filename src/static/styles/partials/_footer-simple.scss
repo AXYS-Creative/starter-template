@@ -1,7 +1,10 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .footer-simple {
   --footer-spacing-y: 48px;
 
-  @include column-start;
+  @include mixins.column-start;
 
   &:has(.footer-simple__top) {
     border-block-start: var(--border-width) solid var(--color-border);
@@ -15,7 +18,7 @@
       left: 50%;
       translate: -50% 0;
       width: calc(100% - calc(var(--body-padding) * 2));
-      max-width: calc($content-width - calc(var(--body-padding) * 2));
+      max-width: calc(vars.$content-width - calc(var(--body-padding) * 2));
       height: var(--border-width);
       background: var(--color-border);
 
@@ -29,29 +32,29 @@
   }
 
   &__inner {
-    @include width-clamp;
+    @include mixins.width-clamp;
   }
 
   &__top {
-    @include row-start(space-between);
+    @include mixins.row-start(space-between);
     gap: var(--spacing);
     padding: var(--footer-spacing-y) var(--body-padding);
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       flex-direction: column;
     }
 
     &-left {
-      @include column-start;
+      @include mixins.column-start;
       gap: var(--spacing--sm);
     }
 
     &-right {
-      @include row-start(flex-start);
+      @include mixins.row-start(flex-start);
       gap: var(--spacing--xl);
       flex-wrap: wrap;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         gap: var(--spacing--lg);
       }
     }
@@ -71,7 +74,7 @@
     // }
 
     .menu-links {
-      @include column-start;
+      @include mixins.column-start;
       gap: 1ch;
     }
 
@@ -87,12 +90,12 @@
   }
 
   &__bottom {
-    @include row-center(space-between);
+    @include mixins.row-center(space-between);
     gap: var(--spacing);
     width: 100%;
     padding: var(--footer-spacing-y) var(--body-padding);
 
-    @include mq-max("lg") {
+    @include mixins.mq-max("lg") {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -102,31 +105,31 @@
       position: relative;
 
       .footer-simple__copyright {
-        @include mq-min(xl) {
-          @include absolute-center;
+        @include mixins.mq-min(xl) {
+          @include mixins.absolute-center;
         }
       }
     }
 
     .footer-simple__copyright {
-      @include row-center;
+      @include mixins.row-center;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         order: 1;
       }
     }
 
     &-group {
-      @include row-center;
+      @include mixins.row-center;
       gap: var(--spacing--sm);
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         flex-direction: column;
         align-items: flex-start;
       }
 
       .legal-links {
-        @include row-center;
+        @include mixins.row-center;
         gap: 1ch;
       }
     }
@@ -146,7 +149,7 @@
     left: 50%;
     translate: -50% 0;
     width: calc(100% - var(--float-offset) * 2);
-    max-width: $content-width;
+    max-width: vars.$content-width;
 
     &:not(:has(.footer-simple__top)) {
       .footer-simple__bottom {
@@ -166,7 +169,7 @@
       position: relative;
 
       .footer-simple__copyright {
-        @include mq-min(xl) {
+        @include mixins.mq-min(xl) {
           position: absolute;
           top: auto;
           bottom: 0;

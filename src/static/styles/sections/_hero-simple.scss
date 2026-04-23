@@ -1,10 +1,13 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .hero-simple {
-  // border: $test;
+  // border: vars.$test;
 
   &__inner {
-    @include section-padding;
-    @include width-clamp;
-    @include column-center;
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.column-center;
     gap: var(--section-gap--lg);
     height: 100%;
   }
@@ -13,13 +16,13 @@
   &__extra {
     flex: 1 1 auto;
 
-    @include mq-min(md) {
+    @include mixins.mq-min(md) {
       max-width: 50%;
     }
   }
 
   &__text {
-    @include column-center;
+    @include mixins.column-center;
 
     // &-eyebrow {
 
@@ -54,14 +57,14 @@
     --img-offset-x: 15%;
     --img-offset-y: 0;
 
-    @include absolute-center;
+    @include mixins.absolute-center;
     width: 100%;
     // height: calc(100% - var(--header-height) * 2);
     height: 80%;
     // translate: -50% calc(-50% + var(--header-height));
     // pointer-events: none;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       --img-offset-x: 5%;
     }
 
@@ -71,18 +74,18 @@
       width: 148px;
       aspect-ratio: 1 / 1.125;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         width: 20vw;
       }
 
-      @include mq-motion-allow {
+      @include mixins.mq-motion-allow {
         opacity: 0;
         scale: 0.5;
 
         &.gsap-animated {
           opacity: 1;
           scale: 1;
-          transition: $ease-sudden 1s;
+          transition: vars.$ease-sudden 1s;
         }
       }
 
@@ -134,7 +137,7 @@
   }
 
   &--text-only {
-    @include full-viewport-section(true);
+    @include mixins.full-viewport-section(true);
     // margin-block-start: var(--header-height);
   }
 
@@ -143,8 +146,8 @@
     // Really only a row on desktop, then just a column again
     // margin-block-start: var(--header-height);
 
-    @include mq-min(lg) {
-      @include full-viewport-section(true); // optional
+    @include mixins.mq-min(lg) {
+      @include mixins.full-viewport-section(true); // optional
       // margin-block-start: var(--header-height); // optional
     }
 
@@ -152,7 +155,7 @@
       flex-flow: row;
       justify-content: flex-start;
 
-      @include mq-max(lg) {
+      @include mixins.mq-max(lg) {
         flex-direction: column;
         align-items: center;
         padding-block-start: var(--spacing--xl);
@@ -160,12 +163,12 @@
     }
 
     .hero-simple__text {
-      @include mq-min(lg) {
-        @include column-start;
+      @include mixins.mq-min(lg) {
+        @include mixins.column-start;
       }
 
       &-title {
-        @include mq-min(lg) {
+        @include mixins.mq-min(lg) {
           text-align: start;
         }
       }
@@ -184,11 +187,11 @@
     --float-offset-half: calc(var(--float-offset) / 2);
     --float-offset-double: calc(var(--float-offset) * 2);
 
-    @include width-clamp;
+    @include mixins.width-clamp;
     padding-block: calc(var(--header-height) + var(--float-offset-double))
       var(--partial-float-offset);
 
-    @include mq-max(xxl) {
+    @include mixins.mq-max(xxl) {
       padding-inline: var(--float-offset);
     }
 

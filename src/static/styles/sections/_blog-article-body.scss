@@ -1,10 +1,13 @@
+@use "../base/mixins";
+// @use "../variables" as vars;
+
 .blog-article-body {
   // border: $test;
 
   &__inner {
-    @include section-padding;
-    @include width-clamp;
-    @include column-start;
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.column-start;
     padding-block-start: 0;
     gap: var(--section-gap--lg);
   }
@@ -35,11 +38,11 @@
 
     ul,
     ol {
-      @include classic-list;
+      @include mixins.classic-list;
     }
 
     a {
-      @include btn-type--underline;
+      @include mixins.btn-type--underline;
     }
   }
 }

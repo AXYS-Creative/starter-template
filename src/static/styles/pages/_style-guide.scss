@@ -1,35 +1,37 @@
+@use "../base/mixins";
+
 .main-style-guide {
   &__section {
-    @include width-clamp;
-    @include section-padding;
+    @include mixins.width-clamp;
+    @include mixins.section-padding;
 
     &-header {
-      @include column-start;
+      @include mixins.column-start;
       gap: var(--spacing--sm);
       margin-block-end: var(--spacing--lg);
     }
 
     // &-heading {
-    //   @include h5;
+    //   @include mixins.h5;
     // }
   }
 
   &__subgroup {
-    @include column-start;
+    @include mixins.column-start;
     gap: var(--spacing--xs);
     margin-block-end: var(--spacing);
 
     &-title {
-      @include h6;
+      @include mixins.h6;
     }
   }
 
   //
   .row-to-column {
-    @include row-center(flex-start);
+    @include mixins.row-center(flex-start);
     gap: var(--spacing--sm);
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       flex-direction: column;
     }
   }

@@ -1,3 +1,5 @@
+@use "variables" as vars;
+
 //
 // Media Queries
 //
@@ -244,8 +246,8 @@ $min-breakpoints: ();
   @include mq-motion-allow {
     // transition: $ease;
     transition:
-      all $ease,
-      $magnet;
+      all vars.$ease,
+      vars.$magnet;
   }
 
   @include desktop-hover {
@@ -263,7 +265,7 @@ $min-breakpoints: ();
 
   @include mq-motion-allow {
     // transition: $ease;
-    transition: $ease, $magnet;
+    transition: vars.$ease, vars.$magnet;
   }
 
   @include desktop-hover {
@@ -304,8 +306,8 @@ $min-breakpoints: ();
   @include mq-motion-allow {
     // transition: $ease;
     transition:
-      all $ease,
-      $magnet;
+      all vars.$ease,
+      vars.$magnet;
   }
 
   &::before {
@@ -319,7 +321,7 @@ $min-breakpoints: ();
     background-color: currentColor;
 
     @include mq-motion-allow {
-      transition: $ease-sudden;
+      transition: vars.$ease-sudden;
     }
   }
 
@@ -359,7 +361,7 @@ $min-breakpoints: ();
         background-color: currentColor;
 
         @include mq-motion-allow {
-          transition: $ease-sudden;
+          transition: vars.$ease-sudden;
         }
       }
     }
@@ -370,7 +372,7 @@ $min-breakpoints: ();
   color: var(--color-link);
 
   @include mq-motion-allow {
-    transition: $ease;
+    transition: vars.$ease;
   }
 
   @include desktop-hover {
@@ -382,15 +384,15 @@ $min-breakpoints: ();
 // Site Layout and Theme
 //
 
-@mixin dark-theme {
-  --color-background: #{$black};
-  --color-font--primary: #{$white};
+@mixin use-dark-theme {
+  --color-background: #{vars.$black};
+  --color-font--primary: #{vars.$white};
 
   background-color: var(--color-background);
   color: var(--color-font--primary);
 }
 
-@mixin width-clamp($max-width: $content-width) {
+@mixin width-clamp($max-width: vars.$content-width) {
   width: 100%;
   max-width: $max-width;
   margin-inline: auto;
@@ -459,18 +461,18 @@ $min-breakpoints: ();
 @mixin left-spacing {
   left: var(--body-padding);
 
-  // Tying this media query to the $content-width variable, for better responsive compatability.
-  @media (min-width: #{$content-width + 1}) {
-    left: calc(50% - calc($content-width / 2) + var(--body-padding));
+  // Tying this media query to the vars.$content-width variable, for better responsive compatability.
+  @media (min-width: #{vars.$content-width + 1}) {
+    left: calc(50% - calc(vars.$content-width / 2) + var(--body-padding));
   }
 }
 
 @mixin right-spacing {
   right: var(--body-padding);
 
-  // Tying this media query to the $content-width variable, for better responsive compatability.
-  @media (min-width: #{$content-width + 1}) {
-    right: calc(50% - calc($content-width / 2 - var(--body-padding)));
+  // Tying this media query to the vars.$content-width variable, for better responsive compatability.
+  @media (min-width: #{vars.$content-width + 1}) {
+    right: calc(50% - calc(vars.$content-width / 2 - var(--body-padding)));
   }
 }
 

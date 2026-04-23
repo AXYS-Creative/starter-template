@@ -1,14 +1,17 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .work-gallery {
   &__inner {
-    @include width-clamp;
-    @include section-padding;
+    @include mixins.width-clamp;
+    @include mixins.section-padding;
   }
 
   &__header {
-    @include row-center(space-between);
+    @include mixins.row-center(space-between);
     margin-block-end: var(--section-gap--lg);
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       flex-direction: column;
       align-items: start;
     }
@@ -18,28 +21,28 @@
     display: grid;
     gap: var(--spacing--xl);
 
-    @include mq-max(xl) {
+    @include mixins.mq-max(xl) {
       grid-template-columns: 1fr 1fr;
       gap: var(--spacing);
     }
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       grid-template-columns: 1fr;
       gap: var(--spacing);
     }
 
     &--default {
-      @include mq-min(xl) {
+      @include mixins.mq-min(xl) {
         grid-template-columns: 1fr 1fr;
       }
     }
 
     &--alternate {
-      @include mq-min(xl) {
+      @include mixins.mq-min(xl) {
         grid-template-columns: repeat(3, 1fr);
       }
       .work-gallery__figure {
-        @include mq-min(xl) {
+        @include mixins.mq-min(xl) {
           @for $i from 1 through 100 {
             // Pattern repeats every 4
             $pos: ($i - 1) % 4 + 1;
@@ -68,19 +71,19 @@
   }
 
   &__figure {
-    @include column-stretch;
+    @include mixins.column-stretch;
     gap: var(--spacing--sm);
     width: 100%;
     height: 100%;
 
-    @include mq-motion-allow {
+    @include mixins.mq-motion-allow {
       opacity: 0;
       scale: 0.9;
       filter: blur(2px);
-      transition: $ease-sudden;
+      transition: vars.$ease-sudden;
 
       &:nth-of-type(even) {
-        @include mq-min(lg) {
+        @include mixins.mq-min(lg) {
           transition-delay: 0.125s;
         }
       }
@@ -97,7 +100,7 @@
       width: 100%;
       height: 100%;
 
-      @include desktop-hover {
+      @include mixins.desktop-hover {
         picture,
         img {
           object-view-box: inset(0); // restore zoom (scale)
@@ -118,24 +121,24 @@
         border-radius: var(--radius--sm);
         object-view-box: inset(2.5%); // zoom in (scale up) slightly
 
-        transition: $ease-sudden;
+        transition: vars.$ease-sudden;
 
-        @include mq-max(xl) {
+        @include mixins.mq-max(xl) {
           border-radius: var(--radius--sm);
         }
       }
     }
 
     &-caption {
-      @include row-center(space-between);
+      @include mixins.row-center(space-between);
     }
 
     &-title {
-      @include h5;
+      @include mixins.h5;
     }
 
     // &-type {
-    //   // @include h6;
+    //   // @include mixins.h6;
     // }
   }
 }

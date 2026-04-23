@@ -1,10 +1,13 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 // Libary display
 .alert-section {
   &__group {
-    @include row-center(flex-start);
+    @include mixins.row-center(flex-start);
     gap: var(--section-gap);
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -15,7 +18,7 @@
   --alert-spacing: var(--spacing--xs);
   --icon-size: 2ch;
 
-  @include row-center;
+  @include mixins.row-center;
   gap: var(--alert-spacing);
   background-color: var(--color-surface--1);
   padding: var(--alert-spacing);
@@ -24,12 +27,12 @@
   right: var(--spacing--sm);
   max-width: 420px;
   border-radius: var(--radius--xs);
-  z-index: $z-index--alert;
+  z-index: vars.$z-index--alert;
   translate: 0 200%;
   transition: 0.5s cubic-bezier(0.75, -0.05, 0.75, -0.5) 0.125s;
 
   &:has(.alert__close-btn) {
-    @include mq-min(sm) {
+    @include mixins.mq-min(sm) {
       min-width: 296px;
     }
 
@@ -38,12 +41,12 @@
     }
   }
 
-  @include mq-max(sm) {
+  @include mixins.mq-max(sm) {
     width: calc(100% - calc(var(--spacing--sm) * 2));
   }
 
   &-content {
-    @include column-start;
+    @include mixins.column-start;
     gap: var(--alert-spacing);
     margin-inline-end: var(--spacing--xs);
 
@@ -56,7 +59,7 @@
     }
 
     &__links {
-      @include row-center;
+      @include mixins.row-center;
       gap: var(--alert-spacing);
     }
   }
@@ -70,19 +73,19 @@
   // Modifiers
 
   &[data-alert-type="success"] {
-    --accent-color: #{$green};
+    --accent-color: #{vars.$green};
   }
 
   &[data-alert-type="info"] {
-    --accent-color: #{$blue};
+    --accent-color: #{vars.$blue};
   }
 
   &[data-alert-type="warning"] {
-    --accent-color: #{$yellow};
+    --accent-color: #{vars.$yellow};
   }
 
   &[data-alert-type="error"] {
-    --accent-color: #{$red};
+    --accent-color: #{vars.$red};
   }
 
   &[aria-hidden="false"] {

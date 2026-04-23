@@ -1,7 +1,9 @@
+@use "../base/mixins";
+
 .icon-svg {
   --icon-size: 1em;
 
-  @include mask-image();
+  @include mixins.mask-image();
 
   width: var(--icon-size);
   height: var(--icon-size);

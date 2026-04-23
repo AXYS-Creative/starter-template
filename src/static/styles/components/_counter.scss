@@ -1,10 +1,13 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 // Libary display
 .counter-section {
   &__group {
-    @include row-center(flex-start);
+    @include mixins.row-center(flex-start);
     gap: var(--section-gap--lg);
 
-    @include mq-max(md) {
+    @include mixins.mq-max(md) {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -12,11 +15,11 @@
 }
 
 .counter {
-  @include column-center;
+  @include mixins.column-center;
 
   &__value {
     // border: $test;
-    @include h4;
+    @include mixins.h4;
     display: inline-flex;
     justify-content: center; // For prefix/suffix
 
@@ -26,7 +29,7 @@
   }
 
   &__label {
-    @include font-styles--body;
+    @include mixins.font-styles--body;
   }
 }
 

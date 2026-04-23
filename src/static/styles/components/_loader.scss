@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 body {
   // Loading styles
   .hero-simple.home-hero {
@@ -13,7 +16,7 @@ body {
   // Loading complete styles
   &[data-body-loading-complete] {
     // $duration: 1s;
-    $ease: 1s $cubic-ease;
+    $ease: 1s vars.$cubic-ease;
     $delay: 0.36s;
     $stagger: 0.12s;
 
@@ -24,7 +27,10 @@ body {
         opacity: 1;
         translate: 0 0;
         scale: 1;
-        transition: translate $ease $delay, opacity $ease $delay, scale $ease $delay;
+        transition:
+          translate $ease $delay,
+          opacity $ease $delay,
+          scale $ease $delay;
       }
 
       p {
@@ -38,7 +44,7 @@ body {
 }
 
 .site-loader {
-  @include row-center;
+  @include mixins.row-center;
   position: fixed;
   top: 0;
   left: 50%;
@@ -46,15 +52,15 @@ body {
   width: 100vw;
   height: 100dvh;
   background: var(--color-background);
-  z-index: $z-index--loader;
+  z-index: vars.$z-index--loader;
 
   &__text {
-    @include font-styles--body(lg);
+    @include mixins.font-styles--body(lg);
     color: var(--color-font--primary);
   }
 
   &.load-complete {
-    @include hide-content;
+    @include mixins.hide-content;
     transition: 0.5s ease;
   }
 }

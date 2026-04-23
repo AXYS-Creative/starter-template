@@ -1,21 +1,24 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .theme-toggle {
-  @include row-center;
+  @include mixins.row-center;
   gap: 8px;
 
   &__option {
     position: relative;
-    @include row-center;
+    @include mixins.row-center;
     padding: 6px;
     border-radius: var(--radius--xs);
     cursor: pointer;
-    transition: $ease;
+    transition: vars.$ease;
 
     &:hover {
       background: rgba(darkslategrey, 0.25);
     }
 
     &:has(input:focus-visible) {
-      @include a11y-focus;
+      @include mixins.a11y-focus;
     }
 
     input {
@@ -29,13 +32,13 @@
     background-color: var(--color-font--primary);
     width: 16px;
     pointer-events: none;
-    transition: $ease;
+    transition: vars.$ease;
 
     &--desktop {
       display: none;
 
-      // @include mq-mouse
-      @include mq-min(lg) {
+      // @include mixins.mq-mouse
+      @include mixins.mq-min(lg) {
         display: block;
       }
     }
@@ -43,8 +46,8 @@
     &--mobile {
       display: none;
 
-      // @include mq-touch
-      @include mq-max(lg) {
+      // @include mixins.mq-touch
+      @include mixins.mq-max(lg) {
         display: block;
       }
     }

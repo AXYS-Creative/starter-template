@@ -1,9 +1,12 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 // Ensure parent doesn't have flex — caused strange image width.
 .swiper {
   --swiper-navigation-color: var(--color-font--primary);
   --swiper-pagination-color: var(--color-brand--primary);
   --swiper-pagination-bullet-inactive-color: var(--color-brand--primary);
-  --swiper-wrapper-transition-timing-function: #{$cubic-ease};
+  --swiper-wrapper-transition-timing-function: #{vars.$cubic-ease};
 
   margin-block: var(--section-gap);
   padding-block: var(--body-padding);
@@ -31,13 +34,13 @@
   }
 
   .swiper-controls {
-    @include row-center;
+    @include mixins.row-center;
     position: relative;
     gap: 12px;
     height: 4lh;
 
     &__arrows {
-      @include row-center;
+      @include mixins.row-center;
       gap: var(--spacing--sm);
     }
   }
@@ -56,7 +59,7 @@
       display: none;
     }
 
-    // @include mq-max(md) {
+    // @include mixins.mq-max(md) {
     //   display: none;
     // }
 
@@ -83,7 +86,7 @@ div.carousel-swiper-sample-2 {
   padding-inline: var(--body-padding);
 
   .swiper-slide {
-    @include card-styles;
-    @include column-center;
+    @include mixins.card-styles;
+    @include mixins.column-center;
   }
 }

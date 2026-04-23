@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .btn-video-toggle {
   --btn-size: 40px;
   --padding-btn: 8px; // icon size
@@ -15,14 +18,14 @@
   border-radius: 50%;
   scroll-margin-top: 520px;
   // transition: $ease;
-  transition: $ease, $magnet;
+  transition: vars.$ease, vars.$magnet;
 
   @mixin show-icon {
     opacity: 1;
     scale: 1;
 
-    @include mq-motion-allow {
-      transition: $icon-swap-duration $cubic-ease $icon-swap-delay;
+    @include mixins.mq-motion-allow {
+      transition: $icon-swap-duration vars.$cubic-ease $icon-swap-delay;
     }
   }
 
@@ -30,22 +33,22 @@
     opacity: 0;
     scale: $icon-swap-scale;
 
-    @include mq-motion-allow {
-      transition: $icon-swap-duration $cubic-ease 0s;
+    @include mixins.mq-motion-allow {
+      transition: $icon-swap-duration vars.$cubic-ease 0s;
     }
   }
 
   @media all {
-    @include mq-max(xxl) {
+    @include mixins.mq-max(xxl) {
       scroll-margin-top: 360px;
     }
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       --btn-size: 40px;
       padding: 10px;
     }
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       --btn-size: 36px;
       padding: 10px;
     }

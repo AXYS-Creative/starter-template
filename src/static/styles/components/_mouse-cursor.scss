@@ -1,19 +1,24 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .mouse-cursor {
-  $ease-opacity: opacity $ease 0s;
-  $ease-size: width 0.5s ease, height 0.5s ease;
+  $ease-opacity: opacity vars.$ease 0s;
+  $ease-size:
+    width 0.5s ease,
+    height 0.5s ease;
 
   position: fixed;
   top: 0;
   pointer-events: none;
   translate: -50% -50%;
-  z-index: $z-index--mouse-cursor;
+  z-index: vars.$z-index--mouse-cursor;
   transition: opacity 0.3s ease 0.2s; // Initial display
   // Transition for movement controlled by js for browser compatibility (old safari issues)
 
-  @include mq-touch {
+  @include mixins.mq-touch {
     display: none;
   }
-  @include mq-motion-reduce {
+  @include mixins.mq-motion-reduce {
     display: none;
   }
 
@@ -25,22 +30,25 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    transition: background $ease, $ease-opacity, $ease-size;
+    transition:
+      background vars.$ease,
+      $ease-opacity,
+      $ease-size;
   }
 
   &__message {
-    @include absolute-center;
+    @include mixins.absolute-center;
     text-align: center;
   }
 
   &__icon {
     --icon-size: 2.5ch; // defaults to 'size sm'
 
-    @include absolute-center;
-    @include hide-content;
+    @include mixins.absolute-center;
+    @include mixins.hide-content;
     width: var(--icon-size);
     height: var(--icon-size);
-    transition: $ease, $ease-opacity, $ease-size;
+    transition: vars.$ease, $ease-opacity, $ease-size;
 
     &--md {
       --icon-size: 4ch;
@@ -72,7 +80,9 @@
       --size: 32px;
 
       opacity: 1;
-      transition: $ease-size, opacity $ease 0.12s;
+      transition:
+        $ease-size,
+        opacity vars.$ease 0.12s;
     }
   }
 
@@ -94,11 +104,14 @@
     .mouse-cursor__shape {
       --size: 32px;
 
-      border: 1px dashed $blue;
+      border: 1px dashed vars.$blue;
       rotate: 0deg;
       scale: 1 1 !important;
       opacity: 1;
-      transition: 1s ease, opacity 1s 0.12s, scale 0s;
+      transition:
+        1s ease,
+        opacity 1s 0.12s,
+        scale 0s;
     }
   }
 
@@ -106,7 +119,11 @@
     .mouse-cursor__shape {
       --size: 64px;
 
-      background: linear-gradient(135deg, var(--color-brand--primary), var(--color-font--primary));
+      background: linear-gradient(
+        135deg,
+        var(--color-brand--primary),
+        var(--color-font--primary)
+      );
       border-color: var(--color-brand--primary);
       opacity: 1;
     }
@@ -138,7 +155,7 @@ body:has(.tooltip-util) {
   .mouse-cursor {
     display: block;
   }
-  @include mq-touch {
+  @include mixins.mq-touch {
     .mouse-cursor {
       &__shape {
         opacity: 0;

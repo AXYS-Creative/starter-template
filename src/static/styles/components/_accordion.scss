@@ -1,3 +1,6 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .accordion {
   display: flex;
   flex-direction: column;
@@ -10,11 +13,11 @@
     text-align: left;
     padding-block: 20px;
 
-    @include mq-motion-allow {
-      transition: border $ease;
+    @include mixins.mq-motion-allow {
+      transition: border vars.$ease;
     }
 
-    @include desktop-hover {
+    @include mixins.desktop-hover {
       border-color: var(--color-brand--primary);
     }
 
@@ -42,16 +45,16 @@
   }
 
   &-label {
-    @include font-styles--body(lg);
-    @include row-start(space-between);
+    @include mixins.font-styles--body(lg);
+    @include mixins.row-start(space-between);
     gap: 24px;
 
-    @include mq-max(sm) {
+    @include mixins.mq-max(sm) {
       gap: 12px;
     }
 
     &__title {
-      @include inherit-font;
+      @include mixins.inherit-font;
       cursor: pointer;
     }
 
@@ -65,8 +68,8 @@
       flex-shrink: 0;
       display: inline-flex;
 
-      @include mq-motion-allow {
-        transition: $ease;
+      @include mixins.mq-motion-allow {
+        transition: vars.$ease;
       }
     }
 
@@ -74,7 +77,7 @@
       position: relative;
 
       &-line {
-        @include absolute-center;
+        @include mixins.absolute-center;
         width: var(--plus-size);
         height: 2px;
         background: var(--color-font--primary);
@@ -83,21 +86,21 @@
       &-line:last-of-type {
         rotate: 90deg;
 
-        @include mq-motion-allow {
-          transition: $ease;
+        @include mixins.mq-motion-allow {
+          transition: vars.$ease;
         }
       }
     }
   }
 
   &-content {
-    @include font-styles--body;
+    @include mixins.font-styles--body;
     display: grid;
     grid-template-rows: 0fr;
     visibility: hidden;
 
-    @include mq-motion-allow {
-      transition: $ease;
+    @include mixins.mq-motion-allow {
+      transition: vars.$ease;
     }
 
     &__inner {

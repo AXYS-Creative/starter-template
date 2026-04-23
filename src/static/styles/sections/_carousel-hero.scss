@@ -1,5 +1,8 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .carousel-hero {
-  @include full-viewport-section;
+  @include mixins.full-viewport-section;
   max-width: 100%;
   position: relative;
 
@@ -26,7 +29,7 @@
     z-index: 1;
     width: 50%;
 
-    @include mq-max(lg) {
+    @include mixins.mq-max(lg) {
       width: calc(100% - var(--body-padding-double));
     }
 
@@ -37,7 +40,7 @@
       // line-height: 1; // Chops of hanging letters, i.e. y, g, q, p, etc.
 
       span {
-        animation: carousel-title-default $ease-c;
+        animation: carousel-title-default vars.$ease-c;
       }
     }
   }
@@ -56,14 +59,14 @@
   &__slide {
     .carousel-hero__text,
     .carousel-hero__img {
-      @include hide-content;
-      transition: $ease-c;
+      @include mixins.hide-content;
+      transition: vars.$ease-c;
     }
 
     &.active {
       .carousel-hero__text,
       .carousel-hero__img {
-        @include show-content;
+        @include mixins.show-content;
       }
 
       .carousel-hero__img {
@@ -72,8 +75,8 @@
 
       .carousel-hero__title {
         span {
-          animation: carousel-title-reveal $ease-c;
-          transition: $ease-c;
+          animation: carousel-title-reveal vars.$ease-c;
+          transition: vars.$ease-c;
         }
       }
     }

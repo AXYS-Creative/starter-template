@@ -1,7 +1,10 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 .marquee {
   $gap-offset: 0.5ch; // inline padding start and in-between duplicate span
 
-  @include h2; // Setting font here to use ch units above
+  @include mixins.h2; // Setting font here to use ch units above
   line-height: 1.5;
   padding-inline: 0;
   overflow: hidden;
@@ -19,7 +22,7 @@
 
     .alternate-img {
       display: inline-block;
-      transition: $ease;
+      transition: vars.$ease;
     }
 
     &:nth-of-type(odd) {
@@ -31,7 +34,7 @@
 
     // nested targets (should have two divs/spans)
     &__split {
-      @include inherit-font;
+      @include mixins.inherit-font;
       text-wrap: nowrap;
       display: inline-flex;
       gap: $gap-offset;
@@ -42,14 +45,14 @@
   }
 
   &--imgs {
-    @include column-start;
+    @include mixins.column-start;
     gap: $gap-offset; // gap between each marquee, if more than one
 
     picture {
       display: block;
       width: 320px;
 
-      @include mq-max(md) {
+      @include mixins.mq-max(md) {
         width: 180px;
       }
 

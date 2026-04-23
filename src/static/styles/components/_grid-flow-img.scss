@@ -1,8 +1,11 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
 // Library DELETE ME
 .grid-flow-img-section {
-  @include section-padding;
-  @include width-clamp;
-  @include column-center;
+  @include mixins.section-padding;
+  @include mixins.width-clamp;
+  @include mixins.column-center;
   gap: var(--section-gap--lg);
 }
 // Library DELETE ME
@@ -14,7 +17,7 @@
   width: 100%; // altered below with modifiers
   height: auto;
 
-  @include mq-motion-reduce {
+  @include mixins.mq-motion-reduce {
     canvas {
       display: none !important;
     }
@@ -35,13 +38,13 @@
   // }
 
   &--md {
-    @include mq-min(md) {
+    @include mixins.mq-min(md) {
       width: 50%;
     }
   }
 
   &--sm {
-    @include mq-min(md) {
+    @include mixins.mq-min(md) {
       width: 25%;
     }
   }
@@ -58,7 +61,7 @@
     // img & canvas
     & > * {
       filter: grayscale(1);
-      transition: $ease;
+      transition: vars.$ease;
 
       &:hover {
         filter: grayscale(0);
