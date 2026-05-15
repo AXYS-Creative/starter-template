@@ -2,7 +2,7 @@
 // @use "../variables" as vars;
 
 .hero-curve-crop {
-  --crop-padding: 48px; // to be shared with the nested text-curve-crop component
+  --crop-padding: 24px; // to be shared with the nested text-curve-crop component
 
   // @include mixins.full-viewport-section(true);
   @include mixins.width-clamp;

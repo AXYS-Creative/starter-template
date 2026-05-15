@@ -4,7 +4,8 @@
 .text-curve-crop {
   --crop-color: var(--color-background);
   --corner-size: 1;
-  --border-radius: var(--radius--lg);
+  // --border-radius: var(--radius--lg);
+  --border-radius: 48px;
   --padding: var(--crop-padding); // Used in hero-curve-crop section
 
   position: absolute;

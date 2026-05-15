@@ -4,7 +4,7 @@ bg_img: "/static/img/img-sample-7.jpg"
 
 text_crop:
   text: "Text Curve Crop - Component"
-  placement: "bottom-right"
+  placement: "top-right"
 
 cta_1:
   text: Visit Library

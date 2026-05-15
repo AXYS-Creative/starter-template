@@ -116,7 +116,7 @@ $test-bg: rgba(navy, 0.75);
   --section-gap--lg: 48px;
   --section-gap--xl: 64px;
 
-  // Consider radius vars for outter/inner based on spacing (padding)
+  // Consider adding radius vars for outter/inner based on spacing (padding)
   --radius: 16px;
   --radius--lg: 24px;
   --radius--sm: 8px;
@@ -191,7 +191,7 @@ html[data-theme="light"] {
   @include light-theme;
 }
 
-// Library
+// Library DELETE ME
 :root {
   --partial-float-offset: 16px; // header, footer, hero float
 

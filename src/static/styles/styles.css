@@ -8164,7 +8164,7 @@ html:has(.scroll-progress) {
 .text-curve-crop {
   --crop-color: var(--color-background);
   --corner-size: 1;
-  --border-radius: var(--radius--lg);
+  --border-radius: 48px;
   --padding: var(--crop-padding);
   position: absolute;
   background: var(--crop-color);
@@ -9246,7 +9246,7 @@ html:has(.scroll-progress) {
 }
 
 .hero-curve-crop {
-  --crop-padding: 48px;
+  --crop-padding: 24px;
   width: 100%;
   max-width: 1320px;
   margin-inline: auto;
