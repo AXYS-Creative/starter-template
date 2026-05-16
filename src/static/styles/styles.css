@@ -6154,6 +6154,11 @@ code.codearea {
   color: var(--color-font--primary);
 }
 
+#fluid-bg {
+  width: 100%;
+  height: 100%;
+}
+
 .btn {
   --icon-size: 1em;
   display: inline-flex;
@@ -7543,7 +7548,7 @@ body:has(.tooltip-util) .mouse-cursor {
 @media (max-width: 768px) {
   .bg-particle-waves {
     min-height: 500px;
-    height: svh(100);
+    height: 100vh;
     max-height: 950px;
   }
 }
@@ -9162,7 +9167,7 @@ html:has(.scroll-progress) {
 @media (max-width: 768px) {
   .hero-simple--text-only {
     min-height: 500px;
-    height: svh(100);
+    height: 100vh;
     max-height: 950px;
   }
 }
@@ -9171,7 +9176,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 768px) {
   .hero-simple--text-only {
-    height: calc(svh(100) - var(--header-height));
+    height: 100vh;
   }
 }
 @media (min-width: 1025px) {
@@ -9193,13 +9198,13 @@ html:has(.scroll-progress) {
 @media (min-width: 1025px) and (max-width: 768px) {
   .hero-simple--row {
     min-height: 500px;
-    height: svh(100);
+    height: 100vh;
     max-height: 950px;
   }
 }
 @media (min-width: 1025px) and (max-width: 768px) {
   .hero-simple--row {
-    height: calc(svh(100) - var(--header-height));
+    height: 100vh;
   }
 }
 .hero-simple--row .hero-simple__inner {
@@ -9324,7 +9329,7 @@ html:has(.scroll-progress) {
 @media (max-width: 768px) {
   .carousel-hero {
     min-height: 500px;
-    height: svh(100);
+    height: 100vh;
     max-height: 950px;
   }
 }

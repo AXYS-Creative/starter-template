@@ -434,7 +434,8 @@ $min-breakpoints: ();
     // height: clamp(500px, 100svh, 950px);
     // Using polyfill. Maybe one day lvh/svh will be fixed on mobile.
     min-height: 500px;
-    height: svh(100);
+    // height: svh(100);
+    height: 100vh;
     max-height: 950px;
   }
 
@@ -442,7 +443,8 @@ $min-breakpoints: ();
     --section-height: calc(100vh - var(--header-height));
 
     @include mq-max(md) {
-      height: calc(svh(100) - var(--header-height));
+      // height: calc(svh(100) - var(--header-height));
+      height: 100vh;
     }
   }
 }
