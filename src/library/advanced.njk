@@ -55,14 +55,31 @@ description:
   {% include "../_includes/components/particle-waves.njk" %}
 </section>
 
-<canvas
-  id="fluid-bg"
-  data-swirl="1"
-  data-color-dark="#050b1f"
-  data-color-mid="#0e2150"
-  data-color-light="#296094"
-  data-color-sheen="#4279b8"
-></canvas>
+<section class="fluid-bg-section library-section" id="fluid-bg-section">
+  <h2>Fluid Section Background</h2>
+  <p>Fluid section background with dynamic effects using webGL.</p>
+
+  <br /><br />
+  <h3 class="section-title h4">Dark Version</h3>
+  <canvas class="fluid-bg"></canvas>
+
+  <br /><br />
+  <h3 class="h4">Light Version</h3>
+  <canvas
+    class="fluid-bg"
+    data-swirl="0"
+    data-mouse-style="push"
+    data-push-strength="10"
+    data-push-radius="10"
+    data-color-dark="#003980"
+    data-color-mid="#FFFFFF"
+    data-color-light="#00B7FF"
+    data-color-sheen="#095CFB"
+    data-grain="0.025"
+  >
+    ></canvas
+  >
+</section>
 
 <section class="dots-fill-section library-section">
   <h2 style="margin: auto">[ <span class="glitch-scroll">dots fill</span> ]</h2>
