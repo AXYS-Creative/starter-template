@@ -57,28 +57,122 @@ description:
 
 <section class="fluid-bg-section library-section" id="fluid-bg-section">
   <h2>Fluid Section Background</h2>
-  <p>Fluid section background with dynamic effects using webGL.</p>
+  <p>
+    Fluid section background with dynamic effects using WebGL. Add the
+    <code>fluid-bg</code> class to any <code>&lt;canvas&gt;</code> element. All
+    <code>data-*</code> attributes are optional — defaults produce the standard
+    dark blue appearance.
+  </p>
+
+  <br />
+
+  <h3 class="h4">Mouse Interaction</h3>
+  <ul class="classic-list">
+    <li>
+      <code>data-mouse-style</code> A string that controls the mouse interaction
+      mode. Accepts <code>swirl | push | none</code> Defaults
+      to<code>push</code>.
+    </li>
+    <li>
+      <code>data-swirl</code> Strength of the swirl/vortex effect when
+      <code>data-mouse-style="swirl"</code>. Accepts any positive number.
+      Default <code>1.6</code>. Set to <code>0</code> to disable while keeping
+      <code>data-mouse-style="push"</code> active.
+    </li>
+    <li>
+      <code>data-push-strength</code> How far the fluid is displaced when
+      <code>data-mouse-style="push"</code>. Accepts any positive number. Default
+      <code>8</code>.
+    </li>
+    <li>
+      <code>data-push-radius</code> How tightly the push effect is focused
+      around the cursor. Higher values produce a smaller, more concentrated area
+      of influence. Default <code>1.8</code>.
+    </li>
+  </ul>
+
+  <br />
+
+  <h3 class="h4">Fluid Appearance</h3>
+  <ul class="classic-list">
+    <li>
+      <code>data-contrast</code> Sharpens the separation between light and dark
+      bands. Higher values produce more defined streams with less murky
+      mid-tones. Default <code>1.0</code>. Recommended range
+      <code>1.0</code>–<code>2.5</code>.
+    </li>
+    <li>
+      <code>data-blend</code> Controls how much the flow and band layers mix
+      together. Lower values produce a single defined light stream, higher
+      values produce a cloudier, more blended result. Default <code>0.55</code>.
+      Recommended range <code>0.0</code>–<code>1.0</code>.
+    </li>
+    <li>
+      <code>data-grain</code> Intensity of the static film grain overlay.
+      Accepts any positive number. Default <code>0.10</code>. Set to
+      <code>0</code> to remove grain entirely.
+    </li>
+  </ul>
+
+  <br />
+
+  <h3 class="h4">Color Palette</h3>
+  <p>
+    The fluid blends through four color stops from darkest to lightest. Accepts
+    any valid hex value including shorthand (e.g. <code>#fff</code>).
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-color-dark</code> The darkest color, used in shadow areas and
+      the vignette edges. Default <code>#050b1f</code>.
+    </li>
+    <li>
+      <code>data-color-mid</code> The mid-tone body color that fills the
+      majority of the canvas. Default <code>#0e2150</code>.
+    </li>
+    <li>
+      <code>data-color-light</code> The lighter tone used on broad highlight
+      bands. Default <code>#296094</code>.
+    </li>
+    <li>
+      <code>data-color-sheen</code> The brightest catch-light color, used on the
+      peaks of light streams and near the mouse cursor. Default
+      <code>#4279b8</code>.
+    </li>
+  </ul>
 
   <br /><br />
+
   <h3 class="section-title h4">Dark Version</h3>
-  <canvas class="fluid-bg"></canvas>
+  <canvas
+    class="fluid-bg"
+    data-contrast="2"
+    data-blend="0.02"
+    data-grain="0.1"
+    data-scale="0.5"
+    data-mouse-style="push"
+    data-push-strength="0.5"
+    data-push-radius="0.25"
+    data-swirl="0.25"
+  ></canvas>
 
   <br /><br />
+
   <h3 class="h4">Light Version</h3>
   <canvas
     class="fluid-bg"
-    data-swirl="0"
-    data-mouse-style="push"
-    data-push-strength="10"
-    data-push-radius="10"
     data-color-dark="#003980"
     data-color-mid="#FFFFFF"
     data-color-light="#00B7FF"
     data-color-sheen="#095CFB"
-    data-grain="0.025"
-  >
-    ></canvas
-  >
+    data-contrast="2"
+    data-mouse-style="push"
+    data-push-strength="10"
+    data-push-radius="10"
+    data-grain="0.2"
+    data-scale="0.75"
+    data-swirl="0.36"
+  ></canvas>
 </section>
 
 <section class="dots-fill-section library-section">

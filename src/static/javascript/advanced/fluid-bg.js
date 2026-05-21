@@ -1,6 +1,4 @@
 (function () {
-  // ─── Shared shader source (compiled once per canvas context) ───────────────
-
   const vertSrc = `
     attribute vec2 a;
     void main() { gl_Position = vec4(a, 0., 1.); }
@@ -12,13 +10,15 @@
     uniform vec2  u_res;
     uniform float u_time;
     uniform vec2  u_mouse;
+    uniform vec2  u_push;
     uniform float u_act;
     uniform float u_swirl;
-    uniform vec2  u_push;
+    uniform float u_scale;
     uniform float u_push_radius;
     uniform float u_grain;
+    uniform float u_contrast;
+    uniform float u_blend;
 
-    /* ── Color palette ── */
     uniform vec3 u_dark;
     uniform vec3 u_mid;
     uniform vec3 u_light;
@@ -62,60 +62,49 @@
       vec2  uv  = gl_FragCoord.xy / u_res;
       float asp = u_res.x / u_res.y;
 
-      vec2  p = uv * vec2(asp, 1.) * 1.1;
+      vec2 p = uv * vec2(asp, 1.) * u_scale;
+
       float t = u_time * 0.28;
 
-      /* ── Mouse interaction ── */
-      vec2  mp    = u_mouse * vec2(asp, 1.) * 1.1;
-      vec2  delta = p - mp;
-      float dist  = length(delta);
+      vec2  mp        = u_mouse * vec2(asp, 1.) * u_scale;
 
-      /* swirl mode — rotate sampling point around cursor */
+      vec2  delta     = p - mp;
+      float dist      = length(delta);
+
       float vortexStr = u_act * exp(-dist * dist * 2.2) * u_swirl;
       float angle     = vortexStr * (1. - smoothstep(0., 1.2, dist));
       float ca        = cos(angle), sa = sin(angle);
       vec2  rotDelta  = vec2(ca * delta.x - sa * delta.y,
-                            sa * delta.x + ca * delta.y);
+                             sa * delta.x + ca * delta.y);
       vec2  distorted = mp + rotDelta;
       p = mix(p, distorted, u_act * smoothstep(1.4, 0., dist));
 
-      /* push mode — displace sampling point by velocity, falloff from cursor */
-      float pushRadius = exp(-dist * dist * u_push_radius);
-      p += u_push * pushRadius * u_act;
+      float pushFalloff = exp(-dist * dist * u_push_radius);
+      p += u_push * pushFalloff * u_act;
 
-      /* ── Flow field ── */
       vec2  c    = curl(p, t) * 0.5;
       float flow = fbm(p + c + vec2(0.5, 1.2));
-
-      /* ── Large diagonal band layer ── */
       float band = fbm(p * vec2(0.6, 0.9) + vec2(2., 0.) + t * 0.12);
 
-      /* ── Combine layers ── */
-      float f = mix(flow, band, 0.55) + fbm(p * 0.5 + t * 0.07) * 0.18;
-      f = clamp(f, 0., 1.);
+      float f = mix(flow, band, u_blend);
+      f = clamp((f - 0.5) * u_contrast + 0.5, 0., 1.);
 
-      /* ── Color mixing ── */
       vec3 col = mix(u_dark,  u_mid,   smoothstep(0.00, 0.50, f));
       col      = mix(col,     u_light, smoothstep(0.42, 0.72, f));
       col      = mix(col,     u_sheen, smoothstep(0.65, 0.88, f) * 0.7);
 
-      /* ── Subtle glow near the mouse ── */
       float mGlow = u_act * exp(-dist * dist * 3.) * 0.18;
       col = mix(col, u_sheen, mGlow);
 
-      /* ── Stationary grain ── */
       float gr = (hash(uv * vec2(1920., 1080.)) - 0.5) * u_grain;
       col += gr;
 
-      /* ── Soft vignette ── */
       float vig = 1. - smoothstep(0.45, 0.95, length((uv - 0.5) * vec2(1., 0.9)));
       col *= vig * 0.35 + 0.65;
 
       gl_FragColor = vec4(clamp(col, 0., 1.), 1.);
     }
   `;
-
-  // ─── Helpers ───────────────────────────────────────────────────────────────
 
   function hexToVec3(hex) {
     hex = hex.replace("#", "");
@@ -132,13 +121,10 @@
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
     gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
       console.error("Shader compile error:", gl.getShaderInfoLog(s));
-    }
     return s;
   }
-
-  // ─── Per-canvas initialisation ─────────────────────────────────────────────
 
   function initCanvas(canvas) {
     const gl =
@@ -148,27 +134,27 @@
       return null;
     }
 
-    // Compile & link
     const prog = gl.createProgram();
     gl.attachShader(prog, mkShader(gl, gl.VERTEX_SHADER, vertSrc));
     gl.attachShader(prog, mkShader(gl, gl.FRAGMENT_SHADER, fragSrc));
     gl.linkProgram(prog);
     gl.useProgram(prog);
 
-    // Read data-* config with fallback defaults
     const cfg = {
-      swirl: parseFloat(canvas.dataset.swirl ?? "1.2"),
       mouseStyle: canvas.dataset.mouseStyle ?? "swirl",
+      swirl: parseFloat(canvas.dataset.swirl ?? "0.75"),
+      scale: parseFloat(canvas.dataset.scale ?? "1.1"),
+      grain: parseFloat(canvas.dataset.grain ?? "0.10"),
+      contrast: parseFloat(canvas.dataset.contrast ?? "1.0"),
+      blend: parseFloat(canvas.dataset.blend ?? "0.55"),
       pushStrength: parseFloat(canvas.dataset.pushStrength ?? "8.0"),
       pushRadius: parseFloat(canvas.dataset.pushRadius ?? "1.8"),
-      grain: parseFloat(canvas.dataset.grain ?? "0.10"),
       dark: hexToVec3(canvas.dataset.colorDark ?? "#050b1f"),
       mid: hexToVec3(canvas.dataset.colorMid ?? "#0e2150"),
       light: hexToVec3(canvas.dataset.colorLight ?? "#296094"),
       sheen: hexToVec3(canvas.dataset.colorSheen ?? "#4279b8"),
     };
 
-    // Geometry — full-screen quad
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(
@@ -180,24 +166,28 @@
     gl.enableVertexAttribArray(aLoc);
     gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
 
-    // Uniform locations
     const uRes = gl.getUniformLocation(prog, "u_res");
     const uTime = gl.getUniformLocation(prog, "u_time");
     const uMouse = gl.getUniformLocation(prog, "u_mouse");
+    const uPush = gl.getUniformLocation(prog, "u_push");
     const uAct = gl.getUniformLocation(prog, "u_act");
     const uSwirl = gl.getUniformLocation(prog, "u_swirl");
-    const uPush = gl.getUniformLocation(prog, "u_push");
+    const uScale = gl.getUniformLocation(prog, "u_scale");
     const uPushRadius = gl.getUniformLocation(prog, "u_push_radius");
     const uGrain = gl.getUniformLocation(prog, "u_grain");
+    const uContrast = gl.getUniformLocation(prog, "u_contrast");
+    const uBlend = gl.getUniformLocation(prog, "u_blend");
     const uDark = gl.getUniformLocation(prog, "u_dark");
     const uMid = gl.getUniformLocation(prog, "u_mid");
     const uLight = gl.getUniformLocation(prog, "u_light");
     const uSheen = gl.getUniformLocation(prog, "u_sheen");
 
-    // Static uniforms — set once, never change per-frame
     gl.uniform1f(uSwirl, cfg.swirl);
+    gl.uniform1f(uScale, cfg.scale);
+    gl.uniform1f(uPushRadius, cfg.pushRadius);
     gl.uniform1f(uGrain, cfg.grain);
-    gl.uniform1f(gl.getUniformLocation(prog, "u_push_radius"), cfg.pushRadius);
+    gl.uniform1f(uContrast, cfg.contrast);
+    gl.uniform1f(uBlend, cfg.blend);
     gl.uniform3fv(uDark, cfg.dark);
     gl.uniform3fv(uMid, cfg.mid);
     gl.uniform3fv(uLight, cfg.light);
@@ -210,9 +200,8 @@
       uRes,
       uTime,
       uMouse,
-      uAct,
       uPush,
-      uPushRadius,
+      uAct,
       mx: 0.5,
       my: 0.5,
       tmx: 0.5,
@@ -226,8 +215,6 @@
       pmy: 0.5,
     };
   }
-
-  // ─── Per-canvas event binding ──────────────────────────────────────────────
 
   function bindEvents(inst) {
     const { canvas } = inst;
@@ -263,8 +250,6 @@
     });
   }
 
-  // ─── Shared resize — uses each canvas's own offset dimensions ─────────────
-
   function resizeAll() {
     instances.forEach(({ canvas, gl }) => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -275,8 +260,6 @@
     });
   }
 
-  // ─── Shared render loop — one rAF drives all instances ────────────────────
-
   const instances = [];
   let start = null;
   let animFrameId = null;
@@ -286,13 +269,11 @@
     const t = (ts - start) / 1000;
 
     instances.forEach((inst) => {
-      const { gl, canvas, uRes, uTime, uMouse, uAct } = inst;
+      const { gl, canvas, cfg, uRes, uTime, uMouse, uPush, uAct } = inst;
 
-      // Fade activity if mouse has been still for 600ms
       if (inst.act > 0 && performance.now() - inst.lastMove > 600)
         inst.tact = Math.max(0, inst.tact - 0.015);
 
-      // Lerp mouse position and activity
       inst.mx += (inst.tmx - inst.mx) * 0.055;
       inst.my += (inst.tmy - inst.my) * 0.055;
       inst.act += (inst.tact - inst.act) * 0.045;
@@ -300,46 +281,42 @@
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uTime, t);
 
-      if (inst.cfg.mouseStyle === "push") {
+      if (cfg.mouseStyle === "push") {
         inst.pvx += (inst.mx - inst.pmx - inst.pvx) * 0.18;
         inst.pvy += (inst.my - inst.pmy - inst.pvy) * 0.18;
         inst.pmx = inst.mx;
         inst.pmy = inst.my;
         gl.uniform2f(uMouse, inst.mx, inst.my);
         gl.uniform2f(
-          inst.uPush,
-          -inst.pvx * inst.cfg.pushStrength,
-          -inst.pvy * inst.cfg.pushStrength,
+          uPush,
+          -inst.pvx * cfg.pushStrength,
+          -inst.pvy * cfg.pushStrength,
         );
         gl.uniform1f(uAct, inst.act);
-      } else if (inst.cfg.mouseStyle === "none") {
+      } else if (cfg.mouseStyle === "none") {
         gl.uniform2f(uMouse, 0.5, 0.5);
-        gl.uniform2f(inst.uPush, 0.0, 0.0);
+        gl.uniform2f(uPush, 0.0, 0.0);
         gl.uniform1f(uAct, 0.0);
       } else {
-        // default: "swirl"
         gl.uniform2f(uMouse, inst.mx, inst.my);
-        gl.uniform2f(inst.uPush, 0.0, 0.0);
+        gl.uniform2f(uPush, 0.0, 0.0);
         gl.uniform1f(uAct, inst.act);
       }
+
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     });
 
     animFrameId = requestAnimationFrame(frame);
   }
 
-  // ─── Visibility — pause/resume the single shared loop ─────────────────────
-
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       cancelAnimationFrame(animFrameId);
     } else {
-      start = null; // prevent time jump on resume
+      start = null;
       animFrameId = requestAnimationFrame(frame);
     }
   });
-
-  // ─── Boot — find all .fluid-bg canvases and initialise ────────────────────
 
   document.querySelectorAll("canvas.fluid-bg").forEach((canvas) => {
     const inst = initCanvas(canvas);
