@@ -167,15 +167,16 @@ path: library/utils
 
 <section class="cursor-field-section library-section cursor-hide">
   <h2>[ Cursor Field - Util ]</h2>
-  <strong>Upcoming 2026</strong>
   <p>
     Declare a boundary for children elements to attract to the mouse cursor.
-    Commonly used for video play buttons.
+    Commonly used for video play buttons. The parent wrapper needs the
+    attribute: <code>data-cursor-field</code> and the child needs the attribute:
+    <code>data-cursor-field-child</code>.
   </p>
   <ul class="classic-list">
     <li>
-      <code>id</code> a string value for the unique component id. This will also
-      be passed to the html element target.
+      <code>class</code> a string value for the unique component id. This will
+      also be passed to the html element target.
     </li>
   </ul>
 
@@ -186,11 +187,22 @@ path: library/utils
       class="cursor-field-sample-1__child"
       data-cursor-field-child
       data-cursor-tilt
+      data-tilt-reverse
     >
       <!-- prettier-ignore -->
       {% set icon_svg = ({ src: '/static/img/icon-google-play.svg', size: 'lg' }) %}
       {% include "../_includes/components/icon-svg.njk" %}
     </div>
+  </div>
+
+  <div class="cursor-field-sample-2" data-cursor-field>
+    <p
+      class="cursor-field-sample-2__child"
+      data-cursor-field-child
+      data-cursor-tilt
+    >
+      hello
+    </p>
   </div>
 </section>
 

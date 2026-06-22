@@ -8,11 +8,11 @@
   width: var(--icon-size);
   height: var(--icon-size);
 
-  &--lg {
-    --icon-size: 1.25em;
-  }
-
   &--sm {
     --icon-size: 0.75em;
+  }
+
+  &--lg {
+    --icon-size: 1.5em;
   }
 }

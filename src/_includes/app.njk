@@ -73,7 +73,7 @@
       or path == "style-guide"
     %}
       {% set mouse_cursor = ({
-        elastic: true,
+        elastic: false,
         tilt: false
       }) %}
       {% include "./components/mouse-cursor.njk" %}
@@ -99,6 +99,7 @@
     {% if path == "library/advanced" %}
     <canvas id="grid-bg"></canvas>
     {% endif %}
+    <!-- <canvas id="wisp-bg"></canvas> -->
 
     <!-- prettier-ignore -->
     {% include "./partials/scripts.njk" %}

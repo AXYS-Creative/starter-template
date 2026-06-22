@@ -4,6 +4,7 @@
 .marquee {
   $gap-offset: 0.5ch; // inline padding start and in-between duplicate span
 
+  // border: vars.$test;
   @include mixins.h2; // Setting font here to use ch units above
   line-height: 1.5;
   padding-inline: 0;

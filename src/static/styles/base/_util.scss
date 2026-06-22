@@ -38,7 +38,8 @@
     align-self: center;
   }
 
-  .cursor-field-sample-1 {
+  .cursor-field-sample-1,
+  .cursor-field-sample-2 {
     @include mixins.row-center;
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--radius);
@@ -50,7 +51,16 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      border: var(--border-width) solid var(--color-border);
+      border: var(--border-width) dashed var(--color-border);
+    }
+  }
+
+  .cursor-field-sample-2 {
+    max-width: 350px;
+
+    &__child {
+      @include mixins.row-center;
+      border: none;
     }
   }
 
