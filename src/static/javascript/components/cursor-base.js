@@ -49,7 +49,7 @@ export const createTiltController = (element, config = {}) => {
       const idle = now - lastMoveTs > idleMs;
       const targetTilt = idle
         ? 0
-        : Math.sign(dx) * (reverse ? -1 : 1) * normalized * max;
+        : Math.sign(dx) * (reverse ? 1 : -1) * normalized * max;
 
       const speed = targetTilt === 0 ? outSpeed : inSpeed;
       currentTilt += (targetTilt - currentTilt) * speed;

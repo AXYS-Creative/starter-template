@@ -140,6 +140,8 @@ path: library/utils
       data-cursor-icon="/static/img/icon-google-arrow-tr.svg"
       data-cursor-icon-size="sm"
       data-cursor-class="cursor-content-1"
+      data-cursor-tilt
+      data-tilt-max="50"
     >
       <p>"View project"</p>
     </div>
@@ -149,7 +151,6 @@ path: library/utils
       data-cursor-icon="/static/img/icon-google-play.svg"
       data-cursor-icon-swap="/static/img/icon-google-pause.svg"
       data-cursor-class="cursor-content-2"
-      data-cursor-tilt
     >
       <p>"Play Video"</p>
     </div>
@@ -159,6 +160,8 @@ path: library/utils
       data-cursor-message="Visit site"
       data-cursor-class="cursor-content-3"
       data-cursor-tilt
+      data-tilt-max="25"
+      data-tilt-reverse
     >
       <p>Hover me</p>
     </div>
@@ -187,7 +190,6 @@ path: library/utils
       class="cursor-field-sample-1__child"
       data-cursor-field-child
       data-cursor-tilt
-      data-tilt-reverse
     >
       <!-- prettier-ignore -->
       {% set icon_svg = ({ src: '/static/img/icon-google-play.svg', size: 'lg' }) %}
@@ -200,6 +202,8 @@ path: library/utils
       class="cursor-field-sample-2__child"
       data-cursor-field-child
       data-cursor-tilt
+      data-tilt-reverse
+      data-tilt-max="50"
     >
       hello
     </p>
@@ -715,7 +719,7 @@ path: library/utils
       data-magnet-return-duration="350"
       data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
     >
-      Strong Magnet
+      Strong Magnet with return ease
     </div>
   </div>
 </section>
