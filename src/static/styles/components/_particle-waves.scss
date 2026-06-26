@@ -3,6 +3,7 @@
 
 // Helper util that goes on section / content
 .bg-particle-waves {
+  display: none;
   @include mixins.full-viewport-section;
   position: relative;
   margin-block: -320px 248px;

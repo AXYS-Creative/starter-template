@@ -7561,6 +7561,7 @@ body:has(.tooltip-util) .mouse-cursor {
 }
 
 .bg-particle-waves {
+  display: none;
   --section-height: 100vh;
 }
 @media (min-width: 1321px) {
