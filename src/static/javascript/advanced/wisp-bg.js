@@ -1,27 +1,33 @@
+import { mqMouse } from "../util.js";
+
 (function () {
   const canvas = document.querySelector(".wisp-bg");
+
+  if (!canvas) return;
+
   const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
+
   if (!gl) return;
 
   /* ─────────────────────────────────────────────────────────────
    CONFIG
    ───────────────────────────────────────────────────────────── */
   const CFG = {
-    particleCount: 12000, // safe to push higher now with grid curl
+    particleCount: 24000, // safe to push higher now with grid curl
     flowScale: 0.0022,
     flowSpeed: 0.1,
-    flowStrength: 0.68,
+    flowStrength: 1,
     drag: 0.955,
-    mouseRadius: 120,
+    mouseRadius: 250,
     mouseStrength: 0.85,
-    mouseIdleMs: 120,
+    mouseIdleMs: 40,
     mouseBrightness: 0, // brightens/enlarges nearby particles on hover (0 = off, 1 = full)
     mouseSpeedBoost: 0.06, // how much fast mouse movement amplifies scatter force (0 = none)
     maxVelocity: 3.2,
     wrapEdges: false, // true = particles teleport to opposite edge; false = drift back naturally
     gridCols: 48, // curl grid resolution — more cols = smoother field
     gridRows: 27, // 48×27 matches 16:9 aspect, ~1300 noise evals vs ~16000
-    bgDriftSpeed: 0.5, // how slowly the background light sweep drifts (0 = static, try 0.1–0.5)
+    bgDriftSpeed: 0.8, // how slowly the background light sweep drifts (0 = static, try 0.1–0.5)
     grainAmount: 0.028, // overall grain intensity (0 = none, 0.028 = subtle, 0.06+ = heavy)
     grainScale: 1.0, // grain size — 1 = fine film grain, 4–8 = coarse sandy texture
     grainLitBoost: 0.016, // extra grain intensity inside the lit sweep area (0 = uniform)
@@ -210,7 +216,11 @@ void main() {
     gl.viewport(0, 0, W, H);
     for (let i = 0; i < N; i++) initP(i);
   }
-  window.addEventListener("resize", resize);
+
+  // Greater than 520 so it doesn't refresh on  mobile(dvh)
+  if (window.innerWidth > 520 && mqMouse) {
+    window.addEventListener("resize", resize);
+  }
   resize();
 
   window.addEventListener("mousemove", (e) => {
