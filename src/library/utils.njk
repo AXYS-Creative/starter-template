@@ -160,7 +160,7 @@ path: library/utils
       data-cursor-message="Visit site"
       data-cursor-class="cursor-content-3"
       data-cursor-tilt
-      data-tilt-max="25"
+      data-tilt-max="35"
       data-tilt-reverse
     >
       <p>Hover me</p>
@@ -178,8 +178,32 @@ path: library/utils
   </p>
   <ul class="classic-list">
     <li>
-      <code>class</code> a string value for the unique component id. This will
-      also be passed to the html element target.
+      <code>data-cursor-tilt</code>: An optional attribute to enable tilt
+      functionality on the cursor. Default: <code>false</code>.
+    </li>
+    <li>
+      <code>data-tilt-max</code>: Sets the maximum tilt angle (in degrees) of
+      the cursor. Default: <code>25</code>.
+    </li>
+    <li>
+      <code>data-tilt-reverse</code>: Reverses the tilt direction. Default:
+      <code>false</code>.
+    </li>
+    <li>
+      <code>data-tilt-velocity-max</code>: The speed (pixels/sec) required to
+      reach the max tilt angle. Default: <code>1800</code>.
+    </li>
+    <li>
+      <code>data-tilt-in-speed</code>: The easing speed factor for entering the
+      tilt. Default: <code>0.12</code>.
+    </li>
+    <li>
+      <code>data-tilt-out-speed</code>: The easing speed factor for returning to
+      neutral. Default: <code>0.12</code>.
+    </li>
+    <li>
+      <code>data-tilt-idle-ms</code>: Time in milliseconds of inactivity before
+      the tilt eases to zero. Default: <code>90</code>.
     </li>
   </ul>
 
@@ -359,11 +383,11 @@ path: library/utils
   <ul class="classic-list">
     <li>
       <code>data-glitch-new-text</code> A string that changes the glitch text to
-      a new message. Defaults to <code>null</code>
+      a new message. Default is <code>null</code>
     </li>
     <li>
       <code>data-glitch-out</code> A boolean that toggles if the animation
-      should also occur on mouseleave and blur. Defaults to <code>false</code>
+      should also occur on mouseleave and blur. Default is <code>false</code>
     </li>
   </ul>
   <!-- prettier-ignore -->
@@ -795,36 +819,36 @@ path: library/utils
   <ul class="classic-list">
     <li class="text-fade">
       <code class="gsap-animate">data-fade-type</code> A string that takes in
-      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">words | chars</code>. Default is
       <code class="gsap-animate">words</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-style</code> A string that takes in
-      <code class="gsap-animate">linear | random</code>. Defaults to
+      <code class="gsap-animate">linear | random</code>. Default is
       <code class="gsap-animate">random</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      the animation duration. Default is <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      animation only the first time it comes into view. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      through the animation rather than playing it. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-start</code> A string to set the
-      start animation. Defaults to
+      start animation. Default is
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-fade">
       <code class="gsap-animate">data-fade-end</code> A string to set the end
-      animation. Defaults to
+      animation. Default is
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-fade">
@@ -900,24 +924,24 @@ path: library/utils
       <code>"100% 60%"</code>
     </li>
     <li>
-      <code>data-fill-scrub</code> boolean, to toggle scrubbing. Defaults to
+      <code>data-fill-scrub</code> boolean, to toggle scrubbing. Default is
       <code>true</code>
     </li>
     <li>
       <code>data-fill-duration</code> A number that represents the number of
       seconds to complete the animation. <strong>Requires</strong>
-      <code>data-fill-scrub="false"</code>. Defaults to
+      <code>data-fill-scrub="false"</code>. Default is
       <code>1</code>
     </li>
     <li>
       <code>data-fill-once</code> boolean, to toggle multiple animations when
       scrolling to the element. <strong>Requires</strong>
-      <code>data-fill-scrub="false"</code>. Defaults to
+      <code>data-fill-scrub="false"</code>. Default is
       <code>false</code>
     </li>
     <li>
       <code>data-fill-markers</code> boolean, to toggle visual debugging
-      markers. Defaults to
+      markers. Default is
       <code>false</code>
     </li>
   </ul>
@@ -1004,42 +1028,42 @@ path: library/utils
   <ul class="classic-list text-reveal-list">
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-type</code> A string of either
-      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">words | chars</code>. Default is
       <code class="gsap-animate">chars</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-from</code> A string of either
       <code class="gsap-animate">bottom | top</code> to controls the animation
-      origin. Defaults to
+      origin. Default is
       <code class="gsap-animate">bottom</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      the animation duration. Default is <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-stagger</code> A number to control
-      stagger between each word or character. Defaults to
+      stagger between each word or character. Default is
       <code class="gsap-animate">0.05</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      animation only the first time it comes into view. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      through the animation rather than playing it. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-start</code> A string to set the
-      start animation. Defaults to
+      start animation. Default is
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-reveal">
       <code class="gsap-animate">data-reveal-end</code> A string to set the end
-      animation. Defaults to
+      animation. Default is
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-reveal">
@@ -1090,36 +1114,36 @@ path: library/utils
   <ul class="classic-list">
     <li class="text-scale">
       <code class="gsap-animate">data-scale-type</code> A string that takes in
-      <code class="gsap-animate">words | chars</code>. Defaults to
+      <code class="gsap-animate">words | chars</code>. Default is
       <code class="gsap-animate">chars</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-style</code> A string that takes in
-      <code class="gsap-animate">linear | random</code>. Defaults to
+      <code class="gsap-animate">linear | random</code>. Default is
       <code class="gsap-animate">random</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-duration</code> A number to control
-      the animation duration. Defaults to <code class="gsap-animate">0.25</code>
+      the animation duration. Default is <code class="gsap-animate">0.25</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-once</code> A boolean to fire to
-      animation only the first time it comes into view. Defaults to
+      animation only the first time it comes into view. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-scrub</code> A boolean to scrub
-      through the animation rather than playing it. Defaults to
+      through the animation rather than playing it. Default is
       <code class="gsap-animate">false</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-start</code> A string to set the
-      start animation. Defaults to
+      start animation. Default is
       <code class="gsap-animate">"top 98%"</code>
     </li>
     <li class="text-scale">
       <code class="gsap-animate">data-scale-end</code> A string to set the end
-      animation. Defaults to
+      animation. Default is
       <code class="gsap-animate">"bottom 2%"</code>
     </li>
     <li class="text-scale">
@@ -1426,15 +1450,15 @@ path: library/utils
   <ul class="classic-list">
     <li>
       <code>data-push-strength</code> A number, the sensitivity of the push
-      effect (how far the elements moves). Defaults to <code>10</code>
+      effect (how far the elements moves). Default is <code>10</code>
     </li>
     <li>
       <code>data-push-restore</code> A number, this determintes how quickly the
-      element repositions itself. Defaults to <code>0.1</code>
+      element repositions itself. Default is <code>0.1</code>
     </li>
     <li>
       <code>data-push-rotate-max</code> A number, the maxiumum rotation added to
-      the element. Use <code>0</code> to remove the effect. Defaults to
+      the element. Use <code>0</code> to remove the effect. Default is
       <code>25</code>
     </li>
   </ul>

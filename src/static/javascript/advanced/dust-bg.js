@@ -1,3 +1,5 @@
+// From Gemini
+
 /**
  * Vanilla WebGL Persistent Particle GPGPU Simulation
  * Configurable via HTML5 Data Attributes.
