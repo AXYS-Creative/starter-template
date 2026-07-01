@@ -1,26 +1,47 @@
-import { mqMouse } from "../util.js";
-
 (function () {
   const canvas = document.querySelector(".wisp-bg");
-
   if (!canvas) return;
-
   const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
-
   if (!gl) return;
+
+  /* ─────────────────────────────────────────────────────────────
+   CSS COLOR HELPER
+   Accepts any of these formats and returns [r, g, b] as 0–1 floats:
+     '#0d1f3c'
+     '#09f'
+     'rgba(13, 31, 60, 1)'
+     'rgb(13, 31, 60)'
+   ───────────────────────────────────────────────────────────── */
+  function css(str) {
+    str = str.trim();
+    if (str.startsWith("#")) {
+      let hex = str.slice(1);
+      if (hex.length === 3)
+        hex = hex
+          .split("")
+          .map((c) => c + c)
+          .join("");
+      const n = parseInt(hex, 16);
+      return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+    }
+    const m = str.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/);
+    if (m) return [+m[1] / 255, +m[2] / 255, +m[3] / 255];
+    console.warn("dust-bg: unrecognised color:", str);
+    return [0, 0, 0];
+  }
 
   /* ─────────────────────────────────────────────────────────────
    CONFIG
    ───────────────────────────────────────────────────────────── */
   const CFG = {
-    particleCount: 24000, // safe to push higher now with grid curl
-    flowScale: 0.0022,
+    particleCount: 48000, // safe to push higher now with grid curl
+    flowScale: 0.0012,
     flowSpeed: 0.1,
-    flowStrength: 1,
+    flowStrength: 2.5,
     drag: 0.955,
-    mouseRadius: 250,
+    mouseRadius: 150,
     mouseStrength: 0.85,
-    mouseIdleMs: 40,
+    mouseIdleMs: 120,
     mouseBrightness: 0, // brightens/enlarges nearby particles on hover (0 = off, 1 = full)
     mouseSpeedBoost: 0.06, // how much fast mouse movement amplifies scatter force (0 = none)
     maxVelocity: 3.2,
@@ -31,6 +52,8 @@ import { mqMouse } from "../util.js";
     grainAmount: 0.028, // overall grain intensity (0 = none, 0.028 = subtle, 0.06+ = heavy)
     grainScale: 1.0, // grain size — 1 = fine film grain, 4–8 = coarse sandy texture
     grainLitBoost: 0.016, // extra grain intensity inside the lit sweep area (0 = uniform)
+    bgBaseColor: css("#030c1e"), // deep background color — hex or rgba()
+    bgLightColor: css("#0e2552"), // lit sweep tint — hex or rgba()
   };
 
   /* ── Shader compiler ─────────────────────────────────────────── */
@@ -64,10 +87,12 @@ precision highp float;
 varying vec2 v_uv;
 uniform vec2  u_res;
 uniform float u_time;
-uniform float u_drift;        // pre-scaled time value for background animation
-uniform float u_grainAmt;     // overall grain intensity
-uniform float u_grainScale;   // grain texel size (1 = 1px, 4 = 4px clumps)
-uniform float u_grainLit;     // extra grain in lit areas
+uniform float u_drift;      // pre-scaled time value for background animation
+uniform float u_grainAmt;   // overall grain intensity
+uniform float u_grainScale; // grain texel size (1 = 1px, 4 = 4px clumps)
+uniform float u_grainLit;   // extra grain in lit areas
+uniform vec3  u_baseColor;  // deep background color
+uniform vec3  u_lightColor; // lit sweep tint
 
 float hash(vec2 p) {
   p = fract(p * vec2(234.31, 851.73));
@@ -80,7 +105,7 @@ void main() {
   float aspect = u_res.x / u_res.y;
   vec2 uvA = vec2(uv.x * aspect, uv.y);
 
-  vec3 col = vec3(0.010, 0.048, 0.118);
+  vec3 col = u_baseColor;
 
   // Each lobe centre drifts on its own slow sine cycle — independent
   // frequencies so they never move in lockstep
@@ -96,7 +121,7 @@ void main() {
   float shadow = smoothstep(0.70, 0.0, length((uvA - cD) * vec2(0.85, 0.7))) * 0.55;
   float sweep  = clamp(lobe1 + lobe2 - shadow, 0.0, 1.0);
 
-  col += vec3(0.055, 0.145, 0.320) * sweep;
+  col += u_lightColor * sweep;
   col *= 1.0 - smoothstep(0.38, 1.05, length(uv - vec2(0.5))) * 0.80;
   col += (hash(floor(gl_FragCoord.xy / u_grainScale)) * 2.0 - 1.0) * (u_grainAmt + sweep * u_grainLit);
 
@@ -130,7 +155,7 @@ void main() {
   gl_FragColor = vec4(u_color, mask * v_alpha);
 }`;
 
-  /* ── Compile ─────────────────────────────────────────────────── */
+  /* ── Compile programs ────────────────────────────────────────── */
   const bgProg = mkProg(BG_VS, BG_FS);
   const ptProg = mkProg(PT_VS, PT_FS);
 
@@ -141,6 +166,8 @@ void main() {
   const bg_uGrainAmt = gl.getUniformLocation(bgProg, "u_grainAmt");
   const bg_uGrainScl = gl.getUniformLocation(bgProg, "u_grainScale");
   const bg_uGrainLit = gl.getUniformLocation(bgProg, "u_grainLit");
+  const bg_uBaseCol = gl.getUniformLocation(bgProg, "u_baseColor");
+  const bg_uLightCol = gl.getUniformLocation(bgProg, "u_lightColor");
 
   const pt_aPos = gl.getAttribLocation(ptProg, "a_pos");
   const pt_aSize = gl.getAttribLocation(ptProg, "a_size");
@@ -148,6 +175,7 @@ void main() {
   const pt_uRes = gl.getUniformLocation(ptProg, "u_res");
   const pt_uColor = gl.getUniformLocation(ptProg, "u_color");
 
+  /* ── BG quad ─────────────────────────────────────────────────── */
   const quadBuf = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
   gl.bufferData(
@@ -161,7 +189,7 @@ void main() {
 
   // Interleaved VBO: [x, y, size, alpha] per particle — 4 floats × N
   // One bufferData call per frame instead of three.
-  const STRIDE = 4; // floats per particle
+  const STRIDE = 4;
   const vbo = new Float32Array(N * STRIDE);
   const OFF_X = 0,
     OFF_Y = 1,
@@ -185,7 +213,7 @@ void main() {
     my = -1,
     pmx = -1,
     pmy = -1;
-  let mouseSpeed = 0; // px/frame magnitude of last mouse movement
+  let mouseSpeed = 0;
   let mouseActive = false;
   let lastMoveTime = 0;
 
@@ -197,6 +225,8 @@ void main() {
     const base = i * STRIDE;
     vbo[base + OFF_X] = rand(0, W || window.innerWidth);
     vbo[base + OFF_Y] = rand(0, H || window.innerHeight);
+    vbo[base + OFF_SZ] = 0;
+    vbo[base + OFF_AL] = 0;
     vx[i] = rand(-0.2, 0.2);
     vy[i] = rand(-0.2, 0.2);
     phase[i] = rand(0, Math.PI * 2);
@@ -206,8 +236,6 @@ void main() {
     bSize[i] =
       sz < 0.62 ? rand(0.9, 2.2) : sz < 0.88 ? rand(2.2, 4.8) : rand(4.8, 8.5);
     bAlpha[i] = rand(0.05, 0.52) * (bSize[i] < 2.2 ? 0.5 : 1.0);
-    vbo[base + OFF_SZ] = bSize[i];
-    vbo[base + OFF_AL] = 0;
   }
 
   function resize() {
@@ -216,11 +244,7 @@ void main() {
     gl.viewport(0, 0, W, H);
     for (let i = 0; i < N; i++) initP(i);
   }
-
-  // Greater than 520 so it doesn't refresh on  mobile(dvh)
-  if (window.innerWidth > 520 && mqMouse) {
-    window.addEventListener("resize", resize);
-  }
+  window.addEventListener("resize", resize);
   resize();
 
   window.addEventListener("mousemove", (e) => {
@@ -228,7 +252,6 @@ void main() {
     pmy = my;
     mx = e.clientX;
     my = e.clientY;
-    // Only compute speed when we have a valid prior position
     mouseSpeed = pmx < 0 ? 0 : Math.sqrt((mx - pmx) ** 2 + (my - pmy) ** 2);
     mouseActive = true;
     lastMoveTime = performance.now();
@@ -310,11 +333,10 @@ void main() {
    Pre-compute a cols×rows grid of curl vectors once per frame.
    Each particle bilinearly interpolates from its 4 nearest cells.
    Cost: (cols+1)×(rows+1)×2 noise calls per frame, regardless of N.
-   At 48×27 that's ~2,450 calls vs N×2 = 16,000 at 8k particles.
+   At 48×27 that's ~2,450 calls vs N×2 at full particle count.
    ─────────────────────────────────────────────────────────────── */
   const GCOLS = CFG.gridCols;
   const GROWS = CFG.gridRows;
-  // +1 in each dimension so edge particles can interpolate safely
   const gridCX = new Float32Array((GCOLS + 1) * (GROWS + 1));
   const gridCY = new Float32Array((GCOLS + 1) * (GROWS + 1));
   const EPS = 0.015;
@@ -323,7 +345,6 @@ void main() {
     const fs = CFG.flowScale;
     for (let row = 0; row <= GROWS; row++) {
       for (let col = 0; col <= GCOLS; col++) {
-        // Map grid cell to the same noise-space coordinates particles use
         const nx = (col / GCOLS) * W * fs;
         const ny = (row / GROWS) * H * fs;
         const idx = row * (GCOLS + 1) + col;
@@ -337,7 +358,7 @@ void main() {
 
   function sampleCurl(px, py) {
     // Wrap position into 0..W / 0..H before mapping to grid
-    // so particles in the -15px border zone still get a valid sample
+    // so particles in the border zone still get a valid sample
     const wx = ((px % W) + W) % W;
     const wy = ((py % H) + H) % H;
 
@@ -378,7 +399,7 @@ void main() {
     const t = ts * 0.001;
     const ft = t * CFG.flowSpeed;
 
-    /* Build curl grid once for this frame — all particles share it */
+    /* Build curl grid once — all particles share it this frame */
     buildCurlGrid(ft);
 
     const idleMs = performance.now() - lastMoveTime;
@@ -391,7 +412,7 @@ void main() {
       let px = vbo[base + OFF_X],
         py = vbo[base + OFF_Y];
 
-      /* ── Sample pre-built grid instead of calling noise per particle ── */
+      /* ── Curl flow field ── */
       const { cx, cy } = sampleCurl(px, py);
       vx[i] += cx * CFG.flowStrength * drift[i] * 0.016;
       vy[i] += cy * CFG.flowStrength * drift[i] * 0.016;
@@ -411,7 +432,7 @@ void main() {
         }
       }
 
-      /* ── Damping + cap ── */
+      /* ── Damping + velocity cap ── */
       vx[i] *= CFG.drag;
       vy[i] *= CFG.drag;
       const spd_ = Math.sqrt(vx[i] * vx[i] + vy[i] * vy[i]);
@@ -424,21 +445,19 @@ void main() {
       px += vx[i];
       py += vy[i];
 
-      // NaN/Infinity guard — if a particle escapes numerically, reinitialise it
+      /* ── NaN/Infinity guard ── */
       if (!isFinite(px) || !isFinite(py)) {
         initP(i);
         continue;
       }
 
+      /* ── Edge handling ── */
       if (CFG.wrapEdges) {
         if (px < -15) px += W + 15;
         else if (px > W + 15) px -= W + 15;
         if (py < -15) py += H + 15;
         else if (py > H + 15) py -= H + 15;
       } else {
-        // Let particles drift offscreen freely — but if they've wandered more
-        // than one full screen-length away they'll never come back on their own,
-        // so respawn them just outside a random edge to re-enter naturally.
         const margin = 120;
         if (
           px < -margin ||
@@ -446,8 +465,6 @@ void main() {
           py < -margin ||
           py > H + margin
         ) {
-          // Pick a random edge (0=top, 1=right, 2=bottom, 3=left) and place
-          // the particle just outside it with low inward-biased velocity
           const edge = Math.floor(Math.random() * 4);
           if (edge === 0) {
             px = rand(0, W);
@@ -474,6 +491,7 @@ void main() {
       if (life[i] > 1) life[i] -= 1;
       const lf = life[i] < 0.5 ? life[i] * 2 : (1 - life[i]) * 2;
 
+      /* ── Mouse brightness ── */
       let mb = 0;
       if (CFG.mouseBrightness > 0 && mouseWeight > 0 && mx > 0) {
         const ex = px - mx,
@@ -488,7 +506,7 @@ void main() {
 
       const litBias = Math.max(0, 1.0 - (px / W) * 1.2 - (py / H) * 0.5) * 0.6;
 
-      // Write all four values into interleaved vbo in one pass
+      /* ── Write interleaved VBO ── */
       vbo[base + OFF_X] = px;
       vbo[base + OFF_Y] = py;
       vbo[base + OFF_SZ] = bSize[i] * (0.88 + lf * 0.12) + mb * bSize[i] * 0.32;
@@ -508,24 +526,33 @@ void main() {
     gl.uniform1f(bg_uGrainAmt, CFG.grainAmount);
     gl.uniform1f(bg_uGrainScl, CFG.grainScale);
     gl.uniform1f(bg_uGrainLit, CFG.grainLitBoost);
+    gl.uniform3f(
+      bg_uBaseCol,
+      CFG.bgBaseColor[0],
+      CFG.bgBaseColor[1],
+      CFG.bgBaseColor[2],
+    );
+    gl.uniform3f(
+      bg_uLightCol,
+      CFG.bgLightColor[0],
+      CFG.bgLightColor[1],
+      CFG.bgLightColor[2],
+    );
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-    /* ── Pass 2: particles ── */
+    /* ── Pass 2: particles (additive blend) ── */
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
     gl.useProgram(ptProg);
 
-    // Single upload — all particle data in one call
-    const BYTES = STRIDE * 4; // 4 bytes per float
+    const BYTES = STRIDE * 4;
     gl.bindBuffer(gl.ARRAY_BUFFER, bufVBO);
     gl.bufferData(gl.ARRAY_BUFFER, vbo, gl.DYNAMIC_DRAW);
 
     gl.enableVertexAttribArray(pt_aPos);
     gl.vertexAttribPointer(pt_aPos, 2, gl.FLOAT, false, BYTES, OFF_X * 4);
-
     gl.enableVertexAttribArray(pt_aSize);
     gl.vertexAttribPointer(pt_aSize, 1, gl.FLOAT, false, BYTES, OFF_SZ * 4);
-
     gl.enableVertexAttribArray(pt_aAlpha);
     gl.vertexAttribPointer(pt_aAlpha, 1, gl.FLOAT, false, BYTES, OFF_AL * 4);
 

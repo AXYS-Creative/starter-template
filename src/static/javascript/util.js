@@ -25,8 +25,6 @@ export const lenis = new Lenis({
 //
 
 // Color converter for data- props that take a color
-// color-utils.js - Reusable color parsing utility
-
 export const ColorUtils = (() => {
   // Cache to avoid recreating temp elements
   let tempEl = null;

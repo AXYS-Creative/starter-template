@@ -32,7 +32,9 @@ class DotFill {
     if (color.startsWith("var(")) {
       const varName = color.match(/var\((--[^)]+)\)/)?.[1];
       if (varName) {
-        return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+        return getComputedStyle(document.documentElement)
+          .getPropertyValue(varName)
+          .trim();
       }
     }
 
@@ -48,7 +50,6 @@ class DotFill {
     this.updateBoundsThrottled();
     this.createDots();
     this.bindEvents();
-    this.startMouseSpeed();
     this.tick();
   }
 
@@ -78,7 +79,7 @@ class DotFill {
   createDots() {
     // Get all shape elements
     const shapes = this.svg.querySelectorAll(
-      "circle, rect, path, polygon, ellipse, line, polyline"
+      "circle, rect, path, polygon, ellipse, line, polyline",
     );
     if (shapes.length === 0) return;
 
@@ -102,6 +103,14 @@ class DotFill {
       maxY = Math.max(maxY, bbox.y + bbox.height);
     });
 
+    // Pair each shape with its own bbox so per-point checks can cheaply
+    // skip shapes the point couldn't possibly be inside, before falling
+    // through to the more expensive isPointInFill test for paths/polygons.
+    const shapeEntries = Array.from(shapes).map((shape, i) => ({
+      shape,
+      bbox: bboxes[i],
+    }));
+
     // Use DocumentFragment for batch DOM insertion
     const fragment = document.createDocumentFragment();
 
@@ -110,8 +119,19 @@ class DotFill {
       for (let x = minX; x <= maxX; x += this.config.gap) {
         // Check if point is inside ANY of the shapes
         let isInside = false;
-        for (let shape of shapes) {
-          if (this.isPointInShape(shape, x, y)) {
+        for (let entry of shapeEntries) {
+          const { bbox } = entry;
+          // Cheap reject: skip the expensive shape-specific test entirely
+          // if the point falls outside this shape's own bounding box.
+          if (
+            x < bbox.x ||
+            x > bbox.x + bbox.width ||
+            y < bbox.y ||
+            y > bbox.y + bbox.height
+          ) {
+            continue;
+          }
+          if (this.isPointInShape(entry.shape, x, y)) {
             isInside = true;
             break;
           }
@@ -127,7 +147,10 @@ class DotFill {
             lastRadius: this.config.radius,
           };
 
-          dot.el = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.el = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle",
+          );
           dot.el.setAttribute("cx", x);
           dot.el.setAttribute("cy", y);
           dot.el.setAttribute("r", this.config.radius);
@@ -210,42 +233,44 @@ class DotFill {
       window.addEventListener("resize", this.handleResize);
     }
 
-    window.addEventListener("mousemove", this.handleMouseMove, { passive: true });
+    window.addEventListener("mousemove", this.handleMouseMove, {
+      passive: true,
+    });
   }
 
-  startMouseSpeed() {
-    const updateSpeed = () => {
-      const distX = this.mouse.prevX - this.mouse.x;
-      const distY = this.mouse.prevY - this.mouse.y;
-      const dist = Math.hypot(distX, distY);
+  updateMouseSpeed() {
+    // Previously ran on its own setTimeout(20ms) loop, decoupled from rAF.
+    // Folded into tick() so there's a single recurring callback per instance,
+    // and speed updates are perfectly in sync with the frame they animate.
+    const distX = this.mouse.prevX - this.mouse.x;
+    const distY = this.mouse.prevY - this.mouse.y;
+    const dist = Math.hypot(distX, distY);
 
-      // Reset speed if distance is abnormally large (likely a scroll/jump)
-      if (dist > 200) {
-        this.mouse.speed = 0;
-        this.mouse.prevX = this.mouse.x;
-        this.mouse.prevY = this.mouse.y;
-        setTimeout(updateSpeed, 20);
-        return;
-      }
-
-      this.mouse.speed += (dist - this.mouse.speed) * this.config.restore;
-      if (this.mouse.speed < 0.001) this.mouse.speed = 0;
-
+    // Reset speed if distance is abnormally large (likely a scroll/jump)
+    if (dist > 200) {
+      this.mouse.speed = 0;
       this.mouse.prevX = this.mouse.x;
       this.mouse.prevY = this.mouse.y;
+      return;
+    }
 
-      setTimeout(updateSpeed, 20);
-    };
+    this.mouse.speed += (dist - this.mouse.speed) * this.config.restore;
+    if (this.mouse.speed < 0.001) this.mouse.speed = 0;
 
-    updateSpeed();
+    this.mouse.prevX = this.mouse.x;
+    this.mouse.prevY = this.mouse.y;
   }
 
   tick() {
+    this.updateMouseSpeed();
+
     // Use cached viewBox values
     const scaleX = this.viewBoxCache.width / this.svgBounds.width;
     const scaleY = this.viewBoxCache.height / this.svgBounds.height;
-    const mouseXInSVG = (this.mouse.x - this.svgBounds.x) * scaleX + this.viewBoxCache.x;
-    const mouseYInSVG = (this.mouse.y - this.svgBounds.y) * scaleY + this.viewBoxCache.y;
+    const mouseXInSVG =
+      (this.mouse.x - this.svgBounds.x) * scaleX + this.viewBoxCache.x;
+    const mouseYInSVG =
+      (this.mouse.y - this.svgBounds.y) * scaleY + this.viewBoxCache.y;
 
     // Pre-calculate shared values
     const minIntensity = 0.25;
@@ -272,7 +297,8 @@ class DotFill {
 
       // Grow effect - only update if changed significantly
       if (this.config.grow > 0) {
-        const newRadius = this.config.radius * (1 + intensity * this.config.grow);
+        const newRadius =
+          this.config.radius * (1 + intensity * this.config.grow);
         const radiusDiff = Math.abs(dot.lastRadius - newRadius);
         if (radiusDiff > 0.1) {
           dot.el.setAttribute("r", newRadius);
@@ -282,7 +308,10 @@ class DotFill {
 
       // Motion
       const angle = Math.atan2(distY, distX);
-      const move = Math.min((this.config.strength / dist) * (this.mouse.speed * 0.1), 20);
+      const move = Math.min(
+        (this.config.strength / dist) * (this.mouse.speed * 0.1),
+        20,
+      );
 
       if (dist < this.config.distance) {
         dot.velocity.x += Math.cos(angle) * -move;
