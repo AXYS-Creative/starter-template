@@ -49,6 +49,9 @@
   {% if not text or text_desc %}
     aria-label="{{ text_desc or 'no text, please provide a text_desc' }}"
   {% endif %}
+  {% if is_active %}
+    aria-current="page"
+  {% endif %}
   {% if attributes %}
     {{ attributes | safe }}
   {% endif %}
