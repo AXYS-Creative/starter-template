@@ -6016,6 +6016,7 @@ code.codearea {
   overflow: hidden;
 }
 
+.dust-bg,
 .wisp-bg {
   position: fixed;
   inset: 0;
@@ -6023,13 +6024,6 @@ code.codearea {
   height: 100lvh;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.5;
-}
-
-#dust-bg {
-  width: 100%;
-  height: 100%;
-  min-height: 750px;
 }
 
 .fluid-bg {
@@ -8166,6 +8160,59 @@ html:has(.scroll-progress) {
   }
   to {
     rotate: -360deg;
+  }
+}
+
+.svg-card {
+  --svg-card-border-color: white;
+  --svg-card-border-width: 2px;
+  --svg-card-fill: transparent;
+  --svg-card-mask: url("/static/img/svg-card.svg");
+  position: relative;
+  display: inline-block;
+  width: 25vw;
+}
+.svg-card:hover {
+  --svg-card-border-color: var(--color-brand--primary);
+}
+.svg-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mask-image: var(--svg-card-mask);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  background: var(--svg-card-border-color);
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+.svg-card__inner {
+  position: relative;
+  margin: var(--svg-card-border-width);
+  mask-image: var(--svg-card-mask);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  background: var(--svg-card-fill);
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.svg-card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.svg-card__text {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 50%;
+  font-size: 14px;
+}
+@media (max-width: 1320px) {
+  .svg-card__text {
+    font-size: 12px;
   }
 }
 

@@ -350,6 +350,18 @@ path: library/components
   {% include "../_includes/components/solar-system.njk" %}
 </section>
 
+<section class="library-section">
+  <h2>[ SVG Card - Component ]</h2>
+
+  <!-- prettier-ignore -->
+  {% set svg_card = ({
+    img: '/static/img/img-sample-1.jpg',
+    title: 'SVG Card Sample',
+    text: 'This is a sample SVG card component.'
+  }) %}
+  {% include "../_includes/components/svg-card.njk" %}
+</section>
+
 <section class="testimonials-section library-section">
   <h2>[ Testimonials - Component ]</h2>
   <p>Coming Soon!</p>

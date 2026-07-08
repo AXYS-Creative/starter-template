@@ -39,9 +39,9 @@
     flowSpeed: 0.1,
     flowStrength: 2.5,
     drag: 0.955,
-    mouseRadius: 150,
-    mouseStrength: 0.85,
-    mouseIdleMs: 120,
+    mouseRadius: 120,
+    mouseStrength: 0.95,
+    mouseIdleMs: 420,
     mouseBrightness: 0, // brightens/enlarges nearby particles on hover (0 = off, 1 = full)
     mouseSpeedBoost: 0.06, // how much fast mouse movement amplifies scatter force (0 = none)
     maxVelocity: 3.2,
@@ -54,6 +54,8 @@
     grainLitBoost: 0.016, // extra grain intensity inside the lit sweep area (0 = uniform)
     bgBaseColor: css("#030c1e"), // deep background color — hex or rgba()
     bgLightColor: css("#0e2552"), // lit sweep tint — hex or rgba()
+    repulseRadius: 4, // px — personal space radius (0 = off, 6–12 = subtle, 20+ = airy)
+    repulseStrength: 0.18, // how firmly particles nudge apart (0.1 = gentle, 0.5 = assertive)
   };
 
   /* ── Shader compiler ─────────────────────────────────────────── */
@@ -238,10 +240,37 @@ void main() {
     bAlpha[i] = rand(0.05, 0.52) * (bSize[i] < 2.2 ? 0.5 : 1.0);
   }
 
+  /* ── Spatial hash grid for particle repulsion ────────────────────
+   Divides the canvas into cells sized repulseRadius × repulseRadius.
+   Each frame we bin particles into cells, then each particle only
+   checks its 3×3 neighbourhood — O(N) instead of O(N²).
+   ─────────────────────────────────────────────────────────────── */
+  // Cell arrays are rebuilt each frame; pre-allocate to avoid GC pressure.
+  // Max particles per cell — at 48k particles over ~10k cells avg ~5/cell,
+  // so 32 gives a very comfortable ceiling.
+  const SPATIAL_MAX_PER_CELL = 32;
+  let spatCols = 0,
+    spatRows = 0,
+    spatCellSize = 0;
+  let spatCells = null; // Int32Array: spatCols × spatRows × SPATIAL_MAX_PER_CELL
+  let spatCount = null; // Int32Array: spatCols × spatRows — occupancy per cell
+
+  function initSpatialGrid() {
+    const r = Math.max(1, CFG.repulseRadius);
+    spatCellSize = r;
+    spatCols = Math.ceil(W / r) + 2;
+    spatRows = Math.ceil(H / r) + 2;
+    spatCells = new Int32Array(spatCols * spatRows * SPATIAL_MAX_PER_CELL).fill(
+      -1,
+    );
+    spatCount = new Int32Array(spatCols * spatRows);
+  }
+
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
     gl.viewport(0, 0, W, H);
+    initSpatialGrid();
     for (let i = 0; i < N; i++) initP(i);
   }
   window.addEventListener("resize", resize);
@@ -393,6 +422,64 @@ void main() {
   const SR = CFG.mouseRadius;
   const SR2 = SR * SR;
 
+  function clearSpatialGrid() {
+    spatCount.fill(0);
+    // No need to clear spatCells — we only read up to spatCount[cell] entries
+  }
+
+  function spatCell(col, row) {
+    return row * spatCols + col;
+  }
+
+  function insertParticle(i, px, py) {
+    const col = Math.floor(px / spatCellSize) + 1; // +1 offset for border
+    const row = Math.floor(py / spatCellSize) + 1;
+    if (col < 0 || col >= spatCols || row < 0 || row >= spatRows) return;
+    const cell = spatCell(col, row);
+    const cnt = spatCount[cell];
+    if (cnt < SPATIAL_MAX_PER_CELL) {
+      spatCells[cell * SPATIAL_MAX_PER_CELL + cnt] = i;
+      spatCount[cell]++;
+    }
+  }
+
+  function applyRepulsion(i, px, py) {
+    if (CFG.repulseRadius <= 0) return;
+    const r = CFG.repulseRadius;
+    const r2 = r * r;
+    const col = Math.floor(px / spatCellSize) + 1;
+    const row = Math.floor(py / spatCellSize) + 1;
+
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        const nc = col + dc,
+          nr = row + dr;
+        if (nc < 0 || nc >= spatCols || nr < 0 || nr >= spatRows) continue;
+        const cell = spatCell(nc, nr);
+        const cnt = spatCount[cell];
+        for (let k = 0; k < cnt; k++) {
+          const j = spatCells[cell * SPATIAL_MAX_PER_CELL + k];
+          if (j <= i) continue; // each pair once; skip self (j===i covered by j<=i when i===j)
+          const jbase = j * STRIDE;
+          const ex = px - vbo[jbase + OFF_X];
+          const ey = py - vbo[jbase + OFF_Y];
+          const d2 = ex * ex + ey * ey;
+          if (d2 < r2 && d2 > 0.0001) {
+            const d = Math.sqrt(d2);
+            // Soft linear falloff: strongest when touching, zero at radius edge
+            const fo = (1.0 - d / r) * CFG.repulseStrength;
+            const fx = (ex / d) * fo;
+            const fy = (ey / d) * fo;
+            vx[i] += fx;
+            vy[i] += fy;
+            vx[j] -= fx;
+            vy[j] -= fy; // equal and opposite
+          }
+        }
+      }
+    }
+  }
+
   /* ── Main loop ───────────────────────────────────────────────── */
   function tick(ts) {
     requestAnimationFrame(tick);
@@ -401,6 +488,14 @@ void main() {
 
     /* Build curl grid once — all particles share it this frame */
     buildCurlGrid(ft);
+
+    /* ── Repulsion pass 1: bin all particles into spatial grid ── */
+    if (CFG.repulseRadius > 0) {
+      clearSpatialGrid();
+      for (let i = 0; i < N; i++) {
+        insertParticle(i, vbo[i * STRIDE + OFF_X], vbo[i * STRIDE + OFF_Y]);
+      }
+    }
 
     const idleMs = performance.now() - lastMoveTime;
     const mouseWeight = mouseActive
@@ -416,6 +511,9 @@ void main() {
       const { cx, cy } = sampleCurl(px, py);
       vx[i] += cx * CFG.flowStrength * drift[i] * 0.016;
       vy[i] += cy * CFG.flowStrength * drift[i] * 0.016;
+
+      /* ── Soft repulsion from nearby particles ── */
+      if (CFG.repulseRadius > 0) applyRepulsion(i, px, py);
 
       /* ── Mouse scatter ── */
       if (mouseWeight > 0 && mx > 0) {

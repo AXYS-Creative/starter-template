@@ -5,7 +5,7 @@ if (mqMouse && mqMotionAllow) {
   const gridFlowEffect = (container) => {
     const img = container.querySelector(".grid-flow-img");
 
-    // Configs from dataset
+    // Update the defaults in grid-flow-img.njk
     let easeFactor = parseFloat(container.dataset.gridFlowEase) || 0.075;
     const gridSize = parseFloat(container.dataset.gridFlowGrid) || 20.0;
     const intensityBase =
