@@ -5,8 +5,6 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 (function () {
-  console.log("[dust-bg] script loaded — build", new Date().toISOString());
-
   const canvas = document.querySelector(".dust-bg");
   if (!canvas) return;
 
@@ -38,9 +36,28 @@
 
   // ── Tunables ────────────────────────────────────────────────────────────
   const CFG = {
-    // Base + highlight colors (base = deep corners, highlight = glow color)
-    baseColor: css("#040d1f"),
-    highlightColor: css("#3d5f8a"),
+    // Color palettes — "dark" is the current/default look. "light" is a
+    // starting placeholder; tune it to match your site's actual light theme.
+    colors: {
+      dark: {
+        baseColor: css("#040d1f"),
+        highlightColor: css("#3d5f8a"),
+      },
+      light: {
+        baseColor: css("#f8fbfc"), // sampled from the light-theme reference (edges/corners)
+        highlightColor: css("#39a2d7"), // sampled from the reference (center glow)
+      },
+    },
+
+    // Theme reactivity — opt-in only. If the canvas has this attribute,
+    // the background watches document.documentElement's data-theme
+    // (set by theme-toggle.js) and swaps colors.dark/colors.light to match.
+    // If the attribute is absent, this is skipped entirely — no observer,
+    // no reads, identical to current behavior.
+    theme: {
+      toggleAttribute: "data-theme-toggle",
+      transitionSpeed: 0.04, // per-frame easing for the dark/light color crossfade (lower = slower/smoother)
+    },
 
     // Lobe field — the soft moving glows
     lobes: {
@@ -436,9 +453,42 @@
 
   const lobeParams = generateLobeParams();
 
+  // ── Theme handling ──────────────────────────────────────────────────────
+  const watchThemeToggle = canvas.hasAttribute(CFG.theme.toggleAttribute);
+
+  function getActiveThemeName() {
+    if (!watchThemeToggle) return "dark";
+    const docTheme = document.documentElement.getAttribute("data-theme");
+    return docTheme === "light" ? "light" : "dark";
+  }
+
+  // Crossfades smoothly between palettes instead of swapping instantly.
+  // currentColor holds the live, eased values; targetThemeName is just a
+  // cheap cached label updated by the observer (no per-frame DOM reads).
+  let targetThemeName = getActiveThemeName();
+  const initialPalette = CFG.colors[targetThemeName];
+  const currentColor = {
+    base: initialPalette.baseColor.slice(),
+    highlight: initialPalette.highlightColor.slice(),
+  };
+
+  function updateThemeColors() {
+    const target = CFG.colors[targetThemeName];
+    for (let i = 0; i < 3; i++) {
+      currentColor.base[i] +=
+        (target.baseColor[i] - currentColor.base[i]) *
+        CFG.theme.transitionSpeed;
+      currentColor.highlight[i] +=
+        (target.highlightColor[i] - currentColor.highlight[i]) *
+        CFG.theme.transitionSpeed;
+    }
+    gl.uniform3fv(uniforms.baseColor, currentColor.base);
+    gl.uniform3fv(uniforms.highlightColor, currentColor.highlight);
+  }
+
   function setStaticUniforms() {
-    gl.uniform3fv(uniforms.baseColor, CFG.baseColor);
-    gl.uniform3fv(uniforms.highlightColor, CFG.highlightColor);
+    gl.uniform3fv(uniforms.baseColor, currentColor.base);
+    gl.uniform3fv(uniforms.highlightColor, currentColor.highlight);
 
     gl.uniform2fv(uniforms.lobeBasePos, lobeParams.basePos);
     gl.uniform2fv(uniforms.lobeDriftFreq, lobeParams.driftFreq);
@@ -493,6 +543,16 @@
   setStaticUniforms();
   resize();
 
+  if (watchThemeToggle) {
+    const themeObserver = new MutationObserver(() => {
+      targetThemeName = getActiveThemeName();
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  }
+
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
@@ -519,8 +579,6 @@
   }
 
   window.addEventListener("pointermove", (e) => {
-    if (!mouseActive)
-      console.log("[dust-bg] first pointermove received", e.clientX, e.clientY);
     updateTargetMouse(e.clientX, e.clientY);
     mouseActive = true;
   });
@@ -529,7 +587,6 @@
   });
 
   let startTime = performance.now();
-  let debugFrameCount = 0;
 
   function frame(now) {
     const elapsedSeconds = (now - startTime) / 1000;
@@ -545,19 +602,7 @@
     gl.uniform2f(uniforms.mousePos, smoothMouse.x, smoothMouse.y);
     gl.uniform1f(uniforms.mouseInfluence, mouseInfluence);
 
-    // Throttled debug log — every ~60 frames (~once/sec) — remove once confirmed working
-    debugFrameCount++;
-    if (debugFrameCount % 60 === 0) {
-      console.log(
-        "[dust-bg] mouseActive:",
-        mouseActive,
-        "influence:",
-        mouseInfluence.toFixed(3),
-        "pos:",
-        smoothMouse.x.toFixed(3),
-        smoothMouse.y.toFixed(3),
-      );
-    }
+    if (watchThemeToggle) updateThemeColors();
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(frame);

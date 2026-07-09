@@ -1,4 +1,5 @@
-float: false
+float: true
+glass: true
 
 include_top: true
 has_logo: true
@@ -11,14 +12,17 @@ linkset_1:
     url: "/"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Blog
     url: "/blog"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Style Guide
     url: "/style-guide"
     new_tab: false
     type: underline
+    class: btn--split-text
   # - text: Library
   #   icon: "/static/img/icon-google-chevron-down.svg"
   #   trigger_class: btn--underline
@@ -33,22 +37,27 @@ linkset_2:
     url: "/library/utils"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Components
     url: "/library/components"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Combos
     url: "/library/combos"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Sections
     url: "/library/sections"
     new_tab: false
     type: underline
+    class: btn--split-text
   - text: Advanced
     url: "/library/advanced"
     new_tab: false
     type: underline
+    class: btn--split-text
 
 linkset_3_title: axys creative
 linkset_3:
@@ -56,18 +65,22 @@ linkset_3:
     url: "https://axyscreative.com"
     new_tab: true
     type: underline
+    class: btn--split-text
   - text: Tokens
     url: "https://axyscreative.com/tokens"
     new_tab: true
     type: underline
+    class: btn--split-text
   - text: Tools
     url: "https://axyscreative-dev.netlify.app/tools"
     new_tab: true
     type: underline
+    class: btn--split-text
   - text: Client Login
     url: "https://billing.stripe.com/p/login/bIYcNw7NXeQDchi000"
     new_tab: true
     type: underline
+    class: btn--split-text
 
 include_bottom: true
 divider: true
@@ -76,7 +89,7 @@ divider_width_full: false
 return_to_top:
   text: "Return To Top"
   url: "#"
-  class: "back-to-top"
+  class: "back-to-top btn--split-text"
   type: underline
   icon_end: /static/img/icon-google-chevron-up.svg
 
@@ -86,14 +99,14 @@ legal_links:
   - text: Privacy Policy
     url: "https://google.com"
     type: underline
-    # class: "btn--split-text"
+    class: "btn--split-text"
   - text: Terms & Conditions
     url: "https://google.com"
     type: underline
-    # class: "btn--split-text"
+    class: "btn--split-text"
   # - text: Cookie Policy
   #   url: "https://google.com"
   #   type: underline
-  # class: "btn--split-text"
+  #   class: "btn--split-text"
 
 theme_toggle: true

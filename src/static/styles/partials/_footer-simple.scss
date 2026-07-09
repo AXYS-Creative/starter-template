@@ -5,6 +5,11 @@
   --footer-spacing-y: 48px;
 
   @include mixins.column-start;
+  background: var(--color-background);
+
+  @include mixins.mq-motion-allow {
+    transition: vars.$ease;
+  }
 
   &:has(.footer-simple__top) {
     border-block-start: var(--border-width) solid var(--color-border);
@@ -185,5 +190,10 @@
     .footer-simple__bottom {
       padding: var(--footer-spacing-y) 0 0;
     }
+  }
+
+  &--glass {
+    background: var(--color-glass-frost);
+    backdrop-filter: blur(8px);
   }
 }

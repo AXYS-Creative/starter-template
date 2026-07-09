@@ -11095,8 +11095,12 @@ html:has(.scroll-progress) {
   width: 100%;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-background);
-  transition: 0.24s ease;
   z-index: 4;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .header-simple {
+    transition: 0.24s ease;
+  }
 }
 .header-simple__inner {
   width: 100%;
@@ -11182,7 +11186,7 @@ html:has(.scroll-progress) {
   translate: -50% 0;
 }
 .header-simple--glass {
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--color-glass-frost);
   backdrop-filter: blur(8px);
 }
 .header-simple.site-header--promo-banner {
@@ -11445,6 +11449,12 @@ html:has(.scroll-progress) {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  background: var(--color-background);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .footer-simple {
+    transition: 0.24s ease;
+  }
 }
 .footer-simple:has(.footer-simple__top) {
   border-block-start: var(--border-width) solid var(--color-border);
@@ -11608,6 +11618,10 @@ html:has(.scroll-progress) {
 }
 .footer-simple--float .footer-simple__bottom {
   padding: var(--footer-spacing-y) 0 0;
+}
+.footer-simple--glass {
+  background: var(--color-glass-frost);
+  backdrop-filter: blur(8px);
 }
 
 body:has(.footer-scroll-reveal) > [class*=main] {

@@ -2,6 +2,7 @@ show_skip_to_content: true
 float: true
 glass: true
 
+# logo.njk
 logo: true
 
 # menu-links.njk

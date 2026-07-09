@@ -1,9 +1,11 @@
 <!-- prettier-ignore -->
 {% set a11y_tab = 'tab-element-page' %}
 {% set footer = global.footer_simple %}
+{% set footer_class = 'footer-simple' %}
 
 <!-- prettier-ignore -->
 {% set float = footer.float or false %}
+{% set glass = footer.glass or false %}
 {% set include_top = footer.include_top | default(true) %}
 {% set has_logo = footer.has_logo or null %}
 {% set message = footer.message or '' %}
@@ -28,9 +30,14 @@
 &nbsp;' + meta_data.site_name + '. All rights reserved' ) %}
 
 <!-- prettier-ignore -->
-{% set footer_class = '' %} 
-{% if float %} 
-  {% set footer_class = 'footer-simple--float' %} 
+{% set footer_mod_class = '' %}
+
+{% if float %}
+  {% set footer_mod_class = footer_mod_class + " " + footer_class + "--float" %}
+{% endif %}
+
+{% if glass %}
+  {% set footer_mod_class = footer_mod_class + " " + footer_class + "--glass" %}
 {% endif %}
 
 {% set footer_divider_class = '' %} 
@@ -38,7 +45,13 @@
   {% set footer_divider_class = 'footer-simple__divider--width-full' %}
 {%endif%}
 
-<footer class="footer-simple {{ footer_class }}" id="site-footer">
+<footer
+  class="
+    {{ footer_class }}
+    {{ footer_mod_class }}
+  "
+  id="site-footer"
+>
   <div class="footer-simple__inner">
     {% if include_top %}
     <div class="footer-simple__top">
