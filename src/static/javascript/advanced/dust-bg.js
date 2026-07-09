@@ -5,6 +5,8 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 (function () {
+  console.log("[dust-bg] script loaded — build", new Date().toISOString());
+
   const canvas = document.querySelector(".dust-bg");
   if (!canvas) return;
 
@@ -51,7 +53,36 @@
 
     // Master motion speed — scales both drift and form/dissolve pulsing.
     // 0 = frozen (same as the static version), 1 = default pace.
-    motionSpeed: 2.25,
+    motionSpeed: 3.5,
+
+    // Shimmer/cracks — a cellular (voronoi) seam pattern, warped so the
+    // seams read as organic cracks rather than a hex grid, drifting across
+    // the screen in one direction. Only visible where lobes already glow.
+    shimmer: {
+      angle: -20, // direction the crack pattern drifts, degrees
+      driftSpeed: 0.012, // speed the pattern moves along `angle`
+      cellScale: 225.0, // voronoi cell density (higher = smaller cracked cells)
+      warpAmount: 1.5, // how much organic distortion bends the cells (higher = less hexagonal)
+      warpScale: 1.6, // spatial frequency of the organic warp
+      warpSpeed: 0.015, // how fast the warp itself slowly evolves
+      crackWidth: 0.05, // thickness of the bright crack seams
+      refractionStrength: 0.4, // how strongly light bends near a seam (0 = invisible, higher = more distortion). No color is added — this is a bend, not a highlight.
+    },
+
+    // Mouse interaction — lobes get pushed away from the cursor, and both
+    // lobes and cracks get a local brightness/intensity boost near it.
+    // Position and influence strength are both eased, never velocity-based.
+    mouse: {
+      radius: 0.35, // effective radius of cursor influence for push/crack proximity
+      glowRadius: 0.5, // size of the light that tracks the cursor (independent of `radius`)
+      pushStrength: 0.14, // how far lobes (and crack seams) get displaced away from the cursor
+      glowBoost: 0.32, // extra brightness added directly under the cursor
+      crackBoost: 0.6, // multiplier boost to how strongly cracks refract light near the cursor (proximity-based, stays while hovering still)
+      positionSmoothing: 0.08, // per-frame easing toward the cursor's real position (lower = smoother/laggier)
+      influenceSmoothing: 0.05, // per-frame easing for the effect fading in/out on enter/leave
+      velocityReference: 1.2, // cursor speed (screen-units/sec) at which push reaches full strength
+      velocitySmoothing: 0.15, // per-frame easing of the speed reading, to avoid jittery push
+    },
 
     // Diagonal crease (the soft shadow band sweeping through the upper right)
     creaseAngle: -20, // degrees
@@ -65,7 +96,7 @@
     vignetteStrength: 0.55,
 
     // Film grain (static, per-pixel, not time-based)
-    grainIntensity: 0.075,
+    grainIntensity: 0.035,
   };
 
   // ── WebGL setup ─────────────────────────────────────────────────────────
@@ -98,6 +129,25 @@
   uniform float uLobeFormMin;
   uniform int uLobeCount;
 
+  uniform float uShimmerAngle;
+  uniform float uShimmerDriftSpeed;
+  uniform float uShimmerCellScale;
+  uniform float uShimmerWarpAmount;
+  uniform float uShimmerWarpScale;
+  uniform float uShimmerWarpSpeed;
+  uniform float uShimmerCrackWidth;
+  uniform float uShimmerRefractionStrength;
+
+  uniform vec2 uMousePos;
+  uniform float uMouseInfluence;
+  uniform float uMouseRadius;
+  uniform float uMouseGlowRadius;
+  uniform float uMousePushStrength;
+  uniform float uMouseGlowBoost;
+  uniform float uMouseCrackBoost;
+  uniform vec2 uMouseVelocityDir;
+  uniform float uMouseVelocityFactor;
+
   uniform float uCreaseAngle;
   uniform float uCreaseOffset;
   uniform float uCreaseWidth;
@@ -111,11 +161,49 @@
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
   }
 
+  vec2 hash22(vec2 p) {
+    vec2 q = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+    return fract(sin(q) * 43758.5453);
+  }
+
+  // Returns (F1, F2) — distances to the nearest and second-nearest cell points
+  vec2 voronoi(vec2 coord) {
+    vec2 cellId = floor(coord);
+    vec2 localPos = fract(coord);
+
+    float f1 = 8.0;
+    float f2 = 8.0;
+
+    for (int y = -1; y <= 1; y++) {
+      for (int x = -1; x <= 1; x++) {
+        vec2 neighbor = vec2(float(x), float(y));
+        vec2 point = hash22(cellId + neighbor);
+        vec2 diff = neighbor + point - localPos;
+        float dist = length(diff);
+
+        if (dist < f1) {
+          f2 = f1;
+          f1 = dist;
+        } else if (dist < f2) {
+          f2 = dist;
+        }
+      }
+    }
+
+    return vec2(f1, f2);
+  }
+
   void main() {
     // Centered, aspect-normalized coordinate space
     vec2 p = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
 
-    // Accumulate drifting, forming/dissolving lobes
+    // Accumulate drifting, forming/dissolving lobes. Centers/radii/envelopes
+    // are kept so the crack refraction pass below can resample this same
+    // light field at a bent position, instead of adding a separate color.
+    vec2 lobeCenters[MAX_LOBES];
+    float lobeRadiiArr[MAX_LOBES];
+    float lobeEnvelopes[MAX_LOBES];
+
     float totalLobe = 0.0;
     for (int i = 0; i < MAX_LOBES; i++) {
       if (i >= uLobeCount) break;
@@ -125,11 +213,21 @@
         cos(uTime * uLobeDriftFreq[i].y + uLobePhase[i].y)
       );
 
-      float d = length(p - pos);
-      float g = exp(-(d * d) / (2.0 * uLobeRadius[i] * uLobeRadius[i]));
+      // Push this lobe in the direction of cursor travel — only while moving
+      float mDist = length(pos - uMousePos);
+      float mProximity = smoothstep(uMouseRadius, 0.0, mDist) * uMouseInfluence;
+      float mPush = mProximity * uMouseVelocityFactor;
+      pos += uMouseVelocityDir * mPush * uMousePushStrength;
 
       float pulse = 0.5 + 0.5 * sin(uTime * uLobeFormFreq[i] + uLobeFormPhase[i]);
       float envelope = mix(uLobeFormMin, 1.0, pow(pulse, 1.5));
+
+      lobeCenters[i] = pos;
+      lobeRadiiArr[i] = uLobeRadius[i];
+      lobeEnvelopes[i] = envelope;
+
+      float d = length(p - pos);
+      float g = exp(-(d * d) / (2.0 * uLobeRadius[i] * uLobeRadius[i]));
 
       totalLobe += g * envelope;
     }
@@ -137,6 +235,58 @@
     // Soft clamp so overlapping lobes don't blow out to flat white
     float glow = 1.0 - exp(-totalLobe);
     vec3 color = mix(uBaseColor, uHighlightColor, clamp(glow, 0.0, 1.0));
+
+    // Direct brightness boost right under the cursor
+    float mouseGlowDist = length(p - uMousePos);
+    float mouseGlowFalloff = exp(-(mouseGlowDist * mouseGlowDist) / (2.0 * uMouseGlowRadius * uMouseGlowRadius)) * uMouseInfluence;
+    color += uHighlightColor * uMouseGlowBoost * mouseGlowFalloff;
+
+    // Shimmer/cracks — voronoi seam pattern, drifting along uShimmerAngle,
+    // with the cell grid bent by a slow organic warp so seams read as
+    // irregular cracks. Masked by glow so it only appears where lit.
+    float shimRad = radians(uShimmerAngle);
+    vec2 shimDir = vec2(cos(shimRad), sin(shimRad));
+    vec2 driftedP = p - shimDir * uTime * uShimmerDriftSpeed;
+
+    // Cap the warp amplitude relative to its frequency so the coordinate
+    // mapping can never fold on itself — folding is what causes a moving
+    // "seam"/tear line (cells collapse to zero width right where it folds).
+    // 0.9 keeps a safety margin under the theoretical fold point of 1.0.
+    float safeWarpAmount = min(uShimmerWarpAmount, 0.9 / max(uShimmerWarpScale, 0.001));
+
+    // Push the crack seams in the direction of cursor travel — only while moving.
+    // Brightness boost (crackProximity) stays proximity-based so hovering still
+    // glows even at rest; only the geometric warp is velocity-gated.
+    float crackProximity = smoothstep(uMouseRadius, 0.0, length(p - uMousePos)) * uMouseInfluence;
+    float crackPushAmount = crackProximity * uMouseVelocityFactor;
+    driftedP -= uMouseVelocityDir * crackPushAmount * uMousePushStrength;
+
+    vec2 warp = vec2(
+      sin(driftedP.y * uShimmerWarpScale + uTime * uShimmerWarpSpeed),
+      sin(driftedP.x * uShimmerWarpScale - uTime * uShimmerWarpSpeed * 0.8)
+    ) * safeWarpAmount;
+
+    vec2 crackCoord = (driftedP + warp) * uShimmerCellScale;
+    vec2 f = voronoi(crackCoord);
+    float seam = 1.0 - smoothstep(0.0, uShimmerCrackWidth, f.y - f.x);
+
+    // Bend the light near the seam instead of adding color to it — reuse
+    // the warp field (already smooth and cheap) as the bend direction,
+    // concentrated right at the seam via the seam mask.
+    float refractAmount = (1.0 + uMouseCrackBoost * crackProximity) * uShimmerRefractionStrength;
+    vec2 refractOffset = warp * refractAmount * seam;
+
+    float totalLobeRefracted = 0.0;
+    for (int i = 0; i < MAX_LOBES; i++) {
+      if (i >= uLobeCount) break;
+      float dr = length((p + refractOffset) - lobeCenters[i]);
+      float gr = exp(-(dr * dr) / (2.0 * lobeRadiiArr[i] * lobeRadiiArr[i]));
+      totalLobeRefracted += gr * lobeEnvelopes[i];
+    }
+    float glowRefracted = 1.0 - exp(-totalLobeRefracted);
+    vec3 refractedColor = mix(uBaseColor, uHighlightColor, clamp(glowRefracted, 0.0, 1.0));
+
+    color = mix(color, refractedColor, seam * glow);
 
     // Diagonal crease / shadow sweep (static)
     float rad = radians(uCreaseAngle);
@@ -213,6 +363,28 @@
     lobeFormMin: gl.getUniformLocation(program, "uLobeFormMin"),
     lobeCount: gl.getUniformLocation(program, "uLobeCount"),
 
+    shimmerAngle: gl.getUniformLocation(program, "uShimmerAngle"),
+    shimmerDriftSpeed: gl.getUniformLocation(program, "uShimmerDriftSpeed"),
+    shimmerCellScale: gl.getUniformLocation(program, "uShimmerCellScale"),
+    shimmerWarpAmount: gl.getUniformLocation(program, "uShimmerWarpAmount"),
+    shimmerWarpScale: gl.getUniformLocation(program, "uShimmerWarpScale"),
+    shimmerWarpSpeed: gl.getUniformLocation(program, "uShimmerWarpSpeed"),
+    shimmerCrackWidth: gl.getUniformLocation(program, "uShimmerCrackWidth"),
+    shimmerRefractionStrength: gl.getUniformLocation(
+      program,
+      "uShimmerRefractionStrength",
+    ),
+
+    mousePos: gl.getUniformLocation(program, "uMousePos"),
+    mouseInfluence: gl.getUniformLocation(program, "uMouseInfluence"),
+    mouseRadius: gl.getUniformLocation(program, "uMouseRadius"),
+    mouseGlowRadius: gl.getUniformLocation(program, "uMouseGlowRadius"),
+    mousePushStrength: gl.getUniformLocation(program, "uMousePushStrength"),
+    mouseGlowBoost: gl.getUniformLocation(program, "uMouseGlowBoost"),
+    mouseCrackBoost: gl.getUniformLocation(program, "uMouseCrackBoost"),
+    mouseVelocityDir: gl.getUniformLocation(program, "uMouseVelocityDir"),
+    mouseVelocityFactor: gl.getUniformLocation(program, "uMouseVelocityFactor"),
+
     creaseAngle: gl.getUniformLocation(program, "uCreaseAngle"),
     creaseOffset: gl.getUniformLocation(program, "uCreaseOffset"),
     creaseWidth: gl.getUniformLocation(program, "uCreaseWidth"),
@@ -278,6 +450,24 @@
     gl.uniform1f(uniforms.lobeFormMin, CFG.lobes.formMin);
     gl.uniform1i(uniforms.lobeCount, Math.min(CFG.lobes.count, MAX_LOBES));
 
+    gl.uniform1f(uniforms.shimmerAngle, CFG.shimmer.angle);
+    gl.uniform1f(uniforms.shimmerDriftSpeed, CFG.shimmer.driftSpeed);
+    gl.uniform1f(uniforms.shimmerCellScale, CFG.shimmer.cellScale);
+    gl.uniform1f(uniforms.shimmerWarpAmount, CFG.shimmer.warpAmount);
+    gl.uniform1f(uniforms.shimmerWarpScale, CFG.shimmer.warpScale);
+    gl.uniform1f(uniforms.shimmerWarpSpeed, CFG.shimmer.warpSpeed);
+    gl.uniform1f(uniforms.shimmerCrackWidth, CFG.shimmer.crackWidth);
+    gl.uniform1f(
+      uniforms.shimmerRefractionStrength,
+      CFG.shimmer.refractionStrength,
+    );
+
+    gl.uniform1f(uniforms.mouseRadius, CFG.mouse.radius);
+    gl.uniform1f(uniforms.mouseGlowRadius, CFG.mouse.glowRadius);
+    gl.uniform1f(uniforms.mousePushStrength, CFG.mouse.pushStrength);
+    gl.uniform1f(uniforms.mouseGlowBoost, CFG.mouse.glowBoost);
+    gl.uniform1f(uniforms.mouseCrackBoost, CFG.mouse.crackBoost);
+
     gl.uniform1f(uniforms.creaseAngle, CFG.creaseAngle);
     gl.uniform1f(uniforms.creaseOffset, CFG.creaseOffset);
     gl.uniform1f(uniforms.creaseWidth, CFG.creaseWidth);
@@ -309,12 +499,65 @@
     resizeTimeout = setTimeout(resize, 100);
   });
 
+  // ── Mouse tracking ──────────────────────────────────────────────────────
+  // Position and influence are both eased every frame, never read raw —
+  // this avoids stale-velocity artifacts and gives a smooth "push" feel.
+  const targetMouse = { x: 0, y: 0 };
+  const smoothMouse = { x: 0, y: 0 };
+  let mouseActive = false;
+  let mouseInfluence = 0;
+
+  function updateTargetMouse(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    const px = (clientX - rect.left) * (canvas.width / rect.width);
+    const pyFromTop = (clientY - rect.top) * (canvas.height / rect.height);
+    const pyGl = canvas.height - pyFromTop; // flip to match gl_FragCoord's bottom-left origin
+    const minDim = Math.min(canvas.width, canvas.height);
+
+    targetMouse.x = (px - 0.5 * canvas.width) / minDim;
+    targetMouse.y = (pyGl - 0.5 * canvas.height) / minDim;
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    if (!mouseActive)
+      console.log("[dust-bg] first pointermove received", e.clientX, e.clientY);
+    updateTargetMouse(e.clientX, e.clientY);
+    mouseActive = true;
+  });
+  window.addEventListener("pointerout", (e) => {
+    if (!e.relatedTarget) mouseActive = false; // cursor left the document entirely
+  });
+
   let startTime = performance.now();
+  let debugFrameCount = 0;
 
   function frame(now) {
     const elapsedSeconds = (now - startTime) / 1000;
     gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
     gl.uniform1f(uniforms.time, elapsedSeconds * CFG.motionSpeed);
+
+    mouseInfluence +=
+      ((mouseActive ? 1 : 0) - mouseInfluence) * CFG.mouse.influenceSmoothing;
+    smoothMouse.x +=
+      (targetMouse.x - smoothMouse.x) * CFG.mouse.positionSmoothing;
+    smoothMouse.y +=
+      (targetMouse.y - smoothMouse.y) * CFG.mouse.positionSmoothing;
+    gl.uniform2f(uniforms.mousePos, smoothMouse.x, smoothMouse.y);
+    gl.uniform1f(uniforms.mouseInfluence, mouseInfluence);
+
+    // Throttled debug log — every ~60 frames (~once/sec) — remove once confirmed working
+    debugFrameCount++;
+    if (debugFrameCount % 60 === 0) {
+      console.log(
+        "[dust-bg] mouseActive:",
+        mouseActive,
+        "influence:",
+        mouseInfluence.toFixed(3),
+        "pos:",
+        smoothMouse.x.toFixed(3),
+        smoothMouse.y.toFixed(3),
+      );
+    }
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(frame);
