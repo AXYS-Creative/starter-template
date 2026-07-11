@@ -131,7 +131,6 @@ html[data-theme=light] {
 }
 *::selection {
   background-color: #e48c66;
-  color: var(--color-background);
   stroke-width: 0;
 }
 *:-webkit-autofill, *:-webkit-autofill:hover, *:-webkit-autofill:focus-visible {

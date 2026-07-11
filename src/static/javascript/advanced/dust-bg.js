@@ -56,7 +56,12 @@
     // no reads, identical to current behavior.
     theme: {
       toggleAttribute: "data-theme-toggle",
-      transitionSpeed: 0.04, // per-frame easing for the dark/light color crossfade (lower = slower/smoother)
+      transitionSpeed: 0.04, // per-frame easing for the toggle-based crossfade (section-based tracks scroll directly, no lag)
+
+      // Section-based scroll theming — opt-in via this attribute on the canvas.
+      sectionAttribute: "data-section-theme",
+      sectionThemeAttr: "data-canvas-theme", // e.g. data-canvas-theme="light" on a <section>
+      sectionStartAttr: "data-canvas-start", // e.g. data-canvas-start="0.2-0.8" (defaults to "0-1")
     },
 
     // Lobe field — the soft moving glows
@@ -455,6 +460,7 @@
 
   // ── Theme handling ──────────────────────────────────────────────────────
   const watchThemeToggle = canvas.hasAttribute(CFG.theme.toggleAttribute);
+  const watchSectionTheme = canvas.hasAttribute(CFG.theme.sectionAttribute);
 
   function getActiveThemeName() {
     if (!watchThemeToggle) return "dark";
@@ -484,6 +490,71 @@
     }
     gl.uniform3fv(uniforms.baseColor, currentColor.base);
     gl.uniform3fv(uniforms.highlightColor, currentColor.highlight);
+  }
+
+  // ── Section-based scroll theming ────────────────────────────────────────
+  // Reads every element with data-canvas-theme, in document order. Each
+  // section's own progress runs 0 (its top is at the viewport's bottom) to
+  // 1 (its top has reached the viewport's top), remapped through its
+  // data-canvas-start range (default "0-1"). Sections are blended in order,
+  // so later sections layer on top of earlier ones, and scrolling back up
+  // reverses cleanly since this is recomputed fresh from live scroll
+  // position every frame — nothing here depends on the previous frame.
+  let themeSections = [];
+
+  function parseStartRange(attrValue) {
+    if (!attrValue) return { start: 0, end: 1 };
+    const match = attrValue.match(/(-?[\d.]+)\s*-\s*(-?[\d.]+)/);
+    if (!match) return { start: 0, end: 1 };
+    return { start: parseFloat(match[1]), end: parseFloat(match[2]) };
+  }
+
+  function collectThemeSections() {
+    const elements = document.querySelectorAll(
+      `[${CFG.theme.sectionThemeAttr}]`,
+    );
+    themeSections = Array.from(elements).map((el) => {
+      const themeName =
+        el.getAttribute(CFG.theme.sectionThemeAttr) === "light"
+          ? "light"
+          : "dark";
+      const { start, end } = parseStartRange(
+        el.getAttribute(CFG.theme.sectionStartAttr),
+      );
+      return { el, themeName, start, end };
+    });
+  }
+
+  if (watchSectionTheme) collectThemeSections();
+
+  function computeSectionBlendedColor() {
+    // Dark is the page's resting default before any section has triggered.
+    const base = CFG.colors.dark.baseColor.slice();
+    const highlight = CFG.colors.dark.highlightColor.slice();
+    const viewportHeight = window.innerHeight;
+
+    for (const section of themeSections) {
+      const rect = section.el.getBoundingClientRect();
+      const rawProgress = Math.min(
+        Math.max((viewportHeight - rect.top) / viewportHeight, 0),
+        1,
+      );
+      const range = section.end - section.start;
+      const mapped =
+        range !== 0
+          ? Math.min(Math.max((rawProgress - section.start) / range, 0), 1)
+          : rawProgress >= section.start
+            ? 1
+            : 0;
+
+      const target = CFG.colors[section.themeName];
+      for (let i = 0; i < 3; i++) {
+        base[i] += (target.baseColor[i] - base[i]) * mapped;
+        highlight[i] += (target.highlightColor[i] - highlight[i]) * mapped;
+      }
+    }
+
+    return { base, highlight };
   }
 
   function setStaticUniforms() {
@@ -602,7 +673,13 @@
     gl.uniform2f(uniforms.mousePos, smoothMouse.x, smoothMouse.y);
     gl.uniform1f(uniforms.mouseInfluence, mouseInfluence);
 
-    if (watchThemeToggle) updateThemeColors();
+    if (watchSectionTheme) {
+      const blended = computeSectionBlendedColor();
+      gl.uniform3fv(uniforms.baseColor, blended.base);
+      gl.uniform3fv(uniforms.highlightColor, blended.highlight);
+    } else if (watchThemeToggle) {
+      updateThemeColors();
+    }
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(frame);

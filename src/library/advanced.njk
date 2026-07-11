@@ -57,7 +57,35 @@ description:
   {% include "../_includes/components/particle-waves.njk" %}
 </section>
 
-<section class="dots-fill-section library-section">
+<section class="library-section">
+  <h2 style="margin: auto">
+    [ <span class="glitch-scroll">Dust Background</span> ]
+  </h2>
+  <p style="margin: auto">
+    A lightweight dust background effect with lighting. The
+    <code>canvas</code> tag has a few configs available:
+  </p>
+
+  <ul class="classic-list" style="margin: auto">
+    <li>
+      <code>data-theme-toggle</code> A boolean that hooks up the canvas to the
+      <code>theme-toggle.njk</code> component
+    </li>
+    <li>
+      <code>data-section-theme</code> A boolean that hooks up the canvas theme
+      to the sections with correlating
+      <code>data-canvas-theme="light/dark"</code>
+    </li>
+  </ul>
+
+  <canvas class="dust-bg" data-section-theme></canvas>
+</section>
+
+<section
+  class="dots-fill-section library-section"
+  data-canvas-theme="light"
+  data-canvas-start="1"
+>
   <h2 style="margin: auto">[ <span class="glitch-scroll">Dots Fill</span> ]</h2>
   <p style="margin: auto" class="max-width-text">
     A utility class that goes on an <code>svg</code>, this converts the
@@ -311,7 +339,7 @@ description:
   {% include '../_includes/components/grid-flow-img.njk' %}
 </section>
 
-<section class="spline-section library-section">
+<section class="spline-section library-section" data-canvas-theme="dark">
   <h2>[ Spline ]</h2>
   <p>Coming sometime in 2026.</p>
 
