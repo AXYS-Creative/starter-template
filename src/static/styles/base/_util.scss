@@ -818,6 +818,14 @@
     // }
   }
 
+  .theme-dark {
+    @include mixins.use-dark-theme;
+  }
+
+  .theme-light {
+    @include vars.light-theme;
+  }
+
   .typing-cycle,
   .typing-scroll {
     .typing-text-cursor {

@@ -2321,6 +2321,24 @@ code.codearea {
   .text-scale .text-scale__chars {
     display: inline-block;
   }
+  .theme-dark {
+    --color-background: #0a0a0a;
+    --color-font--primary: #fafafa;
+    background-color: var(--color-background);
+    color: var(--color-font--primary);
+  }
+  .theme-light {
+    --color-background: #fafafa;
+    --color-background-alt: #fff;
+    --color-font--primary: #0a0a0a;
+    --color-font--secondary: #292929;
+    --color-font--tertiary: #ececec;
+    --color-surface--1: #f1f1f1;
+    --color-surface--2: #ececec;
+    --color-border: #ececec;
+    --gradient-border-color: rgba(0, 0, 0, 0.5);
+    --color-glass-frost: rgba(255, 255, 255, 0.25);
+  }
   .typing-cycle .typing-text-cursor,
   .typing-scroll .typing-text-cursor {
     animation: typing-flicker 1s infinite;

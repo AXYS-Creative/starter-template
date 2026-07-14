@@ -1,7 +1,9 @@
 // ─────────────────────────────────────────────────────────────────────────
 // WebGL background — deep navy field, drifting light lobes, diagonal crease,
 // vignette, film grain. Lobes drift and gently form/dissolve at randomized,
-// independent rates. Grain and crease remain static. No mouse interaction.
+// independent rates, and push in the direction of cursor travel. Supports
+// two optional theme-reactivity modes (toggle-based and section-scroll
+// based), both opt-in via canvas attributes. Grain and crease are static.
 // ─────────────────────────────────────────────────────────────────────────
 
 (function () {
@@ -61,7 +63,7 @@
       // Section-based scroll theming — opt-in via this attribute on the canvas.
       sectionAttribute: "data-section-theme",
       sectionThemeAttr: "data-canvas-theme", // e.g. data-canvas-theme="light" on a <section>
-      sectionStartAttr: "data-canvas-start", // e.g. data-canvas-start="0.2-0.8" (defaults to "0-1")
+      sectionStartAttr: "data-canvas-start", // e.g. data-canvas-start="0.5" — single flip threshold (defaults to 0.5)
     },
 
     // Lobe field — the soft moving glows
@@ -77,29 +79,14 @@
     // 0 = frozen (same as the static version), 1 = default pace.
     motionSpeed: 3.5,
 
-    // Shimmer/cracks — a cellular (voronoi) seam pattern, warped so the
-    // seams read as organic cracks rather than a hex grid, drifting across
-    // the screen in one direction. Only visible where lobes already glow.
-    shimmer: {
-      angle: -20, // direction the crack pattern drifts, degrees
-      driftSpeed: 0.012, // speed the pattern moves along `angle`
-      cellScale: 225.0, // voronoi cell density (higher = smaller cracked cells)
-      warpAmount: 1.5, // how much organic distortion bends the cells (higher = less hexagonal)
-      warpScale: 1.6, // spatial frequency of the organic warp
-      warpSpeed: 0.015, // how fast the warp itself slowly evolves
-      crackWidth: 0.05, // thickness of the bright crack seams
-      refractionStrength: 0.4, // how strongly light bends near a seam (0 = invisible, higher = more distortion). No color is added — this is a bend, not a highlight.
-    },
-
-    // Mouse interaction — lobes get pushed away from the cursor, and both
-    // lobes and cracks get a local brightness/intensity boost near it.
-    // Position and influence strength are both eased, never velocity-based.
+    // Mouse interaction — lobes get pushed away from the cursor, and get a
+    // local brightness boost near it. Position and influence strength are
+    // both eased, never velocity-based.
     mouse: {
-      radius: 0.35, // effective radius of cursor influence for push/crack proximity
+      radius: 0.35, // effective radius of cursor influence for push proximity
       glowRadius: 0.5, // size of the light that tracks the cursor (independent of `radius`)
-      pushStrength: 0.14, // how far lobes (and crack seams) get displaced away from the cursor
+      pushStrength: 0.14, // how far lobes get displaced in the direction of cursor travel
       glowBoost: 0.32, // extra brightness added directly under the cursor
-      crackBoost: 0.6, // multiplier boost to how strongly cracks refract light near the cursor (proximity-based, stays while hovering still)
       positionSmoothing: 0.08, // per-frame easing toward the cursor's real position (lower = smoother/laggier)
       influenceSmoothing: 0.05, // per-frame easing for the effect fading in/out on enter/leave
       velocityReference: 1.2, // cursor speed (screen-units/sec) at which push reaches full strength
@@ -151,22 +138,12 @@
   uniform float uLobeFormMin;
   uniform int uLobeCount;
 
-  uniform float uShimmerAngle;
-  uniform float uShimmerDriftSpeed;
-  uniform float uShimmerCellScale;
-  uniform float uShimmerWarpAmount;
-  uniform float uShimmerWarpScale;
-  uniform float uShimmerWarpSpeed;
-  uniform float uShimmerCrackWidth;
-  uniform float uShimmerRefractionStrength;
-
   uniform vec2 uMousePos;
   uniform float uMouseInfluence;
   uniform float uMouseRadius;
   uniform float uMouseGlowRadius;
   uniform float uMousePushStrength;
   uniform float uMouseGlowBoost;
-  uniform float uMouseCrackBoost;
   uniform vec2 uMouseVelocityDir;
   uniform float uMouseVelocityFactor;
 
@@ -183,49 +160,12 @@
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
   }
 
-  vec2 hash22(vec2 p) {
-    vec2 q = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-    return fract(sin(q) * 43758.5453);
-  }
-
-  // Returns (F1, F2) — distances to the nearest and second-nearest cell points
-  vec2 voronoi(vec2 coord) {
-    vec2 cellId = floor(coord);
-    vec2 localPos = fract(coord);
-
-    float f1 = 8.0;
-    float f2 = 8.0;
-
-    for (int y = -1; y <= 1; y++) {
-      for (int x = -1; x <= 1; x++) {
-        vec2 neighbor = vec2(float(x), float(y));
-        vec2 point = hash22(cellId + neighbor);
-        vec2 diff = neighbor + point - localPos;
-        float dist = length(diff);
-
-        if (dist < f1) {
-          f2 = f1;
-          f1 = dist;
-        } else if (dist < f2) {
-          f2 = dist;
-        }
-      }
-    }
-
-    return vec2(f1, f2);
-  }
 
   void main() {
     // Centered, aspect-normalized coordinate space
     vec2 p = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
 
-    // Accumulate drifting, forming/dissolving lobes. Centers/radii/envelopes
-    // are kept so the crack refraction pass below can resample this same
-    // light field at a bent position, instead of adding a separate color.
-    vec2 lobeCenters[MAX_LOBES];
-    float lobeRadiiArr[MAX_LOBES];
-    float lobeEnvelopes[MAX_LOBES];
-
+    // Accumulate drifting, forming/dissolving lobes
     float totalLobe = 0.0;
     for (int i = 0; i < MAX_LOBES; i++) {
       if (i >= uLobeCount) break;
@@ -242,11 +182,7 @@
       pos += uMouseVelocityDir * mPush * uMousePushStrength;
 
       float pulse = 0.5 + 0.5 * sin(uTime * uLobeFormFreq[i] + uLobeFormPhase[i]);
-      float envelope = mix(uLobeFormMin, 1.0, pow(pulse, 1.5));
-
-      lobeCenters[i] = pos;
-      lobeRadiiArr[i] = uLobeRadius[i];
-      lobeEnvelopes[i] = envelope;
+      float envelope = mix(uLobeFormMin, 1.0, pulse * sqrt(pulse));
 
       float d = length(p - pos);
       float g = exp(-(d * d) / (2.0 * uLobeRadius[i] * uLobeRadius[i]));
@@ -262,53 +198,6 @@
     float mouseGlowDist = length(p - uMousePos);
     float mouseGlowFalloff = exp(-(mouseGlowDist * mouseGlowDist) / (2.0 * uMouseGlowRadius * uMouseGlowRadius)) * uMouseInfluence;
     color += uHighlightColor * uMouseGlowBoost * mouseGlowFalloff;
-
-    // Shimmer/cracks — voronoi seam pattern, drifting along uShimmerAngle,
-    // with the cell grid bent by a slow organic warp so seams read as
-    // irregular cracks. Masked by glow so it only appears where lit.
-    float shimRad = radians(uShimmerAngle);
-    vec2 shimDir = vec2(cos(shimRad), sin(shimRad));
-    vec2 driftedP = p - shimDir * uTime * uShimmerDriftSpeed;
-
-    // Cap the warp amplitude relative to its frequency so the coordinate
-    // mapping can never fold on itself — folding is what causes a moving
-    // "seam"/tear line (cells collapse to zero width right where it folds).
-    // 0.9 keeps a safety margin under the theoretical fold point of 1.0.
-    float safeWarpAmount = min(uShimmerWarpAmount, 0.9 / max(uShimmerWarpScale, 0.001));
-
-    // Push the crack seams in the direction of cursor travel — only while moving.
-    // Brightness boost (crackProximity) stays proximity-based so hovering still
-    // glows even at rest; only the geometric warp is velocity-gated.
-    float crackProximity = smoothstep(uMouseRadius, 0.0, length(p - uMousePos)) * uMouseInfluence;
-    float crackPushAmount = crackProximity * uMouseVelocityFactor;
-    driftedP -= uMouseVelocityDir * crackPushAmount * uMousePushStrength;
-
-    vec2 warp = vec2(
-      sin(driftedP.y * uShimmerWarpScale + uTime * uShimmerWarpSpeed),
-      sin(driftedP.x * uShimmerWarpScale - uTime * uShimmerWarpSpeed * 0.8)
-    ) * safeWarpAmount;
-
-    vec2 crackCoord = (driftedP + warp) * uShimmerCellScale;
-    vec2 f = voronoi(crackCoord);
-    float seam = 1.0 - smoothstep(0.0, uShimmerCrackWidth, f.y - f.x);
-
-    // Bend the light near the seam instead of adding color to it — reuse
-    // the warp field (already smooth and cheap) as the bend direction,
-    // concentrated right at the seam via the seam mask.
-    float refractAmount = (1.0 + uMouseCrackBoost * crackProximity) * uShimmerRefractionStrength;
-    vec2 refractOffset = warp * refractAmount * seam;
-
-    float totalLobeRefracted = 0.0;
-    for (int i = 0; i < MAX_LOBES; i++) {
-      if (i >= uLobeCount) break;
-      float dr = length((p + refractOffset) - lobeCenters[i]);
-      float gr = exp(-(dr * dr) / (2.0 * lobeRadiiArr[i] * lobeRadiiArr[i]));
-      totalLobeRefracted += gr * lobeEnvelopes[i];
-    }
-    float glowRefracted = 1.0 - exp(-totalLobeRefracted);
-    vec3 refractedColor = mix(uBaseColor, uHighlightColor, clamp(glowRefracted, 0.0, 1.0));
-
-    color = mix(color, refractedColor, seam * glow);
 
     // Diagonal crease / shadow sweep (static)
     float rad = radians(uCreaseAngle);
@@ -385,25 +274,12 @@
     lobeFormMin: gl.getUniformLocation(program, "uLobeFormMin"),
     lobeCount: gl.getUniformLocation(program, "uLobeCount"),
 
-    shimmerAngle: gl.getUniformLocation(program, "uShimmerAngle"),
-    shimmerDriftSpeed: gl.getUniformLocation(program, "uShimmerDriftSpeed"),
-    shimmerCellScale: gl.getUniformLocation(program, "uShimmerCellScale"),
-    shimmerWarpAmount: gl.getUniformLocation(program, "uShimmerWarpAmount"),
-    shimmerWarpScale: gl.getUniformLocation(program, "uShimmerWarpScale"),
-    shimmerWarpSpeed: gl.getUniformLocation(program, "uShimmerWarpSpeed"),
-    shimmerCrackWidth: gl.getUniformLocation(program, "uShimmerCrackWidth"),
-    shimmerRefractionStrength: gl.getUniformLocation(
-      program,
-      "uShimmerRefractionStrength",
-    ),
-
     mousePos: gl.getUniformLocation(program, "uMousePos"),
     mouseInfluence: gl.getUniformLocation(program, "uMouseInfluence"),
     mouseRadius: gl.getUniformLocation(program, "uMouseRadius"),
     mouseGlowRadius: gl.getUniformLocation(program, "uMouseGlowRadius"),
     mousePushStrength: gl.getUniformLocation(program, "uMousePushStrength"),
     mouseGlowBoost: gl.getUniformLocation(program, "uMouseGlowBoost"),
-    mouseCrackBoost: gl.getUniformLocation(program, "uMouseCrackBoost"),
     mouseVelocityDir: gl.getUniformLocation(program, "uMouseVelocityDir"),
     mouseVelocityFactor: gl.getUniformLocation(program, "uMouseVelocityFactor"),
 
@@ -468,10 +344,58 @@
     return docTheme === "light" ? "light" : "dark";
   }
 
+  // ── Section-based scroll theming ────────────────────────────────────────
+  // Reads every element with data-canvas-theme, in document order. Each
+  // section has a single flip threshold (data-canvas-start, default 0.5)
+  // against the same progress metric as before: 0 when the section's top
+  // is at the viewport's bottom, 1 when it's reached the viewport's top.
+  // The active theme is whichever section, last in document order, has
+  // already crossed its threshold — so scrolling back up past it reverts
+  // to whatever came before, same as scrolling forward advances it.
+  let themeSections = [];
+
+  function parseThreshold(attrValue) {
+    const val = parseFloat(attrValue);
+    return isNaN(val) ? 0.5 : val;
+  }
+
+  function collectThemeSections() {
+    const elements = document.querySelectorAll(
+      `[${CFG.theme.sectionThemeAttr}]`,
+    );
+    themeSections = Array.from(elements).map((el) => ({
+      el,
+      themeName:
+        el.getAttribute(CFG.theme.sectionThemeAttr) === "light"
+          ? "light"
+          : "dark",
+      threshold: parseThreshold(el.getAttribute(CFG.theme.sectionStartAttr)),
+    }));
+  }
+
+  function computeSectionTargetTheme() {
+    const viewportHeight = window.innerHeight;
+    let active = "dark"; // resting default before any section has triggered
+    for (const section of themeSections) {
+      const rect = section.el.getBoundingClientRect();
+      const rawProgress = Math.min(
+        Math.max((viewportHeight - rect.top) / viewportHeight, 0),
+        1,
+      );
+      if (rawProgress >= section.threshold) active = section.themeName;
+    }
+    return active;
+  }
+
+  if (watchSectionTheme) collectThemeSections();
+
   // Crossfades smoothly between palettes instead of swapping instantly.
   // currentColor holds the live, eased values; targetThemeName is just a
-  // cheap cached label updated by the observer (no per-frame DOM reads).
-  let targetThemeName = getActiveThemeName();
+  // cheap cached label updated by whichever mode is active (observer for
+  // the toggle, scroll listener for sections) — never a per-frame DOM read.
+  let targetThemeName = watchSectionTheme
+    ? computeSectionTargetTheme()
+    : getActiveThemeName();
   const initialPalette = CFG.colors[targetThemeName];
   const currentColor = {
     base: initialPalette.baseColor.slice(),
@@ -480,81 +404,38 @@
 
   function updateThemeColors() {
     const target = CFG.colors[targetThemeName];
+    let maxDelta = 0;
     for (let i = 0; i < 3; i++) {
-      currentColor.base[i] +=
-        (target.baseColor[i] - currentColor.base[i]) *
-        CFG.theme.transitionSpeed;
-      currentColor.highlight[i] +=
-        (target.highlightColor[i] - currentColor.highlight[i]) *
-        CFG.theme.transitionSpeed;
+      const db = target.baseColor[i] - currentColor.base[i];
+      const dh = target.highlightColor[i] - currentColor.highlight[i];
+      maxDelta = Math.max(maxDelta, Math.abs(db), Math.abs(dh));
+      currentColor.base[i] += db * CFG.theme.transitionSpeed;
+      currentColor.highlight[i] += dh * CFG.theme.transitionSpeed;
     }
+    // Once converged, stop re-uploading identical values every frame.
+    // Resumes automatically the moment targetThemeName changes again.
+    if (maxDelta < 0.0008) return;
     gl.uniform3fv(uniforms.baseColor, currentColor.base);
     gl.uniform3fv(uniforms.highlightColor, currentColor.highlight);
   }
 
-  // ── Section-based scroll theming ────────────────────────────────────────
-  // Reads every element with data-canvas-theme, in document order. Each
-  // section's own progress runs 0 (its top is at the viewport's bottom) to
-  // 1 (its top has reached the viewport's top), remapped through its
-  // data-canvas-start range (default "0-1"). Sections are blended in order,
-  // so later sections layer on top of earlier ones, and scrolling back up
-  // reverses cleanly since this is recomputed fresh from live scroll
-  // position every frame — nothing here depends on the previous frame.
-  let themeSections = [];
-
-  function parseStartRange(attrValue) {
-    if (!attrValue) return { start: 0, end: 1 };
-    const match = attrValue.match(/(-?[\d.]+)\s*-\s*(-?[\d.]+)/);
-    if (!match) return { start: 0, end: 1 };
-    return { start: parseFloat(match[1]), end: parseFloat(match[2]) };
-  }
-
-  function collectThemeSections() {
-    const elements = document.querySelectorAll(
-      `[${CFG.theme.sectionThemeAttr}]`,
-    );
-    themeSections = Array.from(elements).map((el) => {
-      const themeName =
-        el.getAttribute(CFG.theme.sectionThemeAttr) === "light"
-          ? "light"
-          : "dark";
-      const { start, end } = parseStartRange(
-        el.getAttribute(CFG.theme.sectionStartAttr),
-      );
-      return { el, themeName, start, end };
+  // Scroll/resize-driven, rAF-throttled — only recomputes when the page
+  // actually moves, not every animation frame like the old scrub version.
+  let sectionThemeUpdateScheduled = false;
+  function scheduleSectionThemeUpdate() {
+    if (sectionThemeUpdateScheduled) return;
+    sectionThemeUpdateScheduled = true;
+    requestAnimationFrame(() => {
+      targetThemeName = computeSectionTargetTheme();
+      sectionThemeUpdateScheduled = false;
     });
   }
 
-  if (watchSectionTheme) collectThemeSections();
-
-  function computeSectionBlendedColor() {
-    // Dark is the page's resting default before any section has triggered.
-    const base = CFG.colors.dark.baseColor.slice();
-    const highlight = CFG.colors.dark.highlightColor.slice();
-    const viewportHeight = window.innerHeight;
-
-    for (const section of themeSections) {
-      const rect = section.el.getBoundingClientRect();
-      const rawProgress = Math.min(
-        Math.max((viewportHeight - rect.top) / viewportHeight, 0),
-        1,
-      );
-      const range = section.end - section.start;
-      const mapped =
-        range !== 0
-          ? Math.min(Math.max((rawProgress - section.start) / range, 0), 1)
-          : rawProgress >= section.start
-            ? 1
-            : 0;
-
-      const target = CFG.colors[section.themeName];
-      for (let i = 0; i < 3; i++) {
-        base[i] += (target.baseColor[i] - base[i]) * mapped;
-        highlight[i] += (target.highlightColor[i] - highlight[i]) * mapped;
-      }
-    }
-
-    return { base, highlight };
+  if (watchSectionTheme) {
+    window.addEventListener("scroll", scheduleSectionThemeUpdate, {
+      passive: true,
+    });
+    window.addEventListener("resize", scheduleSectionThemeUpdate);
   }
 
   function setStaticUniforms() {
@@ -571,23 +452,10 @@
     gl.uniform1f(uniforms.lobeFormMin, CFG.lobes.formMin);
     gl.uniform1i(uniforms.lobeCount, Math.min(CFG.lobes.count, MAX_LOBES));
 
-    gl.uniform1f(uniforms.shimmerAngle, CFG.shimmer.angle);
-    gl.uniform1f(uniforms.shimmerDriftSpeed, CFG.shimmer.driftSpeed);
-    gl.uniform1f(uniforms.shimmerCellScale, CFG.shimmer.cellScale);
-    gl.uniform1f(uniforms.shimmerWarpAmount, CFG.shimmer.warpAmount);
-    gl.uniform1f(uniforms.shimmerWarpScale, CFG.shimmer.warpScale);
-    gl.uniform1f(uniforms.shimmerWarpSpeed, CFG.shimmer.warpSpeed);
-    gl.uniform1f(uniforms.shimmerCrackWidth, CFG.shimmer.crackWidth);
-    gl.uniform1f(
-      uniforms.shimmerRefractionStrength,
-      CFG.shimmer.refractionStrength,
-    );
-
     gl.uniform1f(uniforms.mouseRadius, CFG.mouse.radius);
     gl.uniform1f(uniforms.mouseGlowRadius, CFG.mouse.glowRadius);
     gl.uniform1f(uniforms.mousePushStrength, CFG.mouse.pushStrength);
     gl.uniform1f(uniforms.mouseGlowBoost, CFG.mouse.glowBoost);
-    gl.uniform1f(uniforms.mouseCrackBoost, CFG.mouse.crackBoost);
 
     gl.uniform1f(uniforms.creaseAngle, CFG.creaseAngle);
     gl.uniform1f(uniforms.creaseOffset, CFG.creaseOffset);
@@ -627,7 +495,10 @@
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resize, 100);
+    resizeTimeout = setTimeout(() => {
+      resize();
+      canvasRect = canvas.getBoundingClientRect();
+    }, 100);
   });
 
   // ── Mouse tracking ──────────────────────────────────────────────────────
@@ -638,10 +509,16 @@
   let mouseActive = false;
   let mouseInfluence = 0;
 
+  // Cached instead of read on every pointermove — getBoundingClientRect() is
+  // a layout read, and doing that on every mouse event (rather than only
+  // when the canvas's actual position could have changed) risks forced
+  // reflow on busy pages. Refreshed on resize, where it's already cheap.
+  let canvasRect = canvas.getBoundingClientRect();
+
   function updateTargetMouse(clientX, clientY) {
-    const rect = canvas.getBoundingClientRect();
-    const px = (clientX - rect.left) * (canvas.width / rect.width);
-    const pyFromTop = (clientY - rect.top) * (canvas.height / rect.height);
+    const px = (clientX - canvasRect.left) * (canvas.width / canvasRect.width);
+    const pyFromTop =
+      (clientY - canvasRect.top) * (canvas.height / canvasRect.height);
     const pyGl = canvas.height - pyFromTop; // flip to match gl_FragCoord's bottom-left origin
     const minDim = Math.min(canvas.width, canvas.height);
 
@@ -673,13 +550,7 @@
     gl.uniform2f(uniforms.mousePos, smoothMouse.x, smoothMouse.y);
     gl.uniform1f(uniforms.mouseInfluence, mouseInfluence);
 
-    if (watchSectionTheme) {
-      const blended = computeSectionBlendedColor();
-      gl.uniform3fv(uniforms.baseColor, blended.base);
-      gl.uniform3fv(uniforms.highlightColor, blended.highlight);
-    } else if (watchThemeToggle) {
-      updateThemeColors();
-    }
+    if (watchThemeToggle || watchSectionTheme) updateThemeColors();
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(frame);
