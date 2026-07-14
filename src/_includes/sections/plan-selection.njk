@@ -13,8 +13,14 @@
     <p class="plan-selection__desc max-width-text">{{ desc }}</p>
 
     {% if price_toggle %}
-    <div class="plan-selection__toggle-wrapper watch-scroll" data-scroll-when="near-top">
-      <div class="plan-selection__toggle toggle-slider toggle-slider--solid">
+    <div
+      class="plan-selection__toggle-wrapper watch-scroll"
+      data-scroll-when="near-top"
+    >
+      <div
+        class="plan-selection__toggle toggle-slider toggle-slider--solid"
+        data-toggle-slide="hover"
+      >
         <button
           class="plan-selection__toggle-option"
           data-toggle-option="start"
@@ -22,7 +28,9 @@
         >
           Monthly
         </button>
-        <button class="plan-selection__toggle-option" data-toggle-option="end">Quarterly</button>
+        <button class="plan-selection__toggle-option" data-toggle-option="end">
+          Quarterly
+        </button>
         <div class="plan-selection__toggle-slider"></div>
       </div>
       <!-- prettier-ignore -->
@@ -119,7 +127,9 @@
           {% include "../components/btn.njk" %}
         </div>
 
-        <div class="plan-option__cta-wrapper plan-option__cta-wrapper--quarterly">
+        <div
+          class="plan-option__cta-wrapper plan-option__cta-wrapper--quarterly"
+        >
           <!-- prettier-ignore -->
           {% set btn = ({
             text: plan.cta_quarterly.text,

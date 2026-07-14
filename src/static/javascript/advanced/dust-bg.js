@@ -79,14 +79,27 @@
     // 0 = frozen (same as the static version), 1 = default pace.
     motionSpeed: 3.5,
 
+    // Flowing turbulence — a fine sparkling texture, separate from the
+    // static base grain, that drifts left-to-right and is masked to only
+    // show up in already-lit areas (per the reference clip: the motion
+    // reads as fine grain drifting within the bright band, not the big
+    // soft gradient itself moving).
+    turbulence: {
+      speed: 0.0075, // how fast the sparkle drifts left-to-right
+      scale: 520.0, // frequency of the speckle (higher = finer grain)
+      intensity: 0.08, // brightness of the flowing sparkle
+      curlAmount: 0.25, // subtle vertical wobble as it drifts, for an organic (non-straight) flow
+      curlScale: 3.5, // spatial frequency of that wobble
+    },
+
     // Mouse interaction — lobes get pushed away from the cursor, and get a
     // local brightness boost near it. Position and influence strength are
     // both eased, never velocity-based.
     mouse: {
       radius: 0.35, // effective radius of cursor influence for push proximity
-      glowRadius: 0.5, // size of the light that tracks the cursor (independent of `radius`)
+      glowRadius: 0.25, // size of the light that tracks the cursor (independent of `radius`)
       pushStrength: 0.14, // how far lobes get displaced in the direction of cursor travel
-      glowBoost: 0.32, // extra brightness added directly under the cursor
+      glowBoost: 0.12, // extra brightness added directly under the cursor
       positionSmoothing: 0.08, // per-frame easing toward the cursor's real position (lower = smoother/laggier)
       influenceSmoothing: 0.05, // per-frame easing for the effect fading in/out on enter/leave
       velocityReference: 1.2, // cursor speed (screen-units/sec) at which push reaches full strength
@@ -156,6 +169,12 @@
   uniform float uVignetteStrength;
   uniform float uGrainIntensity;
 
+  uniform float uTurbSpeed;
+  uniform float uTurbScale;
+  uniform float uTurbIntensity;
+  uniform float uTurbCurlAmount;
+  uniform float uTurbCurlScale;
+
   float hash(vec2 p) {
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
   }
@@ -212,6 +231,14 @@
     float r = length(p);
     float vig = 1.0 - uVignetteStrength * smoothstep(uVignetteStart, uVignetteEnd, r);
     color *= vig;
+
+    // Flowing turbulence — fine sparkle drifting left-to-right, masked to
+    // only show up where it's already lit (glow), matching the reference.
+    vec2 flowCoord = p * uTurbScale;
+    flowCoord.x -= uTime * uTurbSpeed * uTurbScale;
+    flowCoord.y += sin(p.x * uTurbCurlScale + uTime * uTurbSpeed * 0.6) * uTurbCurlAmount * uTurbScale;
+    float turb = hash(floor(flowCoord));
+    color += vec3(turb) * uTurbIntensity * glow;
 
     // Static film grain
     float n = hash(gl_FragCoord.xy);
@@ -291,6 +318,12 @@
     vignetteEnd: gl.getUniformLocation(program, "uVignetteEnd"),
     vignetteStrength: gl.getUniformLocation(program, "uVignetteStrength"),
     grainIntensity: gl.getUniformLocation(program, "uGrainIntensity"),
+
+    turbSpeed: gl.getUniformLocation(program, "uTurbSpeed"),
+    turbScale: gl.getUniformLocation(program, "uTurbScale"),
+    turbIntensity: gl.getUniformLocation(program, "uTurbIntensity"),
+    turbCurlAmount: gl.getUniformLocation(program, "uTurbCurlAmount"),
+    turbCurlScale: gl.getUniformLocation(program, "uTurbCurlScale"),
   };
 
   // ── Randomized, per-lobe motion parameters (generated once at init) ──────
@@ -465,6 +498,12 @@
     gl.uniform1f(uniforms.vignetteEnd, CFG.vignetteEnd);
     gl.uniform1f(uniforms.vignetteStrength, CFG.vignetteStrength);
     gl.uniform1f(uniforms.grainIntensity, CFG.grainIntensity);
+
+    gl.uniform1f(uniforms.turbSpeed, CFG.turbulence.speed);
+    gl.uniform1f(uniforms.turbScale, CFG.turbulence.scale);
+    gl.uniform1f(uniforms.turbIntensity, CFG.turbulence.intensity);
+    gl.uniform1f(uniforms.turbCurlAmount, CFG.turbulence.curlAmount);
+    gl.uniform1f(uniforms.turbCurlScale, CFG.turbulence.curlScale);
   }
 
   function resize() {

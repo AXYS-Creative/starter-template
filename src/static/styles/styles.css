@@ -841,14 +841,15 @@ code.codearea {
     --accent-color: var(--color-surface--2);
     --toggle-padding: 4px;
     --toggle-radius: 8px;
+    --toggle-scale-down: 0.94;
     --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
     --option-padding: 6px;
     isolation: isolate;
     position: relative;
     display: inline-flex;
   }
-  .toggle-slider:active [class*=slider] {
-    scale: 0.94;
+  .toggle-slider:has(.option-active:active) [class*=slider] {
+    scale: var(--toggle-scale-down);
   }
   .toggle-slider [class*=option] {
     padding: var(--option-padding);
@@ -860,7 +861,7 @@ code.codearea {
     background: none;
   }
   .toggle-slider [class*=option]:active {
-    scale: 0.94;
+    scale: var(--toggle-scale-down);
   }
   .toggle-slider [class*=option].option-active, .toggle-slider [class*=option]:has(input[checked]) {
     opacity: 1;
@@ -871,6 +872,9 @@ code.codearea {
     pointer-events: none;
     z-index: -1;
     transition: 0.24s ease;
+  }
+  .toggle-slider[data-toggle-slide=hover]:active [class*=slider] {
+    scale: var(--toggle-scale-down);
   }
   .toggle-slider--solid {
     border: var(--border-width) solid var(--color-border);
@@ -890,6 +894,7 @@ code.codearea {
     bottom: 0;
     left: 0;
     height: 2px;
+    transform-origin: top center;
   }
   .overflow-hidden {
     overflow: hidden;

@@ -8,6 +8,9 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
 
   if (!options.length || !slider) return;
 
+  // Default is click. Add data-toggle-slide="hover" to enable hover behavior.
+  const hoverMode = container.dataset.toggleSlide === "hover";
+
   let activeOption =
     container.querySelector(".option-active") ||
     container.querySelector("input:checked")?.closest("[class*='option']") ||
@@ -22,6 +25,7 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   const moveSlider = (target) => {
     const option = target?.closest("[class*='option']");
     if (!option) return;
+
     const { offsetLeft, offsetWidth } = option;
     slider.style.left = `${offsetLeft}px`;
     slider.style.width = `${offsetWidth}px`;
@@ -30,17 +34,19 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
   // Init after layout is ready
   requestAnimationFrame(() => moveSlider(activeOption));
 
-  // Hover effect (delegated to container)
-  container.addEventListener("mouseover", (e) => {
-    const option = e.target.closest("[class*='option']");
-    if (option && container.contains(option)) {
-      moveSlider(option);
-    }
-  });
+  // Optional hover behavior
+  if (hoverMode) {
+    container.addEventListener("mouseover", (e) => {
+      const option = e.target.closest("[class*='option']");
+      if (option && container.contains(option)) {
+        moveSlider(option);
+      }
+    });
 
-  container.addEventListener("mouseleave", () => {
-    moveSlider(activeOption);
-  });
+    container.addEventListener("mouseleave", () => {
+      moveSlider(activeOption);
+    });
+  }
 
   // Update active option when clicked
   options.forEach((option) => {
@@ -48,6 +54,7 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
       const input = option.querySelector(
         "input[type=radio], input[type=checkbox]",
       );
+
       if (input) input.checked = true; // sync input state if present
 
       options.forEach((o) => o.classList.remove("option-active"));
@@ -61,6 +68,7 @@ document.querySelectorAll("[class*='toggle-slider']").forEach((container) => {
     const input = option.querySelector(
       "input[type=radio], input[type=checkbox]",
     );
+
     if (input) {
       input.addEventListener("change", () => {
         if (input.checked) {

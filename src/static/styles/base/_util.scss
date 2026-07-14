@@ -216,6 +216,7 @@
     // --accent-color: var(--color-brand--primary);
     --toggle-padding: 4px;
     --toggle-radius: 8px;
+    --toggle-scale-down: 0.94;
     // --toggle-radius: var(--radius--btn);
     --toggle-radius--inner: calc(var(--toggle-radius) - var(--toggle-padding));
     --option-padding: 6px; // btn size
@@ -225,9 +226,9 @@
     position: relative;
     display: inline-flex;
 
-    &:active {
+    &:has(.option-active:active) {
       [class*="slider"] {
-        scale: 0.94;
+        scale: var(--toggle-scale-down);
       }
     }
 
@@ -241,7 +242,7 @@
         background: none;
       }
       &:active {
-        scale: 0.94;
+        scale: var(--toggle-scale-down);
       }
 
       &.option-active,
@@ -256,6 +257,14 @@
       pointer-events: none;
       z-index: -1;
       transition: vars.$ease;
+    }
+
+    &[data-toggle-slide="hover"] {
+      &:active {
+        [class*="slider"] {
+          scale: var(--toggle-scale-down);
+        }
+      }
     }
 
     &--solid {
@@ -281,6 +290,7 @@
         bottom: 0;
         left: 0;
         height: 2px;
+        transform-origin: top center;
       }
     }
   }
