@@ -57,7 +57,7 @@ description:
   {% include "../_includes/components/particle-waves.njk" %}
 </section>
 
-<section class="library-section">
+<section class="library-section hide">
   <h2 style="margin: auto">
     [ <span class="glitch-scroll">Dust Background</span> ]
   </h2>
@@ -81,11 +81,7 @@ description:
   <canvas class="dust-bg" data-section-theme></canvas>
 </section>
 
-<section
-  class="dots-fill-section library-section theme-light"
-  data-canvas-theme="light"
-  data-canvas-start="0.5"
->
+<section class="dots-fill-section library-section">
   <h2 style="margin: auto">[ <span class="glitch-scroll">Dots Fill</span> ]</h2>
   <p style="margin: auto" class="max-width-text">
     A utility class that goes on an <code>svg</code>, this converts the
@@ -133,6 +129,8 @@ description:
     <rect width="250" height="250"></rect>
   </svg>
 
+  <br /><br />
+  <br /><br />
   <!-- prettier-ignore -->
   <svg
     style="
@@ -186,13 +184,13 @@ description:
     class="dots-fill dots-axys-logo-full grid-bg-disable"
     data-dot-size="0.5"
     data-dot-gap="4"
-    data-dot-distance="20"
+    data-dot-distance="25"
     data-dot-strength="250"
-    data-dot-restore="0.2"
+    data-dot-restore="0.9"
     data-dot-sensitivity="0.98"
     data-dot-color="var(--color-brand--secondary)"
-    data-dot-illuminate="true"
-    data-dot-grow="1.5"
+    data-dot-illuminate="false"
+    data-dot-grow="0"
     viewBox="0 0 717 86"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -239,12 +237,12 @@ description:
 </section>
 
 <section
-  class="grid-show"
+  class="grid-show theme-light"
   data-grid-enter="ripple-out"
   data-grid-exit="ripple-out"
   data-stagger-interval="50"
-  data-canvas-theme="dark"
-  data-canvas-start="0.1"
+  data-canvas-theme="light"
+  data-canvas-start="0.5"
 >
   <h2>Grid Background</h2>
   <p>
@@ -299,7 +297,11 @@ description:
   </ul>
 </section>
 
-<section class="grid-flow-img-section">
+<section
+  class="grid-flow-img-section"
+  data-canvas-theme="dark"
+  data-canvas-start="0.5"
+>
   <h2>[ <span class="typing-scroll">grid flow img</span> ]</h2>
 
   <!-- prettier-ignore -->

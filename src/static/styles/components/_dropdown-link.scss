@@ -83,12 +83,14 @@
     }
 
     @include mixins.mq-min(lg) {
-      --top-offset: 12px;
+      --top-offset: 32px;
+      --padding: 24px;
+      --inline-offset: var(--padding);
 
-      padding: 16px;
+      padding: var(--padding);
       position: absolute;
       top: calc(100% + var(--top-offset));
-      left: -14px;
+      left: calc(var(--inline-offset) * -1);
       pointer-events: none;
       opacity: 0;
       translate: 0 16px;
@@ -113,4 +115,13 @@
   // &__link {
 
   // }
+
+  // Modifiers
+
+  &--glass {
+    .dropdown-link__list {
+      border: var(--border-width) solid var(--color-border);
+      @include mixins.glass-background;
+    }
+  }
 }

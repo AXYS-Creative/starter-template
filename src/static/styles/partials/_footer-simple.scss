@@ -193,7 +193,6 @@
   }
 
   &--glass {
-    background: var(--color-glass-frost);
-    backdrop-filter: blur(8px);
+    @include mixins.glass-background;
   }
 }

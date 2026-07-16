@@ -6,7 +6,13 @@
   {% set a11y_tab = 'tab-element-page' %}
 {% endif %}
 
-<div class="dropdown-link">
+{% set mod_class = '' %}
+
+{% if glass %}
+  {% set mod_class = mod_class + " dropdown-link--glass" %}
+{% endif %}
+
+<div class="dropdown-link {{ mod_class }}">
   <button
     class="
     dropdown-link__trigger 

@@ -12,6 +12,10 @@
 {% if toggle_slider %}
   {% set mod_class = mod_class + " toggle-slider" %}
 {% endif %}
+  
+{% if glass %}
+  {% set mod_class = mod_class + " menu-links--glass" %}
+{% endif %}
 
 
 {% if menu_links %}
@@ -23,6 +27,7 @@
     {{ mod_class }}
   "
   aria-label="navigation links"
+  data-toggle-slide="hover"
 >
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}

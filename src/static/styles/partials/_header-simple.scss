@@ -135,8 +135,16 @@
   }
 
   &--glass {
-    background: var(--color-glass-frost);
-    backdrop-filter: blur(8px);
+    background: transparent; // don't apply glass-background here, breaks dropdown-link glass effect.
+
+    &::before {
+      content: "";
+      @include mixins.glass-background;
+      @include mixins.absolute-center;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+    }
   }
 
   &.site-header--promo-banner {

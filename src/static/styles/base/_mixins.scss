@@ -781,6 +781,11 @@ $min-breakpoints: ();
   animation: gradient-move $duration linear infinite alternate;
 }
 
+@mixin glass-background {
+  background: var(--color-glass-frost);
+  backdrop-filter: blur(8px);
+}
+
 // Helpful for text over images
 @mixin gradient-backdrop(
   $deg: 0deg,

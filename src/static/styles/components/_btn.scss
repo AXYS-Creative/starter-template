@@ -55,6 +55,8 @@
   &-size--sm {
     --font-size: 13px;
     --padding-btn: var(--padding-btn--sm);
+
+    font-size: var(--font-size);
   }
 
   // No text prop provided (assumes icon)
