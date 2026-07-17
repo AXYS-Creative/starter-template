@@ -101,6 +101,11 @@
     // 0 = frozen (same as the static version), 1 = default pace.
     motionSpeed: 3.5,
 
+    // How long the lobes (and turbulence, which shares their glow) take to
+    // fade in on load. Tied to real elapsed time, not motionSpeed-scaled
+    // time, so it's always this exact duration regardless of that setting.
+    loadFadeInDuration: 3,
+
     // Flowing turbulence — a fine sparkling texture, separate from the
     // static base grain, that drifts left-to-right and is masked to only
     // show up in already-lit areas (per the reference clip: the motion
@@ -110,8 +115,8 @@
       speed: 0.0075, // how fast the sparkle drifts left-to-right
       scale: 520.0, // frequency of the speckle (higher = finer grain)
       intensity: 0.08, // brightness of the flowing sparkle
-      curlAmount: 0.25, // subtle vertical wobble as it drifts, for an organic (non-straight) flow
-      curlScale: 3.5, // spatial frequency of that wobble
+      curlAmount: 0.5, // subtle vertical wobble as it drifts, for an organic (non-straight) flow
+      curlScale: 5, // spatial frequency of that wobble
     },
 
     // Mouse interaction — lobes get pushed away from the cursor, and get a
@@ -189,6 +194,7 @@
   uniform float uLobeFormPhase[MAX_LOBES];
   uniform float uLobeFormMin;
   uniform int uLobeCount;
+  uniform float uLoadFadeIn;
 
   uniform vec2 uRippleCenter;
   uniform float uRippleSpacing;
@@ -290,7 +296,9 @@
     }
 
     // Soft clamp so overlapping lobes don't blow out to flat white
-    float glow = 1.0 - exp(-totalLobe);
+    // Fades from 0 to 1 over the first 0.5s on load — cascades naturally to
+    // turbulence too, since it's masked by this same glow value.
+    float glow = (1.0 - exp(-totalLobe)) * uLoadFadeIn;
     vec3 color = mix(uBaseColor, uHighlightColor, clamp(glow, 0.0, 1.0));
 
     // Direct brightness boost right under the cursor
@@ -430,6 +438,7 @@
     lobeFormPhase: gl.getUniformLocation(program, "uLobeFormPhase[0]"),
     lobeFormMin: gl.getUniformLocation(program, "uLobeFormMin"),
     lobeCount: gl.getUniformLocation(program, "uLobeCount"),
+    loadFadeIn: gl.getUniformLocation(program, "uLoadFadeIn"),
 
     rippleCenter: gl.getUniformLocation(program, "uRippleCenter"),
     rippleSpacing: gl.getUniformLocation(program, "uRippleSpacing"),
@@ -754,11 +763,22 @@
 
   let startTime = performance.now();
   let lastFrameNow = startTime;
+  let loadFadeInDone = false;
 
   function frame(now) {
     const elapsedSeconds = (now - startTime) / 1000;
     const dt = Math.min(Math.max((now - lastFrameNow) / 1000, 0.0001), 0.1);
     lastFrameNow = now;
+
+    // Smoothstep-eased fade-in, tied to real time so it's unaffected by
+    // motionSpeed. Skips redundant uniform uploads once fully faded in.
+    let loadFadeIn = 1.0;
+    if (!loadFadeInDone) {
+      const fadeT = Math.min(elapsedSeconds / CFG.loadFadeInDuration, 1);
+      loadFadeIn = fadeT * fadeT * (3 - 2 * fadeT);
+      gl.uniform1f(uniforms.loadFadeIn, loadFadeIn);
+      if (fadeT >= 1) loadFadeInDone = true;
+    }
 
     gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
     gl.uniform1f(uniforms.time, elapsedSeconds * CFG.motionSpeed);

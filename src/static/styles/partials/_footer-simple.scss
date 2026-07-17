@@ -42,7 +42,7 @@
 
   &__top {
     @include mixins.row-start(space-between);
-    gap: var(--spacing);
+    gap: var(--spacing--lg);
     padding: var(--footer-spacing-y) var(--body-padding);
 
     @include mixins.mq-max(lg) {
@@ -51,7 +51,11 @@
 
     &-left {
       @include mixins.column-start;
-      gap: var(--spacing--sm);
+      gap: var(--spacing);
+
+      @include mixins.mq-max(lg) {
+        gap: var(--spacing--lg);
+      }
     }
 
     &-right {
@@ -59,7 +63,7 @@
       gap: var(--spacing--xl);
       flex-wrap: wrap;
 
-      @include mixins.mq-max(lg) {
+      @include mixins.mq-max(xl) {
         gap: var(--spacing--lg);
       }
     }
@@ -96,13 +100,14 @@
 
   &__bottom {
     @include mixins.row-center(space-between);
-    gap: var(--spacing);
+    gap: 48px;
     width: 100%;
     padding: var(--footer-spacing-y) var(--body-padding);
 
     @include mixins.mq-max("lg") {
       flex-direction: column;
       align-items: flex-start;
+      gap: 24px;
     }
 
     &:has([class*="to-top"]) {

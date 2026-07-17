@@ -2,6 +2,7 @@
 // @use "../variables" as vars;
 
 .video-bg {
+  isolation: isolate; // Fixes issue with issue with dust-bg.js
   position: relative;
   overflow: hidden;
 

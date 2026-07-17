@@ -518,7 +518,10 @@
       flex-wrap: wrap;
       gap: 24px;
       width: 100%;
-      overflow: hidden;
+
+      @include mixins.mq-max(lg) {
+        overflow: hidden;
+      }
 
       @include mixins.mq-min(lg) {
         padding-block: var(--spacing--lg);

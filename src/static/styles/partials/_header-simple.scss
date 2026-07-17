@@ -197,10 +197,13 @@
 }
 
 .site-nav {
+  // border: vars.$test;
   @include mixins.hide-content;
   position: fixed;
   top: 0;
-  width: 100vw;
+  left: 0;
+  width: 100%; // Seeing issue with 100vw on my iphone (not reaching to the right?)
+  // width: 105vw; // Alternate fix for issue above... probably don't do this though.
   height: 100vh;
   height: 100dvh;
   overflow: auto;

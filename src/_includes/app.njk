@@ -96,10 +96,18 @@
       {% include "./components/video-overlay.njk" %}
     {% endif %}
     
-    {% if path == "library/advanced" %}
+    {% if 
+      path == "library/advanced" 
+      or path == "archive-blog" 
+      or path == "blog-post" 
+    %}
     <!-- <canvas id="grid-bg"></canvas> -->
     <!-- <canvas class="wisp-bg"></canvas> -->
-    <!-- <canvas class="dust-bg" data-theme-toggle></canvas> -->
+    <canvas
+      class="dust-bg"
+      data-theme-toggle="false"
+      data-section-theme="true"
+    ></canvas>
     {% endif %}
 
     <!-- prettier-ignore -->

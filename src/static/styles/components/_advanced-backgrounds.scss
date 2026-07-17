@@ -5,10 +5,11 @@
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100lvh; // prevent resize on mobile
+  height: 102.5lvh; // prevent resize on mobile / overshoot with 102 since it was getting cut off on my phone
   z-index: -1;
   pointer-events: none;
-  // opacity: 0.8;
+  opacity: 0;
+  animation: fade-in 2.4s ease 0.5s forwards;
 
   // @include mixins.mq-motion-reduce {
   //   display: none;

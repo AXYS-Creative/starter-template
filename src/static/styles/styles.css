@@ -63,10 +63,10 @@
     --section-gap--lg: 24px;
     --section-gap--xl: 48px;
     --spacing--xs: 4px;
-    --spacing--sm: 8px;
-    --spacing: 12px;
-    --spacing--lg: 24px;
-    --spacing--xl: 48px;
+    --spacing--sm: 12px;
+    --spacing: 16px;
+    --spacing--lg: 40px;
+    --spacing--xl: 64px;
   }
 }
 
@@ -2005,6 +2005,10 @@ code.codearea {
     flex-wrap: wrap;
     gap: 24px;
     width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  .library-section .tilt-card-group {
     overflow: hidden;
   }
 }
@@ -5900,6 +5904,14 @@ code.codearea {
   font-style: normal;
   font-display: block;
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .accordion {
   display: flex;
   flex-direction: column;
@@ -6043,9 +6055,11 @@ code.codearea {
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100lvh;
+  height: 102.5lvh;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
+  animation: fade-in 2.4s ease 0.5s forwards;
 }
 
 .fluid-bg {
@@ -8852,6 +8866,7 @@ html:has(.scroll-progress) {
 }
 
 .video-bg {
+  isolation: isolate;
   position: relative;
   overflow: hidden;
 }
@@ -11314,7 +11329,8 @@ html:has(.scroll-progress) {
   user-select: none;
   position: fixed;
   top: 0;
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 100vh;
   height: 100dvh;
   overflow: auto;
@@ -11541,7 +11557,7 @@ html:has(.scroll-progress) {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--spacing);
+  gap: var(--spacing--lg);
   padding: var(--footer-spacing-y) var(--body-padding);
 }
 @media (max-width: 1024px) {
@@ -11554,7 +11570,12 @@ html:has(.scroll-progress) {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--spacing--sm);
+  gap: var(--spacing);
+}
+@media (max-width: 1024px) {
+  .footer-simple__top-left {
+    gap: var(--spacing--lg);
+  }
 }
 .footer-simple__top-right {
   display: flex;
@@ -11563,7 +11584,7 @@ html:has(.scroll-progress) {
   gap: var(--spacing--xl);
   flex-wrap: wrap;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .footer-simple__top-right {
     gap: var(--spacing--lg);
   }
@@ -11589,7 +11610,7 @@ html:has(.scroll-progress) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--spacing);
+  gap: 48px;
   width: 100%;
   padding: var(--footer-spacing-y) var(--body-padding);
 }
@@ -11597,6 +11618,7 @@ html:has(.scroll-progress) {
   .footer-simple__bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 24px;
   }
 }
 .footer-simple__bottom:has([class*=to-top]) {
