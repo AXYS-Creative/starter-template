@@ -41,7 +41,11 @@
   </head>
   <body>
     <!-- prettier-ignore -->
-    {% include "./partials/header-simple.njk" %}
+    {% if path == "demo" %}
+      {% include "./partials/header-absolute.njk" %}
+    {% else%}
+      {% include "./partials/header-simple.njk" %}
+    {% endif %}
     
     {% if path == "home" %}
       {% set promo_banner_data = library.promo_banner %}
@@ -100,6 +104,7 @@
       path == "library/advanced" 
       or path == "archive-blog" 
       or path == "blog-post" 
+      or path == "demo" 
     %}
     <!-- <canvas id="grid-bg"></canvas> -->
     <!-- <canvas class="wisp-bg"></canvas> -->

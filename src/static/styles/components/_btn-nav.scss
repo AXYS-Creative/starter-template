@@ -1,0 +1,211 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.site-nav-btn {
+  $nav-btn-text-shift-hover: 16px;
+
+  @include mixins.row-center;
+  gap: 12px; // between text and icon
+  transition: vars.$ease, vars.$magnet;
+
+  @include mixins.desktop-hover {
+    .site-nav-btn__text {
+      margin-inline-end: $nav-btn-text-shift-hover;
+    }
+
+    .site-nav-btn__icon {
+      scale: 1.1;
+    }
+  }
+
+  &:active {
+    .site-nav-btn__icon {
+      scale: 0.9;
+    }
+  }
+
+  &__text {
+    color: var(--color-font--primary);
+    transition: vars.$ease;
+  }
+
+  &__icon {
+    aspect-ratio: 1;
+    transition: vars.$ease, vars.$magnet;
+
+    &--burger {
+      $stroke-offset: 3px;
+      $stroke-height: 2px;
+      $stroke-width: 100%;
+
+      position: relative;
+      width: 20px;
+
+      .site-nav-btn__stroke {
+        @include mixins.absolute-center;
+
+        width: $stroke-width;
+        height: $stroke-height;
+        transition: vars.$ease;
+
+        &.stroke-1 {
+          translate: -50% calc(-50% - $stroke-offset);
+        }
+
+        &.stroke-2 {
+          translate: -50% calc(-50% + $stroke-offset);
+        }
+      }
+    }
+
+    &--chocolate {
+      $stroke-size: 3px;
+
+      // border: $test;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+
+      .site-nav-btn__stroke {
+        width: $stroke-size;
+        height: $stroke-size;
+
+        transition: vars.$ease;
+      }
+    }
+
+    &--kebab {
+      $stroke-offset: 8px;
+      $stroke-size: 4px;
+
+      position: relative;
+      width: 24px;
+
+      .site-nav-btn__stroke {
+        @include mixins.absolute-center;
+
+        width: $stroke-size;
+        height: $stroke-size;
+
+        &.stroke-1 {
+          translate: -50% calc(-50% - $stroke-offset);
+          // translate: calc(-50% - $stroke-offset) -50%;
+        }
+
+        &.stroke-3 {
+          translate: -50% calc(-50% + $stroke-offset);
+          // translate: calc(-50% + $stroke-offset) -50%;
+        }
+      }
+    }
+
+    &--stairs {
+      $stroke-width: 24px;
+      $stroke-height: 2px;
+      $stroke-width-half: $stroke-width / 2;
+      $stroke-height-half: $stroke-height / 2;
+
+      position: relative;
+      // width: 24px;
+
+      .site-nav-btn__stroke {
+        @include mixins.absolute-center;
+
+        width: $stroke-width;
+        height: $stroke-height;
+
+        &.stroke-1,
+        &.stroke-3 {
+          translate: 0 0;
+          width: $stroke-width-half;
+        }
+
+        &.stroke-1 {
+          top: 25%;
+          left: 50%;
+        }
+
+        &.stroke-2 {
+          transition-delay: 0.05s;
+        }
+
+        &.stroke-3 {
+          bottom: 25%;
+          right: 50%;
+          top: auto;
+          left: auto;
+          transition-delay: 0.1s;
+        }
+      }
+    }
+
+    &--round {
+      .site-nav-btn__stroke {
+        border-radius: 24px;
+      }
+    }
+  }
+
+  &__stroke {
+    background: var(--color-font--primary);
+    transition: vars.$ease;
+  }
+
+  &[aria-expanded="true"] {
+    .site-nav-btn__icon--burger {
+      .site-nav-btn__stroke {
+        translate: -50% -50%;
+
+        &:first-of-type {
+          rotate: 45deg;
+        }
+        &:last-of-type {
+          rotate: -45deg;
+        }
+      }
+    }
+
+    .site-nav-btn__icon--chocolate {
+      .site-nav-btn__stroke {
+        &.stroke-2,
+        &.stroke-4,
+        &.stroke-6,
+        &.stroke-8 {
+          scale: 0;
+        }
+      }
+    }
+
+    .site-nav-btn__icon--stairs {
+      .site-nav-btn__stroke {
+        // translate: -50% -50%;
+        // width: 24px;
+
+        &.stroke-1 {
+          top: calc(50% - 1px); // $stroke-height-half
+          rotate: -45deg;
+          transform-origin: left;
+        }
+        &.stroke-2 {
+          rotate: 45deg;
+        }
+        &.stroke-3 {
+          bottom: calc(50% - 1px); // $stroke-height-half
+          rotate: -45deg;
+          transform-origin: right;
+        }
+      }
+    }
+  }
+
+  &--button {
+    .site-nav-btn__icon {
+      border: var(--border-width--btn) solid var(--color-border);
+      width: 40px;
+      height: 40px;
+      padding: var(--padding-btn-y);
+      background: var(--color-btn-bg);
+      border-radius: var(--radius--btn);
+    }
+  }
+}

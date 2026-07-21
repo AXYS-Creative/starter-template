@@ -1,6 +1,6 @@
 <!-- props -->
 <!-- prettier-ignore -->
-{% set text = btn.text or '' %}
+{% set text = btn.text | default('') %}
 {% set text_desc = btn.text_desc or '' %}
 {% set url = btn.url or '' %}
 {% set new_tab = btn.new_tab or false %}

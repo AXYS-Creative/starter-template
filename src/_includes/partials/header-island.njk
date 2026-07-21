@@ -42,7 +42,7 @@
 
     <!-- prettier-ignore -->
     {% if nav_btn %}
-    <div class="site-nav-btn-wrapper glitch-pair">{% include "../components/nav-btn.njk" %}</div>
+      {% include "../components/btn-nav.njk" %}
     {% endif %}
   </div>
 </header>
@@ -84,7 +84,9 @@
         <!-- prettier-ignore -->
         {% if nav_footer.admin_login %}
         <li>
-          <a class="nav-footer-link classic-link tab-element-nav" href="/admin"> Admin Login </a>
+          <a class="nav-footer-link classic-link tab-element-nav" href="/admin">
+            Admin Login
+          </a>
         </li>
         {% endif %}
       </ul>

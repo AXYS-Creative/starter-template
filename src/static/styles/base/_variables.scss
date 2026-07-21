@@ -96,7 +96,9 @@ $test-bg: rgba(navy, 0.75);
 
   --gap-btn-icon: 0.5ch;
 
-  --padding-btn: 8px 16px;
+  --padding-btn-y: 8px;
+  --padding-btn-x: 16px;
+  --padding-btn: var(--padding-btn-y) var(--padding-btn-x);
   --padding-btn-icon: 8px;
   --padding-btn--sm: 6px 12px;
   --padding-btn-icon--sm: 4px;

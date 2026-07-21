@@ -1,0 +1,55 @@
+<!-- prettier-ignore -->
+{% set text = nav_btn.text or '' %}
+{% set type = nav_btn.type | default('icon') %}
+{% set symbol = nav_btn.symbol | default('burger') %}
+{% set shape = nav_btn.shape or 'sharp' %}
+
+<div class="site-nav-btn-wrapper glitch-pair">
+  <button
+    class="site-nav-btn site-nav-btn--{{ type }} cursor-trigger glitch-trigger"
+    id="site-nav-btn"
+    aria-controls="site-navigation"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    data-cursor-target="cursor-target__menu-btn"
+    data-cursor-class="menu-btn"
+    data-glitch-target="glitch-target__menu-btn"
+  >
+    {% if text %}
+    <!-- prettier-ignore -->
+    <span class="site-nav-btn__text glitch-hover glitch-target__menu-btn">
+    {{ text }}
+  </span>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    <!-- Using magnet on icon to prevent targeting text -->
+    {% if symbol %}
+    <div
+      class="
+      site-nav-btn__icon 
+      site-nav-btn__icon--{{ symbol }} 
+      site-nav-btn__icon--{{ shape }}
+      magnet
+      glitch-trigger
+      cursor-target__menu-btn
+    "
+      data-glitch-target="glitch-target__menu-btn"
+      data-magnet-x="1"
+      data-magnet-y="1"
+      data-magnet-return-duration="350"
+      data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
+    >
+      <!-- prettier-ignore doesn't work -->
+      {% if symbol == 'burger' %} {% for i in range(0, 2) %}
+      <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+      {% endfor %} {% elif symbol == 'chocolate' %} {% for i in range(0, 9) %}
+      <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+      {% endfor %} {% elif symbol == 'kebab' or symbol == 'stairs' %} {% for i
+      in range(0, 3) %}
+      <span class="site-nav-btn__stroke stroke-{{ i + 1 }}"></span>
+      {% endfor %} {% endif %}
+    </div>
+    {% endif %}
+  </button>
+</div>

@@ -57,7 +57,7 @@
       centerY: 1.4, // vertical position of the origin — positive is above the visible top edge
       spacing: 0.18, // distance between ring boundaries (larger = thicker/fewer visible bands)
       shiftAmount: 0.85, // how far the sampled gradient jumps between adjacent shift states — this is what creates the visible "cut"
-      cycleCount: 1.075, // number of distinct shift states the rings cycle through (bounds the total shift so it can't grow unboundedly far from the scene)
+      cycleCount: 1, // 1.075 is clean number of distinct shift states the rings cycle through (bounds the total shift so it can't grow unboundedly far from the scene)
     },
 
     // Color palettes — "dark" is the current/default look. "light" is a
@@ -116,7 +116,7 @@
       scale: 520.0, // frequency of the speckle (higher = finer grain)
       intensity: 0.08, // brightness of the flowing sparkle
       curlAmount: 0.5, // subtle vertical wobble as it drifts, for an organic (non-straight) flow
-      curlScale: 5, // spatial frequency of that wobble
+      curlScale: 3.5, // spatial frequency of that wobble
     },
 
     // Mouse interaction — lobes get pushed away from the cursor, and get a
