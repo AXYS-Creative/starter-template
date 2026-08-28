@@ -6513,7 +6513,7 @@ code.codearea {
   }
 }
 .site-nav-btn:active .site-nav-btn__icon {
-  scale: 0.9;
+  scale: 0.98;
 }
 .site-nav-btn__text {
   color: var(--color-font--primary);
@@ -6578,22 +6578,22 @@ code.codearea {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 24px;
+  width: 20px;
   height: 2px;
 }
 .site-nav-btn__icon--stairs .site-nav-btn__stroke.stroke-1, .site-nav-btn__icon--stairs .site-nav-btn__stroke.stroke-3 {
   translate: 0 0;
-  width: 12px;
+  width: 10px;
 }
 .site-nav-btn__icon--stairs .site-nav-btn__stroke.stroke-1 {
-  top: 25%;
+  top: calc(50% - 8px);
   left: 50%;
 }
 .site-nav-btn__icon--stairs .site-nav-btn__stroke.stroke-2 {
   transition-delay: 0.05s;
 }
 .site-nav-btn__icon--stairs .site-nav-btn__stroke.stroke-3 {
-  bottom: 25%;
+  bottom: calc(50% - 8px);
   right: 50%;
   top: auto;
   left: auto;

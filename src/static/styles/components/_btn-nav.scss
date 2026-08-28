@@ -20,7 +20,7 @@
 
   &:active {
     .site-nav-btn__icon {
-      scale: 0.9;
+      scale: 0.98;
     }
   }
 
@@ -100,13 +100,13 @@
     }
 
     &--stairs {
-      $stroke-width: 24px;
+      $stroke-offset: 8px; // 6-10
+      $stroke-width: 20px;
       $stroke-height: 2px;
       $stroke-width-half: $stroke-width / 2;
       $stroke-height-half: $stroke-height / 2;
 
       position: relative;
-      // width: 24px;
 
       .site-nav-btn__stroke {
         @include mixins.absolute-center;
@@ -121,7 +121,7 @@
         }
 
         &.stroke-1 {
-          top: 25%;
+          top: calc(50% - $stroke-offset);
           left: 50%;
         }
 
@@ -130,7 +130,7 @@
         }
 
         &.stroke-3 {
-          bottom: 25%;
+          bottom: calc(50% - $stroke-offset);
           right: 50%;
           top: auto;
           left: auto;
