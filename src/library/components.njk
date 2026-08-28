@@ -179,6 +179,64 @@ path: library/components
   <p>Coming soon!</p>
 </section>
 
+<section class="image-fan-section library-section">
+  <h2>[ Image Fan - Component ]</h2>
+
+  <p>
+    Images curve along an arc whose radius is derived from the spread and the
+    card spacing, so the whole fan scales with its parent container. Comes with
+    the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>images</code> an array of images, each taking <code>src</code> and
+      <code>alt</code>. Any number of entries.
+    </li>
+    <li>
+      <code>arc</code> a number, the degrees the fan wraps — <code>0</code> =
+      flat row, <code>90</code> = quarter circle, <code>180</code> = semicircle,
+      <code>360</code> = full ring. Defaults to <code>180</code>
+    </li>
+    <li>
+      <code>gap</code> a number, the spacing between cards as a multiple of card
+      width (<code>1</code> = touching, above <code>1</code> = gap, below
+      <code>1</code> = overlap). Defaults to <code>1.15</code>
+    </li>
+    <li>
+      <code>closed</code> a boolean, spread the images evenly around a full
+      <code>360</code> ring (ignores <code>arc</code>). Defaults to
+      <code>false</code>
+    </li>
+    <li>
+      <code>direction</code> a string, <code>up</code> (rainbow, middle card
+      highest) or <code>down</code> (valley). Defaults to <code>up</code>
+    </li>
+    <li>
+      <code>stack</code> a string, <code>sequence</code> (stack in array order)
+      or <code>pyramid</code> (centre card on top, stepping down symmetrically
+      to the first and last). Defaults to <code>sequence</code>
+    </li>
+    <li>
+      <code>item_width</code> a number, the card width as a percent of the
+      component's own width (<code>22</code> = 22%). Defaults to
+      <code>22</code>
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+  <p>
+    Hover feel — sibling shift, rotation, ripple delay and easing — is tuned
+    with the <code>--fan-*</code> custom properties at the top of
+    <code>.image-fan</code> in <code>_image-fan.scss</code>.
+  </p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set image_fan = library.image_fan %}
+  {% include "../_includes/components/image-fan.njk" %}
+</section>
+
 <section class="tile-shuffle-section library-section">
   <h2>[ Image Shuffle - Component ]</h2>
   <p>
@@ -346,7 +404,7 @@ path: library/components
   <br />
 
   <!-- prettier-ignore -->
-  {% set orbit_data = library.solar_system %} 
+  {% set orbit_data = library.solar_system %}
   {% include "../_includes/components/solar-system.njk" %}
 </section>
 
