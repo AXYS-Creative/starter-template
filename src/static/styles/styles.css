@@ -7420,20 +7420,30 @@ div.carousel-swiper-sample-2 .swiper-slide {
 }
 
 .image-fan {
+  isolation: isolate;
   container-type: inline-size;
   width: 100%;
   --fan-step: 45;
   --fan-half: 2;
   --fan-gap: 1.15;
   --fan-item-w: 22;
+  --fan-chop: 0;
   --fan-dir: 1;
   --fan-ease: cubic-bezier(0.33, 1.13, 0.44, 1.5);
   --fan-ease-duration: 0.32s;
   --fan-push: 5cqw;
   --fan-splay: 5deg;
-  --fan-falloff-2: 0.4;
-  --fan-falloff-3: 0.1;
+  --fan-falloff-2: 0.5;
+  --fan-falloff-3: 0.25;
   --fan-ripple: 45ms;
+  --fan-in-offset: 7cqw;
+  --fan-in-duration: 0.55s;
+  --fan-in-stagger: 55ms;
+  --fan-in-ease: cubic-bezier(0.02, 1.14, 0.7, 1.24);
+  --fan-in-rise: 9cqw;
+  --fan-open-duration: 0.48s;
+  --fan-open-stagger: 0.32s;
+  --fan-open-ease: ease;
   --_step: max(var(--fan-step), 0.01);
   --_w: calc(var(--fan-item-w) * 1cqw);
   --_chord: calc(var(--_w) * var(--fan-gap));
@@ -7445,7 +7455,7 @@ div.carousel-swiper-sample-2 .swiper-slide {
 .image-fan__stage {
   position: relative;
   width: 100%;
-  min-height: calc(var(--_drop) + var(--_w) * 1.7);
+  min-height: calc(var(--_drop) + var(--_w) * 1.7 + var(--fan-chop) * var(--fan-half) * 1px);
 }
 .image-fan__item {
   --_phi: calc(
@@ -7453,24 +7463,40 @@ div.carousel-swiper-sample-2 .swiper-slide {
   );
   --_x: calc(var(--_radius) * sin(var(--_phi) * 1deg));
   --_y: calc(var(--_radius) * (1 - cos(var(--_phi) * 1deg)) * var(--fan-dir));
+  --_d: max(
+    calc(var(--i, 0) - var(--fan-half)),
+    calc(var(--fan-half) - var(--i, 0))
+  );
+  --_chop: calc(var(--fan-chop, 0) * var(--_d) * 1px);
   --_push: 0cqw;
   --_splay: 0deg;
   position: absolute;
   left: 50%;
   top: 6%;
   width: var(--_w);
-  margin: 0;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  border: var(--card-border);
-  border-radius: var(--radius);
-  background: var(--color-surface--1);
-  transform: translate(-50%, 0) translate(var(--_x), var(--_y)) translateX(var(--_push)) rotate(calc((var(--_phi) * 1deg + var(--_splay)) * var(--fan-dir))) translateY(var(--fan-lift, 0cqw));
+  aspect-ratio: 2.75/4;
+  transform: translate(-50%, 0) translate(var(--_x), var(--_y)) translateX(var(--_push)) translateY(var(--_chop)) rotate(calc((var(--_phi) * 1deg + var(--_splay)) * var(--fan-dir)));
   transition: transform var(--fan-ease-duration) var(--fan-ease), width 0s;
   z-index: var(--i, 0);
 }
 .image-fan__item:hover, .image-fan__item:focus-within {
   --fan-lift: -3.5cqw;
+}
+.image-fan__reveal {
+  position: absolute;
+  inset: 0;
+}
+.image-fan__card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: var(--card-border);
+  border-radius: min(4px + 2vw, var(--radius));
+  background: var(--color-surface--1);
+  transform: translateY(var(--fan-lift, 0cqw));
+  transition: transform var(--fan-ease-duration) var(--fan-ease);
 }
 .image-fan__img {
   display: block;
@@ -7488,8 +7514,45 @@ div.carousel-swiper-sample-2 .swiper-slide {
   bottom: 6%;
 }
 .image-fan--pyramid .image-fan__item {
-  --_d: abs(var(--i, 0) - var(--fan-half));
   z-index: calc((var(--fan-half) - var(--_d)) * 2);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .image-fan--animate-in .image-fan__item {
+    opacity: 0;
+    translate: 0 var(--fan-in-offset);
+    transition: transform var(--fan-ease-duration) var(--fan-ease), width 0s, opacity var(--fan-in-duration) ease calc(var(--i, 0) * var(--fan-in-stagger)), translate var(--fan-in-duration) var(--fan-in-ease) calc(var(--i, 0) * var(--fan-in-stagger));
+  }
+}
+.image-fan--animate-in.gsap-animated .image-fan__item {
+  opacity: 1;
+  translate: 0 0;
+}
+.image-fan--pyramid.image-fan--animate-in .image-fan__item {
+  opacity: 1;
+  translate: none;
+}
+.image-fan--pyramid.image-fan--animate-in .image-fan__reveal {
+  --_reveal-rise: calc(
+    var(--fan-in-rise) * clamp(0, calc(1 - var(--_d)), 1)
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .image-fan--pyramid.image-fan--animate-in .image-fan__reveal {
+    transition: transform var(--fan-open-duration) var(--fan-open-ease) calc(var(--_d) * var(--fan-open-stagger));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .image-fan--pyramid.image-fan--animate-in:not(.gsap-animated) .image-fan__reveal {
+    transform: rotate(calc(var(--_phi) * -1deg * var(--fan-dir))) translate(calc(var(--_x) * -1), calc(var(--_y) * -1)) translateY(calc(var(--_reveal-rise) - var(--_chop)));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .image-fan--pyramid.image-fan--animate-in:not(.gsap-animated) {
+    pointer-events: none;
+  }
+  .image-fan--pyramid.image-fan--animate-in.gsap-animated {
+    animation: image-fan-unlock 0s linear calc(var(--fan-half) * var(--fan-open-stagger) + var(--fan-open-duration)) both;
+  }
 }
 .image-fan__item:hover + .image-fan__item {
   --_push: var(--fan-push);
@@ -7522,11 +7585,20 @@ div.carousel-swiper-sample-2 .swiper-slide {
   transition-delay: calc(var(--fan-ripple) * 3);
 }
 @media (prefers-reduced-motion: reduce) {
-  .image-fan .image-fan__item {
+  .image-fan .image-fan__item,
+  .image-fan .image-fan__card {
     transition: none;
   }
 }
 
+@keyframes image-fan-unlock {
+  from {
+    pointer-events: none;
+  }
+  to {
+    pointer-events: auto;
+  }
+}
 body .hero-simple.home-hero h1,
 body .hero-simple.home-hero p,
 body .hero-simple.home-hero .cta-group {

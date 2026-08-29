@@ -6,10 +6,12 @@
 {% set direction = image_fan.direction or 'up' %}{# up (rainbow) | down (valley) #}
 {% set item_width = image_fan.item_width or 22 %}{# card width as a % of the component width #}
 {% set stack = image_fan.stack or 'sequence' %}  {# sequence (array order) | pyramid (centre card on top) #}
+{% set animate_in = image_fan.animate_in or false %}{# true = staggered rise-in via the gsap-animate util #}
+{% set chop = image_fan.chop or 0 %}        {# px each sibling pair drops below the last, outward from centre #}
 {% set class = image_fan.class or '' %}
 
 <!-- prettier-ignore -->
-{% set arc = 180 %}
+{% set arc = 90 %}
 {% if image_fan.arc is defined and image_fan.arc != null %}{% set arc = image_fan.arc %}{% endif %}
 
 <!-- prettier-ignore -->
@@ -20,22 +22,27 @@
 
 <!-- prettier-ignore -->
 <div
-  class="image-fan image-fan--{{ direction }}{% if stack == 'pyramid' %} image-fan--pyramid{% endif %} {{ class }}"
-  style="--fan-step: {{ step }}; --fan-half: {{ half }}; --fan-gap: {{ gap }}; --fan-item-w: {{ item_width }};"
+  class="image-fan image-fan--{{ direction }}{% if stack == 'pyramid' %} image-fan--pyramid{% endif %}{% if animate_in %} image-fan--animate-in gsap-animate{% endif %} {{ class }}"
+  style="--fan-step: {{ step }}; --fan-half: {{ half }}; --fan-gap: {{ gap }}; --fan-item-w: {{ item_width }}; --fan-chop: {{ chop }};"
+  {% if animate_in %}data-gsap-once="false"{% endif %}
 >
   <div class="image-fan__stage">
     {% for image in images %}
-    <figure class="image-fan__item" style="--i: {{ loop.index0 }};">
-      <img
-        class="image-fan__img"
-        src="{{ image.src }}"
-        alt="{{ image.alt or '' }}"
-        width="{{ image.width or 400 }}"
-        height="{{ image.height or 533 }}"
-        loading="lazy"
-        eleventy:ignore
-      />
-    </figure>
+    <div class="image-fan__item" style="--i: {{ loop.index0 }};">
+      <div class="image-fan__reveal">
+        <figure class="image-fan__card">
+          <img
+            class="image-fan__img"
+            src="{{ image.src }}"
+            alt="{{ image.alt or '' }}"
+            width="{{ image.width or 400 }}"
+            height="{{ image.height or 533 }}"
+            loading="lazy"
+            eleventy:ignore
+          />
+        </figure>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </div>

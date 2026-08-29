@@ -195,12 +195,18 @@ path: library/components
     <li>
       <code>arc</code> a number, the degrees the fan wraps — <code>0</code> =
       flat row, <code>90</code> = quarter circle, <code>180</code> = semicircle,
-      <code>360</code> = full ring. Defaults to <code>180</code>
+      <code>360</code> = full ring. Defaults to <code>90</code>
     </li>
     <li>
       <code>gap</code> a number, the spacing between cards as a multiple of card
       width (<code>1</code> = touching, above <code>1</code> = gap, below
       <code>1</code> = overlap). Defaults to <code>1.15</code>
+    </li>
+    <li>
+      <code>chop</code> a number, the pixels each ring drops below the one
+      inside it, outward from the centre — <code>12</code> drops the 2nd / 4th
+      cards <code>12</code>px, the 1st / 5th <code>24</code>px, and so on for a
+      stepped-down fan. Defaults to <code>0</code>
     </li>
     <li>
       <code>closed</code> a boolean, spread the images evenly around a full
@@ -221,11 +227,19 @@ path: library/components
       component's own width (<code>22</code> = 22%). Defaults to
       <code>22</code>
     </li>
+    <li>
+      <code>animate_in</code> a boolean, reveal the fan when it scrolls into
+      view (wires up the <code>gsap-animate</code> util) —
+      <code>sequence</code> rises the cards in with a staggered fade,
+      <code>pyramid</code> starts them collapsed on the centre card then opens
+      the fan out along the arc. Defaults to <code>false</code>
+    </li>
     <li><code>class</code> a string value for a custom css class</li>
   </ul>
   <p>
-    Hover feel — sibling shift, rotation, ripple delay and easing — is tuned
-    with the <code>--fan-*</code> custom properties at the top of
+    Hover feel — sibling shift, rotation, ripple delay and easing — plus the
+    <code>animate_in</code> offset, rise, duration and stagger are tuned with
+    the <code>--fan-*</code> custom properties at the top of
     <code>.image-fan</code> in <code>_image-fan.scss</code>.
   </p>
 
