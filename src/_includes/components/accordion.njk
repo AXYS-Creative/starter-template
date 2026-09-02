@@ -3,20 +3,39 @@
 {% set icon = accordion.icon or '' %}
 {% set plus = accordion.plus or false %}
 {% set single_open = accordion.single_open or false %}
+{% set toggle_all = accordion.toggle_all or false %}
+{% set toggle_all_text_open = accordion.toggle_all_text_open or 'Open All' %}
+{% set toggle_all_text_close = accordion.toggle_all_text_close or 'Close All' %}
 {% set items = accordion.items or null %}
 
-<div class="accordion" data-single-open="{{ single_open }}">
-  {% for item in items %}
+<div
+  class="accordion"
+  id="accordion-{{ id }}"
+  data-single-open="{{ single_open }}"
+>
   <!-- prettier-ignore -->
-  <button
-    class="accordion-btn tab-element-page"
-    {%if item.content_start%}
-      id="content-start"
-    {%endif%}
-    aria-expanded="false"
-    aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
-  >
-    <div class="accordion-label">
+  {% if toggle_all and not single_open %}
+    {% set btn = ({
+      text: toggle_all_text_open,
+      type: 'outline',
+      size: 'sm',
+      class: 'accordion-toggle-all',
+      attributes: 'aria-expanded="false" aria-controls="accordion-' ~ id ~ '" data-text-open="' ~ toggle_all_text_open ~ '" data-text-close="' ~ toggle_all_text_close ~ '"'
+    }) %}
+    {% include "./btn.njk" %}
+  {% endif %}
+  
+  {% for item in items %}
+  <div class="accordion-item">
+    <!-- prettier-ignore -->
+    <button
+      class="accordion-btn accordion-label tab-element-page"
+      {%if item.content_start%}
+        id="content-start"
+      {%endif%}
+      aria-expanded="false"
+      aria-controls="accordion-{{ id }}-item-{{ loop.index }}"
+    >
       <span class="accordion-label__title">{{ item.title }}</span>
 
       {% if icon %}
@@ -31,7 +50,7 @@
         <span class="accordion-label__plus-line"></span>
       </span>
       {% endif %}
-    </div>
+    </button>
     <div
       class="accordion-content"
       id="accordion-{{ id }}-item-{{ loop.index }}"
@@ -40,6 +59,6 @@
         <p class="accordion-content__message">{{ item.content | safe }}</p>
       </div>
     </div>
-  </button>
+  </div>
   {% endfor %}
 </div>

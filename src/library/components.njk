@@ -41,6 +41,14 @@ path: library/components
       <code>false</code>
     </li>
     <li>
+      <code>toggle_all</code> a boolean to show a button that opens or closes
+      all accordion items at once. Requires <code>single_open</code> to be
+      <code>false</code>. Defaults to <code>false</code>. Optionally override
+      the button label via <code>toggle_all_text_open</code> and
+      <code>toggle_all_text_close</code>, which default to
+      <code>Open All</code> and <code>Close All</code>
+    </li>
+    <li>
       <code>items</code> an object that takes in <code>title</code> and
       <code>content</code> both of which are strings (content is 'safe' for
       markup) — used for the accordion title and message within. You also have
@@ -63,7 +71,7 @@ path: library/components
   <br /><br /><br /><br />
 
   <p style="display: block; margin-bottom: 64px">
-    Accordion with <code>plus</code> config
+    Accordion with <code>plus</code> and <code>toggle_all</code> configs
   </p>
   <!-- prettier-ignore -->
   {% set accordion = library.accordion.accordion_2 %}

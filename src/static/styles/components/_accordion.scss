@@ -4,31 +4,38 @@
 .accordion {
   display: flex;
   flex-direction: column;
+  align-items: start;
 
-  &-btn {
+  &-item {
     $border: var(--border-width--bold) solid var(--color-border);
 
-    // color: var(--color-font--primary);
     border-bottom: $border;
-    text-align: left;
-    padding-block: 20px;
+    // padding-block: 20px;
 
     @include mixins.mq-motion-allow {
       transition: border vars.$ease;
     }
 
-    @include mixins.desktop-hover {
-      border-color: var(--color-brand--primary);
+    @media (hover: hover) and (pointer: fine) {
+      &:has(.accordion-btn:hover),
+      &:has(.accordion-btn:focus-visible) {
+        border-color: var(--color-brand--primary);
+      }
     }
 
     // &:first-of-type {
     //   border-top: $border;
     // }
+  }
+
+  &-btn {
+    text-align: left;
 
     &[aria-expanded="true"] {
-      .accordion-content {
+      + .accordion-content {
         grid-template-rows: 1fr;
         visibility: visible;
+        padding-block-end: 12px;
       }
 
       .accordion-label__icon {
@@ -44,10 +51,22 @@
     }
   }
 
+  &-toggle-all {
+    margin-block-end: 12px;
+
+    &[aria-expanded="true"] {
+      .btn__icon-end {
+        transform: scaleY(-1);
+      }
+    }
+  }
+
   &-label {
     @include mixins.font-styles--body(lg);
     @include mixins.row-start(space-between);
     gap: 24px;
+    width: 100%;
+    padding-block: 12px;
 
     @include mixins.mq-max(sm) {
       gap: 12px;

@@ -5917,31 +5917,40 @@ code.codearea {
 .accordion {
   display: flex;
   flex-direction: column;
+  align-items: start;
 }
-.accordion-btn {
+.accordion-item {
   border-bottom: var(--border-width--bold) solid var(--color-border);
-  text-align: left;
-  padding-block: 20px;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .accordion-btn {
+  .accordion-item {
     transition: border 0.24s ease;
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .accordion-btn:hover, .accordion-btn:focus-visible {
+  .accordion-item:has(.accordion-btn:hover), .accordion-item:has(.accordion-btn:focus-visible) {
     border-color: var(--color-brand--primary);
   }
 }
-.accordion-btn[aria-expanded=true] .accordion-content {
+.accordion-btn {
+  text-align: left;
+}
+.accordion-btn[aria-expanded=true] + .accordion-content {
   grid-template-rows: 1fr;
   visibility: visible;
+  padding-block-end: 12px;
 }
 .accordion-btn[aria-expanded=true] .accordion-label__icon {
   transform: scaleY(-1);
 }
 .accordion-btn[aria-expanded=true] .accordion-label__plus-line:last-of-type {
   rotate: 0deg;
+}
+.accordion-toggle-all {
+  margin-block-end: 12px;
+}
+.accordion-toggle-all[aria-expanded=true] .btn__icon-end {
+  transform: scaleY(-1);
 }
 .accordion-label {
   --font-size: 16px;
@@ -5975,6 +5984,8 @@ code.codearea {
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
+  width: 100%;
+  padding-block: 12px;
 }
 @media (max-width: 480px) {
   .accordion-label {

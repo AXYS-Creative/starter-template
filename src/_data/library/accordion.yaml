@@ -17,6 +17,7 @@ accordion_2:
   icon:
   plus: true
   single_open: false
+  toggle_all: true
   items:
     - title: "What happens if you have really long content? Does this still work with lengthy titles or does it just work with short ones? What will happen?"
       content: "48 characters. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, fugiat, consequatur perferendis eius sapiente pariatur repudiandae amet molestiae deleniti laborum rem rerum laudantium autem omnis non numquam. Porro, dicta? Velit, rem dolores! Voluptatem, qui exercitationem minus illo quam aperiam vero commodi? Sit mollitia quidem illum ab aut minima."
