@@ -1,4 +1,3 @@
 form_data:
-  show_field_discovery: true
-  max_count_discovery: 250
-  show_recaptcha: true
+  use_feedback: true
+  show_field_message: true

@@ -1,19 +1,14 @@
 @use "../base/mixins";
 @use "../base/variables" as vars;
 
-.form-section {
-  @include mixins.column-center;
-  h2 {
-    margin-block-end: 64px;
-  }
-}
-
 .form-feedback,
 .form-redirect {
   @include mixins.font-styles--body;
   @include mixins.column-center;
   gap: 2em;
-  width: min(100%, 768px);
+  // width: min(100%, 768px);
+  width: 100%;
+  margin-inline: auto;
 
   @include mixins.mq-max(md) {
     width: calc(100% - var(--body-padding) * 2);
@@ -117,16 +112,5 @@
     @include mixins.column-center;
     gap: 12px;
     width: 100%;
-
-    .status-message {
-      opacity: 0;
-      visibility: hidden;
-      transition: vars.$ease;
-
-      &.active {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
   }
 }

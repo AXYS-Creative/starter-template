@@ -1991,6 +1991,17 @@ code.codearea {
     justify-content: center;
     align-items: center;
   }
+  .library-section--thin {
+    padding-inline: var(--body-padding);
+    padding-block: var(--body-padding-double);
+  }
+}
+@media (min-width: 1025px) {
+  .library-section--thin {
+    padding-inline: calc(var(--body-padding) * 4);
+  }
+}
+@media all {
   .library-section .text-fade code.gsap-animate,
   .library-section .text-scale code.gsap-animate {
     background: transparent;
@@ -6210,6 +6221,8 @@ code.codearea {
   border-radius: 296px;
   padding: 4px 8px;
   font-size: 14px;
+  vertical-align: middle;
+  letter-spacing: 0;
 }
 .badge__icon {
   background-color: currentColor;
@@ -6913,16 +6926,6 @@ div.carousel-swiper-sample-2 .swiper-slide {
   align-items: center;
 }
 
-.form-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.form-section h2 {
-  margin-block-end: 64px;
-}
-
 .form-feedback,
 .form-redirect {
   --font-size: 16px;
@@ -6951,7 +6954,8 @@ div.carousel-swiper-sample-2 .swiper-slide {
   justify-content: center;
   align-items: center;
   gap: 2em;
-  width: min(100%, 768px);
+  width: 100%;
+  margin-inline: auto;
 }
 @media (max-width: 768px) {
   .form-feedback,
@@ -7065,15 +7069,6 @@ div.carousel-swiper-sample-2 .swiper-slide {
   align-items: center;
   gap: 12px;
   width: 100%;
-}
-.form-feedback .form-footer .status-message {
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.24s ease;
-}
-.form-feedback .form-footer .status-message.active {
-  opacity: 1;
-  visibility: visible;
 }
 
 .counter-section__group {

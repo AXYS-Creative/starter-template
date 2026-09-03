@@ -1,12 +1,12 @@
 const alertEls = document.querySelectorAll(".alert");
 const alertTriggers = document.querySelectorAll(".alert-trigger");
 
-const hideAlert = (alertEl) => {
+export const hideAlert = (alertEl) => {
   alertEl.setAttribute("aria-hidden", true);
   alertEl.setAttribute("inert", "");
 };
 
-const showAlert = (alertEl) => {
+export const showAlert = (alertEl) => {
   alertEl.setAttribute("aria-hidden", false);
   alertEl.removeAttribute("inert");
 

@@ -501,6 +501,10 @@
       @include mixins.column-center;
     }
 
+    &--thin {
+      @include mixins.section-padding(thin);
+    }
+
     .text-fade,
     .text-scale {
       code.gsap-animate {

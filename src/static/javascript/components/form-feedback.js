@@ -1,9 +1,11 @@
-const contactForm = document.querySelector(".form-feedback"),
-  statusMessage = document.querySelector(".form-feedback .status-message"),
-  emailInput = document.querySelector(".form-feedback .input-email");
+import { showAlert } from "./alert.js";
 
-const errorClasses = ["error-message", "active"];
-const successClasses = ["success-message", "active"];
+const contactForm = document.querySelector(".form-feedback"),
+  emailInput = document.querySelector(".form-feedback .input-email"),
+  successAlert = document.querySelector('.form-feedback .alert[data-alert-type="success"]'),
+  errorAlert = document.querySelector('.form-feedback .alert[data-alert-type="error"]'),
+  errorMessageEl = errorAlert?.querySelector(".alert-content__message"),
+  errorMessageDefault = errorMessageEl?.textContent;
 
 if (contactForm) {
   const handleSubmit = (event) => {
@@ -14,20 +16,10 @@ if (contactForm) {
       JSON.parse(localStorage.getItem("submittedEmails")) || [];
 
     if (submittedEmails.includes(email)) {
-      statusMessage.innerHTML = `
-        ⚠️ Error! This email has already been submitted.
-      `;
-      statusMessage.classList.add(...errorClasses);
-
-      setTimeout(function () {
-        statusMessage.classList.remove("active");
-      }, 8000);
-
-      setTimeout(function () {
-        statusMessage.innerHTML = "";
-        statusMessage.classList.remove("error-message");
-      }, 9000);
-
+      if (errorMessageEl) {
+        errorMessageEl.textContent = "This email has already been submitted.";
+      }
+      showAlert(errorAlert);
       return;
     } else {
       submittedEmails.push(email);
@@ -43,23 +35,14 @@ if (contactForm) {
       body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
-        statusMessage.innerHTML = `
-          ✅ Message recieved! We’ll get back to you shortly.
-        `;
-        statusMessage.classList.add(...successClasses);
-
-        setTimeout(function () {
-          statusMessage.classList.remove("active");
-        }, 8000);
-
-        setTimeout(function () {
-          statusMessage.innerHTML = "";
-          statusMessage.classList.remove("success-message");
-        }, 9000);
+        showAlert(successAlert);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
-        alert(error);
+        if (errorMessageEl) {
+          errorMessageEl.textContent = errorMessageDefault;
+        }
+        showAlert(errorAlert);
       });
   };
 

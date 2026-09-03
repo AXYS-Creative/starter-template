@@ -156,30 +156,103 @@ path: library/components
   </div>
 </section>
 
-<section class="form-section">
-  <h2>[ Form Feedback - Component ]</h2>
+<section class="form-section library-section library-section--thin">
+  <h2>[ Form - Component ]</h2>
   <strong>Note: Forms require additional setup in Netlify.</strong>
   <br />
   <br />
   <p>
-    After submitting the form, the user sees a temporary feedback message.
-    Either success or error.
+    A single form component covering both submission behaviors below. Comes with
+    the following configs, all passed via <code>form_data</code>:
   </p>
+  <ul class="classic-list">
+    <li>
+      <code>use_feedback</code> a boolean, shows success/error
+      <code>alert.njk</code> toasts on submit instead of redirecting. Defaults
+      to <code>false</code>
+    </li>
+    <li>
+      <code>name</code> a string, sets the form's Netlify form name (and root
+      css class). Defaults to <code>form-feedback</code> when
+      <code>use_feedback</code> is <code>true</code>, otherwise
+      <code>form-redirect</code>
+    </li>
+    <li>
+      <code>action</code> a string, the form's submit target. Defaults to
+      <code>/</code> when <code>use_feedback</code> is <code>true</code>,
+      otherwise <code>/contact</code>
+    </li>
+    <li>
+      <code>show_field_message</code> a boolean, adds a message textarea.
+      Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>show_field_phone</code> a boolean, adds a phone field. Defaults to
+      <code>false</code>
+    </li>
+    <li>
+      <code>show_field_address</code> a boolean, adds city/state/zip fields.
+      Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>show_field_discovery</code> a boolean, adds a "how did you hear
+      about us" textarea. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>max_count_discovery</code> a number, character limit for the
+      discovery textarea
+    </li>
+    <li>
+      <code>show_recaptcha</code> a boolean, adds a Netlify reCAPTCHA widget and
+      hides the form until it's ready. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>submit_text</code> a string, the submit button's label. Defaults to
+      <code>Send message</code> when <code>use_feedback</code> is
+      <code>true</code>, otherwise <code>Submit</code>
+    </li>
+    <li>
+      <code>submit_aria_label</code> a string, the submit button's accessible
+      label
+    </li>
+    <li>
+      <code>alert_success_title</code> a string, the success alert's title. Only
+      used when <code>use_feedback</code> is <code>true</code>
+    </li>
+    <li>
+      <code>alert_success_message</code> a string, the success alert's message.
+      Only used when <code>use_feedback</code> is <code>true</code>
+    </li>
+    <li>
+      <code>alert_error_title</code> a string, the error alert's title. Only
+      used when <code>use_feedback</code> is <code>true</code>
+    </li>
+    <li>
+      <code>alert_error_message</code> a string, the error alert's message. Only
+      used when <code>use_feedback</code> is <code>true</code>
+    </li>
+    <li><code>class</code> a string, an additional class on the form</li>
+  </ul>
   <br />
-  <br />
-  <!-- prettier-ignore -->
-  {% set form_data = library.form_contact.form_data %}
-  {% include "../_includes/components/form-feedback.njk" %}
-</section>
 
-<section class="form-section">
-  <h2>[ Form Redirect - Component ]</h2>
-  <p>After submitting the form, the user is redirected to a new page.</p>
+  <p>
+    With <code>use_feedback</code> set to <code>true</code>, the user sees a
+    temporary <code>alert.njk</code> toast on submit. Either success or error.
+  </p>
+  <!-- prettier-ignore -->
+  {% set form_data = library.form_feedback.form_data %}
+  {% include "../_includes/components/form.njk" %}
+
   <br />
   <br />
+
+  <p>
+    With the default config, the user is redirected to a new page after
+    submitting.
+  </p>
   <!-- prettier-ignore -->
   {% set form_data = library.form_redirect.form_data %}
-  {% include "../_includes/components/form-redirect.njk" %}
+  {% include "../_includes/components/form.njk" %}
 </section>
 
 <section class="image-comparison-section library-section">

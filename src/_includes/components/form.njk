@@ -1,0 +1,219 @@
+<!-- props -->
+<!-- prettier-ignore -->
+{% set use_feedback = form_data.use_feedback or false %}
+{% set variant = form_data.name or (use_feedback and 'form-feedback' or 'form-redirect') %}
+{% set action = form_data.action or (use_feedback and '/' or '/contact') %}
+{% set show_field_message = form_data.show_field_message or false %}
+{% set show_field_phone = form_data.show_field_phone or false %}
+{% set show_field_address = form_data.show_field_address or false %}
+{% set show_field_discovery = form_data.show_field_discovery or false %}
+{% set max_count_discovery = form_data.max_count_discovery or null %}
+{% set show_recaptcha = form_data.show_recaptcha or false %}
+{% set submit_text = form_data.submit_text or (use_feedback and 'Send message' or 'Submit') %}
+{% set submit_aria_label = form_data.submit_aria_label or (use_feedback and 'Send your message' or '') %}
+{% set alert_success_title = form_data.alert_success_title or 'Message received!' %}
+{% set alert_success_message = form_data.alert_success_message or 'We’ll get back to you shortly.' %}
+{% set alert_error_title = form_data.alert_error_title or 'Something went wrong' %}
+{% set alert_error_message = form_data.alert_error_message or 'Please try again.' %}
+{% set class = form_data.class or '' %}
+
+<!-- prettier-ignore -->
+<form
+  class="{{ variant }}{{ ' ' + class if class }}"
+  action="{{ action }}"
+  method="post"
+  name="{{ variant }}"
+  netlify
+  netlify-honeypot="bot-field"
+  {% if show_recaptcha %}
+    data-netlify-recaptcha="true"
+    hidden
+  {% endif %}
+>
+  <input type="hidden" name="bot-field" />
+
+  <div class="form-block form-block--name">
+    <input
+      class="input input-name tab-element-page"
+      id="name"
+      name="name"
+      type="text"
+      title="Please enter your first and last name."
+      aria-label="Please enter your first and last name."
+      placeholder=" "
+      required
+    />
+    <label class="label" for="name">Name</label>
+  </div>
+
+  <!-- prettier-ignore -->
+  {% if show_field_phone %}
+  <div class="form-block-group form-block-group--email-phone">
+  {% endif %}
+    <div class="form-block form-block--email">
+      <input
+        class="input input-email tab-element-page"
+        id="email"
+        name="email"
+        type="email"
+        title="Please enter your email address."
+        aria-label="Please enter your email address."
+        placeholder=" "
+        required
+      />
+      <label class="label" for="email">Email</label>
+    </div>
+
+    {% if show_field_phone %}
+    <div class="form-block form-block--phone">
+      <input
+        class="input tab-element-page"
+        id="phone"
+        name="phone"
+        type="tel"
+        pattern="[0-9]*"
+        title="Please enter your phone number."
+        aria-label="Please enter your phone number."
+        placeholder=" "
+        required
+      />
+      <label class="label" for="phone">Phone</label>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if show_field_address %}
+  <div class="form-block form-block--city">
+    <input
+      class="input tab-element-page"
+      id="city"
+      name="city"
+      type="text"
+      title="Please enter your city."
+      aria-label="Please enter your city."
+      placeholder=" "
+      required
+    />
+    <label class="label" for="city">City</label>
+  </div>
+
+  <div class="form-block-group form-block-group--state-zip">
+    <div class="form-block form-block--state">
+      <input
+        class="input tab-element-page"
+        id="state"
+        name="state"
+        type="text"
+        title="Please enter your state."
+        aria-label="Please enter your state."
+        placeholder=" "
+        required
+      />
+      <label class="label" for="state">State</label>
+    </div>
+    <div class="form-block form-block--zip">
+      <input
+        class="input tab-element-page"
+        id="zip"
+        name="zip"
+        type="number"
+        inputmode="numeric"
+        title="Please enter your zip code."
+        aria-label="Please enter your zip code."
+        placeholder=" "
+        required
+      />
+      <label class="label" for="zip">Zip</label>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if show_field_message %}
+  <div class="form-block">
+    <textarea
+      class="input textarea input-message tab-element-page"
+      id="message"
+      name="message"
+      maxlength="250"
+      spellcheck="true"
+      title="Please enter your message here."
+      aria-label="Please enter your message here."
+      aria-describedby="message-label"
+      placeholder=" "
+      required
+    ></textarea>
+    <label class="label form-message-label" id="message-label" for="message" aria-live="assertive">
+      Message
+      <span class="nested-label"></span>
+    </label>
+  </div>
+  {% endif %}
+
+  {% if show_field_discovery %}
+  <div class="form-block form-block--discovery">
+    <textarea
+      class="input input--textarea tab-element-page"
+      id="discovery"
+      maxlength="{{ max_count_discovery }}"
+      spellcheck="true"
+      name="How did you hear about us?"
+      title="How did you hear about us?"
+      aria-label="How did you hear about us?"
+      placeholder=" "
+      required
+    ></textarea>
+    <label
+      class="label label--textarea"
+      id="discovery-label"
+      for="discovery"
+      aria-live="assertive"
+    >
+      How did you hear about us?
+      <!-- prettier-ignore -->
+      {% if max_count_discovery %}
+      <span class="nested-label"></span>
+      {% endif %}
+    </label>
+  </div>
+  {% endif %}
+
+  <!-- prettier-ignore -->
+  {% if show_recaptcha %}
+  <div data-netlify-recaptcha="true" class="recaptcha" style="width: 304px; height: 78px;"></div>
+  {% endif %}
+
+  <div class="form-footer">
+    <!-- prettier-ignore -->
+    {% set btn = ({
+      text: submit_text,
+      text_desc: submit_aria_label,
+      type: 'solid',
+      class: 'cta-1 magnet',
+      attributes: 'type="submit" data-magnet-x="0.5" data-magnet-y="1"'
+    }) %}
+    {% include "./btn.njk" %}
+
+    {% if use_feedback %}
+    <!-- prettier-ignore -->
+    {% set alert = ({
+      id: variant~'-success',
+      type: 'success',
+      title: alert_success_title,
+      message: alert_success_message,
+      auto_close: 8000,
+      timer: true
+    }) %}
+    {% include "./alert.njk" %}
+
+    {% set alert = ({
+      id: variant~'-error',
+      type: 'warning',
+      title: alert_error_title,
+      message: alert_error_message,
+      auto_close: 8000,
+      timer: true
+    }) %}
+    {% include "./alert.njk" %}
+    {% endif %}
+  </div>
+</form>

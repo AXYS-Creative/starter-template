@@ -2,6 +2,8 @@
 layout: app
 path: library/combos
 # Non public facing DELETE ME CHANGE ME
+
+all_badge_types: "outline"
 ---
 
 <!-- prettier-ignore -->
@@ -250,7 +252,15 @@ path: library/combos
   <br />
 
   <div class="library-section-info">
-    <h3>Tabs Component <em>(Cookie cutter panels)</em></h3>
+    <h3>
+      Tabs Component
+      <!-- prettier-ignore -->
+      {% set badge = { 
+        text: 'Cookie Cutter Panels',
+        type: all_badge_types
+      } %} 
+      {%include "../_includes/components/badge.njk" %}
+    </h3>
     <p class="max-width-text">
       A simplified version of the tabs util. Use the component when the tab
       content shares the same structure across each panel. Comes with the
@@ -281,7 +291,16 @@ path: library/combos
   <br /><br />
 
   <div class="library-section-info">
-    <h3>Tabs Util <em>(Custom panels)</em></h3>
+    <h3>
+      Tabs Util
+
+      <!-- prettier-ignore -->
+      {% set badge = { 
+        text: 'Custom Panels',
+        type: all_badge_types
+      } %} 
+      {%include "../_includes/components/badge.njk" %}
+    </h3>
     <p class="max-width-text">
       A more hands-on version of tabs. Intended when you need unique markup
       across each panel. The setup is straight forward — here's a visual of the
@@ -389,7 +408,15 @@ path: library/combos
   </p>
   <br />
 
-  <h3>Tooltip Component <em>(stationary)</em></h3>
+  <h3>
+    Tooltip Component
+    <!-- prettier-ignore -->
+    {% set badge = { 
+        text: 'Stationary',
+        type: all_badge_types
+      } %} 
+      {%include "../_includes/components/badge.njk" %}
+  </h3>
   <p>
     The component variation <code>tooltip.njk</code> comes with the following
     config options:
@@ -449,7 +476,16 @@ path: library/combos
 
   <br aria-hidden="true" />
   <br aria-hidden="true" />
-  <h3>Tooltip Util <em>(follows mouse)</em></h3>
+  <h3>
+    Tooltip Util
+
+    <!-- prettier-ignore -->
+    {% set badge = { 
+        text: 'Follows Mouse',
+        type: all_badge_types
+      } %} 
+      {%include "../_includes/components/badge.njk" %}
+  </h3>
   <strong>
     Note: requires mouse-cursor.njk component.
     <br />
