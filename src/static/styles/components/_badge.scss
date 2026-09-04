@@ -1,3 +1,5 @@
+@use "../base/mixins";
+
 // .badges-group {
 
 // }
@@ -35,9 +37,8 @@
   }
 
   &-type--glass {
-    background: var(--color-glass-frost);
+    @include mixins.glass-background;
     border-color: var(--color-glass-frost);
-    backdrop-filter: blur(4px);
     color: var(--color-font--primary);
   }
 }

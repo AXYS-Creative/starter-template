@@ -6238,8 +6238,8 @@ code.codearea {
 }
 .badge-type--glass {
   background: var(--color-glass-frost);
+  backdrop-filter: blur(8px);
   border-color: var(--color-glass-frost);
-  backdrop-filter: blur(4px);
   color: var(--color-font--primary);
 }
 

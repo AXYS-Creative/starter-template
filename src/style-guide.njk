@@ -376,7 +376,16 @@ title: Style Guide
   {% include "./_includes/components/btn-video-toggle.njk" %}
 
   <br /><br />
-  <h3>Toggle Sliders (Util structure)</h3>
+  <h3>
+    Toggle Sliders
+
+    <!-- prettier-ignore -->
+    {% set badge = { 
+      text: 'Util Structure',
+      type: "outline"
+    } %} 
+    {%include "./_includes/components/badge.njk" %}
+  </h3>
   <br />
   <p>Toggle sliders look for a structure similar to the one below:</p>
   <br /><br />
@@ -483,7 +492,7 @@ title: Style Guide
       Badge <code>badge.njk</code> that keep styles consistent and easy to use.
       These come with the following types:
       <code style="display: inline-block; margin-block: 12px 24px">
-        solid | outline | text | icon-end | underline
+        solid | outline | glass
       </code>
     </p>
   </header>
