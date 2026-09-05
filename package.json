@@ -6,7 +6,11 @@
     "build": "cross-env NODE_ENV=production eleventy",
     "browsersync": "browser-sync start --server _site --files _site --port 8080 --no-notify --no-open",
     "watch": "sass --watch src/static/styles/styles.scss:src/static/styles/styles.css",
-    "sass:build": "sass src/static/styles/styles.scss:src/static/styles/styles.css --style=compressed"
+    "sass:build": "sass src/static/styles/styles.scss:src/static/styles/styles.css --style=compressed",
+    "setup": "nvm install && npm ci && npm run sass:build"
+  },
+  "engines": {
+    "node": ">=20.19"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
