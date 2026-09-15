@@ -1,15 +1,16 @@
 @use "../base/mixins";
 
 .cta-1 {
-  @include mixins.btn-type--solid;
+  @include mixins.btn-type--primary; // Not sure if these are needed... defaults set in cta-group.njk
 }
 
 .cta-2 {
-  @include mixins.btn-type--icon-end;
+  @include mixins.btn-type--secondary; // Not sure if these are needed... defaults set in cta-group.njk
 }
 
 .cta-group {
   @include mixins.row-center(flex-start);
   gap: var(--spacing);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }

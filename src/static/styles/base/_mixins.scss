@@ -260,7 +260,7 @@ $min-breakpoints: ();
 @mixin btn-type--outline {
   border: var(--border-width--btn) solid var(--color-btn-border);
   border-radius: var(--radius--btn);
-  color: var(--color-btn-text);
+  color: var(--color-btn-text); // Fragile without setting the bg color
   padding: var(--padding-btn);
 
   @include mq-motion-allow {
@@ -293,7 +293,7 @@ $min-breakpoints: ();
   }
 
   .btn__icon-end {
-    background-color: var(--color-brand--primary);
+    background-color: currentColor;
   }
 }
 
@@ -378,6 +378,16 @@ $min-breakpoints: ();
   @include desktop-hover {
     color: var(--color-link--hover);
   }
+}
+
+@mixin btn-type--primary {
+  // Role based vs delcarative. Alter these mixins as needed.
+  @include btn-type--solid;
+}
+
+@mixin btn-type--secondary {
+  // Role based vs delcarative. Alter these mixins as needed.
+  @include btn-type--text;
 }
 
 //

@@ -1,4 +1,5 @@
 <!-- prettier-ignore -->
+{% set class = nav_btn.class or '' %}
 {% set text = nav_btn.text or '' %}
 {% set type = nav_btn.type | default('icon') %}
 {% set symbol = nav_btn.symbol | default('burger') %}
@@ -6,7 +7,13 @@
 
 <div class="site-nav-btn-wrapper glitch-pair">
   <button
-    class="site-nav-btn site-nav-btn--{{ type }} cursor-trigger glitch-trigger"
+    class="
+      site-nav-btn 
+      site-nav-btn--{{ type }} 
+      site-nav-btn--{{ class }} 
+      cursor-trigger 
+      glitch-trigger
+    "
     id="site-nav-btn"
     aria-controls="site-navigation"
     aria-label="Toggle navigation menu"

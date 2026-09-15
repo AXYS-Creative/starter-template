@@ -24,8 +24,10 @@
     top: 24px;
     gap: 2ch;
 
-    @include mixins.mq-max(lg) {
-      display: none;
+    .nav-cta-primary {
+      @include mixins.mq-max(lg) {
+        display: none;
+      }
     }
   }
 
@@ -87,7 +89,6 @@
 // only using :has() for template // DELETE ME
 body:has(.header-absolute) {
   .site-nav {
-    // border: vars.$test;
     @include mixins.hide-content;
     position: fixed;
     top: 0;
@@ -157,7 +158,6 @@ body:has(.header-absolute) {
 
     &[aria-hidden="false"] {
       @include mixins.show-content;
-      background: var(--color-background);
     }
   }
 
@@ -173,5 +173,17 @@ body:has(.header-absolute) {
         font-size: 20px;
       }
     }
+  }
+}
+
+body:has(.nav-absolute) {
+  .main-content {
+    transition: vars.$ease;
+  }
+}
+
+body:has(.nav-absolute[aria-hidden="false"]) {
+  .main-content {
+    @include mixins.hide-content;
   }
 }

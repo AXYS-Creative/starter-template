@@ -44,7 +44,9 @@
   &__trigger {
     --icon-size: 1em;
 
+    @include mixins.inherit-font;
     @include mixins.row-center;
+    font-weight: var(--btn-font-weight);
     color: var(--color-font--primary);
     gap: var(--gap-btn-icon);
     border-radius: var(--radius--btn);

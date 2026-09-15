@@ -4,10 +4,17 @@
 .btn {
   --icon-size: 1em;
 
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   gap: var(--gap-btn-icon);
   flex-shrink: 0;
+
+  &__text {
+    @include mixins.inherit-font;
+  }
 
   &:has(.btn__icon-end) {
     --icon-circle-size: 1.5em;
@@ -43,11 +50,11 @@
 
   &-type--primary {
     // For production sites, role based vs declarative
-    @include mixins.btn-type--solid;
+    @include mixins.btn-type--primary;
   }
   &-type--secondary {
     // For production sites, role based vs declarative
-    @include mixins.btn-type--outline;
+    @include mixins.btn-type--secondary;
   }
   // End Types
 

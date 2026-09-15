@@ -454,12 +454,12 @@ collections:
             label: Site Name
             widget: string
             required: true
-            hint: Sample Business Co
+            hint: Sample Business Co. This auto appears in the footer copyright text.
           - name: url
             label: URL
             widget: string
             required: true
-            hint: Full URL to your site. Don't include end slash /
+            hint: Full URL to your site. Don't include an end slash '/'
           - name: author
             label: Author
             widget: string

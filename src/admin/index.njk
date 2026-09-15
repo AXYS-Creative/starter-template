@@ -57,7 +57,7 @@
 
     <!-- Custom Admin Dashboard Styles -->
     <script>
-      console.log("sup diddy");
+      // console.log("testing dashboard styles");
     </script>
 
     <!-- Admin Preview Styles -->
@@ -84,8 +84,8 @@
           Array.from({ length: count }, (_, i) =>
             h("span", {
               className: `site-nav-btn__stroke stroke-${i + 1}`,
-            })
-          )
+            }),
+          ),
         );
       };
 
@@ -115,7 +115,7 @@
                     className: "logo-link__img",
                     src: logo.src_dark || logo.src_light,
                     alt: logo.text || "Site logo",
-                  })
+                  }),
                 )
               : null,
 
@@ -140,10 +140,10 @@
                         target: link.new_tab ? "_blank" : null,
                         rel: link.new_tab ? "noopener noreferrer" : null,
                       },
-                      link.title
-                    )
-                  )
-                )
+                      link.title,
+                    ),
+                  ),
+                ),
               ),
 
             // Navigation Button (just a text fallback)
@@ -158,9 +158,9 @@
                   "aria-expanded": "false",
                 },
                 navBtn.text &&
-                  h("small", { className: "site-nav-btn__text" }, navBtn.text)
-              )
-            )
+                  h("small", { className: "site-nav-btn__text" }, navBtn.text),
+              ),
+            ),
           );
         },
       });
@@ -184,15 +184,15 @@
                 h(
                   "a",
                   { className: "cta-1", href: data.cta_1.url || "#" },
-                  data.cta_1.text
+                  data.cta_1.text,
                 ),
               data.cta_2?.text &&
                 h(
                   "a",
                   { className: "cta-2", href: data.cta_2.url || "#" },
-                  data.cta_2.text
-                )
-            )
+                  data.cta_2.text,
+                ),
+            ),
           );
         },
       });

@@ -167,6 +167,43 @@ export const cubicBezierLenis = (p0, p1, p2, p3) => {
   };
 };
 
+// Smooth scroll for same-page anchor links (e.g. <a href="#section-id">)
+{
+  const customEase = cubicBezierLenis(0.6, 0, 0.25, 1);
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href^="#"]:not([href="#"])');
+    if (!link) return;
+
+    // Skip anything already handled (e.g. back-to-top) or opted out of
+    if (
+      link.matches("[class*=back-to-top]") ||
+      link.hasAttribute("data-lenis-prevent")
+    ) {
+      return;
+    }
+
+    const id = decodeURIComponent(link.getAttribute("href").slice(1));
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    e.preventDefault();
+
+    lenis.scrollTo(target, {
+      duration: 1.5,
+      easing: customEase,
+    });
+
+    history.pushState(null, "", `#${id}`);
+
+    // Make the target focusable if it isn't already, for a11y
+    if (!target.hasAttribute("tabindex")) {
+      target.setAttribute("tabindex", "-1");
+    }
+    target.focus({ preventScroll: true });
+  });
+}
+
 // Back to top
 {
   // Any element with the class 'back-to-top' will take you to the top (logo is the default target)

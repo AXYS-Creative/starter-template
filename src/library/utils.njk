@@ -640,27 +640,23 @@ path: library/utils
     data-stagger-delay="0.125"
   >
     <li class="gsap-stagger-child">
-      <code>data-gsap-once</code> Boolean, to toggle the animation only the
-      first time. Default is <code>false</code>.
+      <code>data-stagger-delay</code> Number, the delay in seconds between each
+      child's animation. Default is
+      <code>0.1</code>
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-trigger</code> String, the class or id (don't forget . or
-      #) of the element that triggers the effect. Default is the gsap-animate
-      element itself.
+      <code>data-stagger-start</code> String, the start parameter for
+      scrollTrigger. Default is
+      <code>"top 96%"</code>
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-start</code> String, the parameters for scrollTrigger.
-      Default is
-      <code>"top 98%"</code>
+      <code>data-stagger-once</code> Boolean, to toggle the animation only the
+      first time. When <code>false</code>, the children reset when scrolled back
+      out of view. Default is
+      <code>false</code>
     </li>
     <li class="gsap-stagger-child">
-      <code>data-gsap-end</code> String, the parameters for scrollTrigger.
-      Default is
-      <code>"bottom 2%"</code>
-    </li>
-    <li class="gsap-stagger-child">
-      <code>data-gsap-markers</code> Boolean, markers to help build/debug.
-      Default is
+      <code>data-markers</code> Boolean, markers to help build/debug. Default is
       <code>false</code>
     </li>
   </ul>

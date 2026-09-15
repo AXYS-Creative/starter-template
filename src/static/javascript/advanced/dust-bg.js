@@ -537,10 +537,26 @@
   const watchThemeToggle = canvas.hasAttribute(CFG.theme.toggleAttribute);
   const watchSectionTheme = canvas.hasAttribute(CFG.theme.sectionAttribute);
 
+  // Event-driven manual override (see the "dust-bg:theme" listener below).
+  // When set to "light"/"dark" it wins over both watch modes; null = follow them.
+  let manualThemeOverride = null;
+
+  // Whether the eased colour updater should run each frame. On if a watch mode
+  // is active; the manual override flips it on permanently the first time it's used.
+  let themeActive = watchThemeToggle || watchSectionTheme;
+
   function getActiveThemeName() {
     if (!watchThemeToggle) return "dark";
     const docTheme = document.documentElement.getAttribute("data-theme");
     return docTheme === "light" ? "light" : "dark";
+  }
+
+  // Single source of truth for the palette we're easing toward, in priority
+  // order: manual override → section-scroll theming → global theme toggle.
+  function resolveTargetTheme() {
+    if (manualThemeOverride) return manualThemeOverride;
+    if (watchSectionTheme) return computeSectionTargetTheme();
+    return getActiveThemeName();
   }
 
   // ── Section-based scroll theming ────────────────────────────────────────
@@ -592,14 +608,22 @@
   // currentColor holds the live, eased values; targetThemeName is just a
   // cheap cached label updated by whichever mode is active (observer for
   // the toggle, scroll listener for sections) — never a per-frame DOM read.
-  let targetThemeName = watchSectionTheme
-    ? computeSectionTargetTheme()
-    : getActiveThemeName();
+  let targetThemeName = resolveTargetTheme();
   const initialPalette = CFG.colors[targetThemeName];
   const currentColor = {
     base: initialPalette.baseColor.slice(),
     highlight: initialPalette.highlightColor.slice(),
   };
+
+  // Manual override channel — any script can pin or release the palette:
+  //   window.dispatchEvent(new CustomEvent("dust-bg:theme", { detail: { theme: "light" } }));
+  //   window.dispatchEvent(new CustomEvent("dust-bg:theme", { detail: { theme: null } }));
+  window.addEventListener("dust-bg:theme", (e) => {
+    const next = e.detail && e.detail.theme;
+    manualThemeOverride = next === "light" || next === "dark" ? next : null;
+    themeActive = true;
+    targetThemeName = resolveTargetTheme();
+  });
 
   function updateThemeColors() {
     const target = CFG.colors[targetThemeName];
@@ -625,7 +649,7 @@
     if (sectionThemeUpdateScheduled) return;
     sectionThemeUpdateScheduled = true;
     requestAnimationFrame(() => {
-      targetThemeName = computeSectionTargetTheme();
+      targetThemeName = resolveTargetTheme();
       sectionThemeUpdateScheduled = false;
     });
   }
@@ -705,7 +729,7 @@
 
   if (watchThemeToggle) {
     const themeObserver = new MutationObserver(() => {
-      targetThemeName = getActiveThemeName();
+      targetThemeName = resolveTargetTheme();
     });
     themeObserver.observe(document.documentElement, {
       attributes: true,
@@ -863,7 +887,7 @@
     gl.uniform1f(uniforms.mouseVelocityFactor, velocityFactor);
     gl.uniform1f(uniforms.mouseTurbVelocityFactor, turbVelocityFactor);
 
-    if (watchThemeToggle || watchSectionTheme) updateThemeColors();
+    if (themeActive) updateThemeColors();
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     requestAnimationFrame(frame);

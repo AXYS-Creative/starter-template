@@ -18,6 +18,8 @@ $blue: #ada4e3;
 $green: #a4d1a2;
 $yellow: #fdfd96;
 
+$brand-primary: $coral;
+
 $content-width: 1320px; // make sure to update the xxl media query too
 
 // Layering
@@ -66,7 +68,7 @@ $test-bg: rgba(navy, 0.75);
   --border-width--btn: 1px;
   --border-width--bold: 2px;
 
-  --color-brand--primary: #{$coral}; // Generally consistent across themes
+  --color-brand--primary: #{$brand-primary}; // Generally consistent across themes
   // --color-brand--on-primary: #{$white};
   --color-brand--secondary: #{$blue};
   --color-brand--tertiary: #{$green};
@@ -107,6 +109,10 @@ $test-bg: rgba(navy, 0.75);
   --gap-paragraph-paragraph: 12px;
   --gap-figure-caption: 8px;
 
+  --spacing-eyebrow-title: 12px;
+  --spacing-title-description: 12px;
+  --spacing-description: 12px;
+
   --spacing--xs: 8px;
   --spacing--sm: 16px;
   --spacing: 24px;
@@ -126,6 +132,10 @@ $test-bg: rgba(navy, 0.75);
   --radius--btn: var(--radius--xs);
 
   --max-width--text: 650px;
+
+  // buttons
+  --btn-font-size: 16px;
+  --btn-font-weight: 500;
 
   // header
   --header-children-height: 32px;

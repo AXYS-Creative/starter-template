@@ -19,6 +19,7 @@
 
 
 {% if menu_links %}
+<!-- prettier-ignore -->
 <menu
   class="
     menu-links 
@@ -27,7 +28,9 @@
     {{ mod_class }}
   "
   aria-label="navigation links"
-  data-toggle-slide="hover"
+  {% if toggle_slider %}
+    data-toggle-slide="hover"
+  {% endif %}
 >
   <!-- prettier-ignore -->
   {% for menu_link in menu_links %}

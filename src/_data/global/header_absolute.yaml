@@ -7,7 +7,7 @@ cta_1:
   url: "/join"
   new_tab: false
   type: primary # visit _btn.scss for all types
-  class: btn--split-text
+  class: btn--split-text nav-cta-primary
   attributes: "data-hover-alt"
   # icon_end: /static/img/icon-google-chevron-right.svg
   # icon_start: /static/img/icon-google-info-circle.svg
@@ -22,11 +22,50 @@ cta_1:
 #   class: btn--split-text
 #   attributes: 'data-test-1=no-quotes data-test-2="with-quotes"'
 
+# menu-links.njk
+menu_links:
+  - text: Platform
+    url: "/"
+    path: "#"
+    new_tab: false
+    type: text
+    # size: sm
+    class: menu-links__link
+  - text: Culture
+    url: "/blog"
+    path: "archive-blog"
+    new_tab: false
+    type: text
+    # size: sm
+    class: menu-links__link
+  - text: About
+    text_desc: Get started with AXYS Creative
+    url: "https://axyscreative.com"
+    new_tab: true
+    type: text
+    # size: sm
+    class: menu-links__link
+    attributes: "data-hover-alt"
+    # icon_end: /static/img/icon-google-chevron-right.svg
+    # icon_start: /static/img/icon-google-info-circle.svg
+  - text: OSS
+    # text_desc:
+    url: /admin
+    icon_end: ""
+    new_tab: true
+    type: text
+    # size: sm
+    class: menu-links__link
+
+# mobile nav specific content
+lock_body_scroll: true # nav.njk Locks body scroll when nav is open
+
 nav_btn:
   # text: menu
   type: button # button | icon
   symbol: stairs # burger | chocolate | kebab | stairs
   shape: round # sharp | round
+  class: header-absolute # -> site-nav-btn--{{ class }} on the button
   # display: md # Dev use only
 
 nav_footer:

@@ -3,6 +3,7 @@ import "./global/loader.js"; // Place above others
 
 import "./global/animations.js";
 import "./global/header.js";
+import "./global/nav-absolute.js";
 import "./global/footer.js";
 import "./global/scroll.js";
 

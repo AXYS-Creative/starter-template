@@ -57,7 +57,11 @@
   {% endif %}
 >
   {% if icon_start %}
-    {% set icon_svg = ({ src: icon_start, class: 'btn__icon-start '~icon_start_class~'' }) %}
+    {% set icon_svg = ({ 
+      src: icon_start, 
+      size: icon_size, 
+      class: 'btn__icon-start '~icon_start_class~'' 
+    }) %}
     {% include "./icon-svg.njk" %}
   {% endif %}
 
@@ -66,7 +70,11 @@
   {% endif %}
   {% if icon_end or type == 'icon_end' %}
   <span class="btn__icon-group {{ icon_end_class }}" {{icon_end_attributes}}>
-    {% set icon_svg = ({ src: icon_end, class: 'btn__icon-end'}) %}
+    {% set icon_svg = ({ 
+      src: icon_end, 
+      size: icon_size,
+      class: 'btn__icon-end'
+    }) %}
     {% include "./icon-svg.njk" %}
 
     {% if icon_circle %}
