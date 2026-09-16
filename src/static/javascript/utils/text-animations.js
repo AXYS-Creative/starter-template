@@ -260,6 +260,79 @@ responsiveGsap.add(
       });
     }
 
+    // Text Flip
+    {
+      const flipElems = document.querySelectorAll(".text-flip");
+
+      flipElems.forEach((el) => {
+        const flipType = el.dataset.flipType || "words"; // "lines" | "words" | "chars"
+        const flipFrom = el.dataset.flipFrom || "top"; // "top" | "center" | "bottom"
+        const flipDuration = parseFloat(el.dataset.flipDuration) || 1;
+        const flipStagger = parseFloat(el.dataset.flipStagger) || 0.05;
+        const flipEase = el.dataset.flipEase || "power2.out";
+        const flipScrub = el.dataset.flipScrub === "true"; // default false
+        const flipOnce = !flipScrub && el.dataset.flipOnce === "true"; // only if scrub is false
+        const flipStart = el.dataset.flipStart || "top 98%";
+        const flipEnd = el.dataset.flipEnd || "bottom 2%";
+        const flipMarkers = el.dataset.flipMarkers === "true";
+
+        const split = new SplitText(el, {
+          type: flipType,
+          [`${flipType}Class`]: `text-flip__${flipType}`,
+          tag: "span",
+        });
+
+        const targets =
+          flipType === "lines"
+            ? split.lines
+            : flipType === "chars"
+              ? split.chars
+              : split.words;
+
+        const scrollTriggerConfig = {
+          trigger: el,
+          start: flipStart,
+          end: flipEnd,
+          scrub: flipScrub || false,
+          markers: flipMarkers,
+        };
+
+        if (!flipScrub) {
+          scrollTriggerConfig.toggleActions = flipOnce
+            ? "play none none none"
+            : "play reset play reset";
+
+          scrollTriggerConfig.onEnter = () =>
+            el.classList.add("text-flip--active");
+
+          scrollTriggerConfig.onLeaveBack = () => {
+            if (!flipOnce) el.classList.remove("text-flip--active");
+          };
+
+          scrollTriggerConfig.once = flipOnce;
+        }
+
+        const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+
+        tl.fromTo(
+          targets,
+          {
+            rotateX: -65,
+            transformPerspective: 500,
+            transformOrigin: flipFrom,
+            opacity: 0,
+          },
+          {
+            rotateX: 0,
+            opacity: 1,
+            duration: flipDuration,
+            stagger: flipStagger,
+            ease: flipEase,
+          },
+        );
+      });
+    }
+
     // Typing Text Effects
     {
       const injectTypingElements = (el, cursorType) => {

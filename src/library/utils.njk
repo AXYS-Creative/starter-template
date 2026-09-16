@@ -234,6 +234,88 @@ path: library/utils
   </div>
 </section>
 
+<section class="flip-section library-section">
+  <h2>[ Flip – Util ]</h2>
+  <strong>For text flip see below</strong>
+
+  <p>
+    The <code class="gsap-animate">flip</code> class toggles on scroll via
+    <strong>ScrollTrigger</strong>, driving a CSS-only
+    <code class="gsap-animate">perspective()</code> +
+    <code class="gsap-animate">rotateX()</code> swing (see
+    <code class="gsap-animate">flip-swing</code> in <code>_util.scss</code>).
+    Use the following attributes to configure it:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>data-flip-from</code> — Transform-origin the flip pivots from:
+      <code>top | center | bottom</code> (default: <code>top</code>)
+    </li>
+    <li>
+      <code>data-flip-trigger</code> — Selector/element to use as the
+      ScrollTrigger trigger instead of the flipped element itself
+    </li>
+    <li>
+      <code>data-flip-start</code> — ScrollTrigger start position (default:
+      <code>"top 98%"</code>)
+    </li>
+    <li>
+      <code>data-flip-end</code> — ScrollTrigger end position (default:
+      <code>"bottom top"</code>)
+    </li>
+    <li>
+      <code>data-flip-scrub</code> — Boolean to tie the rotation directly to
+      scroll position instead of playing the swing animation (default:
+      <code>false</code>)
+    </li>
+    <li>
+      <code>data-flip-ease</code> — GSAP ease applied while scrubbing; default
+      <code>"none"</code> is a plain linear tilt. Use
+      <code>"back.out(n)"</code> or <code>"elastic.out(1, n)"</code> to scrub
+      through the same overshoot/swing as the non-scrub
+      <code>flip-swing</code> animation, just driven by scroll position instead
+      of time. Ignored when <code>data-flip-scrub</code> is not set, since the
+      non-scrub flip always plays <code>flip-swing</code>.
+    </li>
+    <li>
+      <code>data-flip-once</code> — Boolean to fire the flip only the first time
+      it comes into view; ignored when <code>data-flip-scrub</code> is set
+      (default: <code>false</code>)
+    </li>
+    <li>
+      <code>data-flip-markers</code> — Boolean to toggle ScrollTrigger's visual
+      debugging markers (default: <code>false</code>)
+    </li>
+  </ul>
+
+  <div class="library-boxes">
+    <div class="flip library-box">Standard 'flip'</div>
+
+    <div class="flip library-box" data-flip-from="bottom">
+      Configured 'flip' from bottom
+    </div>
+
+    <div
+      class="flip library-box"
+      data-flip-scrub="true"
+      data-flip-start="top 96%"
+      data-flip-end="top 56%"
+    >
+      Scrubbed 'flip' (tied to scroll)
+    </div>
+
+    <div
+      class="flip library-box"
+      data-flip-scrub="true"
+      data-flip-ease="elastic.out(1, 0.4)"
+      data-flip-start="top 90%"
+      data-flip-end="top 25%"
+    >
+      Scrubbed 'flip' with elastic swing
+    </div>
+  </div>
+</section>
+
 <section class="glitch-text-section library-section">
   <h2>
     [
@@ -939,6 +1021,138 @@ path: library/utils
       <code>data-fill-markers</code> boolean, to toggle visual debugging
       markers. Default is
       <code>false</code>
+    </li>
+  </ul>
+</section>
+
+<section class="text-flip-section library-section">
+  <h2
+    class="text-flip"
+    data-flip-type="words"
+    data-flip-stagger="0.05"
+    data-flip-ease="back.out(2)"
+    data-flip-scrub="true"
+  >
+    [ Text Flip - Util ]
+  </h2>
+  <p class="text-flip">
+    This uses GSAP's <strong>ScrollTrigger</strong> and
+    <strong>SplitText</strong> plugins to flip in lines, words, or characters
+    along the x-axis, using a <code>perspective()</code> +
+    <code>rotateX()</code> tilt as the base transform.
+  </p>
+  <p
+    class="text-flip"
+    data-flip-type="lines"
+    data-flip-duration="0.6"
+    data-flip-stagger="0.1"
+    style="max-width: 750px"
+  >
+    This paragraph will flip in by <strong>line</strong> instead of by word or
+    character, and demonstrates that it works across multiple lines. Lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Error iste corrupti tempora
+    aspernatur, consequatur blanditiis, repellat, quibusdam perferendis sequi
+    dignissimos dolores?
+  </p>
+  <p
+    class="text-flip max-width-text"
+    data-flip-type="words"
+    data-flip-once="true"
+    data-flip-duration="0.5"
+    data-flip-stagger="0.06"
+  >
+    This text will only flip in <strong>the very first time</strong> it comes
+    into view, split by <code>words</code>.
+  </p>
+  <p
+    class="text-flip"
+    data-flip-type="words"
+    data-flip-from="bottom"
+    data-flip-duration="0.6"
+  >
+    This text flips from the <strong>bottom</strong> instead of the top,
+    changing the transform-origin of the pivot.
+  </p>
+  <p
+    class="text-flip"
+    data-flip-type="lines"
+    data-flip-from="bottom"
+    data-flip-scrub="true"
+    data-flip-end="bottom 60%"
+    style="max-width: 750px"
+  >
+    This text will <strong>scrub</strong> through the flip as you scroll, rather
+    than playing once on enter.
+  </p>
+  <p
+    class="text-flip"
+    data-flip-type="words"
+    data-flip-duration="2.5"
+    data-flip-stagger="0.1"
+    data-flip-ease="elastic.out(1.5, 0.3)"
+  >
+    This text will <strong>swing</strong> past 0deg and settle, like the
+    <code>.flip</code> util above — no extra config needed, just an
+    <code>elastic.out(1.5, 0.3)</code> ease.
+  </p>
+  <br />
+  <p class="text-flip">
+    You can use the <code class="gsap-animate">text-flip</code> utility class
+    with the following attributes:
+  </p>
+  <ul class="classic-list">
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-type</code> A string of either
+      <code class="gsap-animate">lines | words | chars</code>. Default is
+      <code class="gsap-animate">words</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-from</code> A string of either
+      <code class="gsap-animate">top | center | bottom</code> to control the
+      transform-origin the flip pivots from. Default is
+      <code class="gsap-animate">top</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-scrub</code> A boolean to scrub
+      through the animation rather than playing it. Default is
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-duration</code> A number to control
+      the animation duration. Default is <code class="gsap-animate">0.5</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-stagger</code> A number to control
+      stagger between each line, word, or character. Default is
+      <code class="gsap-animate">0.05</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-ease</code> A string to set the GSAP
+      ease. Default is <code class="gsap-animate">"power2.out"</code>. Use
+      <code class="gsap-animate">"back.out(n)"</code> for a single overshoot or
+      <code class="gsap-animate">"elastic.out(1, n)"</code> for a decaying
+      swing, like the <code class="gsap-animate">.flip</code> util's keyframe
+      animation.
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-once</code> A boolean to fire the
+      animation only the first time it comes into view. Default is
+      <code class="gsap-animate">false</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-start</code> A string to set the
+      start animation. Default is
+      <code class="gsap-animate">"top 98%"</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-end</code> A string to set the end
+      animation. Default is
+      <code class="gsap-animate">"bottom 2%"</code>
+    </li>
+    <li class="text-flip">
+      <code class="gsap-animate">data-flip-markers</code> A boolean to toggle
+      visual debugging markers.
+      <code class="gsap-animate">false</code>
     </li>
   </ul>
 </section>
