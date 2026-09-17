@@ -758,18 +758,6 @@
     &--rotate-left {
       animation: infinite-rotate-left 12s linear infinite;
     }
-
-    @keyframes infinite-rotate {
-      to {
-        rotate: 360deg;
-      }
-    }
-
-    @keyframes infinite-rotate-left {
-      to {
-        rotate: -360deg;
-      }
-    }
   }
 
   .text-fade {

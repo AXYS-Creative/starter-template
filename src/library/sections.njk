@@ -67,6 +67,36 @@ path: library/sections
 {% set hero_curve_crop = library.sections.hero_curve_crop %}
 {% include '../_includes/sections/hero-curve-crop.njk' %}
 
+<div class="section-width--thin">
+  <h2>[ Hero Image Circle - Section ]</h2>
+  <br />
+  <p>
+    A hero with two circular image clusters (built on the
+    <code>image-fan</code> component, <code>closed: true</code>) flanking the
+    title/description/CTAs. Takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li>
+      <code>pre_image</code> an optional image ( <code>src</code> /
+      <code>alt</code> ) shown above the title. Leave <code>src</code> unset
+      to hide it.
+    </li>
+    <li><code>title</code> and <code>description</code> strings.</li>
+    <li>
+      <code>cta_1</code> / <code>cta_2</code> same shape as the
+      <code>cta-group</code> component.
+    </li>
+    <li>
+      <code>images_1</code> / <code>images_2</code> each an array of images (
+      <code>src</code> / <code>alt</code> ) for the two image clusters.
+    </li>
+  </ul>
+</div>
+<!-- prettier-ignore -->
+{% set hero_image_circle = library.sections.hero_image_circle %}
+{% include '../_includes/sections/hero-image-circle.njk' %}
+
 <!-- prettier-ignore -->
 {% set plan_selection = library.sections.plan_selection %}
 {% include '../_includes/sections/plan-selection.njk' %}

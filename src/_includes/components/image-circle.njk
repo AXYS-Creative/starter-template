@@ -1,0 +1,34 @@
+<!-- prettier-ignore -->
+{% set images = image_circle.images or [] %}
+{% set n = images | length %}
+{% set divisor = n if n > 1 else 2 %}
+{% set step = 360 / divisor %}
+{% set gap = image_circle.gap or 1.15 %}          {# spacing between card centres as a multiple of card width #}
+{% set item_width = image_circle.item_width or 24 %}{# card width as a % of the component's own width #}
+{% set direction = image_circle.direction or 'left' %}{# left | right — spin direction #}
+{% set duration = image_circle.duration or 40 %} {# seconds for one full orbit #}
+{% set class = image_circle.class or '' %}
+
+<!-- prettier-ignore -->
+<div
+  class="image-circle image-circle--{{ direction }} {{ class }}"
+  style="--circle-step: {{ step }}; --circle-gap: {{ gap }}; --circle-item-w: {{ item_width }}; --circle-duration: {{ duration }}s;"
+>
+  <div class="image-circle__ring">
+    {% for image in images %}
+    <div class="image-circle__item" style="--i: {{ loop.index0 }};">
+      <figure class="image-circle__card">
+        <img
+          class="image-circle__img"
+          src="{{ image.src }}"
+          alt="{{ image.alt or '' }}"
+          width="{{ image.width or 400 }}"
+          height="{{ image.height or 400 }}"
+          loading="lazy"
+          eleventy:ignore
+        />
+      </figure>
+    </div>
+    {% endfor %}
+  </div>
+</div>

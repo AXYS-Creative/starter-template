@@ -19,17 +19,17 @@
       max-width: var(--max-width--text);
     }
 
-    // &-eyebrow {
-
-    // }
+    &-eyebrow {
+      margin-block-end: var(--spacing-below-eyebrow);
+    }
 
     &-title {
-      margin-block-end: var(--spacing--sm);
+      margin-block-end: var(--spacing-below-title);
       text-align: center;
     }
 
     &-desc {
-      margin-block-end: var(--spacing--lg);
+      margin-block-end: var(--spacing-below-description);
       max-width: 750px;
       text-align: center;
       text-wrap: balance;

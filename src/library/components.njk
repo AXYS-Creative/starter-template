@@ -260,6 +260,50 @@ path: library/components
   <p>Coming soon!</p>
 </section>
 
+<section class="image-circle-section library-section">
+  <h2>[ Image Circle - Component ]</h2>
+
+  <p>
+    Cards spaced evenly around an exact circle (not an arc), spinning
+    continuously while each card counter-rotates to stay upright as it
+    orbits. Purely decorative — there's no hover response; reach for
+    <code>image-fan.njk</code> instead for a hover-driven picker. Comes with
+    the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>images</code> an array of images, each taking <code>src</code> and
+      <code>alt</code>. Any number of entries.
+    </li>
+    <li>
+      <code>item_width</code> a number, the card width as a percent of the
+      component's own width (<code>24</code> = 24%). Defaults to
+      <code>24</code>
+    </li>
+    <li>
+      <code>gap</code> a number, the spacing between cards as a multiple of
+      card width (<code>1</code> = touching, above <code>1</code> = gap,
+      below <code>1</code> = overlap). Defaults to <code>1.15</code>
+    </li>
+    <li>
+      <code>direction</code> a string, <code>left</code> or <code>right</code>
+      — which way the ring spins. Defaults to <code>left</code>
+    </li>
+    <li>
+      <code>duration</code> a number, seconds for one full orbit. Defaults to
+      <code>40</code>
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set image_circle = library.image_circle %}
+  {% include "../_includes/components/image-circle.njk" %}
+</section>
+
 <section class="image-fan-section library-section">
   <h2>[ Image Fan - Component ]</h2>
 

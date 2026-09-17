@@ -1,0 +1,66 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.hero-image-circle {
+  position: relative;
+  overflow-x: clip;
+
+  &__inner {
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.row-center;
+    gap: var(--section-gap--lg);
+
+    @include mixins.mq-max(lg) {
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    @include mixins.column-center;
+    flex: 1 1 auto;
+    text-align: center;
+
+    @include mixins.mq-min(lg) {
+      max-width: var(--max-width--text);
+    }
+  }
+
+  &__pre-image {
+    margin-block-end: var(--spacing-below-eyebrow);
+    width: 24px;
+  }
+
+  &__title {
+    margin-block-end: var(--spacing-below-title);
+  }
+
+  &__desc {
+    margin-block-end: var(--spacing-below-description);
+    text-wrap: balance;
+  }
+
+  // `.image-circle` (see components/_image-circle.scss) is square by its own
+  // `aspect-ratio: 1` and handles its own rotation, so this wrapper only
+  // needs to position it — no rotation/aspect-ratio logic belongs here.
+  &__images {
+    position: absolute;
+    width: 25vw;
+    top: 50%;
+
+    @include mixins.mq-max(lg) {
+      flex-basis: auto;
+      max-width: 320px;
+    }
+
+    &--1 {
+      left: 0;
+      translate: -50% -50%;
+    }
+
+    &--2 {
+      right: 0;
+      translate: 50% -50%;
+    }
+  }
+}

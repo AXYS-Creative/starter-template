@@ -26,6 +26,7 @@ Collection of UI utility classes, components, combos, sections, and partials. To
 ## Sections
 
 - Carousel Hero
+- Hero Image Circle
 - Hero Simple
 - Price Cards
 - Scroll Horizontal

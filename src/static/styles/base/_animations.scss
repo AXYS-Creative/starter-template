@@ -7,3 +7,15 @@
     opacity: 1;
   }
 }
+
+@keyframes infinite-rotate {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes infinite-rotate-left {
+  to {
+    rotate: -360deg;
+  }
+}

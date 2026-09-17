@@ -1,0 +1,88 @@
+// Image Circle
+// A ring of cards evenly spaced around an exact circle — radius solved from
+// the standard regular-polygon chord formula (chord / (2 * sin(step / 2))),
+// not the small-angle approximation `image-fan` uses for its open arcs — so
+// the ring is a true circle regardless of card count. Everything is derived
+// in `cqw` (1% of the component's own width) and the component is forced
+// square via `aspect-ratio: 1`, so it scales with its parent with no
+// breakpoints and stays circular at any size.
+//
+// Spins continuously (`&__ring`); each card counter-rotates at the same
+// duration (`&__card`) so it stays upright while it orbits, rather than
+// tumbling with the ring. Purely decorative — no hover response. For an
+// interactive, hover-driven fan of cards use `image-fan.njk` instead.
+.image-circle {
+  position: relative;
+  container-type: inline-size; // children measure themselves against this width
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1;
+
+  --circle-step: 30; // deg between adjacent items (360 / count), set by the njk
+  --circle-gap: 1.15; // spacing between card centres as a multiple of card width
+  --circle-item-w: 24; // card width as a % of the component's own width
+  --circle-duration: 40s; // time for one full orbit
+
+  --_w: calc(var(--circle-item-w) * 1cqw);
+  --_chord: calc(var(--_w) * var(--circle-gap)); // distance between card centres
+  --_half-step: calc(var(--circle-step) / 2);
+  --_radius: calc(var(--_chord) / (2 * sin(calc(var(--_half-step) * 1deg))));
+
+  &__ring {
+    position: absolute;
+    inset: 0;
+    animation: infinite-rotate-left var(--circle-duration) linear infinite;
+  }
+
+  &__item {
+    --_angle: calc(var(--i, 0) * var(--circle-step)); // this card's angle, deg
+    --_x: calc(var(--_radius) * sin(var(--_angle) * 1deg));
+    --_y: calc(var(--_radius) * -1 * cos(var(--_angle) * 1deg));
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--_w);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%) translate(var(--_x), var(--_y));
+  }
+
+  &__card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    border: var(--card-border);
+    border-radius: 50%;
+    background: var(--color-surface--1);
+    // Cancels the ring's rotation so the card stays upright as it orbits.
+    animation: infinite-rotate var(--circle-duration) linear infinite;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  &--right {
+    .image-circle__ring {
+      animation-name: infinite-rotate;
+    }
+
+    .image-circle__card {
+      animation-name: infinite-rotate-left;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-circle__ring,
+    .image-circle__card {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<!-- prettier-ignore -->
+{% set pre_image = hero_image_circle.pre_image or null %}
+{% set title = hero_image_circle.title | default('No title provided') %}
+{% set description = hero_image_circle.description | default('No description provided') %}
+{% set cta_1 = hero_image_circle.cta_1 or null %}
+{% set cta_2 = hero_image_circle.cta_2 or null %}
+{% set images_1 = hero_image_circle.images_1 or [] %}
+{% set images_2 = hero_image_circle.images_2 or [] %}
+
+<section class="hero-image-circle">
+  <div class="hero-image-circle__inner">
+    <div class="hero-image-circle__images hero-image-circle__images--1">
+      <!-- prettier-ignore -->
+      {% set image_circle = ({
+        images: images_1,
+        direction: 'left'
+      }) %}
+      {% include "../components/image-circle.njk" %}
+    </div>
+
+    <div class="hero-image-circle__content">
+      <!-- prettier-ignore -->
+      {% if pre_image and pre_image.src %}
+      <img
+        class="hero-image-circle__pre-image"
+        src="{{ pre_image.src }}"
+        alt="{{ pre_image.alt or '' }}"
+      />
+      {% endif %}
+
+      <h1 class="hero-image-circle__title">{{ title }}</h1>
+      <p class="hero-image-circle__desc">{{ description }}</p>
+
+      <!-- prettier-ignore -->
+      {% set content_start = true %}
+      {% include "../components/cta-group.njk" %}
+      {% set content_start = false %}
+    </div>
+
+    <div class="hero-image-circle__images hero-image-circle__images--2">
+      <!-- prettier-ignore -->
+      {% set image_circle = ({
+        images: images_2,
+        direction: 'right'
+      }) %}
+      {% include "../components/image-circle.njk" %}
+    </div>
+  </div>
+</section>
