@@ -7474,11 +7474,13 @@ div.carousel-swiper-sample-2 .swiper-slide {
   width: 100%;
   aspect-ratio: 1;
   --circle-step: 30;
-  --circle-gap: 1.15;
-  --circle-item-w: 24;
-  --circle-duration: 40s;
+  --circle-gap: 1;
+  --circle-item-w: 48;
+  --circle-duration: 90s;
   --_w: calc(var(--circle-item-w) * 1cqw);
-  --_chord: calc(var(--_w) * var(--circle-gap));
+  --_chord: calc(
+    var(--_w) * var(--circle-gap)
+  );
   --_half-step: calc(var(--circle-step) / 2);
   --_radius: calc(var(--_chord) / (2 * sin(calc(var(--_half-step) * 1deg))));
 }
@@ -7501,11 +7503,12 @@ div.carousel-swiper-sample-2 .swiper-slide {
 .image-circle__card {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 2/1.5;
   margin: 0;
   overflow: hidden;
   border: var(--card-border);
-  border-radius: 50%;
+  border-radius: var(--radius);
   background: var(--color-surface--1);
   animation: infinite-rotate var(--circle-duration) linear infinite;
 }
@@ -7522,6 +7525,19 @@ div.carousel-swiper-sample-2 .swiper-slide {
 }
 .image-circle--right .image-circle__card {
   animation-name: infinite-rotate-left;
+}
+.image-circle--bloom-left .image-circle__card, .image-circle--bloom-right .image-circle__card, .image-circle--bloom-top .image-circle__card {
+  animation: none;
+  rotate: calc((var(--_angle) - var(--_bloom-ref)) * 1deg);
+}
+.image-circle--bloom-left {
+  --_bloom-ref: 270;
+}
+.image-circle--bloom-right {
+  --_bloom-ref: 90;
+}
+.image-circle--bloom-top {
+  --_bloom-ref: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .image-circle .image-circle__ring,
@@ -9886,8 +9902,14 @@ html:has(.scroll-progress) {
 }
 
 .hero-image-circle {
+  --side-circles-offset: 15%;
   position: relative;
   overflow-x: clip;
+}
+@media (max-width: 1024px) {
+  .hero-image-circle {
+    overflow: clip;
+  }
 }
 .hero-image-circle__inner {
   padding-inline: var(--body-padding);
@@ -9898,7 +9920,7 @@ html:has(.scroll-progress) {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--section-gap--lg);
+  gap: 64px;
 }
 @media (max-width: 1024px) {
   .hero-image-circle__inner {
@@ -9931,22 +9953,66 @@ html:has(.scroll-progress) {
 }
 .hero-image-circle__images {
   position: absolute;
-  width: 25vw;
+  width: 40vw;
   top: 50%;
 }
 @media (max-width: 1024px) {
   .hero-image-circle__images {
     flex-basis: auto;
-    max-width: 320px;
+    width: 100vw;
+  }
+}
+@media (max-width: 1024px) {
+  .hero-image-circle__images {
+    position: static;
+    top: auto;
+    aspect-ratio: 2/1;
+    overflow: hidden;
   }
 }
 .hero-image-circle__images--1 {
   left: 0;
-  translate: -50% -50%;
+  translate: calc(-50% - var(--side-circles-offset)) -50%;
+}
+@media (max-width: 1024px) {
+  .hero-image-circle__images--1 {
+    order: 1;
+    translate: none;
+  }
+  .hero-image-circle__images--1 .image-circle {
+    --_bloom-ref: 0;
+  }
 }
 .hero-image-circle__images--2 {
   right: 0;
-  translate: 50% -50%;
+  translate: calc(50% + var(--side-circles-offset)) -50%;
+}
+@media (max-width: 1024px) {
+  .hero-image-circle__images--2 {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .hero-image-circle .image-circle__ring {
+    translate: 0 25%;
+  }
+}
+@media (min-width: 1025px) {
+  .hero-image-circle--left .hero-image-circle__inner {
+    justify-content: flex-start;
+  }
+  .hero-image-circle--left .hero-image-circle__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .hero-image-circle--left .hero-image-circle__content picture {
+    justify-content: start;
+  }
+  .hero-image-circle--left .hero-image-circle__images--1 {
+    left: auto;
+    right: 0;
+    translate: calc(50% + var(--side-circles-offset)) -50%;
+  }
 }
 
 .carousel-hero {

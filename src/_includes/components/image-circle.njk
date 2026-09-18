@@ -6,12 +6,13 @@
 {% set gap = image_circle.gap or 1.15 %}          {# spacing between card centres as a multiple of card width #}
 {% set item_width = image_circle.item_width or 24 %}{# card width as a % of the component's own width #}
 {% set direction = image_circle.direction or 'left' %}{# left | right — spin direction #}
-{% set duration = image_circle.duration or 40 %} {# seconds for one full orbit #}
+{% set duration = image_circle.duration or 90 %} {# seconds for one full orbit #}
+{% set bloom = image_circle.bloom %}{# left | right | top — when set, cards stop counter-rotating upright and instead rotate individually to stay radially oriented like flower petals, with the left-, right-, or top-most card upright #}
 {% set class = image_circle.class or '' %}
 
 <!-- prettier-ignore -->
 <div
-  class="image-circle image-circle--{{ direction }} {{ class }}"
+  class="image-circle image-circle--{{ direction }}{% if bloom %} image-circle--bloom-{{ bloom }}{% endif %} {{ class }}"
   style="--circle-step: {{ step }}; --circle-gap: {{ gap }}; --circle-item-w: {{ item_width }}; --circle-duration: {{ duration }}s;"
 >
   <div class="image-circle__ring">

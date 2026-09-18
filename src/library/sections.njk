@@ -71,16 +71,16 @@ path: library/sections
   <h2>[ Hero Image Circle - Section ]</h2>
   <br />
   <p>
-    A hero with two circular image clusters (built on the
-    <code>image-fan</code> component, <code>closed: true</code>) flanking the
+    A hero with circular image cluster(s) (built on the
+    <code>image-circle</code> component) flanking or overflowing alongside the
     title/description/CTAs. Takes:
   </p>
   <br />
   <ul class="classic-list">
     <li>
       <code>pre_image</code> an optional image ( <code>src</code> /
-      <code>alt</code> ) shown above the title. Leave <code>src</code> unset
-      to hide it.
+      <code>alt</code> ) shown above the title. Leave <code>src</code> unset to
+      hide it.
     </li>
     <li><code>title</code> and <code>description</code> strings.</li>
     <li>
@@ -90,6 +90,15 @@ path: library/sections
     <li>
       <code>images_1</code> / <code>images_2</code> each an array of images (
       <code>src</code> / <code>alt</code> ) for the two image clusters.
+      <code>images_2</code> is ignored when <code>direction</code> is
+      <code>left</code>.
+    </li>
+    <li>
+      <code>direction</code> a string, <code>center</code> or <code>left</code>.
+      <code>center</code> (default) flanks the content with both circles.
+      <code>left</code> drops the second circle, shifts the copy to the left,
+      and lets the first circle overflow off the right edge of the screen.
+      Desktop (<code>lg</code> and up) only — mobile looks identical either way.
     </li>
   </ul>
 </div>

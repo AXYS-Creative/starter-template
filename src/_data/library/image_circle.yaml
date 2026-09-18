@@ -5,6 +5,10 @@
 #               (1 = edges touching, >1 = space between, <1 = overlap)
 # direction  -> left | right — which way the ring spins
 # duration   -> seconds for one full orbit
+# bloom      -> left | right | top, optional — cards stop counter-rotating
+#               upright and instead rotate individually to stay radially
+#               oriented like petals, with the left/right/top-most card
+#               upright
 
 item_width: 20
 gap: 1.15

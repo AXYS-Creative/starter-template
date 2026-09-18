@@ -2,14 +2,20 @@
 @use "../base/variables" as vars;
 
 .hero-image-circle {
+  --side-circles-offset: 15%; // move the circles closer or further from the text content
+
   position: relative;
-  overflow-x: clip;
+  overflow-x: clip; // desktop: let the circles bleed above/below the section, clip only the sides
+
+  @include mixins.mq-max(lg) {
+    overflow: clip; // mobile: circle sits in-flow at the bottom, so crop on every side instead
+  }
 
   &__inner {
     @include mixins.section-padding;
     @include mixins.width-clamp;
     @include mixins.row-center;
-    gap: var(--section-gap--lg);
+    gap: 64px;
 
     @include mixins.mq-max(lg) {
       flex-direction: column;
@@ -45,22 +51,93 @@
   // needs to position it — no rotation/aspect-ratio logic belongs here.
   &__images {
     position: absolute;
-    width: 25vw;
+    width: 40vw;
     top: 50%;
 
     @include mixins.mq-max(lg) {
       flex-basis: auto;
-      max-width: 320px;
+      width: 100vw;
+    }
+
+    // Mobile: only the first instance survives, and it drops out of the
+    // left/right absolute pinning into the flex flow so it can sit below
+    // `&__content` instead of overlapping it. It's also cropped to its top
+    // half here: `.image-circle` always keeps its own `aspect-ratio: 1` (a
+    // full, unsquished circle), but this wrapper is capped to half that
+    // height and clips the rest — so the circle overflows past the
+    // wrapper's bottom edge and gets hidden there instead of being squashed
+    // into an oval.
+    @include mixins.mq-max(lg) {
+      position: static;
+      top: auto;
+      aspect-ratio: 2 / 1;
+      overflow: hidden;
     }
 
     &--1 {
       left: 0;
-      translate: -50% -50%;
+      translate: calc(-50% - var(--side-circles-offset)) -50%;
+
+      @include mixins.mq-max(lg) {
+        order: 1; // after &__content, which stays order 0
+        translate: none;
+
+        // Desktop authors this instance with a `bloom` value that faces the
+        // content beside it (see the njk), but once it's stacked below
+        // &__content on mobile the upright card should face up toward the
+        // content instead, regardless of which `bloom`/`direction` variant
+        // was authored. Override the bloom reference angle directly rather
+        // than introducing a breakpoint-aware bloom prop — image-circle
+        // exposes --_bloom-ref (see components/_image-circle.scss)
+        // precisely so a consuming section can retarget the upright side
+        // like this.
+        .image-circle {
+          --_bloom-ref: 0;
+        }
+      }
     }
 
     &--2 {
       right: 0;
-      translate: 50% -50%;
+      translate: calc(50% + var(--side-circles-offset)) -50%;
+
+      @include mixins.mq-max(lg) {
+        display: none;
+      }
+    }
+  }
+
+  .image-circle__ring {
+    @include mixins.mq-max(lg) {
+      translate: 0 25%;
+    }
+  }
+
+  // `direction: left` (see the njk): &__images--2 is never rendered for
+  // this variant, so there's nothing to hide here — just reflow &__content
+  // to the left edge and re-pin &__images--1 to the right edge it now
+  // overflows off of. Desktop only; mobile already collapses to the same
+  // single-circle-at-the-bottom layout regardless of direction.
+  &--left {
+    @include mixins.mq-min(lg) {
+      .hero-image-circle__inner {
+        justify-content: flex-start;
+      }
+
+      .hero-image-circle__content {
+        align-items: flex-start;
+        text-align: left;
+
+        picture {
+          justify-content: start;
+        }
+      }
+
+      .hero-image-circle__images--1 {
+        left: auto;
+        right: 0;
+        translate: calc(50% + var(--side-circles-offset)) -50%;
+      }
     }
   }
 }

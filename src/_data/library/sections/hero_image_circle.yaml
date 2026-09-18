@@ -4,6 +4,7 @@ pre_image:
 
 title: "Hero Image Circle"
 description: "A hero section with two circular image clusters flanking the content."
+direction: left
 
 cta_1:
   text: Visit Library

@@ -11,6 +11,7 @@
 // duration (`&__card`) so it stays upright while it orbits, rather than
 // tumbling with the ring. Purely decorative — no hover response. For an
 // interactive, hover-driven fan of cards use `image-fan.njk` instead.
+
 .image-circle {
   position: relative;
   container-type: inline-size; // children measure themselves against this width
@@ -19,12 +20,14 @@
   aspect-ratio: 1;
 
   --circle-step: 30; // deg between adjacent items (360 / count), set by the njk
-  --circle-gap: 1.15; // spacing between card centres as a multiple of card width
-  --circle-item-w: 24; // card width as a % of the component's own width
-  --circle-duration: 40s; // time for one full orbit
+  --circle-gap: 1; // spacing between card centres as a multiple of card width
+  --circle-item-w: 48; // card width as a % of the component's own width
+  --circle-duration: 90s; // time for one full orbit (set as prop)
 
   --_w: calc(var(--circle-item-w) * 1cqw);
-  --_chord: calc(var(--_w) * var(--circle-gap)); // distance between card centres
+  --_chord: calc(
+    var(--_w) * var(--circle-gap)
+  ); // distance between card centres
   --_half-step: calc(var(--circle-step) / 2);
   --_radius: calc(var(--_chord) / (2 * sin(calc(var(--_half-step) * 1deg))));
 
@@ -50,13 +53,16 @@
   &__card {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1.5;
     margin: 0;
     overflow: hidden;
     border: var(--card-border);
-    border-radius: 50%;
+    border-radius: var(--radius);
     background: var(--color-surface--1);
     // Cancels the ring's rotation so the card stays upright as it orbits.
+    // Bloom mode (&--bloom-* below) turns this off, since it applies its
+    // own static per-card rotate instead.
     animation: infinite-rotate var(--circle-duration) linear infinite;
   }
 
@@ -77,6 +83,46 @@
     .image-circle__card {
       animation-name: infinite-rotate-left;
     }
+  }
+
+  // Petal mode — instead of counter-rotating to stay upright, &__card
+  // rotates to its own position on the ring (--_angle, set on &__item and
+  // inherited down since custom properties cascade) offset from the item
+  // that should read as upright, so cards fan out around the circle like
+  // petals on a flower while staying exactly on the circumference.
+  // `left`/`right`/`top` picks which side (270deg/90deg/0deg on the same
+  // 0deg-at-top clock &__item uses) is that upright reference — exposed as
+  // the --_bloom-ref custom property below so a consuming section can also
+  // override it directly (e.g. for a breakpoint-only orientation change)
+  // without needing a new named bloom value. This has to live on &__card,
+  // not &__item: &__item also carries the translate that places it on the
+  // circle, and the standalone `rotate` property always composes after
+  // `transform`'s translate, so a rotate on &__item would pivot around the
+  // ring's centre (spiralling the cards off the circle) instead of around
+  // each card's own position. &__card has no translate of its own, so its
+  // rotate pivots cleanly in place. Also cancels &__card's counter-rotation
+  // animation — the two conflict (the animation would fight the static
+  // angle every frame) — so any bloom value turns it off automatically
+  // rather than needing that animation line hand-edited too.
+  &--bloom-left,
+  &--bloom-right,
+  &--bloom-top {
+    .image-circle__card {
+      animation: none;
+      rotate: calc((var(--_angle) - var(--_bloom-ref)) * 1deg);
+    }
+  }
+
+  &--bloom-left {
+    --_bloom-ref: 270;
+  }
+
+  &--bloom-right {
+    --_bloom-ref: 90;
+  }
+
+  &--bloom-top {
+    --_bloom-ref: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
