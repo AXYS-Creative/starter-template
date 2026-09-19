@@ -1,0 +1,74 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+// Video Player
+// A plain <video> with native controls, plus a custom play button resting on
+// top of it whenever the video isn't playing. The script (see
+// javascript/components/video-player.js) mirrors the video's state onto
+// `data-playing` — driven by the video's own play / pause / ended events, so
+// it stays right when the native controls or keyboard start the video too.
+//
+// The button is only the circle, not a full-size overlay, so the native
+// controls along the bottom stay clickable while paused.
+
+.video-player {
+  --video-aspect: 16 / 9;
+  --play-size: 80px;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: black;
+
+  @include mixins.mq-max(md) {
+    --play-size: 56px;
+  }
+
+  &__video {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--video-aspect);
+    object-fit: contain;
+  }
+
+  &__play {
+    @include mixins.absolute-center;
+    display: grid;
+    place-items: center;
+    width: var(--play-size);
+    height: var(--play-size);
+    padding: calc(var(--play-size) * 0.3);
+    border-radius: 50%;
+    background: var(--color-btn-bg);
+    color: var(--color-btn-text);
+
+    @include mixins.mq-motion-allow {
+      transition:
+        opacity 0.3s vars.$cubic-ease,
+        scale 0.3s vars.$cubic-ease,
+        visibility 0.3s;
+    }
+
+    @include mixins.desktop-hover {
+      scale: 1.1;
+    }
+
+    &:focus-visible {
+      @include mixins.a11y-focus;
+    }
+
+    // Playing: fade the button out. `visibility` also drops it from the tab
+    // order, and since it's in the transition it only flips once the fade ends.
+    .video-player[data-playing="true"] & {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &-icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

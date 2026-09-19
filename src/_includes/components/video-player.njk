@@ -1,0 +1,23 @@
+<!-- prettier-ignore -->
+{% set src = video_player.src or '' %}
+{% set poster = video_player.poster or '' %}
+{% set play_icon = video_player.play_icon | default('/static/img/icon-google-play.svg') %}{# path to an svg, sits on top of the video while it isn't playing #}
+{% set label = video_player.label | default('Play video') %}{# accessible name for the play button #}
+{% set class = video_player.class or '' %}
+
+<!-- prettier-ignore -->
+<div class="video-player {{ class }}" data-video-player data-playing="false">
+  <video
+    class="video-player__video"
+    src="{{ src }}"
+    {% if poster %}poster="{{ poster }}"{% endif %}
+    controls
+    playsinline
+    preload="metadata"
+  ></video>
+
+  <button class="video-player__play" type="button" aria-label="{{ label }}">
+    {% set icon_svg = ({ src: play_icon, class: 'video-player__play-icon' }) %}
+    {% include "./icon-svg.njk" %}
+  </button>
+</div>

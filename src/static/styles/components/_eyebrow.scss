@@ -1,0 +1,24 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+// Eyebrow
+// A small line of text above a heading, with an optional icon before it.
+// Sized like `small` (see _globals.scss). Spacing below is left to the parent
+// section, via the `class` prop, since it varies from section to section.
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing--xs);
+  font-family: vars.$brand-font--body;
+  font-size: 14px;
+
+  @include mixins.mq-max(lg) {
+    font-size: 12px;
+  }
+
+  &__icon {
+    flex: none;
+    --icon-size: 1.25em;
+  }
+}

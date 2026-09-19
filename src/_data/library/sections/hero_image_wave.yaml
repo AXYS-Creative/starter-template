@@ -18,10 +18,11 @@ cta_2:
 # Image wave config — every field is optional, values below are the defaults
 # except scrub (off by default).
 wave:
-  speed: 30
+  speed: 40
+  duration: 10
   scrub: 0.5 # marquee follows scroll; 1 = 1px per 1px scrolled, 0 = off
-  amplitude: 40 # px each card travels up/down from centre (wave height), 0 = flat
-  waves: 1 # stagger — crests across one set; higher = tighter ripple, 0 = all cards in sync
+  amplitude: 48 # px each card travels up/down from centre (wave height), 0 = flat
+  waves: 1 # stagger — whole crests across one set (rounded; fractions break the seamless loop); higher = tighter ripple, 0 = all cards in sync
 
 images:
   - src: /static/img/img-sample-1.jpg

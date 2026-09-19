@@ -26,7 +26,8 @@
 //
 // The wave loops as seamlessly as the pan: the njk derives `--wave-step` so
 // the bob's phase repeats exactly once per set, meaning an item and its
-// twin in the other set are always in step.
+// twin in the other set are always in step. That needs a whole number of
+// crests per set, so the njk rounds `waves`.
 
 .image-wave {
   --wave-speed: 60s; // time for the track to pan one full set

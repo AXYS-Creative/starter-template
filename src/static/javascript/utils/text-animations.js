@@ -5,6 +5,7 @@ let responsiveGsap = gsap.matchMedia();
 responsiveGsap.add(
   {
     maxSm: "(max-width: 480px)",
+    maxMd: "(max-width: 768px)",
     minMd: "(min-width: 769px)",
   },
   (context) => {

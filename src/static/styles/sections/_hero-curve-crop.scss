@@ -52,6 +52,12 @@
 
   // local override
   .text-curve-crop {
-    max-width: 80%;
+    --border-radius: min(4vw, 48px);
+
+    max-width: 50%;
+
+    @include mixins.mq-max(md) {
+      max-width: 70%;
+    }
   }
 }

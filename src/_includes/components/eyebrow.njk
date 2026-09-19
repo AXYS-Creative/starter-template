@@ -1,7 +1,13 @@
 <!-- prettier-ignore -->
 {% set text = eyebrow.text or '' %}
+{% set icon = eyebrow.icon or '' %}{# path to an svg, rendered before the text via the icon-svg component #}
+{% set class = eyebrow.class or '' %}
 
-<p class="eyebrow">
-  <span></span>
-  <span>{{ text }}</span>
-</span>
+<!-- prettier-ignore -->
+<p class="eyebrow {{ class }}">
+  {% if icon %}
+  {% set icon_svg = ({ src: icon, class: 'eyebrow__icon' }) %}
+  {% include "./icon-svg.njk" %}
+  {% endif %}
+  {% if text %}<span class="eyebrow__text">{{ text }}</span>{% endif %}
+</p>

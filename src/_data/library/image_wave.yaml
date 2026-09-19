@@ -5,8 +5,9 @@
 # speed     -> seconds for the marquee to pan one full set (default 60)
 # duration  -> seconds for one full up-and-down bob (default 4)
 # amplitude -> px each card travels up and down from centre (default 32)
-# waves     -> crests of the wave across one set; sets the lag between
-#              neighbouring cards (default 1)
+# waves     -> whole crests of the wave across one set; sets the lag between
+#              neighbouring cards (default 1). Rounded to a whole number,
+#              since a fraction leaves the wave out of phase at the loop seam
 # scrub     -> ties the marquee to scroll; 1 shifts it 1px per 1px scrolled,
 #              higher is more sensitive, 0 (default) is off
 # class     -> optional extra css class

@@ -1,0 +1,19 @@
+# Headline
+# text        -> the headline itself, flips in word by word. Allows markup
+# eyebrow     -> optional small text above the headline
+# icon        -> optional svg path, shown before the eyebrow text
+# quote_giver -> leave name empty (default) for a plain headline. Give it a
+#                name and the headline is wrapped in quotes and credited to
+#                them: name, role, image ( src / alt )
+# class       -> optional extra css class
+
+eyebrow: "Our Philosophy"
+icon: /static/img/icon-google-bolt.svg
+text: "We believe good design should feel effortless, the kind you only notice once it's gone."
+
+quote_giver:
+  name: ""
+  role: ""
+  image:
+    src: ""
+    alt: ""

@@ -1,0 +1,58 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.headline {
+  &__inner {
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.column-center;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin-block-end: var(--spacing-below-eyebrow);
+  }
+
+  // `p` is inline globally (see _globals.scss). `h2` styling so it reads as a
+  // headline, at full opacity since the h2 mixin dims it.
+  &__text {
+    @include mixins.h2;
+    display: block;
+    max-width: 1000px;
+    opacity: 1;
+    text-wrap: balance;
+  }
+
+  &__quote,
+  &__blockquote {
+    @include mixins.column-center;
+    margin: 0;
+  }
+
+  &__quote {
+    gap: var(--spacing);
+  }
+
+  &__giver {
+    @include mixins.row-center;
+    gap: var(--spacing--sm);
+    text-align: start;
+
+    &-img {
+      flex: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-role {
+      color: var(--color-font--secondary);
+    }
+  }
+}

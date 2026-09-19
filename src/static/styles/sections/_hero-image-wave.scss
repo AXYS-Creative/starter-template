@@ -37,11 +37,12 @@
   // Decorative accent text, pinned to the top-right of the copy. Hidden on
   // mobile, where there's no room for it to sit beside the content.
   &__accent {
+    font-family: cursive;
     position: absolute;
-    top: 0;
-    right: 0;
-    translate: 60% -50%;
-    rotate: 8deg;
+    bottom: 0;
+    left: 0;
+    translate: -100% 100%;
+    rotate: -8deg;
     pointer-events: none;
 
     @include mixins.mq-max(lg) {

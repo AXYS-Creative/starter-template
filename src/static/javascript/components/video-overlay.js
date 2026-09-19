@@ -2,7 +2,7 @@ import { headerLogoLink, menuBtn, tabElementsPage } from "../global/header.js";
 import { lenis } from "../util.js";
 
 const videoOverlay = document.querySelector(".video-overlay"),
-  videoPlayer = document.querySelector(".video-player"),
+  videoPlayer = document.querySelector(".video-overlay .video-player"), // scoped: the video-player component shares this class
   videoCloseBtn = document.querySelector(".video-overlay__close");
 
 const videoToggle = document.querySelectorAll(".video-toggle");

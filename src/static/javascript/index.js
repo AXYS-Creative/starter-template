@@ -44,6 +44,7 @@ import "./components/theme-toggle.js";
 import "./components/tooltip.js";
 import "./components/video-bg.js";
 import "./components/video-overlay.js";
+import "./components/video-player.js";
 
 import "./utils/flip.js";
 import "./utils/glitch-text.js";

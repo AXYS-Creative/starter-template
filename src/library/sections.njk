@@ -150,6 +150,57 @@ path: library/sections
 {% set hero_image_wave = library.sections.hero_image_wave %}
 {% include '../_includes/sections/hero-image-wave.njk' %}
 
+<div class="section-width--thin">
+  <h2>[ Headline - Section ]</h2>
+  <br />
+  <p>
+    A centered statement that flips in word by word (the
+    <code>text-flip</code> util), with an optional eyebrow and, if given a quote
+    giver, wrapped in quotes and credited beneath. It's a <code>p</code> rather
+    than an <code>h2</code>, as it's a statement, not a section title. Takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li>
+      <code>text</code> a string, the headline. 'Safe' for markup, so
+      <code>em</code> / <code>strong</code> accents work.
+    </li>
+    <li>
+      <code>eyebrow</code> an optional string shown above the headline, via the
+      <code>eyebrow</code> component.
+    </li>
+    <li>
+      <code>icon</code> an optional string, the path to an svg shown before the
+      eyebrow. Works without <code>eyebrow</code> text too.
+    </li>
+    <li>
+      <code>quote_giver</code> an object of <code>name</code>,
+      <code>role</code> and <code>image</code> ( <code>src</code> /
+      <code>alt</code> ). These fields are always available: leave
+      <code>name</code> empty and the headline stays plain, with no quotes. Give
+      it a <code>name</code> and the headline is wrapped in quotes, with the
+      giver's image, name and role beneath.
+    </li>
+    <li><code>class</code> a string value for a custom css class.</li>
+  </ul>
+</div>
+<!-- prettier-ignore -->
+{% set headline = library.sections.headline %}
+{% include '../_includes/sections/headline.njk' %}
+
+<!-- prettier-ignore -->
+{% set headline = ({
+  eyebrow: 'Customer Story',
+  icon: '/static/img/icon-google-check-circle.svg',
+  text: 'Working with AXYS felt less like hiring an agency and more like gaining a team.',
+  quote_giver: {
+    name: 'Jamie Rivera',
+    role: 'Founder, Example Co.',
+    image: { src: '/static/img/img-sample-3.jpg', alt: 'Portrait of Jamie Rivera' }
+  }
+}) %}
+{% include '../_includes/sections/headline.njk' %}
+
 <!-- prettier-ignore -->
 {% set plan_selection = library.sections.plan_selection %}
 {% include '../_includes/sections/plan-selection.njk' %}

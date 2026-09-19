@@ -156,6 +156,34 @@ path: library/components
   </div>
 </section>
 
+<section class="eyebrow-section library-section">
+  <h2>[ Eyebrow - Component ]</h2>
+  <p>
+    A small line of text above a heading, with an optional icon before it. The
+    <code>eyebrow.njk</code> component takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li><code>text</code> a string, the eyebrow text</li>
+    <li>
+      <code>icon</code> an optional string, the path to an svg shown before the
+      text (rendered with the <code>icon-svg</code> component). Works with or
+      without <code>text</code>
+    </li>
+    <li>
+      <code>class</code> a string value for a custom css class. The component
+      sets no margin of its own, so use this to space it from the heading below
+    </li>
+  </ul>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set eyebrow = ({ text: 'Eyebrow text', icon: '/static/img/icon-google-bolt.svg' }) %}
+  {% include "../_includes/components/eyebrow.njk" %}
+</section>
+
 <section class="form-section library-section library-section--thin">
   <h2>[ Form - Component ]</h2>
   <strong>Note: Forms require additional setup in Netlify.</strong>
@@ -265,10 +293,10 @@ path: library/components
 
   <p>
     Cards spaced evenly around an exact circle (not an arc), spinning
-    continuously while each card counter-rotates to stay upright as it
-    orbits. Purely decorative — there's no hover response; reach for
-    <code>image-fan.njk</code> instead for a hover-driven picker. Comes with
-    the following configs:
+    continuously while each card counter-rotates to stay upright as it orbits.
+    Purely decorative — there's no hover response; reach for
+    <code>image-fan.njk</code> instead for a hover-driven picker. Comes with the
+    following configs:
   </p>
   <ul class="classic-list">
     <li>
@@ -281,13 +309,13 @@ path: library/components
       <code>24</code>
     </li>
     <li>
-      <code>gap</code> a number, the spacing between cards as a multiple of
-      card width (<code>1</code> = touching, above <code>1</code> = gap,
-      below <code>1</code> = overlap). Defaults to <code>1.15</code>
+      <code>gap</code> a number, the spacing between cards as a multiple of card
+      width (<code>1</code> = touching, above <code>1</code> = gap, below
+      <code>1</code> = overlap). Defaults to <code>1.15</code>
     </li>
     <li>
-      <code>direction</code> a string, <code>left</code> or <code>right</code>
-      — which way the ring spins. Defaults to <code>left</code>
+      <code>direction</code> a string, <code>left</code> or <code>right</code> —
+      which way the ring spins. Defaults to <code>left</code>
     </li>
     <li>
       <code>duration</code> a number, seconds for one full orbit. Defaults to
@@ -297,8 +325,8 @@ path: library/components
       <code>bloom</code> a string, <code>left</code>, <code>right</code>, or
       <code>top</code> — when set, cards stop counter-rotating upright and
       instead rotate individually to stay radially oriented like petals on a
-      flower, with the left-, right-, or top-most card upright. Unset by
-      default (cards stay upright as they orbit)
+      flower, with the left-, right-, or top-most card upright. Unset by default
+      (cards stay upright as they orbit)
     </li>
     <li><code>class</code> a string value for a custom css class</li>
   </ul>
@@ -345,12 +373,13 @@ path: library/components
       <code>32</code>
     </li>
     <li>
-      <code>waves</code> a number, how many crests the wave has across one set.
-      This sets how far each card lags its previous sibling
-      (<code>duration × waves ÷ items in a set</code>), and is derived rather
-      than a raw delay so the wave also loops without a jump at the seam. Higher
-      values stagger the cards more tightly; <code>0</code> moves them all in
-      sync. Defaults to <code>1</code>
+      <code>waves</code> a whole number, how many crests the wave has across one
+      set (fractions are rounded, since a partial crest can't loop without a
+      jump). This sets how far each card lags its previous sibling (<code
+        >duration × waves ÷ items in a set</code
+      >), and is derived rather than a raw delay so the wave also loops without
+      a jump at the seam. Higher values stagger the cards more tightly;
+      <code>0</code> moves them all in sync. Defaults to <code>1</code>
     </li>
     <li>
       <code>scrub</code> a number, ties the marquee to scroll. Scrolling down
@@ -684,4 +713,41 @@ path: library/components
     style="width: 250px"
     eleventy:ignore
   />
+</section>
+
+<section class="video-player-section library-section">
+  <h2>[ Video Player - Component ]</h2>
+  <p>
+    A plain <code>video</code> with native controls, plus a custom play button
+    resting on top of it whenever the video isn't playing (before it starts,
+    when paused, and once it ends). The <code>video-player.njk</code> component
+    takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li>
+      <code>src</code> a string, the path or url to the video. Dropbox links
+      work as is
+    </li>
+    <li>
+      <code>poster</code> an optional string, the path to an image shown before
+      the video plays
+    </li>
+    <li>
+      <code>play_icon</code> an optional string, the path to an svg used for the
+      play button. Defaults to <code>/static/img/icon-google-play.svg</code>
+    </li>
+    <li>
+      <code>label</code> an optional string, the play button's accessible name.
+      Defaults to <code>Play video</code>
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set video_player = library.video_player %}
+  {% include "../_includes/components/video-player.njk" %}
 </section>

@@ -4,16 +4,21 @@
 {% set speed = image_wave.speed or 60 %}{# seconds for the marquee to pan one full set #}
 {% set duration = image_wave.duration or 4 %}{# seconds for one full up-and-down bob #}
 {% set amplitude = image_wave.amplitude if image_wave.amplitude is number else 32 %}{# px each card travels up and down from centre. 0 = flat row #}
-{% set waves = image_wave.waves if image_wave.waves is number else 1 %}{# crests of the wave across one set — sets how far each card lags behind its previous sibling (the stagger). 0 = every card moves in sync #}
+{% set waves = image_wave.waves if image_wave.waves is number else 1 %}{# crests of the wave across one set — sets how far each card lags behind its previous sibling (the stagger). 0 = every card moves in sync. Whole numbers only: it's rounded, since a fractional crest count leaves the wave out of phase at the loop seam #}
 {% set scrub = image_wave.scrub or 0 %}{# number, 0 (default) = off. Ties the marquee to scroll: scrolling down pushes it further left, scrolling up pulls it back — 1 shifts it 1px per 1px scrolled, so higher = more sensitive. The idle pan keeps running underneath #}
 {% set class = image_wave.class or '' %}
 
 {# One set = the images x repeat. Two identical sets sit side by side and the
    track pans left by exactly one set, so the loop resets invisibly. The lag
    between siblings is derived (period x waves / items-per-set) so the wave's
-   phase also repeats exactly once per set, and the seam has no jump in it. #}
+   phase also repeats exactly once per set, and the seam has no jump in it.
+   That only holds for a whole number of crests — an item and its twin in the
+   other set are `period x waves` apart, which must be a multiple of the
+   period — so `waves` is snapped to a whole number (a non-zero value never
+   rounds down to 0). #}
 {% set per_set = (images | length) * repeat %}
-{% set step = (duration * waves / per_set) if per_set else 0 %}
+{% set waves_whole = (waves | round) if (waves | round) >= 1 else (1 if waves > 0 else 0) %}
+{% set step = (duration * waves_whole / per_set) if per_set else 0 %}
 
 <!-- prettier-ignore -->
 <div

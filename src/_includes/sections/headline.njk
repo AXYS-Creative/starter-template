@@ -1,0 +1,64 @@
+<!-- prettier-ignore -->
+{% set text = headline.text | default('No headline provided') %}
+{% set eyebrow_text = headline.eyebrow or '' %}
+{% set eyebrow_icon = headline.icon or '' %}{# path to an svg, shown before the eyebrow text — works with or without eyebrow text #}
+{% set quote_giver = headline.quote_giver or {} %}{# name, role, image ( src / alt ). name is what turns the quote on — leave it empty for a plain headline #}
+{% set class = headline.class or '' %}
+
+{% set quoted = quote_giver.name %}
+
+<section class="headline {{ class }}">
+  <div class="headline__inner">
+    <!-- prettier-ignore -->
+    {% if eyebrow_text or eyebrow_icon %}
+    {% set eyebrow = ({ 
+      text: eyebrow_text, 
+      icon: eyebrow_icon, 
+      class: 'headline__eyebrow' 
+    }) %}
+    {% include "../components/eyebrow.njk" %}
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if quoted %}
+    <figure class="headline__quote">
+      <blockquote class="headline__blockquote">
+        {% endif %}
+        <p
+          class="headline__text text-flip"
+          data-flip-type="words"
+          data-flip-duration="2.5"
+          data-flip-stagger="0.1"
+          data-flip-once="false"
+          data-flip-ease="elastic.out(1.5, 0.3)"
+        >
+          <!-- Keep on same line to avoid gap between quote marks -->
+          <!-- prettier-ignore -->
+          {% if quoted %}“{% endif %}{{ text | safe }}{% if quoted %}”{% endif %}
+        </p>
+        {% if quoted %}
+      </blockquote>
+
+      <figcaption class="headline__giver">
+        {% if quote_giver.image.src %}
+        <img
+          class="headline__giver-img"
+          src="{{ quote_giver.image.src }}"
+          alt="{{ quote_giver.image.alt or '' }}"
+          width="48"
+          height="48"
+          loading="lazy"
+          eleventy:ignore
+        />
+        {% endif %}
+        <span class="headline__giver-info">
+          <strong class="headline__giver-name">{{ quote_giver.name }}</strong>
+          {% if quote_giver.role %}<small class="headline__giver-role"
+            >{{ quote_giver.role }}</small
+          >{% endif %}
+        </span>
+      </figcaption>
+    </figure>
+    {% endif %}
+  </div>
+</section>

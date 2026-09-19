@@ -1,0 +1,12 @@
+# Video Player
+# src       -> path or url to the video
+# poster    -> optional image shown before the video plays
+# play_icon -> optional svg path for the play button (default is the
+#              google play icon)
+# label     -> optional accessible name for the play button (default
+#              'Play video')
+# class     -> optional extra css class
+
+src: https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0
+poster: /static/img/img-sample-1.jpg
+play_icon: /static/img/icon-google-play.svg
