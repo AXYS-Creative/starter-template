@@ -113,6 +113,22 @@
     }
   }
 
+  // Scroll-scrub wrapper (`images_scrub`, driven by
+  // javascript/sections/hero-image-circle.js). It's the same square as the
+  // `.image-circle` inside it, so rotating it spins the whole circle around
+  // its centre. Kept separate from `.image-circle__ring` because the ring's
+  // idle spin is a CSS animation on the `rotate` property — a second
+  // rotation there would fight it. On mobile the ring is pushed down 25%
+  // (above), so the pivot follows it to stay on the ring's true centre.
+  &__spin {
+    width: 100%;
+    will-change: transform;
+
+    @include mixins.mq-max(lg) {
+      transform-origin: 50% 75%;
+    }
+  }
+
   // `direction: left` (see the njk): &__images--2 is never rendered for
   // this variant, so there's nothing to hide here — just reflow &__content
   // to the left edge and re-pin &__images--1 to the right edge it now

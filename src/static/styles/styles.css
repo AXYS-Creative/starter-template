@@ -9997,6 +9997,15 @@ html:has(.scroll-progress) {
     translate: 0 25%;
   }
 }
+.hero-image-circle__spin {
+  width: 100%;
+  will-change: transform;
+}
+@media (max-width: 1024px) {
+  .hero-image-circle__spin {
+    transform-origin: 50% 75%;
+  }
+}
 @media (min-width: 1025px) {
   .hero-image-circle--left .hero-image-circle__inner {
     justify-content: flex-start;

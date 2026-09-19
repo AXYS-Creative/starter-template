@@ -7,6 +7,7 @@
 {% set images_1 = hero_image_circle.images_1 or [] %}
 {% set images_2 = hero_image_circle.images_2 or [] %}
 {% set direction = hero_image_circle.direction or 'center' %}{# center | left — center (default) flanks the content with two circles; left drops the second circle, shifts the copy left, and lets the first circle overflow off the right edge of the screen. Desktop (lg and up) only — mobile (lg and down) looks the same either way #}
+{% set images_scrub = hero_image_circle.images_scrub or 0 %}{# number, 0 (default) = off. Spins each circle on scroll while the section is in the viewport — 1 ≈ a quarter turn (90deg) across the section's full pass through the viewport, so higher = more dramatic. The two circles counter-rotate, matching their idle spin directions #}
 {% set images_1_bloom = 'left' if direction == 'left' else 'right' %}{# keep the circle's upright card facing the content, whichever edge it ends up pinned to #}
 
 <section class="hero-image-circle hero-image-circle--{{ direction }}">
@@ -18,7 +19,9 @@
         direction: 'left',
         bloom: images_1_bloom
       }) %}
-      {% include "../components/image-circle.njk" %}
+      <div class="hero-image-circle__spin"{% if images_scrub > 0 %} data-images-scrub="{{ images_scrub }}" data-images-scrub-dir="-1"{% endif %}>
+        {% include "../components/image-circle.njk" %}
+      </div>
     </div>
 
     <div class="hero-image-circle__content">
@@ -48,7 +51,9 @@
         direction: 'right',
         bloom: 'left'
       }) %}
-      {% include "../components/image-circle.njk" %}
+      <div class="hero-image-circle__spin"{% if images_scrub > 0 %} data-images-scrub="{{ images_scrub }}" data-images-scrub-dir="1"{% endif %}>
+        {% include "../components/image-circle.njk" %}
+      </div>
     </div>
     {% endif %}
   </div>

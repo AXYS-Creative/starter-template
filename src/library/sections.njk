@@ -100,6 +100,14 @@ path: library/sections
       and lets the first circle overflow off the right edge of the screen.
       Desktop (<code>lg</code> and up) only — mobile looks identical either way.
     </li>
+    <li>
+      <code>images_scrub</code> a number, <code>0</code> (default) is off.
+      Spins each circle as the user scrolls while the section is in the
+      viewport; <code>1</code> is roughly a quarter turn across the section's
+      full pass through the viewport, so higher values rotate more dramatically.
+      With two circles they spin in opposite directions, matching their idle
+      spin. Skipped when the user prefers reduced motion.
+    </li>
   </ul>
 </div>
 <!-- prettier-ignore -->
