@@ -1,0 +1,55 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.hero-image-wave {
+  overflow-x: clip;
+
+  &__inner {
+    @include mixins.section-padding;
+    @include mixins.width-clamp;
+    @include mixins.column-center;
+  }
+
+  // Always a centered column. `position: relative` anchors `&__accent`.
+  &__content {
+    @include mixins.column-center;
+    position: relative;
+    text-align: center;
+
+    @include mixins.mq-min(md) {
+      max-width: var(--max-width--text);
+    }
+  }
+
+  &__eyebrow {
+    margin-block-end: var(--spacing-below-eyebrow);
+  }
+
+  &__title {
+    margin-block-end: var(--spacing-below-title);
+  }
+
+  &__desc {
+    margin-block-end: var(--spacing-below-description);
+    text-wrap: balance;
+  }
+
+  // Decorative accent text, pinned to the top-right of the copy. Hidden on
+  // mobile, where there's no room for it to sit beside the content.
+  &__accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    translate: 60% -50%;
+    rotate: 8deg;
+    pointer-events: none;
+
+    @include mixins.mq-max(lg) {
+      display: none;
+    }
+  }
+
+  &__wave {
+    padding-block-end: var(--section-gap--lg);
+  }
+}

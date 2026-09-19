@@ -1,0 +1,48 @@
+<!-- prettier-ignore -->
+{% set eyebrow = hero_image_wave.eyebrow or '' %}
+{% set title = hero_image_wave.title | default('No title provided') %}
+{% set description = hero_image_wave.description | default('No description provided') %}
+{% set accent = hero_image_wave.accent or '' %}{# absolutely positioned accent text beside the copy — hidden on mobile (lg and down). Leave unset to omit #}
+{% set cta_1 = hero_image_wave.cta_1 or null %}
+{% set cta_2 = hero_image_wave.cta_2 or null %}
+{% set images = hero_image_wave.images or [] %}
+{% set wave = hero_image_wave.wave or {} %}{# optional image-wave config: repeat, speed, duration, amplitude, waves, scrub, class — see the image-wave component #}
+
+<section class="hero-image-wave">
+  <div class="hero-image-wave__inner">
+    <div class="hero-image-wave__content">
+      <!-- prettier-ignore -->
+      {% if accent %}
+      <span class="hero-image-wave__accent" aria-hidden="true">{{ accent }}</span>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if eyebrow %}
+      <small class="hero-image-wave__eyebrow">{{ eyebrow }}</small>
+      {% endif %}
+
+      <h1 class="hero-image-wave__title">{{ title }}</h1>
+      <p class="hero-image-wave__desc">{{ description }}</p>
+
+      <!-- prettier-ignore -->
+      {% set content_start = true %}
+      {% include "../components/cta-group.njk" %}
+      {% set content_start = false %}
+    </div>
+  </div>
+
+  <div class="hero-image-wave__wave">
+    <!-- prettier-ignore -->
+    {% set image_wave = ({
+      images: images,
+      repeat: wave.repeat,
+      speed: wave.speed,
+      duration: wave.duration,
+      amplitude: wave.amplitude,
+      waves: wave.waves,
+      scrub: wave.scrub,
+      class: wave.class
+    }) %}
+    {% include "../components/image-wave.njk" %}
+  </div>
+</section>

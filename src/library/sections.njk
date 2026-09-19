@@ -101,18 +101,54 @@ path: library/sections
       Desktop (<code>lg</code> and up) only — mobile looks identical either way.
     </li>
     <li>
-      <code>images_scrub</code> a number, <code>0</code> (default) is off.
-      Spins each circle as the user scrolls while the section is in the
-      viewport; <code>1</code> is roughly a quarter turn across the section's
-      full pass through the viewport, so higher values rotate more dramatically.
-      With two circles they spin in opposite directions, matching their idle
-      spin. Skipped when the user prefers reduced motion.
+      <code>images_scrub</code> a number, <code>0</code> (default) is off. Spins
+      each circle as the user scrolls while the section is in the viewport;
+      <code>1</code> is roughly a quarter turn across the section's full pass
+      through the viewport, so higher values rotate more dramatically. With two
+      circles they spin in opposite directions, matching their idle spin.
+      Skipped when the user prefers reduced motion.
     </li>
   </ul>
 </div>
 <!-- prettier-ignore -->
 {% set hero_image_circle = library.sections.hero_image_circle %}
 {% include '../_includes/sections/hero-image-circle.njk' %}
+
+<div class="section-width--thin">
+  <h2>[ Hero Image Wave - Section ]</h2>
+  <br />
+  <p>
+    A hero that's always a centered column, with an accent flourish and an
+    <code>image-wave</code> component beneath the content. Takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li><code>eyebrow</code> an optional string shown above the title.</li>
+    <li><code>title</code> and <code>description</code> strings.</li>
+    <li>
+      <code>accent</code> an optional string, decorative text positioned
+      absolutely beside the copy. Hidden on mobile (<code>lg</code> and down).
+      Leave unset to omit.
+    </li>
+    <li>
+      <code>cta_1</code> / <code>cta_2</code> same shape as the
+      <code>cta-group</code> component.
+    </li>
+    <li>
+      <code>images</code> an array of images ( <code>src</code> /
+      <code>alt</code> ) passed to the <code>image-wave</code> component.
+    </li>
+    <li>
+      <code>wave</code> an optional object of <code>image-wave</code> configs —
+      <code>repeat</code>, <code>speed</code>, <code>duration</code>,
+      <code>amplitude</code>, <code>waves</code>, <code>scrub</code>,
+      <code>class</code>. See the component's docs for what each does.
+    </li>
+  </ul>
+</div>
+<!-- prettier-ignore -->
+{% set hero_image_wave = library.sections.hero_image_wave %}
+{% include '../_includes/sections/hero-image-wave.njk' %}
 
 <!-- prettier-ignore -->
 {% set plan_selection = library.sections.plan_selection %}

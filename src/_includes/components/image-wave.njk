@@ -1,0 +1,45 @@
+<!-- prettier-ignore -->
+{% set images = image_wave.images or [] %}
+{% set repeat = image_wave.repeat or 1 %}{# times the images repeat inside one set — one set must be wider than the screen or the loop shows a gap. Bump this if you have few/narrow images #}
+{% set speed = image_wave.speed or 60 %}{# seconds for the marquee to pan one full set #}
+{% set duration = image_wave.duration or 4 %}{# seconds for one full up-and-down bob #}
+{% set amplitude = image_wave.amplitude if image_wave.amplitude is number else 32 %}{# px each card travels up and down from centre. 0 = flat row #}
+{% set waves = image_wave.waves if image_wave.waves is number else 1 %}{# crests of the wave across one set — sets how far each card lags behind its previous sibling (the stagger). 0 = every card moves in sync #}
+{% set scrub = image_wave.scrub or 0 %}{# number, 0 (default) = off. Ties the marquee to scroll: scrolling down pushes it further left, scrolling up pulls it back — 1 shifts it 1px per 1px scrolled, so higher = more sensitive. The idle pan keeps running underneath #}
+{% set class = image_wave.class or '' %}
+
+{# One set = the images x repeat. Two identical sets sit side by side and the
+   track pans left by exactly one set, so the loop resets invisibly. The lag
+   between siblings is derived (period x waves / items-per-set) so the wave's
+   phase also repeats exactly once per set, and the seam has no jump in it. #}
+{% set per_set = (images | length) * repeat %}
+{% set step = (duration * waves / per_set) if per_set else 0 %}
+
+<!-- prettier-ignore -->
+<div
+  class="image-wave {{ class }}"
+  {% if scrub > 0 %}data-wave-scrub="{{ scrub }}" data-wave-speed="{{ speed }}"{% endif %}
+  style="--wave-speed: {{ speed }}s; --wave-duration: {{ duration }}s; --wave-amp: {{ amplitude }}px; --wave-step: {{ step }}s; --wave-total: {{ per_set * 2 }};"
+>
+  <div class="image-wave__track">
+    {% for s in range(0, 2) %}
+    <div class="image-wave__set"{% if s == 1 %} aria-hidden="true"{% endif %}>
+      {% for r in range(0, repeat) %}
+      {% for image in images %}
+      <figure class="image-wave__item" style="--i: {{ s * per_set + r * (images | length) + loop.index0 }};">
+        <img
+          class="image-wave__img"
+          src="{{ image.src }}"
+          alt="{% if s == 0 and r == 0 %}{{ image.alt or '' }}{% endif %}"
+          width="{{ image.width or 400 }}"
+          height="{{ image.height or 500 }}"
+          loading="lazy"
+          eleventy:ignore
+        />
+      </figure>
+      {% endfor %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -311,6 +311,65 @@ path: library/components
   {% include "../_includes/components/image-circle.njk" %}
 </section>
 
+<section class="image-wave-section library-section">
+  <h2>[ Image Wave - Component ]</h2>
+
+  <p>
+    A marquee of image cards that pans slowly left and loops seamlessly, while
+    each card bobs up and down a little behind the one before it, so the bob
+    reads as a wave travelling along the row. Respects reduced motion. Comes
+    with the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>images</code> an array of images, each taking <code>src</code> and
+      <code>alt</code>. Any number of entries.
+    </li>
+    <li>
+      <code>repeat</code> a number, how many times the images repeat inside one
+      set. One set (the images × <code>repeat</code>) has to be wider than the
+      screen or the loop shows a gap, so raise this for few or narrow images.
+      Defaults to <code>1</code>
+    </li>
+    <li>
+      <code>speed</code> a number, seconds for the marquee to pan one full set.
+      Higher is slower. Defaults to <code>60</code>
+    </li>
+    <li>
+      <code>duration</code> a number, seconds for one full up-and-down bob.
+      Defaults to <code>4</code>
+    </li>
+    <li>
+      <code>amplitude</code> a number, pixels each card travels up and down from
+      centre — the wave's height. <code>0</code> gives a flat row. Defaults to
+      <code>32</code>
+    </li>
+    <li>
+      <code>waves</code> a number, how many crests the wave has across one set.
+      This sets how far each card lags its previous sibling
+      (<code>duration × waves ÷ items in a set</code>), and is derived rather
+      than a raw delay so the wave also loops without a jump at the seam. Higher
+      values stagger the cards more tightly; <code>0</code> moves them all in
+      sync. Defaults to <code>1</code>
+    </li>
+    <li>
+      <code>scrub</code> a number, ties the marquee to scroll. Scrolling down
+      pushes it further left and scrolling up pulls it back, on top of the idle
+      pan. <code>1</code> shifts it 1px per 1px scrolled, so higher is more
+      sensitive. <code>0</code> (default) is off. Skipped when the user prefers
+      reduced motion
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set image_wave = library.image_wave %}
+  {% include "../_includes/components/image-wave.njk" %}
+</section>
+
 <section class="image-fan-section library-section">
   <h2>[ Image Fan - Component ]</h2>
 

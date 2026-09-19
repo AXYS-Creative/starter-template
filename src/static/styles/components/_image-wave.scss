@@ -1,0 +1,112 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+// Image Wave
+// A marquee of image cards that pans slowly left while each card bobs up and
+// down, every card lagging a little behind the one before it so the bob
+// reads as a wave travelling along the row.
+//
+// Two motions on two different elements, so they never fight:
+//   - `&__track` pans left (`translate`, x only).
+//   - each `&__item` bobs (`translate`, y only).
+//
+// Seamless loop: `&__track` holds two identical `&__set`s and pans left by
+// exactly one set (-50% of its own width), at which point the second set is
+// where the first began and the animation restarts. That only works if one
+// set is at least as wide as the viewport (see the njk's `repeat`), and if
+// each set ends with the same spacing every item has — hence the trailing
+// margin on `&__item` rather than a flex `gap`, which would leave the two
+// sets one gap short of being equal halves.
+//
+// `scrub` (see javascript/components/image-wave.js): the pan above is a CSS
+// animation, which can't be nudged by scroll and still wrap seamlessly, so
+// when scrub is on the script adds `--driven` and drives the track's
+// `translate` itself (idle pan + scroll offset, wrapped by one set width).
+// The CSS pan stays as the fallback if the script doesn't run.
+//
+// The wave loops as seamlessly as the pan: the njk derives `--wave-step` so
+// the bob's phase repeats exactly once per set, meaning an item and its
+// twin in the other set are always in step.
+
+.image-wave {
+  --wave-speed: 60s; // time for the track to pan one full set
+  --wave-duration: 4s; // one full up-and-down bob
+  --wave-amp: 32px; // how far a card travels up and down from centre
+  --wave-step: 0.5s; // how far each card lags its previous sibling
+  --wave-total: 16; // items across both sets, set by the njk
+  --wave-gap: var(--spacing);
+
+  width: 100%;
+  padding-block: var(--wave-amp); // room for the bob, since we clip below
+  overflow: clip;
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: image-wave-pan var(--wave-speed) linear infinite;
+    will-change: translate;
+  }
+
+  &__set {
+    display: flex;
+    flex: none;
+  }
+
+  &__item {
+    flex: none;
+    width: 240px;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    margin-inline-end: var(--wave-gap);
+    overflow: hidden;
+    border: var(--card-border);
+    border-radius: var(--radius);
+    background: var(--color-surface--1);
+
+    // Negative delay so every card is already mid-bob on load instead of
+    // waiting its turn: item `i` runs `(total - i) * step` ahead of a fresh
+    // start, which is the same as lagging `i * step` behind its first sibling.
+    animation: image-wave-bob calc(var(--wave-duration) / 2) ease-in-out infinite
+      alternate;
+    animation-delay: calc((var(--i, 0) - var(--wave-total)) * var(--wave-step));
+
+    @include mixins.mq-max(md) {
+      width: 160px;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  &--driven &__track {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-wave__track,
+    .image-wave__item {
+      animation: none;
+    }
+  }
+}
+
+@keyframes image-wave-pan {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@keyframes image-wave-bob {
+  from {
+    translate: 0 calc(var(--wave-amp) * -1);
+  }
+  to {
+    translate: 0 var(--wave-amp);
+  }
+}

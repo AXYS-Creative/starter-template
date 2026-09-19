@@ -33,6 +33,7 @@ import "./components/form-feedback.js";
 import "./components/form-redirect.js";
 import "./components/grid-bg.js";
 import "./components/grid-flow-img.js";
+import "./components/image-wave.js";
 import "./components/marquee-curve.js";
 import "./components/marquee.js";
 import "./components/particle-waves.js";
