@@ -660,6 +660,91 @@ path: library/utils
   </div>
 </section>
 
+<section class="grid-fade-section library-section">
+  <h2>[ Grid Fade - Util ]</h2>
+
+  <p>
+    Overlays a grid of tiles on an element that fade away (or away and back) as
+    it scrolls into view. Uses GSAP's <strong>ScrollTrigger</strong>. Comes with
+    the following configs:
+  </p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-grid-fade-type</code> a string that takes in
+      <code>in | in-out</code>. Defaults to <code>in</code>
+    </li>
+    <li>
+      <code>data-grid-fade-size</code> a string that takes in
+      <code>sm | md | lg</code> to set the tile size. Defaults to
+      <code>md</code>
+    </li>
+    <li>
+      <code>data-grid-fade-sequence</code> a string that takes in
+      <code>random | linear | circular</code> to set the order the tiles fade.
+      <code>linear</code> goes tile by tile from the top left,
+      <code>circular</code> fades outward from the center. Defaults to
+      <code>random</code>
+    </li>
+    <li>
+      <code>data-grid-fade-scrub</code> a boolean to scrub through the animation
+      rather than playing it. Defaults to <code>true</code>
+    </li>
+    <li>
+      <code>data-grid-fade-once</code> a boolean to play the animation only the
+      first time it comes into view. Only applies if scrub is
+      <code>false</code>. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>data-grid-fade-duration</code> a number to control the animation
+      duration in seconds. Only applies if scrub is <code>false</code>. Defaults
+      to <code>1.5</code>
+    </li>
+    <li>
+      <code>data-grid-fade-start</code> a string to set the scroll trigger
+      start. Defaults to <code>"top 96%"</code>, except when
+      <code>in-out</code> is played (scrub is <code>false</code>), where it
+      defaults to <code>"top 60%"</code>
+    </li>
+    <li>
+      <code>data-grid-fade-end</code> a string to set the scroll trigger end.
+      When scrubbing, defaults to <code>"center 75%"</code> for
+      <code>in</code> and <code>"bottom 4%"</code> for <code>in-out</code>.
+      Otherwise defaults to <code>"bottom 4%"</code>
+    </li>
+    <li>
+      <code>data-grid-fade-markers</code> a boolean to toggle visual debugging
+      markers. Defaults to <code>false</code>
+    </li>
+  </ul>
+
+  <div class="library-boxes">
+    <div class="grid-fade library-box">Scrubbed fade in (default)</div>
+
+    <div
+      class="grid-fade library-box"
+      data-grid-fade-size="sm"
+      data-grid-fade-duration="2"
+      data-grid-fade-scrub="false"
+    >
+      Played once over 2s, Non scrub
+    </div>
+
+    <div
+      class="grid-fade library-box"
+      data-grid-fade-type="in-out"
+      data-grid-fade-size="md"
+      data-grid-fade-sequence="linear"
+    >
+      Scrubbed fade in-out, linear
+    </div>
+  </div>
+
+  <figure class="grid-fade" data-grid-fade-sequence="circular">
+    <img src="/static/img/img-sample-1.jpg" alt="" />
+  </figure>
+</section>
+
 <section class="gsap-animate-section library-section">
   <h2 class="gsap-animate-section__title gsap-animate">
     [ GSAP animate - Util ]

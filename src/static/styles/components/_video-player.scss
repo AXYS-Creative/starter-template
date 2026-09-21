@@ -33,7 +33,12 @@
   }
 
   &__play {
-    @include mixins.absolute-center;
+    // Centered with inset + auto margins rather than absolute-center's
+    // `translate: -50% -50%`, since cursor-field.js sets the `translate`
+    // property inline and would overwrite that offset
+    position: absolute;
+    inset: 0;
+    margin: auto;
     display: grid;
     place-items: center;
     width: var(--play-size);

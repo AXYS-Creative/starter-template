@@ -9521,9 +9521,8 @@ html:has(.scroll-progress) {
 }
 .video-player__play {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
+  inset: 0;
+  margin: auto;
   display: grid;
   place-items: center;
   width: var(--play-size);
