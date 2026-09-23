@@ -749,6 +749,61 @@ code.codearea {
     display: inline-flex;
     overflow: hidden;
   }
+  .glass-bg,
+  [data-glass-background] {
+    position: relative;
+    background: var(--glass-tint, var(--color-glass-frost));
+    backdrop-filter: blur(var(--glass-blur, 12px)) saturate(var(--glass-saturate, 140%));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 12px)) saturate(var(--glass-saturate, 140%));
+  }
+  .glass-bg::before,
+  [data-glass-background]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.2)) border-box;
+    mask: linear-gradient(#fff) padding-box, linear-gradient(#fff);
+    -webkit-mask: linear-gradient(#fff) padding-box, linear-gradient(#fff);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-bg,
+    [data-glass-background] {
+      background: var(--glass-tint, var(--color-glass-frost));
+    }
+  }
+  .glass-bg[data-glass-background=dark],
+  [data-glass-background][data-glass-background=dark] {
+    --glass-tint: rgba(0, 0, 0, 0.25);
+  }
+  div.glass-bg-samples {
+    position: absolute;
+    inset: 0;
+    align-items: start;
+    justify-content: center;
+  }
+  .glass-bg-sample {
+    position: sticky;
+    top: 40%;
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    width: max(180px, 20%);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 600;
+  }
+  .glass-bg-sample-2 {
+    border-radius: 50%;
+  }
   .gradient-border {
     position: relative;
   }

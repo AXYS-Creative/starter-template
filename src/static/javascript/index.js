@@ -47,6 +47,7 @@ import "./components/video-overlay.js";
 import "./components/video-player.js";
 
 import "./utils/flip.js";
+import "./utils/glass-bg.js";
 import "./utils/glitch-text.js";
 import "./utils/gradient-border.js";
 import "./utils/grid-fade.js";

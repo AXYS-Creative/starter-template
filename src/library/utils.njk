@@ -529,6 +529,94 @@ path: library/utils
   </div>
 </section>
 
+<section class="glass-bg-section library-section">
+  <h2>[ Glass BG - Util ]</h2>
+  <strong>
+    Note: This utility uses the <code>::before</code> pseudo element, and needs
+    something visually busy behind it (like the image below) to actually read as
+    glass.</strong
+  >
+  <p class="max-width-text">
+    A liquid-glass effect you can drop onto any element via the
+    <code>glass-bg</code> class or the
+    <code>data-glass-background</code> attribute (handy when you can't add a
+    class directly, e.g. CMS-generated markup). There are two tiers: a plain
+    <code>backdrop-filter: blur()</code> tint that renders everywhere (css only,
+    see <code>mixins.glass-bg</code>), and the real refraction effect &mdash; an
+    SVG chromatic-displacement filter, regenerated per element to match its size
+    &mdash; layered on top by <code>javascript/utils/glass-bg.js</code>. That
+    filter only renders through <code>backdrop-filter</code> in Chromium today,
+    so Safari and Firefox intentionally stay on the plain blur tier instead of
+    showing a broken effect. The configs tap into these css variables:
+  </p>
+
+  <ul class="classic-list">
+    <li><code>--glass-blur</code> (fallback tier only)</li>
+    <li><code>--glass-saturate</code> (fallback tier only)</li>
+    <li><code>--glass-tint</code></li>
+  </ul>
+
+  <br />
+  <p>There are a handful of useful data attributes as well.</p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-glass-blur</code> Number, fallback blur radius in
+      <code>px</code>. Defaults to <code>12</code>. Chromium ignores this once
+      the real filter applies.
+    </li>
+    <li>
+      <code>data-glass-saturate</code> Number, fallback saturation as a percent.
+      Defaults to <code>140</code>. Chromium ignores this once the real filter
+      applies.
+    </li>
+    <li>
+      <code>data-glass-scale</code> Number, displacement strength in
+      <code>px</code>, Chromium only. Defaults to <code>40</code>.
+    </li>
+    <li>
+      <code>data-glass-background="dark"</code> Darker tint, for use over
+      lighter content.
+    </li>
+  </ul>
+
+  <div class="cursor-hide" style="position: relative">
+    <img
+      src="/static/img/img-sample-1.jpg"
+      alt=""
+      style="
+        display: block;
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        border-radius: var(--radius);
+      "
+    />
+    <div class="library-boxes glass-bg-samples">
+      <div class="glass-bg glass-bg-sample glass-bg-sample-1 velocity-push">
+        Default glass bg <br />
+        (push me)
+      </div>
+      <div
+        class="glass-bg glass-bg-sample glass-bg-sample-2 magnet"
+        data-glass-scale="80"
+      >
+        Stronger scale (magnet)
+      </div>
+      <div
+        class="glass-bg glass-bg-sample glass-bg-sample-3"
+        data-glass-background="dark"
+        data-tilt
+        data-tilt-max="30"
+        data-tilt-perspective="750"
+        data-tilt-speed="2000"
+      >
+        Dark tint (tilt)
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="gradient-border-section library-section">
   <h2>[ Gradient Border - Util ]</h2>
   <strong>

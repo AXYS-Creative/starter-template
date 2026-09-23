@@ -796,6 +796,56 @@ $min-breakpoints: ();
   backdrop-filter: blur(8px);
 }
 
+// Liquid glass. The REAL effect is an SVG chromatic-displacement filter
+// applied by javascript/utils/glass-bg.js (see that file for how/why) —
+// this mixin only sets up the fallback tier that javascript overrides:
+// a plain blur/saturate backdrop, for the browsers (Safari, Firefox) that
+// don't render SVG filters through backdrop-filter. Don't try to make this
+// mixin "better" by itself — the blur here is intentionally the floor, not
+// the effect.
+@mixin glass-bg($blur: var(--glass-blur, 12px)) {
+  position: relative;
+  background: var(--glass-tint, var(--color-glass-frost));
+  backdrop-filter: blur($blur) saturate(var(--glass-saturate, 140%));
+  -webkit-backdrop-filter: blur($blur) saturate(var(--glass-saturate, 140%));
+
+  // Bevel — soft light catch along the top-left edge, same border-gradient
+  // technique as mixins.gradient-border
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.55),
+        rgba(255, 255, 255, 0) 35%,
+        rgba(255, 255, 255, 0) 65%,
+        rgba(255, 255, 255, 0.2)
+      )
+      border-box;
+    mask:
+      linear-gradient(#fff) padding-box,
+      linear-gradient(#fff);
+    -webkit-mask:
+      linear-gradient(#fff) padding-box,
+      linear-gradient(#fff);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+
+  // No backdrop-filter support (very old browsers) — fall back to a
+  // slightly stronger flat tint so the surface still reads instead of
+  // looking broken/transparent
+  @supports not (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    background: var(--glass-tint, var(--color-glass-frost));
+  }
+}
+
 // Helpful for text over images
 @mixin gradient-backdrop(
   $deg: 0deg,

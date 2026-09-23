@@ -141,6 +141,49 @@
     }
   }
 
+  .glass-bg,
+  [data-glass-background] {
+    @include mixins.glass-bg;
+
+    &[data-glass-background="dark"] {
+      --glass-tint: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  div.glass-bg-samples {
+    position: absolute;
+    inset: 0;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .glass-bg-sample {
+    position: sticky;
+    top: 40%;
+
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    width: max(180px, 20%);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 600;
+
+    // &-1 {
+    // }
+
+    &-2 {
+      border-radius: 50%;
+    }
+
+    // &-3 {
+    // }
+  }
+
   .gradient-border {
     @include mixins.gradient-border;
 
