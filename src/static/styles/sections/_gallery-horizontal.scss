@@ -1,0 +1,209 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.gallery-horizontal {
+  // Tune these to resize/reproportion the whole layout — every offset below
+  // is derived from these four values, so the geometry stays consistent.
+  --gh-portrait-w: 300px;
+  --gh-portrait-h: 400px;
+  --gh-landscape-w: 400px;
+  --gh-landscape-h: 280px;
+  --gh-gap: var(--section-gap--xl);
+  --gh-copy-w: 320px;
+
+  @include mixins.section-padding;
+  position: relative; // for pin steps
+  overflow: hidden;
+
+  &__header {
+    @include mixins.width-clamp;
+    margin-block-end: var(--section-gap--lg);
+  }
+
+  // Height is intrinsic — driven by the group's own layout math below, not
+  // the viewport. Only the horizontal scroll distance (slider width vs.
+  // container width) depends on the viewport.
+  &__pin {
+    position: relative;
+  }
+
+  &__container {
+    overflow: hidden;
+
+    @include mixins.mq-max(lg) {
+      overflow: visible;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing--xl);
+    padding-inline-start: var(--body-padding);
+
+    @include mixins.mq-max(lg) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--section-gap--lg);
+      padding-inline-start: 0;
+    }
+  }
+
+  // Cursive flourish, shown once before the first group. Not part of the
+  // repeating group structure — see gallery-horizontal.njk.
+  &__accent {
+    flex-shrink: 0;
+    align-self: center;
+    font-family: cursive;
+    font-size: clamp(32px, 4vw, 56px);
+    rotate: -6deg;
+    white-space: nowrap;
+    pointer-events: none;
+
+    @include mixins.mq-max(lg) {
+      align-self: center;
+      rotate: 0;
+      text-align: center;
+      white-space: normal;
+    }
+  }
+
+  &__group {
+    position: relative;
+    flex-shrink: 0;
+
+    // Shared left offset for the copy + third image column — the point
+    // where both images ahead of it (1 and 2) have cleared horizontally.
+    --gh-copy-left: calc(
+      var(--gh-portrait-w) * 0.5 + var(--gh-landscape-w) + var(--gh-gap)
+    );
+
+    width: calc(
+      var(--gh-copy-left) + var(--gh-portrait-w) * 0.75 + var(--gh-landscape-w)
+    );
+    height: calc(
+      var(--gh-portrait-h) * 1.5 + var(--gh-gap) + var(--gh-landscape-h)
+    );
+
+    @include mixins.mq-max(lg) {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing--lg);
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    border-radius: var(--radius--sm);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    // Top left, portrait.
+    &--1 {
+      top: 0;
+      left: 0;
+      width: var(--gh-portrait-w);
+      height: var(--gh-portrait-h);
+    }
+
+    // Below + offset right of #1, landscape.
+    &--2 {
+      top: calc(var(--gh-portrait-h) + var(--gh-gap));
+      left: calc(var(--gh-portrait-w) * 0.5);
+      width: var(--gh-landscape-w);
+      height: var(--gh-landscape-h);
+    }
+
+    // Shares a left edge with the copy; top sits at the halfway point of #1.
+    &--3 {
+      top: calc(var(--gh-portrait-h) * 0.5);
+      left: var(--gh-copy-left);
+      width: var(--gh-portrait-w);
+      height: var(--gh-portrait-h);
+    }
+
+    // Below + offset right of #3 — its bottom edge is the lowest point of
+    // the whole horizontal track.
+    &--4 {
+      top: calc(var(--gh-portrait-h) * 1.5 + var(--gh-gap));
+      left: calc(var(--gh-copy-left) + var(--gh-portrait-w) * 0.75);
+      width: var(--gh-landscape-w);
+      height: var(--gh-landscape-h);
+    }
+
+    @include mixins.mq-max(lg) {
+      position: static;
+      width: 100%;
+      height: auto;
+
+      &--1,
+      &--3 {
+        aspect-ratio: 3 / 4;
+      }
+
+      &--2,
+      &--4 {
+        aspect-ratio: 4 / 3;
+      }
+    }
+  }
+
+  &__copy {
+    position: absolute;
+    top: 0;
+    left: var(--gh-copy-left);
+    width: var(--gh-copy-w);
+
+    @include mixins.mq-max(lg) {
+      position: static;
+      width: 100%;
+    }
+  }
+
+  // Entrance reveal while the group scrolls into view (`lg` and up) — the
+  // pin/scrub itself (gallery-horizontal.js) only handles horizontal motion
+  // from here on.
+  @include mixins.mq-min(lg) {
+    @include mixins.mq-motion-allow {
+      &__img,
+      &__copy {
+        opacity: 0;
+        scale: 0.92;
+        filter: blur(4px);
+        transition: vars.$ease-sudden;
+
+        &.gsap-stagger-animate {
+          opacity: 1;
+          scale: 1;
+          filter: blur(0);
+        }
+      }
+    }
+  }
+
+  // Below `lg` there's no pin — each item reveals individually as the
+  // column scrolls past it.
+  @include mixins.mq-max(lg) {
+    @include mixins.mq-motion-allow {
+      &__img,
+      &__copy {
+        opacity: 0;
+        translate: 0 32px;
+        transition: 0.8s vars.$cubic-ease;
+
+        &.gsap-animated {
+          opacity: 1;
+          translate: 0 0;
+        }
+      }
+    }
+  }
+}

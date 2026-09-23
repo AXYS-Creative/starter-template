@@ -1,0 +1,45 @@
+title: "[ Gallery Horizontal - Section ]"
+accent: "Selected Work"
+
+groups:
+  - img_1:
+      src: /static/img/img-sample-1.jpg
+      alt: Sample image one
+    img_2:
+      src: /static/img/img-sample-2.jpg
+      alt: Sample image two
+    copy: "A short paragraph of copy describing this piece of work — kept brief so it doesn't run into the image below it."
+    img_3:
+      src: /static/img/img-sample-3.jpg
+      alt: Sample image three
+    img_4:
+      src: /static/img/img-sample-4.jpg
+      alt: Sample image four
+
+  - img_1:
+      src: /static/img/img-sample-5.jpg
+      alt: Sample image five
+    img_2:
+      src: /static/img/img-sample-6.jpg
+      alt: Sample image six
+    copy: "Each group repeats the exact same four-image-and-copy structure — only the content changes, which is what makes the sequence read as varied rather than repetitive."
+    img_3:
+      src: /static/img/img-sample-7.jpg
+      alt: Sample image seven
+    img_4:
+      src: /static/img/img-sample-8.jpg
+      alt: Sample image eight
+
+  - img_1:
+      src: /static/img/img-sample-3.jpg
+      alt: Sample image three
+    img_2:
+      src: /static/img/img-sample-1.jpg
+      alt: Sample image one
+    copy: "A third group to make the horizontal scroll distance feel real when previewing the section."
+    img_3:
+      src: /static/img/img-sample-6.jpg
+      alt: Sample image six
+    img_4:
+      src: /static/img/img-sample-2.jpg
+      alt: Sample image two

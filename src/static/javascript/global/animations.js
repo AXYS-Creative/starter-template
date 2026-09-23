@@ -1,4 +1,5 @@
 import { globalConfig, mqMouse } from "../util.js";
+import { afterPinnedSections } from "../utils/pin-order.js";
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, CustomEase);
 
@@ -106,7 +107,12 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
       // Custom animations — require dev work (Consider placement of code block. Sometimes may need to be placed above or beneath others)
       {
         // GSAP Animate util - Loader edition
-        {
+        //
+        // Deferred: this element's trigger position depends on any pinned
+        // section's spacer above it on the page — creating it immediately
+        // can bake in a stale position if a pin above it hasn't been set up
+        // yet. See utils/pin-order.js.
+        afterPinnedSections(() => {
           const gsapElems = document.querySelectorAll(".gsap-animate");
 
           gsapElems.forEach((gsapElem) => {
@@ -204,7 +210,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               observer.observe(gsapElem);
             }
           });
-        }
+        });
       }
     }
   );

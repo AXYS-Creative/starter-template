@@ -210,8 +210,48 @@ path: library/sections
 {% set price_cards_data = library.price_cards %}
 {% include '../_includes/sections/price-cards.njk' %}
 
+<div class="section-width--thin">
+  <h2>[ Gallery Horizontal - Section ]</h2>
+  <br />
+  <p>
+    A pinned horizontal gallery, purpose-built for one client's layout rather
+    than a generic reusable section (see the template's <code>CLAUDE.md</code>
+    for why). A static title sits above and does <em>not</em> pin — only the
+    gallery itself locks in place while its track translates horizontally.
+    Below <code>lg</code> there's no pin at all: it becomes a normal
+    scroll-reveal column, each item animating in as it's scrolled past. Takes:
+  </p>
+  <br />
+  <ul class="classic-list">
+    <li>
+      <code>title</code> a string, the static header above the pinned
+      gallery.
+    </li>
+    <li>
+      <code>accent</code> an optional cursive-text flourish, shown once
+      before the first group (not repeated per group).
+    </li>
+    <li>
+      <code>groups</code> an array, each repeating the same fixed
+      structure — <code>img_1</code> (portrait, top left), <code>img_2</code>
+      (landscape, below and offset right of <code>img_1</code>),
+      <code>copy</code> (a short paragraph, top-aligned with
+      <code>img_1</code>, to the right of both <code>img_1</code> and
+      <code>img_2</code>), <code>img_3</code> (portrait, sharing
+      <code>copy</code>'s left edge, its top at the halfway point of
+      <code>img_1</code>), and <code>img_4</code> (landscape, below and
+      offset right of <code>img_3</code> — its bottom edge is the lowest
+      point of the whole horizontal track). Each image is <code>src</code> /
+      <code>alt</code>.
+    </li>
+  </ul>
+</div>
 <!-- prettier-ignore -->
-{% set scroll_horizontal = library.sections.scroll_horizontal %} 
+{% set gallery_horizontal = library.sections.gallery_horizontal %}
+{% include '../_includes/sections/gallery-horizontal.njk' %}
+
+<!-- prettier-ignore -->
+{% set scroll_horizontal = library.sections.scroll_horizontal %}
 {% include '../_includes/sections/scroll-horizontal.njk' %}
 
 <!-- prettier-ignore -->

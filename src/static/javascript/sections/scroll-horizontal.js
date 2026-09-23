@@ -1,3 +1,5 @@
+import { queuePinnedSection } from "../utils/pin-order.js";
+
 let responsiveGsap = gsap.matchMedia();
 
 responsiveGsap.add(
@@ -25,41 +27,35 @@ responsiveGsap.add(
         const containerWidth = container.offsetWidth;
         const distanceToTranslate = sliderWidth - containerWidth;
 
-        let duration = maxSm ? "+=150%" : "+=200%";
+        // Nothing to scroll (e.g. the slider already fits the container).
+        if (distanceToTranslate <= 0) return;
 
-        // Actual Pinning
-        gsap.to(pin, {
-          scrollTrigger: {
-            trigger: pin,
-            start: "center center",
-            end: duration,
-            pin: true,
-          },
-        });
+        // Pin duration is tied to the actual horizontal distance, not a
+        // flat guess — a flat "+=200%" either finishes the scrub early
+        // (leaving the section pinned with nothing left to animate, which
+        // can bleed into the next pinned section's trigger window) or cuts
+        // it off before the slider fully translates.
+        let duration = "+=" + distanceToTranslate;
 
-        // Slider Along X-Axis
-        gsap.fromTo(
-          slider,
-          { x: 0 },
-          {
-            x: () => -distanceToTranslate,
-            ease: "none",
+        // Create in actual DOM order relative to any other pinned section on
+        // the page — see utils/pin-order.js for why that matters.
+        queuePinnedSection(pin, () => {
+          // Actual Pinning
+          gsap.to(pin, {
             scrollTrigger: {
               trigger: pin,
               start: "center center",
               end: duration,
-              scrub: scrollHorizontalScrub,
+              pin: true,
             },
-          }
-        );
+          });
 
-        // Optional parallax effect on images (use landscape images in portrait view)
-        imgs.forEach((img) => {
+          // Slider Along X-Axis
           gsap.fromTo(
-            img,
+            slider,
             { x: 0 },
             {
-              x: "25%", // Adjust this value for more or less parallax effect
+              x: () => -distanceToTranslate,
               ease: "none",
               scrollTrigger: {
                 trigger: pin,
@@ -69,6 +65,24 @@ responsiveGsap.add(
               },
             }
           );
+
+          // Optional parallax effect on images (use landscape images in portrait view)
+          imgs.forEach((img) => {
+            gsap.fromTo(
+              img,
+              { x: 0 },
+              {
+                x: "25%", // Adjust this value for more or less parallax effect
+                ease: "none",
+                scrollTrigger: {
+                  trigger: pin,
+                  start: "center center",
+                  end: duration,
+                  scrub: scrollHorizontalScrub,
+                },
+              }
+            );
+          });
         });
       });
     }

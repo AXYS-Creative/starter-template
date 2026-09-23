@@ -1,4 +1,5 @@
 import { mqMouse } from "../util.js";
+import { afterPinnedSections } from "./pin-order.js";
 
 const createMarkers = (color, indent) => ({
   startColor: color,
@@ -25,7 +26,13 @@ responsiveGsap.add(
     let { maxSm, maxMd } = context.conditions;
 
     // GSAP Animate util - Standard edition
-    {
+    //
+    // Deferred: this element's trigger position depends on any pinned
+    // section's spacer above it on the page (scroll-horizontal,
+    // gallery-horizontal, tunnel-centered) — creating it immediately can
+    // bake in a stale position if a pin above it hasn't been set up yet.
+    // See utils/pin-order.js.
+    afterPinnedSections(() => {
       const gsapElems = document.querySelectorAll(".gsap-animate");
 
       gsapElems.forEach((gsapElem) => {
@@ -60,10 +67,10 @@ responsiveGsap.add(
           });
         }
       });
-    }
+    });
 
-    // GSAP Stagger util
-    {
+    // GSAP Stagger util — same deferral reasoning as above.
+    afterPinnedSections(() => {
       const staggerGroups = document.querySelectorAll(".gsap-stagger");
 
       staggerGroups.forEach((group) => {
@@ -110,7 +117,7 @@ responsiveGsap.add(
           },
         });
       });
-    }
+    });
   },
 );
 

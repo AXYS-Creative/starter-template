@@ -1,0 +1,61 @@
+<!-- prettier-ignore -->
+{% set title = gallery_horizontal.title or '' %}
+{% set accent = gallery_horizontal.accent or '' %}
+{% set groups = gallery_horizontal.groups or [] %}
+
+<section class="gallery-horizontal">
+  <!-- prettier-ignore -->
+  {% if title %}
+  <header class="gallery-horizontal__header">
+    <h2 class="gallery-horizontal__header-title">{{ title }}</h2>
+  </header>
+  {% endif %}
+
+  <div class="gallery-horizontal__pin">
+    <div class="gallery-horizontal__container">
+      <div class="gallery-horizontal__slider gsap-stagger">
+        <!-- prettier-ignore -->
+        {% if accent %}
+        <span class="gallery-horizontal__accent gsap-animate" aria-hidden="true">{{ accent }}</span>
+        {% endif %}
+
+        <!-- prettier-ignore -->
+        {% for group in groups %}
+        <div class="gallery-horizontal__group">
+          <figure
+            class="gallery-horizontal__img gallery-horizontal__img--1 gsap-stagger-child gsap-animate"
+          >
+            <img src="{{ group.img_1.src }}" alt="{{ group.img_1.alt or '' }}" />
+          </figure>
+
+          <figure
+            class="gallery-horizontal__img gallery-horizontal__img--2 gsap-stagger-child gsap-animate"
+          >
+            <img src="{{ group.img_2.src }}" alt="{{ group.img_2.alt or '' }}" />
+          </figure>
+
+          <!-- prettier-ignore -->
+          {% if group.copy %}
+          <p class="gallery-horizontal__copy gsap-stagger-child gsap-animate">
+            {{ group.copy }}
+          </p>
+          {% endif %}
+
+          <figure
+            class="gallery-horizontal__img gallery-horizontal__img--3 gsap-stagger-child gsap-animate"
+          >
+            <img src="{{ group.img_3.src }}" alt="{{ group.img_3.alt or '' }}" />
+          </figure>
+
+          <figure
+            class="gallery-horizontal__img gallery-horizontal__img--4 gsap-stagger-child gsap-animate"
+          >
+            <img src="{{ group.img_4.src }}" alt="{{ group.img_4.alt or '' }}" />
+          </figure>
+        </div>
+        <!-- prettier-ignore -->
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
