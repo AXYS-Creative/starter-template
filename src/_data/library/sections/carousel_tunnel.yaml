@@ -1,0 +1,54 @@
+eyebrow: Featured Work
+title: Every Project Tells a Story
+description: Scroll to zoom out of the tunnel and reveal the full carousel.
+
+autoplay:
+  interval: 4500 # ms between auto-advances, 0 disables autoplay
+
+# drag:
+#   threshold: 0.1 # 0–1, fraction of a slide's width a drag needs to cross before it changes slides — lower = more sensitive (default 0.1)
+
+pagination: arrows # arrows (default) | dots | both — arrows alone scale better once there are a lot of slides
+
+# Layout/motion tuning — all optional, each one falls back to its own
+# default in _carousel-tunnel.scss when left out.
+# config:
+#   section_height: 220vh # total pinned scroll distance
+#   slide_width: min(25vw, 720px) # "safe" resting slide size, i.e. peek amount — also applies on mobile if set, overriding the built-in smaller mobile default
+#   slide_gap: 24px
+#   slide_aspect: 2 / 1.25
+#   scale_duration: 0.6 # fraction (0–1) of the scrub spent zooming out — also when copy/captions/pagination reveal + autoplay starts
+#   reveal_duration: 0.6s # real (not scrubbed) transition duration for that reveal's fade
+#   slide_caption_offset: 12px # breathing room for the per-slide eyebrow/title, bottom-left
+
+slides:
+  - eyebrow: "2025"
+    title: Northline
+    img:
+      src: /static/img/img-sample-1.jpg
+      alt: Sample image one
+  - eyebrow: "2025"
+    title: Aperture
+    img:
+      src: /static/img/img-sample-2.jpg
+      alt: Sample image two
+  - eyebrow: "2024"
+    title: Glasswave
+    img:
+      src: /static/img/img-sample-3.jpg
+      alt: Sample image three
+  - eyebrow: "2024"
+    title: Driftline
+    img:
+      src: /static/img/img-sample-4.jpg
+      alt: Sample image four
+  - eyebrow: "2023"
+    title: Meridian
+    img:
+      src: /static/img/img-sample-5.jpg
+      alt: Sample image five
+  - eyebrow: "2023"
+    title: Fernwood
+    img:
+      src: /static/img/img-sample-6.jpg
+      alt: Sample image six

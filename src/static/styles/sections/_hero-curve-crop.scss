@@ -35,7 +35,6 @@
   & > picture {
     @include mixins.absolute-center;
     z-index: -2;
-    height: 100%;
 
     img {
       height: 100%;

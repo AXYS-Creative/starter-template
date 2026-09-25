@@ -1,0 +1,134 @@
+<!-- prettier-ignore -->
+{% set eyebrow_text = carousel_tunnel.eyebrow or '' %}
+{% set title = carousel_tunnel.title | default('No title provided') %}
+{% set description = carousel_tunnel.description or '' %}
+{% set slides = carousel_tunnel.slides or [] %}
+{% set autoplay_interval = carousel_tunnel.autoplay.interval or 4500 %}
+{% set drag_threshold = carousel_tunnel.drag.threshold or 0.1 %}{# 0–1, fraction of a slide's width a drag needs to cross before it changes slides — lower = more sensitive #}
+{% set pagination_type = carousel_tunnel.pagination or 'arrows' %}{# arrows (default) | dots | both — arrows alone scale better once there are a lot of slides #}
+{% set show_pagination_arrows = pagination_type == 'arrows' or pagination_type == 'both' %}
+{% set show_pagination_dots = pagination_type == 'dots' or pagination_type == 'both' %}
+
+<!-- prettier-ignore -->
+{# Layout/motion tuning — all optional, matching the css custom property of
+   the same name in _carousel-tunnel.scss 1:1. Left unset, the scss default
+   applies as normal; only what's provided here gets inlined below, rather
+   than resolving+re-emitting every value with its default baked in — doing
+   that instead would silently defeat --slide-width's built-in mobile
+   override (an inline style always wins over a stylesheet's own media
+   query, on any breakpoint), the moment ANY custom value was set. #}
+{% set config = carousel_tunnel.config or {} %}
+{% set custom_props = (
+  (('--section-height: ' ~ config.section_height ~ ';') if config.section_height else '') ~
+  (('--slide-width: ' ~ config.slide_width ~ ';') if config.slide_width else '') ~
+  (('--slide-gap: ' ~ config.slide_gap ~ ';') if config.slide_gap else '') ~
+  (('--slide-aspect: ' ~ config.slide_aspect ~ ';') if config.slide_aspect else '') ~
+  (('--scale-duration: ' ~ config.scale_duration ~ ';') if config.scale_duration else '') ~
+  (('--reveal-duration: ' ~ config.reveal_duration ~ ';') if config.reveal_duration else '') ~
+  (('--slide-caption-offset: ' ~ config.slide_caption_offset ~ ';') if config.slide_caption_offset else '')
+) %}
+
+<!-- prettier-ignore -->
+<section class="carousel-tunnel"{% if custom_props %} style="{{ custom_props }}"{% endif %}>
+  <div class="carousel-tunnel__pin">
+    <!-- prettier-ignore -->
+    {% if eyebrow_text or title or description %}
+    <div class="carousel-tunnel__content">
+      <!-- prettier-ignore -->
+      {% if eyebrow_text %}
+      {% set eyebrow = ({
+        text: eyebrow_text,
+        class: 'carousel-tunnel__eyebrow'
+      }) %}
+      {% include "../components/eyebrow.njk" %}
+      {% endif %}
+
+      <h2 class="carousel-tunnel__title">{{ title }}</h2>
+
+      {% if description %}
+      <p class="carousel-tunnel__desc">{{ description }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="carousel-tunnel__viewport">
+      <div class="carousel-tunnel__scaler">
+        <!-- prettier-ignore -->
+        <div
+          class="carousel-tunnel__track"
+          data-carousel-tunnel-interval="{{ autoplay_interval }}"
+          data-carousel-tunnel-drag-threshold="{{ drag_threshold }}"
+        >
+          {% for slide in slides %}
+          <div class="carousel-tunnel__slide">
+            <img
+              class="carousel-tunnel__img"
+              src="{{ slide.img.src }}"
+              alt="{{ slide.img.alt or '' }}"
+            />
+
+            <!-- prettier-ignore -->
+            {% if slide.eyebrow or slide.title %}
+            <div class="carousel-tunnel__slide-caption">
+              {% if slide.eyebrow %}
+              {% set eyebrow = ({
+                text: slide.eyebrow,
+                class: 'carousel-tunnel__slide-eyebrow'
+              }) %}
+              {% include "../components/eyebrow.njk" %}
+              {% endif %}
+
+              {% if slide.title %}
+              <h3 class="carousel-tunnel__slide-title">{{ slide.title }}</h3>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- prettier-ignore -->
+    {% if slides.length > 1 %}
+    <div class="carousel-tunnel__pagination">
+      <!-- prettier-ignore -->
+      {% if show_pagination_arrows %}
+      {% set btn = ({
+        text_desc: 'Previous slide',
+        type: 'solid',
+        class: 'carousel-tunnel__arrow carousel-tunnel__arrow--prev',
+        icon_start: '/static/img/icon-google-chevron-right.svg',
+        icon_start_class: 'carousel-tunnel__arrow-icon'
+      }) %}
+      {% include "../components/btn.njk" %}
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if show_pagination_dots %}
+      <div class="carousel-tunnel__dots">
+        {% for slide in slides %}
+        <button
+          type="button"
+          class="carousel-tunnel__dot{% if loop.first %} carousel-tunnel__dot--active{% endif %}"
+          aria-label="Go to slide {{ loop.index }}"
+        ></button>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if show_pagination_arrows %}
+      {% set btn = ({
+        text_desc: 'Next slide',
+        type: 'solid',
+        class: 'carousel-tunnel__arrow carousel-tunnel__arrow--next',
+        icon_start: '/static/img/icon-google-chevron-right.svg',
+        icon_start_class: 'carousel-tunnel__arrow-icon'
+      }) %}
+      {% include "../components/btn.njk" %}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>

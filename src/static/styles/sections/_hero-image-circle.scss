@@ -2,7 +2,7 @@
 @use "../base/variables" as vars;
 
 .hero-image-circle {
-  --side-circles-offset: 15%; // move the circles closer or further from the text content
+  --side-circles-offset: 50%; // move the circles closer or further from the text content
 
   position: relative;
   overflow-x: clip; // desktop: let the circles bleed above/below the section, clip only the sides

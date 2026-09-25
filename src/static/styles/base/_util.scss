@@ -283,6 +283,10 @@
     transition: vars.$magnet;
   }
 
+  .scribble-underline {
+    @include mixins.scribble-underline;
+  }
+
   .toggle-slider {
     --accent-color: var(--color-surface--2);
     // --accent-color: var(--color-brand--primary);

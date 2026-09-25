@@ -332,6 +332,13 @@ path: library/sections
 }) %}
 {% include '../_includes/sections/tunnel.njk' %}
 
+<div class="library-section library-section-info">
+  <h2 class="text-fill">[ Carousel Tunnel ]</h2>
+</div>
+<!-- prettier-ignore -->
+{% set carousel_tunnel = library.sections.carousel_tunnel %}
+{% include '../_includes/sections/carousel-tunnel.njk' %}
+
 <!-- prettier-ignore -->
 {% set work_gallery = library.sections.work_gallery %}
 {% include '../_includes/sections/work-gallery.njk' %}

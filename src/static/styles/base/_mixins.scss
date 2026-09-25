@@ -986,3 +986,36 @@ $min-breakpoints: ();
   background: linear-gradient(90deg, transparent, $color 20% 80%, transparent);
   opacity: 0.25;
 }
+
+// Hand-drawn SVG underline dropped beneath any inline or block element via
+// the `scribble-underline` class. The asset is stretched to the element's
+// full width/height rather than tiled, so any squiggle-style SVG works
+// regardless of its native aspect ratio. Default source lives at
+// /static/img/scribble-underline.svg; override per-instance with
+// `data-scribble-src="/path/to.svg"` — CSS alone can't read a data
+// attribute into a background-image, so javascript/utils/scribble-underline.js
+// copies it into --scribble-underline-src on elements that set it.
+@mixin scribble-underline(
+  $height: var(--scribble-underline-height, 0.3em),
+  $offset: var(--scribble-underline-offset, -0.2em)
+) {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $offset;
+    height: $height;
+    background-image: var(
+      --scribble-underline-src,
+      url("/static/img/scribble-underline.svg")
+    );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    pointer-events: none;
+  }
+}

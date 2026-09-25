@@ -1005,6 +1005,61 @@ all_badge_types: "outline"
   </div>
 </section>
 
+<section class="scribble-underline-section library-section">
+  <h2>[ Scribble Underline - Util ]</h2>
+  <p class="max-width-text">
+    Drops a hand-drawn SVG squiggle beneath any element via the
+    <code>scribble-underline</code> class — works on inline elements like
+    <code>span</code> just as well as block elements like <code>p</code> or
+    <code>div</code>. The default asset lives at
+    <code>/static/img/scribble-underline.svg</code> and is stretched to fit
+    the element's width, so any similar squiggle-style SVG works regardless
+    of its native aspect ratio.
+  </p>
+
+  <ul class="classic-list">
+    <li>
+      <code>data-scribble-src</code> An optional string, path to a custom SVG
+      to use instead of the default. Read by
+      <code>javascript/utils/scribble-underline.js</code>, which copies it
+      into the <code>--scribble-underline-src</code> css variable — CSS alone
+      can't read a data attribute into a <code>background-image</code>.
+    </li>
+  </ul>
+
+  <br />
+
+  <h3 class="h6">Basic examples</h3>
+  <p>
+    A <span class="scribble-underline">hand-drawn underline</span> on a span
+    nested in a sentence.
+  </p>
+
+  <p class="scribble-underline max-width-text">
+    Applied directly to a block element instead, the underline spans the
+    whole element rather than a nested phrase.
+  </p>
+
+  <br />
+
+  <div class="library-boxes">
+    <div class="library-box scribble-underline">On a div</div>
+  </div>
+
+  <br /><br />
+
+  <h3 class="h6">Custom source</h3>
+  <p>
+    <span
+      class="scribble-underline"
+      data-scribble-src="/static/img/scribble-underline.svg"
+    >
+      Same asset, wired through <code>data-scribble-src</code>
+    </span>
+    instead of the CSS default — swap the path to point at any other SVG.
+  </p>
+</section>
+
 <section class="text-curve-section library-section library-section--centered">
   <h2 class="text-curve" data-curve-radius="-0.5" data-curve-mouse>
     [Text Curve - Util]

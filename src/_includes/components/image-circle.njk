@@ -3,8 +3,8 @@
 {% set n = images | length %}
 {% set divisor = n if n > 1 else 2 %}
 {% set step = 360 / divisor %}
-{% set gap = image_circle.gap or 1.15 %}          {# spacing between card centres as a multiple of card width #}
-{% set item_width = image_circle.item_width or 24 %}{# card width as a % of the component's own width #}
+{% set gap = image_circle.gap or 1 %}          {# spacing between card centres as a multiple of card width #}
+{% set item_width = image_circle.item_width or 40 %}{# card width as a % of the component's own width #}
 {% set direction = image_circle.direction or 'left' %}{# left | right — spin direction #}
 {% set duration = image_circle.duration or 90 %} {# seconds for one full orbit #}
 {% set bloom = image_circle.bloom %}{# left | right | top — when set, cards stop counter-rotating upright and instead rotate individually to stay radially oriented like flower petals, with the left-, right-, or top-most card upright #}

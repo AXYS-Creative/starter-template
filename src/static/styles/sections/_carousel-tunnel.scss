@@ -1,0 +1,212 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+// Scroll-driven "zoom out of a full-viewport image into a peek carousel".
+// Unlike tunnel.njk, nothing here is ever clipped/cropped on scroll — the
+// `__scaler` just scales its whole content (track + slides) down uniformly,
+// so the image visually shrinks along with everything else. `__track` is
+// deliberately a separate element from `__scaler` so carousel navigation
+// (translateX) and the scroll-scrub zoom (scale) never fight over the same
+// transform math — see carousel-tunnel.js.
+.carousel-tunnel {
+  --section-height: 220vh;
+  --slide-width: min(
+    25vw,
+    720px
+  ); // "safe" resting slide size — tune peek amount here
+  --slide-gap: 24px;
+  --slide-aspect: 2 / 1.25;
+  --scale-duration: 0.6; // fraction (0–1) of the scrub spent zooming out — also when copy/captions/pagination reveal + autoplay starts, and leaves dwell time, pinned, before release
+  --reveal-duration: 0.6s; // real (not scrubbed) transition duration for that reveal's fade — a played animation, not tied to scroll position
+  --slide-caption-offset: 12px; // breathing room for the per-slide eyebrow/title, bottom-left
+
+  position: relative;
+  height: var(--section-height);
+
+  @include mixins.mq-max(md) {
+    --slide-width: min(84vw, 480px);
+  }
+
+  &__pin {
+    @include mixins.column-center;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    gap: var(--section-gap);
+  }
+
+  &__viewport {
+    width: 100%;
+    // No overflow: hidden here on purpose — this box is only as tall as a
+    // resting slide now that it's a normal flex item (not `inset: 0`
+    // anymore), so it would clip the slide the moment it scales up past
+    // that height. `__pin` is always the true 100vw/100vh frame regardless
+    // of layout model, and is already `overflow: hidden` — that's the one
+    // real (static, never-animated) clip boundary this section needs.
+  }
+
+  &__scaler {
+    @include mixins.row-center(
+      flex-start
+    ); // vertical centering only — translateX on __track handles horizontal position
+    width: 100%;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: var(--slide-gap);
+    will-change: transform;
+    user-select: none;
+
+    // Not draggable until `.carousel-tunnel--active` (set once revealed —
+    // see carousel-tunnel.js), so the cursor doesn't promise an interaction
+    // that's actually blocked. Home for any other "carousel is live" styling
+    // later, not just this cursor.
+    .carousel-tunnel--active & {
+      cursor: grab;
+    }
+
+    &--dragging {
+      cursor: grabbing;
+    }
+  }
+
+  &__slide {
+    position: relative;
+    flex: 0 0 auto;
+    width: var(--slide-width);
+    aspect-ratio: var(--slide-aspect);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__slide-caption {
+    @include mixins.hide-content;
+    position: absolute;
+    bottom: var(--slide-caption-offset);
+    left: var(--slide-caption-offset);
+    right: var(--slide-caption-offset);
+    color: vars.$white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    // Played, not scrubbed — same reveal treatment as __content/__pagination.
+    transition: opacity var(--reveal-duration) vars.$cubic-ease;
+
+    &.is-visible {
+      @include mixins.show-content;
+    }
+  }
+
+  &__slide-eyebrow {
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+
+  &__slide-title {
+    @include mixins.h6;
+  }
+
+  &__content {
+    @include mixins.hide-content; // opacity: 0 + pointer-events/user-select: none, so hidden text can't be selected
+    width: 100%;
+    padding: var(--spacing--lg) var(--body-padding) var(--spacing);
+    text-align: center;
+    color: vars.$white;
+    z-index: 2;
+    // A played fade, not scrubbed — carousel-tunnel.js toggles `is-visible`
+    // once via ScrollTrigger onEnter/onLeaveBack.
+    transition: opacity var(--reveal-duration) vars.$cubic-ease;
+
+    &.is-visible {
+      @include mixins.show-content;
+    }
+
+    @include mixins.mq-max(md) {
+      padding: var(--spacing) var(--body-padding);
+    }
+  }
+
+  // &__eyebrow {
+  //   @include mixins.font-styles--mono;
+  //   text-transform: uppercase;
+  //   opacity: 0.75;
+  //   margin-bottom: 8px;
+  // }
+
+  &__title {
+    @include mixins.h2;
+    margin-bottom: 12px;
+
+    @include mixins.mq-max(md) {
+      @include mixins.h4;
+    }
+  }
+
+  &__desc {
+    max-width: var(--max-width--text);
+    margin-inline: auto;
+  }
+
+  &__pagination {
+    @include mixins.row-center;
+    @include mixins.hide-content; // opacity: 0 + pointer-events/user-select: none, so hidden arrows/dots can't be clicked
+    width: 100%;
+    padding: var(--spacing) var(--body-padding) var(--spacing--lg);
+    gap: var(--spacing--sm);
+    z-index: 2;
+    transition: opacity var(--reveal-duration) vars.$cubic-ease;
+
+    &.is-visible {
+      @include mixins.show-content;
+    }
+  }
+
+  &__arrow {
+    // @include mixins.row-center;
+    // flex: 0 0 auto;
+    // width: 44px;
+    // height: 44px;
+    // border-radius: 50%;
+    // border: var(--border-width) solid rgba(255, 255, 255, 0.4);
+    // color: vars.$white;
+    // transition: vars.$ease;
+
+    // @include mixins.desktop-hover {
+    //   background: rgba(255, 255, 255, 0.12);
+    // }
+
+    &--prev .icon-svg {
+      rotate: 180deg;
+    }
+  }
+
+  &__dots {
+    @include mixins.row-center;
+    gap: 8px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: vars.$ease;
+
+    &--active {
+      background: vars.$white;
+      scale: 1.3;
+    }
+  }
+}

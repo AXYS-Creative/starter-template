@@ -434,6 +434,7 @@ picture {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 }
 
 img,
@@ -923,6 +924,23 @@ code.codearea {
   .magnet {
     display: inline-flex;
     transition: transform 0.5s cubic-bezier(0.18, 0.97, 0.47, 1);
+  }
+  .scribble-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .scribble-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--scribble-underline-offset, -0.2em);
+    height: var(--scribble-underline-height, 0.3em);
+    background-image: var(--scribble-underline-src, url("/static/img/scribble-underline.svg"));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    pointer-events: none;
   }
   .toggle-slider {
     --accent-color: var(--color-surface--2);
@@ -10092,7 +10110,6 @@ html:has(.scroll-progress) {
   left: 50%;
   translate: -50% -50%;
   z-index: -2;
-  height: 100%;
 }
 .hero-curve-crop__bg-img img, .hero-curve-crop > picture img {
   height: 100%;
@@ -10120,7 +10137,7 @@ html:has(.scroll-progress) {
 }
 
 .hero-image-circle {
-  --side-circles-offset: 15%;
+  --side-circles-offset: 50%;
   position: relative;
   overflow-x: clip;
 }
@@ -10397,6 +10414,207 @@ html:has(.scroll-progress) {
   100% {
     translate: 0 -100%;
   }
+}
+
+.carousel-tunnel {
+  --section-height: 220vh;
+  --slide-width: min(
+    25vw,
+    720px
+  );
+  --slide-gap: 24px;
+  --slide-aspect: 2 / 1.25;
+  --scale-duration: 0.6;
+  --reveal-duration: 0.6s;
+  --slide-caption-offset: 12px;
+  position: relative;
+  height: var(--section-height);
+}
+@media (max-width: 768px) {
+  .carousel-tunnel {
+    --slide-width: min(84vw, 480px);
+  }
+}
+.carousel-tunnel__pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  gap: var(--section-gap);
+}
+.carousel-tunnel__viewport {
+  width: 100%;
+}
+.carousel-tunnel__scaler {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  transform-origin: center center;
+  will-change: transform;
+}
+.carousel-tunnel__track {
+  display: flex;
+  align-items: center;
+  gap: var(--slide-gap);
+  will-change: transform;
+  user-select: none;
+}
+.carousel-tunnel--active .carousel-tunnel__track {
+  cursor: grab;
+}
+.carousel-tunnel__track--dragging {
+  cursor: grabbing;
+}
+.carousel-tunnel__slide {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--slide-width);
+  aspect-ratio: var(--slide-aspect);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.carousel-tunnel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+.carousel-tunnel__slide-caption {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  bottom: var(--slide-caption-offset);
+  left: var(--slide-caption-offset);
+  right: var(--slide-caption-offset);
+  color: #fafafa;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  transition: opacity var(--reveal-duration) cubic-bezier(0.18, 0.97, 0.47, 1);
+}
+.carousel-tunnel__slide-caption.is-visible {
+  opacity: 1;
+  pointer-events: all;
+  user-select: auto;
+}
+.carousel-tunnel__slide-eyebrow {
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+.carousel-tunnel__slide-title {
+  color: var(--color-font--primary);
+  font-family: var(--font-family--heading);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .carousel-tunnel__slide-title {
+    font-size: 18px;
+  }
+}
+.carousel-tunnel__content {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  padding: var(--spacing--lg) var(--body-padding) var(--spacing);
+  text-align: center;
+  color: #fafafa;
+  z-index: 2;
+  transition: opacity var(--reveal-duration) cubic-bezier(0.18, 0.97, 0.47, 1);
+}
+.carousel-tunnel__content.is-visible {
+  opacity: 1;
+  pointer-events: all;
+  user-select: auto;
+}
+@media (max-width: 768px) {
+  .carousel-tunnel__content {
+    padding: var(--spacing) var(--body-padding);
+  }
+}
+.carousel-tunnel__title {
+  color: var(--color-font--primary);
+  font-family: var(--font-family--heading);
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+  opacity: 0.75;
+}
+@media (max-width: 768px) {
+  .carousel-tunnel__title {
+    font-size: 36px;
+  }
+}
+.carousel-tunnel__title {
+  margin-bottom: 12px;
+}
+@media (max-width: 768px) {
+  .carousel-tunnel__title {
+    color: var(--color-font--primary);
+    font-family: var(--font-family--heading);
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .carousel-tunnel__title {
+    font-size: 24px;
+  }
+}
+.carousel-tunnel__desc {
+  max-width: var(--max-width--text);
+  margin-inline: auto;
+}
+.carousel-tunnel__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  padding: var(--spacing) var(--body-padding) var(--spacing--lg);
+  gap: var(--spacing--sm);
+  z-index: 2;
+  transition: opacity var(--reveal-duration) cubic-bezier(0.18, 0.97, 0.47, 1);
+}
+.carousel-tunnel__pagination.is-visible {
+  opacity: 1;
+  pointer-events: all;
+  user-select: auto;
+}
+.carousel-tunnel__arrow--prev .icon-svg {
+  rotate: 180deg;
+}
+.carousel-tunnel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.carousel-tunnel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: 0.24s ease;
+}
+.carousel-tunnel__dot--active {
+  background: #fafafa;
+  scale: 1.3;
 }
 
 .gallery-horizontal {
@@ -11101,7 +11319,6 @@ html:has(.scroll-progress) {
   }
 }
 .scroll-horizontal__figure picture {
-  height: 100%;
   border-radius: var(--radius--sm);
   overflow: hidden;
 }
