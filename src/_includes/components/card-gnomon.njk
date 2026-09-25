@@ -1,77 +1,112 @@
 <!-- props -->
 <!-- prettier-ignore -->
-{% set corner = card_gnomon.corner or 'top-right' %} {# top-left | top-right | bottom-left | bottom-right | top | right | bottom | left #}
-{% set depth = card_gnomon.depth if card_gnomon.depth is number else 12 %} {# 0-100, % of the card's side the cutout reaches inward #}
-{% set length = card_gnomon.length if card_gnomon.length is number else 32 %} {# 0-100, % of the card's side the cutout runs along the edge #}
-{% set radius = card_gnomon.radius if card_gnomon.radius is number else 8 %} {# 0-50, % of the card's side used as the corner curve — every corner, including the cutout's, rounds by this amount #}
-{% set angle = card_gnomon.angle if card_gnomon.angle is number else 90 %} {# 45-90deg, the cutout's inner corner(s) — 90 (default) is the square step shown so far, 45 tilts it into a single diagonal cut (an exact 45° angle when depth equals length). Pair with a larger `radius` for the landonorris.com look: their cutout is a straight ~51° diagonal with each end rounded at roughly 3x the card's own outer-corner radius, not one continuous curve #}
+{% set cutouts_input = card_gnomon.cutouts if (card_gnomon.cutouts and card_gnomon.cutouts.length) else [ { from: 'top-right' } ] %} {# array of { from, text }. `from` is a corner (top-left, top-right, bottom-left, bottom-right) or a side (top, right, bottom, left). One cutout per slot; text is optional per cutout. Defaults to a single top-right cutout with no text #}
+{% set depth = card_gnomon.depth if card_gnomon.depth is number else 12 %} {# 0-100, % of the card's side every cutout reaches inward — shared by all cutouts #}
+{% set length = card_gnomon.length if card_gnomon.length is number else 32 %} {# 0-100, % of the card's side every cutout runs along its edge — shared by all cutouts #}
+{% set radius = card_gnomon.radius if card_gnomon.radius is number else 8 %} {# 0-50, % of the card's side used as the corner curve — every corner, including every cutout's, rounds by this amount #}
+{% set angle = card_gnomon.angle if card_gnomon.angle is number else 90 %} {# 45-90deg, every cutout's inner corner(s) — 90 (default) is the square step, 45 tilts it into a single diagonal cut (an exact 45° angle when depth equals length). Pair with a larger `radius` for the landonorris.com look: their cutout is a straight ~51° diagonal with each end rounded at roughly 3x the card's own outer-corner radius, not one continuous curve #}
 {% set border_width = card_gnomon.border_width if card_gnomon.border_width is number else 2 %} {# px #}
 {% set img = card_gnomon.img or {} %}
 {% set content = card_gnomon.content or '' %}
-{% set cutout_text = card_gnomon.cutout_text or '' %}
 {% set class = card_gnomon.class or '' %}
 
 <!-- logic -->
 <!-- prettier-ignore -->
-{# Outline of a square with a rectangular notch removed — either from one
-   corner (a "gnomon", 6 points) or centered on the middle of one edge (8
-   points). `length` is the notch's extent along the edge (centered, for
-   the mid-edge case), `depth` is how far it reaches inward — both as a %
-   of the card's side, so the cut scales with the card. #}
+{# One cutout per slot (four corners, four side-midpoints) — look each one
+   up once so the rest of the file can just ask "is top-left active" instead
+   of scanning the array repeatedly. #}
+{% set tl = cutouts_input | findCutout('top-left') %}
+{% set tr = cutouts_input | findCutout('top-right') %}
+{% set br = cutouts_input | findCutout('bottom-right') %}
+{% set bl = cutouts_input | findCutout('bottom-left') %}
+{% set t = cutouts_input | findCutout('top') %}
+{% set r = cutouts_input | findCutout('right') %}
+{% set b = cutouts_input | findCutout('bottom') %}
+{% set l = cutouts_input | findCutout('left') %}
+
+<!-- prettier-ignore -->
+{# `depth`/`length` are shared by every cutout, so two cutouts landing on
+   the same side (e.g. `top-left` + `top`, or `top-left` + `top-right`,
+   which both draw from the top edge) can ask that one edge for more than
+   its 100 units. Sum what each side is asked for — a corner cutout draws
+   `length` from its horizontal edge and `depth` from its vertical edge; a
+   side cutout draws `length` along its own edge — and if any side is
+   over-asked, shrink `length`/`depth` together (once, globally, so every
+   cutout stays the same size as every other) until the worst side fits
+   with a small margin. Intended usage is opposite/non-adjacent slots where
+   this never engages; it only kicks in for adjacent/shared-edge picks. #}
+{% set top_draw = (length if tl else 0) + (length if tr else 0) + (length if t else 0) %}
+{% set bottom_draw = (length if bl else 0) + (length if br else 0) + (length if b else 0) %}
+{% set left_draw = (depth if tl else 0) + (depth if bl else 0) + (length if l else 0) %}
+{% set right_draw = (depth if tr else 0) + (depth if br else 0) + (length if r else 0) %}
+{% set worst_draw = top_draw %}
+{% set worst_draw = bottom_draw if bottom_draw > worst_draw else worst_draw %}
+{% set worst_draw = left_draw if left_draw > worst_draw else worst_draw %}
+{% set worst_draw = right_draw if right_draw > worst_draw else worst_draw %}
+{% set safe_span = 96 %}
+{% set draw_scale = (safe_span / worst_draw) if worst_draw > safe_span else 1 %}
+{% set depth = depth * draw_scale %}
+{% set length = length * draw_scale %}
 {% set half = length / 2 %}
 
 <!-- prettier-ignore -->
-{# `angle` tilts just the notch's depth side — the edge whose length equals
-   `depth` (vertical before tilt), running between the inner vertex and the
-   anchor on the *length*-bearing edge — not the length side (the edge
-   whose length equals `length`, horizontal before tilt, running between
-   the anchor on the *depth*-bearing edge and the inner vertex). The
-   vertex's coordinate on the depth-anchor's fixed axis stays pinned to the
+{# `angle` tilts just each cutout's depth side — the edge whose length
+   equals `depth` (vertical/horizontal before tilt), running between the
+   inner vertex and the anchor on the *length*-bearing edge — not the
+   length side (the edge whose length equals `length`, running between the
+   anchor on the *depth*-bearing edge and the inner vertex). The vertex's
+   coordinate on the depth-anchor's fixed axis stays pinned to the
    depth-anchor itself, so the length side never changes angle, it only
    shrinks; the vertex's other coordinate slides the full distance from the
    square-cut position to the depth-anchor's position as tilt goes 0 to 1.
    At max tilt the vertex lands exactly on the depth anchor: the length
    side is gone and the depth side alone runs diagonally from the
-   length-bearing edge straight through to the depth-bearing edge. Values
-   between 0 and 1 interpolate the same way; a true 45° cut only happens at
-   tilt 1 when depth equals length. #}
+   length-bearing edge straight through to the depth-bearing edge. A true
+   45° cut only happens at tilt 1 when depth equals length. Side (mid-edge)
+   cutouts keep their own older symmetric tilt — both their inner vertices
+   lerp toward each other — since they have two inner corners, not one. #}
 {% set angle = 90 if angle > 90 else angle %}
 {% set angle = 45 if angle < 45 else angle %}
 {% set tilt = (90 - angle) / 45 %}
 
-{% if corner == 'top-left' %}
-  {% set points = [ [length, 0], [100, 0], [100, 100], [0, 100], [0, depth], [length * (1 - tilt), depth] ] %}
-{% elif corner == 'bottom-left' %}
-  {% set points = [ [0, 0], [100, 0], [100, 100], [length, 100], [length * (1 - tilt), 100 - depth], [0, 100 - depth] ] %}
-{% elif corner == 'bottom-right' %}
-  {% set points = [ [0, 0], [100, 0], [100, 100 - depth], [(100 - length) + length * tilt, 100 - depth], [100 - length, 100], [0, 100] ] %}
-{% elif corner == 'top' %}
-  {% set points = [ [0, 0], [50 - half, 0], [(50 - half) + half * tilt, depth - (depth / 2) * tilt], [(50 + half) - half * tilt, depth - (depth / 2) * tilt], [50 + half, 0], [100, 0], [100, 100], [0, 100] ] %}
-{% elif corner == 'bottom' %}
-  {% set points = [ [0, 0], [100, 0], [100, 100], [50 + half, 100], [(50 + half) - half * tilt, (100 - depth) + (depth / 2) * tilt], [(50 - half) + half * tilt, (100 - depth) + (depth / 2) * tilt], [50 - half, 100], [0, 100] ] %}
-{% elif corner == 'left' %}
-  {% set points = [ [0, 0], [100, 0], [100, 100], [0, 100], [0, 50 + half], [depth - (depth / 2) * tilt, (50 + half) - half * tilt], [depth - (depth / 2) * tilt, (50 - half) + half * tilt], [0, 50 - half] ] %}
-{% elif corner == 'right' %}
-  {% set points = [ [0, 0], [100, 0], [100, 50 - half], [(100 - depth) + (depth / 2) * tilt, (50 - half) + half * tilt], [(100 - depth) + (depth / 2) * tilt, (50 + half) - half * tilt], [100, 50 + half], [100, 100], [0, 100] ] %}
-{% else %}
-  {% set points = [ [0, 0], [100 - length, 0], [(100 - length) + length * tilt, depth], [100, depth], [100, 100], [0, 100] ] %}
-{% endif %}
+<!-- prettier-ignore -->
+{# Outline of a square, walked clockwise from the top-left corner, with a
+   rectangular notch spliced in at every active slot. A corner slot with no
+   cutout contributes just its plain point; an active one contributes its
+   two edge anchors plus inner vertex instead. A side slot with no cutout
+   contributes nothing (its two flanking corners connect directly); an
+   active one contributes its own two anchors plus two inner vertices. This
+   is exactly the single-cutout math this component always had — a single
+   `top-right` cutout below produces the identical point list the old
+   dedicated `corner: 'top-right'` branch did — just assembled generically
+   so any combination of slots can be active at once. #}
+{% set tl_frag = [ [0, depth], [length * (1 - tilt), depth], [length, 0] ] if tl else [ [0, 0] ] %}
+{% set top_frag = [ [50 - half, 0], [(50 - half) + half * tilt, depth - (depth / 2) * tilt], [(50 + half) - half * tilt, depth - (depth / 2) * tilt], [50 + half, 0] ] if t else [] %}
+{% set tr_frag = [ [100 - length, 0], [(100 - length) + length * tilt, depth], [100, depth] ] if tr else [ [100, 0] ] %}
+{% set right_frag = [ [100, 50 - half], [(100 - depth) + (depth / 2) * tilt, (50 - half) + half * tilt], [(100 - depth) + (depth / 2) * tilt, (50 + half) - half * tilt], [100, 50 + half] ] if r else [] %}
+{% set br_frag = [ [100, 100 - depth], [(100 - length) + length * tilt, 100 - depth], [100 - length, 100] ] if br else [ [100, 100] ] %}
+{% set bottom_frag = [ [50 + half, 100], [(50 + half) - half * tilt, (100 - depth) + (depth / 2) * tilt], [(50 - half) + half * tilt, (100 - depth) + (depth / 2) * tilt], [50 - half, 100] ] if b else [] %}
+{% set bl_frag = [ [length, 100], [length * (1 - tilt), 100 - depth], [0, 100 - depth] ] if bl else [ [0, 100] ] %}
+{% set left_frag = [ [0, 50 + half], [depth - (depth / 2) * tilt, (50 + half) - half * tilt], [depth - (depth / 2) * tilt, (50 - half) + half * tilt], [0, 50 - half] ] if l else [] %}
+{% set points = tl_frag.concat(top_frag).concat(tr_frag).concat(right_frag).concat(br_frag).concat(bottom_frag).concat(bl_frag).concat(left_frag) %}
 
 <!-- prettier-ignore -->
-{# Clamp the curve so it can't eat past the shape's shortest edge (found
-   by walking every edge — for a corner cut that's always `depth`/`length`,
-   but a mid-edge cut can also be pinched by the flanking edges on either
-   side of the notch when `length` is large), then round every corner
-   (including the notch's) to a quadratic-bezier curve. A tilted notch
-   (`angle` < 90) has diagonal edges, so this walks real Euclidean length
-   (the `sqrt` filter, added in .eleventy.js) rather than assuming
-   axis-aligned edges the way earlier versions of this component could. #}
+{# Clamp the curve so it can't eat past the shape's shortest edge (found by
+   walking every edge — for a corner cut that's always `depth`/`length`,
+   but a side cut can also be pinched by the flanking edges on either side
+   of the notch when `length` is large), then round every corner (including
+   every cutout's) to a quadratic-bezier curve. A tilted notch (`angle` <
+   90) has diagonal edges, so this walks real Euclidean length (the `sqrt`
+   filter, added in .eleventy.js) rather than assuming axis-aligned edges
+   the way earlier versions of this component could. Works unchanged with
+   any number of cutouts — it only cares about the final `points` list, not
+   how it was assembled. #}
 {% set point_count = points.length %}
 {% set max_radius = 999999 %}
 {% for i in range(0, point_count) %}
   {% set a = points[i] %}
-  {% set b = points[(i + 1) % point_count] %}
-  {% set edge_len = ((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1])) | sqrt %}
+  {% set b_pt = points[(i + 1) % point_count] %}
+  {% set edge_len = ((a[0] - b_pt[0]) * (a[0] - b_pt[0]) + (a[1] - b_pt[1]) * (a[1] - b_pt[1])) | sqrt %}
   {% set max_radius = (edge_len / 2) if (edge_len / 2) < max_radius else max_radius %}
 {% endfor %}
 {% set radius = max_radius if radius > max_radius else radius %}
@@ -112,26 +147,48 @@
    box instead of a fixed pixel size). #}
 {% set stroke_d = gnomon_path(points, radius, 1) %}
 {% set clip_d = gnomon_path(points, radius, 0.01) %}
-{% set uid = 'cg-' ~ corner ~ '-' ~ (depth | round) ~ '-' ~ (length | round) ~ '-' ~ (radius | round) ~ '-' ~ (angle | round) %}
 
 <!-- prettier-ignore -->
-{# `cutout_text` sits in the notch itself, unclipped, sized/positioned to
-   that same rectangle. A corner notch touches two edges, so it's pinned
-   to both; a mid-edge notch only touches one, so it's pinned to that edge
-   and centered along the other axis. #}
-{% if corner == 'top' or corner == 'bottom' %}
-  {% set cutout_style = corner ~ ': 0; left: 50%; transform: translateX(-50%); width: ' ~ length ~ '%; height: ' ~ depth ~ '%;' %}
-{% elif corner == 'left' or corner == 'right' %}
-  {% set cutout_style = corner ~ ': 0; top: 50%; transform: translateY(-50%); width: ' ~ depth ~ '%; height: ' ~ length ~ '%;' %}
-{% else %}
-  {% set edge_x = 'left' if (corner == 'top-left' or corner == 'bottom-left') else 'right' %}
-  {% set edge_y = 'top' if (corner == 'top-left' or corner == 'top-right') else 'bottom' %}
-  {% set cutout_style = edge_x ~ ': 0; ' ~ edge_y ~ ': 0; width: ' ~ length ~ '%; height: ' ~ depth ~ '%;' %}
-{% endif %}
+{# Slot names of every active cutout, gathered once — feeds both the root
+   element's modifier classes (a CSS hook per active slot, e.g. for a
+   future corner-specific icon) and the clip-path id, which has to change
+   whenever the slot combination changes even if depth/length/radius/angle
+   don't. #}
+{% set active_froms = [] %}
+{% if tl %}{% set _ = active_froms.push('top-left') %}{% endif %}
+{% if t %}{% set _ = active_froms.push('top') %}{% endif %}
+{% if tr %}{% set _ = active_froms.push('top-right') %}{% endif %}
+{% if r %}{% set _ = active_froms.push('right') %}{% endif %}
+{% if br %}{% set _ = active_froms.push('bottom-right') %}{% endif %}
+{% if b %}{% set _ = active_froms.push('bottom') %}{% endif %}
+{% if bl %}{% set _ = active_froms.push('bottom-left') %}{% endif %}
+{% if l %}{% set _ = active_froms.push('left') %}{% endif %}
+{% set active_class = 'card-gnomon--' ~ active_froms.join(' card-gnomon--') %}
+{% set uid = 'cg-' ~ active_froms.join('-') ~ '-' ~ (depth | round) ~ '-' ~ (length | round) ~ '-' ~ (radius | round) ~ '-' ~ (angle | round) %}
+
+<!-- prettier-ignore -->
+{# Each cutout's `text` sits in its own notch, unclipped, sized/positioned
+   to that notch's rectangle. A corner notch touches two edges, so it's
+   pinned to both; a side notch only touches one, so it's pinned to that
+   edge and centered along the other axis. #}
+{% macro cutout_span(from, text) %}
+  {%- if text -%}
+    {%- if from == 'top' or from == 'bottom' -%}
+      {%- set style = from ~ ': 0; left: 50%; transform: translateX(-50%); width: ' ~ length ~ '%; height: ' ~ depth ~ '%;' -%}
+    {%- elif from == 'left' or from == 'right' -%}
+      {%- set style = from ~ ': 0; top: 50%; transform: translateY(-50%); width: ' ~ depth ~ '%; height: ' ~ length ~ '%;' -%}
+    {%- else -%}
+      {%- set edge_x = 'left' if (from == 'top-left' or from == 'bottom-left') else 'right' -%}
+      {%- set edge_y = 'top' if (from == 'top-left' or from == 'top-right') else 'bottom' -%}
+      {%- set style = edge_x ~ ': 0; ' ~ edge_y ~ ': 0; width: ' ~ length ~ '%; height: ' ~ depth ~ '%;' -%}
+    {%- endif -%}
+    <span class="card-gnomon__cutout-text" style="{{ style }}">{{ text }}</span>
+  {%- endif -%}
+{% endmacro %}
 
 <!-- prettier-ignore -->
 <div
-  class="card-gnomon card-gnomon--{{ corner }}{% if class %} {{ class }}{% endif %}"
+  class="card-gnomon {{ active_class }}{% if class %} {{ class }}{% endif %}"
   {% if border_width != 2 %}style="--card-gnomon-border-width: {{ border_width }}px;"{% endif %}
 >
   <svg class="card-gnomon__stroke" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -158,7 +215,12 @@
     {% endif %}
   </div>
 
-  {% if cutout_text %}
-  <span class="card-gnomon__cutout-text" style="{{ cutout_style }}">{{ cutout_text }}</span>
-  {% endif %}
+  {{ cutout_span('top-left', tl.text) }}
+  {{ cutout_span('top', t.text) }}
+  {{ cutout_span('top-right', tr.text) }}
+  {{ cutout_span('right', r.text) }}
+  {{ cutout_span('bottom-right', br.text) }}
+  {{ cutout_span('bottom', b.text) }}
+  {{ cutout_span('bottom-left', bl.text) }}
+  {{ cutout_span('left', l.text) }}
 </div>

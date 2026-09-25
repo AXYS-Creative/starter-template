@@ -232,6 +232,12 @@ path: library/sections
       before the first group (not repeated per group).
     </li>
     <li>
+      <code>card_gnomon_defaults</code> a <code>{ depth, length, radius,
+      angle }</code> object — the shared card-gnomon geometry for every
+      image in every group (see the template's Global-defaults-with-override
+      pattern, also used by <code>card-gnomon.njk</code> itself).
+    </li>
+    <li>
       <code>groups</code> an array, each repeating the same fixed
       structure — <code>img_1</code> (portrait, top left), <code>img_2</code>
       (landscape, below and offset right of <code>img_1</code>),
@@ -241,8 +247,13 @@ path: library/sections
       <code>copy</code>'s left edge, its top at the halfway point of
       <code>img_1</code>), and <code>img_4</code> (landscape, below and
       offset right of <code>img_3</code> — its bottom edge is the lowest
-      point of the whole horizontal track). Each image is <code>src</code> /
-      <code>alt</code>.
+      point of the whole horizontal track). Each image is rendered as a
+      <code>card-gnomon.njk</code> instance and takes <code>src</code> /
+      <code>alt</code> / an optional <code>caption</code> (shown as that
+      cutout's text). An image can override <code>card_gnomon_defaults</code>
+      by adding <code>override_defaults: true</code> plus a <code>custom</code>
+      object with just the field(s) it needs to differ — e.g. one card
+      wanting more <code>length</code> than the rest.
     </li>
   </ul>
 </div>

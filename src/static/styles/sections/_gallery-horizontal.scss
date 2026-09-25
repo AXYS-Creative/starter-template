@@ -120,18 +120,11 @@
     }
   }
 
+  // Each `&__img--N` positions a card-gnomon.njk instance (see
+  // gallery-horizontal.njk) — the shape/edge is drawn by that component's
+  // own SVG, so this only ever needs to set size and placement.
   &__img {
     position: absolute;
-    border-radius: var(--radius--sm);
-    overflow: hidden;
-
-    picture,
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
 
     // Top left, portrait.
     &--1 {

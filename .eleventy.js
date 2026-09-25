@@ -98,6 +98,33 @@ module.exports = async function (eleventyConfig) {
   // where a simple axis-projected distance is wrong.
   eleventyConfig.addFilter("sqrt", (value) => Math.sqrt(value));
 
+  // Looks up one cutout by its `from` slot (e.g. 'top-right') out of
+  // card-gnomon.njk's `cutouts` array — Nunjucks has no selectattr/find of
+  // its own, and building an equivalent lookup object inside the template
+  // would need object-mutation Nunjucks doesn't support either.
+  eleventyConfig.addFilter(
+    "findCutout",
+    (cutouts, from) =>
+      (cutouts || []).find((cutout) => cutout && cutout.from === from) || null
+  );
+
+  // Generic "global defaults with override" merge (see CLAUDE.md) — takes
+  // the shared defaults object and one instance that optionally carries
+  // `override_defaults: true` + a `custom` object of the same shape, and
+  // merges per-field so an instance can override just one value without
+  // repeating every other one. Not card-gnomon-specific: reusable anywhere
+  // this repo's defaults-with-override pattern applies.
+  eleventyConfig.addFilter("mergeOverrides", (defaults, instance) => {
+    const merged = { ...(defaults || {}) };
+    if (instance && instance.override_defaults && instance.custom) {
+      for (const key of Object.keys(merged)) {
+        const value = instance.custom[key];
+        if (value !== undefined && value !== null) merged[key] = value;
+      }
+    }
+    return merged;
+  });
+
   // Token Replacement at build time vs client (prevent tokens from showing up briefly)
   eleventyConfig.addTransform("tokenReplace", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {

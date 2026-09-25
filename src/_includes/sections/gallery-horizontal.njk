@@ -2,6 +2,27 @@
 {% set title = gallery_horizontal.title or '' %}
 {% set accent = gallery_horizontal.accent or '' %}
 {% set groups = gallery_horizontal.groups or [] %}
+{% set card_gnomon_defaults = gallery_horizontal.card_gnomon_defaults or {} %}
+
+<!-- prettier-ignore -->
+{# Every image in every group shares one card-gnomon geometry
+   (`card_gnomon_defaults`, see gallery_horizontal.yaml and CLAUDE.md's
+   "Global-defaults-with-override pattern") — an image only carries
+   `override_defaults: true` + `custom` when it needs to differ (e.g. one
+   card wanting more `length`). `caption` becomes that image's cutout text. #}
+{% macro gnomon_card(image, slot) %}
+  {%- set cfg = card_gnomon_defaults | mergeOverrides(image) -%}
+  {%- set card_gnomon = ({
+    img: image,
+    depth: cfg.depth,
+    length: cfg.length,
+    radius: cfg.radius,
+    angle: cfg.angle,
+    cutouts: [ { from: 'bottom-left', text: image.caption or '' } ],
+    class: 'gallery-horizontal__img gallery-horizontal__img--' ~ slot ~ ' gsap-stagger-child gsap-animate'
+  }) -%}
+  {%- include '../components/card-gnomon.njk' -%}
+{% endmacro %}
 
 <section class="gallery-horizontal">
   <!-- prettier-ignore -->
@@ -16,42 +37,23 @@
       <div class="gallery-horizontal__slider gsap-stagger">
         <!-- prettier-ignore -->
         {% if accent %}
-        <span class="gallery-horizontal__accent gsap-animate" aria-hidden="true">{{ accent }}</span>
+        <span class="gallery-horizontal__accent gsap-animate" aria-hidden="true"
+          >{{ accent }}</span
+        >
         {% endif %}
 
         <!-- prettier-ignore -->
         {% for group in groups %}
         <div class="gallery-horizontal__group">
-          <figure
-            class="gallery-horizontal__img gallery-horizontal__img--1 gsap-stagger-child gsap-animate"
-          >
-            <img src="{{ group.img_1.src }}" alt="{{ group.img_1.alt or '' }}" />
-          </figure>
-
-          <figure
-            class="gallery-horizontal__img gallery-horizontal__img--2 gsap-stagger-child gsap-animate"
-          >
-            <img src="{{ group.img_2.src }}" alt="{{ group.img_2.alt or '' }}" />
-          </figure>
+          {{ gnomon_card(group.img_1, 1) }} {{ gnomon_card(group.img_2, 2) }}
 
           <!-- prettier-ignore -->
           {% if group.copy %}
           <p class="gallery-horizontal__copy gsap-stagger-child gsap-animate">
             {{ group.copy }}
           </p>
-          {% endif %}
-
-          <figure
-            class="gallery-horizontal__img gallery-horizontal__img--3 gsap-stagger-child gsap-animate"
-          >
-            <img src="{{ group.img_3.src }}" alt="{{ group.img_3.alt or '' }}" />
-          </figure>
-
-          <figure
-            class="gallery-horizontal__img gallery-horizontal__img--4 gsap-stagger-child gsap-animate"
-          >
-            <img src="{{ group.img_4.src }}" alt="{{ group.img_4.alt or '' }}" />
-          </figure>
+          {% endif %} {{ gnomon_card(group.img_3, 3) }} {{
+          gnomon_card(group.img_4, 4) }}
         </div>
         <!-- prettier-ignore -->
         {% endfor %}

@@ -81,9 +81,9 @@ path: library/components
 <section class="library-section">
   <h2>[ Card Gnomon - Component ]</h2>
   <p>
-    A square card with a rectangular notch cut from one corner (a “gnomon”),
-    drawn with an inline SVG stroke so the border color can transition on
-    <code>:hover</code> — see
+    A square card with one or more rectangular notches cut from its corners or
+    sides (a “gnomon”), drawn with an inline SVG stroke so the border color can
+    transition on <code>:hover</code> — see
     <a
       class="classic-link tab-element-page"
       href="https://landonorris.com/"
@@ -98,36 +98,49 @@ path: library/components
 
   <ul class="classic-list">
     <li>
-      <code>corner</code> a string, where the notch is cut from — a corner
-      (<code>top-left</code>, <code>top-right</code>, <code>bottom-left</code>,
+      <code>cutouts</code> an array of <code>{ from, text }</code> objects — one
+      entry per notch. <code>from</code> is a corner (<code>top-left</code>,
+      <code>top-right</code>, <code>bottom-left</code>,
       <code>bottom-right</code>) or the middle of a side (<code>top</code>,
-      <code>right</code>, <code>bottom</code>, <code>left</code>). Defaults to
-      <code>top-right</code>
+      <code>right</code>, <code>bottom</code>, <code>left</code>);
+      <code>text</code> is an optional string rendered inside that notch (sized
+      to exactly fill it, centered) — e.g. a number or short label, like the
+      “Helmets Hall of Fame” cards on the reference site. Any number of cutouts
+      can be combined (e.g. <code>top-right</code> + <code>bottom-left</code>) —
+      if two land on the same edge and would overlap, <code>depth</code>/<code
+        >length</code
+      >
+      are automatically shrunk together so they never collide. Defaults to a
+      single <code>top-right</code> cutout with no text
     </li>
     <li>
-      <code>depth</code> a number, 0–100, how far the notch reaches into the
-      card as a % of its side. Defaults to <code>28</code>
-    </li>
-    <li>
-      <code>length</code> a number, 0–100, how far the notch runs along the
-      edge, as a % of the card's side — for a corner, split across the two edges
-      meeting there; for a side, centered on that edge. Defaults to
+      <code>depth</code> a number, 0–100, how far every cutout reaches into the
+      card as a % of its side — shared by all cutouts. Defaults to
       <code>28</code>
     </li>
     <li>
+      <code>length</code> a number, 0–100, how far every cutout runs along its
+      edge, as a % of the card's side — for a corner, split across the two edges
+      meeting there; for a side, centered on that edge. Shared by all cutouts.
+      Defaults to <code>28</code>
+    </li>
+    <li>
       <code>radius</code> a number, 0–50, the corner curve as a % of the card's
-      side — rounds every corner, including the cutout's. Clamped so it can
+      side — rounds every corner, including every cutout's. Clamped so it can
       never exceed half of the shape's shortest edge. Defaults to <code>6</code>
     </li>
     <li>
-      <code>angle</code> a number, 45–90deg, tilts the cutout's inner corner(s).
-      <code>90</code> (default) is a square step; <code>45</code>
+      <code>angle</code> a number, 45–90deg, tilts every cutout's inner
+      corner(s). <code>90</code> (default) is a square step; <code>45</code>
       slides it into a single diagonal cut — an exact 45° angle when
       <code>depth</code> equals <code>length</code>. Pair it with a larger
       <code>radius</code> for the landonorris.com look: their cutout isn't a
       curved step or a sharp chamfer, it's a straight diagonal (~51°) with each
       end rounded — the border runs straight, curves, then continues straight,
-      rather than smoothly bending the whole way
+      rather than smoothly bending the whole way. In practice, keep it in the
+      75–85 range — much past 55 the length edge shrinks so far that
+      <code>radius</code> rounds the whole notch into one blobby curve instead
+      of a crisp diagonal
     </li>
     <li>
       <code>border_width</code> a number in px, the stroke width. Defaults to
@@ -144,11 +157,6 @@ path: library/components
       card needs to hold something other than a single image
     </li>
     <li>
-      <code>cutout_text</code> an optional string, rendered inside the notch
-      itself (sized to exactly fill it, centered) — e.g. a number or short
-      label, like the “Helmets Hall of Fame” cards on the reference site
-    </li>
-    <li>
       <code>class</code> an optional string, extra class(es) on the root element
     </li>
   </ul>
@@ -157,30 +165,28 @@ path: library/components
   <br />
 
   <p style="display: block; margin-bottom: 64px">
-    Default corner (<code>top-right</code>) with an image and
-    <code>cutout_text</code>.
+    Default cutout (<code>top-right</code>) with an image and text.
   </p>
   <!-- prettier-ignore -->
   {% set card_gnomon = ({
     img: { src: '/static/img/img-sample-1.jpg', alt: 'Sample card image' },
-    cutout_text: 'Sample 01'
+    cutouts: [ { from: 'top-right', text: 'Sample 01' } ]
   }) %}
   {% include "../_includes/components/card-gnomon.njk" %}
 
   <br /><br /><br /><br />
 
   <p style="display: block; margin-bottom: 64px">
-    <code>corner: 'bottom-left'</code> with a deeper/longer cut and raw
-    <code>content</code> instead of an image.
+    <code>cutouts: [{ from: 'bottom-right' }]</code> with a deeper/longer cut
+    and raw <code>content</code> instead of an image.
   </p>
   <!-- prettier-ignore -->
   {% set card_gnomon = ({
-    corner: 'bottom-right',
+    cutouts: [ { from: 'bottom-right', text: 'Keep angle near 90' } ],
     depth: 12,
     length: 48,
     angle: 80,
     radius: 4,
-    cutout_text: 'Keep angle near 90',
     content: '
   <p>This uses an angle of 80</p>
   ' }) %} {% include "../_includes/components/card-gnomon.njk" %}
@@ -188,17 +194,36 @@ path: library/components
   <br /><br /><br /><br />
 
   <p style="display: block; margin-bottom: 64px">
-    <code>corner: 'bottom'</code> — a cutout centered on a side instead of a
-    corner, with <code>cutout_text</code>.
+    <code>cutouts: [{ from: 'bottom' }]</code> — a cutout centered on a side
+    instead of a corner.
   </p>
   <!-- prettier-ignore -->
   {% set card_gnomon = ({
-    corner: 'bottom',
+    cutouts: [ { from: 'bottom', text: 'View more' } ],
     depth: 10,
     length: 32,
     angle: 75,
     radius: 2,
-    cutout_text: 'View more',
+    img: { src: '/static/img/img-sample-1.jpg', alt: 'Sample card image' }
+  }) %}
+  {% include "../_includes/components/card-gnomon.njk" %}
+
+  <br /><br /><br /><br />
+
+  <p style="display: block; margin-bottom: 64px">
+    Two cutouts on opposite corners — any number of entries in
+    <code>cutouts</code> can be combined.
+  </p>
+  <!-- prettier-ignore -->
+  {% set card_gnomon = ({
+    cutouts: [
+      { from: 'top-right', text: 'Sample 01' },
+      { from: 'bottom-left', text: 'Sample 02' }
+    ],
+    depth: 10,
+    length: 32,
+    angle: 80,
+    radius: 2,
     img: { src: '/static/img/img-sample-1.jpg', alt: 'Sample card image' }
   }) %}
   {% include "../_includes/components/card-gnomon.njk" %}

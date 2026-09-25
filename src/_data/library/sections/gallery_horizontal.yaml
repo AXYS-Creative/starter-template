@@ -1,45 +1,90 @@
 title: "[ Gallery Horizontal - Section ]"
 accent: "Selected Work"
 
+# Shared card-gnomon geometry for every image in every group below — see
+# CLAUDE.md's "Global-defaults-with-override pattern". An image only needs
+# `override_defaults: true` + `custom` when it wants to differ.
+card_gnomon_defaults:
+  depth: 18
+  length: 48
+  radius: 4
+  angle: 85
+
 groups:
   - img_1:
       src: /static/img/img-sample-1.jpg
       alt: Sample image one
+      caption: Sample 01
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_2:
       src: /static/img/img-sample-2.jpg
       alt: Sample image two
+      caption: Sample 02
     copy: "A short paragraph of copy describing this piece of work — kept brief so it doesn't run into the image below it."
     img_3:
       src: /static/img/img-sample-3.jpg
       alt: Sample image three
+      caption: Sample 03
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_4:
       src: /static/img/img-sample-4.jpg
       alt: Sample image four
+      caption: Sample 04
 
   - img_1:
       src: /static/img/img-sample-5.jpg
       alt: Sample image five
+      caption: Sample 05
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_2:
       src: /static/img/img-sample-6.jpg
       alt: Sample image six
+      caption: Sample 06
     copy: "Each group repeats the exact same four-image-and-copy structure — only the content changes, which is what makes the sequence read as varied rather than repetitive."
     img_3:
       src: /static/img/img-sample-7.jpg
       alt: Sample image seven
+      caption: Sample 07
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_4:
       src: /static/img/img-sample-8.jpg
       alt: Sample image eight
+      caption: Sample 08
 
   - img_1:
       src: /static/img/img-sample-3.jpg
       alt: Sample image three
+      caption: Sample 09
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_2:
       src: /static/img/img-sample-1.jpg
       alt: Sample image one
+      caption: Sample 10
     copy: "A third group to make the horizontal scroll distance feel real when previewing the section."
     img_3:
       src: /static/img/img-sample-6.jpg
       alt: Sample image six
+      caption: Sample 11
+      override_defaults: true
+      custom:
+        length: 64
+        depth: 12
     img_4:
       src: /static/img/img-sample-2.jpg
       alt: Sample image two
+      caption: Sample 12

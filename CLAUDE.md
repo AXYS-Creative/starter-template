@@ -81,6 +81,15 @@ Instead:
   exceptions exist (a single page needing a different drag threshold)
   without reopening the door to accidental full-config duplication
   everywhere else.
+- The per-field merge itself (`custom.<field> if override_defaults and
+  defined, else default.<field>`) doesn't have to be page-level/global —
+  the same shape works for one repeating component inside a single section
+  (e.g. `gallery-horizontal.njk` giving every `card-gnomon.njk` instance one
+  shared `card_gnomon_defaults` object, with per-image `override_defaults` +
+  `custom` for the rare card that needs to differ). A generic
+  `mergeOverrides(defaults, instance)` Nunjucks filter implementing this
+  merge already exists in `.eleventy.js` — reuse it instead of writing
+  per-field ternaries again.
 
 ## Data-driven visibility, not a redundant flag
 
