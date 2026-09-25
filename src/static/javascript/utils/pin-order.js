@@ -27,6 +27,20 @@
 // module-eval time, which every current caller does). All queued pins are
 // created first, sorted into actual DOM order; only once that's done do the
 // "after" callbacks run, so they always see the final, pin-inclusive layout.
+//
+// Pass the matchMedia `context` a caller received from its
+// `gsap.matchMedia().add(conditions, (context) => {...})` callback (when
+// there is one) as the last argument to queuePinnedSection/
+// afterPinnedSections. GSAP's matchMedia only auto-reverts gsap/ScrollTrigger
+// objects created *synchronously* inside that callback — since this queue's
+// setups run later, in a microtask, they're invisible to that tracking
+// unless re-wrapped in `context.add(setup)` here. Skipping context is still
+// supported (setup just runs bare) but leaves whatever it creates alive
+// across a breakpoint change instead of being torn down and recreated —
+// e.g. a pin/ScrollTrigger measured at a wider viewport keeps pinning for
+// its original (now stale) distance after a resize crosses into a
+// narrower breakpoint, even once other matchMedia-gated code correctly
+// stops running.
 const pinQueue = [];
 const afterQueue = [];
 let scheduled = false;
@@ -41,20 +55,20 @@ function scheduleFlush() {
       .sort((a, b) =>
         a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1
       )
-      .forEach(({ setup }) => setup());
+      .forEach(({ setup, context }) => (context ? context.add(setup) : setup()));
 
-    afterQueue.splice(0).forEach((setup) => setup());
+    afterQueue.splice(0).forEach(({ setup, context }) => (context ? context.add(setup) : setup()));
 
     scheduled = false;
   });
 }
 
-export function queuePinnedSection(el, setup) {
-  pinQueue.push({ el, setup });
+export function queuePinnedSection(el, setup, context) {
+  pinQueue.push({ el, setup, context });
   scheduleFlush();
 }
 
-export function afterPinnedSections(setup) {
-  afterQueue.push(setup);
+export function afterPinnedSections(setup, context) {
+  afterQueue.push({ setup, context });
   scheduleFlush();
 }

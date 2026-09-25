@@ -9,7 +9,7 @@ responsiveGsap.add(
   {
     minLg: "(min-width: 1025px)",
   },
-  () => {
+  (context) => {
     const galleryHorizontal = document.querySelectorAll(".gallery-horizontal");
 
     galleryHorizontal.forEach((el) => {
@@ -30,33 +30,38 @@ responsiveGsap.add(
 
       // Create in actual DOM order relative to any other pinned section on
       // the page — see utils/pin-order.js for why that matters.
-      queuePinnedSection(pin, () => {
-        // Actual Pinning (title above stays in normal flow — only `__pin` locks)
-        gsap.to(pin, {
-          scrollTrigger: {
-            trigger: pin,
-            start: "center center",
-            end: duration,
-            pin: true,
-          },
-        });
-
-        // Slider Along X-Axis
-        gsap.fromTo(
-          slider,
-          { x: 0 },
-          {
-            x: () => -distanceToTranslate,
-            ease: "none",
+      queuePinnedSection(
+        pin,
+        () => {
+          // Actual Pinning (title above stays in normal flow — only `__pin` locks)
+          gsap.to(pin, {
             scrollTrigger: {
               trigger: pin,
               start: "center center",
               end: duration,
-              scrub: 0.5,
+              pin: true,
             },
-          }
-        );
-      });
+          });
+
+          // Slider Along X-Axis
+          gsap.fromTo(
+            slider,
+            { x: 0 },
+            {
+              x: () => -distanceToTranslate,
+              ease: "none",
+              scrollTrigger: {
+                trigger: pin,
+                start: "top 25%",
+                ease: "linear",
+                end: duration,
+                scrub: 1,
+              },
+            },
+          );
+        },
+        context,
+      );
     });
-  }
+  },
 );

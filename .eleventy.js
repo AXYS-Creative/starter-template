@@ -93,6 +93,11 @@ module.exports = async function (eleventyConfig) {
     return path.replace(/\//g, "-");
   });
 
+  // Real vector length — used by card-gnomon.njk to round/clamp corners on
+  // edges that aren't axis-aligned (e.g. a tilted cutout's diagonal edges),
+  // where a simple axis-projected distance is wrong.
+  eleventyConfig.addFilter("sqrt", (value) => Math.sqrt(value));
+
   // Token Replacement at build time vs client (prevent tokens from showing up briefly)
   eleventyConfig.addTransform("tokenReplace", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {

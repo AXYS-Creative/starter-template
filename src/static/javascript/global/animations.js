@@ -210,7 +210,7 @@ export const cubicBezier = (p1x, p1y, p2x, p2y) => {
               observer.observe(gsapElem);
             }
           });
-        });
+        }, context);
       }
     }
   );

@@ -67,7 +67,7 @@ responsiveGsap.add(
           });
         }
       });
-    });
+    }, context);
 
     // GSAP Stagger util — same deferral reasoning as above.
     afterPinnedSections(() => {
@@ -117,7 +117,7 @@ responsiveGsap.add(
           },
         });
       });
-    });
+    }, context);
   },
 );
 

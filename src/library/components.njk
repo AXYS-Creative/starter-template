@@ -78,6 +78,132 @@ path: library/components
   {% include '../_includes/components/accordion.njk' %}
 </section>
 
+<section class="library-section">
+  <h2>[ Card Gnomon - Component ]</h2>
+  <p>
+    A square card with a rectangular notch cut from one corner (a “gnomon”),
+    drawn with an inline SVG stroke so the border color can transition on
+    <code>:hover</code> — see
+    <a
+      class="classic-link tab-element-page"
+      href="https://landonorris.com/"
+      target="_blank"
+    >
+      landonorris.com </a
+    >, “Helmets Hall of Fame”, for the reference. The
+    <code>card-gnomon.njk</code> component comes with the following configs:
+  </p>
+  <br />
+  <br />
+
+  <ul class="classic-list">
+    <li>
+      <code>corner</code> a string, where the notch is cut from — a corner
+      (<code>top-left</code>, <code>top-right</code>, <code>bottom-left</code>,
+      <code>bottom-right</code>) or the middle of a side (<code>top</code>,
+      <code>right</code>, <code>bottom</code>, <code>left</code>). Defaults to
+      <code>top-right</code>
+    </li>
+    <li>
+      <code>depth</code> a number, 0–100, how far the notch reaches into the
+      card as a % of its side. Defaults to <code>28</code>
+    </li>
+    <li>
+      <code>length</code> a number, 0–100, how far the notch runs along the
+      edge, as a % of the card's side — for a corner, split across the two edges
+      meeting there; for a side, centered on that edge. Defaults to
+      <code>28</code>
+    </li>
+    <li>
+      <code>radius</code> a number, 0–50, the corner curve as a % of the card's
+      side — rounds every corner, including the cutout's. Clamped so it can
+      never exceed half of the shape's shortest edge. Defaults to <code>6</code>
+    </li>
+    <li>
+      <code>angle</code> a number, 45–90deg, tilts the cutout's inner corner(s).
+      <code>90</code> (default) is a square step; <code>45</code>
+      slides it into a single diagonal cut — an exact 45° angle when
+      <code>depth</code> equals <code>length</code>. Pair it with a larger
+      <code>radius</code> for the landonorris.com look: their cutout isn't a
+      curved step or a sharp chamfer, it's a straight diagonal (~51°) with each
+      end rounded — the border runs straight, curves, then continues straight,
+      rather than smoothly bending the whole way
+    </li>
+    <li>
+      <code>border_width</code> a number in px, the stroke width. Defaults to
+      <code>2</code>
+    </li>
+    <li>
+      <code>img</code> an object with <code>src</code>, <code>alt</code> and an
+      optional <code>eager</code> boolean (loads eagerly instead of lazy). This
+      is the primary use case — a single image filling the card
+    </li>
+    <li>
+      <code>content</code> an optional string (rendered 'safe', so it can be
+      markup) — use this instead of, or alongside, <code>img</code> when the
+      card needs to hold something other than a single image
+    </li>
+    <li>
+      <code>cutout_text</code> an optional string, rendered inside the notch
+      itself (sized to exactly fill it, centered) — e.g. a number or short
+      label, like the “Helmets Hall of Fame” cards on the reference site
+    </li>
+    <li>
+      <code>class</code> an optional string, extra class(es) on the root element
+    </li>
+  </ul>
+
+  <br />
+  <br />
+
+  <p style="display: block; margin-bottom: 64px">
+    Default corner (<code>top-right</code>) with an image and
+    <code>cutout_text</code>.
+  </p>
+  <!-- prettier-ignore -->
+  {% set card_gnomon = ({
+    img: { src: '/static/img/img-sample-1.jpg', alt: 'Sample card image' },
+    cutout_text: 'Sample 01'
+  }) %}
+  {% include "../_includes/components/card-gnomon.njk" %}
+
+  <br /><br /><br /><br />
+
+  <p style="display: block; margin-bottom: 64px">
+    <code>corner: 'bottom-left'</code> with a deeper/longer cut and raw
+    <code>content</code> instead of an image.
+  </p>
+  <!-- prettier-ignore -->
+  {% set card_gnomon = ({
+    corner: 'bottom-right',
+    depth: 12,
+    length: 48,
+    angle: 80,
+    radius: 4,
+    cutout_text: 'Keep angle near 90',
+    content: '
+  <p>This uses an angle of 80</p>
+  ' }) %} {% include "../_includes/components/card-gnomon.njk" %}
+
+  <br /><br /><br /><br />
+
+  <p style="display: block; margin-bottom: 64px">
+    <code>corner: 'bottom'</code> — a cutout centered on a side instead of a
+    corner, with <code>cutout_text</code>.
+  </p>
+  <!-- prettier-ignore -->
+  {% set card_gnomon = ({
+    corner: 'bottom',
+    depth: 10,
+    length: 32,
+    angle: 75,
+    radius: 2,
+    cutout_text: 'View more',
+    img: { src: '/static/img/img-sample-1.jpg', alt: 'Sample card image' }
+  }) %}
+  {% include "../_includes/components/card-gnomon.njk" %}
+</section>
+
 <section class="carousel-swiper-section">
   <!-- Carousel Swiper doesn't work with 'footer-scroll-reveal.njk'? -->
   <div class="section-width">
@@ -640,18 +766,6 @@ path: library/components
   <!-- prettier-ignore -->
   {% set orbit_data = library.solar_system %}
   {% include "../_includes/components/solar-system.njk" %}
-</section>
-
-<section class="library-section">
-  <h2>[ SVG Card - Component ]</h2>
-
-  <!-- prettier-ignore -->
-  {% set svg_card = ({
-    img: '/static/img/img-sample-1.jpg',
-    title: 'SVG Card Sample',
-    text: 'This is a sample SVG card component.'
-  }) %}
-  {% include "../_includes/components/svg-card.njk" %}
 </section>
 
 <section class="testimonials-section library-section">

@@ -4,31 +4,55 @@
 .gallery-horizontal {
   // Tune these to resize/reproportion the whole layout — every offset below
   // is derived from these four values, so the geometry stays consistent.
-  --gh-portrait-w: 300px;
-  --gh-portrait-h: 400px;
-  --gh-landscape-w: 400px;
-  --gh-landscape-h: 280px;
-  --gh-gap: var(--section-gap--xl);
+  // Heights are clamped to vh so the collage's total height (see __group)
+  // tracks the __pin box below instead of overflowing it — that's what was
+  // clipping content along the top/bottom during the pin+scrub.
+  --gh-absolute-padding: 12px;
+  --gh-portrait-w: 216px;
+  --gh-portrait-h: clamp(260px, 30vh, 400px);
+  --gh-landscape-w: 280px;
+  --gh-landscape-h: clamp(180px, 21vh, 280px);
+  --gh-gap: 72px;
   --gh-copy-w: 320px;
 
   @include mixins.section-padding;
   position: relative; // for pin steps
   overflow: hidden;
+  padding-inline: 0;
+
+  @include mixins.mq-max(lg) {
+    padding-inline: var(--body-padding);
+  }
 
   &__header {
     @include mixins.width-clamp;
     margin-block-end: var(--section-gap--lg);
   }
 
-  // Height is intrinsic — driven by the group's own layout math below, not
-  // the viewport. Only the horizontal scroll distance (slider width vs.
-  // container width) depends on the viewport.
+  // Pinned box is capped to 80% of the viewport height (with a floor so it
+  // never gets too cramped) rather than sized to the group's full intrinsic
+  // height — GSAP freezes whatever's visible in this box for the whole pin
+  // duration, so an oversized box let the top/bottom of the collage scroll
+  // out of view before pinning ever kicked in. __container centers the
+  // (now vh-clamped, see --gh-portrait-h/--gh-landscape-h above) group
+  // inside that box so any slack splits evenly top and bottom.
   &__pin {
     position: relative;
+
+    @include mixins.mq-min(lg) {
+      height: 80vh;
+      min-height: 620px;
+    }
   }
 
   &__container {
     overflow: hidden;
+
+    @include mixins.mq-min(lg) {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
 
     @include mixins.mq-max(lg) {
       overflow: visible;
@@ -36,10 +60,12 @@
   }
 
   &__slider {
+    // background: navy;
     display: flex;
     align-items: flex-start;
     gap: var(--spacing--xl);
     padding-inline-start: var(--body-padding);
+    // height: 96vh;
 
     @include mixins.mq-max(lg) {
       flex-direction: column;
@@ -75,7 +101,7 @@
     // Shared left offset for the copy + third image column — the point
     // where both images ahead of it (1 and 2) have cleared horizontally.
     --gh-copy-left: calc(
-      var(--gh-portrait-w) * 0.5 + var(--gh-landscape-w) + var(--gh-gap)
+      var(--gh-portrait-w) * 1.25 + var(--gh-landscape-w) + var(--gh-gap)
     );
 
     width: calc(
@@ -99,6 +125,7 @@
     border-radius: var(--radius--sm);
     overflow: hidden;
 
+    picture,
     img {
       width: 100%;
       height: 100%;
@@ -108,7 +135,7 @@
 
     // Top left, portrait.
     &--1 {
-      top: 0;
+      top: var(--gh-absolute-padding);
       left: 0;
       width: var(--gh-portrait-w);
       height: var(--gh-portrait-h);
@@ -128,12 +155,13 @@
       left: var(--gh-copy-left);
       width: var(--gh-portrait-w);
       height: var(--gh-portrait-h);
+      aspect-ratio: 1 / 1.25;
     }
 
     // Below + offset right of #3 — its bottom edge is the lowest point of
     // the whole horizontal track.
     &--4 {
-      top: calc(var(--gh-portrait-h) * 1.5 + var(--gh-gap));
+      bottom: var(--gh-absolute-padding);
       left: calc(var(--gh-copy-left) + var(--gh-portrait-w) * 0.75);
       width: var(--gh-landscape-w);
       height: var(--gh-landscape-h);
@@ -141,8 +169,20 @@
 
     @include mixins.mq-max(lg) {
       position: static;
-      width: 100%;
+      width: 40%;
       height: auto;
+
+      &--1 {
+        left: var(--body-padding);
+      }
+
+      &--2 {
+        align-self: center;
+      }
+
+      &--4 {
+        align-self: end;
+      }
 
       &--1,
       &--3 {
@@ -158,7 +198,7 @@
 
   &__copy {
     position: absolute;
-    top: 0;
+    top: var(--gh-absolute-padding);
     left: var(--gh-copy-left);
     width: var(--gh-copy-w);
 

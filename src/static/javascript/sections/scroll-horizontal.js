@@ -39,40 +39,25 @@ responsiveGsap.add(
 
         // Create in actual DOM order relative to any other pinned section on
         // the page — see utils/pin-order.js for why that matters.
-        queuePinnedSection(pin, () => {
-          // Actual Pinning
-          gsap.to(pin, {
-            scrollTrigger: {
-              trigger: pin,
-              start: "center center",
-              end: duration,
-              pin: true,
-            },
-          });
-
-          // Slider Along X-Axis
-          gsap.fromTo(
-            slider,
-            { x: 0 },
-            {
-              x: () => -distanceToTranslate,
-              ease: "none",
+        queuePinnedSection(
+          pin,
+          () => {
+            // Actual Pinning
+            gsap.to(pin, {
               scrollTrigger: {
                 trigger: pin,
                 start: "center center",
                 end: duration,
-                scrub: scrollHorizontalScrub,
+                pin: true,
               },
-            }
-          );
+            });
 
-          // Optional parallax effect on images (use landscape images in portrait view)
-          imgs.forEach((img) => {
+            // Slider Along X-Axis
             gsap.fromTo(
-              img,
+              slider,
               { x: 0 },
               {
-                x: "25%", // Adjust this value for more or less parallax effect
+                x: () => -distanceToTranslate,
                 ease: "none",
                 scrollTrigger: {
                   trigger: pin,
@@ -82,8 +67,27 @@ responsiveGsap.add(
                 },
               }
             );
-          });
-        });
+
+            // Optional parallax effect on images (use landscape images in portrait view)
+            imgs.forEach((img) => {
+              gsap.fromTo(
+                img,
+                { x: 0 },
+                {
+                  x: "25%", // Adjust this value for more or less parallax effect
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: pin,
+                    start: "center center",
+                    end: duration,
+                    scrub: scrollHorizontalScrub,
+                  },
+                }
+              );
+            });
+          },
+          context
+        );
       });
     }
   }

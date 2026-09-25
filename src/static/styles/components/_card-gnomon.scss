@@ -1,0 +1,89 @@
+@use "../base//mixins";
+
+.card-gnomon {
+  --card-gnomon-border-color: var(--color-border);
+  --card-gnomon-border-width: 2px;
+  --card-gnomon-fill: var(--color-surface--1);
+
+  position: relative;
+  display: inline-block; // shrink-wraps to content; swap to block if needed
+  width: 25vw;
+
+  aspect-ratio: 1;
+
+  @include mixins.mq-max(md) {
+    width: 50vw;
+  }
+
+  &:hover {
+    --card-gnomon-border-color: var(--color-brand--primary);
+  }
+
+  // ── Border layer (real stroke, so color/width transitions like any CSS) ──
+  // `overflow: visible` matters here: the stroke is centered on a path that
+  // runs along the viewBox's own edge (the card's outer corners), so half
+  // its width falls outside the viewBox. SVG clips that by default, which
+  // both crops the straight edges and makes the corners (where two clipped
+  // edges meet) look uneven/thicker than the notch's inward corner, which
+  // sits inside the viewBox and never gets clipped.
+  &__stroke {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+
+    path {
+      fill: none;
+      stroke: var(--card-gnomon-border-color);
+      stroke-width: var(--card-gnomon-border-width);
+      transition: stroke 0.3s ease;
+    }
+  }
+
+  // ── Inner content layer (fill + clip) ────────────────────────
+  // Same box as __stroke (not inset by the border width) — the clip-path
+  // is the same shape at the same scale, so the content's edge and the
+  // stroke sit on the exact same line instead of two independently-scaled
+  // copies of the notch that don't quite line up.
+  &__inner {
+    position: absolute;
+    inset: 0;
+    background: var(--card-gnomon-fill);
+    overflow: hidden; // safety net for content that escapes the clip-path
+  }
+
+  // ── Content elements ─────────────────────────────────────────
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    position: absolute;
+    inset: 0;
+    padding: 16px;
+    pointer-events: none;
+  }
+
+  // Sized/positioned in the njk to exactly the notch rectangle — sits
+  // outside __inner's clip-path, in the cut-away area itself.
+  &__cutout-text {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    pointer-events: none;
+
+    @include mixins.mq-max(xxl) {
+      font-size: 12px;
+    }
+  }
+}
