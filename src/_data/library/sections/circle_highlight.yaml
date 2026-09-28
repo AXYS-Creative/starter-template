@@ -1,0 +1,25 @@
+# eyebrow: Our Process
+# title: How We Work
+# description: Scroll to move clockwise through each stage of the process.
+
+hole_size: 64 # 0-99, % of the outer radius used as the center hole — bigger hole = thinner ring, 0 draws solid pie slices instead of a donut
+radius: 3 # 0+, corner curve applied to every slice edge (same 0-100 viewBox unit space as the ring itself) — 0 (default) keeps slices sharp-cornered
+gap: 4 # 0+, space left between adjacent slices (same 0-100 viewBox unit space as radius) — 0 (default) leaves slices seamed edge-to-edge
+caption_placement: outside # 'outside' (default) places captions around the ring's circumference — 'inside' centers them in the hole instead
+circle_orientation: default # 'default' centers a slice exactly at 12 o'clock — 'tilted' seams a slice division there instead, favoring one side
+
+image: # optional, sized to fit the hole exactly — shown until the section pins, then swapped for the first slice's caption
+  src: /static/img/logo-axys-white.svg
+  alt: Sample Logo
+
+slices:
+  - title: Autonomous
+    description: Workshops and research to understand the real problem.
+  - title: Xenial
+    description: Turning research into a clear, scoped brief.
+  - title: Yielding
+    description: Exploring directions and refining the chosen one.
+  - title: Studio
+    description: Engineering the approved design into a real product.
+  # - title: Launch
+  #   description: Shipping, measuring, and iterating post-release.

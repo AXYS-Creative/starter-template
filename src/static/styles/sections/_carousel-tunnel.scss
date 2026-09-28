@@ -159,6 +159,35 @@
     margin-inline: auto;
   }
 
+  // Support styles for the SplitText spans carousel-tunnel.js's own
+  // playTextEffect() generates on __title/__desc (see data-text-effect).
+  // Reuses the same span class names text-animations.js's text-fade/
+  // text-reveal/text-scale/text-flip generate, purely for a consistent,
+  // recognizable naming convention — deliberately NOT reusing that file's
+  // .text-fade/.text-reveal/etc. selectors (which these elements never
+  // carry), since those utils self-trigger off normal scroll position and
+  // would fire immediately for anything inside this section's pinned
+  // (position: fixed) frame. See carousel-tunnel.js for the real trigger.
+  &__title,
+  &__desc {
+    .text-fade__words,
+    .text-fade__chars,
+    .text-reveal__words,
+    .text-reveal__chars,
+    .text-scale__words,
+    .text-scale__chars,
+    .text-flip__lines,
+    .text-flip__words,
+    .text-flip__chars {
+      display: inline-block;
+    }
+
+    .outer-span {
+      overflow: hidden;
+      display: inline-block;
+    }
+  }
+
   &__pagination {
     @include mixins.row-center;
     @include mixins.hide-content; // opacity: 0 + pointer-events/user-select: none, so hidden arrows/dots can't be clicked

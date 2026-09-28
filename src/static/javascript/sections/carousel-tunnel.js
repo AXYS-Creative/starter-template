@@ -1,5 +1,133 @@
 import { queuePinnedSection } from "../utils/pin-order.js";
 
+// Reveal-triggered text effects for __title/__desc (data-text-effect =
+// reveal | fade | scale | flip | none). Deliberately NOT the shared
+// text-reveal/text-fade/text-scale/text-flip utils in text-animations.js
+// directly — those each create their own ScrollTrigger off the *element's*
+// normal scroll position ("top 98%" by default), which fires almost
+// immediately for anything living inside this section's pinned
+// (position: fixed) frame, instead of syncing with the actual reveal.
+// Reusing the exact same SplitText technique here, invoked directly at the
+// moment carousel-tunnel.js already knows is right (the `revealed` flip
+// below), means text-animations.js itself never has to change.
+//
+// Splitting happens once, up front (same timing as those utils splitting
+// on page load) — only the tween itself replays on each reveal, exactly
+// like their own non-"once" toggleActions behavior.
+function createTextEffect(el) {
+  if (!el) return null;
+  const effect = el.dataset.textEffect;
+  if (!effect || effect === "none") return null;
+
+  if (effect === "fade") {
+    const type = el.dataset.fadeType || "words";
+    const style = el.dataset.fadeStyle || "random";
+    const duration = parseFloat(el.dataset.fadeDuration) || 0.25;
+    const split = new SplitText(el, {
+      type,
+      [`${type}Class`]: `text-fade__${type}`,
+      tag: "span",
+    });
+    const targets = type === "words" ? split.words : split.chars;
+
+    return () =>
+      gsap.fromTo(
+        style === "random" ? gsap.utils.shuffle(targets.slice()) : targets,
+        { opacity: 0 },
+        { opacity: 1, duration, stagger: 0.0125, ease: "linear" },
+      );
+  }
+
+  if (effect === "reveal") {
+    const type = el.dataset.revealType || "words";
+    const from = el.dataset.revealFrom || "bottom";
+    const duration = parseFloat(el.dataset.revealDuration) || 0.2;
+    const stagger = parseFloat(el.dataset.revealStagger) || 0.05;
+    const ease = el.dataset.revealEase || "linear";
+    const split = new SplitText(el, {
+      type,
+      [`${type}Class`]: `text-reveal__${type}`,
+      tag: "span",
+    });
+    const targets = type === "words" ? split.words : split.chars;
+
+    targets.forEach((target) => {
+      const wrapper = document.createElement("span");
+      wrapper.classList.add("outer-span");
+      target.parentNode.insertBefore(wrapper, target);
+      wrapper.appendChild(target);
+    });
+
+    return () =>
+      gsap.fromTo(
+        targets,
+        { y: from === "top" ? "-100%" : "100%" },
+        { y: "0", duration, stagger, ease },
+      );
+  }
+
+  if (effect === "scale") {
+    const type = el.dataset.scaleType || "words";
+    const style = el.dataset.scaleStyle || "random";
+    const duration = parseFloat(el.dataset.scaleDuration) || 0.25;
+    const split = new SplitText(el, {
+      type,
+      [`${type}Class`]: `text-scale__${type}`,
+      tag: "span",
+    });
+    const targets = type === "words" ? split.words : split.chars;
+
+    // Per-word transform-origin based on position, same as text-scale's own.
+    const parentBox = el.getBoundingClientRect();
+    targets.forEach((word) => {
+      const box = word.getBoundingClientRect();
+      const centerX =
+        (box.left + box.width / 2 - parentBox.left) / parentBox.width;
+      word.style.transformOrigin = `${Math.round((1 - centerX) * 100)}% 50%`;
+    });
+
+    return () =>
+      gsap.fromTo(
+        style === "random" ? gsap.utils.shuffle(targets.slice()) : targets,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration, stagger: 0.0125, ease: "linear" },
+      );
+  }
+
+  if (effect === "flip") {
+    const type = el.dataset.flipType || "words";
+    const from = el.dataset.flipFrom || "top";
+    const duration = parseFloat(el.dataset.flipDuration) || 1;
+    const stagger = parseFloat(el.dataset.flipStagger) || 0.05;
+    const ease = el.dataset.flipEase || "power2.out";
+    const split = new SplitText(el, {
+      type,
+      [`${type}Class`]: `text-flip__${type}`,
+      tag: "span",
+    });
+    const targets =
+      type === "lines"
+        ? split.lines
+        : type === "chars"
+          ? split.chars
+          : split.words;
+
+    return () =>
+      gsap.fromTo(
+        targets,
+        {
+          rotateX: -65,
+          transformPerspective: 500,
+          transformOrigin: from,
+          opacity: 0,
+        },
+        { rotateX: 0, opacity: 1, duration, stagger, ease },
+      );
+  }
+
+  return null;
+}
+
 // Scroll-driven "zoom out of a full-viewport image into a peek carousel".
 //
 // __scaler gets the scroll-scrub `scale` (zoomed in at the start, 1 at rest)
@@ -31,6 +159,7 @@ document.querySelectorAll(".carousel-tunnel").forEach((section) => {
   const slideCount = realSlides.length;
   const canLoop = slideCount > 1;
   const interval = parseInt(track.dataset.carouselTunnelInterval, 10) || 0;
+  const quickStart = track.dataset.carouselTunnelQuickStart === "true";
   const dragThreshold =
     parseFloat(track.dataset.carouselTunnelDragThreshold) || 0.1;
 
@@ -245,6 +374,12 @@ document.querySelectorAll(".carousel-tunnel").forEach((section) => {
   }
 
   const revealTargets = [content, pagination, ...panelCaptions].filter(Boolean);
+  const playTitleEffect = createTextEffect(
+    content?.querySelector(".carousel-tunnel__title"),
+  );
+  const playDescEffect = createTextEffect(
+    content?.querySelector(".carousel-tunnel__desc"),
+  );
 
   goTo(index, false);
   gsap.set(scaler, { scale: computeStartScale() });
@@ -290,8 +425,19 @@ document.querySelectorAll(".carousel-tunnel").forEach((section) => {
               el.classList.toggle("is-visible", shouldReveal),
             );
           }
-          if (shouldReveal) startAutoplay();
-          else stopAutoplay();
+          if (shouldReveal) {
+            playTitleEffect?.();
+            playDescEffect?.();
+            // Skip straight to the first auto-advance instead of waiting a
+            // full `interval` after reveal — only meaningful if autoplay is
+            // actually going to run, so guard it the same way startAutoplay
+            // does rather than firing next() into a static/looping-disabled
+            // carousel.
+            if (quickStart && canLoop && interval > 0) next();
+            startAutoplay();
+          } else {
+            stopAutoplay();
+          }
         },
       },
     });

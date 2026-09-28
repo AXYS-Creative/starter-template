@@ -1,14 +1,18 @@
 eyebrow: Featured Work
-title: Every Project Tells a Story
+title: Every Project Tells a [%span.scribble-underline%]Story[%span%]
 description: Scroll to zoom out of the tunnel and reveal the full carousel.
 
 autoplay:
   interval: 4500 # ms between auto-advances, 0 disables autoplay
+  quick_start: true # if true, advances one slide immediately when the title/captions/pagination reveal, instead of waiting the full interval for the first auto-advance
 
 # drag:
 #   threshold: 0.1 # 0–1, fraction of a slide's width a drag needs to cross before it changes slides — lower = more sensitive (default 0.1)
 
 pagination: arrows # arrows (default) | dots | both — arrows alone scale better once there are a lot of slides
+
+title_effect: scale # reveal (default) | fade | scale | flip | none — plays once, exactly when the reveal happens
+# description_effect: none # same options as title_effect
 
 # Layout/motion tuning — all optional, each one falls back to its own
 # default in _carousel-tunnel.scss when left out.

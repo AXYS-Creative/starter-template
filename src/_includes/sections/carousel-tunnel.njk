@@ -4,6 +4,9 @@
 {% set description = carousel_tunnel.description or '' %}
 {% set slides = carousel_tunnel.slides or [] %}
 {% set autoplay_interval = carousel_tunnel.autoplay.interval or 4500 %}
+{% set autoplay_quick_start = carousel_tunnel.autoplay.quick_start or false %}{# if true, advances one slide immediately on reveal instead of waiting the full interval for the first auto-advance #}
+{% set title_effect = carousel_tunnel.title_effect or 'reveal' %}{# reveal (default) | fade | scale | flip | none — plays once, exactly when copy/captions/pagination reveal (see carousel-tunnel.js). Not the shared text-reveal/text-fade/etc. utils directly: those self-trigger off normal scroll position, which breaks for content sitting inside a pinned (position: fixed) frame — this reuses the same SplitText technique on our own timing instead, so those utils stay untouched #}
+{% set description_effect = carousel_tunnel.description_effect or 'none' %}{# same options as title_effect #}
 {% set drag_threshold = carousel_tunnel.drag.threshold or 0.1 %}{# 0–1, fraction of a slide's width a drag needs to cross before it changes slides — lower = more sensitive #}
 {% set pagination_type = carousel_tunnel.pagination or 'arrows' %}{# arrows (default) | dots | both — arrows alone scale better once there are a lot of slides #}
 {% set show_pagination_arrows = pagination_type == 'arrows' or pagination_type == 'both' %}
@@ -43,10 +46,10 @@
       {% include "../components/eyebrow.njk" %}
       {% endif %}
 
-      <h2 class="carousel-tunnel__title">{{ title }}</h2>
+      <h2 class="carousel-tunnel__title" data-text-effect="{{ title_effect }}">{{ title }}</h2>
 
       {% if description %}
-      <p class="carousel-tunnel__desc">{{ description }}</p>
+      <p class="carousel-tunnel__desc" data-text-effect="{{ description_effect }}">{{ description }}</p>
       {% endif %}
     </div>
     {% endif %}
@@ -57,6 +60,7 @@
         <div
           class="carousel-tunnel__track"
           data-carousel-tunnel-interval="{{ autoplay_interval }}"
+          data-carousel-tunnel-quick-start="{{ autoplay_quick_start }}"
           data-carousel-tunnel-drag-threshold="{{ drag_threshold }}"
         >
           {% for slide in slides %}

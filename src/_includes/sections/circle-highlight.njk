@@ -1,0 +1,97 @@
+<!-- prettier-ignore -->
+{% set eyebrow_text = circle_highlight.eyebrow or '' %}
+{% set title = circle_highlight.title or '' %}
+{% set description = circle_highlight.description or '' %}
+{% set has_copy = eyebrow_text or title or description %}
+{% set slides = circle_highlight.slices or [] %}
+{% set hole_size = circle_highlight.hole_size if circle_highlight.hole_size is number else 55 %}{# 0-99, % of the outer radius used as the center hole — bigger hole = thinner ring, 0 draws solid pie slices instead of a donut #}
+{% set radius = circle_highlight.radius if circle_highlight.radius is number else 0 %}{# 0+, corner curve applied to every slice edge — 0 (default) keeps slices sharp-cornered, see donutSlicePath in .eleventy.js #}
+{% set gap = circle_highlight.gap if circle_highlight.gap is number else 0 %}{# 0+, space left between adjacent slices — same 0-100 viewBox unit space as radius, see donutSlicePath in .eleventy.js #}
+{% set caption_placement = circle_highlight.caption_placement if circle_highlight.caption_placement == 'inside' else 'outside' %}{# 'outside' (default) places captions around the ring's circumference, one per slice; 'inside' stacks them centered in the hole and shows only the active one — see circle-highlight--captions-inside in _circle-highlight.scss #}
+{% set circle_orientation = circle_highlight.circle_orientation if circle_highlight.circle_orientation == 'tilted' else 'default' %}{# 'default' centers slice 0 exactly at 12 o'clock; 'tilted' seams a slice division there instead (the old behavior), favoring one side — see donutSlicePath in .eleventy.js #}
+{% set image = circle_highlight.image or {} %}{# optional, works with either caption_placement — sits centered in the hole and is what shows before the section pins; fades out for the first slice's caption once it does, see circle-highlight.js #}
+{% set svg_pad = 4 %}{# viewBox units of blank margin around the ring so a future stroke/border on the active slice (sitting exactly on the viewBox edge otherwise) doesn't get clipped #}
+{% set ring_box_pct = 68 %}{# must match __ring's width/height % in _circle-highlight.scss — used below to size circle_highlight.image to the actual hole diameter #}
+
+<!-- prettier-ignore -->
+{# One computed geometry object per slice, built once here rather than
+   re-invoking the filter for every place a slice's path/angle is needed
+   below (the SVG path and its caption both read the same result) — same
+   "compute once, reuse" idiom as card-gnomon's active_froms array. #}
+{% set computed_slides = [] %}
+{% for slide in slides %}
+  {% set geo = loop.index0 | donutSlicePath(slides.length, hole_size, radius, gap, circle_orientation) %}
+  {% set _ = computed_slides.push({
+    title: slide.title or '',
+    description: slide.description or '',
+    d: geo.d,
+    angle_mid: geo.angle_mid
+  }) %}
+{% endfor %}
+
+<!-- prettier-ignore -->
+<section class="circle-highlight{% if not has_copy %} circle-highlight--centered{% endif %}">
+  <div class="circle-highlight__pin">
+    <!-- prettier-ignore -->
+    {% if has_copy %}
+    <div class="circle-highlight__content">
+      {% if eyebrow_text %}
+      {% set eyebrow = ({
+        text: eyebrow_text,
+        class: 'circle-highlight__eyebrow'
+      }) %}
+      {% include "../components/eyebrow.njk" %}
+      {% endif %}
+
+      {% if title %}
+      <h2 class="circle-highlight__title">{{ title }}</h2>
+      {% endif %}
+
+      {% if description %}
+      <p class="circle-highlight__desc">{{ description }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- prettier-ignore -->
+    {% if computed_slides.length %}
+    <div class="circle-highlight__ring-wrap{% if caption_placement == 'inside' %} circle-highlight__ring-wrap--captions-inside{% endif %}">
+      <svg class="circle-highlight__ring" viewBox="-{{ svg_pad }} -{{ svg_pad }} {{ 100 + svg_pad * 2 }} {{ 100 + svg_pad * 2 }}" aria-hidden="true">
+        <!-- prettier-ignore -->
+        {% for slide in computed_slides %}
+        <path
+          class="circle-highlight__slice{% if loop.first %} circle-highlight__slice--active{% endif %}"
+          d="{{ slide.d }}"
+        />
+        {% endfor %}
+      </svg>
+
+      <!-- prettier-ignore -->
+      {% if image.src %}
+      <img
+        class="circle-highlight__hole-image"
+        src="{{ image.src }}"
+        alt="{{ image.alt or '' }}"
+        style="--hole-diameter: {{ (ring_box_pct * hole_size / (100 + svg_pad * 2)) | round(2) }}%;"
+      />
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% for slide in computed_slides %}
+      <div
+        class="circle-highlight__caption{% if loop.first %} circle-highlight__caption--active{% endif %}"
+        style="--slice-angle: {{ slide.angle_mid }};"
+      >
+        {% if slide.title %}
+        <h3 class="circle-highlight__caption-title">{{ slide.title }}</h3>
+        {% endif %}
+
+        {% if slide.description %}
+        <p class="circle-highlight__caption-desc">{{ slide.description }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

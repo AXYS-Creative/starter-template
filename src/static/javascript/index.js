@@ -17,6 +17,7 @@ import "./sections/gallery-horizontal.js"; // Pinned Section (be mindful of impo
 import "./sections/hero-image-circle.js";
 import "./sections/tunnel.js";
 import "./sections/carousel-tunnel.js"; // Pinned Section (be mindful of import placement)
+import "./sections/circle-highlight.js"; // Pinned Section (be mindful of import placement)
 
 import "./components/accordion.js";
 import "./components/alert.js";

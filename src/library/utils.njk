@@ -606,6 +606,10 @@ all_badge_types: "outline"
       <div
         class="glass-bg glass-bg-sample glass-bg-sample-2 magnet"
         data-glass-scale="80"
+        data-magnet-x="1.5"
+        data-magnet-y="1.5"
+        data-magnet-return-duration="350"
+        data-magnet-return-ease="cubic-bezier(0,1.64,.63,1.92)"
       >
         Stronger scale (magnet)
       </div>
@@ -1012,18 +1016,18 @@ all_badge_types: "outline"
     <code>scribble-underline</code> class — works on inline elements like
     <code>span</code> just as well as block elements like <code>p</code> or
     <code>div</code>. The default asset lives at
-    <code>/static/img/scribble-underline.svg</code> and is stretched to fit
-    the element's width, so any similar squiggle-style SVG works regardless
-    of its native aspect ratio.
+    <code>/static/img/scribble-underline.svg</code> and is stretched to fit the
+    element's width, so any similar squiggle-style SVG works regardless of its
+    native aspect ratio.
   </p>
 
   <ul class="classic-list">
     <li>
-      <code>data-scribble-src</code> An optional string, path to a custom SVG
-      to use instead of the default. Read by
-      <code>javascript/utils/scribble-underline.js</code>, which copies it
-      into the <code>--scribble-underline-src</code> css variable — CSS alone
-      can't read a data attribute into a <code>background-image</code>.
+      <code>data-scribble-src</code> An optional string, path to a custom SVG to
+      use instead of the default. Read by
+      <code>javascript/utils/scribble-underline.js</code>, which copies it into
+      the <code>--scribble-underline-src</code> css variable — CSS alone can't
+      read a data attribute into a <code>background-image</code>.
     </li>
   </ul>
 
@@ -1036,8 +1040,8 @@ all_badge_types: "outline"
   </p>
 
   <p class="scribble-underline max-width-text">
-    Applied directly to a block element instead, the underline spans the
-    whole element rather than a nested phrase.
+    Applied directly to a block element instead, the underline spans the whole
+    element rather than a nested phrase.
   </p>
 
   <br />

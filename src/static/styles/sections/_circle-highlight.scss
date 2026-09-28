@@ -1,0 +1,191 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+// Scroll-driven "clockwise donut chart" — a pinned section whose ring
+// (built in circle-highlight.njk from the `donutSlicePath` Eleventy filter,
+// since rounding an arc's corners needs real trig Nunjucks has no filters
+// for) highlights one slice at a time as the user scrolls, always moving
+// clockwise (see circle-highlight.js). By default captions live outside the
+// ring, placed on its circumference the same way `image-fan`/`image-circle`
+// place their own items on a circle: `--slice-angle` (0 = top, clockwise)
+// plus native CSS `sin()`/`cos()` against the ring-wrap's own `cqw`, so
+// nothing here needs its own JS to position them. `caption_placement:
+// inside` collapses that same circumference placement down to the ring's
+// center instead (see --captions-inside below).
+.circle-highlight {
+  position: relative;
+
+  &__pin {
+    @include mixins.row-center(space-between);
+    @include mixins.width-clamp;
+    // width: 100vw;
+    min-height: 100vh;
+    gap: var(--section-gap--xl);
+    padding: var(--spacing--lg) var(--body-padding);
+
+    @include mixins.mq-max(md) {
+      flex-direction: column;
+      gap: var(--section-gap--lg);
+    }
+  }
+
+  // Data-driven, not a redundant flag — set from whether eyebrow/title/desc
+  // are actually present (see circle-highlight.njk), not a separate toggle.
+  &--centered &__pin {
+    justify-content: center;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    max-width: var(--max-width--text);
+  }
+
+  &__title {
+    @include mixins.h2;
+    margin-bottom: 12px;
+
+    @include mixins.mq-max(md) {
+      @include mixins.h4;
+    }
+  }
+
+  &__desc {
+    max-width: var(--max-width--text);
+  }
+
+  &__ring-wrap {
+    position: relative;
+    isolation: isolate;
+    container-type: inline-size; // captions measure their radius against this box's own width, not the viewport
+    flex: 0 0 auto;
+    width: min(46vw, 480px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+
+    @include mixins.mq-max(md) {
+      width: min(84vw, 420px);
+    }
+  }
+
+  &--centered &__ring-wrap {
+    width: min(52vw, 560px); // update ring size here
+
+    @include mixins.mq-max(md) {
+      width: min(84vw, 420px);
+    }
+  }
+
+  // `caption_placement: inside` (circle-highlight.njk) — collapse every
+  // caption onto the ring's own center by zeroing out the same --_radius
+  // the outside placement uses to push it out to the circumference; the
+  // active/inactive opacity swap below already only shows one caption at
+  // a time, so stacking them all at center just works.
+  &__ring-wrap--captions-inside &__caption {
+    --_radius: 0px;
+  }
+
+  &__ring {
+    position: absolute;
+    inset: 16%; // leaves room outside the ring itself for captions to sit in, within this same box
+    width: 68%;
+    height: 68%;
+  }
+
+  &__slice {
+    fill: var(--color-border);
+
+    @include mixins.mq-motion-allow {
+      transition: fill 0.4s vars.$cubic-ease;
+    }
+  }
+
+  // Same gate as the caption reveal below — slice 0 carries --active from
+  // first render (circle-highlight.njk), but it shouldn't read as
+  // highlighted until scroll actually reaches the pin.
+  &--started &__slice--active {
+    fill: var(--color-brand--primary);
+    stroke: var(--color-font--primary);
+    stroke-width: 0.5px;
+  }
+
+  // Kept hidden — even the initially-"active" one — until scroll actually
+  // reaches the pin (circle-highlight.js adds --started at that point).
+  // Before then, circle_highlight.image (if given) is what's shown instead.
+  &__caption {
+    --_radius: 50cqw; // distance from center a caption sits at, past the ring's own edge
+    --_rad: calc(var(--slice-angle, 0) * 1deg);
+    --_x: calc(sin(var(--_rad)) * var(--_radius));
+    --_y: calc(-1 * cos(var(--_rad)) * var(--_radius));
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(30cqw, 200px);
+    transform: translate(-50%, -50%) translate(var(--_x), var(--_y));
+    text-align: center;
+    opacity: 0;
+
+    @include mixins.mq-motion-allow {
+      transition: opacity 0.4s vars.$cubic-ease;
+    }
+  }
+
+  &--started &__caption--active {
+    opacity: 1;
+  }
+
+  // circle_highlight.image — sized to the hole's own diameter (--hole-diameter,
+  // set inline in circle-highlight.njk since it depends on hole_size) so it
+  // reads as sitting inside the ring rather than just floating near center.
+  &__hole-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--hole-diameter, 40%);
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 1;
+    padding-inline: 48px;
+    // aspect-ratio: 1; // restore if you want to full the full hole
+    // border-radius: 50%;
+
+    @include mixins.mq-motion-allow {
+      transition: opacity 0.4s vars.$cubic-ease;
+    }
+  }
+
+  // Only fades out for `caption_placement: inside` — that's the one case
+  // where the caption is about to occupy the same spot the image sits in,
+  // so the swap on --started (same trigger as the caption reveal above)
+  // avoids the two overlapping. With captions outside, the hole stays the
+  // image's own space the whole time and it never hides.
+  &--started &__ring-wrap--captions-inside &__hole-image {
+    opacity: 0;
+  }
+
+  // Finale — one extra, always-on step past the last slice's own dwell
+  // (circle-highlight.js appends it to the scroll sequence unconditionally,
+  // not something a caption_placement/orientation prop turns off): every
+  // slice reads as highlighted at once and whichever caption was showing
+  // hides again, closing the sequence out instead of just stopping on the
+  // last slice. Comes after the rules above so it wins the tie on classes
+  // that are still present too (--started stays on through the finale).
+  &--finale &__slice {
+    fill: var(--color-brand--primary);
+    stroke: var(--color-font--primary);
+    stroke-width: 0.5px;
+  }
+
+  &--finale &__caption--active {
+    opacity: 0;
+  }
+
+  &__caption-title {
+    @include mixins.h6;
+    margin-bottom: 4px;
+  }
+
+  &__caption-desc {
+    @include mixins.font-styles--body($sz: sm);
+  }
+}
