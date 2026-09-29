@@ -622,6 +622,112 @@ path: library/components
   {% include "../_includes/components/image-fan.njk" %}
 </section>
 
+<section class="image-columns-section library-section">
+  <h2>[ Image Columns - Component ]</h2>
+
+  <p>
+    A grid of images with an explicit, possibly-uneven image count per column,
+    no pinning — it just scrub-animates in place as the page scrolls normally.
+    Every column translates upward as the user scrolls until its bottom edge
+    lines up with whichever column is shortest (the shortest column is the
+    reference and never moves). Comes with the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>columns</code> an array, one entry per column = how many slots it
+      holds at the widest breakpoint. Can be uneven on purpose, e.g.
+      <code>[4, 5, 4, 5]</code>
+    </li>
+    <li>
+      <code>columns_md</code> / <code>columns_sm</code> optional arrays of the
+      same shape for tablet and mobile, e.g. <code>[5, 4, 5]</code> and
+      <code>[8, 6]</code>. Each breakpoint can hold a different number of
+      slots. An omitted array falls back to an even split of the widest
+      breakpoint's slot count across one fewer column (tablet) or two fewer
+      (mobile), minimum 2.
+    </li>
+    <li>
+      <code>images</code> one flat, ordered array of <code>{ src, alt }</code> —
+      the pool the column slots draw from, in order. The
+      <code>columns</code> arrays decide how many render: fewer images than
+      slots loops the list to fill them (a single image repeats everywhere);
+      more images than slots and the extras aren't shown.
+    </li>
+    <li>
+      <code>start</code> a GSAP ScrollTrigger start string,
+      <code>"&lt;element position&gt; &lt;viewport position&gt;"</code> — when
+      the <code>translateY</code> begins. The element is the shortest column's
+      first card. E.g. <code>"top 95%"</code> (default — begins as it enters
+      from below), <code>"top center"</code>, <code>"top top"</code>
+    </li>
+    <li>
+      <code>start_offset</code> an optional px value (<code>"40px"</code> or
+      <code>40</code>) or percent string (<code>"-10%"</code>, of the shortest
+      column's height). Every column that moves starts its
+      <code>translateY</code> from this instead of 0, so their tops are
+      staggered at the start; the end (bottoms aligned) is unchanged. Positive
+      pushes them down, negative up
+    </li>
+    <li>
+      <code>markers</code> an optional boolean — shows GSAP's ScrollTrigger
+      debug markers for that instance (start / end lines)
+    </li>
+    <li>
+      <code>card_gnomon</code> an optional object — when set, every image
+      renders as a <code>card-gnomon.njk</code> card instead of a plain image,
+      sharing these as its
+      <code>{ depth, length, radius, angle, border_width, cutouts }</code>
+      defaults (see the template's Global-defaults-with-override pattern). An
+      image can override any of these by adding
+      <code>override_defaults: true</code> plus a <code>custom</code> object
+      with just the field(s) it needs to differ. Omit entirely for plain
+      <code>&lt;img&gt;</code>s (the default).
+    </li>
+    <li>
+      each entry in <code>images</code> also takes an optional
+      <code>accent</code> (cursive text pinned to the image's top-left) and
+      <code>caption</code> (with <code>card_gnomon</code> it fills the first
+      cutout; otherwise it's a strip across the bottom of the image over a
+      subtle backdrop shadow)
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+  <p>
+    The alignment itself (<code>image-columns.js</code>) is measured, not
+    guessed: it groups the rendered images back into columns (reading the
+    <code>grid-column-start</code> each one was explicitly placed at, baked in
+    by <code>imageColumnPlacement</code> in <code>.eleventy.js</code>), compares
+    every column's actual height, and only animates the ones genuinely taller
+    than the shortest — nothing lifts a column into an empty gap.
+  </p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set image_columns = library.image_columns %}
+  {% include "../_includes/components/image-columns.njk" %}
+
+  <br />
+  <br />
+
+  <p>Same data, with <code>card_gnomon</code> set:</p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set image_columns = ({
+    columns: library.image_columns.columns,
+    columns_md: library.image_columns.columns_md,
+    columns_sm: library.image_columns.columns_sm,
+    start: "top top",
+    images: library.image_columns.images,
+    card_gnomon: { depth: 8, length: 40, radius: 4, angle: 85 }
+  }) %}
+  {% include "../_includes/components/image-columns.njk" %}
+</section>
+
 <section class="tile-shuffle-section library-section">
   <h2>[ Image Shuffle - Component ]</h2>
   <p>

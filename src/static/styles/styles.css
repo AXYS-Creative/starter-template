@@ -7702,6 +7702,81 @@ div.carousel-swiper-sample-2 .swiper-slide {
   }
 }
 
+.image-columns {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--image-columns-count), 1fr);
+  grid-auto-rows: auto;
+  gap: var(--spacing);
+}
+@media (max-width: 1024px) {
+  .image-columns {
+    grid-template-columns: repeat(var(--image-columns-count-md), 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .image-columns {
+    grid-template-columns: repeat(var(--image-columns-count-sm), 1fr);
+  }
+}
+.image-columns__item {
+  position: relative;
+  grid-column: var(--col);
+  grid-row: var(--row);
+  display: var(--display);
+}
+@media (max-width: 1024px) {
+  .image-columns__item {
+    grid-column: var(--col-md);
+    grid-row: var(--row-md);
+    display: var(--display-md);
+  }
+}
+@media (max-width: 768px) {
+  .image-columns__item {
+    grid-column: var(--col-sm);
+    grid-row: var(--row-sm);
+    display: var(--display-sm);
+  }
+}
+.image-columns__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: var(--radius--sm);
+}
+.image-columns__gnomon {
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+.image-columns__accent {
+  position: absolute;
+  top: 0.5em;
+  left: 0.75em;
+  z-index: 2;
+  font-family: cursive;
+  font-size: clamp(20px, 2vw, 32px);
+  line-height: 1;
+  color: #fff;
+  rotate: -6deg;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+.image-columns__caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2.5em var(--spacing) var(--spacing);
+  border-radius: 0 0 var(--radius--sm) var(--radius--sm);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
 .image-fan {
   isolation: isolate;
   container-type: inline-size;
@@ -10229,7 +10304,7 @@ html:has(.scroll-progress) {
 }
 @media (max-width: 1024px) {
   .hero-image-circle .image-circle__ring {
-    translate: 0 25%;
+    translate: 0 50%;
   }
 }
 .hero-image-circle__spin {

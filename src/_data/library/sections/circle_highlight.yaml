@@ -13,13 +13,17 @@ image: # optional, sized to fit the hole exactly — shown until the section pin
   alt: Sample Logo
 
 slices:
-  - title: Autonomous
+  # - title: Autonomous
+  - title: Discover
     description: Workshops and research to understand the real problem.
-  - title: Xenial
+  # - title: Xenial
+  - title: Define
     description: Turning research into a clear, scoped brief.
-  - title: Yielding
+  # - title: Yielding
+  - title: Design
     description: Exploring directions and refining the chosen one.
-  - title: Studio
+  # - title: Studio
+  - title: Build
     description: Engineering the approved design into a real product.
   # - title: Launch
   #   description: Shipping, measuring, and iterating post-release.

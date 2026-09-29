@@ -1,0 +1,84 @@
+@use "../base/mixins";
+
+// Items carry explicit grid-column/row so per-column counts can be uneven.
+.image-columns {
+  // Flex parents use align-items: flex-start, so the grid needs an explicit width.
+  // border: 2px dashed yellow;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--image-columns-count), 1fr);
+  grid-auto-rows: auto;
+  gap: var(--spacing);
+  // overflow: hidden;
+
+  @include mixins.mq-max(lg) {
+    grid-template-columns: repeat(var(--image-columns-count-md), 1fr);
+  }
+
+  @include mixins.mq-max(md) {
+    grid-template-columns: repeat(var(--image-columns-count-sm), 1fr);
+  }
+
+  &__item {
+    position: relative;
+    grid-column: var(--col);
+    grid-row: var(--row);
+    // "none" for slots past this breakpoint's count.
+    display: var(--display);
+
+    @include mixins.mq-max(lg) {
+      grid-column: var(--col-md);
+      grid-row: var(--row-md);
+      display: var(--display-md);
+    }
+
+    @include mixins.mq-max(md) {
+      grid-column: var(--col-sm);
+      grid-row: var(--row-sm);
+      display: var(--display-sm);
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius--sm);
+  }
+
+  // Fills the grid cell instead of card-gnomon's standalone size.
+  &__gnomon {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+
+  &__accent {
+    position: absolute;
+    top: 0.5em;
+    left: 0.75em;
+    z-index: 2;
+    font-family: cursive;
+    font-size: clamp(20px, 2vw, 32px);
+    line-height: 1;
+    color: #fff;
+    rotate: -6deg;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+  }
+
+  // Plain-image captions only; card-gnomon renders its caption in the cutout.
+  &__caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.5em var(--spacing) var(--spacing);
+    border-radius: 0 0 var(--radius--sm) var(--radius--sm);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+}

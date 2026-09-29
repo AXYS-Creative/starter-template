@@ -125,6 +125,47 @@ module.exports = async function (eleventyConfig) {
     return merged;
   });
 
+  // Image-columns helpers (components/image-columns.njk).
+  eleventyConfig.addFilter("evenColumnCounts", (total, columnCount) => {
+    if (!total || !columnCount) return [];
+    const base = Math.floor(total / columnCount);
+    const extra = total % columnCount;
+    return Array.from({ length: columnCount }, (_, i) =>
+      i < extra ? base + 1 : base,
+    );
+  });
+
+  // Uses the curated counts array if present, else an even split.
+  eleventyConfig.addFilter(
+    "resolveColumnCounts",
+    (custom, fallbackTotal, fallbackCount) => {
+      if (Array.isArray(custom) && custom.length) {
+        return custom.map((c) => Math.max(0, Number(c) || 0));
+      }
+      return eleventyConfig.getFilter("evenColumnCounts")(
+        fallbackTotal,
+        fallbackCount,
+      );
+    },
+  );
+
+  eleventyConfig.addFilter("max", (nums) => Math.max(0, ...(nums || [])));
+
+  eleventyConfig.addFilter("sumCounts", (counts) =>
+    (counts || []).reduce((n, c) => n + c, 0),
+  );
+
+  // One { col, row } (1-indexed) per slot, filling column 1 first.
+  eleventyConfig.addFilter("imageColumnPlacement", (counts) => {
+    const placement = [];
+    (counts || []).forEach((count, colIndex) => {
+      for (let row = 1; row <= count; row++) {
+        placement.push({ col: colIndex + 1, row });
+      }
+    });
+    return placement;
+  });
+
   // Rounded-corner annular-sector ("donut slice") path generator for
   // circle-highlight.njk — same idea as card-gnomon's own gnomon_path macro
   // (build the geometry once, keep the njk declarative), but two of a

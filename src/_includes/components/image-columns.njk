@@ -1,0 +1,84 @@
+<!-- prettier-ignore -->
+{% set images = image_columns.images or [] %}
+{% set total = images.length %}
+{% set start = image_columns.start or 'top 95%' %}
+{% set start_offset = image_columns.start_offset %}
+{% set markers = image_columns.markers %}
+{% set class = image_columns.class or '' %}
+{% set card_gnomon_defaults = image_columns.card_gnomon %}
+
+{% if total %}
+  {% set columns = image_columns.columns | resolveColumnCounts(total, 4) %}
+  {% set col_count = columns.length %}
+  {% set widest_slots = columns | sumCounts %}
+  {% set tablet_fallback = (col_count - 1) if (col_count - 1) > 2 else 2 %}
+  {% set mobile_fallback = (col_count - 2) if (col_count - 2) > 2 else 2 %}
+
+  {% set tablet_counts = image_columns.columns_md | resolveColumnCounts(widest_slots, tablet_fallback) %}
+  {% set mobile_counts = image_columns.columns_sm | resolveColumnCounts(widest_slots, mobile_fallback) %}
+  {% set tablet_col_count = tablet_counts.length %}
+  {% set mobile_col_count = mobile_counts.length %}
+
+  {% set placement = columns | imageColumnPlacement %}
+  {% set placement_md = tablet_counts | imageColumnPlacement %}
+  {% set placement_sm = mobile_counts | imageColumnPlacement %}
+
+  {% set slots = [placement.length, placement_md.length, placement_sm.length] | max %}
+{% endif %}
+
+<!-- prettier-ignore -->
+{% if total %}
+<div
+  class="image-columns {{ class }}"
+  data-image-columns-start="{{ start }}"
+  data-image-columns-start-offset="{{ start_offset or '' }}"
+  data-image-columns-markers="{{ 'true' if markers else 'false' }}"
+  style="--image-columns-count: {{ col_count }}; --image-columns-count-md: {{ tablet_col_count }}; --image-columns-count-sm: {{ mobile_col_count }};"
+>
+  <!-- prettier-ignore -->
+  {% for i in range(0, slots) %}
+  {% set image = images[i % total] %}
+  {% set p = placement[i] %}
+  {% set pm = placement_md[i] %}
+  {% set ps = placement_sm[i] %}
+  <div
+    class="image-columns__item"
+    style="--col: {{ p.col or 'auto' }}; --row: {{ p.row or 'auto' }}; --display: {{ 'block' if p else 'none' }}; --col-md: {{ pm.col or 'auto' }}; --row-md: {{ pm.row or 'auto' }}; --display-md: {{ 'block' if pm else 'none' }}; --col-sm: {{ ps.col or 'auto' }}; --row-sm: {{ ps.row or 'auto' }}; --display-sm: {{ 'block' if ps else 'none' }};"
+  >
+    <!-- prettier-ignore -->
+    {% if card_gnomon_defaults %}
+      {%- set cfg = card_gnomon_defaults | mergeOverrides(image) -%}
+      {#- caption fills the first cutout's text -#}
+      {%- set base_cutouts = cfg.cutouts if (cfg.cutouts and cfg.cutouts.length) else [{ from: 'top-right' }] -%}
+      {%- set gnomon_cutouts = [] -%}
+      {%- for cutout in base_cutouts -%}
+        {%- set _ = gnomon_cutouts.push({ from: cutout.from, text: (image.caption if (loop.first and image.caption) else cutout.text) }) -%}
+      {%- endfor -%}
+      {%- set card_gnomon = ({
+        img: image,
+        depth: cfg.depth,
+        length: cfg.length,
+        radius: cfg.radius,
+        angle: cfg.angle,
+        border_width: cfg.border_width,
+        cutouts: gnomon_cutouts,
+        class: 'image-columns__gnomon'
+      }) -%}
+      {%- include '../components/card-gnomon.njk' -%}
+    {% else %}
+    <img
+      class="image-columns__img"
+      src="{{ image.src }}"
+      alt="{{ image.alt or '' }}"
+    />
+    {% if image.caption %}
+    <span class="image-columns__caption">{{ image.caption }}</span>
+    {% endif %} {% endif %} {% if image.accent %}
+    <span class="image-columns__accent" aria-hidden="true">
+      {{ image.accent }}
+    </span>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

@@ -109,7 +109,7 @@
 
   .image-circle__ring {
     @include mixins.mq-max(lg) {
-      translate: 0 25%;
+      translate: 0 50%;
     }
   }
 

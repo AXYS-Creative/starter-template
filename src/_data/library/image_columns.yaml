@@ -1,0 +1,40 @@
+columns: [3, 4, 3, 4]
+columns_md: [5, 4, 5]
+columns_sm: [8, 6]
+start: top center
+start_offset: 64px
+
+markers: false
+
+images:
+  - src: /static/img/img-sample-1.jpg
+    alt: Sample image one
+    accent: New
+    caption: Caption 1
+  - src: /static/img/img-sample-2.jpg
+    alt: Sample image two
+    caption: Caption 2
+  - src: /static/img/img-sample-3.jpg
+    alt: Sample image three
+  - src: /static/img/img-sample-4.jpg
+    alt: Sample image four
+  - src: /static/img/img-sample-5.jpg
+    alt: Sample image five
+  - src: /static/img/img-sample-6.jpg
+    alt: Sample image six
+  - src: /static/img/img-sample-7.jpg
+    alt: Sample image seven
+  - src: /static/img/img-sample-8.jpg
+    alt: Sample image eight
+  - src: /static/img/img-sample-9.jpg
+    alt: Sample image nine
+  - src: /static/img/img-sample-10.jpg
+    alt: Sample image ten
+  - src: /static/img/img-sample-11.jpg
+    alt: Sample image eleven
+  - src: /static/img/img-sample-12.jpg
+    alt: Sample image twelve
+  - src: /static/img/img-sample-1.jpg
+    alt: Sample image one
+  - src: /static/img/img-sample-2.jpg
+    alt: Sample image two
