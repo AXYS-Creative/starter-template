@@ -23,7 +23,7 @@ import "./components/accordion.js";
 import "./components/alert.js";
 import "./components/buttons.js";
 import "./components/carousel-hero.js";
-import "./components/carousel-swiper.js";
+import "./components/carousel.js";
 import "./components/clipboard-copy.js";
 import "./components/counter.js";
 import "./components/cursor-base.js";

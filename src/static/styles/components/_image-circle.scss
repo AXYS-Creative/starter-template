@@ -18,7 +18,7 @@
   isolation: isolate;
   width: 100%;
   aspect-ratio: 1;
-  // overflow: hidden;
+  overflow: hidden;
 
   --circle-step: 30; // deg between adjacent items (360 / count), set by the njk
   --circle-gap: 1; // spacing between card centres as a multiple of card width

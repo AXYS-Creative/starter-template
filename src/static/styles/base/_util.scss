@@ -561,7 +561,7 @@
   // DELETE ME — Template content
 
   .library-section {
-    // library section styles - Doesn't work with Swiper or text-fill sections
+    // library section styles - Doesn't work with text-fill sections
     @include mixins.width-clamp;
     @include mixins.section-padding;
     @include mixins.column-start;

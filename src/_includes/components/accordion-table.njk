@@ -1,0 +1,69 @@
+<!-- prettier-ignore -->
+{% set id = accordion_table.id or 1 %}
+{% set columns = accordion_table.columns or [] %}
+{% set items = accordion_table.items or [] %}
+{% set single_open = accordion_table.single_open or false %}
+{% set sticky = accordion_table.sticky or false %}
+{% set content_column = accordion_table.content_column or 2 %}
+{% set icon = accordion_table.icon or '' %}
+{% set class = accordion_table.class or '' %}
+
+<!-- prettier-ignore -->
+{% if columns.length and items.length %}
+<div
+  class="accordion-table {{ 'accordion-table--sticky' if sticky }} {{ 'accordion-table--icon' if icon }} {{ class }}"
+  id="accordion-table-{{ id }}"
+  data-single-open="{{ single_open }}"
+  style="--accordion-table-cols: {% for col in columns %}{{ col.width or '1fr' }}{{ ' ' if not loop.last }}{% endfor %}; --accordion-table-content-col: {{ content_column }};"
+>
+  <div class="accordion-table__head" aria-hidden="true">
+    {% for col in columns %}
+    <span class="accordion-table__head-cell">{{ col.label }}</span>
+    {% endfor %}
+  </div>
+
+  {% for item in items %}
+  <div class="accordion-table__item">
+    <button
+      class="accordion-table__btn accordion-table__row tab-element-page"
+      aria-expanded="false"
+      aria-controls="accordion-table-{{ id }}-item-{{ loop.index }}"
+    >
+      {% for col in columns %} {% set value = item[col.key] %}
+      <span
+        class="accordion-table__cell {{ 'accordion-table__cell--image' if col.type == 'image' }}"
+      >
+        {% if col.type == 'image' %} {% if value.src %}
+        <img
+          class="accordion-table__img"
+          src="{{ value.src }}"
+          alt="{{ value.alt or '' }}"
+        />
+        {% endif %} {% else %} {{ value }} {% endif %}
+      </span>
+      {% endfor %}
+      {% if icon %}
+      {% set icon_svg = ({ src: icon, class: 'accordion-table__icon' }) %}
+      {% include "./icon-svg.njk" %}
+      {% endif %}
+    </button>
+    <div
+      class="accordion-table__content"
+      id="accordion-table-{{ id }}-item-{{ loop.index }}"
+    >
+      <div class="accordion-table__content-inner">
+        {% for col in columns %} {% if col.type == 'image' and item[col.key].src %}
+        <img
+          class="accordion-table__media"
+          src="{{ item[col.key].src }}"
+          alt="{{ item[col.key].alt or '' }}"
+          loading="lazy"
+        />
+        {% endif %} {% endfor %}
+        <div class="accordion-table__message">{{ item.content | safe }}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

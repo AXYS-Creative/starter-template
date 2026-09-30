@@ -33,18 +33,18 @@
     {% endfor %}
   {% endif %}
 
-  {# Image marquee #}
+  {# Image marquee — only the first set of images is exposed to assistive tech #}
   {% if imgs %}
     {% for i in range(0, count) %}
-      <div class="marquee-inner" aria-hidden="true">
+      <div class="marquee-inner"{% if not loop.first %} aria-hidden="true"{% endif %}>
         <div class="marquee-inner__split">
           {% for img in imgs %}
             <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
           {% endfor %}
         </div>
-        <div class="marquee-inner__split">
+        <div class="marquee-inner__split" aria-hidden="true">
           {% for img in imgs %}
-            <img src="{{ img.src }}" alt="{{ img.alt }}" class="marquee-img" />
+            <img src="{{ img.src }}" alt="" class="marquee-img" />
           {% endfor %}
         </div>
       </div>

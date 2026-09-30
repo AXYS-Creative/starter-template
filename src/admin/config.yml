@@ -194,46 +194,106 @@ collections:
                 label: "Content"
                 widget: "text"
                 required: true
-      - name: "carousel_swiper"
-        label: "Swiper Carousel"
-        file: "src/_data/library/carousel_swiper.yaml"
-        preview_path: "/library#carousel-swiper"
+      - name: "carousel"
+        label: "Carousel"
+        file: "src/_data/library/carousel.yaml"
+        preview_path: "/library#carousel"
         editor:
           preview: false
         fields:
-          - name: "autoplay"
-            label: "Autoplay"
+          - name: "carousel_1"
+            label: "Carousel 1"
             widget: "object"
-            summary: "{{fields.enabled}}, {{fields.interval}}"
             fields:
-              - name: "enabled"
-                label: "Enabled"
-                widget: "boolean"
-                hint: "Autoplay carousel"
-              - name: "interval"
-                label: "Interval"
-                widget: "number"
-                hint: "i.e. 5000 — Interval in milliseconds. Not recommended below 2000"
-              - name: "allow_user_toggle"
-                label: "Allow User Toggle"
-                widget: "boolean"
-                hint: "Allow users to toggle autoplay"
-          - name: "slides"
-            label: "Carousel Slides"
-            label_singular: "Slide"
-            widget: "list"
+              - { name: "id", label: "ID", widget: "number", value_type: "int" }
+              - { name: "label", label: "Accessible Label", widget: "string", required: false }
+              - { name: "class", label: "Class", widget: "string", required: false }
+              - name: "pagination"
+                label: "Pagination"
+                widget: "select"
+                options: ["arrows", "dots", "none"]
+                default: "arrows"
+              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
+              - { name: "loop", label: "Loop", widget: "boolean", default: false }
+              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - name: "autoplay"
+                label: "Autoplay"
+                widget: "object"
+                summary: "{{fields.enabled}}, {{fields.interval}}"
+                fields:
+                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
+                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+              - name: "slides"
+                label: "Slides"
+                label_singular: "Slide"
+                widget: "list"
+                fields:
+                  - { name: "title", label: "Title", widget: "string", required: false }
+                  - { name: "desc", label: "Description", widget: "text", required: false }
+                  - { name: "img", label: "Image", widget: "image", required: false }
+                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
+          - name: "carousel_2"
+            label: "Carousel 2"
+            widget: "object"
             fields:
-              - name: "title"
-                label: "Title"
-                widget: "string"
-                required: true
-              - name: "description"
-                label: "Description"
-                widget: "text"
-                required: true
-              - name: "image"
-                label: "Image"
-                widget: "image"
+              - { name: "id", label: "ID", widget: "number", value_type: "int" }
+              - { name: "label", label: "Accessible Label", widget: "string", required: false }
+              - { name: "class", label: "Class", widget: "string", required: false }
+              - name: "pagination"
+                label: "Pagination"
+                widget: "select"
+                options: ["arrows", "dots", "none"]
+                default: "arrows"
+              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
+              - { name: "loop", label: "Loop", widget: "boolean", default: false }
+              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - name: "autoplay"
+                label: "Autoplay"
+                widget: "object"
+                summary: "{{fields.enabled}}, {{fields.interval}}"
+                fields:
+                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
+                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+              - name: "slides"
+                label: "Slides"
+                label_singular: "Slide"
+                widget: "list"
+                fields:
+                  - { name: "title", label: "Title", widget: "string", required: false }
+                  - { name: "desc", label: "Description", widget: "text", required: false }
+                  - { name: "img", label: "Image", widget: "image", required: false }
+                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
+          - name: "carousel_3"
+            label: "Carousel 3"
+            widget: "object"
+            fields:
+              - { name: "id", label: "ID", widget: "number", value_type: "int" }
+              - { name: "label", label: "Accessible Label", widget: "string", required: false }
+              - { name: "class", label: "Class", widget: "string", required: false }
+              - name: "pagination"
+                label: "Pagination"
+                widget: "select"
+                options: ["arrows", "dots", "none"]
+                default: "arrows"
+              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
+              - { name: "loop", label: "Loop", widget: "boolean", default: false }
+              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - name: "autoplay"
+                label: "Autoplay"
+                widget: "object"
+                summary: "{{fields.enabled}}, {{fields.interval}}"
+                fields:
+                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
+                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+              - name: "slides"
+                label: "Slides"
+                label_singular: "Slide"
+                widget: "list"
+                fields:
+                  - { name: "title", label: "Title", widget: "string", required: false }
+                  - { name: "desc", label: "Description", widget: "text", required: false }
+                  - { name: "img", label: "Image", widget: "image", required: false }
+                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
       - name: "tabs"
         label: "Tabs"
         file: "src/_data/library/tabs.yaml"

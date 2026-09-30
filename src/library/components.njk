@@ -78,6 +78,79 @@ path: library/components
   {% include '../_includes/components/accordion.njk' %}
 </section>
 
+<section class="accordion-table-section library-section">
+  <h2>[ Accordion Table - Component ]</h2>
+  <p>
+    A table-style accordion: a header row names the columns, and every row below
+    is an accordion item whose cells line up with those headers. Uses plain
+    elements (no <code>&lt;table&gt;</code>) and the same CSS grid height
+    transition as the accordion, so the body grows to any content height with no
+    JS measuring. Comes with the following configs:
+  </p>
+  <ul class="classic-list">
+    <li>
+      <code>id</code> a string, unique identifier if there’s more than one
+      accordion table
+    </li>
+    <li>
+      <code>columns</code> an array of <code>{ key, label, type, width }</code>.
+      <code>key</code> is the field read off each item,
+      <code>label</code> is the header text, <code>type</code> is
+      <code>image</code> to render the field as an
+      <code>{ src, alt }</code> image (anything else renders as text), and
+      <code>width</code> is any CSS grid track size. Defaults to
+      <code>1fr</code>
+    </li>
+    <li>
+      <code>items</code> an array of objects with a field per column
+      <code>key</code>, plus <code>content</code> a string (‘safe’ for markup)
+      revealed when the row is opened
+    </li>
+    <li>
+      <code>content_column</code> a number, the 1-indexed column the revealed
+      content aligns to. Defaults to <code>2</code>
+    </li>
+    <li>
+      <code>icon</code> a path to an svg shown along the right edge of each row
+      and flipped when open. Default is an empty string (no icon)
+    </li>
+    <li>
+      <code>sticky</code> a boolean to pin the header row while scrolling
+      through the rows. Defaults to <code>false</code>
+    </li>
+    <li>
+      <code>single_open</code> a boolean to only allow one row open at a time.
+      Defaults to <code>false</code>
+    </li>
+    <li><code>class</code> a string value for a custom css class</li>
+  </ul>
+  <p>
+    Tune with the custom props <code>--accordion-table-gap</code>,
+    <code>--accordion-table-img-size</code> and
+    <code>--accordion-table-sticky-top</code> (sticky offset, e.g. a fixed
+    header’s height). Requires <code>accordion.js</code>.
+  </p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set accordion_table = library.accordion_table.accordion_table_1 %}
+  {% include '../_includes/components/accordion-table.njk' %}
+
+  <br />
+  <br />
+
+  <p>With <code>sticky</code> set and multiple rows open at once:</p>
+
+  <br />
+  <br />
+
+  <!-- prettier-ignore -->
+  {% set accordion_table = library.accordion_table.accordion_table_2 %}
+  {% include '../_includes/components/accordion-table.njk' %}
+</section>
+
 <section class="library-section">
   <h2>[ Card Gnomon - Component ]</h2>
   <p>
@@ -229,29 +302,82 @@ path: library/components
   {% include "../_includes/components/card-gnomon.njk" %}
 </section>
 
-<section class="carousel-swiper-section">
-  <!-- Carousel Swiper doesn't work with 'footer-scroll-reveal.njk'? -->
+<section class="carousel-section" id="carousel">
   <div class="section-width">
-    <h2>[ Carousel 'Swiper' - Component ]</h2>
+    <h2>[ Carousel - Component ]</h2>
     <br /><br />
     <p>
-      The Swiper Carousel uses a CDN from Swiper.js. They offer a wide range of
-      easy to use configs for quick startup.
+      A dependency-free carousel built on native CSS scroll-snap. Touch and
+      trackpad scroll natively, the mouse can drag, and arrow keys work when the
+      track is focused. Comes with the following configs:
+    </p>
+    <ul class="classic-list">
+      <li>
+        <code>id</code> a string, unique identifier if there’s more than one
+        carousel
+      </li>
+      <li>
+        <code>label</code> a string, the accessible name of the carousel
+      </li>
+      <li>
+        <code>slides</code> an array of <code>{ img, alt, title, desc }</code>.
+        All fields are optional; <code>alt</code> falls back to the title
+      </li>
+      <li>
+        <code>pagination</code> one of <code>arrows</code>, <code>dots</code> or
+        <code>none</code>. Defaults to <code>arrows</code>
+      </li>
+      <li>
+        <code>progress</code> a boolean to show a non-interactive line that
+        fills as the carousel advances. Sits beside the pagination controls, or
+        alone with <code>pagination: none</code>. Defaults to
+        <code>false</code>
+      </li>
+      <li>
+        <code>loop</code> a boolean for an infinite loop. Slides are cloned
+        (hidden from assistive tech) and the position silently resets once
+        scrolling settles. Defaults to <code>false</code>
+      </li>
+      <li>
+        <code>slides_per_view</code> a number of slides shown at once above the
+        <code>md</code> breakpoint (one below it). Defaults to
+        <code>1</code>
+      </li>
+      <li>
+        <code>autoplay</code> an object with <code>enabled</code> and
+        <code>interval</code> (ms, defaults to <code>4000</code>). Pauses on
+        hover and focus, and is off for reduced motion
+      </li>
+      <li>
+        <code>btn_icon</code> a path to the arrow svg. Defaults to the chevron
+      </li>
+      <li><code>class</code> a string value for a custom css class</li>
+    </ul>
+    <p>
+      Tune with the custom props <code>--carousel-gap</code> and
+      <code>--carousel-dot-size</code>, <code>--carousel-progress-width</code>
+      and <code>--carousel-progress-height</code>. Requires <code>carousel.js</code>.
     </p>
 
     <br /><br /><br /><br />
-    <h3 class="h6">Basic example</h3>
+    <h3 class="h6">Arrows</h3>
     <!-- prettier-ignore -->
-    {% set carousel_swiper = library.carousel_swiper.carousel_1 %}
-    {% include '../_includes/components/carousel-swiper.njk' %}
+    {% set carousel = library.carousel.carousel_1 %}
+    {% include '../_includes/components/carousel.njk' %}
 
     <br /><br /><br /><br />
-    <h3 class="h6">Configured example</h3>
+    <h3 class="h6">Arrows, progress and loop</h3>
+    <!-- prettier-ignore -->
+    {% set carousel = library.carousel.carousel_3 %}
+    {% include '../_includes/components/carousel.njk' %}
+
+    <br /><br /><br /><br />
+    <h3 class="h6">Dots and autoplay</h3>
   </div>
 
   <!-- prettier-ignore -->
-  {% set carousel_swiper = library.carousel_swiper.carousel_2 %}
-  {% include '../_includes/components/carousel-swiper.njk' %}
+  {% set carousel = library.carousel.carousel_2 %}
+  {% include '../_includes/components/carousel.njk' %}
 </section>
 
 <section class="counter-section library-section">

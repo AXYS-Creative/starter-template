@@ -1,0 +1,81 @@
+<!-- prettier-ignore -->
+{% set id = carousel.id or 1 %}
+{% set slides = carousel.slides or [] %}
+{% set pagination = carousel.pagination or 'arrows' %}
+{% set slides_per_view = carousel.slides_per_view or 1 %}
+{% set loop_slides = carousel.loop or false %}
+{% set progress = carousel.progress or false %}
+{% set autoplay = carousel.autoplay or {} %}
+{% set btn_icon = carousel.btn_icon or '/static/img/icon-google-chevron-right.svg' %}
+{% set class = carousel.class or '' %}
+
+<!-- prettier-ignore -->
+{% if slides.length %}
+<div
+  class="carousel {{ class }}"
+  id="carousel-{{ id }}"
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="{{ carousel.label or 'Carousel' }}"
+  data-pagination="{{ pagination }}"
+  data-loop="{{ loop_slides }}"
+  data-autoplay-enabled="{{ autoplay.enabled or false }}"
+  data-autoplay-interval="{{ autoplay.interval or 4000 }}"
+  style="--carousel-per-view-lg: {{ slides_per_view }};"
+>
+  <div class="carousel__track tab-element-page" tabindex="0">
+    {% for slide in slides %}
+    <div
+      class="carousel__slide"
+      role="group"
+      aria-roledescription="slide"
+      aria-label="{{ loop.index }} of {{ loop.length }}"
+    >
+      {% if slide.img %}
+      <img
+        class="carousel__img"
+        src="{{ slide.img }}"
+        alt="{{ slide.alt or slide.title or '' }}"
+        draggable="false"
+      />
+      {% endif %} {% if slide.title %}
+      <h3 class="carousel__title">{{ slide.title }}</h3>
+      {% endif %} {% if slide.desc %}
+      <p class="carousel__desc">{{ slide.desc }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if progress or pagination == 'arrows' or pagination == 'dots' %}
+  <div class="carousel__footer {{ 'carousel__footer--split' if progress and pagination != 'none' }}">
+    {% if progress %}
+    <div class="carousel__progress" aria-hidden="true">
+      <span class="carousel__progress-bar"></span>
+    </div>
+    {% endif %}
+    {% if pagination == 'arrows' %}
+    <div class="carousel__controls">
+      {% set btn = ({
+        type: 'primary',
+        class: 'carousel__prev',
+        text_desc: 'Previous slide',
+        icon_start: btn_icon,
+        icon_start_class: 'carousel__prev-icon'
+      }) %}
+      {% include "./btn.njk" %}
+      {% set btn = ({
+        type: 'primary',
+        class: 'carousel__next',
+        text_desc: 'Next slide',
+        icon_end: btn_icon
+      }) %}
+      {% include "./btn.njk" %}
+    </div>
+    {% elif pagination == 'dots' %}
+    <div class="carousel__controls carousel__dots"></div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endif %}

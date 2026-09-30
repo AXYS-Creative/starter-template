@@ -1,0 +1,63 @@
+accordion_table_1:
+  id: 1
+  sticky: false
+  single_open: true
+  content_column: 3
+  icon: /static/img/icon-google-chevron-down.svg
+  columns:
+    - { key: icon, label: Icon, type: image, width: 96px }
+    - { key: year, label: Year, width: 1fr }
+    - { key: location, label: Location, width: 2fr }
+  items:
+    - icon: { src: /static/img/img-sample-1.jpg, alt: Sample image one }
+      year: "2024"
+      location: Salt Lake City, UT
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima numquam officiis ipsa obcaecati illo molestias aliquam molestiae praesentium provident eos? Excepturi veniam assumenda non corrupti similique aperiam rem enim dolores repellat."
+    - icon: { src: /static/img/img-sample-2.jpg, alt: Sample image two }
+      year: "2022"
+      location: Denver, CO
+      content: "A shorter description that sits directly beneath the year."
+    - icon: { src: /static/img/img-sample-3.jpg, alt: Sample image three }
+      year: "2019"
+      location: Portland, OR
+      content: "Quasi doloribus culpa delectus esse, consectetur accusamus, deserunt distinctio officiis atque quia dolorum doloremque, exercitationem autem! Error numquam magnam ipsa ea fugiat, ullam officiis natus sequi praesentium nam provident quas ipsam repellendus incidunt quo, alias, impedit minima harum. Maiores delectus, eum soluta ratione iure atque!"
+
+accordion_table_2:
+  id: 2
+  sticky: true
+  single_open: false
+  content_column: 3
+  icon: /static/img/icon-google-chevron-down.svg
+  columns:
+    - { key: icon, label: Icon, type: image, width: 96px }
+    - { key: year, label: Year, width: 1fr }
+    - { key: location, label: Location, width: 2fr }
+  items:
+    - icon: { src: /static/img/img-sample-4.jpg, alt: Sample image four }
+      year: "2024"
+      location: Salt Lake City, UT
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-5.jpg, alt: Sample image five }
+      year: "2023"
+      location: Austin, TX
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-6.jpg, alt: Sample image six }
+      year: "2021"
+      location: Seattle, WA
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-7.jpg, alt: Sample image seven }
+      year: "2020"
+      location: Boise, ID
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-8.jpg, alt: Sample image eight }
+      year: "2018"
+      location: Phoenix, AZ
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-9.jpg, alt: Sample image nine }
+      year: "2017"
+      location: Las Vegas, NV
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    - icon: { src: /static/img/img-sample-10.jpg, alt: Sample image ten }
+      year: "2015"
+      location: Santa Fe, NM
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."

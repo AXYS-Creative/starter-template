@@ -1,0 +1,71 @@
+carousel_1:
+  id: 1
+  label: Sample carousel with arrows
+  pagination: arrows # [arrows, dots, none]
+  slides_per_view: 3
+  autoplay:
+    enabled: false
+  slides:
+    - title: Title 1
+      desc: Description 1
+      img: /static/img/img-sample-1.jpg
+    - title: Title 2
+      desc: Description 2
+      img: /static/img/img-sample-2.jpg
+    - title: Title 3
+      desc: Description 3
+      img: /static/img/img-sample-3.jpg
+    - title: Title 4
+      desc: Description 4
+      img: /static/img/img-sample-4.jpg
+    - title: Title 5
+      desc: Description 5
+      img: /static/img/img-sample-5.jpg
+    - title: Title 6
+      desc: Description 6
+      img: /static/img/img-sample-6.jpg
+
+carousel_3:
+  id: 3
+  label: Sample looping carousel with progress
+  pagination: arrows
+  progress: true
+  loop: true
+  slides_per_view: 3
+  autoplay:
+    enabled: true
+  slides:
+    - title: Title 1
+      desc: Description 1
+      img: /static/img/img-sample-7.jpg
+    - title: Title 2
+      desc: Description 2
+      img: /static/img/img-sample-8.jpg
+    - title: Title 3
+      desc: Description 3
+      img: /static/img/img-sample-9.jpg
+    - title: Title 4
+      desc: Description 4
+      img: /static/img/img-sample-10.jpg
+    - title: Title 5
+      desc: Description 5
+      img: /static/img/img-sample-11.jpg
+
+carousel_2:
+  id: 2
+  class: carousel-sample-2
+  label: Sample carousel with dots
+  pagination: dots
+  slides_per_view: 1
+  autoplay:
+    enabled: true
+    interval: 3200
+  slides:
+    - title: Title 1
+      desc: Description 1
+    - title: Title 2
+      desc: Description 2
+    - title: Title 3
+      desc: Description 3
+    - title: Title 4
+      desc: Description 4

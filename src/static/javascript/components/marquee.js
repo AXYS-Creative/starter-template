@@ -5,9 +5,12 @@ responsiveGsap.add(
     maxSm: "(max-width: 480px)",
     maxMd: "(max-width: 768px)",
     minMd: "(min-width: 769px)",
+    reduceMotion: "(prefers-reduced-motion: reduce)",
   },
   (context) => {
-    let { maxSm, maxMd } = context.conditions;
+    let { maxSm, maxMd, reduceMotion } = context.conditions;
+    if (reduceMotion) return;
+
     gsap.utils.toArray(".marquee").forEach((marqueeBlock) => {
       const marqueeInners = marqueeBlock.querySelectorAll(".marquee-inner");
       const velocity = parseFloat(marqueeBlock.getAttribute("data-marquee-velocity"));
@@ -74,29 +77,40 @@ responsiveGsap.add(
           }
         });
 
+        const setPaused = (isActive) => marqueeTweens.forEach((tween) => tween.paused(!isActive));
+
+        const visibility = ScrollTrigger.create({
+          trigger: marqueeBlock,
+          start: "top bottom",
+          end: "bottom top",
+          onToggle: (self) => setPaused(self.isActive),
+        });
+        setPaused(visibility.isActive);
+
         // Scroll direction swap
         if (scrollAlternate) {
-          let currentScroll = window.scrollY;
+          let lastDirection = 1;
 
-          const adjustTimeScale = () => {
-            const isScrollingDown = window.scrollY > currentScroll;
+          ScrollTrigger.create({
+            trigger: marqueeBlock,
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: (self) => {
+              if (self.direction === lastDirection) return;
+              lastDirection = self.direction;
+              const isScrollingDown = self.direction === 1;
 
-            marqueeTweens.forEach((tween, index) =>
-              gsap.to(tween, {
-                timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
-                duration: 0.3,
-                ease: "power2.out",
-              })
-            );
+              marqueeTweens.forEach((tween, index) =>
+                gsap.to(tween, {
+                  timeScale: (index % 2 === 0) === isScrollingDown ? 1 : -1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                  overwrite: true,
+                })
+              );
 
-            // Toggle class based on scroll direction
-            marqueeBlock.classList.toggle("marquee--alternated", !isScrollingDown);
-
-            currentScroll = window.scrollY;
-          };
-
-          window.addEventListener("scroll", adjustTimeScale, {
-            passive: true,
+              marqueeBlock.classList.toggle("marquee--alternated", !isScrollingDown);
+            },
           });
         }
       }

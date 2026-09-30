@@ -1,0 +1,130 @@
+@use "../base/mixins";
+@use "../base/variables" as vars;
+
+.carousel {
+  --carousel-gap: 16px;
+  --carousel-per-view: 1;
+  --carousel-dot-size: 12px;
+  --carousel-progress: 0;
+  --carousel-progress-width: 320px;
+  --carousel-progress-height: 3px;
+
+  width: 100%;
+  margin-block: var(--section-gap);
+  padding-block: var(--body-padding);
+
+  @include mixins.mq-min(md) {
+    --carousel-per-view: var(--carousel-per-view-lg, 1);
+  }
+
+  &__track {
+    display: flex;
+    gap: var(--carousel-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+  }
+
+  &[data-loop="true"] &__slide {
+    scroll-snap-stop: always;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 0 0
+      calc(
+        (100% - var(--carousel-gap) * (var(--carousel-per-view) - 1)) /
+          var(--carousel-per-view)
+      );
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  &__footer {
+    @include mixins.row-center;
+    gap: 24px;
+    margin-block-start: 24px;
+
+    &--split {
+      justify-content: space-between;
+    }
+  }
+
+  &__controls {
+    @include mixins.row-center;
+    gap: var(--spacing--sm);
+  }
+
+  &__prev-icon {
+    rotate: 180deg;
+  }
+
+  &__progress {
+    position: relative;
+    flex: 1;
+    max-width: var(--carousel-progress-width);
+    height: var(--carousel-progress-height);
+    background: color-mix(
+      in srgb,
+      var(--color-brand--primary) 30%,
+      transparent
+    );
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand--primary);
+    transform: scaleX(var(--carousel-progress));
+    transform-origin: left;
+  }
+
+  &__dot {
+    width: var(--carousel-dot-size);
+    height: var(--carousel-dot-size);
+    border-radius: 50%;
+    background: var(--color-brand--primary);
+    opacity: 0.3;
+    cursor: pointer;
+
+    @include mixins.mq-motion-allow {
+      transition: opacity vars.$ease;
+    }
+
+    &[aria-current="true"] {
+      opacity: 1;
+    }
+  }
+}
+
+// Library
+.carousel-sample-2 {
+  padding-inline: var(--body-padding);
+
+  .carousel__slide {
+    @include mixins.card-styles;
+    @include mixins.column-center;
+  }
+}

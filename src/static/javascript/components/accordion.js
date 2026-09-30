@@ -79,6 +79,9 @@ function initAccordionToggleAll() {
 initDisclosure(".accordion", ".accordion-btn");
 initAccordionToggleAll();
 
+// Initialize accordion tables
+initDisclosure(".accordion-table", ".accordion-table__btn");
+
 // Initialize dropdown links (always allow multiple open)
 initDisclosure(".dropdown-link", ".dropdown-link__trigger", {
   forceSingleOpen: false,
