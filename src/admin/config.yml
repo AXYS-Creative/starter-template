@@ -2,7 +2,7 @@ backend:
   # Use netlify identity as backend
   name: git-gateway
   branch: main
-  repo: "https://github.com/AXYS-Creative/starter-template-cms.git" # CHANGE ME
+  repo: "https://github.com/axys-creative/starter-template-cms.git" # CHANGE ME
 media_folder: src/static/img
 public_folder: /static/img
 site_url: https://starter-template-cms.netlify.app # CHANGE ME # On admin login page, this adds a 'go back to site' link. Also added in the corner when logged in.
@@ -206,94 +206,268 @@ collections:
             widget: "object"
             fields:
               - { name: "id", label: "ID", widget: "number", value_type: "int" }
-              - { name: "label", label: "Accessible Label", widget: "string", required: false }
-              - { name: "class", label: "Class", widget: "string", required: false }
+              - {
+                  name: "label",
+                  label: "Accessible Label",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  name: "class",
+                  label: "Class",
+                  widget: "string",
+                  required: false,
+                }
               - name: "pagination"
                 label: "Pagination"
                 widget: "select"
                 options: ["arrows", "dots", "none"]
                 default: "arrows"
-              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
-              - { name: "loop", label: "Loop", widget: "boolean", default: false }
-              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - {
+                  name: "slides_per_view",
+                  label: "Slides Per View",
+                  widget: "number",
+                  value_type: "int",
+                  min: 1,
+                  default: 1,
+                }
+              - {
+                  name: "loop",
+                  label: "Loop",
+                  widget: "boolean",
+                  default: false,
+                }
+              - {
+                  name: "progress",
+                  label: "Progress Bar",
+                  widget: "boolean",
+                  default: false,
+                }
               - name: "autoplay"
                 label: "Autoplay"
                 widget: "object"
                 summary: "{{fields.enabled}}, {{fields.interval}}"
                 fields:
-                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
-                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+                  - {
+                      name: "enabled",
+                      label: "Enabled",
+                      widget: "boolean",
+                      default: false,
+                    }
+                  - {
+                      name: "interval",
+                      label: "Interval",
+                      widget: "number",
+                      required: false,
+                      hint: "Milliseconds. Not recommended below 2000",
+                    }
               - name: "slides"
                 label: "Slides"
                 label_singular: "Slide"
                 widget: "list"
                 fields:
-                  - { name: "title", label: "Title", widget: "string", required: false }
-                  - { name: "desc", label: "Description", widget: "text", required: false }
-                  - { name: "img", label: "Image", widget: "image", required: false }
-                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
+                  - {
+                      name: "title",
+                      label: "Title",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      name: "desc",
+                      label: "Description",
+                      widget: "text",
+                      required: false,
+                    }
+                  - {
+                      name: "img",
+                      label: "Image",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      name: "alt",
+                      label: "Image Alt",
+                      widget: "string",
+                      required: false,
+                    }
           - name: "carousel_2"
             label: "Carousel 2"
             widget: "object"
             fields:
               - { name: "id", label: "ID", widget: "number", value_type: "int" }
-              - { name: "label", label: "Accessible Label", widget: "string", required: false }
-              - { name: "class", label: "Class", widget: "string", required: false }
+              - {
+                  name: "label",
+                  label: "Accessible Label",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  name: "class",
+                  label: "Class",
+                  widget: "string",
+                  required: false,
+                }
               - name: "pagination"
                 label: "Pagination"
                 widget: "select"
                 options: ["arrows", "dots", "none"]
                 default: "arrows"
-              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
-              - { name: "loop", label: "Loop", widget: "boolean", default: false }
-              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - {
+                  name: "slides_per_view",
+                  label: "Slides Per View",
+                  widget: "number",
+                  value_type: "int",
+                  min: 1,
+                  default: 1,
+                }
+              - {
+                  name: "loop",
+                  label: "Loop",
+                  widget: "boolean",
+                  default: false,
+                }
+              - {
+                  name: "progress",
+                  label: "Progress Bar",
+                  widget: "boolean",
+                  default: false,
+                }
               - name: "autoplay"
                 label: "Autoplay"
                 widget: "object"
                 summary: "{{fields.enabled}}, {{fields.interval}}"
                 fields:
-                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
-                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+                  - {
+                      name: "enabled",
+                      label: "Enabled",
+                      widget: "boolean",
+                      default: false,
+                    }
+                  - {
+                      name: "interval",
+                      label: "Interval",
+                      widget: "number",
+                      required: false,
+                      hint: "Milliseconds. Not recommended below 2000",
+                    }
               - name: "slides"
                 label: "Slides"
                 label_singular: "Slide"
                 widget: "list"
                 fields:
-                  - { name: "title", label: "Title", widget: "string", required: false }
-                  - { name: "desc", label: "Description", widget: "text", required: false }
-                  - { name: "img", label: "Image", widget: "image", required: false }
-                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
+                  - {
+                      name: "title",
+                      label: "Title",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      name: "desc",
+                      label: "Description",
+                      widget: "text",
+                      required: false,
+                    }
+                  - {
+                      name: "img",
+                      label: "Image",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      name: "alt",
+                      label: "Image Alt",
+                      widget: "string",
+                      required: false,
+                    }
           - name: "carousel_3"
             label: "Carousel 3"
             widget: "object"
             fields:
               - { name: "id", label: "ID", widget: "number", value_type: "int" }
-              - { name: "label", label: "Accessible Label", widget: "string", required: false }
-              - { name: "class", label: "Class", widget: "string", required: false }
+              - {
+                  name: "label",
+                  label: "Accessible Label",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  name: "class",
+                  label: "Class",
+                  widget: "string",
+                  required: false,
+                }
               - name: "pagination"
                 label: "Pagination"
                 widget: "select"
                 options: ["arrows", "dots", "none"]
                 default: "arrows"
-              - { name: "slides_per_view", label: "Slides Per View", widget: "number", value_type: "int", min: 1, default: 1 }
-              - { name: "loop", label: "Loop", widget: "boolean", default: false }
-              - { name: "progress", label: "Progress Bar", widget: "boolean", default: false }
+              - {
+                  name: "slides_per_view",
+                  label: "Slides Per View",
+                  widget: "number",
+                  value_type: "int",
+                  min: 1,
+                  default: 1,
+                }
+              - {
+                  name: "loop",
+                  label: "Loop",
+                  widget: "boolean",
+                  default: false,
+                }
+              - {
+                  name: "progress",
+                  label: "Progress Bar",
+                  widget: "boolean",
+                  default: false,
+                }
               - name: "autoplay"
                 label: "Autoplay"
                 widget: "object"
                 summary: "{{fields.enabled}}, {{fields.interval}}"
                 fields:
-                  - { name: "enabled", label: "Enabled", widget: "boolean", default: false }
-                  - { name: "interval", label: "Interval", widget: "number", required: false, hint: "Milliseconds. Not recommended below 2000" }
+                  - {
+                      name: "enabled",
+                      label: "Enabled",
+                      widget: "boolean",
+                      default: false,
+                    }
+                  - {
+                      name: "interval",
+                      label: "Interval",
+                      widget: "number",
+                      required: false,
+                      hint: "Milliseconds. Not recommended below 2000",
+                    }
               - name: "slides"
                 label: "Slides"
                 label_singular: "Slide"
                 widget: "list"
                 fields:
-                  - { name: "title", label: "Title", widget: "string", required: false }
-                  - { name: "desc", label: "Description", widget: "text", required: false }
-                  - { name: "img", label: "Image", widget: "image", required: false }
-                  - { name: "alt", label: "Image Alt", widget: "string", required: false }
+                  - {
+                      name: "title",
+                      label: "Title",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      name: "desc",
+                      label: "Description",
+                      widget: "text",
+                      required: false,
+                    }
+                  - {
+                      name: "img",
+                      label: "Image",
+                      widget: "image",
+                      required: false,
+                    }
+                  - {
+                      name: "alt",
+                      label: "Image Alt",
+                      widget: "string",
+                      required: false,
+                    }
       - name: "tabs"
         label: "Tabs"
         file: "src/_data/library/tabs.yaml"
