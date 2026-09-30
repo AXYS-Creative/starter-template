@@ -2,11 +2,12 @@ accordion_table_1:
   id: 1
   sticky: false
   single_open: true
+  slides_per_view: 3
   content_column: 3
   icon: /static/img/icon-google-chevron-down.svg
   columns:
     - { key: icon, label: Icon, type: image, width: 96px }
-    - { key: year, label: Year, width: 1fr }
+    - { key: year, label: Year, width: 112px }
     - { key: location, label: Location, width: 2fr }
   items:
     - icon: { src: /static/img/img-sample-1.jpg, alt: Sample image one }
@@ -21,6 +22,12 @@ accordion_table_1:
       year: "2019"
       location: Portland, OR
       content: "Quasi doloribus culpa delectus esse, consectetur accusamus, deserunt distinctio officiis atque quia dolorum doloremque, exercitationem autem! Error numquam magnam ipsa ea fugiat, ullam officiis natus sequi praesentium nam provident quas ipsam repellendus incidunt quo, alias, impedit minima harum. Maiores delectus, eum soluta ratione iure atque!"
+      images:
+        - { img: /static/img/img-sample-3.jpg, alt: Sample image three }
+        - { img: /static/img/img-sample-4.jpg, alt: Sample image four }
+        - { img: /static/img/img-sample-5.jpg, alt: Sample image five }
+        - { img: /static/img/img-sample-6.jpg, alt: Sample image six }
+      cta: { text: View gallery, url: /, type: primary }
 
 accordion_table_2:
   id: 2

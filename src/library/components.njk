@@ -104,7 +104,17 @@ path: library/components
     <li>
       <code>items</code> an array of objects with a field per column
       <code>key</code>, plus <code>content</code> a string (‘safe’ for markup)
-      revealed when the row is opened
+      revealed when the row is opened, and an optional <code>images</code>
+      array of <code>{ img, alt }</code> rendered above it with
+      <code>carousel.njk</code> (arrows) and an optional <code>cta</code> button config. An item can set its own <code>slides_per_view</code>
+    </li>
+    <li>
+      <code>slides_per_view</code> a number, how many images each item’s
+      carousel shows at once. Defaults to <code>1</code>
+    </li>
+    <li>
+      <code>loop_images</code> a boolean to loop each item’s image carousel.
+      Defaults to <code>true</code>
     </li>
     <li>
       <code>content_column</code> a number, the 1-indexed column the revealed
@@ -332,6 +342,11 @@ path: library/components
         fills as the carousel advances. Sits beside the pagination controls, or
         alone with <code>pagination: none</code>. Defaults to
         <code>false</code>
+      </li>
+      <li>
+        <code>cta</code> an optional <code>btn.njk</code> config
+        (<code>{ text, url, type }</code>) shown at the left of the footer, with
+        the pagination controls moved to the right
       </li>
       <li>
         <code>loop</code> a boolean for an infinite loop. Slides are cloned

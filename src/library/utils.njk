@@ -1943,3 +1943,72 @@ all_badge_types: "outline"
     {% include "../_includes/components/btn.njk" %}
   </div>
 </section>
+
+<section class="video-overlay-section library-section">
+  <h2>[ Video Overlay - Util ]</h2>
+  <p>
+    A modal video built on the native <code>&lt;dialog&gt;</code> element, so
+    focus trapping, <code>Esc</code> to close and an inert background come for
+    free. The dialog is created on the first click, so pages without a video
+    ship nothing extra. Add a video with a few simple steps:
+  </p>
+  <ol class="classic-list">
+    <li>
+      Ensure <code>video-overlay.js</code> and
+      <code>_video-overlay.scss</code> are in your app.
+    </li>
+    <li>
+      Add the <code>data-video-src</code> attribute to any button/trigger.
+      Self-hosted or CDN files are best; Dropbox share links work for
+      prototyping.
+    </li>
+    <li>
+      Optional attributes: <code>data-video-title</code> (the dialog’s
+      accessible name, defaults to the trigger’s text),
+      <code>data-video-poster</code>, <code>data-video-captions</code> (a .vtt
+      file) and <code>data-video-captions-lang</code> (defaults to
+      <code>en</code>).
+    </li>
+    <li>
+      Keep the trigger’s visible text as its accessible name, so avoid
+      overriding it with an <code>aria-label</code>.
+    </li>
+  </ol>
+  <p>Good to know:</p>
+  <ul class="classic-list">
+    <li>
+      The close button’s markup lives in <code>video-overlay.js</code>
+      (mirroring <code>btn.njk</code>’s output), so adjust it there per project.
+    </li>
+    <li>
+      The <code>&lt;dialog&gt;</code> sits in the browser’s top layer, above any
+      <code>z-index</code>. The custom mouse cursor is moved into the dialog
+      while it’s open so it stays visible.
+    </li>
+    <li>
+      Dropbox share links are rewritten (<code>dl=0</code> to
+      <code>raw=1</code>) so they stream. Fine for prototyping; consider
+      self-hosting or a CDN for production.
+    </li>
+  </ul>
+
+  <!-- prettier-ignore -->
+  {% set video_src = 'https://www.dropbox.com/scl/fi/6sh06eo6b3x84qo823qcq/sample-video-1.mp4?rlkey=0v6dqkra2wk7de0rz849ufm7o&st=0705ulra&dl=0' %}
+  {% set btn = ({
+    text: 'Toggle Video Overlay',
+    type: 'solid',
+    class: 'glitch-hover',
+    attributes: 'data-video-src="'~video_src~'" data-video-poster="/static/img/img-sample-1.jpg"'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+
+  <!-- prettier-ignore -->
+  {% set video_src = 'https://www.dropbox.com/scl/fi/lqhy0y29fdlv28f81stg2/sample-video-2.mp4?rlkey=nl7r3h0nj61dhqk2yjp30gase&st=nyb73zpa&dl=0' %}
+  {% set btn = ({
+    text: 'Second Video',
+    type: 'outline',
+    class: 'btn--bg-slide btn--split-text',
+    attributes: 'data-video-src="'~video_src~'" data-video-title="Second sample video" data-btn-slide="up" data-hover-alt'
+   }) %}
+  {% include "../_includes/components/btn.njk" %}
+</section>

@@ -1,86 +1,104 @@
-import { headerLogoLink, menuBtn, tabElementsPage } from "../global/header.js";
 import { lenis } from "../util.js";
+import { cursor } from "./cursor-base.js";
 
-const videoOverlay = document.querySelector(".video-overlay"),
-  videoPlayer = document.querySelector(".video-overlay .video-player"), // scoped: the video-player component shares this class
-  videoCloseBtn = document.querySelector(".video-overlay__close");
+const TRIGGERS = "[data-video-src], [data-vid-src], .video-toggle";
+const CLOSE_ICON = "/static/img/icon-google-x-lg.svg";
+const TEARDOWN_MS = 300;
 
-const videoToggle = document.querySelectorAll(".video-toggle");
+let dialog = null;
+let video = null;
+let activeToggle = null;
+let teardownTimer = null;
 
-const nonVideoOverlayTabElements = [
-  ...tabElementsPage,
-  headerLogoLink,
-  menuBtn,
-];
-
-videoPlayer?.setAttribute("tabindex", "-1");
-videoCloseBtn?.setAttribute("tabindex", "-1");
-
-// For Dropbox, replace end of link's string to allow video embed
-if (videoToggle) {
-  videoToggle.forEach((btn) => {
-    const updatedSrc = btn
-      .getAttribute("data-vid-src")
-      .replace("dl=0", "raw=1");
-    btn.setAttribute("data-vid-src", updatedSrc);
-  });
-}
-
-export const openVideoOverlay = (src) => {
-  videoOverlay.setAttribute("aria-hidden", "false");
-  videoOverlay.hidden = false;
-
-  if (src) videoPlayer.src = src; // Inject video source
-
-  videoCloseBtn.focus();
-
-  videoOverlay.setAttribute("tabindex", "0");
-  videoPlayer.setAttribute("tabindex", "0");
-  videoCloseBtn.setAttribute("tabindex", "0");
-  nonVideoOverlayTabElements.forEach((el) =>
-    el?.setAttribute("tabindex", "-1"),
+// Dropbox share links need raw=1 to stream; real sites should self-host
+const getSrc = (toggle) =>
+  (toggle.dataset.videoSrc || toggle.dataset.vidSrc || "").replace(
+    /([?&])dl=0/,
+    "$1raw=1",
   );
 
-  lenis.stop();
+const build = () => {
+  dialog = document.createElement("dialog");
+  dialog.className = "video-overlay";
+  dialog.innerHTML = `
+    <video class="video-overlay__video" controls playsinline preload="metadata"></video>
+    <button type="button" class="btn btn-type--solid btn--icon-only btn--bg-slide video-overlay__close" data-btn-slide="up" aria-label="Close video" autofocus>
+      <span class="btn__icon-group">
+        <span class="btn__icon-end icon-svg" style="mask-image: url('${CLOSE_ICON}');" aria-hidden="true"></span>
+      </span>
+    </button>`;
+  video = dialog.querySelector("video");
+
+  dialog
+    .querySelector(".video-overlay__close")
+    .addEventListener("click", () => dialog.close());
+
+  // The dialog fills the viewport, so a click on itself is a backdrop click
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    if (cursor) document.body.append(cursor);
+    video.pause();
+    lenis.start();
+    activeToggle?.focus();
+    activeToggle = null;
+    teardownTimer = setTimeout(() => {
+      video.removeAttribute("src");
+      video.removeAttribute("poster");
+      video.querySelectorAll("track").forEach((track) => track.remove());
+      video.load();
+    }, TEARDOWN_MS);
+  });
+
+  document.body.append(dialog);
 };
 
-videoToggle?.forEach((btn) => {
-  let vidSrc = btn.getAttribute("data-vid-src");
+export const openVideoOverlay = (toggle) => {
+  const src = getSrc(toggle);
+  if (!src) return;
+  if (!dialog) build();
+  clearTimeout(teardownTimer);
+  activeToggle = toggle;
 
-  btn.addEventListener("click", () => {
-    openVideoOverlay(vidSrc);
-    btn.setAttribute("aria-expanded", "true");
-  });
-});
+  const { videoTitle, videoPoster, videoCaptions, videoCaptionsLang } =
+    toggle.dataset;
+  dialog.setAttribute(
+    "aria-label",
+    videoTitle || toggle.textContent.trim() || "Video",
+  );
 
-export const closeVideoOverlay = () => {
-  videoOverlay.setAttribute("aria-hidden", "true");
-  videoOverlay.hidden = true;
-
-  videoToggle?.forEach((btn) => {
-    btn.setAttribute("aria-expanded", "false");
-    btn.focus(); // Since overlay exists outside of main, this helps restore focus when closing overlay (vs going to footer)
-  });
-
-  videoPlayer.pause();
-
-  setTimeout(() => {
-    videoPlayer.removeAttribute("src");
-    videoPlayer.load();
-  }, 300);
-
-  videoOverlay.setAttribute("tabindex", "-1");
-  videoCloseBtn.setAttribute("tabindex", "-1");
-  nonVideoOverlayTabElements.forEach((el) => el?.setAttribute("tabindex", "0"));
-
-  lenis.start();
-};
-
-// Close the video player when clicking outside the embed
-videoOverlay?.addEventListener("click", (e) => {
-  if (e.target.classList.contains("video-overlay")) {
-    closeVideoOverlay();
+  video.querySelectorAll("track").forEach((track) => track.remove());
+  if (videoCaptions) {
+    const track = document.createElement("track");
+    Object.assign(track, {
+      kind: "captions",
+      src: videoCaptions,
+      srclang: videoCaptionsLang || "en",
+      label: "Captions",
+      default: true,
+    });
+    video.append(track);
   }
+
+  if (videoPoster) video.poster = videoPoster;
+  else video.removeAttribute("poster");
+  video.src = src;
+
+  dialog.showModal();
+  if (cursor) dialog.append(cursor); // The top layer sits above any z-index
+  lenis.stop();
+  video.play().catch(() => {}); // blocked autoplay just leaves the controls
+};
+
+export const closeVideoOverlay = () => dialog?.close();
+
+document.querySelectorAll(TRIGGERS).forEach((toggle) => {
+  toggle.setAttribute("aria-haspopup", "dialog");
 });
 
-videoCloseBtn?.addEventListener("click", () => closeVideoOverlay());
+document.addEventListener("click", (e) => {
+  const toggle = e.target.closest(TRIGGERS);
+  if (toggle) openVideoOverlay(toggle);
+});

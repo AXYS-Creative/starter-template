@@ -7,6 +7,7 @@
 {% set progress = carousel.progress or false %}
 {% set autoplay = carousel.autoplay or {} %}
 {% set btn_icon = carousel.btn_icon or '/static/img/icon-google-chevron-right.svg' %}
+{% set cta = carousel.cta or {} %}
 {% set class = carousel.class or '' %}
 
 <!-- prettier-ignore -->
@@ -47,8 +48,12 @@
     {% endfor %}
   </div>
 
-  {% if progress or pagination == 'arrows' or pagination == 'dots' %}
-  <div class="carousel__footer {{ 'carousel__footer--split' if progress and pagination != 'none' }}">
+  {% if progress or cta.text or pagination == 'arrows' or pagination == 'dots' %}
+  <div class="carousel__footer {{ 'carousel__footer--split' if (progress or cta.text) and pagination != 'none' }}">
+    {% if cta.text %}
+    {% set btn = cta %}
+    {% include "./btn.njk" %}
+    {% endif %}
     {% if progress %}
     <div class="carousel__progress" aria-hidden="true">
       <span class="carousel__progress-bar"></span>

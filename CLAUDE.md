@@ -138,3 +138,10 @@ script itself wasn't ported — but if/when a project built from this
 template needs 3+ near-identical section-stack pages, build a script
 following this shape rather than continuing to hand-copy pages one at a
 time.
+
+## `DELETE ME` markers
+
+Code marked `DELETE ME` (comments, scss variables like
+`$z-index--alert`, library-only includes) is template/library scaffolding
+that shouldn't ship. When cloning this repo into a new project, grep for
+`DELETE ME` and clear what the project doesn't use.

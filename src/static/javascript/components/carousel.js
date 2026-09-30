@@ -1,6 +1,8 @@
 import { mqNoMotion, root } from "../util.js";
 
 const DRAG_THRESHOLD = 5;
+const SWIPE_FRACTION = 0.1;
+const RELEASE_FALLBACK_MS = 700;
 const SETTLE_MS = 120;
 
 document.querySelectorAll(".carousel").forEach((carousel) => {
@@ -184,6 +186,17 @@ document.querySelectorAll(".carousel").forEach((carousel) => {
   let dragging = false;
   let moved = false;
 
+  // Snap stays off until the smooth scroll ends, or it would jump instantly.
+  const releaseSnap = () => {
+    const done = () => {
+      clearTimeout(fallback);
+      track.removeEventListener("scrollend", done);
+      track.classList.remove("is-dragging");
+    };
+    const fallback = setTimeout(done, RELEASE_FALLBACK_MS);
+    track.addEventListener("scrollend", done);
+  };
+
   track.addEventListener("pointerdown", (e) => {
     if (e.pointerType !== "mouse" || e.button !== 0) return;
     dragging = true;
@@ -202,8 +215,15 @@ document.querySelectorAll(".carousel").forEach((carousel) => {
   window.addEventListener("pointerup", () => {
     if (!dragging) return;
     dragging = false;
-    track.classList.remove("is-dragging");
-    if (moved) goToRaw(rawIndex());
+    if (moved) {
+      const shift = (track.scrollLeft - startScroll) / step();
+      const from = Math.round(startScroll / step());
+      const delta = Math.abs(shift) >= SWIPE_FRACTION ? Math.sign(shift) : 0;
+      goToRaw(from + delta);
+      releaseSnap();
+    } else {
+      track.classList.remove("is-dragging");
+    }
     restartAutoplay();
   });
   track.addEventListener(

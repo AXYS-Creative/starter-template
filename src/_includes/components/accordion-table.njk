@@ -6,6 +6,8 @@
 {% set sticky = accordion_table.sticky or false %}
 {% set content_column = accordion_table.content_column or 2 %}
 {% set icon = accordion_table.icon or '' %}
+{% set slides_per_view = accordion_table.slides_per_view or 1 %}
+{% set loop_images = false if accordion_table.loop_images == false else true %}
 {% set class = accordion_table.class or '' %}
 
 <!-- prettier-ignore -->
@@ -41,6 +43,7 @@
         />
         {% endif %} {% else %} {{ value }} {% endif %}
       </span>
+      <!-- prettier-ignore -->
       {% endfor %}
       {% if icon %}
       {% set icon_svg = ({ src: icon, class: 'accordion-table__icon' }) %}
@@ -52,7 +55,8 @@
       id="accordion-table-{{ id }}-item-{{ loop.index }}"
     >
       <div class="accordion-table__content-inner">
-        {% for col in columns %} {% if col.type == 'image' and item[col.key].src %}
+        {% for col in columns %} {% if col.type == 'image' and item[col.key].src
+        %}
         <img
           class="accordion-table__media"
           src="{{ item[col.key].src }}"
@@ -60,7 +64,22 @@
           loading="lazy"
         />
         {% endif %} {% endfor %}
-        <div class="accordion-table__message">{{ item.content | safe }}</div>
+        <div class="accordion-table__body">
+          <div class="accordion-table__message">{{ item.content | safe }}</div>
+          <!-- prettier-ignore -->
+          {% if item.images.length %}
+          {% set carousel = ({
+            id: id ~ '-' ~ loop.index,
+            label: 'Images',
+            class: 'accordion-table__carousel',
+            slides: item.images,
+            slides_per_view: item.slides_per_view or slides_per_view,
+            loop: loop_images,
+            cta: item.cta
+          }) %}
+          {% include "./carousel.njk" %}
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>

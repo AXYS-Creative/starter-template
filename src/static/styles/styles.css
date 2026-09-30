@@ -6352,7 +6352,10 @@ code.codearea {
   overflow: hidden;
   align-items: start;
 }
-.accordion-table__message {
+.accordion-table__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--accordion-table-gap);
   grid-column: var(--accordion-table-content-col);
   min-width: 0;
 }
@@ -7248,7 +7251,6 @@ code.codearea {
   --carousel-progress-height: 3px;
   width: 100%;
   margin-block: var(--section-gap);
-  padding-block: var(--body-padding);
 }
 @media (min-width: 769px) {
   .carousel {
@@ -8499,6 +8501,7 @@ body[data-body-loading-complete] .hero-simple.home-hero .cta-group {
 .mouse-cursor {
   position: fixed;
   top: 0;
+  left: 0;
   pointer-events: none;
   translate: -50% -50%;
   z-index: 10;
@@ -9875,43 +9878,51 @@ html:has(.scroll-progress) {
 }
 
 .video-overlay {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--section-gap);
-  position: fixed;
-  top: 0;
-  left: 50%;
-  translate: -50% 0;
   width: 100vw;
   max-width: 100vw;
   height: 100dvh;
+  max-height: 100dvh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  opacity: 0;
+}
+.video-overlay[open] {
+  display: flex;
+  opacity: 1;
+}
+@starting-style {
+  .video-overlay[open] {
+    opacity: 0;
+  }
+}
+.video-overlay::backdrop {
+  background-color: rgba(41, 41, 41, 0);
+}
+.video-overlay[open]::backdrop {
   background-color: rgba(41, 41, 41, 0.9);
-  z-index: 5;
+}
+@starting-style {
+  .video-overlay[open]::backdrop {
+    background-color: rgba(41, 41, 41, 0);
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .video-overlay {
-    transition: opacity 0.3s ease;
+  .video-overlay, .video-overlay::backdrop {
+    transition: opacity 0.3s ease, background-color 0.3s ease, display 0.3s allow-discrete, overlay 0.3s allow-discrete;
   }
 }
-.video-overlay .video-player {
-  width: 80%;
-  height: auto;
-  max-width: 1320px;
-  min-height: 65%;
+.video-overlay__video {
+  width: min(90vw, 1320px);
+  max-height: 80dvh;
+  aspect-ratio: 16/9;
+  object-fit: contain;
   background: black;
-}
-@media (orientation: portrait) {
-  .video-overlay .video-player {
-    height: 80%;
-    width: 80%;
-  }
-}
-.video-overlay[hidden] {
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
 }
 
 .video-player {

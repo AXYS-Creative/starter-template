@@ -125,7 +125,10 @@
     }
   }
 
-  &__message {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--accordion-table-gap);
     grid-column: var(--accordion-table-content-col);
     min-width: 0;
   }

@@ -25,6 +25,26 @@ carousel_1:
       desc: Description 6
       img: /static/img/img-sample-6.jpg
 
+carousel_2:
+  id: 2
+  class: carousel-sample-2
+  label: Sample carousel with dots
+  pagination: dots
+  loop: true
+  slides_per_view: 1
+  autoplay:
+    enabled: true
+    interval: 3200
+  slides:
+    - title: Title 1
+      desc: Description 1
+    - title: Title 2
+      desc: Description 2
+    - title: Title 3
+      desc: Description 3
+    - title: Title 4
+      desc: Description 4
+
 carousel_3:
   id: 3
   label: Sample looping carousel with progress
@@ -50,22 +70,3 @@ carousel_3:
     - title: Title 5
       desc: Description 5
       img: /static/img/img-sample-11.jpg
-
-carousel_2:
-  id: 2
-  class: carousel-sample-2
-  label: Sample carousel with dots
-  pagination: dots
-  slides_per_view: 1
-  autoplay:
-    enabled: true
-    interval: 3200
-  slides:
-    - title: Title 1
-      desc: Description 1
-    - title: Title 2
-      desc: Description 2
-    - title: Title 3
-      desc: Description 3
-    - title: Title 4
-      desc: Description 4
